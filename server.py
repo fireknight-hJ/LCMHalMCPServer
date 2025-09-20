@@ -3,7 +3,7 @@ from fastmcp import FastMCP, Context
 from codeql_mcp import CodeQLQueryServer
 from pathlib import Path
 
-mcp = FastMCP("CodeQL", version="1.0.0")
+mcp = FastMCP("LCMHalMCP", version="1.0.0")
 qs = CodeQLQueryServer()
 qs.start()
 
