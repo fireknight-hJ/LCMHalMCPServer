@@ -7,9 +7,10 @@ import threading
 import uuid
 from pathlib import Path
 
+CODEQL_PATH = "/home/haojie/test/codeql/codeql"
 
 class CodeQLQueryServer:
-    def __init__(self, codeql_path="codeql"):
+    def __init__(self, codeql_path=CODEQL_PATH):
         self.codeql_path = codeql_path
         self.proc = None
         self.reader_thread = None
