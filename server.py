@@ -2,6 +2,7 @@
 from fastmcp import FastMCP, Context
 from codeql_mcp import CodeQLQueryServer
 from pathlib import Path
+import zipfile
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
 qs = CodeQLQueryServer()
@@ -97,6 +98,30 @@ async def find_predicate_position(file: str, name: str) -> dict:
         "end_col": ecol,
     }
 
+@mcp.tool()
+async def driver_info_driverfromfunction_collector(db_path: str) -> str:
+    """Collect driverfrom function query on a given database, returns JSON results"""
+    # 从当前目录的codeql_scripts文件夹中获取对应ql文件
+    query_path = str(Path(__file__) / "codeql_scripts" / "driver_info_driverfromfunction_collector.ql")
+    output_path = str(Path(__file__) / "tmp" / "driver_info_driverfromfunction_collector.bqrs")
+    # 从db_path中提取数据库名称
+    db_path = db_path.split("/")[-1]
+    try:
+        qs.evaluate_and_wait(query_path, db_path, output_path)
+    except RuntimeError as re:
+        return f"CodeQL evaluation failed: {re}"
+    return qs.decode_bqrs(output_path, output_format="json")
+
+
+@mcp.tool()
+async def get_file_content(file_path: str, start_line: int, end_line: int) -> str:
+    """Reads and returns the content of a specified file."""
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return content
+    except Exception as e:
+        return f"Error reading file {file_path}: {e}"
 
 if __name__ == "__main__":
     print("Starting CodeQL MCP server...")
