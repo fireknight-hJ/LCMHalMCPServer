@@ -40,8 +40,8 @@ def read_file_from_db_zip(db_path: str, file_path: str) -> str:
     except Exception as e:
         return f"Error reading file {file_path} from src.zip: {e}"
 
-def read_struct_from_start_line(db_path: str, file_path: str, start_line: int) -> str:
-    """Reads a struct from the start line of a file in the src.zip inside a CodeQL database directory."""
+def read_struct_with_start_line_from_db(db_path: str, file_path: str, start_line: int, struct_or_func_name: str) -> str:
+    """Reads a struct or function definition from the start line of a file in the src.zip inside a CodeQL database directory."""
     content = read_file_from_db_zip(db_path, file_path)
     lines = content.splitlines()
     current_comment = ""
@@ -56,7 +56,7 @@ def read_struct_from_start_line(db_path: str, file_path: str, start_line: int) -
             in_comment_block = True # 开始收集当前注释
 
         if in_comment_block:
-            current_comment += line  # 持续收集注释
+            current_comment += line + "\n"  # 持续收集注释
             if "*/" in line:
                 in_comment_block = False  # 结束当前注释
                 # 此时，current_comment 包含了最新的注释内容
@@ -67,6 +67,7 @@ def read_struct_from_start_line(db_path: str, file_path: str, start_line: int) -
     content_length = 0
     line_cnt = 0
     in_content = False  # 指示
+    struct_content = ""
     
     for line in lines[start_line-1:]:
         # # 解决pre_brace_count的问题
@@ -85,7 +86,7 @@ def read_struct_from_start_line(db_path: str, file_path: str, start_line: int) -
         
         # 检查是否超过了全局数组的大小
         if content_length + len(line) < MAX_STRUCT_SIZE:
-            struct_content += line
+            struct_content += line + "\n"
             content_length += len(line)
         else:
             print("Struct definition exceeds max size.")
@@ -105,7 +106,7 @@ def read_struct_from_start_line(db_path: str, file_path: str, start_line: int) -
     # 检查是line_cnt是否为1，若为1则说明结构体定义不存在，抛出异常
     if line_cnt <= 2:
         return ""
-    if func_name != None and func_name not in struct_content:
+    if struct_or_func_name != None and struct_or_func_name not in struct_content:
         return ""
     # 合并最近的注释和结构体定义
     return current_comment + struct_content
@@ -113,10 +114,16 @@ def read_struct_from_start_line(db_path: str, file_path: str, start_line: int) -
 if __name__ == "__main__":
     # Example usage
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
-    file_path = "usr/lib/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/select.h"
+    file_path = "home/haojie/posixGen_Demos/LwIP_StreamingServer/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_eth.c"
+    # func_name = "HAL_ETH_RegisterCallback"
+    func_name = "ETH_HandleTypeDef"
+    start_line = 507
     # 列出 zip 里面的文件
     files = list_files_in_db_zip(db_path)
-    print(files)
+    # print(files)
     # 尝试查找 zip 里面的文件
     content = read_file_from_db_zip(db_path, file_path)
-    print(content)
+    # print(content)
+    # 读取结构体定义
+    struct_content = read_struct_from_start_line(db_path, file_path, start_line, func_name)
+    print(struct_content)
