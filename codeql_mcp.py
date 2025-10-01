@@ -53,8 +53,8 @@ class CodeQLQueryServer:
         while self.running:
             line = self.proc.stderr.readline()
             # For debugging
-            # if line:
-            #    print("[CodeQL stderr]", line.strip())
+            if line:
+               print("[CodeQL stderr]", line.strip())
 
     def _read_loop(self):
         print("[*] Read loop started")

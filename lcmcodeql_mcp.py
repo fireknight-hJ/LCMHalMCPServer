@@ -2,12 +2,7 @@
 from fastmcp import FastMCP, Context
 from codeql_mcp import CodeQLQueryServer
 from pathlib import Path
-from util import db_file
-from util import db_cache
-import uuid
-import shutil
-import os
-import fastmcp
+import zipfile
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
 qs = CodeQLQueryServer()
@@ -108,44 +103,16 @@ async def driver_info_driverfromfunction_collector(db_path: str) -> str:
     """Collect driverfrom function query on a given database, returns JSON results"""
     # 从当前目录的codeql_scripts文件夹中获取对应ql文件
     query_path = str(Path(__file__) / "codeql_scripts" / "driver_info_driverfromfunction_collector.ql")
-    # 输出目录在db_path同目录新建新建tmp文件夹中 eg: /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer -> +lcmhal_tmp
-    output_path = str(Path(db_path) / "lcmhal_tmp" / str("driver_info_driverfromfunction_collector" + ".bqrs"))
+    # 输出目录在db_path同目录新建新建tmp文件夹中 eg: /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer -> +_output
+    output_path = str(Path(db_path) / "lcmhal_tmp" / "driver_info_driverfromfunction_collector.bqrs")
     # 从db_path中提取数据库名称
     # db_path = db_path.split("/")[-1]
-    if not Path(db_path, "lcmhal_tmp").exists():
-        Path(db_path, "lcmhal_tmp").mkdir(parents=True, exist_ok=True)
-    if not Path(output_path).exists():
-        try:
-            qs.evaluate_and_wait(query_path, db_path, output_path)
-        except RuntimeError as re:
-            return f"CodeQL evaluation failed: {re}"
+    try:
+        qs.evaluate_and_wait(query_path, db_path, output_path)
+    except RuntimeError as re:
+        return f"CodeQL evaluation failed: {re}"
     return qs.decode_bqrs(output_path, output_format="json")
 
-    # # 从当前目录的codeql_scripts文件夹中获取对应ql文件
-    # query_path = str(Path(__file__) / "codeql_scripts" / "driver_info_driverfromfunction_collector.ql")
-    # output_path = str(Path(__file__) / "tmp" / "driver_info_driverfromfunction_collector" + str(uuid.uuid4()) + ".bqrs")
-    # # 从db_path中提取数据库名称
-    # db_path = db_path.split("/")[-1]
-    # try:
-    #     qs.evaluate_and_wait(query_path, db_path, output_path)
-    # except RuntimeError as re:
-    #     return f"CodeQL evaluation failed: {re}"
-    # return qs.decode_bqrs(output_path, output_format="json")
-
-@mcp.tool()
-async def get_file_content(db_path: str, file_path: str) -> str:
-    """Reads and returns the content of a specified file in a CodeQL database."""
-    return db_file.read_file_from_db_zip(db_path, file_path)
-
-@mcp.tool()
-async def clear_cache(db_path: str, query_infos: list = []) -> str:
-    """clear lcmhalmcp tmp cache, used when db is updated"""
-    db_cache.clear_cache(db_path, query_infos)
-    return "Cache cleared"
-
-# @mcp.tool()
-# async def get_struct_content_from_startline(file_path: str, start_line: int) -> str:
-    
 
 if __name__ == "__main__":
     print("Starting CodeQL MCP server...")
