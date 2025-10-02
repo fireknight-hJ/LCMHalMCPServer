@@ -2,8 +2,7 @@
 from fastmcp import FastMCP, Context
 from codeql_mcp import CodeQLQueryServer
 from pathlib import Path
-from util import db_file
-from util import db_cache
+from utils import db_file, db_cache
 import uuid
 import shutil
 import os

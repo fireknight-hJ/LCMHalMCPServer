@@ -55,6 +55,9 @@ def read_struct_or_func_from_lines(lines: list, start_line: int) -> str:
     """Reads a struct or function definition from the start line of a file in the src.zip inside a CodeQL database directory."""
     current_comment = ""
     in_comment_block = False
+    if start_line < 1 or start_line > len(lines):
+        print("Invalid start-line number, may be different definition.")
+        return ""
     # 跳转到结构体定义的起始行并存储最近的注释
     for i in range(1, start_line):
         line = lines[i-1].strip()
