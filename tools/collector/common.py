@@ -1,21 +1,19 @@
 from utils.db_file import read_struct_with_start_line_from_db
 from utils.db_query import run_query_and_return_json
 from config.collector_infos import *
-import subprocess
 import json
-import re
-import os
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any
 from pathlib import Path
+
+from .base import CodebaseInfoBase
 from models.query_results.common import FunctionInfo, StructInfo, EnumInfo
 
 @dataclass
-class CommonCodebaseInfo:
-    """代码库信息总数据结构"""
+class CommonCodebaseInfo(CodebaseInfoBase):
+    """通用代码库信息总数据结构"""
     db_path: str = ""
     cache_file: str = ""
-    cache_dir: str = ""
     functions: Dict[str, FunctionInfo] = field(default_factory=dict)
     structs: Dict[str, StructInfo] = field(default_factory=dict)
     enums: Dict[str, EnumInfo] = field(default_factory=dict)
@@ -29,9 +27,9 @@ class CommonCodebaseInfo:
         self.functions = {}
         self.structs = {}
         self.enums = {}
-        self.cache_dir = Path(db_path) / "lcmhal_tmp"
-        self.cache_file = self.cache_dir / "common_info.json"
-        self.db_path = db_path
+        self.mmio_functions = {}
+        self.driver_functions = {}
+        self.buffer_functions = {}
         if db_path:
             self.init_from_cache(db_path)
 
@@ -40,7 +38,8 @@ class CommonCodebaseInfo:
         从缓存初始化数据
         返回是否成功从缓存加载
         """
-
+        self.cache_dir = Path(db_path) / "lcmhal_tmp"
+        self.cache_file = self.cache_dir / "common_info.json"
         
         if not self.cache_file.exists():
             print(f"[INFO] 缓存文件不存在: {self.cache_file}")
@@ -96,7 +95,6 @@ class CommonCodebaseInfo:
                 name=enum_data["name"],
                 value=enum_data["value"]
             )
-        
 
     def to_dict(self) -> Dict[str, Any]:
         """转换为字典格式用于JSON序列化"""
@@ -169,19 +167,12 @@ class CommonCodebaseInfo:
                 print(f"[INFO] 收集{module_name}...")
                 collector_func()
             except Exception as e:
-                print(f"[ERROR] 收集{module_name}失败: {e.with_traceback()}")
+                print(f"[ERROR] 收集{module_name}失败: {e}")
                 # 继续收集其他模块
         
         # 保存到缓存
         self.save_to_cache()
         print("[INFO] 信息收集完成")
-
-    def _run_query_and_return_json(self, query_file: str) -> Optional[List[Any]]:
-        """运行query并返回结果"""
-        result = run_query_and_return_json(self.db_path, query_file)
-        if result:
-            return json.loads(result)["#select"]["tuples"]
-        return None
 
     def _collect_functions(self) -> None:
         """收集函数信息"""
@@ -201,9 +192,8 @@ class CommonCodebaseInfo:
         """收集枚举信息"""
         result = self._run_query_and_return_json(enum_collector_query_file)
         if result:
-
+            self.enums = EnumInfo.resolve_from_query_result(self.db_path, result)
             print("[INFO] 枚举信息收集完成")
-
 
 
 # 使用示例

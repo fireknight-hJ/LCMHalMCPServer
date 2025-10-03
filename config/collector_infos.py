@@ -25,6 +25,11 @@ driverfrom_expr_query_file = "queries/collectors/driver/driver_info_driverfromex
 driverfrom_function_contains_query_file = "queries/collectors/driver/driver_info_driverfromfunctioncontains_collector.ql"
 driverto_functioncall_query_file = "queries/collectors/driver/driver_info_drivertofunctioncall_collector.ql"
 
+# mmio info collector
+mmioinfo_interestingmmioexpr_query_file = "queries/collectors/mmio/mmioinfo_interestingmmioexpr_collector.ql"
+mmioinfo_mmioexpr_query_file = "queries/collectors/mmio/mmioinfo_mmioexpr_collector.ql"
+mmioinfo_interestingmmiofunccontains_query_file = "queries/collectors/mmio/mmioinfo_interestingmmiofunccontains_collector.ql"
+
 # deprecated
 driverfrom_functioncall_query_file = "" # noReturnValue的直接注释掉，hasReturnValue的考虑返回值该是什么
 driverusing_file_query_file = ""        # 这些是理论上的所有待处理文件（除了部分内核Asm内容）

@@ -1,10 +1,12 @@
+
 from dataclasses import dataclass, field
 from utils import read_struct_with_start_line_from_db
 from typing import Any, Dict, List
+from base import QueryInfo
 
 # common infos collector
 @dataclass
-class FunctionInfo:
+class FunctionInfo(QueryInfo):
     """函数信息数据结构"""
     name: str
     file_path: str
@@ -29,7 +31,7 @@ class FunctionInfo:
         return functions
 
 @dataclass
-class StructInfo:
+class StructInfo(QueryInfo):
     """结构体信息数据结构"""
     name: str
     file_path: str
@@ -48,23 +50,25 @@ class StructInfo:
             struct_content = read_struct_with_start_line_from_db(db_path, file_path[1:], location_line, struct_name)
             if struct_content == "" :
                 continue
-            structs[struct_name] = StructInfo(
-                name=struct_name,
-                file_path=file_path,
-                location_line=location_line,
-                struct_content=struct_content,
-                members={}
-            )
+            if struct_name not in structs:
+                structs[struct_name] = StructInfo(
+                    name=struct_name,
+                    file_path=file_path,
+                    location_line=location_line,
+                    struct_content=struct_content,
+                    members={}
+                )
             structs[struct_name].members[member_name] = member_type
+        return structs
 
 @dataclass
-class EnumInfo:
+class EnumInfo(QueryInfo):
     """枚举信息数据结构"""
     name: str
     value: Any
 
     @staticmethod
-    def resolve_from_query_result(result: List[Dict[str, Any]]) -> Dict[str, 'EnumInfo']:
+    def resolve_from_query_result(db_path: str, result: List[Dict[str, Any]]) -> Dict[str, 'EnumInfo']:
         """从查询结果解析枚举信息，返回字典，键为枚举名"""
         enums: Dict[str, EnumInfo] = {}
         for item in result:
