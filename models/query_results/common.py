@@ -1,8 +1,8 @@
 
 from dataclasses import dataclass, field
-from utils import read_struct_with_start_line_from_db
+from utils.db_file import read_struct_with_start_line_from_db, read_line_from_db
 from typing import Any, Dict, List
-from base import QueryInfo
+from models.query_results.base import QueryInfo
 
 # common infos collector
 @dataclass
@@ -12,6 +12,7 @@ class FunctionInfo(QueryInfo):
     file_path: str
     location_line: int
     function_content: str
+    function_content_in_lines: Dict[int, str] = field(default_factory=dict)
 
     @staticmethod
     def resolve_from_query_result(db_path: str, result: List[Dict[str, Any]]) -> Dict[str, 'FunctionInfo']:
@@ -19,14 +20,15 @@ class FunctionInfo(QueryInfo):
         functions: Dict[str, FunctionInfo] = {}
         for item in result:
             func_name, file_path, location_line = item[0], item[1], item[2]
-            function_content = read_struct_with_start_line_from_db(db_path, file_path[1:], location_line, func_name)
+            function_content, function_content_in_lines = read_struct_with_start_line_from_db(db_path, file_path[1:], location_line, func_name)
             if function_content == "" :
                 continue
             functions[func_name] = FunctionInfo(
                 name=func_name,
                 file_path=file_path,
                 location_line=location_line,
-                function_content=function_content
+                function_content=function_content, 
+                function_content_in_lines=function_content_in_lines
             )
         return functions
 
@@ -37,6 +39,7 @@ class StructInfo(QueryInfo):
     file_path: str
     location_line: int
     struct_content: str
+    struct_content_in_lines: Dict[int, str] = field(default_factory=dict)
     members: Dict[str, str] = field(default_factory=dict)
 
     @staticmethod
@@ -47,7 +50,7 @@ class StructInfo(QueryInfo):
             struct_name, member_name, member_type, file_path, location_line = (
                 item[0], item[1], item[2], item[3], item[4]
             )
-            struct_content = read_struct_with_start_line_from_db(db_path, file_path[1:], location_line, struct_name)
+            struct_content, struct_content_in_lines = read_struct_with_start_line_from_db(db_path, file_path[1:], location_line, struct_name)
             if struct_content == "" :
                 continue
             if struct_name not in structs:
@@ -56,6 +59,7 @@ class StructInfo(QueryInfo):
                     file_path=file_path,
                     location_line=location_line,
                     struct_content=struct_content,
+                    struct_content_in_lines=struct_content_in_lines,
                     members={}
                 )
             structs[struct_name].members[member_name] = member_type
@@ -75,3 +79,30 @@ class EnumInfo(QueryInfo):
             enum_name, enum_value = item[0], item[1]
             enums[enum_name] = EnumInfo(name=enum_name, value=enum_value)
         return enums
+
+class FunctionCallInfo(QueryInfo):
+    """函数调用信息数据结构"""
+    caller_name: str
+    callee_name: str
+    file_path: str
+    start_line: int
+    start_line_content: str
+    call_type: str
+
+    @staticmethod
+    def resolve_from_query_result(db_path: str, result: List[Dict[str, Any]]) -> Dict[str, List['FunctionCallInfo']]:
+        """从查询结果解析函数调用信息，返回字典，键为函数名"""
+        call_dict: Dict[str, List[FunctionCallInfo]] = {}
+        for item in result:
+            func_name, callee_name, file_path, start_line, call_type = item[0], item[1], item[2], item[3], item[4]
+            call_dict.setdefault(func_name, []).append(
+                FunctionCallInfo(
+                    caller_name=func_name,
+                    callee_name=callee_name,
+                    file_path=file_path,
+                    start_line=start_line,
+                    start_line_content=read_line_from_db(db_path, file_path[1:], start_line),
+                    call_type=call_type
+                )
+            )
+        return call_dict

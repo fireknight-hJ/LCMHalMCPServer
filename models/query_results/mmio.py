@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Dict, Any
 from .base import QueryInfo
+from utils.db_file import read_struct_with_start_line_from_db
 
 @dataclass
 class MmioExprInfo(QueryInfo):
@@ -45,7 +46,7 @@ class MmioFunctionContainsInfo(QueryInfo):
     @staticmethod
     def resolve_from_query_result(db_path: str, result: List[Dict[str, Any]]) -> Dict[str, List['MmioFunctionContainsInfo']]:
         """从查询结果解析MMIO函数包含信息，返回字典，键为函数名"""
-        from utils.db_file import read_struct_with_start_line_from_db
+        
         
         contains_dict: Dict[str, List[MmioFunctionContainsInfo]] = {}
         for item in result:
@@ -53,8 +54,7 @@ class MmioFunctionContainsInfo(QueryInfo):
             if func_name not in contains_dict:
                 contains_dict[func_name] = []
             
-            type_content = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3])
-            type_lines = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3], return_lines=True)
+            type_content, type_lines = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3])
             
             contains_info = MmioFunctionContainsInfo(
                 type_name=item[1],

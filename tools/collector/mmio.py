@@ -337,7 +337,15 @@ class MmioCodebaseInfo(CodebaseInfoBase):
             contains_dict = MmioFunctionContainsInfo.resolve_from_query_result(self.db_path, result)
             self.mmioinfo_interestingmmiofunc_contains_dict.update(contains_dict)
             print("[INFO] MMIO函数包含信息收集完成")
+    
+    # get mmio function info
+    def get_mmio_function_info(self, func_name: str) -> FunctionInfo:
+        """获取MMIO函数信息"""
+        return self.mmio_functions.get(func_name, None)
 
+    def get_detailed_mmiofunc_contains_info(self, func_name: str) -> MmioFunctionContainsInfo:
+        """获取MMIO函数包含信息"""
+        return self.mmioinfo_interestingmmiofunc_contains_dict.get(func_name, None)
 
 # 使用示例
 def create_mmiocodebase_info(db_path: str, force_refresh: bool = False) -> MmioCodebaseInfo:
@@ -354,3 +362,7 @@ if __name__ == "__main__":
     # 示例用法
     mmio_info = create_mmiocodebase_info(db_path, force_refresh=False)
     print("[INFO] MMIO代码信息收集完成")
+    # 尝试获取所有 mmio 函数的brief信息
+    
+    # 尝试获取所有 mmio 函数的detailed信息
+    

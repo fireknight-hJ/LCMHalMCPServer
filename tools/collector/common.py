@@ -7,7 +7,7 @@ from typing import Dict, List, Optional, Any
 from pathlib import Path
 
 from .base import CodebaseInfoBase
-from models.query_results.common import FunctionInfo, StructInfo, EnumInfo
+from models.query_results.common import FunctionInfo, StructInfo, EnumInfo, FunctionCallInfo
 
 @dataclass
 class CommonCodebaseInfo(CodebaseInfoBase):
@@ -195,6 +195,12 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             self.enums = EnumInfo.resolve_from_query_result(self.db_path, result)
             print("[INFO] 枚举信息收集完成")
 
+    def _collect_function_calls(self) -> None:
+        """收集函数调用信息"""
+        result = self._run_query_and_return_json(function_call_collector_query_file)
+        if result:
+            self.function_calls = FunctionCallInfo.resolve_from_query_result(self.db_path, result)
+            print("[INFO] 函数调用信息收集完成")
 
 # 使用示例
 def create_codebase_info(db_path: str, force_refresh: bool = False) -> CommonCodebaseInfo:

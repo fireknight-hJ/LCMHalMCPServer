@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Dict, Any
 from .base import QueryInfo
+from utils.db_file import read_struct_with_start_line_from_db, read_line_from_db
 
 @dataclass
 class DriverExprInfo(QueryInfo):
@@ -40,12 +41,11 @@ class DriverFunctionContainsInfo(QueryInfo):
     start_line: int
     flag: str
     type_content: str
-    type_lines: List[str]
+    type_lines: Dict[int, str]
 
     @staticmethod
     def resolve_from_query_result(db_path: str, result: List[Dict[str, Any]]) -> Dict[str, List['DriverFunctionContainsInfo']]:
         """从查询结果解析驱动函数包含信息，返回字典，键为函数名"""
-        from utils.db_file import read_struct_with_start_line_from_db
         
         contains_dict: Dict[str, List[DriverFunctionContainsInfo]] = {}
         for item in result:
@@ -53,8 +53,7 @@ class DriverFunctionContainsInfo(QueryInfo):
             if func_name not in contains_dict:
                 contains_dict[func_name] = []
             
-            type_content = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3])
-            type_lines = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3], return_lines=True)
+            type_content, type_lines = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3])
             
             contains_info = DriverFunctionContainsInfo(
                 type_name=item[1],
@@ -74,6 +73,7 @@ class DriverFunctionCallInfo(QueryInfo):
     callee_name: str
     file_path: str
     start_line: int
+    start_line_content: str
     call_type: str
 
     @staticmethod
@@ -90,6 +90,7 @@ class DriverFunctionCallInfo(QueryInfo):
                 callee_name=item[1],
                 file_path=item[3],
                 start_line=item[4],
+                start_line_content=read_line_from_db(db_path, item[3][1:], item[4]),
                 call_type=item[5]
             )
             call_dict[func_name].append(call_info)
@@ -102,6 +103,7 @@ class MmioExprInfo(QueryInfo):
     function: str
     file_path: str
     start_line: int
+    start_line_content: str
     expr_type: str
     enclosing_type: str
 
@@ -119,6 +121,7 @@ class MmioExprInfo(QueryInfo):
                 function=func_name,
                 file_path=item[2],
                 start_line=item[3],
+                start_line_content=read_line_from_db(db_path, item[2][1:], item[3]),
                 expr_type=item[4],
                 enclosing_type=item[5]
             )
@@ -131,6 +134,7 @@ class MmioFunctionContainsInfo(QueryInfo):
     type_name: str
     file_path: str
     start_line: int
+    start_line_content: str
     flag: str
     type_content: str
     type_lines: List[str]
@@ -138,7 +142,6 @@ class MmioFunctionContainsInfo(QueryInfo):
     @staticmethod
     def resolve_from_query_result(db_path: str, result: List[Dict[str, Any]]) -> Dict[str, List['MmioFunctionContainsInfo']]:
         """从查询结果解析MMIO函数包含信息，返回字典，键为函数名"""
-        from utils.db_file import read_struct_with_start_line_from_db
         
         contains_dict: Dict[str, List[MmioFunctionContainsInfo]] = {}
         for item in result:
@@ -146,13 +149,13 @@ class MmioFunctionContainsInfo(QueryInfo):
             if func_name not in contains_dict:
                 contains_dict[func_name] = []
             
-            type_content = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3])
-            type_lines = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3], return_lines=True)
+            type_content, type_lines = read_struct_with_start_line_from_db(db_path, item[2][1:], item[3])
             
             contains_info = MmioFunctionContainsInfo(
                 type_name=item[1],
                 file_path=item[2],
                 start_line=item[3],
+                start_line_content=read_line_from_db(db_path, item[2][1:], item[3]),
                 flag=item[4],
                 type_content=type_content,
                 type_lines=type_lines
