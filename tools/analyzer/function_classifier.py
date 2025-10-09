@@ -9,17 +9,12 @@ model = init_chat_model("anthropic:claude-3-5-sonnet-latest")
 # Set up MCP client
 client = MultiServerMCPClient(
     {
-        "math": {
+        "lcmhal_info_collector": {
             "command": "python",
-            # Make sure to update to the full absolute path to your math_server.py file
-            "args": ["./examples/math_server.py"],
+            # Make sure to update to the full absolute path to your mcp_server.py file
+            "args": ["./tools/collector/mcp_server.py"],
             "transport": "stdio",
         },
-        "weather": {
-            # make sure you start your weather server on port 8000
-            "url": "http://localhost:8000/mcp/",
-            "transport": "streamable_http",
-        }
     }
 )
 tools = client.get_tools()
@@ -58,10 +53,19 @@ builder.add_edge("tools", "call_model")
 # Compile the graph
 graph = builder.compile()
 
-# Test the graph
-math_response = await graph.ainvoke(
-    {"messages": [{"role": "user", "content": "what's (3 + 5) x 12?"}]}
-)
-weather_response = await graph.ainvoke(
-    {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
-)
+async def test_graph():
+    """测试图功能的异步函数"""
+    # Test the graph
+    math_response = await graph.ainvoke(
+        {"messages": [{"role": "user", "content": "what's (3 + 5) x 12?"}]}
+    )
+    weather_response = await graph.ainvoke(
+        {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
+    )
+    print(f"Math response: {math_response}")
+    print(f"Weather response: {weather_response}")
+
+# 在文件末尾添加运行代码
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(test_graph())
