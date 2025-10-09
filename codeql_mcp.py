@@ -11,6 +11,7 @@ CODEQL_PATH = "/home/haojie/test/codeql/codeql"
 
 class CodeQLQueryServer:
     def __init__(self, codeql_path=CODEQL_PATH):
+        self.registered_dbs = set()
         self.codeql_path = codeql_path
         self.proc = None
         self.reader_thread = None
@@ -196,10 +197,25 @@ class CodeQLQueryServer:
         self, db_paths, callback=None, progress_callback=None
     ):
         resolved = [str(Path(p).resolve()) for p in db_paths]
+        
+        # 修复：遍历每个数据库路径，而不是整个列表
+        new_dbs = []
+        for db_path in resolved:
+            if db_path not in self.registered_dbs:
+                self.registered_dbs.add(db_path)  # 使用add而不是append
+                new_dbs.append(db_path)
+            else:
+                print(f"[!] Database {db_path} already registered.")
+        
+        # 如果没有新的数据库需要注册，直接返回
+        if len(new_dbs) == 0:
+            print("[INFO] No new databases to register.")
+            # return
+        
         progress_id = self.progress_id
         self.progress_id += 1
 
-        params = {"body": {"databases": resolved}, "progressId": progress_id}
+        params = {"body": {"databases": new_dbs}, "progressId": progress_id}
 
         print(
             f"[DEBUG] Sending evaluation/registerDatabases with progressId={progress_id}"
@@ -215,10 +231,24 @@ class CodeQLQueryServer:
         self, db_paths, callback=None, progress_callback=None
     ):
         resolved = [str(Path(p).resolve()) for p in db_paths]
+        
+        # 修复：遍历每个数据库路径，而不是整个列表
+        removed_dbs = []
+        for db_path in resolved:
+            if db_path in self.registered_dbs:
+                self.registered_dbs.discard(db_path)  # 使用discard而不是remove
+                removed_dbs.append(db_path)
+            else:
+                print(f"[!] Database {db_path} not registered.")
+        
+        # 如果没有数据库需要注销，直接返回
+        if not removed_dbs:
+            return
+            
         progress_id = self.progress_id
         self.progress_id += 1
 
-        params = {"body": {"databases": resolved}, "progressId": progress_id}
+        params = {"body": {"databases": removed_dbs}, "progressId": progress_id}
 
         print(
             f"[DEBUG] Sending evaluation/deregisterDatabases with progressId={progress_id}"
@@ -226,7 +256,7 @@ class CodeQLQueryServer:
         self.send_request(
             "evaluation/deregisterDatabases",
             params,
-            callback or (lambda r: print("[registerDatabases] done:", r)),
+            callback or (lambda r: print("[deregisterDatabases] done:", r)),
             progress_callback=progress_callback,
         )
 

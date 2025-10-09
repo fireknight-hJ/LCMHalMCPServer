@@ -246,12 +246,12 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         ]
         
         for module_name, collector_func in collectors:
+            # collector_func()
             try:
                 print(f"[INFO] 收集{module_name}...")
                 collector_func()
             except Exception as e:
                 print(f"[ERROR] 收集{module_name}失败: {e}")
-                # 继续收集其他模块
         
         # 保存到缓存
         self.save_to_cache()
@@ -343,7 +343,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         """获取MMIO函数信息"""
         return self.mmio_functions.get(func_name, None)
 
-    def get_detailed_mmiofunc_contains_info(self, func_name: str) -> MmioFunctionContainsInfo:
+    def get_mmiofunc_contains_info(self, func_name: str) -> MmioFunctionContainsInfo:
         """获取MMIO函数包含信息"""
         return self.mmioinfo_interestingmmiofunc_contains_dict.get(func_name, None)
 
@@ -360,9 +360,9 @@ def create_mmiocodebase_info(db_path: str, force_refresh: bool = False) -> MmioC
 if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 示例用法
-    mmio_info = create_mmiocodebase_info(db_path, force_refresh=False)
+    mmio_info = create_mmiocodebase_info(db_path, force_refresh=True)
     print("[INFO] MMIO代码信息收集完成")
     # 尝试获取所有 mmio 函数的brief信息
-    
+
     # 尝试获取所有 mmio 函数的detailed信息
     

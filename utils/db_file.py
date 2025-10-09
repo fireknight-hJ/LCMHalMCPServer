@@ -51,7 +51,7 @@ def read_line_from_db(db_path: str, file_path: str, line: int) -> str:
         return f"Invalid line number {line} for file {file_path}"
     return lines[line-1]
 
-def read_struct_with_start_line_from_db(db_path: str, file_path: str, start_line: int, struct_or_func_name: str) -> Tuple[str, Dict[int, str]]:
+def read_struct_with_start_line_from_db(db_path: str, file_path: str, start_line: int, struct_or_func_name: str = None) -> Tuple[str, Dict[int, str]]:
     """Reads a struct or function definition from the start line of a file in the src.zip inside a CodeQL database directory."""
     content = read_file_from_db_zip(db_path, file_path)
     lines = content.splitlines()

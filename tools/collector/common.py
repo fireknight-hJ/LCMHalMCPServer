@@ -124,9 +124,12 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             print("[ERROR] 未设置数据库路径，无法保存缓存")
             return False
         
+        cache_dir = Path(self.db_path) / "lcmhal_tmp"
+        self.cache_file = cache_dir / "common_info.json"
+
         try:
             # 确保缓存目录存在
-            self.cache_dir.mkdir(parents=True, exist_ok=True)
+            cache_dir.mkdir(parents=True, exist_ok=True)
             
             # 保存数据
             with open(self.cache_file, "w", encoding="utf-8") as f:
@@ -136,6 +139,7 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             return True
             
         except Exception as e:
+            # 打印详细错误信息 栈轨迹
             print(f"[ERROR] 保存缓存失败: {e}")
             return False
 
@@ -215,5 +219,5 @@ def create_codebase_info(db_path: str, force_refresh: bool = False) -> CommonCod
 if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 示例用法
-    codebase_info = create_codebase_info(db_path, force_refresh=False)
+    codebase_info = create_codebase_info(db_path, force_refresh=True)
     print("[INFO] 代码信息收集完成")

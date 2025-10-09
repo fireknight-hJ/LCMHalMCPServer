@@ -151,7 +151,7 @@ class DriverCodebaseInfo(CodebaseInfoBase):
     def save_to_cache(self) -> bool:
         """保存数据到缓存"""
         if not self.db_path:
-            print("[ERROR] 未设置数据库路径，无法保存缓存")
+            print("未设置数据库路径，无法保存缓存")
             return False
         
         cache_dir = Path(self.db_path) / "lcmhal_tmp"
@@ -263,5 +263,5 @@ def create_drivercodebase_info(db_path: str, force_refresh: bool = False) -> Dri
 if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 示例用法
-    driver_info = create_drivercodebase_info(db_path, force_refresh=False)
+    driver_info = create_drivercodebase_info(db_path, force_refresh=True)
     print("[INFO] 驱动代码信息收集完成")
