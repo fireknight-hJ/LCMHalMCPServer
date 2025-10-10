@@ -2,9 +2,15 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.prebuilt import ToolNode
+from langchain.chat_models import ChatOpenAI
+from config.llm_config import llm_deepseek_config
 
 # Initialize the model
-model = init_chat_model("anthropic:claude-3-5-sonnet-latest")
+model = ChatOpenAI(
+    model=llm_deepseek_config["model_name"], 
+    api_key=llm_deepseek_config["api_key"], 
+    base_url=llm_deepseek_config["base_url"]
+)
 
 # Set up MCP client
 client = MultiServerMCPClient(

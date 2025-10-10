@@ -1,10 +1,23 @@
 from fastmcp import FastMCP, Context
-from codeql_mcp import CodeQLQueryServer
 from pathlib import Path
-
-
+from tools.collector.common import *
+from tools.collector.driver import *
+from tools.collector.mmio import *
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
+
+# 存储全部三类代码信息
+class CodebaseInfos:
+    def __init__(self, db_path: str = ""):
+        self.db_path = db_path
+        if not db_path:
+            return
+        self.common_infos = create_commoncodebase_info(db_path, force_refresh=True)
+        self.driver_infos = create_drivercodebase_info(db_path, force_refresh=True)
+        self.mmio_infos = create_mmiocodebase_info(db_path, force_refresh=True)
+
+# 存储所有db的信息
+codebase_infos_dict : Dict[str, CodebaseInfos] = {}
 
 @mcp.tool()
 async def register_and_analyze_database(db_path: str) -> str:
@@ -16,20 +29,14 @@ async def register_and_analyze_database(db_path: str) -> str:
     source_zip = db_path_resolved / "src.zip"
     if not source_zip.exists():
         return f"Missing required src.zip in: {db_path}"
+    
+    # 初始化代码信息
+    try:
+        codebase_infos_dict[db_path] = CodebaseInfos(db_path)
+    except Exception as e:
+        return f"Failed to initialize codebase info: {e}"
+    
+    return f"Database registered and analyzed: {db_path}"
 
-    db_entry = {
-        "uri": Path(db_path).resolve().as_uri(),
-        "content": {
-            "sourceArchiveZip": (Path(db_path) / "src.zip").resolve().as_uri(),
-            "dbDir": Path(db_path).resolve().as_uri(),
-        },
-    }
-    callback, done, result_holder = qs.wait_for_completion_callback()
-    qs.register_databases(
-        [db_path],
-        callback=callback,
-        progress_callback=lambda msg: print("[progress] register:", msg),
-    )
-    done.wait()
-    return f"Database registered: {db_path}"
-
+if __name__ == "__main__":
+    mcp.run(transport="stdio")

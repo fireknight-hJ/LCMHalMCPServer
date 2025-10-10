@@ -207,7 +207,7 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             print("[INFO] 函数调用信息收集完成")
 
 # 使用示例
-def create_codebase_info(db_path: str, force_refresh: bool = False) -> CommonCodebaseInfo:
+def create_commoncodebase_info(db_path: str, force_refresh: bool = False) -> CommonCodebaseInfo:
     """
     创建CodebaseInfo实例的便捷函数
     """
@@ -219,5 +219,5 @@ def create_codebase_info(db_path: str, force_refresh: bool = False) -> CommonCod
 if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 示例用法
-    codebase_info = create_codebase_info(db_path, force_refresh=True)
+    codebase_info = create_commoncodebase_info(db_path, force_refresh=True)
     print("[INFO] 代码信息收集完成")
