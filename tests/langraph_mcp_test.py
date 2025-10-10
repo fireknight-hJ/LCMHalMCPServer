@@ -5,18 +5,15 @@ from langgraph.prebuilt import ToolNode
 from langchain_openai import ChatOpenAI
 import os
 
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
-os.environ["LANGCHAIN_API_KEY"] = "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"
-os.environ["LANGCHAIN_PROJECT"] = "pr-vacant-force-22"
-os.environ["http_proxy"] = "http://localhost:7890"
-os.environ["https_proxy"] = "http://localhost:7890"
-
-
 # Initialize the model
 # model = init_chat_model("anthropic:claude-3-5-sonnet-latest")
 
-
+# TODO: remove mock config
+llm_deepseek_config = {
+    "base_url" : "https://api.deepseek.com",
+    "model_name" : "deepseek-chat",
+    "api_key" : "sk-6bf25f3820ee4d69a56b42ffaf8bab84"
+}
 
 model = ChatOpenAI(
     model=llm_deepseek_config["model_name"], 
@@ -30,7 +27,7 @@ client = MultiServerMCPClient(
         "math": {
             "command": "python3",
             # Make sure to update to the full absolute path to your math_server.py file
-            "args": ["./examples/math_server.py"],
+            "args": ["./math_server.py"],
             "transport": "stdio",
         },
         "weather": {
