@@ -24,15 +24,9 @@ model = ChatOpenAI(
 # Set up MCP client
 client = MultiServerMCPClient(
     {
-        "math": {
-            "command": "python3",
-            # Make sure to update to the full absolute path to your math_server.py file
-            "args": ["./math_server.py"],
-            "transport": "stdio",
-        },
-        "weather": {
+        "lcmhal_collector": {
             # make sure you start your weather server on port 8000
-            "url": "http://localhost:8111/mcp/",
+            "url": "http://localhost:8112/mcp/",
             "transport": "streamable_http",
         }
     }
@@ -77,14 +71,10 @@ async def main():
     graph = builder.compile()
 
     # Test the graph
-    math_response = await graph.ainvoke(
-        {"messages": [{"role": "user", "content": "what's (3 + 5) x 12?"}]}
+    analyze_response = await graph.ainvoke(
+        {"messages": [{"role": "user", "content": "Analyze the database : /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer, then get the mmio function list"}]}
     )
-    weather_response = await graph.ainvoke(
-        {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
-    )
-    print(f"Math response: {math_response}")
-    print(f"Weather response: {weather_response}")
+    print(f"Analyze response: {analyze_response}")
 
 # 运行主函数
 if __name__ == "__main__":

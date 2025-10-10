@@ -4,7 +4,7 @@ from tools.collector.common import *
 from tools.collector.driver import *
 from tools.collector.mmio import *
 
-mcp = FastMCP("LCMHalMCP", version="1.0.0")
+mcp = FastMCP("LCMHalMCP", version="1.0.0", port=8112)
 
 # 存储全部三类代码信息
 class CodebaseInfos:
@@ -12,9 +12,9 @@ class CodebaseInfos:
         self.db_path = db_path
         if not db_path:
             return
-        self.common_infos = create_commoncodebase_info(db_path, force_refresh=True)
-        self.driver_infos = create_drivercodebase_info(db_path, force_refresh=True)
-        self.mmio_infos = create_mmiocodebase_info(db_path, force_refresh=True)
+        self.common_infos = create_commoncodebase_info(db_path, force_refresh=False)
+        self.driver_infos = create_drivercodebase_info(db_path, force_refresh=False)
+        self.mmio_infos = create_mmiocodebase_info(db_path, force_refresh=False)
 
 # 存储所有db的信息
 codebase_infos_dict : Dict[str, CodebaseInfos] = {}
@@ -38,5 +38,21 @@ async def register_and_analyze_database(db_path: str) -> str:
     
     return f"Database registered and analyzed: {db_path}"
 
+@mcp.tool()
+async def collect_mmio_func_list(db_path: str) -> str:
+    """This tool collects the mmio function list from the registered database"""
+    codebase_infos = codebase_infos_dict.get(db_path)
+    if not codebase_infos:
+        return f"Database not registered: {db_path}"
+    return f"MMIO function list: {codebase_infos.mmio_infos.mmioinfo_mmioexpr_dict}"
+
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    # 通过输入参数指定transport方式
+    import sys
+    if len(sys.argv) > 1:
+        transport = sys.argv[1]
+    else:
+        transport = "streamable-http"
+    # 默认使用streamable-http， 其他可选sse或者stdio
+    mcp.run(transport=transport)
+
