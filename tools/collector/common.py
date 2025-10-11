@@ -20,6 +20,8 @@ class CommonCodebaseInfo(CodebaseInfoBase):
     mmio_functions: Dict[str, FunctionInfo] = field(default_factory=dict)
     driver_functions: Dict[str, FunctionInfo] = field(default_factory=dict)
     buffer_functions: Dict[str, FunctionInfo] = field(default_factory=dict)
+    func_calltos: Dict[str, List[FunctionCallInfo]] = field(default_factory=dict)
+    func_callfroms: Dict[str, List[FunctionCallInfo]] = field(default_factory=dict)
 
     def __init__(self, db_path: str = ""):
         """初始化方法，支持从缓存加载"""
@@ -164,14 +166,17 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             ("函数信息", self._collect_functions),
             ("结构体信息", self._collect_structs),
             ("枚举信息", self._collect_enums),
+            ("函数调用信息", self._collect_function_calls),
         ]
         
         for module_name, collector_func in collectors:
-            try:
-                print(f"[INFO] 收集{module_name}...")
-                collector_func()
-            except Exception as e:
-                print(f"[ERROR] 收集{module_name}失败: {e}")
+            print(f"[INFO] 收集{module_name}...")
+            collector_func()
+            # try:
+            #     print(f"[INFO] 收集{module_name}...")
+            #     collector_func()
+            # except Exception as e:
+            #     print(f"[ERROR] 收集{module_name}失败: {e}")
                 # 继续收集其他模块
         
         # 保存到缓存
@@ -203,7 +208,7 @@ class CommonCodebaseInfo(CodebaseInfoBase):
         """收集函数调用信息"""
         result = self._run_query_and_return_json(function_call_collector_query_file)
         if result:
-            self.function_calls = FunctionCallInfo.resolve_from_query_result(self.db_path, result)
+            self.func_calltos, self.func_callfroms = FunctionCallInfo.resolve_from_query_result(self.db_path, result)
             print("[INFO] 函数调用信息收集完成")
 
 # 使用示例
