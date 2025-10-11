@@ -24,11 +24,14 @@ model = ChatOpenAI(
 # Set up MCP client
 client = MultiServerMCPClient(
     {
+        # using connection
         "lcmhal_collector": {
             # make sure you start your weather server on port 8000
             "url": "http://localhost:8112/mcp/",
             "transport": "streamable_http",
         }
+
+        # using stdio
     }
 )
 
@@ -71,8 +74,11 @@ async def main():
     graph = builder.compile()
 
     # Test the graph
+    # analyze_response = await graph.ainvoke(
+    #     {"messages": [{"role": "user", "content": "Analyze the database : /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer, then get the mmio function list"}]}
+    # )
     analyze_response = await graph.ainvoke(
-        {"messages": [{"role": "user", "content": "Analyze the database : /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer, then get the mmio function list"}]}
+        {"messages": [{"role": "user", "content": "Register Database : /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer, then Analyze the mmio function : HAL_I2C_Mem_Read"}]}
     )
     print(f"Analyze response: {analyze_response}")
 

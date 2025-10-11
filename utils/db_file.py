@@ -55,11 +55,11 @@ def read_struct_with_start_line_from_db(db_path: str, file_path: str, start_line
     """Reads a struct or function definition from the start line of a file in the src.zip inside a CodeQL database directory."""
     content = read_file_from_db_zip(db_path, file_path)
     lines = content.splitlines()
-    struct_content = read_struct_or_func_from_lines(lines, start_line)
+    struct_content, struct_content_in_lines = read_struct_or_func_from_lines(lines, start_line)
     # 如果指定了struct_or_func_name，则检查其是否在struct_content中
     if struct_or_func_name != None and struct_or_func_name not in struct_content:
-        return ""
-    return struct_content
+        return "", {}
+    return struct_content, struct_content_in_lines
 
 
 def read_struct_or_func_from_lines(lines: list, start_line: int) -> Tuple[str, Dict[int, str]]:
