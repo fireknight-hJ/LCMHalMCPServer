@@ -75,122 +75,50 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         """从字典加载数据"""
         # 恢复MMIO函数信息
         for name, func_data in data.get("mmio_functions", {}).items():
-            self.mmio_functions[name] = FunctionInfo(
-                name=func_data["name"],
-                file_path=func_data["file_path"],
-                location_line=func_data["location_line"],
-                function_content=func_data["function_content"]
-            )
+            self.mmio_functions[name] = FunctionInfo.from_dict(func_data)
         
         # 恢复驱动函数信息
         for name, func_data in data.get("driver_functions", {}).items():
-            self.driver_functions[name] = FunctionInfo(
-                name=func_data["name"],
-                file_path=func_data["file_path"],
-                location_line=func_data["location_line"],
-                function_content=func_data["function_content"]
-            )
+            self.driver_functions[name] = FunctionInfo.from_dict(func_data)
         
         # 恢复缓冲函数信息
         for name, func_data in data.get("buffer_functions", {}).items():
-            self.buffer_functions[name] = FunctionInfo(
-                name=func_data["name"],
-                file_path=func_data["file_path"],
-                location_line=func_data["location_line"],
-                function_content=func_data["function_content"]
-            )
+            self.buffer_functions[name] = FunctionInfo.from_dict(func_data)
         
         # 恢复MMIO表达式信息
         for func_name, expr_list in data.get("mmioinfo_interestingmmioexpr_dict", {}).items():
-            self.mmioinfo_interestingmmioexpr_dict[func_name] = []
-            for expr_data in expr_list:
-                self.mmioinfo_interestingmmioexpr_dict[func_name].append(MmioExprInfo(
-                    name=expr_data["name"],
-                    function=expr_data["function"],
-                    file_path=expr_data["file_path"],
-                    start_line=expr_data["start_line"],
-                    expr_type=expr_data["expr_type"],
-                    enclosing_type=expr_data["enclosing_type"]
-                ))
+            self.mmioinfo_interestingmmioexpr_dict[func_name] = [
+                MmioExprInfo.from_dict(expr_data) for expr_data in expr_list
+            ]
         
         # 恢复MMIO表达式信息
         for func_name, expr_list in data.get("mmioinfo_mmioexpr_dict", {}).items():
-            self.mmioinfo_mmioexpr_dict[func_name] = []
-            for expr_data in expr_list:
-                self.mmioinfo_mmioexpr_dict[func_name].append(MmioExprInfo(
-                    name=expr_data["name"],
-                    function=expr_data["function"],
-                    file_path=expr_data["file_path"],
-                    start_line=expr_data["start_line"],
-                    expr_type=expr_data["expr_type"],
-                    enclosing_type=expr_data["enclosing_type"]
-                ))
+            self.mmioinfo_mmioexpr_dict[func_name] = [
+                MmioExprInfo.from_dict(expr_data) for expr_data in expr_list
+            ]
         
         # 恢复MMIO函数包含信息
         for func_name, contains_list in data.get("mmioinfo_interestingmmiofunc_contains_dict", {}).items():
-            self.mmioinfo_interestingmmiofunc_contains_dict[func_name] = []
-            for contains_data in contains_list:
-                self.mmioinfo_interestingmmiofunc_contains_dict[func_name].append(MmioFunctionContainsInfo(
-                    type_name=contains_data["type_name"],
-                    file_path=contains_data["file_path"],
-                    start_line=contains_data["start_line"],
-                    flag=contains_data["flag"],
-                    type_content=contains_data["type_content"],
-                    type_lines=contains_data["type_lines"]
-                ))
+            self.mmioinfo_interestingmmiofunc_contains_dict[func_name] = [
+                MmioFunctionContainsInfo.from_dict(contains_data) for contains_data in contains_list
+            ]
 
     def to_dict(self) -> Dict[str, Any]:
         """转换为字典格式用于JSON序列化"""
         return {
-            "mmio_functions": {name: {
-                "name": func.name,
-                "file_path": func.file_path,
-                "location_line": func.location_line,
-                "function_content": func.function_content
-            } for name, func in self.mmio_functions.items()},
-            "driver_functions": {name: {
-                "name": func.name,
-                "file_path": func.file_path,
-                "location_line": func.location_line,
-                "function_content": func.function_content
-            } for name, func in self.driver_functions.items()},
-            "buffer_functions": {name: {
-                "name": func.name,
-                "file_path": func.file_path,
-                "location_line": func.location_line,
-                "function_content": func.function_content
-            } for name, func in self.buffer_functions.items()},
+            "mmio_functions": {name: func.to_dict() for name, func in self.mmio_functions.items()},
+            "driver_functions": {name: func.to_dict() for name, func in self.driver_functions.items()},
+            "buffer_functions": {name: func.to_dict() for name, func in self.buffer_functions.items()},
             "mmioinfo_interestingmmioexpr_dict": {
-                func_name: [{
-                    "name": expr.name,
-                    "function": expr.function,
-                    "file_path": expr.file_path,
-                    "start_line": expr.start_line,
-                    "expr_type": expr.expr_type,
-                    "enclosing_type": expr.enclosing_type
-                } for expr in expr_list]
+                func_name: [expr.to_dict() for expr in expr_list]
                 for func_name, expr_list in self.mmioinfo_interestingmmioexpr_dict.items()
             },
             "mmioinfo_mmioexpr_dict": {
-                func_name: [{
-                    "name": expr.name,
-                    "function": expr.function,
-                    "file_path": expr.file_path,
-                    "start_line": expr.start_line,
-                    "expr_type": expr.expr_type,
-                    "enclosing_type": expr.enclosing_type
-                } for expr in expr_list]
+                func_name: [expr.to_dict() for expr in expr_list]
                 for func_name, expr_list in self.mmioinfo_mmioexpr_dict.items()
             },
             "mmioinfo_interestingmmiofunc_contains_dict": {
-                func_name: [{
-                    "type_name": contains.type_name,
-                    "file_path": contains.file_path,
-                    "start_line": contains.start_line,
-                    "flag": contains.flag,
-                    "type_content": contains.type_content,
-                    "type_lines": contains.type_lines
-                } for contains in contains_list]
+                func_name: [contains.to_dict() for contains in contains_list]
                 for func_name, contains_list in self.mmioinfo_interestingmmiofunc_contains_dict.items()
             }
         }
@@ -365,4 +293,3 @@ if __name__ == "__main__":
     # 尝试获取所有 mmio 函数的brief信息
 
     # 尝试获取所有 mmio 函数的detailed信息
-    

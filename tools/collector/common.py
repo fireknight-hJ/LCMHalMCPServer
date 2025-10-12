@@ -74,51 +74,79 @@ class CommonCodebaseInfo(CodebaseInfoBase):
         """从字典加载数据"""
         # 恢复函数信息
         for name, func_data in data.get("functions", {}).items():
-            self.functions[name] = FunctionInfo(
-                name=func_data["name"],
-                file_path=func_data["file_path"],
-                location_line=func_data["location_line"],
-                function_content=func_data["function_content"]
-            )
+            self.functions[name] = FunctionInfo.from_dict(func_data)
         
         # 恢复结构体信息
         for name, struct_data in data.get("structs", {}).items():
-            self.structs[name] = StructInfo(
-                name=struct_data["name"],
-                file_path=struct_data["file_path"],
-                location_line=struct_data["location_line"],
-                struct_content=struct_data["struct_content"],
-                members=struct_data.get("members", {})
-            )
+            self.structs[name] = StructInfo.from_dict(struct_data)
         
         # 恢复枚举信息
         for name, enum_data in data.get("enums", {}).items():
-            self.enums[name] = EnumInfo(
-                name=enum_data["name"],
-                value=enum_data["value"]
-            )
+            self.enums[name] = EnumInfo.from_dict(enum_data)
+        
+        # 恢复函数调用信息（如果存在）
+        if "func_calltos" in data:
+            self.func_calltos = {}
+            for caller, calls_data in data["func_calltos"].items():
+                self.func_calltos[caller] = [
+                    FunctionCallInfo.from_dict(call_data) for call_data in calls_data
+                ]
+        
+        if "func_callfroms" in data:
+            self.func_callfroms = {}
+            for callee, calls_data in data["func_callfroms"].items():
+                self.func_callfroms[callee] = [
+                    FunctionCallInfo.from_dict(call_data) for call_data in calls_data
+                ]
+        
+        # 恢复其他模块信息（如果存在）
+        if "mmio_functions" in data:
+            self.mmio_functions = {}
+            for name, func_data in data["mmio_functions"].items():
+                self.mmio_functions[name] = FunctionInfo.from_dict(func_data)
+        
+        if "driver_functions" in data:
+            self.driver_functions = {}
+            for name, func_data in data["driver_functions"].items():
+                self.driver_functions[name] = FunctionInfo.from_dict(func_data)
+        
+        if "buffer_functions" in data:
+            self.buffer_functions = {}
+            for name, func_data in data["buffer_functions"].items():
+                self.buffer_functions[name] = FunctionInfo.from_dict(func_data)
 
     def to_dict(self) -> Dict[str, Any]:
         """转换为字典格式用于JSON序列化"""
-        return {
-            "functions": {name: {
-                "name": func.name,
-                "file_path": func.file_path,
-                "location_line": func.location_line,
-                "function_content": func.function_content
-            } for name, func in self.functions.items()},
-            "structs": {name: {
-                "name": struct.name,
-                "file_path": struct.file_path,
-                "location_line": struct.location_line,
-                "struct_content": struct.struct_content,
-                "members": struct.members
-            } for name, struct in self.structs.items()},
-            "enums": {name: {
-                "name": enum.name,
-                "value": enum.value
-            } for name, enum in self.enums.items()}
+        result = {
+            "functions": {name: func.to_dict() for name, func in self.functions.items()},
+            "structs": {name: struct.to_dict() for name, struct in self.structs.items()},
+            "enums": {name: enum.to_dict() for name, enum in self.enums.items()}
         }
+        
+        # 添加函数调用信息（如果存在）
+        if hasattr(self, 'func_calltos') and self.func_calltos:
+            result["func_calltos"] = {
+                caller: [call.to_dict() for call in calls] 
+                for caller, calls in self.func_calltos.items()
+            }
+        
+        if hasattr(self, 'func_callfroms') and self.func_callfroms:
+            result["func_callfroms"] = {
+                callee: [call.to_dict() for call in calls] 
+                for callee, calls in self.func_callfroms.items()
+            }
+        
+        # 添加其他模块信息（如果存在）
+        if hasattr(self, 'mmio_functions') and self.mmio_functions:
+            result["mmio_functions"] = {name: func.to_dict() for name, func in self.mmio_functions.items()}
+        
+        if hasattr(self, 'driver_functions') and self.driver_functions:
+            result["driver_functions"] = {name: func.to_dict() for name, func in self.driver_functions.items()}
+        
+        if hasattr(self, 'buffer_functions') and self.buffer_functions:
+            result["buffer_functions"] = {name: func.to_dict() for name, func in self.buffer_functions.items()}
+        
+        return result
 
     def save_to_cache(self) -> bool:
         """保存数据到缓存"""
@@ -211,15 +239,13 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             self.func_calltos, self.func_callfroms = FunctionCallInfo.resolve_from_query_result(self.db_path, result)
             print("[INFO] 函数调用信息收集完成")
 
-# 使用示例
 def create_commoncodebase_info(db_path: str, force_refresh: bool = False) -> CommonCodebaseInfo:
     """
-    创建CodebaseInfo实例的便捷函数
+    创建CommonCodebaseInfo实例的便捷函数
     """
-    codebase_info = CommonCodebaseInfo()
-    codebase_info.collect_infos(db_path, force_refresh)
-    return codebase_info
-
+    common_info = CommonCodebaseInfo()
+    common_info.collect_infos(db_path, force_refresh)
+    return common_info
 
 if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"

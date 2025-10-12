@@ -71,79 +71,39 @@ class DriverCodebaseInfo(CodebaseInfoBase):
         """从字典加载数据"""
         # 恢复驱动表达式信息
         for func_name, expr_list in data.get("driverfrom_expr_dict", {}).items():
-            self.driverfrom_expr_dict[func_name] = []
-            for expr_data in expr_list:
-                self.driverfrom_expr_dict[func_name].append(DriverExprInfo(
-                    name=expr_data["name"],
-                    function=expr_data["function"],
-                    file_path=expr_data["file_path"],
-                    start_line=expr_data["start_line"],
-                    expr_type=expr_data["expr_type"],
-                    enclosing_type=expr_data["enclosing_type"]
-                ))
+            self.driverfrom_expr_dict[func_name] = [
+                DriverExprInfo.from_dict(expr_data) for expr_data in expr_list
+            ]
         
         # 恢复驱动函数信息
         self.driverfrom_function_dict = data.get("driverfrom_function_dict", {})
         
         # 恢复驱动函数包含信息
         for func_name, contains_list in data.get("driverfrom_function_contains_dict", {}).items():
-            self.driverfrom_function_contains_dict[func_name] = []
-            for contains_data in contains_list:
-                self.driverfrom_function_contains_dict[func_name].append(DriverFunctionContainsInfo(
-                    type_name=contains_data["type_name"],
-                    file_path=contains_data["file_path"],
-                    start_line=contains_data["start_line"],
-                    flag=contains_data["flag"],
-                    type_content=contains_data["type_content"],
-                    type_lines=contains_data["type_lines"]
-                ))
+            self.driverfrom_function_contains_dict[func_name] = [
+                DriverFunctionContainsInfo.from_dict(contains_data) for contains_data in contains_list
+            ]
         
         # 恢复驱动函数调用信息
         for func_name, call_list in data.get("driverto_functioncall_dict", {}).items():
-            self.driverto_functioncall_dict[func_name] = []
-            for call_data in call_list:
-                self.driverto_functioncall_dict[func_name].append(DriverFunctionCallInfo(
-                    name=call_data["name"],
-                    callee_name=call_data["callee_name"],
-                    file_path=call_data["file_path"],
-                    start_line=call_data["start_line"],
-                    call_type=call_data["call_type"]
-                ))
+            self.driverto_functioncall_dict[func_name] = [
+                DriverFunctionCallInfo.from_dict(call_data) for call_data in call_list
+            ]
 
     def to_dict(self) -> Dict[str, Any]:
         """转换为字典格式用于JSON序列化"""
         return {
             "driverfrom_expr_dict": {
-                func_name: [{
-                    "name": expr.name,
-                    "function": expr.function,
-                    "file_path": expr.file_path,
-                    "start_line": expr.start_line,
-                    "expr_type": expr.expr_type,
-                    "enclosing_type": expr.enclosing_type
-                } for expr in expr_list]
+                func_name: [expr.to_dict() for expr in expr_list]
                 for func_name, expr_list in self.driverfrom_expr_dict.items()
             },
             "driverfrom_function_dict": self.driverfrom_function_dict,
             "driverfrom_function_contains_dict": {
-                func_name: [{
-                    "type_name": contains.type_name,
-                    "file_path": contains.file_path,
-                    "start_line": contains.start_line,
-                    "flag": contains.flag,
-                    "type_content": contains.type_content,
-                    "type_lines": contains.type_lines
-                } for contains in contains_list]
+                func_name: [contains.to_dict() for contains in contains_list]
                 for func_name, contains_list in self.driverfrom_function_contains_dict.items()
             },
             "driverto_functioncall_dict": {
-                func_name: [{
-                    "name": call.name,
-                    "callee_name": call.callee_name,
-                    "file_path": call.file_path,
-                    "start_line": call.start_line,
-                    "call_type": call.call_type
-                } for call in call_list]
+                func_name: [call.to_dict() for call in call_list]
                 for func_name, call_list in self.driverto_functioncall_dict.items()
             }
         }
