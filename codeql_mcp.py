@@ -6,6 +6,7 @@ import subprocess
 import threading
 import uuid
 from pathlib import Path
+from utils.db_lock import remove_db_lock
 
 CODEQL_PATH = "/home/haojie/test/codeql/codeql"
 
@@ -206,7 +207,9 @@ class CodeQLQueryServer:
                 new_dbs.append(db_path)
             else:
                 print(f"[!] Database {db_path} already registered.")
-        
+        # 修复：在每个数据库路径上调用remove_db_lock
+        for db_path in new_dbs:
+            remove_db_lock(db_path)
         # 如果没有新的数据库需要注册，直接返回
         if len(new_dbs) == 0:
             print("[INFO] No new databases to register.")
