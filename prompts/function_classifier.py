@@ -104,6 +104,19 @@ system_prompting_cn = """
 
 首先，我会提供一个 C 函数的代码，请你根据上述规则分析其功能，给出分类并解释分类原因。当前阶段暂不需要编写完整的替换代码。
 
+如果函数是RECV或者IRQ类型，请你仔细分析函数内容，给出替换函数。对于其他情况则暂时无需替换。
+
+RECV：
+替换策略：
+  • 接收数据时：使用 int HAL_BE_ENET_ReadFrame(void* buf, int length)（用于接收数据包，length 表示接收缓冲区的最大长度）或 int HAL_BE_In(void* buf, int len)（用于接收定长字节，len 表示要从 stdin 读取的字节数）。这些函数定义于 HAL_BE.h（使用前请务必包含该头文件，否则可能报错）。 
+  • 发送数据时：输出至 stdout（如使用 printf）或其他合适的输出流，若难以处理也可以直接跳过。
+
+IRQ：
+替换策略：
+  • 对于中断处理函数：如果存在从外设操作确定执行流的情况，修改分支条件确保优先选择数据接收执行流执行处理硬件中断或开启中断（IRQ）的函数。  
+  • 对于存在中断开启操作的函数：调整函数执行流程，确保程序可以执行到中断IRQ开启的相关的操作。
+
+
 如果你需要获取程序的额外信息，可以调用我们提供的工具。
 """
 
@@ -113,16 +126,6 @@ You are an embedded software engineer tasked with replacing functions from a dri
 My approach is: First analyze the functionality and characteristics of driver functions and classify them; then for each category, select different replacement strategies and priorities.
 
 Function Classification and Rewriting Strategies:
-
-• RECV (Data Transmission/Reception Functions) (Priority Replacement)
-  • Identification: Functions performing critical data I/O operations, DMA ring buffer management, or peripheral data transfer (data read).
-  • Strategy: Redirect I/O operations to POSIX-equivalent interfaces.
-    ◦ When receiving data: Use `int HAL_BE_ENET_ReadFrame(void* buf, int length)` (for receiving data packets, where `length` indicates the maximum length of the receive buffer) or `int HAL_BE_In(void* buf, int len)` (for receiving fixed-length bytes, where `len` indicates the number of bytes to read from stdin). These functions are defined in `HAL_BE.h` (ensure to include this header file before use to avoid errors).
-    ◦ When sending data: Output to stdout (e.g., using `printf`) or other appropriate output streams; can be skipped if not essential.
-
-• IRQ (Interrupt Service Functions) (Priority Replacement)
-  • Identification: Functions handling hardware interrupts or enabling interrupts (IRQ).
-  • Strategy: Preserve interrupt-related operations, remove actual IRQ operations.
 
 • RETURNOK (Driver-Only Functionality Functions)
   • Identification: Functions that only perform driver/peripheral operations and do not affect upper-layer data structures.
@@ -146,7 +149,30 @@ Function Classification and Rewriting Strategies:
   • Identification: Functions incorrectly marked as driver-dependent.
   • Strategy: Preserve original implementation without changes.
 
+• RECV (Data Transmission/Reception Functions) (Priority Replacement)
+  • Identification: Functions performing critical data I/O operations, DMA ring buffer management, or peripheral data transfer (data read).
+  • Strategy: Redirect I/O operations to POSIX-equivalent interfaces.
+    ◦ When receiving data: Use `int HAL_BE_ENET_ReadFrame(void* buf, int length)` (for receiving data packets, where `length` indicates the maximum length of the receive buffer) or `int HAL_BE_In(void* buf, int len)` (for receiving fixed-length bytes, where `len` indicates the number of bytes to read from stdin). These functions are defined in `HAL_BE.h` (ensure to include this header file before use to avoid errors).
+    ◦ When sending data: Output to stdout (e.g., using `printf`) or other appropriate output streams; can be skipped if not essential.
+
+• IRQ (Interrupt Service Functions) (Priority Replacement)
+  • Identification: Functions handling hardware interrupts (e.g., `IRQHandler`) or enabling interrupts (IRQ) (e.g., `IRQ_Enable` or IRQ enable operation in function body).
+  • Strategy: Preserve interrupt-related operations, remove actual IRQ operations.
+
 First, I will provide you with C function code. Please analyze its functionality according to the above rules, provide classification and explain the reasoning. The current phase does not require writing complete replacement code.
+
+如果函数是RECV或者IRQ类型，请你仔细分析函数内容，给出替换函数。对于其他情况则暂时无需替换。
+
+RECV：
+替换策略：
+  • 接收数据时：使用 int HAL_BE_ENET_ReadFrame(void* buf, int length)（用于接收数据包，length 表示接收缓冲区的最大长度）或 int HAL_BE_In(void* buf, int len)（用于接收定长字节，len 表示要从 stdin 读取的字节数）。这些函数定义于 HAL_BE.h（使用前请务必包含该头文件，否则可能报错）。 
+  • 发送数据时：输出至 stdout（如使用 printf）或其他合适的输出流，若难以处理也可以直接跳过。
+
+IRQ：
+替换策略：
+  • 对于中断处理函数：如果存在从外设操作确定执行流的情况，修改分支条件确保优先选择数据接收执行流执行处理硬件中断或开启中断（IRQ）的函数。  
+  • 对于存在中断开启操作的函数：调整函数执行流程，确保程序可以执行到中断IRQ开启的相关的操作。
+
 
 If you need additional information about the program, you can call the tools we provide.
 """

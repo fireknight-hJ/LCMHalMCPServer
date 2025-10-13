@@ -23,6 +23,9 @@ mcp servers test (with cline):
       "args": [
         "-m",
         "tools.collector.mcp_server",
+        "--db-path",
+        "$CODEQL_DBPATH",
+        "--transfer",
         "stdio"
       ],
       "cwd": "/home/haojie/workspace/lcmhalmcp",
