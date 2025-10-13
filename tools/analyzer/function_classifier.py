@@ -20,11 +20,25 @@ model = ChatOpenAI(
 client = MultiServerMCPClient(
     {
         # using connection
+        # "lcmhal_collector": {
+        #     # make sure you start your weather server on port 8000
+        #     "url": "http://localhost:8112/mcp/",
+        #     "transport": "streamable_http",
+        # },
         "lcmhal_collector": {
-            # make sure you start your weather server on port 8000
-            "url": "http://localhost:8112/mcp/",
-            "transport": "streamable_http",
-        }
+            "command": "python",
+            # Make sure to update to the full absolute path to your math_server.py file
+            "args": [
+                "-m",
+                "tools.collector.mcp_server",
+                "--db-path",
+                "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer",
+                "--transport",
+                "stdio"
+            ],
+            # "cwd": "/home/haojie/workspace/lcmhalmcp",
+            "transport": "stdio"
+        },
 
         # using stdio
     }
