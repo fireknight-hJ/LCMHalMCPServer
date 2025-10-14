@@ -9,6 +9,8 @@ from models.analyze_results.function_analyze import FunctionClassifyResponse
 from prompts.function_classifier import system_prompting_en
 import os
 import time
+from utils.log import dump_message_json_log
+import config.globs as globs
 
 # Initialize the model
 model = ChatOpenAI(
@@ -33,7 +35,7 @@ client = MultiServerMCPClient(
                 "-m",
                 "tools.collector.mcp_server",
                 "--db-path",
-                "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer",
+                globs.db_path,
                 "--transport",
                 "stdio"
             ],
@@ -49,17 +51,20 @@ class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: FunctionClassifyResponse
 
+    # @DeprecationWarning("use log.dump_message instead")
     def dump_message(self):
         model_list =  [i.model_dump() for i in self["messages"]]
         return {
             "messages": model_list,
             "final_response": self["final_response"].model_dump()
         }
-
+    
+    # @DeprecationWarning("use log.dump_message_json instead")
     def dump_message_json(self):
         import json
         return json.dumps(self.dump_message(), ensure_ascii=False, indent=2)
     
+    # @DeprecationWarning("use log.dump_message_json_log instead")    
     def dump_message_json_log(self, file_path: str = ""):
         if file_path == "":
             # 当前项目执行路径
@@ -137,6 +142,9 @@ async def function_classify(func_name : str) -> FunctionClassifyResponse:
         {"role": "system", "content": system_prompting_en},
         {"role": "user", "content": f"Classify the function : {func_name}"}
     ]})
+    # log ai memory
+    if globs.ai_log_enable:
+        dump_message_json_log("function_classify", result)
     return result["final_response"]
 
 async def main():

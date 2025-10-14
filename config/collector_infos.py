@@ -1,4 +1,3 @@
-db_path = "/home/haojie/posixGEN/LwIP_HTTP_Server_Socket_RTOS/STM32CubeIDE/Release_1/DATABASE"
 query_file = "temp_query.ql"
 # temperary output files
 output_csv = "tmp/common_info.csv"
