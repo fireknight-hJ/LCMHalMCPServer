@@ -127,17 +127,17 @@ My approach is: First analyze the functionality and characteristics of driver fu
 
 Function Classification and Rewriting Strategies:
 
-• RETURNOK (Driver-Only Functionality Functions)
-  • Identification: Functions that only perform driver/peripheral operations and do not affect upper-layer data structures.
-  • Strategy: Return success status or appropriate default values.
+1. RETURNOK (Driver-Only Functionality Functions)
+  * Identification: Functions that only perform driver/peripheral operations and do not affect upper-layer data structures.
+  * Strategy: Return success status or appropriate default values.
     ◦ For HAL functions: Return success flags (e.g., `HAL_OK` or `0`).
     ◦ For functions with return values: Return appropriate default values.
 
-• SKIP (Non-Critical Driver Functions)
-  • Identification: Functions performing non-critical driver operations that can be safely ignored.
-  • Strategy: Completely remove or use empty implementations (e.g., keep empty function bodies for void functions).
+2. SKIP (Non-Critical Driver Functions)
+  * Identification: Functions performing non-critical driver operations that can be safely ignored.
+  * Strategy: Completely remove or use empty implementations (e.g., keep empty function bodies for void functions).
 
-• NEEDCHECK (Complex Mixed-Functionality Functions)
+3. NEEDCHECK (Complex Mixed-Functionality Functions)
   • Identification: Functions mixing driver operations with non-driver logic such as data structure maintenance.
   • Strategy: Remove driver operations, preserve non-driver logic.
     ◦ Identify and preserve data structure operations and program state management (upper-layer logic).
@@ -145,34 +145,35 @@ Function Classification and Rewriting Strategies:
     ◦ Keep OS-related operations unchanged.
     ◦ Flag for manual review and verification.
 
-• NODRIVER (Non-Driver Functions)
+4. NODRIVER (Non-Driver Functions)
   • Identification: Functions incorrectly marked as driver-dependent.
   • Strategy: Preserve original implementation without changes.
 
-• RECV (Data Transmission/Reception Functions) (Priority Replacement)
+5. RECV (Data Transmission/Reception Functions) (Priority Replacement)
   • Identification: Functions performing critical data I/O operations, DMA ring buffer management, or peripheral data transfer (data read).
   • Strategy: Redirect I/O operations to POSIX-equivalent interfaces.
     ◦ When receiving data: Use `int HAL_BE_ENET_ReadFrame(void* buf, int length)` (for receiving data packets, where `length` indicates the maximum length of the receive buffer) or `int HAL_BE_In(void* buf, int len)` (for receiving fixed-length bytes, where `len` indicates the number of bytes to read from stdin). These functions are defined in `HAL_BE.h` (ensure to include this header file before use to avoid errors).
     ◦ When sending data: Output to stdout (e.g., using `printf`) or other appropriate output streams; can be skipped if not essential.
 
-• IRQ (Interrupt Service Functions) (Priority Replacement)
+6. IRQ (Interrupt Service Functions) (Priority Replacement)
   • Identification: Functions handling hardware interrupts (e.g., `IRQHandler`) or enabling interrupts (IRQ) (e.g., `IRQ_Enable` or IRQ enable operation in function body).
   • Strategy: Preserve interrupt-related operations, remove actual IRQ operations.
 
 First, I will provide you with C function code. Please analyze its functionality according to the above rules, provide classification and explain the reasoning. The current phase does not require writing complete replacement code.
 
-如果函数是RECV或者IRQ类型，请你仔细分析函数内容，给出替换函数。对于其他情况则暂时无需替换。
+If a function is of type RECV or IRQ, please carefully analyze the function's content. Use the provided tools to obtain the MMIO driver information of the interface. Then, based on the given replacement strategies, generate the replacement function. For other cases, no replacement is needed for now.
 
-RECV：
-替换策略：
-  • 接收数据时：使用 int HAL_BE_ENET_ReadFrame(void* buf, int length)（用于接收数据包，length 表示接收缓冲区的最大长度）或 int HAL_BE_In(void* buf, int len)（用于接收定长字节，len 表示要从 stdin 读取的字节数）。这些函数定义于 HAL_BE.h（使用前请务必包含该头文件，否则可能报错）。 
-  • 发送数据时：输出至 stdout（如使用 printf）或其他合适的输出流，若难以处理也可以直接跳过。
+RECV:
+Replacement Strategy:
+•   When receiving data: Use int HAL_BE_ENET_ReadFrame(void* buf, int length) (for receiving data packets, where length indicates the maximum length of the receive buffer) or int HAL_BE_In(void* buf, int len) (for receiving a fixed number of bytes, where len indicates the number of bytes to read from stdin). These functions are defined in HAL_BE.h (be sure to include this header file before use, otherwise errors may occur).
 
-IRQ：
-替换策略：
-  • 对于中断处理函数：如果存在从外设操作确定执行流的情况，修改分支条件确保优先选择数据接收执行流执行处理硬件中断或开启中断（IRQ）的函数。  
-  • 对于存在中断开启操作的函数：调整函数执行流程，确保程序可以执行到中断IRQ开启的相关的操作。
+•   When sending data: Output to stdout (e.g., using printf) or another suitable output stream. If this is difficult to handle, it can be skipped directly.
 
+IRQ:
+Replacement Strategy:
+•   For interrupt handler functions: If there is a situation where the execution flow is determined by operations on peripherals, modify the branch conditions to ensure priority is given to executing the data reception flow for handling hardware interrupts or functions that enable interrupts (IRQ).
+
+•   For functions containing interrupt enable operations: Adjust the function's execution flow to ensure the program can reach the operations related to enabling IRQ interrupts.
 
 If you need additional information about the program, you can call the tools we provide.
 """

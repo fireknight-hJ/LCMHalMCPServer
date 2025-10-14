@@ -8,6 +8,7 @@ from config.llm_config import llm_deepseek_config
 from models.analyze_results.function_analyze import FunctionClassifyResponse
 from prompts.function_classifier import system_prompting_en
 import os
+import time
 
 # Initialize the model
 model = ChatOpenAI(
@@ -47,6 +48,28 @@ client = MultiServerMCPClient(
 class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: FunctionClassifyResponse
+
+    def dump_message(self):
+        model_list =  [i.model_dump() for i in self["messages"]]
+        return {
+            "messages": model_list,
+            "final_response": self["final_response"].model_dump()
+        }
+
+    def dump_message_json(self):
+        import json
+        return json.dumps(self.dump_message(), ensure_ascii=False, indent=2)
+    
+    def dump_message_json_log(self, file_path: str = ""):
+        if file_path == "":
+            # 当前项目执行路径
+            work_dir = os.path.dirname(os.path.abspath(__file__))
+            tmp_dir = os.path.join(work_dir, "tmp")
+            if not os.path.exists(tmp_dir):
+                os.makedirs(tmp_dir)
+            file_path = os.path.join(tmp_dir, f"function_classify_{self['final_response'].function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(self.dump_message_json())
 
 # 全局变量存储graph实例
 _graph = None
