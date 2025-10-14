@@ -162,6 +162,11 @@ async def collect_driver_info(driver_name: str) -> str:
     except Exception as e:
         return f"Error collecting driver info: {e}"
 
+def register_db(db_path: str):
+    """注册数据库路径"""
+    codebase_infos_dict[db_path] = CodebaseInfos(db_path)
+    print(f"Database registered and analyzed: {db_path}")
+
 def parse_args():
     """解析命令行参数"""
     parser = argparse.ArgumentParser(description="LCMHalMCP Server")
@@ -185,8 +190,7 @@ if __name__ == "__main__":
     
     # 初始化全局codebase_infos
     try:
-        codebase_infos_dict[GLOBAL_DB_PATH] = CodebaseInfos(GLOBAL_DB_PATH)
-        print(f"Database registered and analyzed: {GLOBAL_DB_PATH}")
+        register_db(GLOBAL_DB_PATH)
     except Exception as e:
         print(f"Error initializing codebase info: {e}")
         sys.exit(1)
