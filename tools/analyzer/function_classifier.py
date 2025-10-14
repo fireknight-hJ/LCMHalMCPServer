@@ -99,7 +99,8 @@ async def build_graph():
     # Define the function that responds to the user
     def respond(state: AgentState):
         response = model_with_structured_output.invoke(
-            [HumanMessage(content=state["messages"][-2].content)]
+            # [HumanMessage(content=state["messages"][-1].content)]
+            state["messages"]
         )
         # We return the final answer
         return {"final_response": response}
