@@ -2,6 +2,7 @@ from typing import Dict
 import logging
 import os
 import time
+import glob
 
 import config.globs as globs
 
@@ -55,3 +56,17 @@ def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any]
         file_path = os.path.join(tmp_dir, f"{msg_type}_{result['final_response'].function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(dump_message_json(result))
+
+def check_analyzed_json_log(msg_type: str="undefined_info", func_name: str = "", file_path: str = "") -> bool:
+    """
+    检查JSON日志文件是否存在
+    """
+    if file_path == "":
+        # 当前项目执行路径
+        tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+        if not os.path.exists(tmp_dir):
+            return False
+        file_path = os.path.join(tmp_dir, f"{msg_type}_{func_name}_*.json")
+    # 使用glob检查匹配的文件是否存在
+    matching_files = glob.glob(file_path)
+    return len(matching_files) > 0

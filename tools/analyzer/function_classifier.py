@@ -9,7 +9,7 @@ from models.analyze_results.function_analyze import FunctionClassifyResponse
 from prompts.function_classifier import system_prompting_en
 import os
 import time
-from utils.log import dump_message_json_log
+from utils.log import dump_message_json_log, check_analyzed_json_log
 import config.globs as globs
 
 # Initialize the model
@@ -147,6 +147,12 @@ async def function_classify(func_name : str) -> FunctionClassifyResponse:
     if globs.ai_log_enable:
         dump_message_json_log("function_classify", result)
     return result["final_response"]
+
+def check_analyzed(func_name: str) -> bool:
+    """
+    检查函数是否已经分析过
+    """
+    return check_analyzed_json_log(func_name)
 
 async def main():
     # Test the graph

@@ -4,7 +4,7 @@ from typing import Literal
 class FunctionClassifyResponse(BaseModel):
     """Response of function classify"""
     function_name: str = Field(description="Name of the function to be classified")
-    function_type: Literal["RECV", "IRQ", "RETURNOK", "SKIP", "NEEDCHECK", "NODRIVER"] = Field(description="Classification of driver functions based on their functionality and characteristics")
+    function_type: Literal["RECV", "IRQ", "RETURNOK", "SKIP", "NEEDCHECK", "NODRIVER", "INIT"] = Field(description="Classification of driver functions based on their functionality and characteristics")
     functionality: str = Field(description="Description of the main functionality of the function")
     classification_reason: str = Field(description="Explanation of the classification result")
     has_replacement: bool = Field(description="Whether the function has a replacement")
