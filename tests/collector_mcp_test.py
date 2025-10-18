@@ -3,6 +3,7 @@ from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.prebuilt import ToolNode
 from langchain_openai import ChatOpenAI
+from config import globs 
 import os
 
 # Initialize the model
@@ -25,13 +26,27 @@ model = ChatOpenAI(
 client = MultiServerMCPClient(
     {
         # using connection
-        "lcmhal_collector": {
-            # make sure you start your weather server on port 8000
-            "url": "http://localhost:8112/mcp/",
-            "transport": "streamable_http",
-        }
+        # "lcmhal_collector": {
+        #     # make sure you start your weather server on port 8000
+        #     "url": "http://localhost:8112/mcp/",
+        #     "transport": "streamable_http",
+        # }
 
         # using stdio
+        "lcmhal_collector": {
+            "command": "python",
+            # Make sure to update to the full absolute path to your math_server.py file
+            "args": [
+                "-m",
+                "tools.collector.mcp_server",
+                "--db-path",
+                globs.db_path,
+                "--transport",
+                "stdio"
+            ],
+            # "cwd": "/home/haojie/workspace/lcmhalmcp",
+            "transport": "stdio"
+        },
     }
 )
 
@@ -77,8 +92,11 @@ async def main():
     # analyze_response = await graph.ainvoke(
     #     {"messages": [{"role": "user", "content": "Analyze the database : /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer, then get the mmio function list"}]}
     # )
+    # analyze_response = await graph.ainvoke(
+    #     {"messages": [{"role": "user", "content": "Register Database : /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer, then Analyze the mmio function : HAL_I2C_Mem_Read"}]}
+    # )
     analyze_response = await graph.ainvoke(
-        {"messages": [{"role": "user", "content": "Register Database : /home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer, then Analyze the mmio function : HAL_I2C_Mem_Read"}]}
+        {"messages": [{"role": "user", "content": "Get all the mmio file paths"}]}
     )
     print(f"Analyze response: {analyze_response}")
 
