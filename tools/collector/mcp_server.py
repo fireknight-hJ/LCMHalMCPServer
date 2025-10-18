@@ -36,6 +36,24 @@ def get_global_codebase_infos() -> CodebaseInfos:
     return codebase_infos_dict[GLOBAL_DB_PATH]
 
 @mcp.tool()
+async def list_files_in_db_zip() -> str:
+    """Lists all files of the srcfile in project inside database directory."""
+    try:
+        files = list_files_in_db_zip(GLOBAL_DB_PATH)
+        return f"Files in src.zip: {files}"
+    except Exception as e:
+        return f"Error listing files in src.zip: {e}"
+
+@mcp.tool()
+async def list_tree_in_db_zip() -> str:
+    """Lists all files of the srcfile in project inside database directory."""
+    try:
+        tree = list_tree_in_db_zip(GLOBAL_DB_PATH)
+        return f"Tree in src.zip: {tree}"
+    except Exception as e:
+        return f"Error listing tree in src.zip: {e}"
+
+@mcp.tool()
 async def register_and_analyze_database() -> str:
     """This tool registers a CodeQL database and analyzes it"""
     global GLOBAL_DB_PATH

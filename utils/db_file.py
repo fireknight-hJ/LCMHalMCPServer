@@ -134,6 +134,108 @@ def read_struct_or_func_from_lines(lines: list, start_line: int) -> Tuple[str, D
     # 合并最近的注释和结构体定义
     return current_comment + struct_content, struct_content_in_lines
 
+def get_zip_tree_structure(zip_path, indent='    ', max_level=None):
+    """
+    生成ZIP文件的树状目录结构字符串
+    
+    参数:
+        zip_path: ZIP文件的路径
+        indent: 每一级目录的缩进字符串
+        max_level: 最大显示层级，None表示显示所有层级
+    
+    返回:
+        tree_str: 树状结构字符串
+    """
+    tree_lines = []  # 存储每一行的字符串
+    
+    try:
+        with zipfile.ZipFile(zip_path, 'r') as zf:
+            # 获取ZIP内所有文件和目录的路径列表[2,3](@ref)
+            namelist = zf.namelist()
+            
+            if not namelist:
+                return f"{zip_path}/\n(空压缩文件)"
+            
+            # 使用字典构建前缀树来表示目录结构[1](@ref)
+            tree = {}
+            
+            for name in namelist:
+                # 分割路径为组成部分
+                parts = name.rstrip('/').split('/')
+                if not parts or not parts[0]:
+                    continue
+                    
+                current = tree
+                # 逐级构建树结构
+                for i, part in enumerate(parts):
+                    is_last_component = (i == len(parts) - 1)
+                    if part not in current:
+                        # 标记是否为文件（路径的最后一部分且不以'/'结尾）
+                        current[part] = {
+                            'is_file': is_last_component and not name.endswith('/'), 
+                            'children': {}
+                        }
+                    current = current[part]['children']
+            
+            def build_tree_node(node, prefix='', level=0):
+                """递归构建树节点字符串"""
+                if max_level is not None and level > max_level:
+                    return []
+                    
+                node_lines = []
+                keys = list(node.keys())
+                
+                for i, key in enumerate(keys):
+                    is_last = (i == len(keys) - 1)
+                    is_file = node[key]['is_file']
+                    
+                    # 当前节点的连接符
+                    connector = '└── ' if is_last else '├── '
+                    line = f"{prefix}{connector}{key}{'' if is_file else '/'}"
+                    node_lines.append(line)
+                    
+                    # 为下一级节点计算新的前缀
+                    new_prefix = prefix + ('    ' if is_last else '│   ')
+                    
+                    # 递归构建子节点
+                    child_lines = build_tree_node(node[key]['children'], new_prefix, level + 1)
+                    node_lines.extend(child_lines)
+                
+                return node_lines
+            
+            # 构建完整的树结构
+            tree_lines.append(f"{zip_path}/")
+            tree_lines.extend(build_tree_node(tree))
+            
+    except zipfile.BadZipFile:
+        return f"错误: {zip_path} 不是一个有效的ZIP文件"
+    except FileNotFoundError:
+        return f"错误: 找不到文件 {zip_path}"
+    except Exception as e:
+        return f"错误: 处理ZIP文件时发生异常 - {str(e)}"
+    
+    return '\n'.join(tree_lines)
+
+def tree_file_from_db_zip(db_path):
+    """
+    从数据库zip文件中提取树状目录结构字符串
+    
+    参数:
+        db_path: 数据库zip文件的路径
+    
+    返回:
+        tree_str: 树状结构字符串
+    """
+    db_path_resolved = Path(db_path).resolve()
+    if not db_path_resolved.exists():
+        return f"Database path does not exist: {db_path}"
+
+    source_zip = db_path_resolved / "src.zip"
+    if not source_zip.exists():
+        return f"Missing required src.zip in: {db_path}"
+
+    return get_zip_tree_structure(source_zip)
+
 if __name__ == "__main__":
     # Example usage
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
@@ -150,3 +252,6 @@ if __name__ == "__main__":
     # 读取结构体定义
     struct_content = read_struct_with_start_line_from_db(db_path, file_path, start_line, func_name)
     print(struct_content)
+    # 从 zip 里面提取树状目录结构
+    tree = tree_file_from_db_zip(db_path)
+    print(tree)
