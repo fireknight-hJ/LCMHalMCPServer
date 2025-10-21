@@ -22,31 +22,33 @@ def list_files_in_db_zip(db_path: str) -> list:
     except Exception as e:
         return f"Error reading src.zip: {e}"
 
-def read_file_from_db_zip(db_path: str, file_path: str) -> str:
+def read_file_from_db_zip(db_path: str, file_path: str) -> Tuple[str, bool]:
     """Reads a specific file from the src.zip inside a CodeQL database directory."""
     if file_path.startswith("/"):
         file_path = file_path[1:]
     db_path_resolved = Path(db_path).resolve()
     if not db_path_resolved.exists():
-        return f"Database path does not exist: {db_path}"
+        return f"Database path does not exist: {db_path}", False
 
     source_zip = db_path_resolved / "src.zip"
     if not source_zip.exists():
-        return f"Missing required src.zip in: {db_path}"
+        return f"Missing required src.zip in: {db_path}", False
 
     try:
         with zipfile.ZipFile(source_zip, 'r') as zip_ref:
             with zip_ref.open(file_path) as file:
-                return file.read().decode('utf-8')
+                return file.read().decode('utf-8'), True
     except KeyError:
-        return f"File {file_path} not found in src.zip"
+        return f"File {file_path} not found in src.zip", False
     except Exception as e:
-        return f"Error reading file {file_path} from src.zip: {e}"
+        return f"Error reading file {file_path} from src.zip: {e}", False
 
 def read_line_from_db(db_path: str, file_path: str, line: int) -> str:
     """Reads a specific line from a file in the src.zip inside a CodeQL database directory."""
     content = read_file_from_db_zip(db_path, file_path)
-    lines = content.splitlines()
+    lines, success = content.splitlines()
+    if not success:
+        return f"Error reading file {file_path} from src.zip: {lines}"
     if line < 1 or line > len(lines):
         return f"Invalid line number {line} for file {file_path}"
     return lines[line-1]
