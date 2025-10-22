@@ -22,3 +22,7 @@ if __name__ == "__main__":
     # 打印所有MMIO函数的分类结果
     for func_name, classify_res in mmio_info_list.items():
         print(f"Function {func_name} classify result: {classify_res.model_dump_json()}")
+    # 找到所有有替换函数条目并进行替换
+    for func_name, classify_res in mmio_info_list.items():
+        if classify_res.replace_func_name:
+            print(f"Function {func_name} has replace function {classify_res.replace_func_name}")
