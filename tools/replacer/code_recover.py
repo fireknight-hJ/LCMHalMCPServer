@@ -23,18 +23,20 @@ def recover_code_file(code_path: str) -> bool:
 if __name__ == "__main__":
     file_paths = [
         "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/system_stm32f7xx.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/ethernetif.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/stm32f7xx_hal_timebase_tim.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/main.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/app_ethernet.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/s5k5cag_RGB888.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/stm32f769i_camera.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/stm32f7xx_it.c",
-        "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Utilities/Log/lcd_log.c"
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/ethernetif.c",
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/stm32f7xx_hal_timebase_tim.c",
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/main.c",
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/app_ethernet.c",
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/s5k5cag_RGB888.c",
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/stm32f769i_camera.c",
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/stm32f7xx_it.c",
+        # "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Utilities/Log/lcd_log.c"
     ]
     for file_path in file_paths:
-        recover_code_file(file_path)
-        print(f"Recover {file_path} done.")
+        if recover_code_file(file_path):
+            print(f"Recover {file_path} done.")
+        else:
+            print(f"Recover {file_path} failed.")
     
 
     

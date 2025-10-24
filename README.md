@@ -1,5 +1,9 @@
 # LCMHalMCPServer
 
+使用方式：创建testcases目录，目录下创建：
+- build.sh: 构建脚本
+- clear.sh: 删除构建缓存脚本
+
 start server: 
 
 ``` shell

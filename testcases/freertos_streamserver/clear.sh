@@ -21,7 +21,7 @@ cd "$PWDDIR" || {
 
 # 编译项目
 echo "开始清除项目..."
-make clear
+make clean
 
 # 检查清除结果
 if [ $? -eq 0 ]; then
