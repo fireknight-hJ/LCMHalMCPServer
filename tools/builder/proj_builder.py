@@ -13,5 +13,6 @@ def build_proj(conf_path: str):
     print(build_result.returncode)
     return build_result
 
+
 if __name__ == "__main__":
     build_proj("/home/haojie/workspace/lcmhalmcp/testcases/freertos_streamserver")
