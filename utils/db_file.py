@@ -46,7 +46,8 @@ def read_file_from_db_zip(db_path: str, file_path: str) -> Tuple[str, bool]:
 def read_line_from_db(db_path: str, file_path: str, line: int) -> str:
     """Reads a specific line from a file in the src.zip inside a CodeQL database directory."""
     content = read_file_from_db_zip(db_path, file_path)
-    lines, success = content.splitlines()
+    lines, success = content
+    lines = lines.splitlines()
     if not success:
         return f"Error reading file {file_path} from src.zip: {lines}"
     if line < 1 or line > len(lines):
@@ -55,7 +56,9 @@ def read_line_from_db(db_path: str, file_path: str, line: int) -> str:
 
 def read_struct_with_start_line_from_db(db_path: str, file_path: str, start_line: int, struct_or_func_name: str = None) -> Tuple[str, Dict[int, str]]:
     """Reads a struct or function definition from the start line of a file in the src.zip inside a CodeQL database directory."""
-    content = read_file_from_db_zip(db_path, file_path)
+    content, success = read_file_from_db_zip(db_path, file_path)
+    if not success:
+        return f"Error reading file {file_path} from src.zip: {content}", {}
     lines = content.splitlines()
     struct_content, struct_content_in_lines = read_struct_or_func_from_lines(lines, start_line)
     # 如果指定了struct_or_func_name，则检查其是否在struct_content中
