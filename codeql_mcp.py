@@ -8,7 +8,8 @@ import uuid
 from pathlib import Path
 from utils.db_lock import remove_db_lock
 from utils.log import logger
-CODEQL_PATH = "/home/haojie/test/codeql/codeql"
+# CODEQL_PATH = "/home/haojie/test/codeql/codeql"
+CODEQL_PATH = "codeql"
 
 class CodeQLQueryServer:
     def __init__(self, codeql_path=CODEQL_PATH):

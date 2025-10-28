@@ -3,3 +3,4 @@ tmp/
 qlscripts/
 config/llm_config.py
 .DS_Store
+.vscode/
