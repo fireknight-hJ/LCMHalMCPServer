@@ -9,7 +9,7 @@ from models.analyze_results.driverdir_locate import DriverDirLocatorResponse
 from prompts.driverdir_locator import system_prompting_en
 import os
 import time
-from utils.log import dump_message_json_log, check_analyzed_json_log
+from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 import config.globs as globs
 
 # Initialize the model
