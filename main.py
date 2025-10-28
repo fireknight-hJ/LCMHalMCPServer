@@ -2,7 +2,9 @@ import asyncio
 import config.globs as globs
 from tools.builder.proj_builder import build_proj_dbgen
 from tools.analyzer.function_classifier import function_classify
-from tools.collector.mcp_server import collect_mmio_func_list, register_db, codebase_infos_dict
+from tools.collector.collector import get_mmio_func_list, register_db
+# from tools.collector.mmio import function
+from utils.src_replace import src_replace
 
 def analyze_functions(function_list):
     mmio_info_list = {}
@@ -21,23 +23,27 @@ def replace_functions(mmio_info_list):
 
 if __name__ == "__main__":
     globs.script_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
-    globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer_Macbook"
+    globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
+    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver/src"
     # 初始化数据库
     build_proj_dbgen(globs.script_path, globs.db_path)
     # 预分析数据库
     register_db(globs.db_path)
     # 处理所有MMIO函数
     mmio_info_list = {}
-    function_list = codebase_infos_dict[globs.db_path].mmio_infos.mmioinfo_mmioexpr_dict.keys()
+    function_list = get_mmio_func_list(globs.db_path)
+    # function_list = codebase_infos_dict[globs.db_path].mmio_infos.mmioinfo_mmioexpr_dict.keys()
     mmio_info_list = analyze_functions(function_list)
     # 打印所有MMIO函数的分类结果
     for func_name, classify_res in mmio_info_list.items():
         print(f"Function {func_name} classify result: {classify_res.model_dump_json()}")
     # 找到所有有替换函数条目并进行替换
-
     for func_name, classify_res in mmio_info_list.items():
-        if classify_res.replace_func_name:
-            print(f"Function {func_name} has replace function {classify_res.replace_func_name}")
+        if classify_res.has_replacement:
+            # src_replace(f"{globs.src_path}/{classify_res.file_name}", classify_res.replace_code)
+            print(f"Function {func_name} has replacement: \n{classify_res.function_replacement}")
+
+        
 
 """
 当前workflow：
