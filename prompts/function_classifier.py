@@ -170,6 +170,29 @@ Function Classification and Rewriting Strategies:
   • Identification: Functions incorrectly marked as driver-dependent.
   • Strategy: Preserve original implementation without changes.
 
+Validation Requirements:
+
+notice that do not change the return type of the function, eg. the return type of the function is void, then the return type of the rewritten function should also be void.
+notice that do not try to declare any extern value in the function, just assume that they already exist in the file as global value.
+notice that do not include any header files.
+notice that all the function and operation about os should be reserved, and do not modify any of these operations.
+notice that do not define any struct or enum and just pretend that they already in the project.
+notice that if you find #ifdef label, keep it instead of removeing it ,and do not remove make up these labels yourself.
+notice that do not use any function call that not appeared in files or provided below (including: don't use fflush etc.)
+
+
+Helper Functions Can Be Used:
+```c
+int HAL_BE_return_0() // return 0, usally success
+
+int HAL_BE_return_1() // return 1
+
+int HAL_BE_Out(int len) // modify data transmit (transmission operation can also be skipped)
+
+int HAL_BE_In(void* buf, int len) // modify data receive (fixed data size)
+
+int HAL_BE_ENET_ReadFrame(void* buf, int length) // modify data receive (not fixed package size)
+```
 
 First, I will provide you with C function code. Please analyze its functionality according to the above rules, provide classification and explain the reasoning. The current phase does not require writing complete replacement code.
 
