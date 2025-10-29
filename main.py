@@ -1,49 +1,32 @@
 import asyncio
 import config.globs as globs
-from tools.builder.proj_builder import build_proj_dbgen
-from tools.analyzer.function_classifier import function_classify
-from tools.collector.collector import get_mmio_func_list, register_db
+from tools.builder.proj_builder import build_proj_dbgen, clear_proj
+from tools.builder.builder_tool import build_project
+from tools.analyzer.function_classifier import analyze_functions
+from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
+from tools.replacer.code_replacer import function_replace
+from tools.replacer.code_recover import function_recover
 # from tools.collector.mmio import function
-from utils.src_replace import src_replace
-
-def analyze_functions(function_list):
-    mmio_info_list = {}
-    for func_name in function_list:
-        try:
-            classifier_res = asyncio.run(function_classify(func_name))
-            mmio_info_list[func_name] = classifier_res
-        except Exception as e:
-            print(f"Error analyzing function {func_name}: {e}")
-    return mmio_info_list
-
-def replace_functions(mmio_info_list):
-    for func_name, classify_res in mmio_info_list.items():
-        if classify_res.replace_func_name:
-            print(f"Replace function {func_name} with {classify_res.replace_func_name}")
+from utils.src_ops import src_replace
 
 if __name__ == "__main__":
+    # 编译脚本路径
     globs.script_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
+    # 文件系统路径
     globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
-    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver/src"
+    # 源文件路径, 可能存在src目录和db中的目录有出入, 所以需要根据db中的路径来替换
+    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
+    # 项目路径, DB中记录的项目路径
+    globs.proj_path = "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
     # 初始化数据库
     build_proj_dbgen(globs.script_path, globs.db_path)
     # 预分析数据库
     register_db(globs.db_path)
-    # 处理所有MMIO函数
-    mmio_info_list = {}
-    function_list = get_mmio_func_list(globs.db_path)
-    # function_list = codebase_infos_dict[globs.db_path].mmio_infos.mmioinfo_mmioexpr_dict.keys()
-    mmio_info_list = analyze_functions(function_list)
-    # 打印所有MMIO函数的分类结果
-    for func_name, classify_res in mmio_info_list.items():
-        print(f"Function {func_name} classify result: {classify_res.model_dump_json()}")
-    # 找到所有有替换函数条目并进行替换
-    for func_name, classify_res in mmio_info_list.items():
-        if classify_res.has_replacement:
-            # src_replace(f"{globs.src_path}/{classify_res.file_name}", classify_res.replace_code)
-            print(f"Function {func_name} has replacement: \n{classify_res.function_replacement}")
+    # 编译项目
+    build_output = asyncio.run(build_project())
+    print(f"Build project output: {build_output.model_dump_json()}")
 
-        
+
 
 """
 当前workflow：

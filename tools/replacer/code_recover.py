@@ -1,8 +1,10 @@
 import config.globs as globs
 from utils.db_file import read_file_from_db_zip
+from utils.src_ops import file_convert_proj2src
+from models.query_results.common import FunctionInfo
 
 
-def recover_code_file(code_path: str, proj_path: tuple[str, str] = None) -> bool:
+def recover_code_file(code_path: str) -> bool:
     """
     搜索对应的源文件路径，根据codeql的DB中的对应文件恢复原始代码
     :param code_path: 代码文件路径
@@ -13,15 +15,11 @@ def recover_code_file(code_path: str, proj_path: tuple[str, str] = None) -> bool
     db_path = globs.db_path
     file_content, ok = read_file_from_db_zip(db_path, code_path)
     # 替换项目DB存储路径为项目实际路径
-    code_file_path = code_path
-    if proj_path is not None and len(proj_path) == 2:
-        code_file_path = code_path.replace(proj_path[0], proj_path[1])
-    else:
-        code_file_path = code_path
+    code_file_path = file_convert_proj2src(code_path)
     if not ok or file_content is None or len(file_content) == 0:
         return False
     # 恢复原始代码
-    print(file_content)
+    # print(file_content)
     with open(code_file_path, 'wb') as f:
         f.write(file_content.encode('utf-8'))
     return True
@@ -38,6 +36,14 @@ def batch_recover_code_files(code_paths: list[str], proj_path: tuple[str, str] =
             return False
     return True
 
+def function_recover(function_info: FunctionInfo) -> bool:
+    """
+    恢复函数的原始代码
+    :param function_info: 函数信息
+    (注意，该函数会复原对应文件的所有原始代码，包括函数的调用位置)
+    """
+    return recover_code_file(function_info.file_path)
+
 if __name__ == "__main__":
     file_paths = [
         "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Src/system_stm32f7xx.c",
@@ -51,11 +57,10 @@ if __name__ == "__main__":
         "/home/haojie/posixGen_Demos/LwIP_StreamingServer/Utilities/Log/lcd_log.c"
     ]
     globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
+    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
+    globs.proj_path = "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
     for file_path in file_paths:
-        if recover_code_file(file_path,
-            ("/home/haojie/posixGen_Demos/LwIP_StreamingServer",
-             "/Users/jie/Documents/posixGen_Demos-main/LwIP_StreamingServer")
-        ):
+        if recover_code_file(file_path):
             print(f"Recover {file_path} done.")
         else:
             print(f"Recover {file_path} failed.")

@@ -71,6 +71,10 @@ def check_analyzed_json_log(msg_type: str="undefined_info", func_name: str = "",
         file_path = os.path.join(tmp_dir, f"{msg_type}_{func_name}_*.json")
     # 使用glob检查匹配的文件是否存在
     matching_files = glob.glob(file_path)
+    for file in matching_files:
+        # 去掉最后一个下划线后面的内容看看是否符合，不符则去掉(eg： HAL_ETH_Transmit_IT， HAL_ETH_Transmit)
+        if not "_".join(file.split("_")[:-1]).endswith(f"{msg_type}_{func_name}"):
+            matching_files.remove(file)
     return len(matching_files) > 0
 
 def get_analyzed_json_log(msg_type: str="undefined_info", func_name: str = "", file_path: str = "") -> str:
@@ -83,11 +87,15 @@ def get_analyzed_json_log(msg_type: str="undefined_info", func_name: str = "", f
         tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
         if not os.path.exists(tmp_dir):
             return ""
+        # 匹配文件名模式({msg_type}_{func_name}_日期.json)
         file_path = os.path.join(tmp_dir, f"{msg_type}_{func_name}_*.json")
     
     # 使用glob检查匹配的文件是否存在，并按时间排序（最新的在前）
     matching_files = sorted(glob.glob(file_path), key=os.path.getmtime, reverse=True)
-    
+    for file in matching_files:
+        # 去掉最后一个下划线后面的内容看看是否符合，不符则去掉(eg： HAL_ETH_Transmit_IT， HAL_ETH_Transmit)
+        if not "_".join(file.split("_")[:-1]).endswith(f"{msg_type}_{func_name}"):
+            matching_files.remove(file)
     if len(matching_files) > 0:
         # 读取第一个匹配文件内容（现在总是最新的文件）
         with open(matching_files[0], "r", encoding="utf-8") as f:

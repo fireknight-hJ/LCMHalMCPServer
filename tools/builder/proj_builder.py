@@ -1,18 +1,26 @@
 import os
 import subprocess
 import shutil  # 添加shutil模块用于删除目录
+from models.build_results.build_output import BuildOutput
 
 # TODO: 项目编译（暂定运行指令人工指定）
+
+def build_result_to_info(build_result: subprocess.CompletedProcess) -> BuildOutput:
+    """Convert subprocess.CompletedProcess to BuildOutput"""
+    return BuildOutput(
+        std_err=build_result.stderr,
+        std_out=build_result.stdout,
+        exit_code=build_result.returncode,
+    )
 
 # @mcp
 def build_proj(conf_path: str):
     """build project, return build result"""
     # 执行conf_path下的build.sh脚本
     build_result = subprocess.run(["bash", "build.sh"], cwd=conf_path, capture_output=True, text=True)
-    print(build_result.stdout)
-    print(build_result.stderr)
-    print(build_result.returncode)
-    return build_result
+    # 转换为BuildOutput
+    build_output = build_result_to_info(build_result)
+    return build_output
 
 def clear_proj(conf_path: str):
     """clear project, return clear result"""

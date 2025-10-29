@@ -10,6 +10,7 @@ from models.analyze_results.function_analyze import FunctionClassifyResponse
 from prompts.function_classifier import system_prompting_en
 import os
 import time
+import asyncio
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log, get_analyzed_json_log
 import config.globs as globs
 
@@ -174,6 +175,17 @@ def function_classify_from_log(func_name: str) -> FunctionClassifyResponse:
     infos = get_analyzed(func_name)
     json_data = json.loads(infos)
     return FunctionClassifyResponse(**json_data["final_response"])
+
+def analyze_functions(function_list):
+    mmio_info_list = {}
+    for func_name in function_list:
+        try:
+            classifier_res = asyncio.run(function_classify(func_name))
+            mmio_info_list[func_name] = classifier_res
+        except Exception as e:
+            print(f"Error analyzing function {func_name}: {e}")
+    return mmio_info_list
+
 
 async def main():
     # Test the graph
