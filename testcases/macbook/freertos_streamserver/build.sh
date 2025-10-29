@@ -4,7 +4,7 @@
 # 用于编译STM32F769I_EVAL平台的LwIP流媒体服务器项目
 
 # 设置项目构建目录路径
-PWDDIR=/Users/jie/Documents/posixGen_Demos-main/LwIP_StreamingServer/SW4STM32/STM32F769I_EVAL/build
+PWDDIR=/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer/SW4STM32/STM32F769I_EVAL/build
 
 # 检查目录是否存在
 if [ ! -d "$PWDDIR" ]; then
