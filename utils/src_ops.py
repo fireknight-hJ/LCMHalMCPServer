@@ -34,13 +34,13 @@ def src_replace(file_path: str, old_code: str, replace_code: str) -> str:
     with open(file_path, "r") as f:
         content = f.read()
         if old_code not in content or old_code == "":
-            print(f"Error: {old_code} not found in {file_path}")
+            # print(f"Error: {old_code} not found in {file_path}")
             return ""
         # 检查是否已经包含了弱函数定义，没有则添加（防止编译错误）
         if weak_funcdef not in content:
             content = weak_funcdef + content
         content = content.replace(old_code, replace_code)
-        print(f"Modifying src file {file_path}")
+        # print(f"Modifying src file {file_path}")
     with open(file_path, "w") as f:
         f.write(content)
     return content

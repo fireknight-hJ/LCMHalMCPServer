@@ -43,7 +43,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         cache_file = cache_dir / "mmio_info.json"
         
         if not cache_file.exists():
-            print(f"[INFO] 缓存文件不存在: {cache_file}")
+            # print(f"[INFO] 缓存文件不存在: {cache_file}")
             return False
         
         try:
@@ -52,16 +52,16 @@ class MmioCodebaseInfo(CodebaseInfoBase):
             
             # 验证缓存数据完整性
             if not self._validate_cache_data(data):
-                print("[WARN] 缓存数据不完整或格式错误，将重新收集")
+                # print("[WARN] 缓存数据不完整或格式错误，将重新收集")
                 return False
             
             # 从缓存数据恢复
             self._load_from_dict(data)
-            print(f"[INFO] 成功从缓存加载数据: {cache_file}")
+            # print(f"[INFO] 成功从缓存加载数据: {cache_file}")
             return True
             
         except Exception as e:
-            print(f"[ERROR] 加载缓存失败: {e}")
+            # print(f"[ERROR] 加载缓存失败: {e}")
             return False
 
     def _validate_cache_data(self, data: Dict) -> bool:
@@ -126,7 +126,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
     def save_to_cache(self) -> bool:
         """保存数据到缓存"""
         if not self.db_path:
-            print("[ERROR] 未设置数据库路径，无法保存缓存")
+            # print("[ERROR] 未设置数据库路径，无法保存缓存")
             return False
         
         cache_dir = Path(self.db_path) / "lcmhal_tmp"
@@ -140,11 +140,11 @@ class MmioCodebaseInfo(CodebaseInfoBase):
             with open(cache_file, "w", encoding="utf-8") as f:
                 json.dump(self.to_dict(), f, indent=4, ensure_ascii=False)
             
-            print(f"[INFO] 数据已保存到缓存: {cache_file}")
+            # print(f"[INFO] 数据已保存到缓存: {cache_file}")
             return True
             
         except Exception as e:
-            print(f"[ERROR] 保存缓存失败: {e}")
+            # print(f"[ERROR] 保存缓存失败: {e}")
             return False
 
     def collect_infos(self, db_path: str, force_refresh: bool = False) -> None:
@@ -158,10 +158,10 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         
         # 如果不是强制刷新，尝试从缓存加载
         if not force_refresh and self.init_from_cache(db_path):
-            print("[INFO] 使用缓存数据")
+            # print("[INFO] 使用缓存数据")
             return
         
-        print("[INFO] 开始收集MMIO代码信息...")
+        # print("[INFO] 开始收集MMIO代码信息...")
         
         # 收集各个模块的信息
         collectors = [
@@ -176,14 +176,15 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         for module_name, collector_func in collectors:
             # collector_func()
             try:
-                print(f"[INFO] 收集{module_name}...")
+                # print(f"[INFO] 收集{module_name}...")
                 collector_func()
             except Exception as e:
-                print(f"[ERROR] 收集{module_name}失败: {e}")
+                # print(f"[ERROR] 收集{module_name}失败: {e}")
+                pass
         
         # 保存到缓存
         self.save_to_cache()
-        print("[INFO] MMIO信息收集完成")
+        # print("[INFO] MMIO信息收集完成")
 
     def _collect_mmio_functions(self) -> None:
         """收集MMIO函数信息"""
@@ -202,7 +203,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
                     location_line=location_line,
                     function_content=function_content
                 )
-            print("[INFO] MMIO函数信息收集完成")
+            # print("[INFO] MMIO函数信息收集完成")
 
     def _collect_driver_functions(self) -> None:
         """收集驱动函数信息"""
@@ -221,7 +222,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
                     location_line=location_line,
                     function_content=function_content
                 )
-            print("[INFO] 驱动函数信息收集完成")
+            # print("[INFO] 驱动函数信息收集完成")
 
     def _collect_buffer_functions(self) -> None:
         """收集缓冲函数信息"""
@@ -240,7 +241,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
                     location_line=location_line,
                     function_content=function_content
                 )
-            print("[INFO] 缓冲函数信息收集完成")
+            # print("[INFO] 缓冲函数信息收集完成")
 
     def _collect_mmioinfo_interestingmmioexpr(self) -> None:
         """收集MMIO表达式信息"""
@@ -248,7 +249,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         if result:
             expr_dict = MmioExprInfo.resolve_from_query_result(self.db_path, result)
             self.mmioinfo_interestingmmioexpr_dict.update(expr_dict)
-            print("[INFO] MMIO表达式信息收集完成")
+            # print("[INFO] MMIO表达式信息收集完成")
 
     def _collect_mmioinfo_mmioexpr(self) -> None:
         """收集MMIO表达式信息"""
@@ -256,7 +257,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         if result:
             expr_dict = MmioExprInfo.resolve_from_query_result(self.db_path, result)
             self.mmioinfo_mmioexpr_dict.update(expr_dict)
-            print("[INFO] MMIO表达式信息收集完成")
+            # print("[INFO] MMIO表达式信息收集完成")
 
     def _collect_mmioinfo_interestingmmiofunc_contains(self) -> None:
         """收集MMIO函数包含信息"""
@@ -264,7 +265,7 @@ class MmioCodebaseInfo(CodebaseInfoBase):
         if result:
             contains_dict = MmioFunctionContainsInfo.resolve_from_query_result(self.db_path, result)
             self.mmioinfo_interestingmmiofunc_contains_dict.update(contains_dict)
-            print("[INFO] MMIO函数包含信息收集完成")
+            # print("[INFO] MMIO函数包含信息收集完成")
     
     # get mmio function info
     def get_mmio_function_info(self, func_name: str) -> FunctionInfo:
@@ -289,7 +290,7 @@ if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 示例用法
     mmio_info = create_mmiocodebase_info(db_path, force_refresh=True)
-    print("[INFO] MMIO代码信息收集完成")
+    # print("[INFO] MMIO代码信息收集完成")
     # 尝试获取所有 mmio 函数的brief信息
 
     # 尝试获取所有 mmio 函数的detailed信息

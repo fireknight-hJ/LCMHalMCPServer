@@ -44,7 +44,7 @@ class CommonCodebaseInfo(CodebaseInfoBase):
         self.cache_file = self.cache_dir / "common_info.json"
         
         if not self.cache_file.exists():
-            print(f"[INFO] 缓存文件不存在: {self.cache_file}")
+            # print(f"[INFO] 缓存文件不存在: {self.cache_file}")
             return False
         
         try:
@@ -53,16 +53,16 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             
             # 验证缓存数据完整性
             if not self._validate_cache_data(data):
-                print("[WARN] 缓存数据不完整或格式错误，将重新收集")
+                # print("[WARN] 缓存数据不完整或格式错误，将重新收集")
                 return False
             
             # 从缓存数据恢复
             self._load_from_dict(data)
-            print(f"[INFO] 成功从缓存加载数据: {self.cache_file}")
+            # print(f"[INFO] 成功从缓存加载数据: {self.cache_file}")
             return True
             
         except Exception as e:
-            print(f"[ERROR] 加载缓存失败: {e}")
+            # print(f"[ERROR] 加载缓存失败: {e}")
             return False
 
     def _validate_cache_data(self, data: Dict) -> bool:
@@ -151,7 +151,7 @@ class CommonCodebaseInfo(CodebaseInfoBase):
     def save_to_cache(self) -> bool:
         """保存数据到缓存"""
         if not self.db_path:
-            print("[ERROR] 未设置数据库路径，无法保存缓存")
+            # print("[ERROR] 未设置数据库路径，无法保存缓存")
             return False
         
         cache_dir = Path(self.db_path) / "lcmhal_tmp"
@@ -165,12 +165,12 @@ class CommonCodebaseInfo(CodebaseInfoBase):
             with open(self.cache_file, "w", encoding="utf-8") as f:
                 json.dump(self.to_dict(), f, indent=4, ensure_ascii=False)
             
-            print(f"[INFO] 数据已保存到缓存: {self.cache_file}")
+            # print(f"[INFO] 数据已保存到缓存: {self.cache_file}")
             return True
             
         except Exception as e:
             # 打印详细错误信息 栈轨迹
-            print(f"[ERROR] 保存缓存失败: {e}")
+            # print(f"[ERROR] 保存缓存失败: {e}")
             return False
 
     def collect_infos(self, db_path: str, force_refresh: bool = False) -> None:
@@ -184,10 +184,10 @@ class CommonCodebaseInfo(CodebaseInfoBase):
         
         # 如果不是强制刷新，尝试从缓存加载
         if not force_refresh and self.init_from_cache(db_path):
-            print("[INFO] 使用缓存数据")
+            # print("[INFO] 使用缓存数据")
             return
         
-        print("[INFO] 开始收集代码信息...")
+        # print("[INFO] 开始收集代码信息...")
         
         # 收集各个模块的信息
         collectors = [
@@ -198,46 +198,46 @@ class CommonCodebaseInfo(CodebaseInfoBase):
         ]
         
         for module_name, collector_func in collectors:
-            print(f"[INFO] 收集{module_name}...")
+            # print(f"[INFO] 收集{module_name}...")
             collector_func()
             # try:
-            #     print(f"[INFO] 收集{module_name}...")
+            #     # print(f"[INFO] 收集{module_name}...")
             #     collector_func()
             # except Exception as e:
-            #     print(f"[ERROR] 收集{module_name}失败: {e}")
+            #     # print(f"[ERROR] 收集{module_name}失败: {e}")
                 # 继续收集其他模块
         
         # 保存到缓存
         self.save_to_cache()
-        print("[INFO] 信息收集完成")
+        # print("[INFO] 信息收集完成")
 
     def _collect_functions(self) -> None:
         """收集函数信息"""
         result = self._run_query_and_return_json(function_collector_query_file)
         if result:
             self.functions = FunctionInfo.resolve_from_query_result(self.db_path, result)
-            print("[INFO] 函数信息收集完成")
+            # print("[INFO] 函数信息收集完成")
 
     def _collect_structs(self) -> None:
         """收集结构体信息"""
         result = self._run_query_and_return_json(struct_collector_query_file)
         if result:
             self.structs = StructInfo.resolve_from_query_result(self.db_path, result)
-            print("[INFO] 结构体信息收集完成")
+            # print("[INFO] 结构体信息收集完成")
 
     def _collect_enums(self) -> None:
         """收集枚举信息"""
         result = self._run_query_and_return_json(enum_collector_query_file)
         if result:
             self.enums = EnumInfo.resolve_from_query_result(self.db_path, result)
-            print("[INFO] 枚举信息收集完成")
+            # print("[INFO] 枚举信息收集完成")
 
     def _collect_function_calls(self) -> None:
         """收集函数调用信息"""
         result = self._run_query_and_return_json(function_call_collector_query_file)
         if result:
             self.func_calltos, self.func_callfroms = FunctionCallInfo.resolve_from_query_result(self.db_path, result)
-            print("[INFO] 函数调用信息收集完成")
+            # print("[INFO] 函数调用信息收集完成")
 
 def create_commoncodebase_info(db_path: str, force_refresh: bool = False) -> CommonCodebaseInfo:
     """
@@ -251,4 +251,4 @@ if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 示例用法
     codebase_info = create_commoncodebase_info(db_path, force_refresh=True)
-    print("[INFO] 代码信息收集完成")
+    # print("[INFO] 代码信息收集完成")

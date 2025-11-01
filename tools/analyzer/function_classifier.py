@@ -142,7 +142,7 @@ async def build_graph():
 async def function_classify(func_name : str) -> FunctionClassifyResponse:
     # 检查函数是否已经分析过
     if check_analyzed(func_name):
-        print(f"Function {func_name} has been analyzed, skip.")
+        # print(f"Function {func_name} has been analyzed, skip.")
         return function_classify_from_log(func_name)
     # 构建graph
     graph = await build_graph()
@@ -183,14 +183,15 @@ def analyze_functions(function_list):
             classifier_res = asyncio.run(function_classify(func_name))
             mmio_info_list[func_name] = classifier_res
         except Exception as e:
-            print(f"Error analyzing function {func_name}: {e}")
+            # print(f"Error analyzing function {func_name}: {e}")
+            pass
     return mmio_info_list
 
 
 async def main():
     # Test the graph
     classify_response = await function_classify("HAL_I2C_Mem_Read")
-    print(f"Classify response: {classify_response.model_dump_json()}")
+    # print(f"Classify response: {classify_response.model_dump_json()}")
 
 # 运行主函数
 if __name__ == "__main__":

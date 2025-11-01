@@ -26,9 +26,10 @@ def clear_proj(conf_path: str):
     """clear project, return clear result"""
     # 执行conf_path下的clear.sh脚本
     clear_result = subprocess.run(["bash", "clear.sh"], cwd=conf_path, capture_output=True, text=True)
-    print(clear_result.stdout)
-    print(clear_result.stderr)
-    print(clear_result.returncode)
+    # 注释掉print语句，避免干扰JSON-RPC通信
+    # print(clear_result.stdout)
+    # print(clear_result.stderr)
+    # print(clear_result.returncode)
     return clear_result
 
 def build_proj_dbgen(conf_path: str, out_path: str):
@@ -41,17 +42,21 @@ def build_proj_dbgen(conf_path: str, out_path: str):
     # 检查out_path是否存在，如果存在且目录中存在src.zip文件，说明可能已经生成了数据库，无需重复生成
     if os.path.exists(out_path) and os.listdir(out_path):
         if "src.zip" in os.listdir(out_path):
-            print(f"out_path {out_path} is not an empty directory, and src.zip already exists")
+            # 注释掉print语句，避免干扰JSON-RPC通信
+            # print(f"out_path {out_path} is not an empty directory, and src.zip already exists")
             return
-        print(f"out_path {out_path} is not an empty directory, but src.zip does not exist, remove it")
+        # 注释掉print语句，避免干扰JSON-RPC通信
+        # print(f"out_path {out_path} is not an empty directory, but src.zip does not exist, remove it")
         # 修复：使用shutil.rmtree()删除目录，而不是os.remove()
         shutil.rmtree(out_path)
-        print(f"Removed directory: {out_path}")
+        # 注释掉print语句，避免干扰JSON-RPC通信
+        # print(f"Removed directory: {out_path}")
     
     # 检查out_path是否存在，如果不存在则创建
     if not os.path.exists(out_path):
         os.makedirs(out_path)
-        print(f"Created directory: {out_path}")
+        # 注释掉print语句，避免干扰JSON-RPC通信
+        # print(f"Created directory: {out_path}")
     
     # 先清除项目
     clear_proj(conf_path)
@@ -59,7 +64,8 @@ def build_proj_dbgen(conf_path: str, out_path: str):
     # 检查build.sh文件是否存在
     build_sh_path = os.path.join(conf_path, "build.sh")
     if not os.path.exists(build_sh_path):
-        print(f"Error: build.sh not found in {conf_path}")
+        # 注释掉print语句，避免干扰JSON-RPC通信
+        # print(f"Error: build.sh not found in {conf_path}")
         return None
     
     # 修复：移除多余的引号转义
@@ -72,9 +78,10 @@ def build_proj_dbgen(conf_path: str, out_path: str):
         "--command=bash build.sh"
     ], cwd=conf_path, capture_output=True, text=True)
     
-    print(build_result.stdout)
-    print(build_result.stderr)
-    print(build_result.returncode)
+    # 注释掉print语句，避免干扰JSON-RPC通信
+    # print(build_result.stdout)
+    # print(build_result.stderr)
+    # print(build_result.returncode)
     return build_result
 
 if __name__ == "__main__":

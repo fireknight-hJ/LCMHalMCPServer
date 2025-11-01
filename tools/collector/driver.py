@@ -40,7 +40,7 @@ class DriverCodebaseInfo(CodebaseInfoBase):
         cache_file = cache_dir / "driver_info.json"
         
         if not cache_file.exists():
-            print(f"[INFO] 缓存文件不存在: {cache_file}")
+            # print(f"[INFO] 缓存文件不存在: {cache_file}")
             return False
         
         try:
@@ -49,16 +49,16 @@ class DriverCodebaseInfo(CodebaseInfoBase):
             
             # 验证缓存数据完整性
             if not self._validate_cache_data(data):
-                print("[WARN] 缓存数据不完整或格式错误，将重新收集")
+                # print("[WARN] 缓存数据不完整或格式错误，将重新收集")
                 return False
             
             # 从缓存数据恢复
             self._load_from_dict(data)
-            print(f"[INFO] 成功从缓存加载数据: {cache_file}")
+            # print(f"[INFO] 成功从缓存加载数据: {cache_file}")
             return True
             
         except Exception as e:
-            print(f"[ERROR] 加载缓存失败: {e}")
+            # print(f"[ERROR] 加载缓存失败: {e}")
             return False
 
     def _validate_cache_data(self, data: Dict) -> bool:
@@ -111,7 +111,7 @@ class DriverCodebaseInfo(CodebaseInfoBase):
     def save_to_cache(self) -> bool:
         """保存数据到缓存"""
         if not self.db_path:
-            print("未设置数据库路径，无法保存缓存")
+            # print("未设置数据库路径，无法保存缓存")
             return False
         
         cache_dir = Path(self.db_path) / "lcmhal_tmp"
@@ -125,11 +125,11 @@ class DriverCodebaseInfo(CodebaseInfoBase):
             with open(cache_file, "w", encoding="utf-8") as f:
                 json.dump(self.to_dict(), f, indent=4, ensure_ascii=False)
             
-            print(f"[INFO] 数据已保存到缓存: {cache_file}")
+            # print(f"[INFO] 数据已保存到缓存: {cache_file}")
             return True
             
         except Exception as e:
-            print(f"[ERROR] 保存缓存失败: {e}")
+            # print(f"[ERROR] 保存缓存失败: {e}")
             return False
 
     def collect_infos(self, db_path: str, force_refresh: bool = False) -> None:
@@ -143,10 +143,10 @@ class DriverCodebaseInfo(CodebaseInfoBase):
         
         # 如果不是强制刷新，尝试从缓存加载
         if not force_refresh and self.init_from_cache(db_path):
-            print("[INFO] 使用缓存数据")
+            # print("[INFO] 使用缓存数据")
             return
         
-        print("[INFO] 开始收集驱动代码信息...")
+        # print("[INFO] 开始收集驱动代码信息...")
         
         # 收集各个模块的信息
         collectors = [
@@ -158,15 +158,16 @@ class DriverCodebaseInfo(CodebaseInfoBase):
         
         for module_name, collector_func in collectors:
             try:
-                print(f"[INFO] 收集{module_name}...")
+                # print(f"[INFO] 收集{module_name}...")
                 collector_func()
             except Exception as e:
-                print(f"[ERROR] 收集{module_name}失败: {e}")
+                # print(f"[ERROR] 收集{module_name}失败: {e}")
+                pass
                 # 继续收集其他模块
         
         # 保存到缓存
         self.save_to_cache()
-        print("[INFO] 驱动信息收集完成")
+        # print("[INFO] 驱动信息收集完成")
 
     def _collect_driverfrom_expr(self) -> None:
         """收集驱动表达式信息"""
@@ -174,7 +175,7 @@ class DriverCodebaseInfo(CodebaseInfoBase):
         if result:
             expr_dict = DriverExprInfo.resolve_from_query_result(self.db_path, result)
             self.driverfrom_expr_dict.update(expr_dict)
-            print("[INFO] 驱动表达式信息收集完成")
+            # print("[INFO] 驱动表达式信息收集完成")
 
     def _collect_driverfrom_function(self) -> None:
         """收集驱动函数信息"""
@@ -191,7 +192,7 @@ class DriverCodebaseInfo(CodebaseInfoBase):
                         "file_path": common_info.functions[func_name].file_path,
                         "location_line": common_info.functions[func_name].location_line
                     }
-            print("[INFO] 驱动函数信息收集完成")
+            # print("[INFO] 驱动函数信息收集完成")
 
     def _collect_driverfrom_function_contains(self) -> None:
         """收集驱动函数包含信息"""
@@ -199,7 +200,7 @@ class DriverCodebaseInfo(CodebaseInfoBase):
         if result:
             contains_dict = DriverFunctionContainsInfo.resolve_from_query_result(self.db_path, result)
             self.driverfrom_function_contains_dict.update(contains_dict)
-            print("[INFO] 驱动函数包含信息收集完成")
+            # print("[INFO] 驱动函数包含信息收集完成")
 
     def _collect_driverto_functioncall(self) -> None:
         """收集驱动函数调用信息"""
@@ -207,7 +208,7 @@ class DriverCodebaseInfo(CodebaseInfoBase):
         if result:
             call_dict = DriverFunctionCallInfo.resolve_from_query_result(self.db_path, result)
             self.driverto_functioncall_dict.update(call_dict)
-            print("[INFO] 驱动函数调用信息收集完成")
+            # print("[INFO] 驱动函数调用信息收集完成")
 
 
 # 使用示例
@@ -224,4 +225,4 @@ if __name__ == "__main__":
     db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 示例用法
     driver_info = create_drivercodebase_info(db_path, force_refresh=True)
-    print("[INFO] 驱动代码信息收集完成")
+    # print("[INFO] 驱动代码信息收集完成")
