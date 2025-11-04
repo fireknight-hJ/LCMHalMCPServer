@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO: install
 
 # 安装codeql
 brew install codeql

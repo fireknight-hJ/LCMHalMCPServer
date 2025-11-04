@@ -10,9 +10,10 @@ from tools.replacer.code_recover import function_recover
 from utils.src_ops import src_replace
 
 if __name__ == "__main__":
+    # TODO: 从命令行输入
     # 编译脚本路径
     globs.script_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
-    # 文件系统路径
+    # codeql的DB路径
     globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
     # 源文件路径, 可能存在src目录和db中的目录有出入, 所以需要根据db中的路径来替换
     globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
