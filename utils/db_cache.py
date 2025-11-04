@@ -28,7 +28,7 @@ def dump_message(result: Dict[str, any]) -> Dict[str, any]:
     if "messages" in result:
         model_list =  [i.model_dump() for i in result["messages"]]
         ans["messages"] = model_list
-    if "final_response" in result:
+    if "final_response" in result and result["final_response"] is not None:
         ans["final_response"] = result["final_response"].model_dump()
     return ans
 
@@ -38,6 +38,25 @@ def dump_message_json(result: Dict[str, any]) -> str:
     """
     import json
     return json.dumps(dump_message(result), ensure_ascii=False, indent=2)
+
+def dump_json_log(msg_type: str="undefined_info", result: Dict[str, any] = {}, file_path: str = ""):
+    """
+    直接将字典转化为json字符串并写入日志文件
+    """
+    if "function_name" in result:
+        function_name = result["function_name"]
+    else:
+        function_name = ""
+    import json
+    # 检查文件路径是否为空
+    if file_path == "":
+        # 当前项目执行路径
+        tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+        if not os.path.exists(tmp_dir):
+            os.makedirs(tmp_dir)
+        file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(json.dumps(result, ensure_ascii=False, indent=2))
 
 
 
@@ -50,11 +69,15 @@ def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any]
         tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
         if not os.path.exists(tmp_dir):
             os.makedirs(tmp_dir)
-        if "final_response" not in result:
-            return
+        # 获取Function名称
         function_name = ""
-        if hasattr(result["final_response"], "function_name"):
-            function_name = result["final_response"].function_name
+        # 如果来自AIMemory，则会有FinalResponse->FunctionName
+        if "final_response" in result:
+            if hasattr(result["final_response"], "function_name"):
+                function_name = result["final_response"].function_name
+        # 如果来自其他数据结构，则会有FunctionName
+        elif "function_name" in result:
+            function_name = result["function_name"]
         file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(dump_message_json(result))
