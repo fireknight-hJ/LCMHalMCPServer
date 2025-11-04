@@ -18,7 +18,7 @@ notice that do not include any header files.
 notice that all the function and operation about os should be reserved, and do not modify any of these operations.
 notice that do not define any struct or enum and just pretend that they already in the project.
 notice that if you find #ifdef label, keep it instead of removeing it ,and do not remove make up these labels yourself.
-notice that do not use any function call that not appeared in files or provided below (including: don't use fflush etc.)
+notice that do not use any function call that not appeared in files or provided below (including posix std functions like: don't use fflush, fwrite, fread... etc.)
 
 
 Helper Functions Can Be Used:
