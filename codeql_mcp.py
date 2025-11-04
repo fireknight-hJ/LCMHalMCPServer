@@ -6,11 +6,14 @@ import subprocess
 import threading
 import uuid
 from pathlib import Path
-
-CODEQL_PATH = "/home/haojie/test/codeql/codeql"
+from utils.db_lock import remove_db_lock
+from utils.log import logger
+# CODEQL_PATH = "/home/haojie/test/codeql/codeql"
+CODEQL_PATH = "codeql"
 
 class CodeQLQueryServer:
     def __init__(self, codeql_path=CODEQL_PATH):
+        self.registered_dbs = set()
         self.codeql_path = codeql_path
         self.proc = None
         self.reader_thread = None
@@ -53,30 +56,34 @@ class CodeQLQueryServer:
         while self.running:
             line = self.proc.stderr.readline()
             # For debugging
-            # if line:
-            #    print("[CodeQL stderr]", line.strip())
+            if line:
+                try:
+                    logger.info(f"[CodeQL stderr] {line.strip()}")
+                except ValueError:
+                    # Handle the case where stderr is closed
+                    break
 
     def _read_loop(self):
-        print("[*] Read loop started")
+        logger.info("[*] Read loop started")
         while self.running:
             line = self.proc.stdout.readline()
             if not line:
-                print("[*] Read loop: EOF or closed stdout")
+                logger.info("[*] Read loop: EOF or closed stdout")
                 break
-            print(f"[stdout] {line.strip()}")
+            logger.info(f"[stdout] {line.strip()}")
             if line.startswith("Content-Length:"):
                 try:
                     length = int(line.strip().split(":")[1])
                     blank = self.proc.stdout.readline()
                     content = self.proc.stdout.read(length)
-                    print(f"[raw response body] {content.strip()}")
+                    logger.info(f"[raw response body] {content.strip()}")
                     message = json.loads(content)
                     self._handle_message(message)
                 except Exception as e:
-                    print(f"[!] Failed to parse message: {e}")
+                    logger.info(f"[!] Failed to parse message: {e}")
 
     def _handle_message(self, message):
-        print(f"\n[←] Received response:\n{json.dumps(message, indent=2)}\n")
+        logger.info(f"\n[←] Received response:\n{json.dumps(message, indent=2)}\n")
 
         if message.get("method") == "ql/progressUpdated":
             params = message.get("params", {})
@@ -85,7 +92,7 @@ class CodeQLQueryServer:
             if callback:
                 callback(params)
             else:
-                print(
+                logger.info(
                     f"[ql-progress:{progress_id}] step={params.get('step')} / {params.get('maxStep')}"
                 )
             return
@@ -97,7 +104,7 @@ class CodeQLQueryServer:
             if callback:
                 callback(msg)
             else:
-                print(f"[progress:{progress_id}] {msg}")
+                logger.info(f"[progress:{progress_id}] {msg}")
             return
 
         if "id" in message and "result" in message:
@@ -109,18 +116,18 @@ class CodeQLQueryServer:
                 if progress_id in self.progress_callbacks:
                     del self.progress_callbacks[progress_id]
         elif "id" in message and "error" in message:
-            print(
+            logger.info(
                 f"[!] Error response to request {message['id']}:\n{json.dumps(message['error'], indent=2)}"
             )
 
     def _send(self, payload):
         if not self.proc or not self.proc.stdin:
-            print("[!] Tried to send but process not running.")
+            logger.info("[!] Tried to send but process not running.")
             return
 
         data = json.dumps(payload)
         content = f"Content-Length: {len(data)}\r\n\r\n{data}"
-        print(f"\n[→] Sending request:\n{json.dumps(payload, indent=2)}\n")
+        logger.info(f"\n[→] Sending request:\n{json.dumps(payload, indent=2)}\n")
         self.proc.stdin.write(content)
         self.proc.stdin.flush()
 
@@ -196,18 +203,35 @@ class CodeQLQueryServer:
         self, db_paths, callback=None, progress_callback=None
     ):
         resolved = [str(Path(p).resolve()) for p in db_paths]
+        
+        # 修复：遍历每个数据库路径，而不是整个列表
+        new_dbs = []
+        for db_path in resolved:
+            if db_path not in self.registered_dbs:
+                self.registered_dbs.add(db_path)  # 使用add而不是append
+                new_dbs.append(db_path)
+            else:
+                logger.info(f"[!] Database {db_path} already registered.")
+        # 修复：在每个数据库路径上调用remove_db_lock
+        for db_path in new_dbs:
+            remove_db_lock(db_path)
+        # 如果没有新的数据库需要注册，直接返回
+        if len(new_dbs) == 0:
+            logger.info("[INFO] No new databases to register.")
+            # return
+        
         progress_id = self.progress_id
         self.progress_id += 1
 
-        params = {"body": {"databases": resolved}, "progressId": progress_id}
+        params = {"body": {"databases": new_dbs}, "progressId": progress_id}
 
-        print(
+        logger.info(
             f"[DEBUG] Sending evaluation/registerDatabases with progressId={progress_id}"
         )
         self.send_request(
             "evaluation/registerDatabases",
             params,
-            callback or (lambda r: print("[registerDatabases] done:", r)),
+            callback or (lambda r: logger.info("[registerDatabases] done:", r)),
             progress_callback=progress_callback,
         )
 
@@ -215,18 +239,32 @@ class CodeQLQueryServer:
         self, db_paths, callback=None, progress_callback=None
     ):
         resolved = [str(Path(p).resolve()) for p in db_paths]
+        
+        # 修复：遍历每个数据库路径，而不是整个列表
+        removed_dbs = []
+        for db_path in resolved:
+            if db_path in self.registered_dbs:
+                self.registered_dbs.discard(db_path)  # 使用discard而不是remove
+                removed_dbs.append(db_path)
+            else:
+                logger.info(f"[!] Database {db_path} not registered.")
+        
+        # 如果没有数据库需要注销，直接返回
+        if not removed_dbs:
+            return
+            
         progress_id = self.progress_id
         self.progress_id += 1
 
-        params = {"body": {"databases": resolved}, "progressId": progress_id}
+        params = {"body": {"databases": removed_dbs}, "progressId": progress_id}
 
-        print(
+        logger.info(
             f"[DEBUG] Sending evaluation/deregisterDatabases with progressId={progress_id}"
         )
         self.send_request(
             "evaluation/deregisterDatabases",
             params,
-            callback or (lambda r: print("[registerDatabases] done:", r)),
+            callback or (lambda r: logger.info(f"[deregisterDatabases] done: {r}")),
             progress_callback=progress_callback,
         )
 
@@ -259,13 +297,13 @@ class CodeQLQueryServer:
         }
 
         def on_done(result):
-            print("[evaluateQueries] done:", result)
+            logger.info(f"[evaluateQueries] done: {result}")
             if result.get("resultType") != 0:
                 raise RuntimeError(
                     f"CodeQL evaluation failed: {result.get('message', 'Unknown error')}"
                 )
 
-        print(
+        logger.info(
             f"[DEBUG] Sending evaluation/runQuery with progressId={progress_id}"
         )
 
@@ -283,7 +321,7 @@ class CodeQLQueryServer:
             query_path, db_path, output_path, progress_callback=progress_cb
         )
         done.wait()
-        print("[evaluate_and_wait] Query completed.")
+        logger.info("[evaluate_and_wait] Query completed.")
 
     def quick_evaluate_and_wait(
         self,
@@ -308,7 +346,7 @@ class CodeQLQueryServer:
             progress_callback=progress_cb,
         )
         done.wait()
-        print("[evaluate_and_wait] Query completed.")
+        logger.info("[evaluate_and_wait] Query completed.")
 
     def quick_evaluate(
         self,
@@ -349,13 +387,13 @@ class CodeQLQueryServer:
         }
 
         def on_done(result):
-            print("[quickEvaluate] done:", result)
+            logger.info(f"[quickEvaluate] done: {result}")
             if result.get("resultType") != 0:
                 raise RuntimeError(
                     f"CodeQL evaluation failed: {result.get('message', 'Unknown error')}"
                 )
 
-        print(
+        logger.info(
             f"[DEBUG] Sending evaluation/evaluateQueries (quickEval) with progressId={progress_id}"
         )
         self.send_request(

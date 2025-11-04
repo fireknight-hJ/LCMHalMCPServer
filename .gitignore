@@ -1,1 +1,6 @@
 __pycache__/
+tmp/
+qlscripts/
+config/llm_config.py
+.DS_Store
+.vscode/
