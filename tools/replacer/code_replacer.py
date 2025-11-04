@@ -20,10 +20,10 @@ def get_func_content(function_info: FunctionInfo) -> str:
     ret = "\n".join(code_list)
     return ret
 
-def function_replace(function_info: FunctionInfo, classify_res: FunctionClassifyResponse):
+def function_replace(function_info: FunctionInfo, replacement_code: str):
     """
     替换函数的实现
     """
     src_file = file_convert_proj2src(function_info.file_path)
-    ret = src_replace(src_file, get_func_content(function_info), classify_res.function_replacement)
+    ret = src_replace(src_file, get_func_content(function_info), replacement_code)
     return ret != ""
