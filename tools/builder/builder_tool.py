@@ -28,7 +28,7 @@ client = MultiServerMCPClient(
         #     "url": "http://localhost:8112/mcp/",
         #     "transport": "streamable_http",
         # },
-        "lcmhal_collector": {
+        "lcmhal_builder": {
             "command": "python",
             # Make sure to update to the full absolute path to your math_server.py file
             "args": [
