@@ -19,6 +19,8 @@ notice that all the function and operation about os should be reserved, and do n
 notice that do not define any struct or enum and just pretend that they already in the project.
 notice that if you find #ifdef label, keep it instead of removeing it ,and do not remove make up these labels yourself.
 notice that do not use any function call that not appeared in files or provided below (including posix std functions like: don't use fflush, fwrite, fread... etc.)
+notice that you may encounter redefinition of the function, it can be caused by the function signature mismatch, please check all the replacement functions in src file make sure the function name in function signature is exactly the same as the function name, if not, please correct it. (eg: funcname is HAL_xxx_IT(...) but replacement function signature is HAL_xxx_DMA(...), you need to fix the wrong function name to HAL_xxx_IT in the replacement function signature)
+
 
 
 Helper Functions Can Be Used:
