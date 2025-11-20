@@ -34,10 +34,10 @@ client = MultiServerMCPClient(
             "args": [
                 "-m",
                 "tools.builder.mcp_server",
-                "--db-path",
-                globs.db_path,
-                "--transport",
-                "stdio"
+                "--script-dir",
+                globs.script_path
+                # "--transport",
+                # "stdio"
             ],
             # "cwd": "/home/haojie/workspace/lcmhalmcp",
             "transport": "stdio"

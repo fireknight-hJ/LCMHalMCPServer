@@ -135,16 +135,24 @@ def init_mcp():
 
 
 if __name__ == "__main__":
-    # TODO: config from cmdline
+    # 导入argparse模块（如果尚未导入）
+    import argparse
     
-    # 编译脚本路径
-    globs.script_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
-    # 文件系统路径
-    globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
-    # 源文件路径, 可能存在src目录和db中的目录有出入, 所以需要根据db中的路径来替换
-    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
-    # 项目路径, DB中记录的项目路径
-    globs.proj_path = "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser(description='LCMHal MCP Server')
+    # 添加--script-dir选项参数，设置help信息
+    parser.add_argument('--script-dir', dest='script_path', help='Path to the compilation script directory', required=True)
+    
+    # 解析命令行参数
+    args = parser.parse_args()
+    
+    # 从命令行参数设置script_path
+    globs.script_path = args.script_path
+    # 从配置文件加载配置
+    config = globs.load_config_from_yaml(globs.script_path)
+    
+    # 设置全局变量
+    globs.globs_init(config)
     # 初始化服务
     init_mcp()
 
