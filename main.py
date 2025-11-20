@@ -1,31 +1,39 @@
 import asyncio
+import os
+import yaml
 import config.globs as globs
+from config.globs import load_config_from_yaml
 from tools.builder.proj_builder import build_proj_dbgen, clear_proj
-from tools.builder.builder_tool import build_project
 from tools.analyzer.function_classifier import analyze_functions
 from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
 from tools.replacer.code_replacer import function_replace
 from tools.replacer.code_recover import function_recover
+from tools.emulator.conf_generator import generate_emulator_configs
 # from tools.collector.mmio import function
 from utils.src_ops import src_replace
 
+
 if __name__ == "__main__":
-    # TODO: 从命令行输入
-    # 编译脚本路径
-    globs.script_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
-    # codeql的DB路径
-    globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
-    # 源文件路径, 可能存在src目录和db中的目录有出入, 所以需要根据db中的路径来替换
-    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
-    # 项目路径, DB中记录的项目路径
-    globs.proj_path = "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
+    # 获取命令行输入的script_path，默认为默认配置中的路径
+    import sys
+    script_path = sys.argv[1] if len(sys.argv) > 1 else globs.default_config["script_path"]
+    
+    # 从配置文件加载配置
+    config = load_config_from_yaml(script_path)
+    
+    # 设置全局变量
+    globs.globs_init(config)
+    
     # 初始化数据库
     build_proj_dbgen(globs.script_path, globs.db_path)
     # 预分析数据库
     register_db(globs.db_path)
     # 编译项目
+    from tools.builder.builder_tool import build_project
     build_output = asyncio.run(build_project())
     print(f"Build project output: {build_output.model_dump_json()}")
+    # 生成配置文件
+    # generate_emulator_conf()
 
 
 
