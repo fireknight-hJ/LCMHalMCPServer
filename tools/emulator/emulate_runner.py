@@ -2,7 +2,7 @@ import subprocess
 import config.globs as globs
 import sys
 
-def run_emulator() -> bool:
+def run_emulator() -> subprocess.CompletedProcess:
     """
     运行emulator, 返回执行状态（是否执行成功）
     """
