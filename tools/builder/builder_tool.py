@@ -142,7 +142,7 @@ async def build_project() -> BuildOutput:
     result = await graph.ainvoke({"messages": [
         {"role": "system", "content": system_prompting_en},
         {"role": "user", "content": f"Build the project and fix the errors recursively, until the build is successful."}
-    ]})
+    ]}, config={"recursion_limit": 50})
     # log ai memory
     if globs.ai_log_enable:
         dump_message_json_log("build_project", result)
