@@ -31,17 +31,31 @@ def src_replace(file_path: str, old_code: str, replace_code: str) -> str:
     replace_code: 替换后的代码
     """
     content = ""
-    with open(file_path, "r") as f:
-        content = f.read()
-        if old_code not in content or old_code == "":
-            # print(f"Error: {old_code} not found in {file_path}")
-            return ""
-        # 检查是否已经包含了弱函数定义，没有则添加（防止编译错误）
-        if weak_funcdef not in content:
-            content = weak_funcdef + content
-        content = content.replace(old_code, replace_code)
-        # print(f"Modifying src file {file_path}")
-    with open(file_path, "w") as f:
+    try:
+        # 首先尝试UTF-8编码
+        with open(file_path, "r", encoding="utf-8") as f:
+            content = f.read()
+    except UnicodeDecodeError:
+        # 如果UTF-8失败，尝试Windows-1252编码（常见的包含特殊字符的编码）
+        try:
+            with open(file_path, "r", encoding="windows-1252") as f:
+                content = f.read()
+        except:
+            # 最后尝试使用错误处理模式
+            with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+                content = f.read()
+    
+    if old_code not in content or old_code == "":
+        # print(f"Error: {old_code} not found in {file_path}")
+        return ""
+    # 检查是否已经包含了弱函数定义，没有则添加（防止编译错误）
+    if weak_funcdef not in content:
+        content = weak_funcdef + content
+    content = content.replace(old_code, replace_code)
+    # print(f"Modifying src file {file_path}")
+    
+    # 写回文件时使用UTF-8编码
+    with open(file_path, "w", encoding="utf-8") as f:
         f.write(content)
     return content
 
@@ -52,15 +66,30 @@ def src_insert(file_path: str, insert_code: str, start_line: int = -1) -> str:
     insert_code: 要插入的代码
     start_line: 插入的起始行号，-1表示在文件末尾插入
     """
-    with open(file_path, "r") as f:
-        content = f.readlines()
-        if start_line == -1:
-            content.append(insert_code)
-        else:
-            content.insert(start_line, insert_code)
-        with open(file_path, "w") as f:
-            f.write("\n".join(content))
-        return content
+    content = ""
+    try:
+        # 首先尝试UTF-8编码
+        with open(file_path, "r", encoding="utf-8") as f:
+            content = f.readlines()
+    except UnicodeDecodeError:
+        # 如果UTF-8失败，尝试Windows-1252编码
+        try:
+            with open(file_path, "r", encoding="windows-1252") as f:
+                content = f.readlines()
+        except:
+            # 最后尝试使用错误处理模式
+            with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+                content = f.readlines()
+    
+    if start_line == -1:
+        content.append(insert_code)
+    else:
+        content.insert(start_line, insert_code)
+    
+    # 写回文件时使用UTF-8编码
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(content))
+    return content
     
 def file_convert_proj2src(file_path: str) -> str:
     """

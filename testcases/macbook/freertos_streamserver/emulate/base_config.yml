@@ -1,0 +1,16 @@
+output.elf:
+  rules: "semu_rule.txt"
+  enable_native: False
+  emulate_mode: emulate
+  handlers:
+    Delay: do_return
+    HAL_Delay: do_return
+    wait: do_return
+    wait_us: do_return
+    HAL_BE_ENET_ReadFrame: handlers.common.hal_read_frame
+    HAL_BE_In: handlers.common.hal_in
+    HAL_BE_Out: handlers.common.hal_out
+    HAL_BE_return_0: handlers.common.return_zero
+    HAL_BE_return_1: handlers.common.return_true
+    HAL_BE_Block_Read: handlers.common.hal_block_in
+    HAL_BE_Block_Write: handlers.common.hal_block_out

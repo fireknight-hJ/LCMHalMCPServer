@@ -5,3 +5,4 @@ config/llm_config.py
 .DS_Store
 .vscode/
 fuzzemu/
+*/emulate/
