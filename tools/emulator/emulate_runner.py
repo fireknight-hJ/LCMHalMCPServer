@@ -7,8 +7,8 @@ def run_emulator() -> bool:
     运行emulator, 返回执行状态（是否执行成功）
     """
     # 使用globs.script_path作为input_file的基础路径
-    input_file = f"{globs.script_path}/base_input/input.bin"  # input_file现在指向script_path下的文件
-    config_file = f"{globs.script_path}/semu_config.yml"
+    input_file = f"{globs.script_path}/emulate/base_input/input.bin"  # input_file现在指向script_path下的文件
+    config_file = f"{globs.script_path}/emulate/semu_config.yml"
     
     # 使用python -m运行fuzzemu.harness模块
     ret = subprocess.run(
@@ -22,18 +22,13 @@ def run_emulator() -> bool:
             "5",
             "--skip-mmio-hook"
         ],
-        cwd=globs.script_path,
+        cwd=globs.script_path+"/emulate",
         check=False,
         # stdout=subprocess.PIPE,  # 捕获标准输出
         # stderr=subprocess.PIPE   # 捕获标准错误
     )
     
-    if ret.returncode != 0:
-        # print("[ERROR] 运行emulator失败")
-        return False
-    else:
-        # print("[INFO] 成功运行emulator")
-        return True
+    return ret
 
 if __name__ == "__main__":
     # 编译脚本路径

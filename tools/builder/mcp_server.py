@@ -58,7 +58,10 @@ async def build_project() -> dict:
 
 @mcp.tool()
 async def get_replace_func_details_by_file(file_path: str) -> dict:
-    """get replacement functions info of the corresponding file, please make sure the function to be analyzed """
+    """get replacement functions info of the corresponding file, please make sure the function to be analyzed
+    file_path: the full path of the file in the codebase
+    replace_func_infos: list of Functions replacement info 
+    replacement_updates: list of Functions that have been updated before due to build failure"""
     # 从mmio_infos_by_file中获取对应文件的MMIO函数分类结果
     # 如果可以直接匹配完整文件路径
     mmio_infos = mmio_infos_by_file.get(file_path, [])
@@ -86,9 +89,10 @@ async def get_replace_func_details_by_file(file_path: str) -> dict:
     full_path = file_paths[0]
     mmio_infos = mmio_infos_by_file.get(full_path, [])
     replacement_update = replacement_updates_by_file.get(full_path, [])
+    replacement_update_func_names = set([update.function_name for update in replacement_update])
     return {
         "file_path": full_path,
-        "replaced_function_infos": [info.model_dump() for info in mmio_infos],
+        "replaced_function_infos": [info.model_dump() for info in mmio_infos if info.function_name not in replacement_update_func_names],
         "replacement_updates": [update.model_dump() for update in replacement_update]   
     }
 
