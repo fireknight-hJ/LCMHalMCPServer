@@ -6,12 +6,15 @@ from models.build_results.build_output import BuildOutput
 from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.emulator.emulate_runner import run_emulator
 
+# 用于模拟执行代码并返回输出的mcp服务器
+
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
 
 @mcp.tool()
 async def emulate_proj() -> dict:
     """run emulator with generated configs, return the emulation result"""
     ret = run_emulator()
+
     return {
         "std_err": ret.stderr.decode(),
         "exit_code": ret.returncode
