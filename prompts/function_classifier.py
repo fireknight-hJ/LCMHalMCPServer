@@ -192,6 +192,10 @@ int HAL_BE_Out(int len) // modify data transmit (transmission operation can also
 int HAL_BE_In(void* buf, int len) // modify data receive (fixed data size)
 
 int HAL_BE_ENET_ReadFrame(void* buf, int length) // modify data receive (not fixed package size)
+
+int HAL_BE_Block_Write(void* buf, int block_size, int block_num) // modify storage(SD card, flash, etc.) data write to storage from buffer(fixed data size)
+
+int HAL_BE_Block_Read(void* buf, int block_size, int block_num) // modify storage(SD card, flash, etc.) data receive from storage to buffer(fixed data size)
 ```
 
 First, I will provide you with C function code. Please analyze its functionality according to the above rules, provide classification and explain the reasoning. The current phase does not require writing complete replacement code.
