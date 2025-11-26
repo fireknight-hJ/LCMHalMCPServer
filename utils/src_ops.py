@@ -21,6 +21,13 @@ int __attribute__((noinline, used, __weak__)) HAL_BE_ENET_ReadFrame(void* buf, i
     return 1;
 }
 
+int __attribute__((noinline, used, __weak__)) HAL_BE_Block_Write(void* buf, int block_size, int block_num){
+    return block_num;
+}
+
+int __attribute__((noinline, used, __weak__)) HAL_BE_Block_Read(void* buf, int block_size, int block_num){
+    return block_num;
+}
 """
 
 def src_replace(file_path: str, old_code: str, replace_code: str) -> str:
