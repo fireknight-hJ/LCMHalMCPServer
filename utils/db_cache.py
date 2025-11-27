@@ -58,9 +58,22 @@ def dump_json_log(msg_type: str="undefined_info", result: Dict[str, any] = {}, f
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(json.dumps(result, ensure_ascii=False, indent=2))
 
+def dump_message_raw_log(msg_type: str="undefined_info", result: str = "", file_path: str = "", overwrite: bool = False):
+    """
+    将原始字符串写入日志文件
+    """
+    function_name = ""
+    # 检查文件路径是否为空
+    if file_path == "":
+        # 当前项目执行路径
+        tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+        if not os.path.exists(tmp_dir):
+            os.makedirs(tmp_dir)
+        file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(result)
 
-
-def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any] = {}, file_path: str = ""):
+def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any] = {}, file_path: str = "", overwrite: bool = False):
     """
     将消息转化为JSON字符串并写入日志文件
     """
@@ -78,7 +91,13 @@ def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any]
         # 如果来自其他数据结构，则会有FunctionName
         elif "function_name" in result:
             function_name = result["function_name"]
-        file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+        file_path = ""
+        if overwrite:
+            file_path = get_analyzed_json_log_path(msg_type, function_name)
+            if file_path == "":
+                file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+        else:
+            file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(dump_message_json(result))
 
@@ -97,6 +116,28 @@ def check_analyzed_json_log(msg_type: str="undefined_info", func_name: str = "",
     # 使用列表推导式创建新列表，避免在遍历同时修改列表
     matching_files = [file for file in matching_files if "_".join(file.split("_")[:-1]).endswith(f"{msg_type}_{func_name}")]
     return len(matching_files) > 0
+
+def get_analyzed_json_log_path(msg_type: str="undefined_info", func_name: str = "", file_path: str = "") -> str:
+    """
+    获取分析过的JSON日志文件路径
+    如果不存在则返回空字符串
+    """
+    if file_path == "":
+        # 当前项目执行路径
+        tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+        if not os.path.exists(tmp_dir):
+            return ""
+        # 匹配文件名模式({msg_type}_{func_name}_日期.json)
+        file_path = os.path.join(tmp_dir, f"{msg_type}_{func_name}_*.json")
+    
+    # 使用glob检查匹配的文件是否存在，并按时间排序（最新的在前）
+    matching_files = sorted(glob.glob(file_path), key=os.path.getmtime, reverse=True)
+    # 使用列表推导式创建新列表，避免在遍历同时修改列表
+    matching_files = [file for file in matching_files if "_".join(file.split("_")[:-1]).endswith(f"{msg_type}_{func_name}")]
+    if len(matching_files) > 0:
+        # 返回第一个匹配文件路径（现在总是最新的文件）
+        return matching_files[0]
+    return ""
 
 def get_analyzed_json_log(msg_type: str="undefined_info", func_name: str = "", file_path: str = "") -> str:
     """
