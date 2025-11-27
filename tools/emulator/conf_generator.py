@@ -1,41 +1,54 @@
 from config import globs
+from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
 from pathlib import Path
 import subprocess
 import sys  # 添加sys模块导入
 import shutil
+import yaml  # 导入PyYAML库
 
-
-baseconfig_template = """output.elf:
-  rules: "semu_rule.txt"
-  enable_native: False
-  emulate_mode: emulate
-  handlers:
-    Delay: do_return
-    HAL_Delay: do_return
-    wait: do_return
-    wait_us: do_return
-    HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
-    HAL_BE_In: fuzzemu.handlers.common.hal_in
-    HAL_BE_Out: fuzzemu.handlers.common.hal_out
-    HAL_BE_return_0: fuzzemu.handlers.common.return_zero
-    HAL_BE_return_1: fuzzemu.handlers.common.return_true
-    HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
-    HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
-"""
+# 将字符串模板替换为Python字典结构
+baseconfig_dict = {
+    'output.elf': {
+        'rules': 'semu_rule.txt',
+        'enable_native': False,
+        'emulate_mode': 'emulate',
+        'handlers': {
+            'Delay': 'do_return',
+            'HAL_Delay': 'do_return',
+            'wait': 'do_return',
+            'wait_us': 'do_return',
+            'HAL_BE_ENET_ReadFrame': 'fuzzemu.handlers.common.hal_read_frame',
+            'HAL_BE_In': 'fuzzemu.handlers.common.hal_in',
+            'HAL_BE_Out': 'fuzzemu.handlers.common.hal_out',
+            'HAL_BE_return_0': 'fuzzemu.handlers.common.return_zero',
+            'HAL_BE_return_1': 'fuzzemu.handlers.common.return_true',
+            'HAL_BE_Block_Read': 'fuzzemu.handlers.common.hal_block_in',
+            'HAL_BE_Block_Write': 'fuzzemu.handlers.common.hal_block_out'
+        }
+    }
+}
 
 rule_template = """==
 ==
 =="""
 
 
-
 def generate_rule_config():
     with open(f"{globs.script_path}/emulate/semu_rule.txt", "w") as f:
         f.write(rule_template)
 
+# 修改generate_base_config函数，使用yaml.dump()生成YAML文件
 def generate_base_config():
-    with open(f"{globs.script_path}/emulate/base_config.yml", "w") as f:
-        f.write(baseconfig_template)
+    global baseconfig_dict
+    # 从数据库中获取MMIO函数列表
+    mmio_funcs_emulate_config()
+    # 生成YAML配置文件
+    config_path = Path(f"{globs.script_path}/emulate/base_config.yml")
+    # 确保目录存在
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(config_path, "w") as f:
+        # 使用yaml.dump()将字典转换为YAML格式并写入文件
+        yaml.dump(baseconfig_dict, f, default_flow_style=False, sort_keys=False)
 
 def generate_base_input():
     # 创建base_input文件夹
@@ -74,7 +87,15 @@ def generate_semu_config():
     else:
         print(f"[INFO] 成功生成semu配置文件, 路径: {globs.script_path}/semu_config.yml")
 
-
+def mmio_funcs_emulate_config():
+    global baseconfig_dict
+    # 实际调用函数获取MMIO函数列表，而不是引用函数对象
+    try:
+        mmio_funcs = get_mmio_func_list(globs.db_path)
+        baseconfig_dict['output.elf']["mmio_funcs"] = mmio_funcs
+    except Exception as e:
+        print(f"[WARNING] Failed to get MMIO function list: {e}")
+        baseconfig_dict['output.elf']["mmio_funcs"] = []
 
 def generate_emulator_configs():
     if not Path(f"{globs.script_path}/emulate").exists():
@@ -94,4 +115,6 @@ if __name__ == "__main__":
     globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
     # 项目路径, DB中记录的项目路径
     globs.proj_path = "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
+    # 预分析数据库并注册
+    register_db(globs.db_path)
     generate_emulator_configs()
