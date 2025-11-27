@@ -69,7 +69,12 @@ def dump_message_raw_log(msg_type: str="undefined_info", result: str = "", file_
         tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
         if not os.path.exists(tmp_dir):
             os.makedirs(tmp_dir)
-        file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+        if overwrite:
+            file_path = get_analyzed_json_log_path(msg_type, function_name)
+            if file_path == "":
+                file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+        else:
+            file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(result)
 
