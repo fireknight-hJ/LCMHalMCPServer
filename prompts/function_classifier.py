@@ -148,17 +148,31 @@ Function Classification and Rewriting Strategies:
   * Identification: Functions that initialize driver/peripheral resources, set up initial configurations, or perform other setup tasks.
   * Strategy: Remove mmio or register access operations. Preserve initialization logic for other structures (especially resource allocation and configuration) and try your best to keep the original functionality, keep the state machine correct after the initialization.
 
-3. RETURNOK (Driver-Only Functionality Functions)
+4. LOOP (Functions that contains loops influenced by mmio or peripheral operations) (Priority Replacement, skip the loop if necessary)
+  * Identification: Functions that contain loops where the loop condition or body is influenced by mmio or peripheral operations.
+  * Strategy: Modify the loop to avoid infinite loops or blocking behavior. If necessary, skip the loop entirely while preserving the overall function structure.
+  case:
+  ```c
+        while ((_DAT_40023800 & 0x2000000) != 0) {
+        uVar2 = HAL_GetTick();
+        if (2 < uVar2 - uVar1) {
+          return HAL_TIMEOUT;
+        }
+      }
+  ```
+  this case has a loop that waits for a hardware flag to clear. You can modify the loop to avoid waiting on the hardware flag, or skip the loop entirely if it's not necessary.
+
+5. RETURNOK (Driver-Only Functionality Functions)
   * Identification: Functions that only perform driver/peripheral operations and do not affect upper-layer data structures.
   * Strategy: Return success status or appropriate default values.
     ◦ For HAL functions: Return success flags (e.g., `HAL_OK` or `0`).
     ◦ For functions with return values: Return appropriate default values.
 
-4. SKIP (Non-Critical Driver Functions)
+6. SKIP (Non-Critical Driver Functions)
   * Identification: Functions performing non-critical driver operations that can be safely ignored.
   * Strategy: Completely remove or use empty implementations (e.g., keep empty function bodies for void functions).
 
-5. NEEDCHECK (Complex Mixed-Functionality Functions)
+7. NEEDCHECK (Complex Mixed-Functionality Functions)
   • Identification: Functions mixing driver operations with non-driver logic such as data structure maintenance.)
   • Strategy: Remove driver operations, preserve non-driver logic.
     ◦ Identify and preserve data structure operations and program state management (upper-layer logic).
