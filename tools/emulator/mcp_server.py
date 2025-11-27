@@ -5,7 +5,7 @@ import asyncio
 from models.build_results.build_output import BuildOutput
 from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.emulator.emulate_runner import run_emulator
-from tools.emulator.conf_generator import generate_emulator_configs
+from tools.emulator.conf_generator import extract_syms
 import os
 
 # 用于模拟执行代码并返回输出的mcp服务器
@@ -15,8 +15,8 @@ mcp = FastMCP("LCMHalMCP", version="1.0.0")
 @mcp.tool()
 async def emulate_proj() -> dict:
     """run emulator with generated configs, return the emulation result"""
-    # 每次emulate前重新生成配置文件，因为重新build后符号表会变化
-    generate_emulator_configs()
+    # 每次emulate前重新生成syms.yml配置文件，因为重新build后符号表会变化
+    extract_syms()
     ret = run_emulator()
     return {
         "std_out": ret.stdout,

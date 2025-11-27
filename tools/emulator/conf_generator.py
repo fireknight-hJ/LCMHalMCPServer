@@ -6,6 +6,11 @@ import sys  # 添加sys模块导入
 import shutil
 import yaml  # 导入PyYAML库
 
+import yaml
+from elftools.elf.constants import SH_FLAGS
+from elftools.elf.elffile import ELFFile
+from elftools.elf.sections import SymbolTableSection
+
 # 将字符串模板替换为Python字典结构
 baseconfig_dict = {
     'output.elf': {
@@ -96,6 +101,37 @@ def mmio_funcs_emulate_config():
     except Exception as e:
         print(f"[WARNING] Failed to get MMIO function list: {e}")
         baseconfig_dict['output.elf']["mmio_funcs"] = []
+
+def extract_syms():
+    yml_path = Path(globs.script_path) / "emulate" / "syms.yml"
+    firmware_elfpath = Path(globs.script_path) / "emulate" / "output.elf"
+
+    # Based on https://github.com/eliben/pyelftools/blob/master/scripts/readelf.py, display_symbol_tables
+    res = {}
+    with open(firmware_elfpath, "rb") as f:
+        elffile = ELFFile(f)
+        symbol_tables = [(idx, s) for idx, s in enumerate(elffile.iter_sections())
+                            if isinstance(s, SymbolTableSection)]
+
+        if not symbol_tables and elffile.num_sections() == 0:
+            # print("[-] No symbol sections...")
+            return res
+
+        for _, section in symbol_tables:
+            if section['sh_entsize'] == 0:
+                # print("[-] section['sh_entsize'] == 0")
+                # Symbol table has no entries
+                continue
+
+            for _, symbol in enumerate(section.iter_symbols()):
+                if symbol.name and "$" not in symbol.name:
+                    res[symbol['st_value']] = symbol.name
+    config = {}
+    config['symbols'] = res
+    with open(yml_path, 'w') as f:
+        yaml.dump(config, f)
+        # print(f"    [+] Success Extra Syms File: {yml_path}")
+
 
 def generate_emulator_configs():
     if not Path(f"{globs.script_path}/emulate").exists():
