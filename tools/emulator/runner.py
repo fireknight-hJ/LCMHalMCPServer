@@ -7,11 +7,11 @@ from langgraph.prebuilt import ToolNode
 from langchain_deepseek import ChatDeepSeek
 from langchain_core.messages import HumanMessage
 from config.llm_config import llm_deepseek_config
-from models.build_results.build_output import BuildOutput
+from models.emulate_results.emulate_result import EmulateResult
 from prompts.project_emulator import system_prompting_en
 import os
 import time
-from utils.db_cache import dump_message_json_log, check_analyzed_json_log
+from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_message_raw_log
 import config.globs as globs
 
 # Initialize the model
@@ -30,6 +30,20 @@ client = MultiServerMCPClient(
         #     "url": "http://localhost:8112/mcp/",
         #     "transport": "streamable_http",
         # },
+        "lcmhal_emulator": {
+            "command": "python",
+            # Make sure to update to the full absolute path to your math_server.py file
+            "args": [
+                "-m",
+                "tools.emulator.mcp_server",
+                "--script-dir",
+                globs.script_path
+                # "--transport",
+                # "stdio"
+            ],
+            # "cwd": "/home/haojie/workspace/lcmhalmcp",
+            "transport": "stdio"
+        },
         "lcmhal_builder": {
             "command": "python",
             # Make sure to update to the full absolute path to your math_server.py file
@@ -79,7 +93,7 @@ client = MultiServerMCPClient(
 
 class AgentState(MessagesState):
     # Final structured response from the agent
-    final_response: BuildOutput
+    final_response: EmulateResult
 
     # @DeprecationWarning("use log.dump_message instead")
     def dump_message(self):
@@ -106,6 +120,12 @@ class AgentState(MessagesState):
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(self.dump_message_json())
 
+def dump_message_state(state):
+    model_list =  [i.model_dump() for i in state["messages"]]
+    return {
+        "messages": model_list
+    }
+
 # 全局变量存储graph实例
 _graph = None
 
@@ -121,7 +141,7 @@ async def build_graph():
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
     # Set up model with structured output
-    model_with_structured_output = model.with_structured_output(BuildOutput)
+    model_with_structured_output = model.with_structured_output(EmulateResult)
 
     # Create ToolNode
     tool_node = ToolNode(tools)
@@ -136,6 +156,8 @@ async def build_graph():
         return {"final_response": response}
 
     def should_continue(state: AgentState):
+        import json
+        dump_message_raw_log("emulator_state", json.dumps(dump_message_state(state), ensure_ascii=False, indent=2), overwrite=True)
         messages = state["messages"]
         last_message = messages[-1]
         if last_message.tool_calls:
@@ -167,15 +189,15 @@ async def build_graph():
     _graph = builder.compile()
     return _graph
 
-async def build_project() -> BuildOutput:
+async def run_emulator() -> EmulateResult:
     graph = await build_graph()
     result = await graph.ainvoke({"messages": [
         {"role": "system", "content": system_prompting_en},
-        {"role": "user", "content": f"Build the project and fix the errors recursively, until the build is successful."}
+        {"role": "user", "content": f"emulate the project, rerun-fix-rebuild the project until the project is successfully run."}
     ]}, config={"recursion_limit": 50})
     # log ai memory
     if globs.ai_log_enable:
-        dump_message_json_log("build_project", result)
+        dump_message_json_log("run_emulator", result)
     return result["final_response"]
 
 def check_analyzed() -> bool:
@@ -186,10 +208,19 @@ def check_analyzed() -> bool:
 
 async def main():
     # Test the graph
-    build_response = await build_project()
-    print(f"Build project response: {build_response.model_dump_json()}")
+    emulate_response = await run_emulator()
+    print(f"Emulate response: {emulate_response.model_dump_json()}")
 
 # 运行主函数
 if __name__ == "__main__":
+    # 编译脚本路径
+    globs.script_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
+    # codeql的DB路径
+    globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
+    # 源文件路径, 可能存在src目录和db中的目录有出入, 所以需要根据db中的路径来替换
+    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
+    # 项目路径, DB中记录的项目路径
+    globs.proj_path = "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
+
     import asyncio
     asyncio.run(main())

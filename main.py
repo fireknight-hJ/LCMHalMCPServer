@@ -28,14 +28,16 @@ if __name__ == "__main__":
     build_proj_dbgen(globs.script_path, globs.db_path)
     # 预分析数据库
     register_db(globs.db_path)
-    # 编译项目
-    from tools.builder.builder_tool import build_project
-    build_output = asyncio.run(build_project())
-    print(f"Build project output: {build_output.model_dump_json()}")
+    # # 编译项目
+    # from tools.builder.builder_tool import build_project
+    # build_output = asyncio.run(build_project())
+    # print(f"Build project output: {build_output.model_dump_json()}")
     # 生成配置文件
-    # generate_emulator_conf()
-
-
+    generate_emulator_configs()
+    # 执行模拟器
+    from tools.emulator.runner import run_emulator
+    emulate_output = asyncio.run(run_emulator())
+    print(f"Emulate output: {emulate_output.model_dump_json()}")
 
 """
 当前workflow：

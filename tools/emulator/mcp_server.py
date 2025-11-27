@@ -5,6 +5,8 @@ import asyncio
 from models.build_results.build_output import BuildOutput
 from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.emulator.emulate_runner import run_emulator
+from tools.emulator.conf_generator import generate_emulator_configs
+import os
 
 # 用于模拟执行代码并返回输出的mcp服务器
 
@@ -13,22 +15,35 @@ mcp = FastMCP("LCMHalMCP", version="1.0.0")
 @mcp.tool()
 async def emulate_proj() -> dict:
     """run emulator with generated configs, return the emulation result"""
+    # 每次emulate前重新生成配置文件，因为重新build后符号表会变化
+    generate_emulator_configs()
     ret = run_emulator()
-
     return {
-        "std_err": ret.stderr.decode(),
+        "std_out": ret.stdout,
+        "std_err": ret.stderr,
         "exit_code": ret.returncode
     }
 
 @mcp.tool()
-async def mmio_function_emulate_info() -> dict:
+async def mmio_function_emulate_info() -> str:
     """return the emulator results of all mmio functions being used"""
-    pass
+    with open(os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt"), "r") as f:
+        data = f.readlines()
+    return data
 
 @mcp.tool()
-async def function_calls_emulate_info() -> dict:
+async def function_calls_emulate_info() -> str:
     """return the emulator results of all function call stack being used"""
-    pass
+    with open(os.path.join(globs.script_path, "emulate/debug_output/function.txt"), "r") as f:
+        data = f.readlines()
+    return data
+
+# @mcp.tool()
+# async def get_decompiled_code_by_pc_address(address: int) -> str:
+#     """return the decompiled code by the given pc address"""
+#     with open(os.path.join(globs.script_path, "emulate/debug_output/decompiled_code.txt"), "r") as f:
+#         data = f.read()
+#     return data
 
 if __name__ == "__main__":
     # 导入argparse模块（如果尚未导入）

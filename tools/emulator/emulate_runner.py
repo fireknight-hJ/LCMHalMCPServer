@@ -24,8 +24,8 @@ def run_emulator() -> subprocess.CompletedProcess:
         ],
         cwd=globs.script_path+"/emulate",
         check=False,
-        # stdout=subprocess.PIPE,  # 捕获标准输出
-        # stderr=subprocess.PIPE   # 捕获标准错误
+        stdout=subprocess.PIPE,  # 捕获标准输出
+        stderr=subprocess.PIPE   # 捕获标准错误
     )
     
     return ret
