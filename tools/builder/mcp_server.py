@@ -6,7 +6,7 @@ from models.build_results.build_output import BuildOutput
 from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.builder.proj_builder import build_proj, clear_proj
 from tools.collector.collector import get_mmio_func_list, get_function_info
-from tools.analyzer.function_classifier import function_classify, analyze_functions
+from tools.analyzer.analyzer import function_classify, analyze_functions
 from tools.replacer.code_recover import function_recover
 from tools.replacer.code_replacer import function_replace
 from utils.db_cache import dump_message_json_log, dump_json_log, check_analyzed_json_log, get_analyzed_json_log
@@ -78,7 +78,7 @@ async def get_replace_func_details_by_file(file_path: str) -> dict:
         if file_name.endswith(file_path):
             file_paths.append(file_name)
     if file_paths == []:
-        file_not_found = {"error": f"File {file_path} not found in MMIO function list, maybe no function replacement in this file?"}
+        file_not_found = {"error": f"File {file_path} not found in Replacement MMIO function list, maybe no function replacement in this file?"}
         return file_not_found
     elif len(file_paths) > 1:
         file_path_multimatched = {
@@ -129,12 +129,13 @@ def init_mcp():
                 replacement_updates[func_name] = ReplacementUpdate(**data_dict)
     # 分文件收集信息
     for func_name, classify_res in mmio_info_list.items():
+        function_info = get_function_info(globs.db_path, func_name)
+        mmio_infos_by_file.setdefault(function_info.file_path, [])
         if classify_res.has_replacement:
-            # class
-            function_info = get_function_info(globs.db_path, func_name)
+            # classify_res.model_dump()
             mmio_infos_by_file.setdefault(function_info.file_path, []).append(classify_res)
-            if func_name in replacement_updates:
-                replacement_updates_by_file.setdefault(function_info.file_path, []).append(replacement_updates[func_name])
+        if func_name in replacement_updates:
+            replacement_updates_by_file.setdefault(function_info.file_path, []).append(replacement_updates[func_name])
         # src_replace(f"{globs.src_path}/{classify_res.file_name}", classify_res.replace_code)
 
 
