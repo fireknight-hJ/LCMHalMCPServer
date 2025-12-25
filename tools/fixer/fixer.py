@@ -5,12 +5,14 @@ from langgraph.prebuilt import ToolNode
 from langchain_deepseek import ChatDeepSeek
 from langchain_core.messages import HumanMessage
 from config.llm_config import llm_deepseek_config
-from models.analyze_results.function_analyze import FunctionFixerResponse
+from models.analyze_results.function_analyze import FixedFunctionInfo
+from models.analyze_results.function_analyze import ReplacementUpdate
 from prompts.function_fixer import system_prompt_en
 import os
 import time
-from utils.db_cache import dump_message_json_log, check_analyzed_json_log
+from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_json_log
 import config.globs as globs
+from tools.fixer.replacement_update import update_function_replacement
 
 # Initialize the model
 model = ChatDeepSeek(
@@ -21,17 +23,17 @@ model = ChatDeepSeek(
 
 class AgentState(MessagesState):
     # Final structured response from the agent
-    final_response: FunctionFixerResponse
+    final_response: ReplacementUpdate
 
 
 # 全局变量存储graph实例
 _graph = None
 
 async def build_graph():
-    global _graph
-    # 如果graph已经构建过，直接返回
-    if _graph is not None:
-        return _graph
+    # global _graph
+    # # 如果graph已经构建过，直接返回
+    # if _graph is not None:
+    #     return _graph
     # Set up MCP client
     client = MultiServerMCPClient(
         {
@@ -69,11 +71,13 @@ async def build_graph():
     )
     # 异步获取工具
     tools = await client.get_tools()
+    # 添加函数替换工具
+    tools.append(update_function_replacement)
 
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
     # Set up model with structured output
-    model_with_structured_output = model.with_structured_output(FunctionFixerResponse)
+    model_with_structured_output = model_with_tools.with_structured_output(ReplacementUpdate)
 
     # Create ToolNode
     tool_node = ToolNode(tools)
@@ -119,7 +123,7 @@ async def build_graph():
     _graph = builder.compile()
     return _graph
 
-async def function_fix() -> FunctionFixerResponse:
+async def function_fix() -> ReplacementUpdate:
     """
     fix the problematic functions based on error feedback
     """
@@ -127,12 +131,12 @@ async def function_fix() -> FunctionFixerResponse:
     result = await graph.ainvoke({"messages": [
         {"role": "system", "content": system_prompt_en},
         {"role": "user", "content": f"Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."}
-    ]})
+    ]}, config={"recursion_limit": 50})
     # log ai memory
     if globs.ai_log_enable:
         dump_message_json_log("function_fix", result)
-    for func in result.fixed_functions:
-        dump_message_json_log("function_corrected", result.fixed_functions[func])
+    resp = result["final_response"]
+    dump_json_log("replacement_update", resp.model_dump())
     return result["final_response"]
 
 async def main():
