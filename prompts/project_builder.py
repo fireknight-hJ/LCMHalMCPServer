@@ -37,9 +37,3 @@ int HAL_BE_ENET_ReadFrame(void* buf, int length) // modify data receive (not fix
 ```
 """
 
-# 问题：生成的函数签名有问题，未修复生成的函数，但“越界”去修复未替换正常函数
-# 解决：调整Agent工作流，根据修复函数所在行给出替换签名
-
-# 问题：__weak__函数方案未知错误在调查中
-# 解决：在看原因
-
