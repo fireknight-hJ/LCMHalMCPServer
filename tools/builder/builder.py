@@ -22,12 +22,20 @@ model = ChatDeepSeek(
 # Set up MCP client
 client = MultiServerMCPClient(
     {
-        # using connection
-        # "lcmhal_collector": {
-        #     # make sure you start your weather server on port 8000
-        #     "url": "http://localhost:8112/mcp/",
-        #     "transport": "streamable_http",
-        # },
+        "lcmhal_collector": {
+                "command": "python",
+                # Make sure to update to the full absolute path to your math_server.py file
+                "args": [
+                    "-m",
+                    "tools.collector.mcp_server",
+                    "--db-path",
+                    globs.db_path,
+                    "--transport",
+                    "stdio"
+                ],
+                # "cwd": "/home/haojie/workspace/lcmhalmcp",
+                "transport": "stdio"
+            },
         "lcmhal_builder": {
             "command": "python",
             # Make sure to update to the full absolute path to your math_server.py file
@@ -51,39 +59,14 @@ class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: BuildOutput
 
-    # @DeprecationWarning("use log.dump_message instead")
-    def dump_message(self):
-        model_list =  [i.model_dump() for i in self["messages"]]
-        return {
-            "messages": model_list,
-            "final_response": self["final_response"].model_dump()
-        }
-    
-    # @DeprecationWarning("use log.dump_message_json instead")
-    def dump_message_json(self):
-        import json
-        return json.dumps(self.dump_message(), ensure_ascii=False, indent=2)
-    
-    # @DeprecationWarning("use log.dump_message_json_log instead")    
-    def dump_message_json_log(self, file_path: str = ""):
-        if file_path == "":
-            # 当前项目执行路径
-            work_dir = os.path.dirname(os.path.abspath(__file__))
-            tmp_dir = os.path.join(work_dir, "tmp")
-            if not os.path.exists(tmp_dir):
-                os.makedirs(tmp_dir)
-            file_path = os.path.join(tmp_dir, f"builder_tool_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(self.dump_message_json())
-
 # 全局变量存储graph实例
 _graph = None
 
 async def build_graph():
-    global _graph
-    # 如果graph已经构建过，直接返回
-    if _graph is not None:
-        return _graph
+    # global _graph
+    # # 如果graph已经构建过，直接返回
+    # if _graph is not None:
+    #     return _graph
     
     # 异步获取工具
     tools = await client.get_tools()

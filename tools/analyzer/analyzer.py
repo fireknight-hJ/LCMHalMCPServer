@@ -139,9 +139,9 @@ async def build_graph():
     _graph = builder.compile()
     return _graph
 
-async def function_classify(func_name : str) -> FunctionClassifyResponse:
+async def function_classify(func_name : str, overwrite: bool = False) -> FunctionClassifyResponse:
     # 检查函数是否已经分析过
-    if check_analyzed(func_name):
+    if check_analyzed(func_name) and not overwrite:
         # print(f"Function {func_name} has been analyzed, skip.")
         return function_classify_from_log(func_name)
     # 构建graph
@@ -190,8 +190,8 @@ def analyze_functions(function_list):
 
 async def main():
     # Test the graph
-    classify_response = await function_classify("HAL_I2C_Mem_Read")
-    # print(f"Classify response: {classify_response.model_dump_json()}")
+    classify_response = await function_classify("HAL_ETH_ReadData", True)
+    print(f"Classify response: {classify_response.model_dump_json()}")
 
 # 运行主函数
 if __name__ == "__main__":

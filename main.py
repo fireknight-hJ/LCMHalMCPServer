@@ -4,7 +4,7 @@ import yaml
 import config.globs as globs
 from config.globs import load_config_from_yaml
 from tools.builder.proj_builder import build_proj_dbgen, clear_proj
-from tools.analyzer.function_classifier import analyze_functions
+from tools.analyzer.analyzer import analyze_functions
 from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
 from tools.replacer.code_replacer import function_replace
 from tools.replacer.code_recover import function_recover
@@ -29,9 +29,9 @@ if __name__ == "__main__":
     # 预分析数据库
     register_db(globs.db_path)
     # # 编译项目
-    # from tools.builder.builder_tool import build_project
-    # build_output = asyncio.run(build_project())
-    # print(f"Build project output: {build_output.model_dump_json()}")
+    from tools.builder.builder import build_project
+    build_output = asyncio.run(build_project())
+    print(f"Build project output: {build_output.model_dump_json()}")
     # 生成配置文件
     generate_emulator_configs()
     # 执行模拟器
