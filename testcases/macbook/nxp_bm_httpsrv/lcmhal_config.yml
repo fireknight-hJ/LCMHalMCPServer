@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/nxp_bm_httpsrv"
+db_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_NXP_BMHTTPSrv_macbook"
+src_path: "/Users/jie/mcuxpresso-sdk"
+proj_path: "/Users/jie/mcuxpresso-sdk"
