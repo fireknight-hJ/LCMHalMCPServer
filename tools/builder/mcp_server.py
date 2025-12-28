@@ -6,7 +6,7 @@ from models.build_results.build_output import BuildOutput
 from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.builder.proj_builder import build_proj, clear_proj
 from tools.collector.collector import get_mmio_func_list, get_function_info
-from tools.analyzer.function_classifier import function_classify, analyze_functions
+from tools.analyzer.analyzer import function_classify, analyze_functions
 from tools.replacer.code_recover import function_recover
 from tools.replacer.code_replacer import function_replace
 from utils.db_cache import dump_message_json_log, dump_json_log, check_analyzed_json_log, get_analyzed_json_log
@@ -58,7 +58,10 @@ async def build_project() -> dict:
 
 @mcp.tool()
 async def get_replace_func_details_by_file(file_path: str) -> dict:
-    """get replacement functions info of the corresponding file, please make sure the function to be analyzed """
+    """get replacement functions info of the corresponding file, please make sure the function to be analyzed
+    file_path: the full path of the file in the codebase
+    replace_func_infos: list of Functions replacement info 
+    replacement_updates: list of Functions that have been updated before due to build failure"""
     # 从mmio_infos_by_file中获取对应文件的MMIO函数分类结果
     # 如果可以直接匹配完整文件路径
     mmio_infos = mmio_infos_by_file.get(file_path, [])
@@ -75,7 +78,7 @@ async def get_replace_func_details_by_file(file_path: str) -> dict:
         if file_name.endswith(file_path):
             file_paths.append(file_name)
     if file_paths == []:
-        file_not_found = {"error": f"File {file_path} not found in MMIO function list, maybe no function replacement in this file?"}
+        file_not_found = {"error": f"File {file_path} not found in Replacement MMIO function list, maybe no function replacement in this file?"}
         return file_not_found
     elif len(file_paths) > 1:
         file_path_multimatched = {
@@ -86,9 +89,10 @@ async def get_replace_func_details_by_file(file_path: str) -> dict:
     full_path = file_paths[0]
     mmio_infos = mmio_infos_by_file.get(full_path, [])
     replacement_update = replacement_updates_by_file.get(full_path, [])
+    replacement_update_func_names = set([update.function_name for update in replacement_update])
     return {
         "file_path": full_path,
-        "replaced_function_infos": [info.model_dump() for info in mmio_infos],
+        "replaced_function_infos": [info.model_dump() for info in mmio_infos if info.function_name not in replacement_update_func_names],
         "replacement_updates": [update.model_dump() for update in replacement_update]   
     }
 
@@ -125,26 +129,35 @@ def init_mcp():
                 replacement_updates[func_name] = ReplacementUpdate(**data_dict)
     # 分文件收集信息
     for func_name, classify_res in mmio_info_list.items():
+        function_info = get_function_info(globs.db_path, func_name)
+        mmio_infos_by_file.setdefault(function_info.file_path, [])
         if classify_res.has_replacement:
-            # class
-            function_info = get_function_info(globs.db_path, func_name)
+            # classify_res.model_dump()
             mmio_infos_by_file.setdefault(function_info.file_path, []).append(classify_res)
-            if func_name in replacement_updates:
-                replacement_updates_by_file.setdefault(function_info.file_path, []).append(replacement_updates[func_name])
+        if func_name in replacement_updates:
+            replacement_updates_by_file.setdefault(function_info.file_path, []).append(replacement_updates[func_name])
         # src_replace(f"{globs.src_path}/{classify_res.file_name}", classify_res.replace_code)
 
 
 if __name__ == "__main__":
-    # TODO: config from cmdline
+    # 导入argparse模块（如果尚未导入）
+    import argparse
     
-    # 编译脚本路径
-    globs.script_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
-    # 文件系统路径
-    globs.db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
-    # 源文件路径, 可能存在src目录和db中的目录有出入, 所以需要根据db中的路径来替换
-    globs.src_path = "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
-    # 项目路径, DB中记录的项目路径
-    globs.proj_path = "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser(description='LCMHal MCP Server')
+    # 添加--script-dir选项参数，设置help信息
+    parser.add_argument('--script-dir', dest='script_path', help='Path to the compilation script directory', required=True)
+    
+    # 解析命令行参数
+    args = parser.parse_args()
+    
+    # 从命令行参数设置script_path
+    globs.script_path = args.script_path
+    # 从配置文件加载配置
+    config = globs.load_config_from_yaml(globs.script_path)
+    
+    # 设置全局变量
+    globs.globs_init(config)
     # 初始化服务
     init_mcp()
 

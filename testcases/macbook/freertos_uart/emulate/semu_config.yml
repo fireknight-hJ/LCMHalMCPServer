@@ -1,0 +1,131 @@
+emulate_mode: emulate
+enable_native: false
+entry_point: 0x8000d09
+handlers:
+  Delay: do_return
+  HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+  HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+  HAL_BE_In: fuzzemu.handlers.common.hal_in
+  HAL_BE_Out: fuzzemu.handlers.common.hal_out
+  HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+  HAL_BE_return_1: fuzzemu.handlers.common.return_true
+  HAL_Delay: do_return
+  wait: do_return
+  wait_us: do_return
+include:
+- ./syms.yml
+initial_sp: 0x20020000
+isr_vector: 0x0
+memory_map:
+  flash:
+    base_addr: 0x8000000
+    file: output.bin
+    permissions: r-x
+    size: 0x46b4
+  irq_ret:
+    base_addr: 0xfffff000
+    permissions: rwx
+    size: 0x1000
+  mmio:
+    base_addr: 0x40000000
+    permissions: rw-
+    size: 0x20000000
+  nvic:
+    base_addr: 0xe0000000
+    permissions: rw-
+    size: 0x10000000
+  peripheral:
+    base_addr: 0xa0000000
+    permissions: rw-
+    size: 0x40000000
+  peripheral_ram:
+    base_addr: 0x60000000
+    permissions: rw-
+    size: 0x40000000
+  ram:
+    base_addr: 0x20000000
+    permissions: rwx
+    size: 0x400000
+mmio_funcs:
+- HAL_GPIO_DeInit
+- UART_Start_Receive_DMA
+- HAL_UART_Transmit_DMA
+- FSMC_BANK3_MspInit
+- I2Cx_ITConfig
+- I2Cx_MspInit
+- BSP_COM_Init
+- BSP_PB_Init
+- BSP_LED_Init
+- HAL_GPIO_Init
+- I2C_RequestMemoryRead
+- I2C_RequestMemoryWrite
+- I2C_MasterRequestRead
+- I2C_Slave_STOPF
+- I2C_Slave_ADDR
+- I2C_Master_ADDR
+- HAL_I2C_Slave_Seq_Receive_DMA
+- HAL_I2C_Slave_Seq_Receive_IT
+- HAL_I2C_Slave_Seq_Transmit_DMA
+- HAL_I2C_Slave_Seq_Transmit_IT
+- HAL_I2C_IsDeviceReady
+- HAL_I2C_Mem_Read_DMA
+- HAL_I2C_Mem_Write_DMA
+- HAL_I2C_Mem_Read
+- HAL_I2C_Slave_Receive
+- HAL_I2C_Slave_Transmit
+- HAL_I2C_Master_Receive
+- HAL_I2C_Master_Transmit
+- HAL_RCC_MCOConfig
+- HAL_RCC_OscConfig
+- UART_Receive_IT
+- UART_WaitOnFlagUntilTimeout
+- HAL_UART_IRQHandler
+- HAL_UARTEx_ReceiveToIdle_DMA
+- HAL_UARTEx_ReceiveToIdle_IT
+- HAL_UARTEx_ReceiveToIdle
+- HAL_UART_DMAResume
+- HAL_UART_MspInit
+- SystemClock_Config
+- HAL_I2C_Master_Seq_Receive_DMA
+- HAL_I2C_Master_Seq_Receive_IT
+- HAL_I2C_Master_Seq_Transmit_DMA
+- HAL_I2C_Master_Seq_Transmit_IT
+- HAL_I2C_Mem_Read_IT
+- HAL_I2C_Mem_Write_IT
+- HAL_I2C_Mem_Write
+- HAL_I2C_Master_Receive_DMA
+- HAL_I2C_Master_Transmit_DMA
+- HAL_I2C_Master_Receive_IT
+- HAL_I2C_Master_Transmit_IT
+- HAL_UART_Receive
+- HAL_UART_Transmit
+- I2C_WaitOnSTOPRequestThroughIT
+- I2C_DMAAbort
+- HAL_FLASHEx_Erase
+- I2C_WaitOnMasterAddressFlagUntilTimeout
+- I2C_WaitOnFlagUntilTimeout
+- HAL_RCC_ClockConfig
+- HAL_UART_AbortReceive_IT
+- HAL_UART_Abort_IT
+- HAL_UART_AbortReceive
+- HAL_UART_Abort
+- HAL_UART_DMAStop
+- HAL_UART_DMAPause
+- FLASH_WaitForLastOperation
+- FLASH_FlushCaches
+- I2C_WaitOnRXNEFlagUntilTimeout
+- I2C_WaitOnSTOPFlagUntilTimeout
+- I2C_WaitOnBTFFlagUntilTimeout
+- I2C_WaitOnTXEFlagUntilTimeout
+- HAL_UART_AbortTransmit_IT
+- HAL_UART_AbortTransmit
+- UART_EndRxTransfer
+- UART_EndTxTransfer
+- UART_DMAReceiveCplt
+- UART_DMATransmitCplt
+- HAL_MultiProcessor_ExitMuteMode
+- HAL_MultiProcessor_EnterMuteMode
+- HAL_LIN_SendBreak
+model: semu
+rules: semu_rule.txt

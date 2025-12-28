@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_bleheartrate"
+db_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSBLE_HeartRate_macbook"
+src_path: "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/BLE_HeartRateFreeRTOS"
+proj_path: "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/BLE_HeartRateFreeRTOS"
