@@ -28,14 +28,14 @@ async def emulate_proj() -> dict:
 async def mmio_function_emulate_info() -> str:
     """return the emulator results of all mmio functions being used"""
     with open(os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt"), "r") as f:
-        data = f.readlines()
+        data = "".join(f.readlines())
     return data
 
 @mcp.tool()
 async def function_calls_emulate_info() -> str:
     """return the emulator results of all function call stack being used"""
     with open(os.path.join(globs.script_path, "emulate/debug_output/function.txt"), "r") as f:
-        data = f.readlines()
+        data = "".join(f.readlines())
     return data
 
 # @mcp.tool()

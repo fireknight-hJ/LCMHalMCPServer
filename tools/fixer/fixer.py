@@ -24,6 +24,8 @@ model = ChatDeepSeek(
 class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: ReplacementUpdate
+    # Counter to prevent infinite loops
+    iteration_count: int = 0
 
 
 # 全局变量存储graph实例
@@ -76,8 +78,8 @@ async def build_graph():
 
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
-    # Set up model with structured output
-    model_with_structured_output = model_with_tools.with_structured_output(ReplacementUpdate)
+    # Set up model with structured output (use base model, not tool-bound model)
+    model_with_structured_output = model.with_structured_output(ReplacementUpdate)
 
     # Create ToolNode
     tool_node = ToolNode(tools)
@@ -92,6 +94,10 @@ async def build_graph():
         return {"final_response": response}
 
     def should_continue(state: AgentState):
+        # Prevent infinite loops
+        if state.get("iteration_count", 0) >= 100:  # Max 10 iterations
+            return "respond"
+        
         messages = state["messages"]
         last_message = messages[-1]
         if last_message.tool_calls:
@@ -103,7 +109,8 @@ async def build_graph():
     async def call_model(state: AgentState):
         messages = state["messages"]
         response = await model_with_tools.ainvoke(messages)
-        return {"messages": [response]}
+        # Increment iteration counter
+        return {"messages": [response], "iteration_count": state.get("iteration_count", 0) + 1}
 
     # Build the graph
     builder = StateGraph(AgentState)
@@ -128,10 +135,13 @@ async def function_fix() -> ReplacementUpdate:
     fix the problematic functions based on error feedback
     """
     graph = await build_graph()
-    result = await graph.ainvoke({"messages": [
-        {"role": "system", "content": system_prompt_en},
-        {"role": "user", "content": f"Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."}
-    ]}, config={"recursion_limit": 50})
+    result = await graph.ainvoke({
+        "messages": [
+            {"role": "system", "content": system_prompt_en},
+            {"role": "user", "content": f"Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."}
+        ],
+        "iteration_count": 0
+    }, config={"recursion_limit": 50})
     # log ai memory
     if globs.ai_log_enable:
         dump_message_json_log("function_fix", result)

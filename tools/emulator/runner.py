@@ -9,7 +9,7 @@ from langchain_core.messages import HumanMessage
 from config.llm_config import llm_deepseek_config
 from models.emulate_results.emulate_result import EmulateResult
 from models.build_results.build_output import BuildOutput
-from models.analyze_results.function_analyze import FunctionFixerResponse
+from models.analyze_results.function_analyze import ReplacementUpdate
 from prompts.project_emulator import system_prompting_en
 import os
 import time
@@ -34,19 +34,19 @@ class AgentState(MessagesState):
 
 @tool(
     "Builder",
-    description="Sub Agent `Builder`, build the project and return the build result"
+    description="Sub Agent `Builder`, build the project and return the build result (call this tool after calling Fixer, fixed the source code)"
 )
-def builder_agent() -> BuildOutput:
-    import asyncio
-    result = asyncio.run(build_project())
+async def builder_agent() -> BuildOutput:
+    result = await build_project()
+    return result
 
 @tool(
     "Fixer",
     description="Sub Agent `Fixer`, analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly"
 )
-def fixer_agent() -> FunctionFixerResponse:
-    import asyncio
-    result = asyncio.run(function_fix())
+async def fixer_agent() -> ReplacementUpdate:
+    result = await function_fix()
+    return result
 
 def dump_message_state(state):
     model_list =  [i.model_dump() for i in state["messages"]]
@@ -62,20 +62,20 @@ _overwrite = False
 async def build_graph():
     client = MultiServerMCPClient(
         {
-            "lcmhal_collector": {
-                "command": "python",
-                # Make sure to update to the full absolute path to your math_server.py file
-                "args": [
-                    "-m",
-                    "tools.collector.mcp_server",
-                    "--db-path",
-                    globs.db_path,
-                    "--transport",
-                    "stdio"
-                ],
-                # "cwd": "/home/haojie/workspace/lcmhalmcp",
-                "transport": "stdio"
-            },
+            # "lcmhal_collector": {
+            #     "command": "python",
+            #     # Make sure to update to the full absolute path to your math_server.py file
+            #     "args": [
+            #         "-m",
+            #         "tools.collector.mcp_server",
+            #         "--db-path",
+            #         globs.db_path,
+            #         "--transport",
+            #         "stdio"
+            #     ],
+            #     # "cwd": "/home/haojie/workspace/lcmhalmcp",
+            #     "transport": "stdio"
+            # },
             "lcmhal_emulator": {
                 "command": "python",
                 # Make sure to update to the full absolute path to your math_server.py file
