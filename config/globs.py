@@ -20,6 +20,11 @@ default_config = {
 }
 
 def load_config_from_yaml(script_path):
+    # 确保script_path不为空
+    if not script_path:
+        script_path = default_config["script_path"]
+        print(f"script_path为空，使用默认值: {script_path}")
+    
     config_path = os.path.join(script_path, "lcmhal_config.yml")
     
     # 检查配置文件是否存在

@@ -19,42 +19,6 @@ model = ChatDeepSeek(
     api_base=llm_deepseek_config["base_url"]
 )
 
-# Set up MCP client
-client = MultiServerMCPClient(
-    {
-        "lcmhal_collector": {
-                "command": "python",
-                # Make sure to update to the full absolute path to your math_server.py file
-                "args": [
-                    "-m",
-                    "tools.collector.mcp_server",
-                    "--db-path",
-                    globs.db_path,
-                    "--transport",
-                    "stdio"
-                ],
-                # "cwd": "/home/haojie/workspace/lcmhalmcp",
-                "transport": "stdio"
-            },
-        "lcmhal_builder": {
-            "command": "python",
-            # Make sure to update to the full absolute path to your math_server.py file
-            "args": [
-                "-m",
-                "tools.builder.mcp_server",
-                "--script-dir",
-                globs.script_path
-                # "--transport",
-                # "stdio"
-            ],
-            # "cwd": "/home/haojie/workspace/lcmhalmcp",
-            "transport": "stdio"
-        },
-
-        # using stdio
-    }
-)
-
 class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: BuildOutput
@@ -63,10 +27,51 @@ class AgentState(MessagesState):
 _graph = None
 
 async def build_graph():
-    # global _graph
-    # # 如果graph已经构建过，直接返回
-    # if _graph is not None:
-    #     return _graph
+    # 确保script_path不为空
+    if not globs.script_path:
+        globs.script_path = globs.default_config["script_path"]
+        print(f"builder.py: script_path为空，使用默认值: {globs.script_path}")
+    
+    # Set up MCP client
+    client = MultiServerMCPClient(
+        {
+            "lcmhal_collector": {
+                    "command": "python",
+                    # Make sure to update to the full absolute path to your math_server.py file
+                    "args": [
+                        "-m",
+                        "tools.collector.mcp_server",
+                        "--db-path",
+                        globs.db_path,
+                        "--transport",
+                        "stdio"
+                    ],
+                    # "cwd": "/home/haojie/workspace/lcmhalmcp",
+                    "transport": "stdio"
+                },
+            "lcmhal_builder": {
+                "command": "python",
+                # Make sure to update to the full absolute path to your math_server.py file
+                "args": [
+                    "-m",
+                    "tools.builder.mcp_server",
+                    "--script-dir",
+                    globs.script_path
+                    # "--transport",
+                    # "stdio"
+                ],
+                # "cwd": "/home/haojie/workspace/lcmhalmcp",
+                "transport": "stdio"
+            },
+
+            # using stdio
+        }
+    )
+    
+    global _graph
+    # 如果graph已经构建过，直接返回
+    if _graph is not None:
+        return _graph
     
     # 异步获取工具
     tools = await client.get_tools()
@@ -144,5 +149,31 @@ async def main():
 
 # 运行主函数
 if __name__ == "__main__":
+    # 导入argparse模块（如果尚未导入）
+    import argparse
+    
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser(description='LCMHal Builder')
+    # 添加--script-dir选项参数，设置help信息
+    parser.add_argument('--script-dir', dest='script_path', help='Path to the compilation script directory', required=True)
+    
+    # 解析命令行参数
+    args = parser.parse_args()
+    
+    # 从命令行参数设置script_path
+    globs.script_path = args.script_path
+    # 从配置文件加载配置
+    config = globs.load_config_from_yaml(globs.script_path)
+    
+    # 设置全局变量
+    globs.globs_init(config)
+    
+    # 输出配置信息
+    print(f"Configuration:")
+    print(f"  script_path: {globs.script_path}")
+    print(f"  db_path: {globs.db_path}")
+    print(f"  src_path: {globs.src_path}")
+    print(f"  proj_path: {globs.proj_path}")
+    
     import asyncio
     asyncio.run(main())
