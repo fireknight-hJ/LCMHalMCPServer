@@ -26,6 +26,21 @@ else
     echo "arm-none-eabi-gcc already installed"
 fi
 
+# 安装fuzzemu
+if [ ! -d "fuzzemu" ]; then
+    echo "fuzzemu directory does not exist, cloning fuzzemu repository"
+    git clone https://github.com/IoTS-P/fuzzemu.git
+else
+    echo "fuzzemu directory already exists, skipping clone"
+    exit 0
+fi
+cd fuzzemu
+git checkout feat/support_lcmhal
+bash install_mac.sh || exit 1
+echo "fuzzemu installed successfully"
+
+echo "Installation completed successfully."
+
 
 # 测试安装是否成功（TODO）
 # 1. 静态分析模块

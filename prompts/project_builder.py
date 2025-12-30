@@ -19,6 +19,8 @@ notice that all the function and operation about os should be reserved, and do n
 notice that do not define any struct or enum and just pretend that they already in the project.
 notice that if you find #ifdef label, keep it instead of removeing it ,and do not remove make up these labels yourself.
 notice that do not use any function call that not appeared in files or provided below (including posix std functions like: don't use fflush, fwrite, fread... etc.)
+notice that you may encounter redefinition of the function, it can be caused by the function signature mismatch, please check all the replacement functions in src file make sure the function name in function signature is exactly the same as the function name, if not, please correct it. (eg: funcname is HAL_xxx_IT(...) but replacement function signature is HAL_xxx_DMA(...), you need to fix the wrong function name to HAL_xxx_IT in the replacement function signature)
+
 
 
 Helper Functions Can Be Used:
@@ -34,10 +36,4 @@ int HAL_BE_In(void* buf, int len) // modify data receive (fixed data size)
 int HAL_BE_ENET_ReadFrame(void* buf, int length) // modify data receive (not fixed package size)
 ```
 """
-
-# 问题：生成的函数签名有问题，未修复生成的函数，但“越界”去修复未替换正常函数
-# 解决：调整Agent工作流，根据修复函数所在行给出替换签名
-
-# 问题：__weak__函数方案未知错误在调查中
-# 解决：在看原因
 

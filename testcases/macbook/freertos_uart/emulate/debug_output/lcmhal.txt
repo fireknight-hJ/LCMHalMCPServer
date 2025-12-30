@@ -1,0 +1,4 @@
+2025-11-27 21:44:34,867 - 0x80005d2 irq 0x0-> 0x80005d4 HAL_RCC_ClockConfig (from 0x80005ca HAL_RCC_OscConfig)
+2025-11-27 21:44:34,868 - [-] Stop due to exceptional loop.
+2025-11-27 21:44:34,868 - current function: HAL_RCC_ClockConfig
+2025-11-27 21:44:34,868 - current caller function: HAL_RCC_ClockConfig

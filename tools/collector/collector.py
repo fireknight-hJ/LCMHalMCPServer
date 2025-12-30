@@ -3,6 +3,7 @@ from typing import Dict, List, Set, Optional, Any
 from tools.collector.common import *
 from tools.collector.driver import *
 from tools.collector.mmio import *
+from utils.db_file import list_files_in_db_zip
 from models.query_results.common import FunctionCallInfo
 
 # 存储全部三类代码信息

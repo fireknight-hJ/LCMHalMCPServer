@@ -5,6 +5,8 @@
 
 # 设置项目构建目录路径
 PWDDIR=/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer/SW4STM32/STM32F769I_EVAL/build
+# 获取当前shell脚本所在目录
+SCRIPTDIR=$(cd "$(dirname "$0")" || exit; pwd)
 
 # 检查目录是否存在
 if [ ! -d "$PWDDIR" ]; then
@@ -26,7 +28,20 @@ make all
 # 检查编译结果
 if [ $? -eq 0 ]; then
     echo "编译成功完成!"
+    # 移动生成的可执行文件到 DBDIR
+    if [ ! -d "$DBDIR/lcmhal_emulate" ]; then
+        mkdir -p "$DBDIR/lcmhal_emulate"
+    fi
+    # 强制移动可执行文件到脚本目录，覆盖同名文件
+    # 生成的elf文件名通用名称 "output.elf"
+    mv -f "LwIP_StreamingServer.elf" "$SCRIPTDIR/output.elf" || {
+        echo "错误: 无法移动可执行文件到 $SCRIPTDIR/output.elf"
+        exit 1
+    }
 else
     echo "编译失败!"
     exit 1
 fi
+
+# 1. 构建项目并生成elf文件
+# 2. 将生成的elf文件移动到脚本所在目录

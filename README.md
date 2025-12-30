@@ -2,10 +2,13 @@
 
 
 使用方式：创建testcases目录，目录下创建：
-- build.sh: 构建脚本（生成elf）
-- clear.sh: 删除构建缓存（包括编译生成的elf，obj文件）脚本
+- build.sh: 构建脚本（脚本职责如下）：
+  - 1. 构建项目并生成elf文件
+  - 2. 将生成的elf文件移动到脚本所在目录(并重命名为output.elf)
+- clear.sh: 删除构建缓存脚本（包括编译生成的elf，obj文件等中间产物）
 
-之后尝试按照 codeql初步分析 + llm代码分析 + 代码替换&编译生成新的elf + 动态运行反馈 流程进行测试
+之后运行main.py (入参为testcases目录)
+工具会自动尝试按照 codeql初步分析 + llm代码分析 + 代码替换&编译生成新的elf + 动态运行反馈 流程进行测试
 
 
 start server: 
@@ -68,3 +71,15 @@ mcp servers debug (with vscode):
             "justMyCode": false
         },
 ```
+
+预计测试的os+hal+外设：
+
+1. (uart, i2c, spi), flash, eth, ble
+2. stm32, nrf, nxp，ambiq
+
+stm32 uart  --目录 --编译指令
+      flash --目录 --编译指令
+      eth --目录 --编译指令
+      ble --目录 --编译指令
+
+freertos，裸机，rtthread，zephyr，（mebedos）

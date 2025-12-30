@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver"
+db_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer"
+src_path: "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer"
+proj_path: "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
