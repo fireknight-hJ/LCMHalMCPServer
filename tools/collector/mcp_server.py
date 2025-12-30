@@ -4,8 +4,8 @@ import argparse
 import config.globs as globs
 import sys
 
-# 导入collector模块
-from tools.collector.collector import (
+# 导入collector核心模块
+from tools.collector.core import (
     register_db, get_files_in_db_zip, get_tree_in_db_zip,
     get_mmio_func_list, get_mmio_files, get_mmio_func_info,
     get_function_info, get_struct_or_enum_info, get_func_call_stack,

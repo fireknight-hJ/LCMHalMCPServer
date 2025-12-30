@@ -1,46 +1,17 @@
 from fastmcp import FastMCP
 import config.globs as globs
 import asyncio
-from tools.builder.proj_builder import build_proj, clear_proj
-from tools.collector.collector import get_function_info
-from tools.replacer.code_recover import function_recover
-from tools.replacer.code_replacer import function_replace
-from core.data_manager import data_manager
+from tools.builder.core import build_project as core_build_project
+from tools.builder.core import get_replace_func_details_by_file as core_get_replace_func_details_by_file
+from tools.builder.core import update_function_replacement as core_update_function_replacement
+from tools.builder.core import init_builder
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
-
-def replace_funcs():
-    mmio_info_list = data_manager.get_mmio_info_list()
-    replacement_updates = data_manager.get_replacement_updates()
-    
-    for func_name, classify_res in mmio_info_list.items():
-        if func_name in replacement_updates:
-            replace_res = function_replace(get_function_info(globs.db_path, func_name), replacement_updates[func_name].replacement_code)
-        elif classify_res.has_replacement:
-            replace_res = function_replace(get_function_info(globs.db_path, func_name), classify_res.function_replacement)
-
-def recover_funcs():
-    mmio_info_list = data_manager.get_mmio_info_list()
-    
-    for func_name, classify_res in mmio_info_list.items():
-        if classify_res.has_replacement:
-            recover_res = function_recover(get_function_info(globs.db_path, func_name))
 
 @mcp.tool()
 async def build_project() -> dict:
     """build project, return build result, including exitcode and stderr output"""
-    # 替换文件
-    replace_funcs()
-    # 编译项目
-    clear_proj(globs.script_path)
-    build_info = build_proj(globs.script_path)
-    # 项目复原
-    recover_funcs()
-    # 结果输出
-    return {
-        "std_err": build_info.std_err,
-        "exit_code": build_info.exit_code
-    }
+    return core_build_project()
 
 @mcp.tool()
 async def get_replace_func_details_by_file(file_path: str) -> dict:
@@ -48,23 +19,18 @@ async def get_replace_func_details_by_file(file_path: str) -> dict:
     file_path: the full path of the file in the codebase
     replace_func_infos: list of Functions replacement info 
     replacement_updates: list of Functions that have been updated before due to build failure"""
-    return data_manager.get_replace_func_details_by_file(file_path)
+    return core_get_replace_func_details_by_file(file_path)
 
 @mcp.tool()
 async def update_function_replacement(func_name: str, replace_code: str, reason: str) -> dict:
     """get all replacement functions info"""
-    if not data_manager.update_function_replacement(func_name, replace_code, reason):
-        return {"error": f"Function {func_name} not found in MMIO function list."}
-    
-    return {
-        "function_name": func_name,
-        "status": "success"
-    }
+    return core_update_function_replacement(func_name, replace_code, reason)
+
 
 def init_mcp():
     """初始化MCP服务"""
     # 加载MMIO函数信息
-    data_manager.load_mmio_functions()
+    init_builder()
 
 
 if __name__ == "__main__":

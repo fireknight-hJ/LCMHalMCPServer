@@ -1,4 +1,4 @@
-2025-11-27 21:44:34,867 - 0x80005d2 irq 0x0-> 0x80005d4 HAL_RCC_ClockConfig (from 0x80005ca HAL_RCC_OscConfig)
-2025-11-27 21:44:34,868 - [-] Stop due to exceptional loop.
-2025-11-27 21:44:34,868 - current function: HAL_RCC_ClockConfig
-2025-11-27 21:44:34,868 - current caller function: HAL_RCC_ClockConfig
+2025-12-31 06:18:52,661 - 0x8000330 irq 0x0-> 0x8000640 UART_EndRxTransfer (from 0x800030c SystemInit)
+2025-12-31 06:18:52,661 - [-] Stop due to exceptional loop.
+2025-12-31 06:18:52,661 - current function: UART_EndRxTransfer
+2025-12-31 06:18:52,661 - current caller function: UART_EndRxTransfer

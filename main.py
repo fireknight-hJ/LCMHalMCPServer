@@ -4,7 +4,7 @@ import yaml
 import config.globs as globs
 from config.globs import load_config_from_yaml
 from tools.builder.proj_builder import build_proj_dbgen, clear_proj
-from tools.analyzer.analyzer import analyze_functions
+from agents.analyzer_agent import analyze_functions
 from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
 from tools.replacer.code_replacer import function_replace
 from tools.replacer.code_recover import function_recover
