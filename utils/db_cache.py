@@ -5,6 +5,8 @@ from config import globs
 import time
 import glob
 from typing import Dict
+from utils.ai_log_manager import ai_log_manager
+from utils.log_index import log_index_manager
 
 
 def clear_cache(db_path: str, query_infos: list = []):
@@ -26,10 +28,20 @@ def dump_message(result: Dict[str, any]) -> Dict[str, any]:
     """
     ans = {}
     if "messages" in result:
-        model_list =  [i.model_dump() for i in result["messages"]]
+        model_list = []
+        for i in result["messages"]:
+            if isinstance(i, dict):
+                model_list.append(i)
+            elif hasattr(i, 'model_dump'):
+                model_list.append(i.model_dump())
+            else:
+                model_list.append({"content": str(i)})
         ans["messages"] = model_list
     if "final_response" in result and result["final_response"] is not None:
-        ans["final_response"] = result["final_response"].model_dump()
+        if hasattr(result["final_response"], 'model_dump'):
+            ans["final_response"] = result["final_response"].model_dump()
+        else:
+            ans["final_response"] = result["final_response"]
     return ans
 
 def dump_message_json(result: Dict[str, any]) -> str:
@@ -42,12 +54,18 @@ def dump_message_json(result: Dict[str, any]) -> str:
 def dump_json_log(msg_type: str="undefined_info", result: Dict[str, any] = {}, file_path: str = ""):
     """
     直接将字典转化为json字符串并写入日志文件
+    同时支持新的session日志和旧的文件格式（向后兼容）
     """
     if "function_name" in result:
         function_name = result["function_name"]
     else:
         function_name = ""
     import json
+    
+    # 使用新的AI日志管理器记录
+    if ai_log_manager.is_enabled():
+        ai_log_manager.save_legacy_log(msg_type, result, function_name)
+    
     # 检查文件路径是否为空
     if file_path == "":
         # 当前项目执行路径
@@ -55,12 +73,18 @@ def dump_json_log(msg_type: str="undefined_info", result: Dict[str, any] = {}, f
         if not os.path.exists(tmp_dir):
             os.makedirs(tmp_dir)
         file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+    
+    # 写入旧格式的文件（向后兼容）
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(json.dumps(result, ensure_ascii=False, indent=2))
+    
+    # 注册到日志索引
+    log_index_manager.register_legacy_log(msg_type, function_name, file_path)
 
 def dump_message_raw_log(msg_type: str="undefined_info", result: str = "", file_path: str = "", overwrite: bool = False):
     """
     将原始字符串写入日志文件
+    同时支持新的session日志和旧的文件格式（向后兼容）
     """
     function_name = ""
     # 检查文件路径是否为空
@@ -75,12 +99,18 @@ def dump_message_raw_log(msg_type: str="undefined_info", result: str = "", file_
                 file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
         else:
             file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+    
+    # 写入旧格式的文件（向后兼容）
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(result)
+    
+    # 注册到日志索引
+    log_index_manager.register_legacy_log(msg_type, function_name, file_path)
 
 def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any] = {}, file_path: str = "", overwrite: bool = False):
     """
     将消息转化为JSON字符串并写入日志文件
+    同时支持新的session日志和旧的文件格式（向后兼容）
     """
     if file_path == "":
         # 当前项目执行路径
@@ -96,6 +126,11 @@ def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any]
         # 如果来自其他数据结构，则会有FunctionName
         elif "function_name" in result:
             function_name = result["function_name"]
+        
+        # 使用新的AI日志管理器记录
+        if ai_log_manager.is_enabled():
+            ai_log_manager.log_agent_result(msg_type, result, function_name)
+        
         file_path = ""
         if overwrite:
             file_path = get_analyzed_json_log_path(msg_type, function_name)
@@ -103,8 +138,13 @@ def dump_message_json_log(msg_type: str="undefined_info", result: Dict[str, any]
                 file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
         else:
             file_path = os.path.join(tmp_dir, f"{msg_type}_{function_name}_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.json")
+    
+    # 写入旧格式的文件（向后兼容）
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(dump_message_json(result))
+    
+    # 注册到日志索引
+    log_index_manager.register_legacy_log(msg_type, function_name, file_path)
 
 def check_analyzed_json_log(msg_type: str="undefined_info", func_name: str = "", file_path: str = "") -> bool:
     """

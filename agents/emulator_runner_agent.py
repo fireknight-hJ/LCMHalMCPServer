@@ -14,6 +14,7 @@ from prompts.project_emulator import system_prompting_en
 import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_message_raw_log
+from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 from agents.builder_agent import build_project
 from agents.fixer_agent import function_fix
@@ -28,6 +29,8 @@ model = ChatDeepSeek(
 class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: EmulateResult
+    # Function name being emulated
+    function_name: str
 
 
 # 全局变量存储graph实例
@@ -87,14 +90,44 @@ async def build_graph():
     # Create ToolNode
     tool_node = ToolNode(tools)
 
+    # Create a wrapper for tool_node to add logging
+    async def tools_with_logging(state: AgentState):
+        agent_name = "emulator_runner_agent"
+        node_name = "tools"
+        function_name = state.get("function_name", "run_emulator")
+        
+        if globs.ai_log_enable:
+            ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
+        
+        result = await tool_node.ainvoke(state)
+        
+        if globs.ai_log_enable:
+            updated_state = {**state, **result}
+            ai_log_manager.log_langgraph_node_end(agent_name, node_name, updated_state, function_name)
+        
+        return result
+
     # Define the function that responds to the user
     def respond(state: AgentState):
+        agent_name = "emulator_runner_agent"
+        node_name = "respond"
+        function_name = state.get("function_name", "run_emulator")
+        
+        if globs.ai_log_enable:
+            ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
+        
         response = model_with_structured_output.invoke(
             # [HumanMessage(content=state["messages"][-1].content)]
             state["messages"]
         )
         # We return the final answer
-        return {"final_response": response}
+        result = {"final_response": response}
+        
+        if globs.ai_log_enable:
+            updated_state = {**state, **result}
+            ai_log_manager.log_langgraph_node_end(agent_name, node_name, updated_state, function_name)
+        
+        return result
 
     def should_continue(state: AgentState):
         import json
@@ -111,15 +144,29 @@ async def build_graph():
 
     # Define call_model function
     async def call_model(state: AgentState):
+        agent_name = "emulator_runner_agent"
+        node_name = "call_model"
+        function_name = state.get("function_name", "run_emulator")
+        
+        if globs.ai_log_enable:
+            ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
+        
         messages = state["messages"]
         response = await model_with_tools.ainvoke(messages)
-        return {"messages": [response]}
+        
+        result = {"messages": [response]}
+        
+        if globs.ai_log_enable:
+            updated_state = {**state, **result}
+            ai_log_manager.log_langgraph_node_end(agent_name, node_name, updated_state, function_name)
+        
+        return result
 
     # Build the graph
     builder = StateGraph(AgentState)
     builder.add_node("agent", call_model)
     builder.add_node("respond", respond)
-    builder.add_node("tools", tool_node)
+    builder.add_node("tools", tools_with_logging)
 
     builder.add_edge(START, "agent")
     builder.add_conditional_edges(
@@ -135,10 +182,14 @@ async def build_graph():
 
 async def run_emulator() -> EmulateResult:
     graph = await build_graph()
-    result = await graph.ainvoke({"messages": [
-        {"role": "system", "content": system_prompting_en},
-        {"role": "user", "content": f"Emulate the project, rerun-fix-rebuild the project until the project is successfully run."}
-    ]}, config={"recursion_limit": 50})
+    initial_state = {
+        "messages": [
+            {"role": "system", "content": system_prompting_en},
+            {"role": "user", "content": f"Emulate the project, rerun-fix-rebuild the project until the project is successfully run."}
+        ],
+        "function_name": "run_emulator"
+    }
+    result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
     # log ai memory
     if globs.ai_log_enable:
         dump_message_json_log("run_emulator", result)
