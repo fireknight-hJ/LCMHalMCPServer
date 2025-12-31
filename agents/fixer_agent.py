@@ -47,21 +47,21 @@ async def build_graph():
     # Set up MCP client
     client = MultiServerMCPClient(
         {
-            # Emulator 执行模拟器，获取错误反馈
-            "lcmhal_emulator": {
-                "command": "python",
-                # Make sure to update to the full absolute path to your math_server.py file
-                "args": [
-                    "-m",
-                    "tools.emulator.mcp_server",
-                    "--script-dir",
-                    globs.script_path,
-                    # "--transport",
-                    # "stdio"
-                ],
-                # "cwd": "/home/haojie/workspace/lcmhalmcp",
-                "transport": "stdio"
-            },
+            # # Emulator 执行模拟器，获取错误反馈
+            # "lcmhal_emulator": {
+            #     "command": "python",
+            #     # Make sure to update to the full absolute path to your math_server.py file
+            #     "args": [
+            #         "-m",
+            #         "tools.emulator.mcp_server",
+            #         "--script-dir",
+            #         globs.script_path,
+            #         # "--transport",
+            #         # "stdio"
+            #     ],
+            #     # "cwd": "/home/haojie/workspace/lcmhalmcp",
+            #     "transport": "stdio"
+            # },
             # # Builder 执行构建命令，检查是否通过
             # "lcmhal_builder": {
             #     "command": "python",
@@ -89,13 +89,12 @@ async def build_graph():
     # 初始化builder工具
     init_builder()
     
-    from tools.fixer.replacement_update import update_function_replacement
     # 异步获取工具
     tools = await client.get_tools()
     # 定义工具列表
-    tools = tools + [
+    tools = [
         # emulator工具
-        emulate_proj,
+        # emulate_proj,
         mmio_function_emulate_info,
         function_calls_emulate_info,
         # builder工具
