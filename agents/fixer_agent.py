@@ -48,6 +48,20 @@ async def build_graph():
     client = MultiServerMCPClient(
         {
             # # Emulator 执行模拟器，获取错误反馈
+            "lcmhal_collector": {
+                "command": "python",
+                # Make sure to update to the full absolute path to your math_server.py file
+                "args": [
+                    "-m",
+                    "tools.collector.mcp_server",
+                    "--db-path",
+                    globs.db_path,
+                    "--transport",
+                    "stdio"
+                ],
+                # "cwd": "/home/haojie/workspace/lcmhalmcp",
+                "transport": "stdio"
+            },
             # "lcmhal_emulator": {
             #     "command": "python",
             #     # Make sure to update to the full absolute path to your math_server.py file
@@ -92,7 +106,7 @@ async def build_graph():
     # 异步获取工具
     tools = await client.get_tools()
     # 定义工具列表
-    tools = [
+    tools = tools + [
         # emulator工具
         # emulate_proj,
         mmio_function_emulate_info,
@@ -138,7 +152,7 @@ async def build_graph():
         
         response = model_with_structured_output.invoke(
             # [HumanMessage(content=state["messages"][-1].content)]
-            state["messages"]
+            state["messages"] + [HumanMessage(content="Now summarize the above messages and provide a final answer.")]
         )
         # We return the final answer
         result = {"final_response": response}
