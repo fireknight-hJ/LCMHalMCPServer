@@ -12,7 +12,7 @@ from tools.emulator.core import (
     "EmulateProject",
     description="Run emulator and return emulate result, including stdout, stderr and exitcode"
 )
-async def emulate_proj():
+def emulate_proj() -> dict:
     """运行模拟器"""
     return core_emulate_proj()
 
@@ -21,7 +21,7 @@ async def emulate_proj():
     "GetMMIOFunctionEmulateInfo",
     description="Get MMIO function emulate info from lcmhal.txt"
 )
-async def mmio_function_emulate_info():
+def mmio_function_emulate_info() -> str:
     """获取所有MMIO函数的模拟器结果信息"""
     return core_mmio_function_emulate_info()
 
@@ -30,6 +30,6 @@ async def mmio_function_emulate_info():
     "GetFunctionCallsEmulateInfo",
     description="Get function calls stack emulate info from function.txt"
 )
-async def function_calls_emulate_info():
+def function_calls_emulate_info() -> str:
     """获取所有函数调用栈的模拟器结果信息"""
     return core_function_calls_emulate_info()

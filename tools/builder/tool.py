@@ -13,7 +13,7 @@ from tools.builder.core import (
     "BuildProject",
     description="Build project and return build result, including exitcode and stderr output"
 )
-async def build_project():
+def build_project() -> dict:
     """构建项目"""
     return core_build_project()
 
@@ -22,7 +22,7 @@ async def build_project():
     "GetReplaceFuncDetailsByFile",
     description="Get replacement functions info of the corresponding file"
 )
-async def get_replace_func_details_by_file(file_path: str):
+def get_replace_func_details_by_file(file_path: str) -> dict:
     """根据文件路径获取替换函数详情"""
     return core_get_replace_func_details_by_file(file_path)
 
@@ -31,7 +31,7 @@ async def get_replace_func_details_by_file(file_path: str):
     "UpdateFunctionReplacement",
     description="Update function replacement code"
 )
-async def update_function_replacement(func_name: str, replace_code: str, reason: str):
+def update_function_replacement(func_name: str, replace_code: str, reason: str) -> dict:
     """更新函数替换代码"""
     return core_update_function_replacement(func_name, replace_code, reason)
 
@@ -40,7 +40,7 @@ async def update_function_replacement(func_name: str, replace_code: str, reason:
     "InitBuilder",
     description="Initialize builder tool"
 )
-async def init_builder():
+def init_builder() -> dict:
     """初始化builder工具"""
     core_init_builder()
     return {"status": "success", "message": "Builder tool initialized successfully"}
