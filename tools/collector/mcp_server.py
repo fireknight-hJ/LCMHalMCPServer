@@ -14,7 +14,7 @@ from tools.collector.core import (
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0", port=8112)
 
-@mcp.tool()
+@mcp.tool(name="GetFilesInDatabaseZip", description="Get files list in database zip file")
 async def list_files_in_db_zip() -> str:
     """Lists all files of the srcfile in project inside database directory."""
     try:
@@ -23,7 +23,7 @@ async def list_files_in_db_zip() -> str:
     except Exception as e:
         return f"Error listing files in src.zip: {e}"
 
-@mcp.tool()
+@mcp.tool(name="GetDirectoryTreeInDatabaseZip", description="Get directory tree in database zip file")
 async def list_tree_in_db_zip() -> str:
     """Lists all files of the srcfile in project inside database directory."""
     try:
@@ -32,7 +32,19 @@ async def list_tree_in_db_zip() -> str:
     except Exception as e:
         return f"Error listing tree in src.zip: {e}"
 
-@mcp.tool()
+@mcp.tool(name="ValidateDatabase", description="Validate database path and integrity")
+async def validate_database_tool() -> str:
+    """Validate database path and integrity"""
+    if not globs.db_path:
+        return "Database path not set. Please provide db_path via command line argument."
+    
+    validation = validate_database(globs.db_path)
+    if validation["valid"]:
+        return validation["message"]
+    else:
+        return validation["error"]
+
+@mcp.tool(name="RegisterDatabase", description="Register database path for collector tool")
 async def register_and_analyze_database() -> str:
     """This tool registers a CodeQL database and analyzes it"""
     if not globs.db_path:
@@ -54,7 +66,7 @@ async def register_and_analyze_database() -> str:
         return f"Failed to initialize codebase info: {e}"
 
 # mmio相关工具
-@mcp.tool()
+@mcp.tool(name="GetMMIOFunctionList", description="Get MMIO function list from database")
 async def collect_mmio_func_list() -> str:
     """This tool collects the mmio function list from the registered database"""
     try:
@@ -63,7 +75,7 @@ async def collect_mmio_func_list() -> str:
     except Exception as e:
         return f"Error collecting MMIO function list: {e}"
 
-@mcp.tool()
+@mcp.tool(name="GetMMIORelatedFiles", description="Get MMIO related files list from database")
 async def collect_mmio_files() -> str:
     """This tool collects the mmio files from the registered database"""
     try:
@@ -72,7 +84,7 @@ async def collect_mmio_files() -> str:
     except Exception as e:
         return f"Error collecting MMIO files: {e}"
 
-@mcp.tool()
+@mcp.tool(name="GetMMIOFunctionInfo", description="Get MMIO function detailed information from database")
 async def collect_mmio_func_info(func_name: str) -> str:
     """This tool collects the mmio infos and function info from the registered database given a mmio function name"""
     try:
@@ -84,7 +96,7 @@ async def collect_mmio_func_info(func_name: str) -> str:
         return f"Error collecting MMIO function info: {e}"
 
 # common相关工具
-@mcp.tool()
+@mcp.tool(name="GetFunctionInfo", description="Get general function information from database")
 async def collect_function_info(func_name: str) -> str:
     """This tool collects the function info from the registered database given a function name"""
     try:
@@ -95,7 +107,7 @@ async def collect_function_info(func_name: str) -> str:
     except Exception as e:
         return f"Error collecting function info: {e}"
 
-@mcp.tool()
+@mcp.tool(name="GetStructOrEnumInfo", description="Get struct or enum information from database")
 async def collect_struct_or_enum_info(struct_name: str) -> str:
     """This tool collects the struct or enum info from the registered database"""
     try:
@@ -110,7 +122,7 @@ async def collect_struct_or_enum_info(struct_name: str) -> str:
     except Exception as e:
         return f"Error collecting struct or enum info: {e}"
 
-@mcp.tool()
+@mcp.tool(name="GetFunctionCallStack", description="Get function call stack from database")
 async def collect_func_call_stack(func_name: str) -> str:
     """This tool collects the function call stack given a function name"""
     try:
@@ -122,7 +134,7 @@ async def collect_func_call_stack(func_name: str) -> str:
         return f"Error collecting function call stack: {e}"
 
 # driver相关工具
-@mcp.tool()
+@mcp.tool(name="GetDriverInfo", description="Get driver information from database")
 async def collect_driver_info(driver_name: str) -> str:
     """This tool collects the driver info from the registered database given a driver name"""
     try:

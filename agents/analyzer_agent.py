@@ -1,4 +1,5 @@
 import json
+from langchain_core.tools import tool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, MessagesState, START, END
@@ -213,6 +214,12 @@ def analyze_functions(function_list):
             pass
     return mmio_info_list
 
+@tool(
+    "Analyzer",
+    description="Sub Agent `Analyzer`, analyze the driver source code and classify the functions into MMIO and non-MMIO functions"
+)
+async def analyzer_agent(func_name : str) -> FunctionClassifyResponse:
+    return await function_classify(func_name, False)
 
 async def main():
     # Test the graph
