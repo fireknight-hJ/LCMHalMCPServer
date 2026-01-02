@@ -199,6 +199,14 @@ async def run_build_project() -> BuildOutput:
         dump_message_json_log("build_project", result)
     return result["final_response"]
 
+@tool(
+    "Builder",
+    description="Sub Agent `Builder`, build the project and return the build result (call this tool after calling Fixer, fixed the source code)"
+)
+async def builder_agent() -> BuildOutput:
+    result = await run_build_project()
+    return result
+
 def check_analyzed() -> bool:
     """
     检查函数是否已经分析过

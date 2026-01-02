@@ -17,6 +17,7 @@ class DataManager:
         self.replacement_updates = {}
         # 替换更新按文件分类
         self.replacement_updates_by_file = {}
+        
     
     def replacement_update_log(self, replacement_update: ReplacementUpdate):
         """记录替换更新日志"""

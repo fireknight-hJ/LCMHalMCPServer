@@ -16,8 +16,8 @@ import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_message_raw_log
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
-from agents.builder_agent import build_project
-from agents.fixer_agent import function_fix
+from agents.builder_agent import builder_agent
+from agents.fixer_agent import fixer_agent
 
 # Initialize the model
 model = ChatDeepSeek(
@@ -201,22 +201,6 @@ def dump_message_state(state):
     return {
         "messages": model_list
     }
-
-@tool(
-    "Builder",
-    description="Sub Agent `Builder`, build the project and return the build result (call this tool after calling Fixer, fixed the source code)"
-)
-async def builder_agent() -> BuildOutput:
-    result = await build_project()
-    return result
-
-@tool(
-    "Fixer",
-    description="Sub Agent `Fixer`, analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly"
-)
-async def fixer_agent() -> ReplacementUpdate:
-    result = await function_fix()
-    return result
 
 async def main():
     # 导入argparse模块

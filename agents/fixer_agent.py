@@ -224,6 +224,14 @@ async def function_fix() -> ReplacementUpdate:
         dump_message_json_log("function_fix", result)
     return result["final_response"]
 
+@tool(
+    "Fixer",
+    description="Sub Agent `Fixer`, analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly"
+)
+async def fixer_agent() -> ReplacementUpdate:
+    result = await function_fix()
+    return result
+
 async def main():
     # Test the graph
     fixer_response = await function_fix()
