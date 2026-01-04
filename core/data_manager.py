@@ -61,11 +61,11 @@ class DataManager:
         
         return True
     
-    def load_mmio_functions(self):
+    async def load_mmio_functions(self):
         """加载MMIO函数信息"""
         # 处理所有MMIO函数
         function_list = get_mmio_func_list(globs.db_path)
-        self.mmio_info_list = analyze_functions(function_list)
+        self.mmio_info_list = await analyze_functions(function_list)
         
         # 处理所有替换更新日志
         for func_name, classify_res in self.mmio_info_list.items():

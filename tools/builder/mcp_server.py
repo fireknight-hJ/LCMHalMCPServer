@@ -30,7 +30,7 @@ async def update_function_replacement(func_name: str, replace_code: str, reason:
 def init_mcp():
     """初始化MCP服务"""
     # 加载MMIO函数信息
-    init_builder()
+    asyncio.run(init_builder())
 
 
 if __name__ == "__main__":

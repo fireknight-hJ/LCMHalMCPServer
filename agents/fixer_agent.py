@@ -102,7 +102,7 @@ async def build_graph():
         return _graph
     
     # 初始化builder工具
-    init_builder()
+    await init_builder()
     
     # 异步获取工具
     tools = await client.get_tools()

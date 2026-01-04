@@ -84,7 +84,7 @@ async def build_graph():
     # 异步获取工具
     tools = await client.get_tools()
     # 初始化builder工具
-    init_builder()
+    await init_builder()
     
     # 定义工具列表
     tools = tools + [

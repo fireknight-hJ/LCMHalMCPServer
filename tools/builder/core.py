@@ -81,10 +81,10 @@ def update_function_replacement(func_name: str, replace_code: str, reason: str) 
     }
 
 
-def init_builder():
+async def init_builder():
     """初始化builder工具
     
     加载MMIO函数信息
     """
     # 加载MMIO函数信息
-    data_manager.load_mmio_functions()
+    await data_manager.load_mmio_functions()

@@ -36,9 +36,9 @@ if __name__ == "__main__":
     generate_emulator_configs()
     # 执行模拟器
     from tools.emulator.runner import run_emulator
-    emulate_output = asyncio.run(run_emulator())
-    print(f"Emulate output: {emulate_output.model_dump_json()}")
-
+    emulate_output = run_emulator()
+    print(f"Emulate output: {emulate_output}")
+ 
 """
 当前workflow：
 

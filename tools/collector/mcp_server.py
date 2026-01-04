@@ -163,17 +163,17 @@ if __name__ == "__main__":
     # 验证数据库路径
     db_path_resolved = Path(globs.db_path).resolve()
     if not db_path_resolved.exists():
-        print(f"Error: Database path does not exist: {globs.db_path}")
+        print(f"Error: Database path does not exist: {globs.db_path}", file=sys.stderr)
         sys.exit(1)
     
     # 初始化全局codebase_infos
     try:
         success = register_db(globs.db_path)
         if not success:
-            print(f"Error initializing codebase info for: {globs.db_path}")
+            print(f"Error initializing codebase info for: {globs.db_path}", file=sys.stderr)
             sys.exit(1)
     except Exception as e:
-        print(f"Error initializing codebase info: {e}")
+        print(f"Error initializing codebase info: {e}", file=sys.stderr)
         sys.exit(1)
     
     # 启动MCP服务器

@@ -75,7 +75,8 @@ def globs_init(config):
     # 初始化AI日志管理器的session
     if ai_log_enable:
         session_id = ai_log_manager.initialize_session(db_path)
-        print(f"Session ID: {session_id}")
+        import sys
+        print(f"Session ID: {session_id}", file=sys.stderr)
 
 
 def get_session_id():

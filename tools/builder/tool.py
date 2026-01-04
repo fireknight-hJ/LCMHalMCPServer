@@ -1,5 +1,6 @@
 # Builder工具的LangChain工具函数模块
 # 提供直接调用的工具函数，使用@tool装饰器定义
+import asyncio
 from langchain.tools import tool
 from tools.builder.core import (
     build_project as core_build_project,
@@ -42,5 +43,5 @@ def update_function_replacement(func_name: str, replace_code: str, reason: str) 
 )
 def init_builder() -> dict:
     """初始化builder工具"""
-    core_init_builder()
+    asyncio.run(core_init_builder())
     return {"status": "success", "message": "Builder tool initialized successfully"}

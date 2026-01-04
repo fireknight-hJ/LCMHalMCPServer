@@ -203,15 +203,20 @@ def function_classify_from_log(func_name: str) -> FunctionClassifyResponse:
     json_data = json.loads(infos)
     return FunctionClassifyResponse(**json_data["final_response"])
 
-def analyze_functions(function_list):
+async def analyze_functions(function_list):
     mmio_info_list = {}
+    tasks = []
     for func_name in function_list:
-        try:
-            classifier_res = asyncio.run(function_classify(func_name))
-            mmio_info_list[func_name] = classifier_res
-        except Exception as e:
-            # print(f"Error analyzing function {func_name}: {e}")
-            pass
+        tasks.append(function_classify(func_name))
+    
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    
+    for func_name, result in zip(function_list, results):
+        if isinstance(result, Exception):
+            print(f"Error analyzing function {func_name}: {result}")
+            continue
+        mmio_info_list[func_name] = result
+    
     return mmio_info_list
 
 @tool(

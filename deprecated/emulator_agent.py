@@ -207,7 +207,7 @@ supervisor = (
     .compile()
 )
 
-async def run_emulator() -> EmulateResult:
+def run_emulator() -> EmulateResult:
     graph = supervisor
     result = await graph.ainvoke({"messages": [
         {"role": "user", "content": f"emulate the project, rerun-fix-rebuild the project until the project is successfully run."}
