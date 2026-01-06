@@ -9,66 +9,67 @@ symbols:
   134218201: register_tm_clones
   134218237: __do_global_dtors_aux
   134218277: frame_dummy
-  134218313: BSP_LED_Init
-  134218317: BSP_LED_On
-  134218345: SystemInit
-  134218421: HAL_MspInit
-  134218425: HAL_InitTick
-  134218497: HAL_Init
-  134218541: HAL_GetTick
-  134218553: HAL_GetREVID
-  134218565: HAL_NVIC_SetPriorityGrouping
-  134218601: HAL_NVIC_SetPriority
-  134218701: HAL_NVIC_EnableIRQ
-  134218729: HAL_SYSTICK_Config
-  134218769: HAL_GPIO_Init
-  134219201: HAL_GPIO_WritePin
-  134219211: HAL_RCC_OscConfig
-  134219221: HAL_RCC_ClockConfig
-  134219373: HAL_RCC_GetPCLK1Freq
-  134219405: HAL_RCC_GetPCLK2Freq
-  134219437: UART_SetConfig
-  134219625: HAL_UART_Init
-  134219719: HAL_UART_Transmit_IT
-  134219769: HAL_UARTEx_RxEventCallback
-  134219771: HAL_UART_IRQHandler
-  134219867: HAL_UART_GetState
-  134219879: UART_Start_Receive_IT
-  134219929: HAL_UART_Receive_IT
-  134219965: Reset_Handler
-  134219978: CopyDataInit
-  134219984: LoopCopyDataInit
-  134219998: FillZerobss
-  134220002: LoopFillZerobss
-  134220044: Default_Handler
-  134220045: DMA1_Stream3_IRQHandler
-  134220049: main
-  134220405: HAL_UART_TxCpltCallback
-  134220411: HAL_UART_RxCpltCallback
-  134220417: HAL_UART_ErrorCallback
-  134220425: HAL_UART_MspInit
-  134220565: NMI_Handler
-  134220567: HardFault_Handler
-  134220569: MemManage_Handler
-  134220571: BusFault_Handler
-  134220573: UsageFault_Handler
-  134220575: SVC_Handler
-  134220577: DebugMon_Handler
-  134220579: PendSV_Handler
-  134220581: SysTick_Handler
-  134220585: USART3_IRQHandler
-  134220597: __libc_init_array
-  134220669: __udivmoddi4
-  134221428: __EH_FRAME_BEGIN__
-  134221429: _init
-  134221441: _fini
-  134221452: GPIO_PIN
-  134221460: APBPrescTable
-  134221468: __exidx_start
-  134221476: __exidx_end
-  134221480: __init_array_end
-  134221484: _sidata
-  134221632: _siccmram
+  134218313: HAL_BE_In
+  134218317: BSP_LED_Init
+  134218325: BSP_LED_On
+  134218353: SystemInit
+  134218429: HAL_MspInit
+  134218433: HAL_InitTick
+  134218505: HAL_Init
+  134218549: HAL_GetTick
+  134218561: HAL_GetREVID
+  134218573: HAL_NVIC_SetPriorityGrouping
+  134218609: HAL_NVIC_SetPriority
+  134218709: HAL_NVIC_EnableIRQ
+  134218737: HAL_SYSTICK_Config
+  134218777: HAL_GPIO_Init
+  134218779: HAL_GPIO_WritePin
+  134218789: HAL_RCC_OscConfig
+  134218797: HAL_RCC_ClockConfig
+  134218949: HAL_RCC_GetPCLK1Freq
+  134218981: HAL_RCC_GetPCLK2Freq
+  134219013: UART_SetConfig
+  134219201: HAL_UART_Init
+  134219295: HAL_UART_Transmit_IT
+  134219345: HAL_UARTEx_RxEventCallback
+  134219349: HAL_UART_IRQHandler
+  134219521: HAL_UART_GetState
+  134219533: UART_Start_Receive_IT
+  134219583: HAL_UART_Receive_IT
+  134219617: Reset_Handler
+  134219630: CopyDataInit
+  134219636: LoopCopyDataInit
+  134219650: FillZerobss
+  134219654: LoopFillZerobss
+  134219696: Default_Handler
+  134219697: DMA1_Stream3_IRQHandler
+  134219701: main
+  134220057: HAL_UART_TxCpltCallback
+  134220063: HAL_UART_RxCpltCallback
+  134220069: HAL_UART_ErrorCallback
+  134220077: HAL_UART_MspInit
+  134220217: NMI_Handler
+  134220219: HardFault_Handler
+  134220221: MemManage_Handler
+  134220223: BusFault_Handler
+  134220225: UsageFault_Handler
+  134220227: SVC_Handler
+  134220229: DebugMon_Handler
+  134220231: PendSV_Handler
+  134220233: SysTick_Handler
+  134220237: USART3_IRQHandler
+  134220249: __libc_init_array
+  134220321: __udivmoddi4
+  134221080: __EH_FRAME_BEGIN__
+  134221081: _init
+  134221093: _fini
+  134221104: GPIO_PIN
+  134221112: APBPrescTable
+  134221120: __exidx_start
+  134221128: __exidx_end
+  134221132: __init_array_end
+  134221136: _sidata
+  134221284: _siccmram
   268435456: _sccmram
   536870912: GPIO_PORT
   536870928: SystemCoreClock
@@ -79,7 +80,8 @@ symbols:
   536871060: _edata
   536871064: object.0
   536871088: uwTick
-  536871092: aRxBuffer
+  536871092: in_interrupt_handler.0
+  536871093: aRxBuffer
   536871104: UartHandle
   536871176: _end
   537001984: _estack

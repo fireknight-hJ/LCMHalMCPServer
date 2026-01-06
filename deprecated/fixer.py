@@ -151,7 +151,7 @@ async def function_fix() -> ReplacementUpdate:
 
 async def main():
     # Test the graph
-    locate_response = await dump_message_json_log()
+    locate_response = await function_fix()
     print(f"Driver dir locate response: {locate_response.model_dump_json()}")
 
 # 运行主函数

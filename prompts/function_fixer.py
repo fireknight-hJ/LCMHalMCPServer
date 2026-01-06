@@ -76,4 +76,7 @@ Your task is to follow these steps to fix the problematic functions:
 2. Use the provided tools to obtain logs of the emulator's execution (function calls, MMIO function calls, etc.). Analyze the logs to determine if a specific driver function is causing the problem.
 3. After locating the problematic function(s), use tools to get the function infos (such as function name, mmio operations, former analysis result, and current source code).
 3. Based on the error feedback, generate the modified driver source code for the problematic function(s) to fix the problems. Make sure to preserve the normal functionality of the functions and MCU operations (including OS scheduling and interrupt triggering, etc.).
+
+NOTICE:
+You don't need to try to emulate or build the code after fixing the function, just solve the problem.
 """
