@@ -1,4 +1,3 @@
-2025-12-31 06:18:52,661 - 0x8000330 irq 0x0-> 0x8000640 UART_EndRxTransfer (from 0x800030c SystemInit)
-2025-12-31 06:18:52,661 - [-] Stop due to exceptional loop.
-2025-12-31 06:18:52,661 - current function: UART_EndRxTransfer
-2025-12-31 06:18:52,661 - current caller function: UART_EndRxTransfer
+2026-01-06 05:06:12,405 - [-] Stop due to exceptional loop.
+2026-01-06 05:06:12,406 - current function: HAL_UARTEx_RxEventCallback
+2026-01-06 05:06:12,406 - current caller function: HAL_UART_Transmit_IT
