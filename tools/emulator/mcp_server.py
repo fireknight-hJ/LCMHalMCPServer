@@ -4,9 +4,12 @@ import config.globs as globs
 import asyncio
 from models.build_results.build_output import BuildOutput
 from models.analyze_results.function_analyze import ReplacementUpdate
-from tools.emulator.emulate_runner import run_emulator
-from tools.emulator.conf_generator import extract_syms
 import os
+
+# 导入核心功能模块
+from tools.emulator.core import emulate_proj as core_emulate_proj
+from tools.emulator.core import mmio_function_emulate_info as core_mmio_function_emulate_info
+from tools.emulator.core import function_calls_emulate_info as core_function_calls_emulate_info
 
 # 用于模拟执行代码并返回输出的mcp服务器
 
@@ -15,28 +18,17 @@ mcp = FastMCP("LCMHalMCP", version="1.0.0")
 @mcp.tool()
 async def emulate_proj() -> dict:
     """run emulator with generated configs, return the emulation result"""
-    # 每次emulate前重新生成syms.yml配置文件，因为重新build后符号表会变化
-    extract_syms()
-    ret = run_emulator()
-    return {
-        "std_out": ret.stdout,
-        "std_err": ret.stderr,
-        "exit_code": ret.returncode
-    }
+    return core_emulate_proj()
 
 @mcp.tool()
 async def mmio_function_emulate_info() -> str:
     """return the emulator results of all mmio functions being used"""
-    with open(os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt"), "r") as f:
-        data = "".join(f.readlines())
-    return data
+    return core_mmio_function_emulate_info()
 
 @mcp.tool()
 async def function_calls_emulate_info() -> str:
     """return the emulator results of all function call stack being used"""
-    with open(os.path.join(globs.script_path, "emulate/debug_output/function.txt"), "r") as f:
-        data = "".join(f.readlines())
-    return data
+    return core_function_calls_emulate_info()
 
 # @mcp.tool()
 # async def get_decompiled_code_by_pc_address(address: int) -> str:
