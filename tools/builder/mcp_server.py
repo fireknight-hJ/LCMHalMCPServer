@@ -5,16 +5,17 @@ from tools.builder.core import build_project as core_build_project
 from tools.builder.core import get_replace_func_details_by_file as core_get_replace_func_details_by_file
 from tools.builder.core import update_function_replacement as core_update_function_replacement
 from tools.builder.core import get_function_analysis_and_replacement as core_get_function_analysis_and_replacement
+from tools.builder.core import get_function_analysis_and_replacement_formatted as core_get_function_analysis_and_replacement_formatted
 from tools.builder.core import init_builder
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
 
-@mcp.tool()
+@mcp.tool(name="BuildProject")
 async def build_project() -> dict:
     """build project, return build result, including exitcode and stderr output"""
     return core_build_project()
 
-@mcp.tool()
+@mcp.tool(name="GetReplaceFuncDetailsByFile")
 async def get_replace_func_details_by_file(file_path: str) -> dict:
     """get replacement functions info of the corresponding file, please make sure the function to be analyzed
     file_path: the full path of the file in the codebase
@@ -22,13 +23,13 @@ async def get_replace_func_details_by_file(file_path: str) -> dict:
     replacement_updates: list of Functions that have been updated before due to build failure"""
     return core_get_replace_func_details_by_file(file_path)
 
-@mcp.tool()
+@mcp.tool(name="UpdateFunctionReplacement")
 async def update_function_replacement(func_name: str, replace_code: str, reason: str) -> dict:
     """get all replacement functions info"""
     return core_update_function_replacement(func_name, replace_code, reason)
 
 
-@mcp.tool()
+@mcp.tool(name="GetFunctionAnalysisAndReplacement")
 async def get_function_analysis_and_replacement(func_name: str) -> dict:
     """Get function analysis (MMIO info) and replacement details by function name
     
@@ -41,6 +42,21 @@ async def get_function_analysis_and_replacement(func_name: str) -> dict:
             - replacement_update: replacement update information (if any)
     """
     return core_get_function_analysis_and_replacement(func_name)
+
+@mcp.tool(name="GetFunctionAnalysisAndReplacementFormatted")
+async def get_function_analysis_and_replacement_formatted(func_name: str) -> str:
+    """Get formatted function analysis (MMIO info) and replacement details by function name
+    
+    This returns information in a human-readable format that's easier for LLMs to understand,
+    including initial analysis, update information, and the reasons behind changes.
+    
+    Args:
+        func_name: function name to query
+        
+    Returns:
+        str: formatted function analysis and replacement information
+    """
+    return core_get_function_analysis_and_replacement_formatted(func_name)
 
 
 def init_mcp():

@@ -1,6 +1,6 @@
-2025-12-28 07:31:48,526 - 0x801bc18 irq 0x0-> 0x80271f2 HAL_InitTick (from 0x801bbf4 HAL_Init)
-2025-12-28 07:31:48,526 - 0x8025362 irq 0x0-> 0x8025724 SystemClock_Config (from 0x8025350 main)
-2025-12-28 07:31:48,527 - 0x8025790 irq 0x0-> 0x8020514 HAL_RCC_OscConfig (from 0x8025724 SystemClock_Config)
-2025-12-28 07:31:48,740 - [-] Stop due to exceptional loop.
-2025-12-28 07:31:48,740 - current function: HAL_RCC_OscConfig
-2025-12-28 07:31:48,740 - current caller function: HAL_RCC_OscConfig
+2026-01-07 01:28:25,890 - 0x801bc18 irq 0x0-> 0x80271f2 HAL_InitTick (from 0x801bbf4 HAL_Init)
+2026-01-07 01:28:25,890 - 0x8025362 irq 0x0-> 0x8025724 SystemClock_Config (from 0x8025350 main)
+2026-01-07 01:28:25,891 - 0x8025790 irq 0x0-> 0x8020514 HAL_RCC_OscConfig (from 0x8025724 SystemClock_Config)
+2026-01-07 01:28:26,029 - [-] Stop due to exceptional loop.
+2026-01-07 01:28:26,029 - current function: HAL_RCC_OscConfig
+2026-01-07 01:28:26,029 - current caller function: HAL_RCC_OscConfig

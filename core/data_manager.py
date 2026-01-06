@@ -161,6 +161,47 @@ class DataManager:
             return {"error": f"Function {func_name} not found in MMIO function list or replacement updates."}
         
         return result
+    
+    def get_function_analysis_and_replacement_formatted(self, func_name: str):
+        """根据函数名获取格式化的函数分析和替换信息（文本格式，便于大模型理解）
+        
+        Args:
+            func_name: 函数名称
+            
+        Returns:
+            str: 格式化的函数分析和替换信息
+        """
+        # 首先获取结构化数据
+        data = self.get_function_analysis_and_replacement(func_name)
+        
+        # 检查是否有错误
+        if "error" in data:
+            return f"错误：{data['error']}"
+        
+        # 构建格式化文本
+        formatted_text = []
+        formatted_text.append(f"=== {func_name} 函数分析与替换信息 ===")
+        
+        # 添加初始分析信息
+        if "mmio_info" in data:
+            mmio_info = data["mmio_info"]
+            formatted_text.append("\n【初始分析】")
+            formatted_text.append(f"- 函数用途：{mmio_info.get('usage_type', '未知')}")
+            formatted_text.append(f"- 是否需要替换：{'是' if mmio_info.get('has_replacement', False) else '否'}")
+            formatted_text.append(f"- 替换原因：{mmio_info.get('reason', '无')}")
+            formatted_text.append(f"- 原始代码：{mmio_info.get('original_code', '无法获取')}")
+            formatted_text.append(f"- 推荐替换代码：{mmio_info.get('recommended_code', '无')}")
+        
+        # 添加更新信息
+        if "replacement_update" in data:
+            update = data["replacement_update"]
+            formatted_text.append("\n【替换更新】")
+            formatted_text.append(f"- 更新代码：{update.get('replacement_code', '无')}")
+            formatted_text.append(f"- 更新原因：{update.get('reason', '无')}")
+        
+        formatted_text.append("\n=== 信息结束 ===")
+        
+        return "\n".join(formatted_text)
 
 
 # 创建全局数据管理器实例

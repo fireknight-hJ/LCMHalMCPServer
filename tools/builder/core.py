@@ -102,3 +102,15 @@ def get_function_analysis_and_replacement(func_name: str) -> dict:
             - replacement_update: 函数的替换更新信息（如果有）
     """
     return data_manager.get_function_analysis_and_replacement(func_name)
+
+
+def get_function_analysis_and_replacement_formatted(func_name: str) -> str:
+    """根据函数名获取格式化的函数分析和替换信息（文本格式，便于大模型理解）
+    
+    Args:
+        func_name: 函数名称
+        
+    Returns:
+        str: 格式化的函数分析和替换信息
+    """
+    return data_manager.get_function_analysis_and_replacement_formatted(func_name)
