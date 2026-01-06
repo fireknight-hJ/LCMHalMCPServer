@@ -126,6 +126,12 @@ async def build_graph():
         if globs.ai_log_enable:
             updated_state = {**state, **result}
             ai_log_manager.log_langgraph_node_end(agent_name, node_name, updated_state, function_name)
+            # 记录精炼对话记录
+            ai_log_manager.log_agent_refined_memory(
+                agent_name=agent_name,
+                state=updated_state,
+                function_name=function_name
+            )
         
         return result
 
