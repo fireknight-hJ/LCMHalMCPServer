@@ -198,7 +198,7 @@ async def run_build_project() -> BuildOutput:
     initial_state = {
         "messages": [
             {"role": "system", "content": system_prompting_en},
-            {"role": "user", "content": f"Build the project and fix the errors recursively, until the build is successful."}
+            {"role": "user", "content": f"Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."}
         ],
         "function_name": "build_project"
     }
