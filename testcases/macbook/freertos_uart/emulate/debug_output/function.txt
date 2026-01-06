@@ -1,3 +1,3 @@
-79 0x8000fb2 irq 0x0-> 0x8000224 frame_dummy (from 0x8000d28 _siccmram)
+79 0x8000fb2 irq 0x0-> 0x8000224 frame_dummy (from 0x8000cf8 _siccmram)
 	81 0x8000236 irq 0x0-> 0x80001d8 register_tm_clones (from 0x8000224 frame_dummy)
-91 0x800031c irq 0x0-> 0x80002b8 HAL_MspInit (from 0x8000304 HAL_Init)
+109 0x8000632 irq 0x0-> 0x8000634 HAL_UART_IRQHandler (from 0x8000602 HAL_UART_Transmit_IT)

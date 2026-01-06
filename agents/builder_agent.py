@@ -8,6 +8,7 @@ from langchain_core.messages import HumanMessage
 from config.llm_config import llm_deepseek_config
 from models.build_results.build_output import BuildOutput
 from prompts.project_builder import system_prompting_en
+from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
 import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log
@@ -127,9 +128,9 @@ async def build_graph():
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
+        # Use the imported summary prompt to ensure LLM only summarizes and doesn't call tools
         response = model_with_structured_output.invoke(
-            # [HumanMessage(content=state["messages"][-1].content)]
-            state["messages"]
+            state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
         )
         # We return the final answer
         result = {"final_response": response}

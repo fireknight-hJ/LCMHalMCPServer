@@ -1,3 +1,4 @@
-2026-01-07 01:41:06,674 - [-] Stop due to exceptional loop.
-2026-01-07 01:41:06,674 - current function: HAL_UART_IRQHandler
-2026-01-07 01:41:06,674 - current caller function: HAL_UART_IRQHandler
+2026-01-07 05:44:26,355 - 0x8000632 irq 0x0-> 0x8000634 HAL_UART_IRQHandler (from 0x8000602 HAL_UART_Transmit_IT)
+2026-01-07 05:44:26,355 - [-] Stop due to exceptional loop.
+2026-01-07 05:44:26,355 - current function: HAL_UART_IRQHandler
+2026-01-07 05:44:26,355 - current caller function: HAL_UART_IRQHandler
