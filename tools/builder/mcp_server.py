@@ -4,6 +4,7 @@ import asyncio
 from tools.builder.core import build_project as core_build_project
 from tools.builder.core import get_replace_func_details_by_file as core_get_replace_func_details_by_file
 from tools.builder.core import update_function_replacement as core_update_function_replacement
+from tools.builder.core import get_function_analysis_and_replacement as core_get_function_analysis_and_replacement
 from tools.builder.core import init_builder
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
@@ -25,6 +26,21 @@ async def get_replace_func_details_by_file(file_path: str) -> dict:
 async def update_function_replacement(func_name: str, replace_code: str, reason: str) -> dict:
     """get all replacement functions info"""
     return core_update_function_replacement(func_name, replace_code, reason)
+
+
+@mcp.tool()
+async def get_function_analysis_and_replacement(func_name: str) -> dict:
+    """Get function analysis (MMIO info) and replacement details by function name
+    
+    Args:
+        func_name: function name to query
+        
+    Returns:
+        dict: function analysis and replacement information
+            - mmio_info: MMIO analysis information
+            - replacement_update: replacement update information (if any)
+    """
+    return core_get_function_analysis_and_replacement(func_name)
 
 
 def init_mcp():

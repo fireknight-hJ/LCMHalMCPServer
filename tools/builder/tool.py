@@ -6,6 +6,7 @@ from tools.builder.core import (
     build_project as core_build_project,
     get_replace_func_details_by_file as core_get_replace_func_details_by_file,
     update_function_replacement as core_update_function_replacement,
+    get_function_analysis_and_replacement as core_get_function_analysis_and_replacement,
     init_builder as core_init_builder
 )
 
@@ -45,3 +46,12 @@ def init_builder() -> dict:
     """初始化builder工具"""
     asyncio.run(core_init_builder())
     return {"status": "success", "message": "Builder tool initialized successfully"}
+
+
+@tool(
+    "GetFunctionAnalysisAndReplacement",
+    description="Get function analysis (MMIO info) and replacement details by function name"
+)
+def get_function_analysis_and_replacement(func_name: str) -> dict:
+    """根据函数名获取函数分析和替换信息"""
+    return core_get_function_analysis_and_replacement(func_name)

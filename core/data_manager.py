@@ -134,6 +134,33 @@ class DataManager:
             "replaced_function_infos": [info.model_dump() for info in mmio_infos if info.function_name not in replacement_update_func_names],
             "replacement_updates": [update.model_dump() for update in replacement_updates]
         }
+    
+    def get_function_analysis_and_replacement(self, func_name: str):
+        """根据函数名获取该函数的分析和替换信息
+        
+        Args:
+            func_name: 函数名称
+            
+        Returns:
+            dict: 包含函数分析信息和替换信息的字典
+                - mmio_info: 函数的MMIO分析信息
+                - replacement_update: 函数的替换更新信息（如果有）
+        """
+        result = {}
+        
+        # 获取MMIO分析信息
+        if func_name in self.mmio_info_list:
+            result["mmio_info"] = self.mmio_info_list[func_name].model_dump()
+        
+        # 获取替换更新信息
+        if func_name in self.replacement_updates:
+            result["replacement_update"] = self.replacement_updates[func_name].model_dump()
+        
+        # 如果没有找到任何信息
+        if not result:
+            return {"error": f"Function {func_name} not found in MMIO function list or replacement updates."}
+        
+        return result
 
 
 # 创建全局数据管理器实例

@@ -14,7 +14,7 @@ from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 from tools.builder.core import init_builder
-from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement
+from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
 
 # Initialize the model
 model = ChatDeepSeek(
@@ -90,7 +90,8 @@ async def build_graph():
     tools = tools + [
         build_project,
         get_replace_func_details_by_file,
-        update_function_replacement
+        update_function_replacement,
+        get_function_analysis_and_replacement
     ]
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)

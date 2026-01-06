@@ -88,3 +88,17 @@ async def init_builder():
     """
     # 加载MMIO函数信息
     await data_manager.load_mmio_functions()
+
+
+def get_function_analysis_and_replacement(func_name: str) -> dict:
+    """根据函数名获取函数的分析和替换信息
+    
+    Args:
+        func_name: 函数名称
+        
+    Returns:
+        dict: 包含函数分析信息和替换信息的字典
+            - mmio_info: 函数的MMIO分析信息
+            - replacement_update: 函数的替换更新信息（如果有）
+    """
+    return data_manager.get_function_analysis_and_replacement(func_name)
