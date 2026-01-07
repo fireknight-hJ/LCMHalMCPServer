@@ -13,20 +13,53 @@ def replace_funcs():
     mmio_info_list = data_manager.get_mmio_info_list()
     replacement_updates = data_manager.get_replacement_updates()
     
+    # 首先处理所有在replacement_updates中的函数，确保它们都被替换
+    for func_name, replacement_update in replacement_updates.items():
+        func_info = get_function_info(globs.db_path, func_name)
+        if func_info:
+            replace_res = function_replace(func_info, replacement_update.replacement_code)
+            if not replace_res:
+                print(f"Warning: Failed to replace function {func_name}")
+        else:
+            print(f"Warning: Function {func_name} not found in database")
+    
+    # 然后处理mmio_info_list中不在replacement_updates中的函数
     for func_name, classify_res in mmio_info_list.items():
-        if func_name in replacement_updates:
-            replace_res = function_replace(get_function_info(globs.db_path, func_name), replacement_updates[func_name].replacement_code)
-        elif classify_res.has_replacement:
-            replace_res = function_replace(get_function_info(globs.db_path, func_name), classify_res.function_replacement)
+        if func_name not in replacement_updates and classify_res.has_replacement:
+            func_info = get_function_info(globs.db_path, func_name)
+            if func_info:
+                replace_res = function_replace(func_info, classify_res.function_replacement)
+                if not replace_res:
+                    print(f"Warning: Failed to replace function {func_name}")
+            else:
+                print(f"Warning: Function {func_name} not found in database")
 
 
 def recover_funcs():
     """恢复被替换的函数"""
     mmio_info_list = data_manager.get_mmio_info_list()
+    replacement_updates = data_manager.get_replacement_updates()
     
+    # 收集所有需要复原的文件路径，确保每个文件只被复原一次
+    files_to_recover = set()
+    
+    # 从mmio_info_list中收集文件路径
     for func_name, classify_res in mmio_info_list.items():
         if classify_res.has_replacement:
-            recover_res = function_recover(get_function_info(globs.db_path, func_name))
+            func_info = get_function_info(globs.db_path, func_name)
+            if func_info:
+                files_to_recover.add(func_info.file_path)
+    
+    # 从replacement_updates中收集文件路径
+    for func_name in replacement_updates.keys():
+        func_info = get_function_info(globs.db_path, func_name)
+        if func_info:
+            files_to_recover.add(func_info.file_path)
+    
+    # 复原所有收集到的文件
+    for file_path in files_to_recover:
+        from tools.replacer.code_recover import recover_code_file
+        recover_res = recover_code_file(file_path)
 
 
 def build_project() -> dict:
@@ -42,6 +75,13 @@ def build_project() -> dict:
     build_info = build_proj(globs.script_path)
     # 项目复原
     recover_funcs()
+    # 构建完成后更新syms.yml，确保符号表信息是最新的
+    try:
+        from tools.emulator.conf_generator import extract_syms
+        extract_syms()
+        print("syms.yml updated successfully after build")
+    except Exception as e:
+        print(f"Warning: Failed to update syms.yml after build: {e}")
     # 结果输出
     return {
         "std_err": build_info.std_err,
