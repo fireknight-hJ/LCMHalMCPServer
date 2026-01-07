@@ -47,6 +47,8 @@ def generate_base_config():
     global baseconfig_dict
     # 从数据库中获取MMIO函数列表
     mmio_funcs_emulate_config()
+    # 应用定制化配置
+    customize_emulator_config()
     # 生成YAML配置文件
     config_path = Path(f"{globs.script_path}/emulate/base_config.yml")
     # 确保目录存在
@@ -101,6 +103,18 @@ def mmio_funcs_emulate_config():
     except Exception as e:
         print(f"[WARNING] Failed to get MMIO function list: {e}")
         baseconfig_dict['output.elf']["mmio_funcs"] = []
+
+
+def customize_emulator_config():
+    """定制化emulator配置的函数
+    
+    当前功能：强制将LoopCopyDataInit替换为do_return
+    """
+    global baseconfig_dict
+    
+    # 强制将LoopCopyDataInit添加到handlers中并映射为do_return
+    baseconfig_dict['output.elf']['handlers']['LoopCopyDataInit'] = 'do_return'
+    print("[INFO] Customized emulator config: Added LoopCopyDataInit -> do_return")
 
 def extract_syms():
     yml_path = Path(globs.script_path) / "emulate" / "syms.yml"
