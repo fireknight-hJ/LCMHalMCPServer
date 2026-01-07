@@ -1,5 +1,5 @@
 symbols:
-  0: crtn.o
+  0: reent.c
   512: _Min_Heap_Size
   1024: _Min_Stack_Size
   134217728: g_pfnVectors
@@ -29,50 +29,83 @@ symbols:
   134219157: HAL_UART_Init
   134219251: HAL_UART_Transmit_IT
   134219301: HAL_UART_Receive_IT
-  134219305: HAL_UART_IRQHandler
-  134219307: HAL_UART_GetState
-  134219313: Reset_Handler
-  134219326: CopyDataInit
-  134219332: LoopCopyDataInit
-  134219346: FillZerobss
-  134219350: LoopFillZerobss
-  134219392: Default_Handler
-  134219393: DMA1_Stream3_IRQHandler
-  134219397: main
-  134219753: HAL_UART_MspInit
-  134219755: NMI_Handler
-  134219757: HardFault_Handler
-  134219759: MemManage_Handler
-  134219761: BusFault_Handler
-  134219763: UsageFault_Handler
-  134219765: SVC_Handler
-  134219767: DebugMon_Handler
-  134219769: PendSV_Handler
-  134219771: SysTick_Handler
-  134219773: USART3_IRQHandler
-  134219785: __libc_init_array
-  134219857: __udivmoddi4
-  134220616: __EH_FRAME_BEGIN__
-  134220617: _init
-  134220629: _fini
-  134220640: GPIO_PIN
-  134220648: APBPrescTable
-  134220656: __exidx_start
-  134220664: __exidx_end
-  134220668: __init_array_end
-  134220672: _sidata
-  134220820: _siccmram
+  134219349: HAL_UART_IRQHandler
+  134219351: HAL_UART_GetState
+  134219365: Reset_Handler
+  134219378: CopyDataInit
+  134219384: LoopCopyDataInit
+  134219398: FillZerobss
+  134219402: LoopFillZerobss
+  134219444: Default_Handler
+  134219445: DMA1_Stream3_IRQHandler
+  134219449: main
+  134219805: HAL_UART_MspInit
+  134219807: NMI_Handler
+  134219809: HardFault_Handler
+  134219811: MemManage_Handler
+  134219813: BusFault_Handler
+  134219815: UsageFault_Handler
+  134219817: SVC_Handler
+  134219819: DebugMon_Handler
+  134219821: PendSV_Handler
+  134219823: SysTick_Handler
+  134219825: USART3_IRQHandler
+  134219837: _getpid
+  134219841: _kill
+  134219857: _exit
+  134219869: _sbrk
+  134219929: memset
+  134219945: __errno
+  134219957: __libc_init_array
+  134220029: __retarget_lock_acquire_recursive
+  134220031: __retarget_lock_release_recursive
+  134220033: sbrk_aligned
+  134220101: _malloc_r
+  134220357: __malloc_lock
+  134220369: __malloc_unlock
+  134220381: _sbrk_r
+  134220413: __udivmoddi4
+  134221173: emutls_alloc
+  134221265: __emutls_get_address
+  134221285: abort
+  134221301: malloc
+  134221317: _raise_r
+  134221397: raise
+  134221413: _kill_r
+  134221449: _getpid_r
+  134221453: memcpy
+  134221480: __EH_FRAME_BEGIN__
+  134221481: _init
+  134221493: _fini
+  134221504: GPIO_PIN
+  134221512: APBPrescTable
+  134221520: __emutls_t.recursion_depth.0
+  134221524: __exidx_start
+  134221532: __exidx_end
+  134221536: __init_array_end
+  134221540: _sidata
+  134221784: _siccmram
   268435456: _sccmram
   536870912: GPIO_PORT
   536870928: SystemCoreClock
   536870932: uwTickFreq
   536870936: uwTickPrio
-  536870940: aTxEndMessage
-  536870962: aTxStartMessage
-  536871060: _edata
-  536871064: object.0
-  536871088: uwTick
-  536871092: aRxBuffer
-  536871104: UartHandle
-  536871176: _end
+  536870940: __emutls_v.recursion_depth.0
+  536870956: aTxEndMessage
+  536870978: aTxStartMessage
+  536871076: _impure_ptr
+  536871080: _impure_data
+  536871156: _edata
+  536871160: object.0
+  536871184: uwTick
+  536871188: aRxBuffer
+  536871200: UartHandle
+  536871272: __sbrk_heap_end
+  536871276: __sf
+  536871588: __lock___malloc_recursive_mutex
+  536871592: __malloc_sbrk_start
+  536871596: __malloc_free_list
+  536871600: errno
+  536871604: __bss_end__
+  536871608: _end
   537001984: _estack

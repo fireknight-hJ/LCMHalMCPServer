@@ -1,5 +1,3 @@
-79 0x8000fb2 irq 0x0-> 0x8000224 frame_dummy (from 0x8000c14 _siccmram)
+79 0x8000fb2 irq 0x0-> 0x8000224 frame_dummy (from 0x8000ee4 _sidata)
 	81 0x8000236 irq 0x0-> 0x80001d8 register_tm_clones (from 0x8000224 frame_dummy)
 91 0x800031c irq 0x0-> 0x80002b8 HAL_MspInit (from 0x8000304 HAL_Init)
-108 0x8000610 irq 0x0-> 0x800062a HAL_UART_GetState (from 0x80005f2 HAL_UART_Transmit_IT)
-115 0x8000652 irq 0x0-> 0x8000644 LoopCopyDataInit (from 0x8000652 FillZerobss)
