@@ -164,6 +164,16 @@ For each fix, explicitly document:
 - Include `HAL_BE.h` header
 - Preserve buffer management
 
+## 2. TRANSMIT (Data Transmission Functions) - HIGH PRIORITY
+**Identification**: Critical I/O, DMA, peripheral data transfer (write)
+**Examples**: `HAL_UART_Transmit`, `HAL_I2C_Master_Transmit`, `HAL_UART_Transmit_IT`
+**Strategy**:
+- Use `HAL_BE_Out(void* buf, int len)` for stdout
+- Include `HAL_BE.h` header
+- For non-blocking transmit functions (e.g., IT variants), skip function functionality or use HAL_BE_Out replacement
+- Do not preserve hardware-specific logic for transmit operations
+- Ensure proper state management to prevent exceptional loops
+
 ## 2. IRQ (Interrupt Service Functions) - HIGH PRIORITY  
 **Identification**: Interrupt handlers or interrupt enable functions
 **Examples**: `HAL_UART_IRQHandler`, `HAL_GPIO_EXTI_IRQHandler`
