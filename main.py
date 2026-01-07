@@ -13,7 +13,7 @@ from tools.emulator.conf_generator import generate_emulator_configs
 from utils.src_ops import src_replace
 
 
-if __name__ == "__main__":
+async def main():
     # 获取命令行输入的script_path，默认为默认配置中的路径
     import sys
     script_path = sys.argv[1] if len(sys.argv) > 1 else globs.default_config["script_path"]
@@ -29,16 +29,20 @@ if __name__ == "__main__":
     # 预分析数据库
     register_db(globs.db_path)
     # # 编译项目
-    from tools.builder.builder import build_project
-    build_output = asyncio.run(build_project())
-    print(f"Build project output: {build_output.model_dump_json()}")
+    from tools.builder.core import build_project
+    build_output = build_project()
+    print(f"Build project output: {build_output}")
     # 生成配置文件
     generate_emulator_configs()
-    # 执行模拟器
-    from tools.emulator.runner import run_emulator
-    emulate_output = run_emulator()
+    # 执行模拟器（根据用户反馈调整为使用agent workflow）
+    from agents.emulator_runner_agent import run_emulator
+    emulate_output = await run_emulator()
     print(f"Emulate output: {emulate_output}")
- 
+
+# 运行主函数
+if __name__ == "__main__":
+    asyncio.run(main())
+
 """
 当前workflow：
 

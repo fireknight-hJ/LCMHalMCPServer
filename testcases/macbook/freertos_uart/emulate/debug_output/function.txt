@@ -1,3 +1,3 @@
-79 0x8000fb2 irq 0x0-> 0x8000224 frame_dummy (from 0x8000de4 _siccmram)
+79 0x8000fb2 irq 0x0-> 0x8000224 frame_dummy (from 0x8000ee4 _sidata)
 	81 0x8000236 irq 0x0-> 0x80001d8 register_tm_clones (from 0x8000224 frame_dummy)
-93 0x80003ee irq 0x0-> 0x80003f0 HAL_SYSTICK_Config (from 0x80003d4 HAL_NVIC_EnableIRQ)
+91 0x800031c irq 0x0-> 0x80002b8 HAL_MspInit (from 0x8000304 HAL_Init)

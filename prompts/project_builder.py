@@ -11,6 +11,8 @@ Now that you have replaced some of the functions involving MMIO and driver opera
 
 During the compilation process, you may encounter errors, which could be issues introduced by the function replacements. You need to continuously analyze the error messages and modify the source code accordingly to ensure the project compiles successfully.
 
+Important: When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure.
+
 Validation Requirements:
 notice that do not change the return type of the function, eg. the return type of the function is void, then the return type of the rewritten function should also be void.
 notice that do not try to declare any extern value in the function, just assume that they already exist in the file as global value.

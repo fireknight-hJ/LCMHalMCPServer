@@ -10,13 +10,14 @@ from config.llm_config import llm_deepseek_config
 from models.analyze_results.function_analyze import FixedFunctionInfo
 from models.analyze_results.function_analyze import ReplacementUpdate
 from prompts.function_fixer import system_prompt_en
+from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
 import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_json_log
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 from tools.builder.core import init_builder
-from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement
+from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
 from tools.emulator.tool import emulate_proj, mmio_function_emulate_info, function_calls_emulate_info
 
 # Initialize the model
@@ -114,7 +115,8 @@ async def build_graph():
         function_calls_emulate_info,
         # builder工具
         get_replace_func_details_by_file,
-        update_function_replacement
+        update_function_replacement,
+        get_function_analysis_and_replacement
     ]
 
     # Bind tools to model
@@ -151,9 +153,9 @@ async def build_graph():
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
+        # Use the imported summary prompt to ensure LLM only summarizes and doesn't call tools
         response = model_with_structured_output.invoke(
-            # [HumanMessage(content=state["messages"][-1].content)]
-            state["messages"] + [HumanMessage(content="Now summarize the above messages and provide a final answer.")]
+            state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
         )
         # We return the final answer
         result = {"final_response": response}
@@ -218,6 +220,7 @@ async def build_graph():
 
 async def function_fix() -> ReplacementUpdate:
     graph = await build_graph()
+    
     initial_state = {
         "messages": [
             {"role": "system", "content": system_prompt_en},

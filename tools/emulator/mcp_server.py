@@ -15,17 +15,17 @@ from tools.emulator.core import function_calls_emulate_info as core_function_cal
 
 mcp = FastMCP("LCMHalMCP", version="1.0.0")
 
-@mcp.tool()
+@mcp.tool(name="EmulateProject")
 async def emulate_proj() -> dict:
     """run emulator with generated configs, return the emulation result"""
     return core_emulate_proj()
 
-@mcp.tool()
+@mcp.tool(name="GetMMIOFunctionEmulateInfo")
 async def mmio_function_emulate_info() -> str:
     """return the emulator results of all mmio functions being used"""
     return core_mmio_function_emulate_info()
 
-@mcp.tool()
+@mcp.tool(name="GetFunctionCallsEmulateInfo")
 async def function_calls_emulate_info() -> str:
     """return the emulator results of all function call stack being used"""
     return core_function_calls_emulate_info()
