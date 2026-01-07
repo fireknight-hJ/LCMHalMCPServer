@@ -42,9 +42,7 @@ class DataManager:
     
     def update_function_replacement(self, func_name: str, replace_code: str, reason: str):
         """更新函数替换代码"""
-        if func_name not in self.mmio_info_list:
-            return False
-        
+        # 不再检查函数是否在mmio_info_list中，允许更新任何函数
         replacement_update = ReplacementUpdate(
             function_name=func_name, 
             replacement_code=replace_code, 
@@ -145,20 +143,44 @@ class DataManager:
             dict: 包含函数分析信息和替换信息的字典
                 - mmio_info: 函数的MMIO分析信息
                 - replacement_update: 函数的替换更新信息（如果有）
+                - function_info: 函数的基本信息（如果有）
+                - message: 提示信息（如果有）
         """
         result = {}
+        has_replacement = False
         
         # 获取MMIO分析信息
         if func_name in self.mmio_info_list:
             result["mmio_info"] = self.mmio_info_list[func_name].model_dump()
+            has_replacement = result["mmio_info"].get("has_replacement", False)
         
         # 获取替换更新信息
         if func_name in self.replacement_updates:
             result["replacement_update"] = self.replacement_updates[func_name].model_dump()
+            has_replacement = True
         
-        # 如果没有找到任何信息
-        if not result:
-            return {"error": f"Function {func_name} not found in MMIO function list or replacement updates."}
+        # 获取函数基本信息
+        function_info = get_function_info(globs.db_path, func_name)
+        if function_info:
+            # 获取函数内容
+            func_content = ""
+            idx = function_info.location_line
+            while str(idx) in function_info.function_content_in_lines:
+                func_content += function_info.function_content_in_lines[str(idx)] + "\n"
+                idx += 1
+            
+            result["function_info"] = {
+                "name": function_info.name,
+                "file_path": function_info.file_path,
+                "location_line": function_info.location_line,
+                "function_content": func_content
+            }
+        else:
+            return {"error": f"Function {func_name} not found in database."}
+        
+        # 如果没有找到替换信息，添加提示信息
+        if not has_replacement:
+            result["message"] = "这个函数替换没出现，但是有函数本身的function_info"
         
         return result
     
@@ -182,6 +204,14 @@ class DataManager:
         formatted_text = []
         formatted_text.append(f"=== {func_name} 函数分析与替换信息 ===")
         
+        # 添加函数基本信息
+        if "function_info" in data:
+            func_info = data["function_info"]
+            formatted_text.append("\n【函数基本信息】")
+            formatted_text.append(f"- 文件路径：{func_info.get('file_path', '未知')}")
+            formatted_text.append(f"- 行号：{func_info.get('location_line', '未知')}")
+            formatted_text.append(f"- 函数内容：{func_info.get('function_content', '无法获取')}")
+        
         # 添加初始分析信息
         if "mmio_info" in data:
             mmio_info = data["mmio_info"]
@@ -198,6 +228,10 @@ class DataManager:
             formatted_text.append("\n【替换更新】")
             formatted_text.append(f"- 更新代码：{update.get('replacement_code', '无')}")
             formatted_text.append(f"- 更新原因：{update.get('reason', '无')}")
+        
+        # 添加提示信息
+        if "message" in data:
+            formatted_text.append(f"\n【提示】{data['message']}")
         
         formatted_text.append("\n=== 信息结束 ===")
         

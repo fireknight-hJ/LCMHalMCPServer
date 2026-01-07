@@ -17,7 +17,7 @@ from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 from tools.builder.core import init_builder
-from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement
+from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
 from tools.emulator.tool import emulate_proj, mmio_function_emulate_info, function_calls_emulate_info
 
 # Initialize the model
@@ -115,7 +115,8 @@ async def build_graph():
         function_calls_emulate_info,
         # builder工具
         get_replace_func_details_by_file,
-        update_function_replacement
+        update_function_replacement,
+        get_function_analysis_and_replacement
     ]
 
     # Bind tools to model
@@ -219,6 +220,7 @@ async def build_graph():
 
 async def function_fix() -> ReplacementUpdate:
     graph = await build_graph()
+    
     initial_state = {
         "messages": [
             {"role": "system", "content": system_prompt_en},
