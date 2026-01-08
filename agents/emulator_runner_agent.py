@@ -11,6 +11,7 @@ from models.emulate_results.emulate_result import EmulateResult
 from models.build_results.build_output import BuildOutput
 from models.analyze_results.function_analyze import ReplacementUpdate
 from prompts.project_emulator import system_prompting_en
+from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
 import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_message_raw_log
@@ -116,9 +117,9 @@ async def build_graph():
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
+        # Use the imported summary prompt to ensure LLM only summarizes and doesn't call tools
         response = model_with_structured_output.invoke(
-            # [HumanMessage(content=state["messages"][-1].content)]
-            state["messages"]
+            state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
         )
         # We return the final answer
         result = {"final_response": response}

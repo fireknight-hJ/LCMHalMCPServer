@@ -8,13 +8,14 @@ from langchain_core.messages import HumanMessage
 from config.llm_config import llm_deepseek_config
 from models.build_results.build_output import BuildOutput
 from prompts.project_builder import system_prompting_en
+from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
 import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 from tools.builder.core import init_builder
-from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement
+from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
 
 # Initialize the model
 model = ChatDeepSeek(
@@ -90,7 +91,8 @@ async def build_graph():
     tools = tools + [
         build_project,
         get_replace_func_details_by_file,
-        update_function_replacement
+        update_function_replacement,
+        get_function_analysis_and_replacement
     ]
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
@@ -126,9 +128,9 @@ async def build_graph():
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
+        # Use the imported summary prompt to ensure LLM only summarizes and doesn't call tools
         response = model_with_structured_output.invoke(
-            # [HumanMessage(content=state["messages"][-1].content)]
-            state["messages"]
+            state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
         )
         # We return the final answer
         result = {"final_response": response}
@@ -196,7 +198,7 @@ async def run_build_project() -> BuildOutput:
     initial_state = {
         "messages": [
             {"role": "system", "content": system_prompting_en},
-            {"role": "user", "content": f"Build the project and fix the errors recursively, until the build is successful."}
+            {"role": "user", "content": f"Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."}
         ],
         "function_name": "build_project"
     }

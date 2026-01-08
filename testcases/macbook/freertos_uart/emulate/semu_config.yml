@@ -22,7 +22,7 @@ memory_map:
     base_addr: 0x8000000
     file: output.bin
     permissions: r-x
-    size: 0x46b4
+    size: 0x58bc
   irq_ret:
     base_addr: 0xfffff000
     permissions: rwx

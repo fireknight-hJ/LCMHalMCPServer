@@ -336,16 +336,14 @@ class AILogManager:
         with self._session_lock:
             messages = state.get("messages", [])
             
+            # 优化的精炼内存结构，使用列表保证顺序性
             refined_memory = {
                 "session_id": self.session_id,
                 "agent_name": agent_name,
                 "function_name": function_name,
                 "timestamp": datetime.now().isoformat(),
                 "total_messages": len(messages),
-                "events": [],  # 按时间顺序排列的所有事件
-                "conversations": [],  # 分类整理的对话内容
-                "tool_calls": [],  # 分类整理的工具调用
-                "tool_results": [],  # 分类整理的工具回复
+                "interactions": [],  # 所有交互按时间顺序排列
                 "final_result": None
             }
             
@@ -364,77 +362,53 @@ class AILogManager:
                     if msg_type == "ai":
                         content = msg_dict.get("content", "")
                         
-                        # 添加到对话列表
-                        conversation = {
+                        # 添加对话交互
+                        refined_memory["interactions"].append({
                             "index": i,
+                            "type": "conversation",
+                            "agent_name": agent_name,
                             "role": "assistant",
-                            "type": "ai",
-                            "content": str(content)
-                        }
-                        refined_memory["conversations"].append(conversation)
-                        
-                        # 添加到事件列表
-                        refined_memory["events"].append({
-                            "index": i,
-                            "event_type": "conversation",
-                            **conversation
+                            "content": str(content),
+                            "message_type": "ai"
                         })
                         
                         # 处理工具调用
                         tool_calls = msg_dict.get("tool_calls", [])
                         for call in tool_calls:
-                            tool_call = {
+                            refined_memory["interactions"].append({
                                 "index": i,
-                                "name": call.get("name"),
-                                "args": call.get("args", {}),
-                                "id": call.get("id", "")
-                            }
-                            # 添加到工具调用列表
-                            refined_memory["tool_calls"].append(tool_call)
-                            # 添加到事件列表
-                            refined_memory["events"].append({
-                                "index": i,
-                                "event_type": "tool_call",
-                                "tool_index": refined_memory["tool_calls"].index(tool_call),
-                                **tool_call
+                                "type": "tool_call",
+                                "agent_name": agent_name,
+                                "tool_name": call.get("name"),
+                                "arguments": call.get("args", {}),
+                                "call_id": call.get("id", ""),
+                                "message_type": "ai"
                             })
                     
                     elif msg_type == "human":
                         content = msg_dict.get("content", "")
                         
-                        # 添加到对话列表
-                        conversation = {
+                        # 添加对话交互
+                        refined_memory["interactions"].append({
                             "index": i,
+                            "type": "conversation",
+                            "agent_name": agent_name,
                             "role": "user",
-                            "type": "human",
-                            "content": str(content)
-                        }
-                        refined_memory["conversations"].append(conversation)
-                        
-                        # 添加到事件列表
-                        refined_memory["events"].append({
-                            "index": i,
-                            "event_type": "conversation",
-                            **conversation
+                            "content": str(content),
+                            "message_type": "human"
                         })
                     
                     elif msg_type == "system":
                         content = msg_dict.get("content", "")
                         
-                        # 添加到对话列表
-                        conversation = {
+                        # 添加系统消息交互
+                        refined_memory["interactions"].append({
                             "index": i,
+                            "type": "conversation",
+                            "agent_name": agent_name,
                             "role": "system",
-                            "type": "system",
-                            "content": str(content)
-                        }
-                        refined_memory["conversations"].append(conversation)
-                        
-                        # 添加到事件列表
-                        refined_memory["events"].append({
-                            "index": i,
-                            "event_type": "conversation",
-                            **conversation
+                            "content": str(content),
+                            "message_type": "system"
                         })
                     
                     elif msg_type == "tool":
@@ -447,25 +421,16 @@ class AILogManager:
                         except:
                             content_dict = {"content": str(tool_content)}
                         
-                        # 添加到工具结果列表
-                        tool_result = {
+                        # 添加工具回复交互
+                        refined_memory["interactions"].append({
                             "index": i,
-                            "tool": tool_name,
-                            "tool_call_id": tool_call_id,
-                            "result": content_dict
-                        }
-                        refined_memory["tool_results"].append(tool_result)
-                        
-                        # 添加到事件列表
-                        refined_memory["events"].append({
-                            "index": i,
-                            "event_type": "tool_result",
-                            "tool_result_index": refined_memory["tool_results"].index(tool_result),
-                            **tool_result
+                            "type": "tool_result",
+                            "agent_name": agent_name,
+                            "tool_name": tool_name,
+                            "call_id": tool_call_id,
+                            "result": content_dict,
+                            "message_type": "tool"
                         })
-            
-            # 确保events数组按时间顺序（index）排序
-            refined_memory["events"].sort(key=lambda x: x["index"])
             
             if "final_response" in state:
                 final_response = state["final_response"]
