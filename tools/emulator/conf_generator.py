@@ -114,7 +114,9 @@ def customize_emulator_config():
     
     # 强制将LoopCopyDataInit添加到handlers中并映射为do_return
     baseconfig_dict['output.elf']['handlers']['LoopCopyDataInit'] = 'do_return'
+    baseconfig_dict['output.elf']['handlers']['LoopFillZerobss'] = 'do_return'
     print("[INFO] Customized emulator config: Added LoopCopyDataInit -> do_return")
+    print("[INFO] Customized emulator config: Added LoopFillZerobss -> do_return")
 
 def extract_syms():
     yml_path = Path(globs.script_path) / "emulate" / "syms.yml"
