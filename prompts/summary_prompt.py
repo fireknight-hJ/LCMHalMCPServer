@@ -19,3 +19,28 @@ summary_prompt_zh = """你现在的任务是总结前面的对话内容，生成
 4. 最终结论是什么？
 
 现在开始总结："""
+
+# 用于指导模型生成FunctionClassifyResponse结构化输出的prompt
+function_classify_final_prompt_en = """Based on the entire conversation history, please generate the final function classification result in the required JSON format. You must strictly follow the format requirements and ensure all required fields are present.
+
+Required fields:
+- function_name: The name of the function being analyzed
+- function_type: One of the following options: RECV, IRQ, RETURNOK, SKIP, NEEDCHECK, NODRIVER, INIT
+- functionality: A description of the main functionality of the function
+- classification_reason: Explanation of why the function was classified as this type
+- has_replacement: Whether the function has a replacement implementation
+- function_replacement: The replacement code if has_replacement is true, otherwise an empty string
+
+**IMPORTANT**: You must output only the JSON object, no other text!"""
+
+function_classify_final_prompt_zh = """根据整个对话历史，请按照要求的JSON格式生成最终的函数分类结果。你必须严格遵循格式要求，确保所有必填字段都存在。
+
+必填字段：
+- function_name: 被分析的函数名称
+- function_type: 以下选项之一：RECV, IRQ, RETURNOK, SKIP, NEEDCHECK, NODRIVER, INIT
+- functionality: 函数主要功能的描述
+- classification_reason: 解释为什么将该函数分类为这种类型
+- has_replacement: 函数是否有替换实现
+- function_replacement: 如果has_replacement为true，则为替换代码，否则为空字符串
+
+**重要**：你必须只输出JSON对象，不要其他任何文本！"""

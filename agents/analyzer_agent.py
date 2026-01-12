@@ -9,7 +9,7 @@ from langchain_core.messages import HumanMessage
 from config.llm_config import llm_deepseek_config
 from models.analyze_results.function_analyze import FunctionClassifyResponse
 from prompts.function_classifier import system_prompting_en
-from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
+from prompts.summary_prompt import function_classify_final_prompt_en as SUMMARY_PROMPT
 import os
 import time
 import asyncio
