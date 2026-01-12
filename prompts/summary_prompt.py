@@ -9,6 +9,28 @@ Please summarize the following content:
 
 Now begin summarizing:"""
 
+# Fixer专用的结构化输出提示
+fixer_summary_prompt_en = """Your current task is to generate a final answer in JSON format.
+
+**ABSOLUTELY CRITICAL INSTRUCTIONS:**
+1. You CANNOT call any tools
+2. You CANNOT ask questions
+3. You CANNOT request more information
+4. You CANNOT output any text other than the JSON object
+5. You CANNOT wrap the JSON in any code blocks or formatting
+
+**JSON FORMAT REQUIREMENTS:**
+You must output exactly this format:
+{
+  "function_name": "name_of_function",
+  "replacement_code": "fixed_function_code",
+  "reason": "explanation_of_the_fix"
+}
+
+**WARNING:** Any deviation from these instructions will cause a critical error.
+
+Now output the JSON object:"""
+
 summary_prompt_zh = """你现在的任务是总结前面的对话内容，生成最终答案。
 **重要指令**：你只能进行总结，不能调用任何工具，不能提问，不能请求更多信息。
 
