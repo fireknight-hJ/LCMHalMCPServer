@@ -13,6 +13,7 @@ import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
+from utils.failcheck import check_iteration_limit
 import config.globs as globs
 from tools.builder.core import init_builder
 from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
@@ -29,6 +30,8 @@ class AgentState(MessagesState):
     final_response: BuildOutput
     # Function name being built
     function_name: str
+    # Counter to prevent infinite loops
+    iteration_count: int = 0
 
 # 全局变量存储graph实例
 _graph = None
@@ -161,13 +164,17 @@ async def build_graph():
         node_name = "call_model"
         function_name = state.get("function_name", "build_project")
         
+        # 检查迭代次数限制
+        current_iteration = state.get("iteration_count", 0)
+        new_iteration = check_iteration_limit(state, max_iterations=100, agent_name=agent_name)
+        
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
         messages = state["messages"]
         response = await model_with_tools.ainvoke(messages)
         
-        result = {"messages": [response]}
+        result = {"messages": [response], "iteration_count": new_iteration}
         
         if globs.ai_log_enable:
             updated_state = {**state, **result}
@@ -200,9 +207,10 @@ async def run_build_project() -> BuildOutput:
             {"role": "system", "content": system_prompting_en},
             {"role": "user", "content": f"Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."}
         ],
-        "function_name": "build_project"
+        "function_name": "build_project",
+        "iteration_count": 0  # 显式设置初始迭代次数
     }
-    result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
+    result = await graph.ainvoke(initial_state, config={"recursion_limit": 100})  # 提高LangGraph限制，让我的检查先触发
     # log ai memory
     if globs.ai_log_enable:
         dump_message_json_log("build_project", result)
