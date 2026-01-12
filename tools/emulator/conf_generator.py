@@ -111,12 +111,14 @@ def customize_emulator_config():
     当前功能：强制将LoopCopyDataInit替换为do_return
     """
     global baseconfig_dict
-    
+    # deprecated: 在初始化阶段随意跳过tag会报错
     # 强制将LoopCopyDataInit添加到handlers中并映射为do_return
-    baseconfig_dict['output.elf']['handlers']['LoopCopyDataInit'] = 'do_return'
-    baseconfig_dict['output.elf']['handlers']['LoopFillZerobss'] = 'do_return'
-    print("[INFO] Customized emulator config: Added LoopCopyDataInit -> do_return")
-    print("[INFO] Customized emulator config: Added LoopFillZerobss -> do_return")
+    # baseconfig_dict['output.elf']['handlers']['LoopCopyDataInit'] = 'do_return'
+    # baseconfig_dict['output.elf']['handlers']['LoopFillZerobss'] = 'do_return'
+    # baseconfig_dict['output.elf']['handlers']['CopyDataInit'] = 'do_return'
+    # print("[INFO] Customized emulator config: Added LoopCopyDataInit -> do_return")
+    # print("[INFO] Customized emulator config: Added LoopFillZerobss -> do_return")
+    # print("[INFO] Customized emulator config: Added CopyDataInit -> do_return")
 
 def extract_syms():
     yml_path = Path(globs.script_path) / "emulate" / "syms.yml"
