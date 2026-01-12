@@ -11,6 +11,8 @@ handlers:
   HAL_BE_return_0: fuzzemu.handlers.common.return_zero
   HAL_BE_return_1: fuzzemu.handlers.common.return_true
   HAL_Delay: do_return
+  LoopCopyDataInit: do_return
+  LoopFillZerobss: do_return
   wait: do_return
   wait_us: do_return
 include:

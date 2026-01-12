@@ -1,3 +1,3 @@
-2026-01-07 10:52:22,026 - [-] Stop due to exceptional loop.
-2026-01-07 10:52:22,026 - current function: HAL_UART_Receive_IT
-2026-01-07 10:52:22,027 - current caller function: HAL_UART_Receive_IT
+2026-01-12 18:07:03,343 - [-] Stop due to exceptional loop.
+2026-01-12 18:07:03,343 - current function: CopyDataInit
+2026-01-12 18:07:03,343 - current caller function: CopyDataInit
