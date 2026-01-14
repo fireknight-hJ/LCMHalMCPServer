@@ -117,18 +117,3 @@ def analyze_failed_conversation(messages, agent_name="Unknown Agent", max_iterat
     # 彻底终止程序
     sys.exit(1)
 
-def check_iteration_limit(state, max_iterations=100, agent_name="Unknown Agent"):
-    """检查迭代次数限制，如果超过则触发failcheck
-    max_iterations: 与LangGraph的recursion_limit保持一致
-    """
-    current_iteration = state.get("iteration_count", 0)
-    
-    # 转换为实际的agent调用次数（每2个步骤对应1次agent调用）
-    actual_agent_calls = current_iteration // 2
-    
-    if current_iteration >= max_iterations:
-        print(f"\n[CRITICAL ERROR] Iteration limit exceeded ({max_iterations} steps = {actual_agent_calls} agent calls)")
-        analyze_failed_conversation(state.get("messages", []), agent_name, actual_agent_calls)
-    
-    # 更新迭代计数
-    return current_iteration + 1

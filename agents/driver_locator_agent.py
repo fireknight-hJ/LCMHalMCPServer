@@ -12,7 +12,6 @@ import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
-from utils.failcheck import check_iteration_limit
 import config.globs as globs
 
 # Initialize the model
@@ -55,8 +54,6 @@ class AgentState(MessagesState):
     final_response: DriverDirLocatorResponse
     # Function name being located
     function_name: str
-    # Counter to prevent infinite loops
-    iteration_count: int = 0
 
     # @DeprecationWarning("use log.dump_message instead")
     def dump_message(self):
@@ -162,17 +159,13 @@ async def build_graph():
         node_name = "call_model"
         function_name = state.get("function_name", "driver_dir_locate")
         
-        # 检查迭代次数限制
-        current_iteration = state.get("iteration_count", 0)
-        new_iteration = check_iteration_limit(state, max_iterations=100, agent_name=agent_name)
-        
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
         messages = state["messages"]
         response = await model_with_tools.ainvoke(messages)
         
-        result = {"messages": [response], "iteration_count": new_iteration}
+        result = {"messages": [response]}
         
         if globs.ai_log_enable:
             updated_state = {**state, **result}
@@ -205,14 +198,25 @@ async def driver_dir_locate() -> DriverDirLocatorResponse:
             {"role": "system", "content": system_prompting_en},
             {"role": "user", "content": f"Find the driver directory and kernel support directory of the project"}
         ],
-        "function_name": "driver_dir_locate",
-        "iteration_count": 0  # 显式设置初始迭代次数
+        "function_name": "driver_dir_locate"
+        # 移除自定义计数器，直接使用LangGraph的错误处理
     }
-    result = await graph.ainvoke(initial_state, config={"recursion_limit": 100})  # 添加recursion_limit配置
-    # log ai memory
-    if globs.ai_log_enable:
-        dump_message_json_log("driver_dir_locate", result)
-    return result["final_response"]
+    
+    try:
+        result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})  # 添加recursion_limit配置
+        # log ai memory
+        if globs.ai_log_enable:
+            dump_message_json_log("driver_dir_locate", result)
+        return result["final_response"]
+    except Exception as e:
+        from langgraph.errors import GraphRecursionError
+        if isinstance(e, GraphRecursionError):
+            # 捕获LangGraph的递归错误，触发failcheck分析
+            from utils.failcheck import analyze_failed_conversation
+            analyze_failed_conversation(initial_state["messages"], "driver_locator_agent", 50)  # 50次agent调用
+        else:
+            # 其他错误直接抛出
+            raise
 
 def check_analyzed() -> bool:
     """
