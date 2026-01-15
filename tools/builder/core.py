@@ -85,6 +85,7 @@ def build_project() -> dict:
     # 结果输出
     return {
         "std_err": build_info.std_err,
+        "std_out": build_info.std_out,
         "exit_code": build_info.exit_code
     }
 
