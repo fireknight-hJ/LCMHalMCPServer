@@ -4,7 +4,7 @@ import config.globs as globs
 import os
 import re
 from tools.emulator.emulate_runner import run_emulator
-from tools.emulator.conf_generator import extract_syms
+from tools.emulator.conf_generator import extract_syms, generate_emulator_configs
 
 
 def emulate_proj() -> dict:
@@ -15,6 +15,9 @@ def emulate_proj() -> dict:
     """
     # 每次emulate前重新生成syms.yml配置文件，因为重新build后符号表会变化
     extract_syms()
+    # 每次emulate前重新生成配置文件，因为重新build后配置文件会变化（entry_point等）
+    generate_emulator_configs()
+    # 运行模拟器
     ret = run_emulator()
     return {
         "std_out": ret.stdout,
