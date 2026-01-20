@@ -183,10 +183,18 @@ def build_project() -> dict:
         import traceback
         traceback.print_exc()
     
-    # 结果输出
+    # 结果输出，添加stdout长度限制
+    stdout_limit = 10000  # 设置stdout长度限制为10000字符
+    std_out = build_info.std_out
+    
+    if std_out and len(std_out) > stdout_limit:
+        # 如果stdout过长，进行截断并添加提示信息
+        truncated_stdout = std_out[:stdout_limit]
+        std_out = f"{truncated_stdout}\n[TRUNCATED] Output exceeded {stdout_limit} characters. Showing first {stdout_limit} characters only."
+    
     return {
         "std_err": build_info.std_err,
-        "std_out": build_info.std_out,
+        "std_out": std_out,
         "exit_code": build_info.exit_code
     }
 
