@@ -62,6 +62,75 @@ def recover_funcs():
         recover_res = recover_code_file(file_path)
 
 
+def elf_to_bin(elf_path: str, bin_path: str) -> bool:
+    """将ELF文件转换为BIN文件
+    
+    Args:
+        elf_path: ELF文件路径
+        bin_path: BIN文件输出路径
+        
+    Returns:
+        bool: 转换是否成功
+    """
+    import subprocess
+    import os
+    
+    try:
+        # 检查ELF文件是否存在
+        if not os.path.exists(elf_path):
+            print(f"Error: ELF file not found at {elf_path}")
+            return False
+        
+        # 检查输出目录是否存在，如果不存在则创建
+        bin_dir = os.path.dirname(bin_path)
+        if bin_dir and not os.path.exists(bin_dir):
+            os.makedirs(bin_dir, exist_ok=True)
+            print(f"Created directory: {bin_dir}")
+        
+        # 检查arm-none-eabi-objcopy工具是否可用
+        try:
+            subprocess.run(
+                ["arm-none-eabi-objcopy", "--version"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+        except subprocess.CalledProcessError:
+            print("Error: arm-none-eabi-objcopy not found in PATH")
+            return False
+        
+        # 使用arm-none-eabi-objcopy工具将ELF转换为BIN
+        print(f"Converting {elf_path} to {bin_path}...")
+        result = subprocess.run(
+            ["arm-none-eabi-objcopy", "-O", "binary", elf_path, bin_path],
+            capture_output=True,
+            text=True
+        )
+        
+        if result.returncode == 0:
+            # 验证输出文件是否创建成功
+            if os.path.exists(bin_path):
+                print(f"Successfully converted {elf_path} to {bin_path}")
+                print(f"Output file size: {os.path.getsize(bin_path)} bytes")
+                return True
+            else:
+                print(f"Error: Conversion succeeded but output file {bin_path} not found")
+                return False
+        else:
+            print(f"Failed to convert {elf_path} to {bin_path}")
+            print(f"Return code: {result.returncode}")
+            if result.stdout:
+                print(f"Stdout: {result.stdout}")
+            if result.stderr:
+                print(f"Stderr: {result.stderr}")
+            return False
+    except Exception as e:
+        print(f"Error converting {elf_path} to {bin_path}: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+
 def build_project() -> dict:
     """构建项目
     
@@ -75,13 +144,45 @@ def build_project() -> dict:
     build_info = build_proj(globs.script_path)
     # 项目复原
     recover_funcs()
-    # 构建完成后更新syms.yml，确保符号表信息是最新的
+    
+    # 构建完成后处理输出文件
     try:
-        from tools.emulator.conf_generator import extract_syms
-        extract_syms()
-        print("syms.yml updated successfully after build")
+        import os
+        # 获取脚本目录下的ELF文件路径（build.sh生成的）
+        elf_path = os.path.join(globs.script_path, "output.elf")
+        
+        if os.path.exists(elf_path):
+            print(f"ELF file found at: {elf_path}")
+            
+            # 构建完成后先将ELF转换为BIN文件
+            bin_path = os.path.join(globs.script_path, "emulate", "output.bin")
+            print(f"Attempting to convert ELF to BIN: {bin_path}")
+            
+            # 检查是否已经存在旧的BIN文件，如果存在则删除
+            if os.path.exists(bin_path):
+                print(f"Removing old BIN file: {bin_path}")
+                os.remove(bin_path)
+            
+            # 转换ELF文件为BIN文件
+            if elf_to_bin(elf_path, bin_path):
+                print("ELF to BIN conversion successful")
+                
+                # 然后再更新syms.yml，确保符号表信息是最新的
+                try:
+                    from tools.emulator.conf_generator import extract_syms
+                    extract_syms()
+                    print("syms.yml updated successfully after build")
+                except Exception as e:
+                    print(f"Warning: Failed to update syms.yml after build: {e}")
+            else:
+                print("ELF to BIN conversion failed")
+        else:
+            print(f"Warning: ELF file not found at {elf_path}")
     except Exception as e:
-        print(f"Warning: Failed to update syms.yml after build: {e}")
+        print(f"Error processing output files after build: {e}")
+        import traceback
+        traceback.print_exc()
+    
     # 结果输出
     return {
         "std_err": build_info.std_err,
