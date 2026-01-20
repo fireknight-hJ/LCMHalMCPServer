@@ -1,0 +1,6 @@
+2026-01-21 06:06:20,422 - 0x801bc48 irq 0x0-> 0x8029364 HAL_InitTick (from 0x801bc24 HAL_Init)
+2026-01-21 06:06:20,441 - 0x80274d2 irq 0x0-> 0x8027894 SystemClock_Config (from 0x80274c0 main)
+2026-01-21 06:06:20,442 - 0x8027900 irq 0x0-> 0x8021be4 HAL_RCC_OscConfig (from 0x8027894 SystemClock_Config)
+2026-01-21 06:06:22,750 - [-] Stop due to exceptional loop.
+2026-01-21 06:06:22,750 - current function: HAL_RCC_OscConfig
+2026-01-21 06:06:22,750 - current caller function: HAL_RCC_OscConfig

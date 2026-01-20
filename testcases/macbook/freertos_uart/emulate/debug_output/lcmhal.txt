@@ -1,3 +1,0 @@
-2026-01-12 18:07:03,343 - [-] Stop due to exceptional loop.
-2026-01-12 18:07:03,343 - current function: CopyDataInit
-2026-01-12 18:07:03,343 - current caller function: CopyDataInit

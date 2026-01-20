@@ -14,8 +14,6 @@ output.elf:
     HAL_BE_return_1: fuzzemu.handlers.common.return_true
     HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
     HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
-    LoopCopyDataInit: do_return
-    LoopFillZerobss: do_return
   mmio_funcs:
   - HAL_GPIO_DeInit
   - UART_Start_Receive_DMA

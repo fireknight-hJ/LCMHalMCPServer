@@ -38,6 +38,20 @@ if [ $? -eq 0 ]; then
         echo "错误: 无法移动可执行文件到 $SCRIPTDIR/output.elf"
         exit 1
     }
+    
+    # 复制可执行文件到emulate目录，供模拟器使用
+    echo "复制可执行文件到emulate目录..."
+    cp -f "$SCRIPTDIR/output.elf" "$SCRIPTDIR/emulate/output.elf" || {
+        echo "错误: 无法复制可执行文件到 $SCRIPTDIR/emulate/output.elf"
+        exit 1
+    }
+    
+    # 从ELF文件生成二进制镜像文件output.bin
+    echo "从ELF文件生成output.bin..."
+    arm-none-eabi-objcopy -O binary "$SCRIPTDIR/emulate/output.elf" "$SCRIPTDIR/emulate/output.bin" || {
+        echo "错误: 无法从ELF文件生成output.bin"
+        exit 1
+    }
 else
     echo "编译失败!"
     exit 1

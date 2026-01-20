@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/rtthread_varexport"
+db_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_RTThreadVarexport"
+src_path: "/Users/jie/Documents/workspace/lcmhalgen/rt-thread/examples/var_export"
+proj_path: "/Users/jie/Documents/workspace/lcmhalgen/rt-thread/bsp/hifive1"

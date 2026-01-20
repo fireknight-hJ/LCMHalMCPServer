@@ -1,4 +1,4 @@
-2025-12-13 15:35:40,979 - 0xcb4 irq 0x0-> 0xac8 CLOCK_SetMcgliteConfig (from 0xc88 UART2_InitPins)
-2025-12-13 15:35:40,999 - [-] Stop due to exceptional loop.
-2025-12-13 15:35:40,999 - current function: _exit
-2025-12-13 15:35:41,000 - current caller function: DMA_PrepareTransferConfig
+2026-01-15 07:54:39,189 - 0xcb4 irq 0x0-> 0xac8 CLOCK_SetMcgliteConfig (from 0xc88 UART2_InitPins)
+2026-01-15 07:54:39,999 - [-] Stop due to exceptional loop.
+2026-01-15 07:54:39,999 - current function: exit
+2026-01-15 07:54:39,999 - current caller function: UART_TransferReceiveDMA
