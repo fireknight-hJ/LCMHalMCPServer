@@ -65,16 +65,56 @@ class DataManager:
         function_list = get_mmio_func_list(globs.db_path)
         self.mmio_info_list = await analyze_functions(function_list)
         
-        # 处理所有替换更新日志
-        for func_name, classify_res in self.mmio_info_list.items():
-            if check_analyzed_json_log("replacement_update", func_name):
-                json_data = get_analyzed_json_log("replacement_update", func_name)
-                if json_data:
-                    data_dict = json.loads(json_data)
-                    self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
+        # 首先加载所有已经存在的替换更新日志，不管是否是MMIO函数
+        self._load_all_replacement_updates()
         
         # 分文件收集信息
         self._organize_data_by_file()
+    
+    def _load_all_replacement_updates(self):
+        """加载所有已经存在的替换更新日志"""
+        try:
+            import os
+            import json
+            # 检查替换更新日志目录是否存在
+            tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+            if not os.path.exists(tmp_dir):
+                return
+            
+            # 遍历所有替换更新日志文件
+            seen_func_names = set()
+            for file_name in os.listdir(tmp_dir):
+                if file_name.startswith("replacement_update_") and file_name.endswith(".json"):
+                    # 解析文件名，提取函数名
+                    parts = file_name.split("_")
+                    if len(parts) < 3:
+                        continue
+                    # 移除时间戳部分（最后一个元素）
+                    timestamp_part = parts[-1]
+                    # 函数名部分是从索引2开始到倒数第二个元素结束
+                    # 因为格式是：replacement_update_{func_name}_{timestamp}.json
+                    func_name_parts = parts[2:-1]  # 从第3个元素开始，到倒数第二个元素结束
+                    if not func_name_parts:
+                        continue
+                    func_name = "_".join(func_name_parts)  # 函数名可能包含下划线
+                    
+                    # 避免重复处理同一个函数
+                    if func_name in seen_func_names:
+                        continue
+                    seen_func_names.add(func_name)
+                    
+                    # 使用现有的函数检查并加载替换更新
+                    if check_analyzed_json_log("replacement_update", func_name):
+                        json_data = get_analyzed_json_log("replacement_update", func_name)
+                        if json_data:
+                            try:
+                                data_dict = json.loads(json_data)
+                                # 创建ReplacementUpdate对象并添加到replacement_updates
+                                self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
+                            except Exception as e:
+                                print(f"Warning: Failed to parse replacement update for {func_name}: {e}")
+        except Exception as e:
+            print(f"Error loading replacement updates: {e}")
     
     def _organize_data_by_file(self):
         """将数据按文件分类组织"""
