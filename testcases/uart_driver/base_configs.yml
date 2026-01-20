@@ -1,0 +1,4 @@
+emulate/output.elf:
+  rules: '../../fuzzemu/fuzzemu/genrules/extractedRules/f103.txt'
+  fork_points: 
+  - 0x80009b1 # entry point from fuzzemu-helper output

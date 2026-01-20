@@ -1,0 +1,39 @@
+{
+    "attributes": {
+        "cache-hits": 0,
+        "cache-misses": 4,
+        "compilers": [
+            {
+                "program": "gcc",
+                "version": "aarch64-zephyr-elf-gcc (Zephyr SDK 0.16.8) 12.2.0"
+            },
+            {
+                "program": "gcc",
+                "version": "arm-zephyr-eabi-g++ (Zephyr SDK 0.16.8) 12.2.0"
+            },
+            {
+                "program": "gcc",
+                "version": "arm-zephyr-eabi-gcc (Zephyr SDK 0.16.8) 12.2.0"
+            },
+            {
+                "program": "gcc-cc1"
+            }
+        ],
+        "extractor-failures": 0,
+        "extractor-successes": 4,
+        "trap-caching": "disabled"
+    },
+    "markdownMessage": "Internal telemetry for the C++ extractor.\n\nNo action needed.",
+    "severity": "note",
+    "source": {
+        "extractorName": "cpp",
+        "id": "cpp/extractor/summary",
+        "name": "C++ extractor telemetry"
+    },
+    "timestamp": "2026-01-07T02:43:43.973696+0000",
+    "visibility": {
+        "cliSummaryTable": false,
+        "statusPage": false,
+        "telemetry": true
+    }
+}

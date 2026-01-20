@@ -1,0 +1,56 @@
+emulate_mode: emulate
+enable_native: false
+entry_point: 0x8000000
+handlers:
+  Delay: do_return
+  HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+  HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+  HAL_BE_In: fuzzemu.handlers.common.hal_in
+  HAL_BE_Out: fuzzemu.handlers.common.hal_out
+  HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+  HAL_BE_return_1: fuzzemu.handlers.common.return_true
+  HAL_Delay: do_return
+  wait: do_return
+  wait_us: do_return
+include:
+- ./syms.yml
+initial_sp: 0x0
+isr_vector: 0x0
+memory_map:
+  flash:
+    base_addr: 0x20000000
+    file: output.bin
+    permissions: r-x
+    size: 0x338
+  irq_ret:
+    base_addr: 0xfffff000
+    permissions: rwx
+    size: 0x1000
+  mmio:
+    base_addr: 0x40000000
+    permissions: rw-
+    size: 0x20000000
+  nvic:
+    base_addr: 0xe0000000
+    permissions: rw-
+    size: 0x10000000
+  peripheral:
+    base_addr: 0xa0000000
+    permissions: rw-
+    size: 0x40000000
+  peripheral_ram:
+    base_addr: 0x60000000
+    permissions: rw-
+    size: 0x40000000
+  ram:
+    base_addr: 0x20000338
+    permissions: rwx
+    size: 0x3ffcc8
+mmio_funcs:
+- complex_mmio_operation
+- loop_mmio_operation
+- mmio_uart_receive_byte_direct
+- mmio_uart_send_byte_direct
+model: semu
+rules: semu_rule.txt

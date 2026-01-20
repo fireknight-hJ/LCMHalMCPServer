@@ -1,0 +1,12 @@
+---
+sourceLocationPrefix: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src
+baselineLinesOfCode: 609
+unicodeNewlines: false
+columnKind: utf8
+primaryLanguage: cpp
+creationMetadata:
+  cliVersion: 2.23.6
+  creationTime: 2026-01-20T09:55:02.963714033Z
+overlayBaseDatabase: false
+overlayDatabase: false
+finalised: true

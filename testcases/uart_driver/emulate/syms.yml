@@ -1,0 +1,6 @@
+symbols:
+  0: Reset_Handler
+  4096: _stack_size
+  134217728: _sidata
+  536870912: _edata
+  536875008: _estack

@@ -1,0 +1,242 @@
+{
+  "analysis_time": "2026-01-05T11:17:20.498503",
+  "database_path": "/home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db",
+  "tools_available": [
+    "list_files_in_db_zip",
+    "list_tree_in_db_zip",
+    "register_and_analyze_database",
+    "collect_mmio_func_list",
+    "collect_mmio_files",
+    "collect_mmio_func_info",
+    "collect_function_info",
+    "collect_struct_or_enum_info",
+    "collect_func_call_stack",
+    "collect_driver_info"
+  ],
+  "analysis_results": {
+    "database_registration": "Database registered and analyzed: /home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db",
+    "driver_function_analysis": {
+      "uart": {
+        "total_functions": 6,
+        "found_functions": 6,
+        "coverage_percentage": 100.0,
+        "functions": [
+          {
+            "function": "uart_init",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "uart_poll_in",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "uart_poll_out",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "uart_irq_callback_set",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "uart_configure",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "uart_config_get",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          }
+        ]
+      },
+      "flash": {
+        "total_functions": 6,
+        "found_functions": 6,
+        "coverage_percentage": 100.0,
+        "functions": [
+          {
+            "function": "flash_read",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "flash_write",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "flash_erase",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "flash_get_parameters",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "flash_page_layout",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "flash_write_protection_set",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          }
+        ]
+      },
+      "ethernet": {
+        "total_functions": 6,
+        "found_functions": 6,
+        "coverage_percentage": 100.0,
+        "functions": [
+          {
+            "function": "eth_init",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "eth_tx",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "eth_rx",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "eth_get_capabilities",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "eth_phy_read",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "eth_phy_write",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          }
+        ]
+      },
+      "ble": {
+        "total_functions": 6,
+        "found_functions": 6,
+        "coverage_percentage": 100.0,
+        "functions": [
+          {
+            "function": "bt_enable",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "bt_le_adv_start",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "bt_le_scan_start",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "bt_gatt_notify",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "bt_conn_create_slave_le",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          },
+          {
+            "function": "bt_gatt_discover",
+            "found": true,
+            "info_summary": "函数信息获取成功"
+          }
+        ]
+      }
+    },
+    "structure_analysis": {
+      "total_structures": 7,
+      "found_structures": 7,
+      "structures": [
+        {
+          "name": "uart_config",
+          "found": true,
+          "info_summary": "结构体信息获取成功"
+        },
+        {
+          "name": "flash_parameters",
+          "found": true,
+          "info_summary": "结构体信息获取成功"
+        },
+        {
+          "name": "eth_config",
+          "found": true,
+          "info_summary": "结构体信息获取成功"
+        },
+        {
+          "name": "bt_le_adv_param",
+          "found": true,
+          "info_summary": "结构体信息获取成功"
+        },
+        {
+          "name": "device",
+          "found": true,
+          "info_summary": "结构体信息获取成功"
+        },
+        {
+          "name": "k_mutex",
+          "found": true,
+          "info_summary": "结构体信息获取成功"
+        },
+        {
+          "name": "k_sem",
+          "found": true,
+          "info_summary": "结构体信息获取成功"
+        }
+      ]
+    },
+    "call_stack_analysis": [
+      {
+        "function": "main",
+        "found": true,
+        "call_stack_depth": "未知",
+        "info_summary": "调用栈分析成功"
+      },
+      {
+        "function": "uart_init",
+        "found": true,
+        "call_stack_depth": "未知",
+        "info_summary": "调用栈分析成功"
+      },
+      {
+        "function": "flash_write",
+        "found": true,
+        "call_stack_depth": "未知",
+        "info_summary": "调用栈分析成功"
+      },
+      {
+        "function": "eth_init",
+        "found": true,
+        "call_stack_depth": "未知",
+        "info_summary": "调用栈分析成功"
+      },
+      {
+        "function": "bt_enable",
+        "found": true,
+        "call_stack_depth": "未知",
+        "info_summary": "调用栈分析成功"
+      }
+    ]
+  }
+}

@@ -1,0 +1,766 @@
+[2026-01-07 02:43:35] This is codeql database create zephyr-driver-db-test --language=cpp --command=bash build.sh
+[2026-01-07 02:43:35] Log file was started late.
+[2026-01-07 02:43:35] [PROGRESS] database create> Initializing database at /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test.
+[2026-01-07 02:43:35] Running plumbing command: codeql database init --language=cpp --extractor-options-verbosity=1 --qlconfig-file=/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/qlconfig.yml --source-root=/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver --allow-missing-source-root=false --allow-already-existing -- /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test
+[2026-01-07 02:43:35] Calling plumbing command: codeql resolve languages --extractor-options-verbosity=1 --format=betterjson
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from /home/chenkaiqiu/.codeql-2.23.6/.codeqlmanifest.json
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/actions/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/yaml/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/csv/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/csharp/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/javascript/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/rust/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/cpp/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/ruby/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/python/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/go/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/java/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/properties/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/xml/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/swift/codeql-extractor.yml.
+[2026-01-07 02:43:35] [DETAILS] resolve languages> Parsing /home/chenkaiqiu/.codeql-2.23.6/html/codeql-extractor.yml.
+[2026-01-07 02:43:35] Plumbing command codeql resolve languages completed:
+                      {
+                        "aliases" : {
+                          "c" : "cpp",
+                          "c++" : "cpp",
+                          "c-c++" : "cpp",
+                          "c-cpp" : "cpp",
+                          "c#" : "csharp",
+                          "java-kotlin" : "java",
+                          "kotlin" : "java",
+                          "javascript-typescript" : "javascript",
+                          "typescript" : "javascript"
+                        },
+                        "extractors" : {
+                          "actions" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/actions",
+                              "extractor_options" : { }
+                            }
+                          ],
+                          "yaml" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/yaml"
+                            }
+                          ],
+                          "csv" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/csv"
+                            }
+                          ],
+                          "csharp" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/csharp",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|brotli)$"
+                                    }
+                                  }
+                                },
+                                "buildless" : {
+                                  "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+                                  "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "binlog" : {
+                                  "title" : "Binlog",
+                                  "description" : "[EXPERIMENTAL] The value is a path to the MsBuild binary log file that should be extracted. This option only works when `--build-mode none` is also specified.\n",
+                                  "type" : "array"
+                                }
+                              }
+                            }
+                          ],
+                          "javascript" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/javascript",
+                              "extractor_options" : {
+                                "skip_types" : {
+                                  "title" : "Skip type extraction for TypeScript",
+                                  "description" : "Whether to skip the extraction of types in a TypeScript application",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "rust" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/rust",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (to write gzip-compressed TRAP) 'zstd' (to write Zstandard-compressed TRAP) and 'none' (the default, to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|zstd)$"
+                                    }
+                                  }
+                                },
+                                "cargo_target_dir" : {
+                                  "title" : "Directory to use for cargo output files.",
+                                  "description" : "This value is an optional path to use as `CARGO_TARGET_DIR` for the internal cargo commands the extractor uses. Pointing it to a persistent directory may reduce execution time of consecutive extractor runs. By default, a new scratch directory is used for each run.\n",
+                                  "type" : "string"
+                                },
+                                "cargo_target" : {
+                                  "title" : "Target architecture",
+                                  "description" : "Target architecture to use for analysis, analogous to `cargo --target`. By default the host architecture is used.\n",
+                                  "type" : "string"
+                                },
+                                "cargo_features" : {
+                                  "title" : "Cargo features to turn on",
+                                  "description" : "Comma-separated list of features to turn on. By default all features are enabled. If any features are specified, then only those features are enabled. The `default` feature must be explicitly specified if only default features are desired. Can be repeated.\n",
+                                  "type" : "array"
+                                },
+                                "cargo_cfg_overrides" : {
+                                  "title" : "Cargo cfg overrides",
+                                  "description" : "Comma-separated list of cfg settings to enable, or disable if prefixed with `-`. Can be repeated.\n",
+                                  "type" : "array"
+                                },
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    },
+                                    "flamegraph" : {
+                                      "title" : "[Experimental] File path for write flame graph log",
+                                      "description" : "Collect flame graph data using the `tracing-flame` crate. To render a flame graph or chart, run the `inferno-flamegraph` command. See also: https://crates.io/crates/tracing-flame\n",
+                                      "type" : "string"
+                                    }
+                                  }
+                                },
+                                "extract_dependencies_as_source" : {
+                                  "title" : "Extract dependencies as source code",
+                                  "description" : "Extract the full source code of dependencies instead of only extracting signatures.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "cpp" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/cpp",
+                              "extractor_options" : {
+                                "scale_timeouts" : {
+                                  "title" : "Value to scale compiler introspection timeouts with",
+                                  "description" : "The extractor attempts to determine what compiler the source code being extracted is compiled with. To this end the extractor makes additional calls to the compiler, some of which are expected to return within a certain fixed time (either 10s or 15s). On some systems that are under high load this time might be too short, and can be scaled up using this option.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-9]+"
+                                },
+                                "log_verbosity" : {
+                                  "title" : "Verbosity of the extractor logging",
+                                  "description" : "Set the verbosity of the extractor logging to 'quiet' (0), 'normal' (1), 'chatty' (2), or 'noisy' (3). The default is 'normal'.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-3]"
+                                }
+                              }
+                            }
+                          ],
+                          "ruby" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/ruby",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (the default, to write gzip-compressed TRAP) 'zstd' (to write Zstandard-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|zstd)$"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "python" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/python",
+                              "extractor_options" : {
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Python extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "python_executable_name" : {
+                                  "title" : "Controls the name of the Python executable used by the Python extractor.",
+                                  "description" : "The Python extractor uses platform-dependent heuristics to determine the name of the Python executable to use. Specifying a value for this option overrides the name of the Python executable used by the extractor. Accepted values are py, python and python3. Use this setting with caution, the Python extractor requires Python 3 to run.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(py|python|python3)$"
+                                }
+                              }
+                            }
+                          ],
+                          "go" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/go",
+                              "extractor_options" : {
+                                "extract_tests" : {
+                                  "title" : "Whether to include Go test files in the CodeQL database.",
+                                  "description" : "A value indicating whether Go test files should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "extract_vendor_dirs" : {
+                                  "title" : "Whether to include Go vendor directories in the CodeQL database.",
+                                  "description" : "A value indicating whether Go vendor directories should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "java" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/java",
+                              "extractor_options" : {
+                                "exclude" : {
+                                  "title" : "A glob excluding files from analysis.",
+                                  "description" : "A glob indicating what files to exclude from the analysis. This accepts glob patterns that are supported by Java's 'getPathMatcher' implementation.\n",
+                                  "type" : "string"
+                                },
+                                "add_prefer_source" : {
+                                  "title" : "Whether to always prefer source files over class files.",
+                                  "description" : "A value indicating whether source files should be preferred over class files. If set to 'true', the extraction adds '-Xprefer:source' to the javac command line. If set to 'false', the extraction uses the default javac behavior ('-Xprefer:newer'). The default is 'true'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless" : {
+                                  "title" : "Whether to use buildless (standalone) extraction (experimental).",
+                                  "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless_dependency_dir" : {
+                                  "title" : "The path where buildless (standalone) extraction should keep dependencies.",
+                                  "description" : "If set, the buildless (standalone) extractor will store dependencies in this directory.\n",
+                                  "type" : "string"
+                                },
+                                "minimize_dependency_jars" : {
+                                  "title" : "Whether to rewrite and minimize downloaded JAR dependencies (experimental).",
+                                  "description" : "If 'true', JAR dependencies downloaded during extraction will be rewritten to remove unneeded data, such as method bodies. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "properties" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/properties"
+                            }
+                          ],
+                          "xml" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/xml"
+                            }
+                          ],
+                          "swift" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/swift"
+                            }
+                          ],
+                          "html" : [
+                            {
+                              "extractor_root" : "/home/chenkaiqiu/.codeql-2.23.6/html"
+                            }
+                          ]
+                        }
+                      }
+[2026-01-07 02:43:35] [PROGRESS] database init> Calculating baseline information in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver
+[2026-01-07 02:43:35] [SPAMMY] database init> Ignoring the following directories when processing baseline information: .git, .hg, .svn.
+[2026-01-07 02:43:35] [DETAILS] database init> Running command in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver: /home/chenkaiqiu/.codeql-2.23.6/tools/linux64/scc --by-file --exclude-dir .git,.hg,.svn --format json --no-large --no-min .
+[2026-01-07 02:43:35] Using configure-baseline script /home/chenkaiqiu/.codeql-2.23.6/javascript/tools/configure-baseline.sh.
+[2026-01-07 02:43:35] [PROGRESS] database init> Running command in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver: [/home/chenkaiqiu/.codeql-2.23.6/javascript/tools/configure-baseline.sh]
+[2026-01-07 02:43:35] Using configure-baseline script /home/chenkaiqiu/.codeql-2.23.6/actions/tools/configure-baseline.sh.
+[2026-01-07 02:43:35] [PROGRESS] database init> Running command in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver: [/home/chenkaiqiu/.codeql-2.23.6/actions/tools/configure-baseline.sh]
+[2026-01-07 02:43:35] [SPAMMY] database init> Ignored an additional 1 files when processing baseline information for YAML due to paths and paths-ignore configuration.
+[2026-01-07 02:43:35] [SPAMMY] database init> Found 2 baseline files for cpp.
+[2026-01-07 02:43:35] [SPAMMY] database init> Found 1 baseline files for javascript.
+[2026-01-07 02:43:35] [SPAMMY] database init> Found 0 baseline files for actions.
+[2026-01-07 02:43:35] [PROGRESS] database init> Calculated baseline information for languages: actions, cpp, javascript (56ms).
+[2026-01-07 02:43:35] [PROGRESS] database init> Resolving extractor cpp.
+[2026-01-07 02:43:35] [DETAILS] database init> Found candidate extractor root for cpp: /home/chenkaiqiu/.codeql-2.23.6/cpp.
+[2026-01-07 02:43:35] [PROGRESS] database init> Successfully loaded extractor C/C++ (cpp) from /home/chenkaiqiu/.codeql-2.23.6/cpp.
+[2026-01-07 02:43:35] [PROGRESS] database init> Created skeleton CodeQL database at /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test. This in-progress database is ready to be populated by an extractor.
+[2026-01-07 02:43:35] Plumbing command codeql database init completed.
+[2026-01-07 02:43:35] [PROGRESS] database create> Running build command: [bash, build.sh]
+[2026-01-07 02:43:35] Running plumbing command: codeql database trace-command --working-dir=/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver --index-traceless-dbs --no-db-cluster -- /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test bash build.sh
+[2026-01-07 02:43:35] [PROGRESS] database trace-command> Running command in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver: [bash, build.sh]
+[2026-01-07 02:43:35] [build-stdout] ========================================
+[2026-01-07 02:43:35] [build-stdout] STM32 UART驱动构建脚本
+[2026-01-07 02:43:35] [build-stdout] ========================================
+[2026-01-07 02:43:35] [build-stdout] 开发板: stm32f4_disco
+[2026-01-07 02:43:35] [build-stdout] 应用: samples/drivers/uart/echo_bot
+[2026-01-07 02:43:35] [build-stdout] Zephyr目录: /home/chenkaiqiu/zephyr
+[2026-01-07 02:43:35] [build-stdout] 构建目录: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build
+[2026-01-07 02:43:35] [build-stdout] ========================================
+[2026-01-07 02:43:35] [build-stdout] 切换到Zephyr目录: /home/chenkaiqiu/zephyr
+[2026-01-07 02:43:35] [build-stdout] 激活Zephyr环境...
+[2026-01-07 02:43:35] [build-stdout] 开始构建UART驱动...
+[2026-01-07 02:43:35] [build-stdout] 使用命令: west build -b stm32f4_disco samples/drivers/uart/echo_bot --build-dir /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build
+[2026-01-07 02:43:36] [build-stdout] -- west build: generating a build system
+[2026-01-07 02:43:36] [build-stderr] Loading Zephyr default modules (Zephyr base).
+[2026-01-07 02:43:36] [build-stdout] -- Application: /home/chenkaiqiu/zephyr/samples/drivers/uart/echo_bot
+[2026-01-07 02:43:36] [build-stdout] -- CMake version: 3.20.0
+[2026-01-07 02:43:36] [build-stdout] -- Found Python3: /home/chenkaiqiu/LCMHalMCPServer/.venv/bin/python3.10 (found suitable version "3.10.4", minimum required is "3.8") found components: Interpreter 
+[2026-01-07 02:43:36] [build-stdout] -- Cache files will be written to: /home/chenkaiqiu/.cache/zephyr
+[2026-01-07 02:43:36] [build-stdout] -- Zephyr version: 3.7.0 (/home/chenkaiqiu/zephyr)
+[2026-01-07 02:43:36] [build-stdout] -- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+[2026-01-07 02:43:37] [build-stdout] -- Board: stm32f4_disco, qualifiers: stm32f407xx
+[2026-01-07 02:43:37] [build-stdout] -- ZEPHYR_TOOLCHAIN_VARIANT not set, trying to locate Zephyr SDK
+[2026-01-07 02:43:37] [build-stdout] -- Found host-tools: zephyr 0.16.8 (/home/chenkaiqiu/zephyr-sdk-0.16.8)
+[2026-01-07 02:43:37] [build-stdout] -- Found toolchain: zephyr 0.16.8 (/home/chenkaiqiu/zephyr-sdk-0.16.8)
+[2026-01-07 02:43:38] [build-stdout] -- Found Dtc: /usr/bin/dtc (found suitable version "1.5.0", minimum required is "1.4.6") 
+[2026-01-07 02:43:38] [build-stdout] -- Found BOARD.dts: /home/chenkaiqiu/zephyr/boards/st/stm32f4_disco/stm32f4_disco.dts
+[2026-01-07 02:43:38] [build-stdout] -- Generated zephyr.dts: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build/zephyr/zephyr.dts
+[2026-01-07 02:43:38] [build-stdout] -- Generated devicetree_generated.h: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build/zephyr/include/generated/zephyr/devicetree_generated.h
+[2026-01-07 02:43:39] [build-stdout] -- Including generated dts.cmake file: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build/zephyr/dts.cmake
+[2026-01-07 02:43:40] [build-stdout] Parsing /home/chenkaiqiu/zephyr/Kconfig
+[2026-01-07 02:43:40] [build-stdout] Loaded configuration '/home/chenkaiqiu/zephyr/boards/st/stm32f4_disco/stm32f4_disco_defconfig'
+[2026-01-07 02:43:40] [build-stdout] Merged configuration '/home/chenkaiqiu/zephyr/samples/drivers/uart/echo_bot/prj.conf'
+[2026-01-07 02:43:40] [build-stdout] Configuration saved to '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build/zephyr/.config'
+[2026-01-07 02:43:40] [build-stdout] Kconfig header saved to '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build/zephyr/include/generated/zephyr/autoconf.h'
+[2026-01-07 02:43:40] [build-stdout] -- Found GnuLd: /home/chenkaiqiu/zephyr-sdk-0.16.8/arm-zephyr-eabi/arm-zephyr-eabi/bin/ld.bfd (found version "2.38") 
+[2026-01-07 02:43:41] [build-stdout] -- The C compiler identification is GNU 12.2.0
+[2026-01-07 02:43:41] [build-stdout] -- The CXX compiler identification is GNU 12.2.0
+[2026-01-07 02:43:41] [build-stdout] -- The ASM compiler identification is GNU
+[2026-01-07 02:43:41] [build-stdout] -- Found assembler: /home/chenkaiqiu/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc
+[2026-01-07 02:43:41] [build-stdout] -- Using ccache: /usr/bin/ccache
+[2026-01-07 02:43:41] [build-stdout] -- Configuring done
+[2026-01-07 02:43:42] [build-stdout] -- Generating done
+[2026-01-07 02:43:42] [build-stdout] -- Build files have been written to: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build
+[2026-01-07 02:43:42] [build-stdout] -- west build: building application
+[2026-01-07 02:43:42] [build-stdout] [1/133] Preparing syscall dependency handling
+[2026-01-07 02:43:42] [build-stdout] [2/133] Generating include/generated/zephyr/version.h
+[2026-01-07 02:43:42] [build-stdout] -- git describe failed: fatal: detected dubious ownership in repository at '/home/chenkaiqiu/zephyr'
+[2026-01-07 02:43:42] [build-stdout] To add an exception for this directory, call:
+[2026-01-07 02:43:42] [build-stdout] 	git config --global --add safe.directory /home/chenkaiqiu/zephyr
+[2026-01-07 02:43:42] [build-stdout] -- Zephyr version: 3.7.0 (/home/chenkaiqiu/zephyr), build: 
+[2026-01-07 02:43:42] [build-stdout] [3/133] Generating misc/generated/syscalls_subdirs.trigger
+[2026-01-07 02:43:42] [build-stdout] [4/133] Generating misc/generated/syscalls.json, misc/generated/struct_tags.json
+[2026-01-07 02:43:42] [build-stdout] [5/133] Generating include/generated/zephyr/syscall_dispatch.c, include/generated/zephyr/syscall_list.h
+[2026-01-07 02:43:42] [build-stdout] [6/133] Generating include/generated/zephyr/driver-validation.h
+[2026-01-07 02:43:42] [build-stdout] [7/133] Generating include/generated/zephyr/kobj-types-enum.h, include/generated/zephyr/otype-to-str.h, include/generated/zephyr/otype-to-size.h
+[2026-01-07 02:43:42] [build-stdout] [8/133] Building C object zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj
+[2026-01-07 02:43:42] [build-stdout] [9/133] Generating include/generated/zephyr/offsets.h
+[2026-01-07 02:43:42] [build-stdout] [10/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/dec.c.obj
+[2026-01-07 02:43:42] [build-stdout] [11/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/timeutil.c.obj
+[2026-01-07 02:43:42] [build-stdout] [12/133] Building ASM object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/nmi_on_reset.S.obj
+[2026-01-07 02:43:42] [build-stdout] [13/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/hex.c.obj
+[2026-01-07 02:43:42] [build-stdout] [14/133] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/tracing/tracing_none.c.obj
+[2026-01-07 02:43:42] [build-stdout] [15/133] Building C object zephyr/CMakeFiles/zephyr.dir/misc/generated/configs.c.obj
+[2026-01-07 02:43:42] [build-stdout] [16/133] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/vector_table.S.obj
+[2026-01-07 02:43:42] [build-stdout] [17/133] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/reset.S.obj
+[2026-01-07 02:43:42] [build-stdout] [18/133] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/__aeabi_read_tp.S.obj
+[2026-01-07 02:43:42] [build-stdout] [19/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/init_static.c.obj
+[2026-01-07 02:43:42] [build-stdout] [20/133] Building C object zephyr/drivers/pinctrl/CMakeFiles/drivers__pinctrl.dir/common.c.obj
+[2026-01-07 02:43:42] [build-stdout] [21/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/version.c.obj
+[2026-01-07 02:43:42] [build-stdout] [22/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/device.c.obj
+[2026-01-07 02:43:42] [build-stdout] [23/133] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fault_s.S.obj
+[2026-01-07 02:43:42] [build-stdout] [24/133] Generating linker_zephyr_pre0.cmd
+[2026-01-07 02:43:42] [build-stdout] [25/133] Building C object zephyr/CMakeFiles/zephyr_pre0.dir/misc/empty_file.c.obj
+[2026-01-07 02:43:42] [build-stdout] [26/133] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/swap_helper.S.obj
+[2026-01-07 02:43:42] [build-stdout] [27/133] Building C object zephyr/CMakeFiles/zephyr.dir/soc/st/stm32/stm32f4x/soc.c.obj
+[2026-01-07 02:43:42] [build-stdout] [28/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/sem.c.obj
+[2026-01-07 02:43:42] [build-stdout] [29/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf_packaged.c.obj
+[2026-01-07 02:43:42] [build-stdout] [30/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/rb.c.obj
+[2026-01-07 02:43:42] [build-stdout] [31/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/bitarray.c.obj
+[2026-01-07 02:43:42] [build-stdout] [32/133] Building C object zephyr/arch/common/CMakeFiles/arch__common.dir/sw_isr_common.c.obj
+[2026-01-07 02:43:42] [build-stdout] [33/133] Building C object modules/stm32/stm32cube/CMakeFiles/..__modules__hal__stm32__stm32cube.dir/stm32f4xx/drivers/src/stm32f4xx_ll_utils.c.obj
+[2026-01-07 02:43:42] [build-stdout] [34/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/printk.c.obj
+[2026-01-07 02:43:42] [build-stdout] [35/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/reboot.c.obj
+[2026-01-07 02:43:42] [build-stdout] [36/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf_complete.c.obj
+[2026-01-07 02:43:42] [build-stdout] [37/133] Building C object CMakeFiles/app.dir/src/main.c.obj
+[2026-01-07 02:43:42] [build-stdout] [38/133] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/mem_mgmt/mem_attr.c.obj
+[2026-01-07 02:43:42] [build-stdout] [39/133] Building C object zephyr/arch/common/CMakeFiles/isr_tables.dir/isr_tables.c.obj
+[2026-01-07 02:43:42] [build-stdout] [40/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/thread_entry.c.obj
+[2026-01-07 02:43:42] [build-stdout] [41/133] Building C object zephyr/CMakeFiles/zephyr.dir/soc/st/stm32/common/soc_config.c.obj
+[2026-01-07 02:43:42] [build-stdout] [42/133] Building C object modules/stm32/stm32cube/CMakeFiles/..__modules__hal__stm32__stm32cube.dir/stm32f4xx/soc/system_stm32f4xx.c.obj
+[2026-01-07 02:43:42] [build-stdout] [43/133] Building C object modules/stm32/stm32cube/CMakeFiles/..__modules__hal__stm32__stm32cube.dir/stm32f4xx/drivers/src/stm32f4xx_hal.c.obj
+[2026-01-07 02:43:43] [build-stdout] [44/133] Building C object modules/stm32/stm32cube/CMakeFiles/..__modules__hal__stm32__stm32cube.dir/stm32f4xx/drivers/src/stm32f4xx_hal_rcc.c.obj
+[2026-01-07 02:43:43] [build-stdout] [45/133] Building C object modules/stm32/stm32cube/CMakeFiles/..__modules__hal__stm32__stm32cube.dir/stm32f4xx/drivers/src/stm32f4xx_hal_rcc_ex.c.obj
+[2026-01-07 02:43:43] [build-stdout] [46/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/prep_c.c.obj
+[2026-01-07 02:43:43] [build-stdout] [47/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/cpu_idle.c.obj
+[2026-01-07 02:43:43] [build-stdout] [48/133] Building C object zephyr/drivers/clock_control/CMakeFiles/drivers__clock_control.dir/clock_stm32f2_f4_f7.c.obj
+[2026-01-07 02:43:43] [build-stdout] [49/133] Building C object modules/stm32/stm32cube/CMakeFiles/..__modules__hal__stm32__stm32cube.dir/stm32f4xx/drivers/src/stm32f4xx_ll_rcc.c.obj
+[2026-01-07 02:43:43] [build-stdout] [50/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/exc_exit.c.obj
+[2026-01-07 02:43:43] [build-stdout] [51/133] Building C object zephyr/drivers/timer/CMakeFiles/drivers__timer.dir/cortex_m_systick.c.obj
+[2026-01-07 02:43:43] [build-stdout] [52/133] Building C object zephyr/drivers/console/CMakeFiles/drivers__console.dir/uart_console.c.obj
+[2026-01-07 02:43:43] [build-stdout] [53/133] Building C object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/fatal.c.obj
+[2026-01-07 02:43:43] [build-stdout] [54/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/assert.c.obj
+[2026-01-07 02:43:43] [build-stdout] [55/133] Building C object zephyr/CMakeFiles/zephyr.dir/lib/heap/heap.c.obj
+[2026-01-07 02:43:43] [build-stdout] [56/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/xip.c.obj
+[2026-01-07 02:43:43] [build-stdout] [57/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/swap.c.obj
+[2026-01-07 02:43:43] [build-stdout] [58/133] Building C object zephyr/drivers/reset/CMakeFiles/drivers__reset.dir/reset_stm32.c.obj
+[2026-01-07 02:43:43] [build-stdout] [59/133] Building C object zephyr/lib/libc/common/CMakeFiles/lib__libc__common.dir/source/stdlib/abort.c.obj
+[2026-01-07 02:43:43] [build-stdout] [60/133] Building C object zephyr/lib/libc/common/CMakeFiles/lib__libc__common.dir/source/stdlib/malloc.c.obj
+[2026-01-07 02:43:43] [build-stdout] [61/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/thread.c.obj
+[2026-01-07 02:43:43] [build-stdout] [62/133] Building C object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/nmi.c.obj
+[2026-01-07 02:43:43] [build-stdout] [63/133] Building C object zephyr/drivers/serial/CMakeFiles/drivers__serial.dir/uart_stm32.c.obj
+[2026-01-07 02:43:43] [build-stdout] [64/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/sem.c.obj
+[2026-01-07 02:43:43] [build-stdout] [65/133] Building C object zephyr/arch/arch/arm/core/mpu/CMakeFiles/arch__arm__core__mpu.dir/arm_mpu_regions.c.obj
+[2026-01-07 02:43:43] [build-stdout] [66/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mailbox.c.obj
+[2026-01-07 02:43:43] [build-stdout] [67/133] Building C object zephyr/CMakeFiles/zephyr.dir/soc/st/stm32/common/stm32cube_hal.c.obj
+[2026-01-07 02:43:43] [build-stdout] [68/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/irq_manage.c.obj
+[2026-01-07 02:43:43] [build-stdout] [69/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/isr_wrapper.c.obj
+[2026-01-07 02:43:43] [build-stdout] [70/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/irq_init.c.obj
+[2026-01-07 02:43:43] [build-stdout] [71/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/thread_abort.c.obj
+[2026-01-07 02:43:43] [build-stdout] [72/133] Building C object zephyr/arch/arch/arm/core/mpu/CMakeFiles/arch__arm__core__mpu.dir/arm_core_mpu.c.obj
+[2026-01-07 02:43:43] [build-stdout] [73/133] Building C object zephyr/drivers/timer/CMakeFiles/drivers__timer.dir/sys_clock_init.c.obj
+[2026-01-07 02:43:43] [build-stdout] [74/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/scb.c.obj
+[2026-01-07 02:43:43] [build-stdout] [75/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/kheap.c.obj
+[2026-01-07 02:43:43] [build-stdout] [76/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/dynamic_disabled.c.obj
+[2026-01-07 02:43:43] [build-stdout] [77/133] Building C object zephyr/drivers/interrupt_controller/CMakeFiles/drivers__interrupt_controller.dir/intc_exti_stm32.c.obj
+[2026-01-07 02:43:43] [build-stdout] [78/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fpu.c.obj
+[2026-01-07 02:43:43] [build-stdout] [79/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj
+[2026-01-07 02:43:43] [build-stdout] [80/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj
+[2026-01-07 02:43:43] [build-stdout] [81/133] Building C object zephyr/arch/arch/arm/core/mpu/CMakeFiles/arch__arm__core__mpu.dir/arm_mpu.c.obj
+[2026-01-07 02:43:43] [build-stdout] [82/133] Building C object zephyr/drivers/gpio/CMakeFiles/drivers__gpio.dir/gpio_stm32.c.obj
+[2026-01-07 02:43:43] [build-stdout] [83/133] Building C object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/tls.c.obj
+[2026-01-07 02:43:43] [build-stdout] [84/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/condvar.c.obj
+[2026-01-07 02:43:43] [build-stdout] [85/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timer.c.obj
+[2026-01-07 02:43:43] [build-stdout] [86/133] Building C object zephyr/drivers/pinctrl/CMakeFiles/drivers__pinctrl.dir/pinctrl_stm32.c.obj
+[2026-01-07 02:43:43] [build-stdout] [87/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/errno.c.obj
+[2026-01-07 02:43:43] [build-stdout] [88/133] Building C object zephyr/lib/libc/picolibc/CMakeFiles/lib__libc__picolibc.dir/libc-hooks.c.obj
+[2026-01-07 02:43:43] [build-stdout] [89/133] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fault.c.obj
+[2026-01-07 02:43:43] [build-stdout] [90/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/banner.c.obj
+[2026-01-07 02:43:43] [build-stdout] [91/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/main_weak.c.obj
+[2026-01-07 02:43:43] [build-stdout] [92/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj
+[2026-01-07 02:43:43] [build-stdout] [93/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mempool.c.obj
+[2026-01-07 02:43:43] [build-stdout] [94/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timeslicing.c.obj
+[2026-01-07 02:43:43] [build-stdout] [95/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mem_slab.c.obj
+[2026-01-07 02:43:43] [build-stdout] [96/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/stack.c.obj
+[2026-01-07 02:43:43] [build-stdout] [97/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/init.c.obj
+[2026-01-07 02:43:43] [build-stdout] [98/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/priority_queues.c.obj
+[2026-01-07 02:43:43] [build-stdout] [99/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj
+[2026-01-07 02:43:43] [build-stdout] [100/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/float.c.obj
+[2026-01-07 02:43:43] [build-stdout] [101/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mutex.c.obj
+[2026-01-07 02:43:43] [build-stdout] [102/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/busy_wait.c.obj
+[2026-01-07 02:43:43] [build-stdout] [103/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/fatal.c.obj
+[2026-01-07 02:43:43] [build-stdout] [104/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj
+[2026-01-07 02:43:43] [build-stdout] [105/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/system_work_q.c.obj
+[2026-01-07 02:43:43] [build-stdout] [106/133] Building C object zephyr/drivers/clock_control/CMakeFiles/drivers__clock_control.dir/clock_stm32_ll_common.c.obj
+[2026-01-07 02:43:43] [build-stdout] [107/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timeout.c.obj
+[2026-01-07 02:43:43] [build-stdout] [108/133] Building C object zephyr/kernel/CMakeFiles/kernel.dir/idle.c.obj
+[2026-01-07 02:43:43] [build-stdout] [109/133] Linking C static library zephyr/drivers/console/libdrivers__console.a
+[2026-01-07 02:43:43] [build-stdout] [110/133] Linking C static library app/libapp.a
+[2026-01-07 02:43:43] [build-stdout] [111/133] Linking C static library zephyr/arch/common/libisr_tables.a
+[2026-01-07 02:43:43] [build-stdout] [112/133] Linking C static library modules/stm32/stm32cube/lib..__modules__hal__stm32__stm32cube.a
+[2026-01-07 02:43:43] [build-stdout] [113/133] Linking C static library zephyr/drivers/reset/libdrivers__reset.a
+[2026-01-07 02:43:43] [build-stdout] [114/133] Linking C static library zephyr/lib/libc/common/liblib__libc__common.a
+[2026-01-07 02:43:43] [build-stdout] [115/133] Linking C static library zephyr/arch/arch/arm/core/mpu/libarch__arm__core__mpu.a
+[2026-01-07 02:43:43] [build-stdout] [116/133] Linking C static library zephyr/drivers/serial/libdrivers__serial.a
+[2026-01-07 02:43:43] [build-stdout] [117/133] Linking C static library zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a
+[2026-01-07 02:43:43] [build-stdout] [118/133] Linking C static library zephyr/drivers/pinctrl/libdrivers__pinctrl.a
+[2026-01-07 02:43:43] [build-stdout] [119/133] Linking C static library zephyr/drivers/timer/libdrivers__timer.a
+[2026-01-07 02:43:43] [build-stdout] [120/133] Linking C static library zephyr/arch/arch/arm/core/libarch__arm__core.a
+[2026-01-07 02:43:43] [build-stdout] [121/133] Linking C static library zephyr/libzephyr.a
+[2026-01-07 02:43:43] [build-stdout] [122/133] Linking C static library zephyr/drivers/gpio/libdrivers__gpio.a
+[2026-01-07 02:43:43] [build-stdout] [123/133] Linking C static library zephyr/lib/libc/picolibc/liblib__libc__picolibc.a
+[2026-01-07 02:43:43] [build-stdout] [124/133] Linking C static library zephyr/drivers/clock_control/libdrivers__clock_control.a
+[2026-01-07 02:43:43] [build-stdout] [125/133] Linking C static library zephyr/arch/arch/arm/core/cortex_m/libarch__arm__core__cortex_m.a
+[2026-01-07 02:43:43] [build-stdout] [126/133] Linking C static library zephyr/kernel/libkernel.a
+[2026-01-07 02:43:43] [build-stdout] [127/133] Linking C static library zephyr/arch/common/libarch__common.a
+[2026-01-07 02:43:43] [build-stdout] [128/133] Linking C executable zephyr/zephyr_pre0.elf
+[2026-01-07 02:43:43] [build-stdout] [129/133] Generating linker.cmd
+[2026-01-07 02:43:43] [build-stdout] [130/133] Generating isr_tables.c, isr_tables_vt.ld, isr_tables_swi.ld
+[2026-01-07 02:43:43] [build-stdout] [131/133] Building C object zephyr/CMakeFiles/zephyr_final.dir/misc/empty_file.c.obj
+[2026-01-07 02:43:43] [build-stdout] [132/133] Building C object zephyr/CMakeFiles/zephyr_final.dir/isr_tables.c.obj
+[2026-01-07 02:43:43] [build-stdout] [133/133] Linking C executable zephyr/zephyr.elf
+[2026-01-07 02:43:43] [build-stdout] Memory region         Used Size  Region Size  %age Used
+[2026-01-07 02:43:43] [build-stdout]            FLASH:       16844 B         1 MB      1.61%
+[2026-01-07 02:43:43] [build-stdout]              RAM:        4928 B       128 KB      3.76%
+[2026-01-07 02:43:43] [build-stdout]              CCM:          0 GB        64 KB      0.00%
+[2026-01-07 02:43:43] [build-stdout]         IDT_LIST:          0 GB        32 KB      0.00%
+[2026-01-07 02:43:43] [build-stdout] Generating files from /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build/zephyr/zephyr.elf for board: stm32f4_disco
+[2026-01-07 02:43:43] [build-stdout] ========================================
+[2026-01-07 02:43:43] [build-stdout] UART驱动构建成功!
+[2026-01-07 02:43:43] [build-stdout] ========================================
+[2026-01-07 02:43:43] [build-stdout] 复制可执行文件到: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/output.elf
+[2026-01-07 02:43:43] [build-stdout] 文件大小: 508K
+[2026-01-07 02:43:43] [build-stdout] 构建完成!
+[2026-01-07 02:43:43] [build-stdout] 输出文件: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/output.elf
+[2026-01-07 02:43:43] [build-stdout] 构建目录: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build
+[2026-01-07 02:43:43] Plumbing command codeql database trace-command completed.
+[2026-01-07 02:43:43] [PROGRESS] database create> Finalizing database at /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test.
+[2026-01-07 02:43:43] Running plumbing command: codeql database finalize --no-db-cluster -- /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test
+[2026-01-07 02:43:43] Using pre-finalize script /home/chenkaiqiu/.codeql-2.23.6/cpp/tools/pre-finalize.sh.
+[2026-01-07 02:43:43] [PROGRESS] database finalize> Running pre-finalize script /home/chenkaiqiu/.codeql-2.23.6/cpp/tools/pre-finalize.sh in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver.
+[2026-01-07 02:43:43] Running plumbing command: codeql database trace-command --working-dir=/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver --no-tracing -- /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test /home/chenkaiqiu/.codeql-2.23.6/cpp/tools/pre-finalize.sh
+[2026-01-07 02:43:43] [PROGRESS] database trace-command> Running command in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver: [/home/chenkaiqiu/.codeql-2.23.6/cpp/tools/pre-finalize.sh]
+[2026-01-07 02:43:43] Plumbing command codeql database trace-command completed.
+[2026-01-07 02:43:43] [PROGRESS] database finalize> Pre-finalize script /home/chenkaiqiu/.codeql-2.23.6/cpp/tools/pre-finalize.sh completed in 26 ms.
+[2026-01-07 02:43:43] [PROGRESS] database finalize> Running TRAP import for CodeQL database at /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test...
+[2026-01-07 02:43:44] Running plumbing command: codeql dataset import --dbscheme=/home/chenkaiqiu/.codeql-2.23.6/cpp/semmlecode.cpp.dbscheme -- /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/trap/cpp
+[2026-01-07 02:43:44] Clearing disk cache since the version file /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp/default/cache/version does not exist
+[2026-01-07 02:43:44] Tuple pool not found. Clearing relations with cached strings
+[2026-01-07 02:43:44] Trimming disk cache at /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp/default/cache in mode clear.
+[2026-01-07 02:43:44] Sequence stamp origin is -5961441132093703126
+[2026-01-07 02:43:44] Pausing evaluation to hard-clear memory at sequence stamp o+0
+[2026-01-07 02:43:44] Unpausing evaluation
+[2026-01-07 02:43:44] Pausing evaluation to quickly trim disk at sequence stamp o+1
+[2026-01-07 02:43:44] Unpausing evaluation
+[2026-01-07 02:43:44] Pausing evaluation to zealously trim disk at sequence stamp o+2
+[2026-01-07 02:43:44] Unpausing evaluation
+[2026-01-07 02:43:44] Trimming completed (5ms): Purged everything.
+[2026-01-07 02:43:44] Scanning for files in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/trap/cpp
+[2026-01-07 02:43:44] Found 13 files on disk containing 12 TRAP files (99.33 KiB)
+[2026-01-07 02:43:44] [PROGRESS] dataset import> Grouping TRAP files by link target
+[2026-01-07 02:43:44] [PROGRESS] dataset import> Grouping unlinked TRAP files together
+[2026-01-07 02:43:44] [PROGRESS] dataset import> Scanning TRAP files
+[2026-01-07 02:43:44] Scanning cpp_predefined.5653aa5f.trap (CMakeCCompilerId.c.2ad038ad_0.trap.tar.zst) (1 of 12)
+[2026-01-07 02:43:44] Scanning CMakeCCompilerId.c.2ad038ad.trap (CMakeCCompilerId.c.2ad038ad_0.trap.tar.zst) (2 of 12)
+[2026-01-07 02:43:44] Scanning CMakeCXXCompilerId.cpp.1a176e0a.trap (CMakeCXXCompilerId.cpp.1a176e0a_0.trap.tar.zst) (3 of 12)
+[2026-01-07 02:43:44] Scanning 11876902_0.trap.zst (4 of 12)
+[2026-01-07 02:43:44] Scanning 63403070_0.trap.zst (5 of 12)
+[2026-01-07 02:43:44] Scanning 6843447_0.trap.zst (6 of 12)
+[2026-01-07 02:43:44] Scanning 59484360_0.trap.zst (7 of 12)
+[2026-01-07 02:43:44] Scanning metadata.trap.gz (8 of 12)
+[2026-01-07 02:43:44] Scanning a.out.trap.zst (9 of 12)
+[2026-01-07 02:43:44] Scanning a.out.trap.zst (10 of 12)
+[2026-01-07 02:43:44] Scanning zephyr.elf.trap.zst (11 of 12)
+[2026-01-07 02:43:44] Scanning zephyr_pre0.elf.trap.zst (12 of 12)
+[2026-01-07 02:43:44] [PROGRESS] dataset import> Importing TRAP files
+[2026-01-07 02:43:44] Importing cpp_predefined.5653aa5f.trap (CMakeCCompilerId.c.2ad038ad_0.trap.tar.zst) for no link target (1 of 12)
+[2026-01-07 02:43:44] Importing CMakeCCompilerId.c.2ad038ad.trap (CMakeCCompilerId.c.2ad038ad_0.trap.tar.zst) for a.out.link (2 of 12)
+[2026-01-07 02:43:44] Importing CMakeCXXCompilerId.cpp.1a176e0a.trap (CMakeCXXCompilerId.cpp.1a176e0a_0.trap.tar.zst) for a.out.link (3 of 12)
+[2026-01-07 02:43:44] Importing 11876902_0.trap.zst for a.out.link (4 of 12)
+[2026-01-07 02:43:44] Importing 63403070_0.trap.zst for a.out.link (5 of 12)
+[2026-01-07 02:43:44] Importing 6843447_0.trap.zst for a.out.link (6 of 12)
+[2026-01-07 02:43:44] Importing 59484360_0.trap.zst for a.out.link (7 of 12)
+[2026-01-07 02:43:44] Importing metadata.trap.gz for no link target (8 of 12)
+[2026-01-07 02:43:44] Importing a.out.trap.zst for a.out.link (9 of 12)
+[2026-01-07 02:43:44] Importing a.out.trap.zst for a.out.link (10 of 12)
+[2026-01-07 02:43:44] Importing zephyr.elf.trap.zst for zephyr.elf.link (11 of 12)
+[2026-01-07 02:43:44] Importing zephyr_pre0.elf.trap.zst for zephyr_pre0.elf.link (12 of 12)
+[2026-01-07 02:43:44] [PROGRESS] dataset import> Merging relations
+[2026-01-07 02:43:44] Merging 1 fragment for 'builtintypes'.
+[2026-01-07 02:43:44] Merged 398 bytes for 'builtintypes'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'unspecifiedtype'.
+[2026-01-07 02:43:44] Merged 188 bytes for 'unspecifiedtype'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'files'.
+[2026-01-07 02:43:44] Merged 42 bytes for 'files'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'locations_default'.
+[2026-01-07 02:43:44] Merged 3734 bytes (3.65 KiB) for 'locations_default'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'link_targets'.
+[2026-01-07 02:43:44] Merged 39 bytes for 'link_targets'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'usertypes'.
+[2026-01-07 02:43:44] Merged 35 bytes for 'usertypes'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'namespaces'.
+[2026-01-07 02:43:44] Merged 26 bytes for 'namespaces'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'specialnamequalifyingelements'.
+[2026-01-07 02:43:44] Merged 26 bytes for 'specialnamequalifyingelements'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'mangled_name'.
+[2026-01-07 02:43:44] Merged 62 bytes for 'mangled_name'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'specifiers'.
+[2026-01-07 02:43:44] Merged 149 bytes for 'specifiers'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'extractor_version'.
+[2026-01-07 02:43:44] Merged 27 bytes for 'extractor_version'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'fileannotations'.
+[2026-01-07 02:43:44] Merged 55 bytes for 'fileannotations'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'numlines'.
+[2026-01-07 02:43:44] Merged 69 bytes for 'numlines'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'link_parent'.
+[2026-01-07 02:43:44] Merged 48 bytes for 'link_parent'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'functions'.
+[2026-01-07 02:43:44] Merged 43 bytes for 'functions'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'function_return_type'.
+[2026-01-07 02:43:44] Merged 31 bytes for 'function_return_type'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'function_prototyped'.
+[2026-01-07 02:43:44] Merged 20 bytes for 'function_prototyped'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'params'.
+[2026-01-07 02:43:44] Merged 66 bytes for 'params'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'derivedtypes'.
+[2026-01-07 02:43:44] Merged 102 bytes for 'derivedtypes'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'pointerishsize'.
+[2026-01-07 02:43:44] Merged 41 bytes for 'pointerishsize'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'fun_decls'.
+[2026-01-07 02:43:44] Merged 67 bytes for 'fun_decls'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'fun_def'.
+[2026-01-07 02:43:44] Merged 20 bytes for 'fun_def'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'fun_decl_specifiers'.
+[2026-01-07 02:43:44] Merged 28 bytes for 'fun_decl_specifiers'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'var_def'.
+[2026-01-07 02:43:44] Merged 34 bytes for 'var_def'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'param_decl_bind'.
+[2026-01-07 02:43:44] Merged 51 bytes for 'param_decl_bind'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'stmts'.
+[2026-01-07 02:43:44] Merged 85 bytes for 'stmts'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'localvariables'.
+[2026-01-07 02:43:44] Merged 46 bytes for 'localvariables'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'values'.
+[2026-01-07 02:43:44] Merged 1624 bytes (1.59 KiB) for 'values'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'valuetext'.
+[2026-01-07 02:43:44] Merged 238 bytes for 'valuetext'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'exprs'.
+[2026-01-07 02:43:44] Merged 2231 bytes (2.18 KiB) for 'exprs'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'expr_types'.
+[2026-01-07 02:43:44] Merged 1270 bytes (1.24 KiB) for 'expr_types'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'valuebind'.
+[2026-01-07 02:43:44] Merged 1371 bytes (1.34 KiB) for 'valuebind'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'exprparents'.
+[2026-01-07 02:43:44] Merged 1610 bytes (1.57 KiB) for 'exprparents'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'var_decls'.
+[2026-01-07 02:43:44] Merged 154 bytes for 'var_decls'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'stmt_decl_bind'.
+[2026-01-07 02:43:44] Merged 47 bytes for 'stmt_decl_bind'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'stmt_decl_entry_bind'.
+[2026-01-07 02:43:44] Merged 45 bytes for 'stmt_decl_entry_bind'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'expr_isload'.
+[2026-01-07 02:43:44] Merged 48 bytes for 'expr_isload'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'compgenerated'.
+[2026-01-07 02:43:44] Merged 141 bytes for 'compgenerated'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'arraysizes'.
+[2026-01-07 02:43:44] Merged 77 bytes for 'arraysizes'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'macroinvocations'.
+[2026-01-07 02:43:44] Merged 249 bytes for 'macroinvocations'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'affectedbymacroexpansion'.
+[2026-01-07 02:43:44] Merged 128 bytes for 'affectedbymacroexpansion'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'stmtparents'.
+[2026-01-07 02:43:44] Merged 78 bytes for 'stmtparents'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'blockscope'.
+[2026-01-07 02:43:44] Merged 35 bytes for 'blockscope'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'function_entry_point'.
+[2026-01-07 02:43:44] Merged 34 bytes for 'function_entry_point'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'globalvariables'.
+[2026-01-07 02:43:44] Merged 67 bytes for 'globalvariables'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'initialisers'.
+[2026-01-07 02:43:44] Merged 113 bytes for 'initialisers'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'macroparent'.
+[2026-01-07 02:43:44] Merged 65 bytes for 'macroparent'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'macro_argument_unexpanded'.
+[2026-01-07 02:43:44] Merged 52 bytes for 'macro_argument_unexpanded'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'macro_argument_expanded'.
+[2026-01-07 02:43:44] Merged 52 bytes for 'macro_argument_expanded'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'aggregate_array_init'.
+[2026-01-07 02:43:44] Merged 367 bytes for 'aggregate_array_init'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'inmacroexpansion'.
+[2026-01-07 02:43:44] Merged 2887 bytes (2.82 KiB) for 'inmacroexpansion'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'macrolocationbind'.
+[2026-01-07 02:43:44] Merged 43 bytes for 'macrolocationbind'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'preprocdirects'.
+[2026-01-07 02:43:44] Merged 1564 bytes (1.53 KiB) for 'preprocdirects'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'preproctext'.
+[2026-01-07 02:43:44] Merged 915 bytes for 'preproctext'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'preprocfalse'.
+[2026-01-07 02:43:44] Merged 164 bytes for 'preprocfalse'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'preproctrue'.
+[2026-01-07 02:43:44] Merged 37 bytes for 'preproctrue'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'containerparent'.
+[2026-01-07 02:43:44] Merged 75 bytes for 'containerparent'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'folders'.
+[2026-01-07 02:43:44] Merged 53 bytes for 'folders'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'varspecifiers'.
+[2026-01-07 02:43:44] Merged 40 bytes for 'varspecifiers'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'varbind'.
+[2026-01-07 02:43:44] Merged 149 bytes for 'varbind'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'typespecifiers'.
+[2026-01-07 02:43:44] Merged 27 bytes for 'typespecifiers'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'exprconv'.
+[2026-01-07 02:43:44] Merged 649 bytes for 'exprconv'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'conversionkinds'.
+[2026-01-07 02:43:44] Merged 143 bytes for 'conversionkinds'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'preprocpair'.
+[2026-01-07 02:43:44] Merged 637 bytes for 'preprocpair'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'comments'.
+[2026-01-07 02:43:44] Merged 321 bytes for 'comments'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'commentbinding'.
+[2026-01-07 02:43:44] Merged 232 bytes for 'commentbinding'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'compilations'.
+[2026-01-07 02:43:44] Merged 40 bytes for 'compilations'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'compilation_args'.
+[2026-01-07 02:43:44] Merged 218 bytes for 'compilation_args'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'compilation_expanded_args'.
+[2026-01-07 02:43:44] Merged 218 bytes for 'compilation_expanded_args'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'compilation_compiling_files'.
+[2026-01-07 02:43:44] Merged 50 bytes for 'compilation_compiling_files'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'compilation_time'.
+[2026-01-07 02:43:44] Merged 242 bytes for 'compilation_time'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'compilation_finished'.
+[2026-01-07 02:43:44] Merged 111 bytes for 'compilation_finished'.
+[2026-01-07 02:43:44] Merging 1 fragment for 'sourceLocationPrefix'.
+[2026-01-07 02:43:44] Merged 18 bytes for 'sourceLocationPrefix'.
+[2026-01-07 02:43:44] Saving string and id pools to disk.
+[2026-01-07 02:43:44] Finished importing TRAP files.
+[2026-01-07 02:43:44] Read 638.35 KiB of uncompressed TRAP data.
+[2026-01-07 02:43:44] Uncompressed relation data size: 93.37 KiB
+[2026-01-07 02:43:44] Relation data size: 23.89 KiB (merge rate: 308.60 KiB/s)
+[2026-01-07 02:43:44] String pool size: 2.05 MiB
+[2026-01-07 02:43:44] ID pool size: 1.05 MiB
+[2026-01-07 02:43:44] [PROGRESS] dataset import> Finished writing database (relations: 23.89 KiB; string pool: 2.05 MiB).
+[2026-01-07 02:43:44] Pausing evaluation to close the cache at sequence stamp o+149
+[2026-01-07 02:43:44] The disk cache is freshly trimmed; leave it be.
+[2026-01-07 02:43:44] Unpausing evaluation
+[2026-01-07 02:43:44] Plumbing command codeql dataset import completed.
+[2026-01-07 02:43:44] [PROGRESS] database finalize> TRAP import complete (800ms).
+[2026-01-07 02:43:44] Running plumbing command: codeql database cleanup -- /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test
+[2026-01-07 02:43:44] [PROGRESS] database cleanup> Cleaning up existing TRAP files after import...
+[2026-01-07 02:43:44] [PROGRESS] database cleanup> TRAP files cleaned up (4ms).
+[2026-01-07 02:43:44] [PROGRESS] database cleanup> Cleaning up scratch directory...
+[2026-01-07 02:43:44] [PROGRESS] database cleanup> Scratch directory cleaned up (46ms).
+[2026-01-07 02:43:44] Running plumbing command: codeql dataset cleanup -- /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp
+[2026-01-07 02:43:44] [PROGRESS] dataset cleanup> Cleaning up dataset in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp.
+[2026-01-07 02:43:44] Trimming disk cache at /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp/default/cache in mode trim.
+[2026-01-07 02:43:44] Sequence stamp origin is -5961441128662456515
+[2026-01-07 02:43:44] Pausing evaluation to quickly trim memory at sequence stamp o+0
+[2026-01-07 02:43:44] Unpausing evaluation
+[2026-01-07 02:43:44] Pausing evaluation to zealously trim disk at sequence stamp o+1
+[2026-01-07 02:43:44] Unpausing evaluation
+[2026-01-07 02:43:44] Trimming completed (2ms): Trimmed disposable data from cache.
+[2026-01-07 02:43:44] Pausing evaluation to close the cache at sequence stamp o+2
+[2026-01-07 02:43:44] The disk cache is freshly trimmed; leave it be.
+[2026-01-07 02:43:44] Unpausing evaluation
+[2026-01-07 02:43:44] [PROGRESS] dataset cleanup> Trimmed disposable data from cache.
+[2026-01-07 02:43:44] [PROGRESS] dataset cleanup> Finalizing dataset in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp
+[2026-01-07 02:43:44] [DETAILS] dataset cleanup> Finished deleting ID pool from /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test/db-cpp (0ms).
+[2026-01-07 02:43:44] Plumbing command codeql dataset cleanup completed.
+[2026-01-07 02:43:44] Plumbing command codeql database cleanup completed with status 0.
+[2026-01-07 02:43:44] [PROGRESS] database finalize> Finished zipping source archive (9.11 KiB).
+[2026-01-07 02:43:44] Plumbing command codeql database finalize completed.
+[2026-01-07 02:43:44] [PROGRESS] database create> Successfully created database at /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/zephyr-driver-db-test.
+[2026-01-07 02:43:44] Terminating normally.

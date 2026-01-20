@@ -1,0 +1,616 @@
+{
+    "mmio_functions": {
+        "complex_mmio_operation": {
+            "name": "complex_mmio_operation",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 188,
+            "function_content": [
+                "/* 复杂的 MMIO 操作 */\nvoid complex_mmio_operation(uint8_t *buffer, size_t len)\n{\n    /* 初始化 */\n    USART1->CR1 = 0x2000;\n    USART1->BRR = 0x0341;\n    \n    /* 批量传输 */\n    for (size_t i = 0; i < len; i++) {\n        while (!(USART1->SR & 0x0080)) {\n            __asm__ volatile (\"nop\");\n        }\n        USART1->DR = buffer[i];\n    }\n    \n    /* 条件操作 */\n    if (len > 10) {\n        USART1->CR1 |= 0x1000;  /* 使能 RX */\n    }\n}\n",
+                {
+                    "188": "void complex_mmio_operation(uint8_t *buffer, size_t len)",
+                    "189": "{",
+                    "190": "    /* 初始化 */",
+                    "191": "    USART1->CR1 = 0x2000;",
+                    "192": "    USART1->BRR = 0x0341;",
+                    "193": "    ",
+                    "194": "    /* 批量传输 */",
+                    "195": "    for (size_t i = 0; i < len; i++) {",
+                    "196": "        while (!(USART1->SR & 0x0080)) {",
+                    "197": "            __asm__ volatile (\"nop\");",
+                    "198": "        }",
+                    "199": "        USART1->DR = buffer[i];",
+                    "200": "    }",
+                    "201": "    ",
+                    "202": "    /* 条件操作 */",
+                    "203": "    if (len > 10) {",
+                    "204": "        USART1->CR1 |= 0x1000;  /* 使能 RX */",
+                    "205": "    }",
+                    "206": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        },
+        "loop_mmio_operation": {
+            "name": "loop_mmio_operation",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 162,
+            "function_content": [
+                "/* 循环中的 MMIO 操作 */\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\n{\n    for (size_t i = 0; i < size; i++) {\n        /* 循环中的 MMIO 操作 */\n        while (!(USART1->SR & 0x0080)) {\n            __asm__ volatile (\"nop\");\n        }\n        USART1->DR = data[i];\n    }\n}\n",
+                {
+                    "162": "void loop_mmio_operation(const uint8_t *data, size_t size)",
+                    "163": "{",
+                    "164": "    for (size_t i = 0; i < size; i++) {",
+                    "165": "        /* 循环中的 MMIO 操作 */",
+                    "166": "        while (!(USART1->SR & 0x0080)) {",
+                    "167": "            __asm__ volatile (\"nop\");",
+                    "168": "        }",
+                    "169": "        USART1->DR = data[i];",
+                    "170": "    }",
+                    "171": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        },
+        "conditional_mmio_operation": {
+            "name": "conditional_mmio_operation",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 148,
+            "function_content": [
+                "/* 条件语句中的 MMIO 操作 */\nvoid conditional_mmio_operation(uint8_t config)\n{\n    if (config & 0x01) {\n        /* 条件分支中的 MMIO 操作 */\n        USART1->CR1 |= 0x2000;\n    }\n    \n    if (config & 0x02) {\n        /* 另一个条件分支中的 MMIO 操作 */\n        USART2->CR1 |= 0x2000;\n    }\n}\n",
+                {
+                    "148": "void conditional_mmio_operation(uint8_t config)",
+                    "149": "{",
+                    "150": "    if (config & 0x01) {",
+                    "151": "        /* 条件分支中的 MMIO 操作 */",
+                    "152": "        USART1->CR1 |= 0x2000;",
+                    "153": "    }",
+                    "154": "    ",
+                    "155": "    if (config & 0x02) {",
+                    "156": "        /* 另一个条件分支中的 MMIO 操作 */",
+                    "157": "        USART2->CR1 |= 0x2000;",
+                    "158": "    }",
+                    "159": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        },
+        "mmio_uart_receive_byte_direct": {
+            "name": "mmio_uart_receive_byte_direct",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 101,
+            "function_content": [
+                "/* 发送数据 */\nuint8_t mmio_uart_receive_byte_direct(void)\n{\n    /* 等待接收数据 */\n    while (!(USART1->SR & 0x0020)) {\n        /* 空循环等待 */\n        __asm__ volatile (\"nop\");\n    }\n    \n    /* 读取数据 */\n    return (uint8_t)(USART1->DR & 0xFF);\n}\n",
+                {
+                    "101": "uint8_t mmio_uart_receive_byte_direct(void)",
+                    "102": "{",
+                    "103": "    /* 等待接收数据 */",
+                    "104": "    while (!(USART1->SR & 0x0020)) {",
+                    "105": "        /* 空循环等待 */",
+                    "106": "        __asm__ volatile (\"nop\");",
+                    "107": "    }",
+                    "108": "    ",
+                    "109": "    /* 读取数据 */",
+                    "110": "    return (uint8_t)(USART1->DR & 0xFF);",
+                    "111": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        },
+        "mmio_uart_send_byte_direct": {
+            "name": "mmio_uart_send_byte_direct",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 89,
+            "function_content": [
+                "USART1->CR3 = 0x0000;  /* 默认设置 */\nvoid mmio_uart_send_byte_direct(uint8_t data)\n{\n    /* 等待发送缓冲区空 */\n    while (!(USART1->SR & 0x0080)) {\n        /* 空循环等待 */\n        __asm__ volatile (\"nop\");\n    }\n    \n    /* 发送数据 */\n    USART1->DR = data;\n}\n",
+                {
+                    "89": "void mmio_uart_send_byte_direct(uint8_t data)",
+                    "90": "{",
+                    "91": "    /* 等待发送缓冲区空 */",
+                    "92": "    while (!(USART1->SR & 0x0080)) {",
+                    "93": "        /* 空循环等待 */",
+                    "94": "        __asm__ volatile (\"nop\");",
+                    "95": "    }",
+                    "96": "    ",
+                    "97": "    /* 发送数据 */",
+                    "98": "    USART1->DR = data;",
+                    "99": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        },
+        "mmio_uart_init_direct": {
+            "name": "mmio_uart_init_direct",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 80,
+            "function_content": [
+                "/* 直接的 MMIO 操作函数 - CodeQL 应该能检测到这些 */\nvoid mmio_uart_init_direct(void)\n{\n    /* 直接寄存器访问 - CodeQL 应该能检测为 MMIO 操作 */\n    USART1->CR1 = 0x2000;  /* 使能 UART，TE=1, UE=1 */\n    USART1->BRR = 0x0341;  /* 设置波特率 115200 */\n    USART1->CR2 = 0x0000;  /* 默认设置 */\n    USART1->CR3 = 0x0000;  /* 默认设置 */\n}\n",
+                {
+                    "80": "void mmio_uart_init_direct(void)",
+                    "81": "{",
+                    "82": "    /* 直接寄存器访问 - CodeQL 应该能检测为 MMIO 操作 */",
+                    "83": "    USART1->CR1 = 0x2000;  /* 使能 UART，TE=1, UE=1 */",
+                    "84": "    USART1->BRR = 0x0341;  /* 设置波特率 115200 */",
+                    "85": "    USART1->CR2 = 0x0000;  /* 默认设置 */",
+                    "86": "    USART1->CR3 = 0x0000;  /* 默认设置 */",
+                    "87": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        }
+    },
+    "driver_functions": {},
+    "buffer_functions": {
+        "complex_mmio_operation": {
+            "name": "complex_mmio_operation",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 188,
+            "function_content": [
+                "/* 复杂的 MMIO 操作 */\nvoid complex_mmio_operation(uint8_t *buffer, size_t len)\n{\n    /* 初始化 */\n    USART1->CR1 = 0x2000;\n    USART1->BRR = 0x0341;\n    \n    /* 批量传输 */\n    for (size_t i = 0; i < len; i++) {\n        while (!(USART1->SR & 0x0080)) {\n            __asm__ volatile (\"nop\");\n        }\n        USART1->DR = buffer[i];\n    }\n    \n    /* 条件操作 */\n    if (len > 10) {\n        USART1->CR1 |= 0x1000;  /* 使能 RX */\n    }\n}\n",
+                {
+                    "188": "void complex_mmio_operation(uint8_t *buffer, size_t len)",
+                    "189": "{",
+                    "190": "    /* 初始化 */",
+                    "191": "    USART1->CR1 = 0x2000;",
+                    "192": "    USART1->BRR = 0x0341;",
+                    "193": "    ",
+                    "194": "    /* 批量传输 */",
+                    "195": "    for (size_t i = 0; i < len; i++) {",
+                    "196": "        while (!(USART1->SR & 0x0080)) {",
+                    "197": "            __asm__ volatile (\"nop\");",
+                    "198": "        }",
+                    "199": "        USART1->DR = buffer[i];",
+                    "200": "    }",
+                    "201": "    ",
+                    "202": "    /* 条件操作 */",
+                    "203": "    if (len > 10) {",
+                    "204": "        USART1->CR1 |= 0x1000;  /* 使能 RX */",
+                    "205": "    }",
+                    "206": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        },
+        "loop_mmio_operation": {
+            "name": "loop_mmio_operation",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 162,
+            "function_content": [
+                "/* 循环中的 MMIO 操作 */\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\n{\n    for (size_t i = 0; i < size; i++) {\n        /* 循环中的 MMIO 操作 */\n        while (!(USART1->SR & 0x0080)) {\n            __asm__ volatile (\"nop\");\n        }\n        USART1->DR = data[i];\n    }\n}\n",
+                {
+                    "162": "void loop_mmio_operation(const uint8_t *data, size_t size)",
+                    "163": "{",
+                    "164": "    for (size_t i = 0; i < size; i++) {",
+                    "165": "        /* 循环中的 MMIO 操作 */",
+                    "166": "        while (!(USART1->SR & 0x0080)) {",
+                    "167": "            __asm__ volatile (\"nop\");",
+                    "168": "        }",
+                    "169": "        USART1->DR = data[i];",
+                    "170": "    }",
+                    "171": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        },
+        "mixed_uart_operation": {
+            "name": "mixed_uart_operation",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+            "location_line": 134,
+            "function_content": [
+                "/* 混合使用 Zephyr API 和直接 MMIO 操作 */\nvoid mixed_uart_operation(void)\n{\n    /* 使用 Zephyr API 初始化 */\n    zephyr_uart_init();\n    \n    /* 使用直接 MMIO 发送数据 */\n    const char *msg = \"Mixed operation test\\n\";\n    while (*msg) {\n        mmio_uart_send_byte_direct(*msg);\n        msg++;\n    }\n}\n",
+                {
+                    "134": "void mixed_uart_operation(void)",
+                    "135": "{",
+                    "136": "    /* 使用 Zephyr API 初始化 */",
+                    "137": "    zephyr_uart_init();",
+                    "138": "    ",
+                    "139": "    /* 使用直接 MMIO 发送数据 */",
+                    "140": "    const char *msg = \"Mixed operation test\\n\";",
+                    "141": "    while (*msg) {",
+                    "142": "        mmio_uart_send_byte_direct(*msg);",
+                    "143": "        msg++;",
+                    "144": "    }",
+                    "145": "}"
+                }
+            ],
+            "function_content_in_lines": {}
+        }
+    },
+    "mmioinfo_interestingmmioexpr_dict": {
+        "complex_mmio_operation": [
+            {
+                "name": "! ...",
+                "function": "complex_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 196,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "complex_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 196,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... & ...",
+                "function": "complex_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 196,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            }
+        ],
+        "loop_mmio_operation": [
+            {
+                "name": "! ...",
+                "function": "loop_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 166,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "loop_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 166,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... & ...",
+                "function": "loop_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 166,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            }
+        ],
+        "mmio_uart_receive_byte_direct": [
+            {
+                "name": "! ...",
+                "function": "mmio_uart_receive_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 104,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "mmio_uart_receive_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 104,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... & ...",
+                "function": "mmio_uart_receive_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 104,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            }
+        ],
+        "mmio_uart_send_byte_direct": [
+            {
+                "name": "! ...",
+                "function": "mmio_uart_send_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 92,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "mmio_uart_send_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 92,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... & ...",
+                "function": "mmio_uart_send_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 92,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            }
+        ]
+    },
+    "mmioinfo_mmioexpr_dict": {
+        "complex_mmio_operation": [
+            {
+                "name": "! ...",
+                "function": "complex_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 196,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "complex_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 196,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... |= ...",
+                "function": "complex_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 204,
+                "expr_type": "assign",
+                "enclosing_type": "stmt"
+            },
+            {
+                "name": "... & ...",
+                "function": "complex_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 196,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            }
+        ],
+        "loop_mmio_operation": [
+            {
+                "name": "! ...",
+                "function": "loop_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 166,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "loop_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 166,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... & ...",
+                "function": "loop_mmio_operation",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 166,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            }
+        ],
+        "mmio_uart_receive_byte_direct": [
+            {
+                "name": "! ...",
+                "function": "mmio_uart_receive_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 104,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "mmio_uart_receive_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 104,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... & ...",
+                "function": "mmio_uart_receive_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 104,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            },
+            {
+                "name": "... & ...",
+                "function": "mmio_uart_receive_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 110,
+                "expr_type": "binary",
+                "enclosing_type": "return"
+            }
+        ],
+        "mmio_uart_send_byte_direct": [
+            {
+                "name": "! ...",
+                "function": "mmio_uart_send_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 92,
+                "expr_type": "unary",
+                "enclosing_type": "while"
+            },
+            {
+                "name": "! ...",
+                "function": "mmio_uart_send_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 92,
+                "expr_type": "unary",
+                "enclosing_type": "control_flow"
+            },
+            {
+                "name": "... & ...",
+                "function": "mmio_uart_send_byte_direct",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 92,
+                "expr_type": "binary",
+                "enclosing_type": "skip"
+            }
+        ]
+    },
+    "mmioinfo_interestingmmiofunc_contains_dict": {
+        "complex_mmio_operation": [
+            {
+                "type_name": "uint32_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "uint8_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "size_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stddef.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "size_t",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "USART_TypeDef",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 34,
+                "flag": "typedef",
+                "type_content": "/* STM32 UART 寄存器定义 - ARM Cortex-M 内存映射 */\ntypedef struct {\n    volatile uint32_t SR;     /* 状态寄存器 */\n    volatile uint32_t DR;     /* 数据寄存器 */\n    volatile uint32_t BRR;    /* 波特率寄存器 */\n    volatile uint32_t CR1;    /* 控制寄存器1 */\n    volatile uint32_t CR2;    /* 控制寄存器2 */\n    volatile uint32_t CR3;    /* 控制寄存器3 */\n    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */\n} USART_TypeDef;\n",
+                "type_lines": {
+                    "34": "typedef struct {",
+                    "35": "    volatile uint32_t SR;     /* 状态寄存器 */",
+                    "36": "    volatile uint32_t DR;     /* 数据寄存器 */",
+                    "37": "    volatile uint32_t BRR;    /* 波特率寄存器 */",
+                    "38": "    volatile uint32_t CR1;    /* 控制寄存器1 */",
+                    "39": "    volatile uint32_t CR2;    /* 控制寄存器2 */",
+                    "40": "    volatile uint32_t CR3;    /* 控制寄存器3 */",
+                    "41": "    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */",
+                    "42": "} USART_TypeDef;"
+                }
+            }
+        ],
+        "loop_mmio_operation": [
+            {
+                "type_name": "uint32_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "uint8_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "size_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stddef.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "size_t",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "USART_TypeDef",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 34,
+                "flag": "typedef",
+                "type_content": "/* STM32 UART 寄存器定义 - ARM Cortex-M 内存映射 */\ntypedef struct {\n    volatile uint32_t SR;     /* 状态寄存器 */\n    volatile uint32_t DR;     /* 数据寄存器 */\n    volatile uint32_t BRR;    /* 波特率寄存器 */\n    volatile uint32_t CR1;    /* 控制寄存器1 */\n    volatile uint32_t CR2;    /* 控制寄存器2 */\n    volatile uint32_t CR3;    /* 控制寄存器3 */\n    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */\n} USART_TypeDef;\n",
+                "type_lines": {
+                    "34": "typedef struct {",
+                    "35": "    volatile uint32_t SR;     /* 状态寄存器 */",
+                    "36": "    volatile uint32_t DR;     /* 数据寄存器 */",
+                    "37": "    volatile uint32_t BRR;    /* 波特率寄存器 */",
+                    "38": "    volatile uint32_t CR1;    /* 控制寄存器1 */",
+                    "39": "    volatile uint32_t CR2;    /* 控制寄存器2 */",
+                    "40": "    volatile uint32_t CR3;    /* 控制寄存器3 */",
+                    "41": "    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */",
+                    "42": "} USART_TypeDef;"
+                }
+            }
+        ],
+        "mmio_uart_receive_byte_direct": [
+            {
+                "type_name": "uint8_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "USART_TypeDef",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 34,
+                "flag": "typedef",
+                "type_content": "/* STM32 UART 寄存器定义 - ARM Cortex-M 内存映射 */\ntypedef struct {\n    volatile uint32_t SR;     /* 状态寄存器 */\n    volatile uint32_t DR;     /* 数据寄存器 */\n    volatile uint32_t BRR;    /* 波特率寄存器 */\n    volatile uint32_t CR1;    /* 控制寄存器1 */\n    volatile uint32_t CR2;    /* 控制寄存器2 */\n    volatile uint32_t CR3;    /* 控制寄存器3 */\n    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */\n} USART_TypeDef;\n",
+                "type_lines": {
+                    "34": "typedef struct {",
+                    "35": "    volatile uint32_t SR;     /* 状态寄存器 */",
+                    "36": "    volatile uint32_t DR;     /* 数据寄存器 */",
+                    "37": "    volatile uint32_t BRR;    /* 波特率寄存器 */",
+                    "38": "    volatile uint32_t CR1;    /* 控制寄存器1 */",
+                    "39": "    volatile uint32_t CR2;    /* 控制寄存器2 */",
+                    "40": "    volatile uint32_t CR3;    /* 控制寄存器3 */",
+                    "41": "    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */",
+                    "42": "} USART_TypeDef;"
+                }
+            }
+        ],
+        "mmio_uart_send_byte_direct": [
+            {
+                "type_name": "uint32_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "uint8_t",
+                "file_path": "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h",
+                "start_line": 0,
+                "flag": "typedef",
+                "type_content": "",
+                "type_lines": {}
+            },
+            {
+                "type_name": "USART_TypeDef",
+                "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c",
+                "start_line": 34,
+                "flag": "typedef",
+                "type_content": "/* STM32 UART 寄存器定义 - ARM Cortex-M 内存映射 */\ntypedef struct {\n    volatile uint32_t SR;     /* 状态寄存器 */\n    volatile uint32_t DR;     /* 数据寄存器 */\n    volatile uint32_t BRR;    /* 波特率寄存器 */\n    volatile uint32_t CR1;    /* 控制寄存器1 */\n    volatile uint32_t CR2;    /* 控制寄存器2 */\n    volatile uint32_t CR3;    /* 控制寄存器3 */\n    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */\n} USART_TypeDef;\n",
+                "type_lines": {
+                    "34": "typedef struct {",
+                    "35": "    volatile uint32_t SR;     /* 状态寄存器 */",
+                    "36": "    volatile uint32_t DR;     /* 数据寄存器 */",
+                    "37": "    volatile uint32_t BRR;    /* 波特率寄存器 */",
+                    "38": "    volatile uint32_t CR1;    /* 控制寄存器1 */",
+                    "39": "    volatile uint32_t CR2;    /* 控制寄存器2 */",
+                    "40": "    volatile uint32_t CR3;    /* 控制寄存器3 */",
+                    "41": "    volatile uint32_t GTPR;   /* 保护时间和预分频寄存器 */",
+                    "42": "} USART_TypeDef;"
+                }
+            }
+        ]
+    }
+}

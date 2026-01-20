@@ -1,0 +1,4 @@
+db_path: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db
+proj_path: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver
+script_path: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver
+src_path: /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver

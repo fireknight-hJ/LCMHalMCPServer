@@ -1,0 +1,1905 @@
+{
+  "session_id": "bb447343-428e-497d-87fd-33d5c8c1bade",
+  "start_time": "2026-01-20T10:07:30.171397",
+  "logs": [
+    {
+      "timestamp": "2026-01-20T10:07:32.592085",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an embedded software engineer working on decoupling hardware-dependent driver functions (e.g., MMIO accesses, peripheral register manipulations) while preserving overall system functionality—including successful entry into `main()`, proper OS scheduling, and correct interrupt behavior.\n\nYour task is to **iteratively debug and validate** the firmware after replacing hardware-coupled functions with abstraction-compatible stubs or mock implementations.\n\n### Validation Criteria  \nThe firmwa"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:35.272771",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:35.277445",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:36.520716",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:36.524202",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 4,
+        "new_messages": 3,
+        "message_range": [
+          1,
+          3
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:40.800455",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:40.804940",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 5,
+        "new_messages": 4,
+        "message_range": [
+          1,
+          4
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:43.459839",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an experienced embedded software engineer specializing in hardware abstraction layer (HAL) development and debugging. Your task is to **actively and independently analyze emulator error logs** to identify problematic functions, gather necessary context information, and fix these functions in driver source code by replacing hardware-dependent operations with POSIX-compatible implementations, while preserving normal functionality including OS scheduling and interrupt handling.\n\n**CRITICAL"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:46.351573",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:46.354312",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by following the mandatory workflow to actively retrieve the emulator error logs and analyze the issues.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:46.355749",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:46.357427",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 6,
+        "new_messages": 5,
+        "message_range": [
+          1,
+          5
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:48.692181",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:48.696706",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 7,
+        "new_messages": 6,
+        "message_range": [
+          1,
+          6
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:48.700052",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:52.071504",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:52.074812",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by actively retrieving the emulator error logs as required by the workflow. Let me first get the function calls emulate info to understand the execution flow and error context.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:52.076801",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:52.079090",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 8,
+        "new_messages": 7,
+        "message_range": [
+          1,
+          7
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:55.560530",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:55.565870",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 9,
+        "new_messages": 8,
+        "message_range": [
+          1,
+          8
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:56.932270",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:56.934356",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 10,
+        "new_messages": 9,
+        "message_range": [
+          1,
+          9
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:58.941136",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:07:58.947316",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 11,
+        "new_messages": 10,
+        "message_range": [
+          1,
+          10
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me check the function call stack information:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:00.205394",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:00.208533",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 12,
+        "new_messages": 11,
+        "message_range": [
+          1,
+          11
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me check the function call stack information:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:04.628295",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:04.632780",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 13,
+        "new_messages": 12,
+        "message_range": [
+          1,
+          12
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me check the function call stack information:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The debug output files don't exist yet because the emulation failed before generating them. The error message from the emulator shows a memory mapping issue. This is likely a configuration problem with the emulator setup rather than a driver code issue.\n\nLet me try to build the project first to see if there are any compilation issues:",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:06.748386",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an embedded software engineer. Your task is to replace certain functions in the driver library by stripping away peripheral hardware dependencies (such as I/O operations and various peripheral register accesses), while retaining the normal functionality of the functions as well as MCU operations (including OS scheduling and interrupt triggers).\nNow that you have replaced some of the functions involving MMIO and driver operations with the specified replacement functions, your next step i"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:09.312450",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:09.322704",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by building the project to see what errors we encounter, then fix them recursively.",
+            "tool_calls": [
+              {
+                "name": "BuildProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:09.331041",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:09.340226",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 14,
+        "new_messages": 13,
+        "message_range": [
+          1,
+          13
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me check the function call stack information:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The debug output files don't exist yet because the emulation failed before generating them. The error message from the emulator shows a memory mapping issue. This is likely a configuration problem with the emulator setup rather than a driver code issue.\n\nLet me try to build the project first to see if there are any compilation issues:",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:17.551190",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:17.562144",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 15,
+        "new_messages": 14,
+        "message_range": [
+          1,
+          14
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me check the function call stack information:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The debug output files don't exist yet because the emulation failed before generating them. The error message from the emulator shows a memory mapping issue. This is likely a configuration problem with the emulator setup rather than a driver code issue.\n\nLet me try to build the project first to see if there are any compilation issues:",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. However, based on the emulator error, the issue is that the emulator cannot map the RAM region at 0x20000000. This could be because:\n\n1. The memory region is already mapped elsewhere\n2. The size is too large for the available address space\n3. There's a conflict with other memory regions\n\nSince I cannot call the `Fixer` or `Builder` tools due to configuration issues, let me try to understand the system better. The error message shows the emu",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:18.804707",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:18.816175",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 16,
+        "new_messages": 15,
+        "message_range": [
+          1,
+          15
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me check the function call stack information:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The debug output files don't exist yet because the emulation failed before generating them. The error message from the emulator shows a memory mapping issue. This is likely a configuration problem with the emulator setup rather than a driver code issue.\n\nLet me try to build the project first to see if there are any compilation issues:",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. However, based on the emulator error, the issue is that the emulator cannot map the RAM region at 0x20000000. This could be because:\n\n1. The memory region is already mapped elsewhere\n2. The size is too large for the available address space\n3. There's a conflict with other memory regions\n\nSince I cannot call the `Fixer` or `Builder` tools due to configuration issues, let me try to understand the system better. The error message shows the emu",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:26.358705",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:26.387635",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 17,
+        "new_messages": 16,
+        "message_range": [
+          1,
+          16
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see if it meets the validation criteria.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed with a memory mapping error. The error indicates that the emulator cannot map the RAM region at address 0x20000000 with size 0x3ffcc8. This is likely because the memory region is already mapped or there's an issue with the memory configuration.\n\nAccording to the debugging workflow, I need to call the `Fixer` tool once to analyze the error and propose fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the `Fixer` tool to analyze the emulator error. Let me try again:",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the `Fixer` tool configuration. Let me try a different approach. First, let me check what MMIO functions are being used to better understand the system:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me check the function call stack information:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The debug output files don't exist yet because the emulation failed before generating them. The error message from the emulator shows a memory mapping issue. This is likely a configuration problem with the emulator setup rather than a driver code issue.\n\nLet me try to build the project first to see if there are any compilation issues:",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. However, based on the emulator error, the issue is that the emulator cannot map the RAM region at 0x20000000. This could be because:\n\n1. The memory region is already mapped elsewhere\n2. The size is too large for the available address space\n3. There's a conflict with other memory regions\n\nSince I cannot call the `Fixer` or `Builder` tools due to configuration issues, let me try to understand the system better. The error message shows the emu",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Unicorn Setting Error! Fail to map region ram at 0x20000000, size 0x3ffcc8, perms: 7, because Invalid memory mapping (UC_ERR_MAP)\\n\\n\",\"std_err\":\"Traceback (most recent call last):\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/fuzzemu/fuzzemu/emulate/uc.py\\\", line 44, in uc_configure\\n    uc.mem_map(base_addr, size, prot)\\n  File \\\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py\\\", line 631, in mem_map\\n    raise UcError(status)\\nunicorn.unicor"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The same error persists. Looking at the error more carefully, I notice that the emulator is trying to map memory with permissions \"7\" (which typically means read, write, and execute permissions: 1+2+4=7). The error \"Invalid memory mapping (UC_ERR_MAP)\" suggests that Unicorn cannot map this memory region.\n\nGiven that I cannot access the `Fixer` or `Builder` tools due to configuration issues, I need to consider alternative approaches. However, based on the debugging workflow rules, I must call `Fi",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T10:08:26.403899",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    }
+  ],
+  "agent_message_counts": {
+    "emulator_runner_agent_run_emulator": 17,
+    "fixer_agent_function_fix": 2,
+    "builder_agent_build_project": 3
+  }
+}
