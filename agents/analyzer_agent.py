@@ -224,17 +224,38 @@ def function_classify_from_log(func_name: str) -> FunctionClassifyResponse:
 
 async def analyze_functions(function_list):
     mmio_info_list = {}
+    max_retries = 3
+    retry_delay = 1  # 秒
+    
+    async def classify_with_retry(func_name):
+        """带重试机制的函数分类"""
+        for attempt in range(max_retries):
+            try:
+                result = await function_classify(func_name)
+                if result:
+                    return result
+                else:
+                    print(f"Warning: Empty result for {func_name}, retrying ({attempt + 1}/{max_retries})...")
+                    if attempt < max_retries - 1:
+                        await asyncio.sleep(retry_delay)
+            except Exception as e:
+                print(f"Error analyzing {func_name} (attempt {attempt + 1}/{max_retries}): {e}")
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(retry_delay)
+        return None
+    
     tasks = []
     for func_name in function_list:
-        tasks.append(function_classify(func_name))
+        tasks.append(classify_with_retry(func_name))
     
-    results = await asyncio.gather(*tasks, return_exceptions=True)
+    results = await asyncio.gather(*tasks)
     
     for func_name, result in zip(function_list, results):
-        if isinstance(result, Exception):
-            print(f"Error analyzing function {func_name}: {result}")
-            continue
-        mmio_info_list[func_name] = result
+        if result:
+            mmio_info_list[func_name] = result
+        else:
+            print(f"Error: Failed to analyze {func_name} after {max_retries} attempts")
+            mmio_info_list[func_name] = None
     
     return mmio_info_list
 
