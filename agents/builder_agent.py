@@ -201,12 +201,24 @@ async def run_build_project() -> BuildOutput:
             {"role": "user", "content": f"Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."}
         ],
         "function_name": "build_project"
+        # 移除自定义计数器，直接使用LangGraph的错误处理
     }
-    result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
-    # log ai memory
-    if globs.ai_log_enable:
-        dump_message_json_log("build_project", result)
-    return result["final_response"]
+    
+    try:
+        result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
+        # log ai memory
+        if globs.ai_log_enable:
+            dump_message_json_log("build_project", result)
+        return result["final_response"]
+    except Exception as e:
+        from langgraph.errors import GraphRecursionError
+        if isinstance(e, GraphRecursionError):
+            # 捕获LangGraph的递归错误，触发failcheck分析
+            from utils.failcheck import analyze_failed_conversation
+            analyze_failed_conversation(initial_state["messages"], "builder_agent", 50)  # 50次agent调用
+        else:
+            # 其他错误直接抛出
+            raise
 
 @tool(
     "Builder",

@@ -28,6 +28,9 @@ async def main():
     build_proj_dbgen(globs.script_path, globs.db_path)
     # 预分析数据库
     register_db(globs.db_path)
+    # 初始化builder工具，分析所有MMIO函数
+    from tools.builder.core import init_builder
+    await init_builder()
     # # 编译项目
     from tools.builder.core import build_project
     build_output = build_project()

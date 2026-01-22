@@ -14,9 +14,21 @@ def get_func_content(function_info: FunctionInfo) -> str:
     """
     code_list = []
     idx = function_info.location_line
-    while str(idx) in function_info.function_content_in_lines:
-        code_list.append(function_info.function_content_in_lines[str(idx)])
+    
+    # 方法2：从 function_content_in_lines 中构建
+    code_list = []
+    idx = function_info.location_line
+    
+    while True:
+        # 同时检查字符串和整数键
+        if str(idx) in function_info.function_content_in_lines:
+            code_list.append(function_info.function_content_in_lines[str(idx)])
+        elif idx in function_info.function_content_in_lines:
+            code_list.append(function_info.function_content_in_lines[idx])
+        else:
+            break
         idx += 1
+    
     ret = "\n".join(code_list)
     return ret
 
@@ -25,5 +37,6 @@ def function_replace(function_info: FunctionInfo, replacement_code: str):
     替换函数的实现
     """
     src_file = file_convert_proj2src(function_info.file_path)
-    ret = src_replace(src_file, get_func_content(function_info), replacement_code)
+    old_code = get_func_content(function_info)
+    ret = src_replace(src_file, old_code, replacement_code)
     return ret != ""

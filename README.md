@@ -6,6 +6,11 @@
   - 1. 构建项目并生成elf文件
   - 2. 将生成的elf文件移动到脚本所在目录(并重命名为output.elf)
 - clear.sh: 删除构建缓存脚本（包括编译生成的elf，obj文件等中间产物）
+- lcmhal_config.yml: 配置文件（包含以下配置项）：
+  - script_path: 脚本路径
+  - db_path: 数据库路径
+  - src_path: 源代码路径
+  - proj_path: 项目路径
 
 之后运行main.py (入参为testcases目录)
 工具会自动尝试按照 codeql初步分析 + llm代码分析 + 代码替换&编译生成新的elf + 动态运行反馈 流程进行测试
