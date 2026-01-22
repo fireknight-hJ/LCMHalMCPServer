@@ -281,9 +281,13 @@ class DataManager:
             import json
             import time
             
+            # 统计has_replacement为true的函数数量
+            driver_emulation_functions_count = sum(1 for classify_res in self.mmio_info_list.values() if classify_res.has_replacement)
+            
             # 构建全量信息字典
             full_info = {
                 "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                "driver_emulation_functions_count": driver_emulation_functions_count,
                 "function_classifiers": {},
                 "replacement_updates": {}
             }
