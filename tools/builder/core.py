@@ -192,6 +192,9 @@ def build_project() -> dict:
         truncated_stdout = std_out[:stdout_limit]
         std_out = f"{truncated_stdout}\n[TRUNCATED] Output exceeded {stdout_limit} characters. Showing first {stdout_limit} characters only."
     
+    # 编译完成后dump全量信息
+    data_manager.dump_full_info()
+    
     return {
         "std_err": build_info.std_err,
         "std_out": std_out,
@@ -316,6 +319,9 @@ def build_with_raw() -> dict:
         traceback.print_exc()
     
     # 结果输出
+    # 编译完成后dump全量信息
+    data_manager.dump_full_info()
+    
     return {
         "std_err": build_info.std_err,
         "std_out": build_info.std_out,
