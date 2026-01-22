@@ -81,38 +81,35 @@ class DataManager:
             if not os.path.exists(tmp_dir):
                 return
             
-            # 遍历所有替换更新日志文件
-            seen_func_names = set()
+            # 首先收集所有唯一的函数名
+            unique_func_names = set()
             for file_name in os.listdir(tmp_dir):
                 if file_name.startswith("replacement_update_") and file_name.endswith(".json"):
-                    # 解析文件名，提取函数名
-                    parts = file_name.split("_")
-                    if len(parts) < 3:
-                        continue
-                    # 移除时间戳部分（最后一个元素）
-                    timestamp_part = parts[-1]
-                    # 函数名部分是从索引2开始到倒数第二个元素结束
-                    # 因为格式是：replacement_update_{func_name}_{timestamp}.json
-                    func_name_parts = parts[2:-1]  # 从第3个元素开始，到倒数第二个元素结束
-                    if not func_name_parts:
-                        continue
-                    func_name = "_".join(func_name_parts)  # 函数名可能包含下划线
-                    
-                    # 避免重复处理同一个函数
-                    if func_name in seen_func_names:
-                        continue
-                    seen_func_names.add(func_name)
-                    
-                    # 使用现有的函数检查并加载替换更新
-                    if check_analyzed_json_log("replacement_update", func_name):
-                        json_data = get_analyzed_json_log("replacement_update", func_name)
-                        if json_data:
-                            try:
-                                data_dict = json.loads(json_data)
-                                # 创建ReplacementUpdate对象并添加到replacement_updates
-                                self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
-                            except Exception as e:
-                                print(f"Warning: Failed to parse replacement update for {func_name}: {e}")
+                    # 直接读取文件内容，从文件内容中提取函数名
+                    file_path = os.path.join(tmp_dir, file_name)
+                    try:
+                        with open(file_path, "r", encoding="utf-8") as f:
+                            json_data = f.read()
+                            data_dict = json.loads(json_data)
+                            # 从文件内容中提取函数名
+                            if "function_name" in data_dict:
+                                func_name = data_dict["function_name"]
+                                unique_func_names.add(func_name)
+                    except Exception as e:
+                        print(f"Warning: Failed to extract function name from {file_name}: {e}")
+            
+            # 对于每个唯一的函数名，使用get_analyzed_json_log获取最新的更新版本
+            for func_name in unique_func_names:
+                # 使用现有的函数检查并加载替换更新
+                if check_analyzed_json_log("replacement_update", func_name):
+                    json_data = get_analyzed_json_log("replacement_update", func_name)
+                    if json_data:
+                        try:
+                            data_dict = json.loads(json_data)
+                            # 创建ReplacementUpdate对象并添加到replacement_updates
+                            self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
+                        except Exception as e:
+                            print(f"Warning: Failed to parse replacement update for {func_name}: {e}")
         except Exception as e:
             print(f"Error loading replacement updates: {e}")
     
