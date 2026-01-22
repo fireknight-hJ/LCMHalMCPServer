@@ -25,7 +25,7 @@ def replace_funcs():
     
     # 然后处理mmio_info_list中不在replacement_updates中的函数
     for func_name, classify_res in mmio_info_list.items():
-        if func_name not in replacement_updates and classify_res.has_replacement:
+        if func_name not in replacement_updates and classify_res and classify_res.has_replacement:
             func_info = get_function_info(globs.db_path, func_name)
             if func_info:
                 replace_res = function_replace(func_info, classify_res.function_replacement)
@@ -45,7 +45,7 @@ def recover_funcs():
     
     # 从mmio_info_list中收集文件路径
     for func_name, classify_res in mmio_info_list.items():
-        if classify_res.has_replacement:
+        if classify_res and classify_res.has_replacement:
             func_info = get_function_info(globs.db_path, func_name)
             if func_info:
                 files_to_recover.add(func_info.file_path)
