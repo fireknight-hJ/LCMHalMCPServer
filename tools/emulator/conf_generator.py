@@ -47,6 +47,8 @@ def generate_base_config():
     global baseconfig_dict
     # 从数据库中获取MMIO函数列表
     mmio_funcs_emulate_config()
+    # 应用定制化配置
+    customize_emulator_config()
     # 生成YAML配置文件
     config_path = Path(f"{globs.script_path}/emulate/base_config.yml")
     # 确保目录存在
@@ -77,20 +79,22 @@ def generate_semu_config():
         generate_rule_config()
     if not Path(f"{globs.script_path}/emulate/base_input/input.bin").exists():
         generate_base_input()
-    # 修改subprocess.run，添加stdin和stdout参数，让命令能够与用户交互
+    # 执行fuzzemu-helper命令，捕获输出以避免干扰MCP通信
+    cmd = f"cd {globs.script_path}/emulate/ && fuzzemu-helper config base_config.yml -s"
     ret = subprocess.run(
-        f"cd {globs.script_path}/emulate/ && fuzzemu-helper config base_config.yml -s", 
+        cmd, 
         shell=True, 
         check=True,
-        stdin=sys.stdin,  # 继承父进程的标准输入
-        stdout=sys.stdout,  # 继承父进程的标准输出
-        stderr=sys.stderr  # 继承父进程的标准错误
+        capture_output=True,  # 捕获标准输出和错误
+        text=True  # 以文本模式捕获
     )
     if ret.returncode != 0:
         print("[ERROR] 生成semu配置失败")
+        print(f"Error output: {ret.stderr}")
         exit(1)
     else:
-        print(f"[INFO] 成功生成semu配置文件, 路径: {globs.script_path}/semu_config.yml")
+        # 只打印成功信息，不打印fuzzemu-helper的详细输出
+        print(f"[INFO] 成功生成semu配置文件, 路径: {globs.script_path}/emulate/semu_config.yml")
 
 def mmio_funcs_emulate_config():
     global baseconfig_dict
@@ -101,6 +105,22 @@ def mmio_funcs_emulate_config():
     except Exception as e:
         print(f"[WARNING] Failed to get MMIO function list: {e}")
         baseconfig_dict['output.elf']["mmio_funcs"] = []
+
+
+def customize_emulator_config():
+    """定制化emulator配置的函数
+    
+    当前功能：强制将LoopCopyDataInit替换为do_return
+    """
+    global baseconfig_dict
+    # deprecated: 在初始化阶段随意跳过tag会报错
+    # 强制将LoopCopyDataInit添加到handlers中并映射为do_return
+    # baseconfig_dict['output.elf']['handlers']['LoopCopyDataInit'] = 'do_return'
+    # baseconfig_dict['output.elf']['handlers']['LoopFillZerobss'] = 'do_return'
+    # baseconfig_dict['output.elf']['handlers']['CopyDataInit'] = 'do_return'
+    # print("[INFO] Customized emulator config: Added LoopCopyDataInit -> do_return")
+    # print("[INFO] Customized emulator config: Added LoopFillZerobss -> do_return")
+    # print("[INFO] Customized emulator config: Added CopyDataInit -> do_return")
 
 def extract_syms():
     yml_path = Path(globs.script_path) / "emulate" / "syms.yml"

@@ -37,7 +37,19 @@ def read_file_from_db_zip(db_path: str, file_path: str) -> Tuple[str, bool]:
     try:
         with zipfile.ZipFile(source_zip, 'r') as zip_ref:
             with zip_ref.open(file_path) as file:
-                return file.read().decode('utf-8'), True
+                file_content = file.read()
+                # 先尝试UTF-8解码
+                try:
+                    return file_content.decode('utf-8'), True
+                except UnicodeDecodeError:
+                    # UTF-8解码失败，尝试Windows-1252编码
+                    try:
+                        print(f"[INFO] UTF-8 decoding failed, trying Windows-1252 for {file_path}")
+                        return file_content.decode('windows-1252'), True
+                    except UnicodeDecodeError:
+                        # 如果Windows-1252也失败，最后使用replace模式
+                        print(f"[WARNING] Both UTF-8 and Windows-1252 decoding failed, using replace mode for {file_path}")
+                        return file_content.decode('utf-8', errors='replace'), True
     except KeyError:
         return f"File {file_path} not found in src.zip", False
     except Exception as e:

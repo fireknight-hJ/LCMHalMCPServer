@@ -9,6 +9,8 @@ proj_path = ""
 ai_log_enable = True
 # Session ID，用于统一管理一次运行的所有日志
 session_id = ""
+# 语言偏好设置，用于控制提示语言选择
+language_preference = "zh"  # 默认使用中文
 
 import os
 import yaml
