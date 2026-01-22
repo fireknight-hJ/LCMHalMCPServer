@@ -221,7 +221,7 @@ class DataManager:
         
         return result
     
-    def get_function_analysis_and_replacement_formatted(self, func_name: str):
+    def get_function_analysis_and_replacement_formatted(self, func_name: str) -> str:
         """根据函数名获取格式化的函数分析和替换信息（文本格式，便于大模型理解）
         
         Args:
@@ -273,6 +273,47 @@ class DataManager:
         formatted_text.append("\n=== 信息结束 ===")
         
         return "\n".join(formatted_text)
+    
+    def dump_full_info(self):
+        """将所有FunctionClassfier和ReplacementUpdate数据结构dump到同一个log文件中"""
+        try:
+            import os
+            import json
+            import time
+            
+            # 构建全量信息字典
+            full_info = {
+                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                "function_classifiers": {},
+                "replacement_updates": {}
+            }
+            
+            # 添加FunctionClassfier信息
+            for func_name, classify_res in self.mmio_info_list.items():
+                full_info["function_classifiers"][func_name] = classify_res.model_dump()
+            
+            # 添加ReplacementUpdate信息
+            for func_name, replacement_update in self.replacement_updates.items():
+                full_info["replacement_updates"][func_name] = replacement_update.model_dump()
+            
+            # 构建log文件路径
+            tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+            if not os.path.exists(tmp_dir):
+                os.makedirs(tmp_dir)
+            
+            # 使用时间戳确保文件名唯一
+            timestamp = time.strftime("%Y%m%d%H%M%S", time.localtime())
+            file_path = os.path.join(tmp_dir, f"full_info_{timestamp}.json")
+            
+            # 写入log文件
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(full_info, f, ensure_ascii=False, indent=2)
+            
+            print(f"Full info dumped to: {file_path}")
+            return True
+        except Exception as e:
+            print(f"Error dumping full info: {e}")
+            return False
 
 
 # 创建全局数据管理器实例
