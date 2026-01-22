@@ -264,3 +264,60 @@ def get_function_analysis_and_replacement_formatted(func_name: str) -> str:
         str: 格式化的函数分析和替换信息
     """
     return data_manager.get_function_analysis_and_replacement_formatted(func_name)
+
+
+def build_with_raw() -> dict:
+    """不修改任何函数替换，直接编译项目
+    
+    Returns:
+        dict: 构建结果，包含std_err、std_out和exit_code
+    """
+    # 清理项目
+    clear_proj(globs.script_path)
+    # 编译项目
+    build_info = build_proj(globs.script_path)
+    
+    # 构建完成后处理输出文件
+    try:
+        import os
+        # 获取脚本目录下的ELF文件路径（build.sh生成的）
+        elf_path = os.path.join(globs.script_path, "output.elf")
+        
+        if os.path.exists(elf_path):
+            print(f"ELF file found at: {elf_path}")
+            
+            # 构建完成后先将ELF转换为BIN文件
+            bin_path = os.path.join(globs.script_path, "emulate", "output.bin")
+            print(f"Attempting to convert ELF to BIN: {bin_path}")
+            
+            # 检查是否已经存在旧的BIN文件，如果存在则删除
+            if os.path.exists(bin_path):
+                print(f"Removing old BIN file: {bin_path}")
+                os.remove(bin_path)
+            
+            # 转换ELF文件为BIN文件
+            if elf_to_bin(elf_path, bin_path):
+                print("ELF to BIN conversion successful")
+                
+                # 然后再更新syms.yml，确保符号表信息是最新的
+                try:
+                    from tools.emulator.conf_generator import extract_syms
+                    extract_syms()
+                    print("syms.yml updated successfully after build")
+                except Exception as e:
+                    print(f"Warning: Failed to update syms.yml after build: {e}")
+            else:
+                print("ELF to BIN conversion failed")
+        else:
+            print(f"Warning: ELF file not found at {elf_path}")
+    except Exception as e:
+        print(f"Error processing output files after build: {e}")
+        import traceback
+        traceback.print_exc()
+    
+    # 结果输出
+    return {
+        "std_err": build_info.std_err,
+        "std_out": build_info.std_out,
+        "exit_code": build_info.exit_code
+    }
