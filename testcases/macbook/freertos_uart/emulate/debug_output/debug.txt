@@ -1,47 +1,539 @@
-2026-01-15 07:34:14,004 - Set max loop times to 5000.
-2026-01-15 07:34:14,014 - [Reset_Handler] Basic Block: addr= 0x00000000080011a0 , size=0x000000000000000c (lr=0x0)
-2026-01-15 07:34:14,014 - [DEBUG] New unique block 0x080011a0, total unique blocks: 1
-2026-01-15 07:34:14,014 - [DEBUG] New unique block 0x080011a4, total unique blocks: 2
-2026-01-15 07:34:14,014 - [DEBUG] New unique block 0x080011a6, total unique blocks: 3
-2026-01-15 07:34:14,014 - [DEBUG] New unique block 0x080011a8, total unique blocks: 4
-2026-01-15 07:34:14,014 - [DEBUG] New unique block 0x080011aa, total unique blocks: 5
-2026-01-15 07:34:14,014 - Basic Block: addr= 0x00000000080011ac , size=0x0000000000000002 (lr=0x0)
-2026-01-15 07:34:14,015 - [DEBUG] New unique block 0x080011ac, total unique blocks: 6
-2026-01-15 07:34:14,015 - Basic Block: addr= 0x0000000008001270 , size=0x0000000000000004 (lr=0x0)
-2026-01-15 07:34:14,015 - [DEBUG] New unique block 0x08001270, total unique blocks: 7
-2026-01-15 07:34:14,015 - [DEBUG] New unique block 0x08001272, total unique blocks: 8
-2026-01-15 07:34:14,015 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x0000000000000002 (lr=0x0)
-2026-01-15 07:34:14,015 - [DEBUG] New unique block 0x080011ae, total unique blocks: 9
-2026-01-15 07:34:14,015 - Basic Block: addr= 0x00000000080011c8 , size=0x0000000000000004 (lr=0x0)
-2026-01-15 07:34:14,015 - [DEBUG] New unique block 0x080011c8, total unique blocks: 10
-2026-01-15 07:34:14,015 - [DEBUG] New unique block 0x080011ca, total unique blocks: 11
-2026-01-15 07:34:14,015 - Basic Block: addr= 0x0000000008001066 , size=0x0000000000000004 (lr=0x0)
-2026-01-15 07:34:14,015 - [DEBUG] New unique block 0x08001066, total unique blocks: 12
-2026-01-15 07:34:14,015 -         >>> Read: addr= 0x20020000[SP:+000] size=4 data=0x00000000, pc=0x08001066
-2026-01-15 07:34:14,015 - Instr: <invalid memory at 0x00000000000000>
-2026-01-15 07:34:14,015 - end pc: 0x0
-2026-01-15 07:34:14,015 - end sp: 0x20020020
-2026-01-15 07:34:14,015 - end lr: 0x0
-2026-01-15 07:34:14,015 - end cpsr: 0x600001d3
-2026-01-15 07:34:14,015 - end xpsr: 0x60000000
-2026-01-15 07:34:14,015 - end msp: 0x20020020
-2026-01-15 07:34:14,015 - end psp: 0x0
-2026-01-15 07:34:14,015 - end primask: 0x0
-2026-01-15 07:34:14,015 - end control: 0x0
-2026-01-15 07:34:14,015 - end faultmask: 0x0
-2026-01-15 07:34:14,015 - end basepri: 0x0
-2026-01-15 07:34:14,015 - end ipsr: 0x0
-2026-01-15 07:34:14,015 - end r0: 0x0
-2026-01-15 07:34:14,015 - end r1: 0x0
-2026-01-15 07:34:14,015 - end r2: 0x0
-2026-01-15 07:34:14,015 - end r3: 0x0
-2026-01-15 07:34:14,015 - end r4: 0x0
-2026-01-15 07:34:14,015 - end r5: 0x0
-2026-01-15 07:34:14,015 - end r6: 0x0
-2026-01-15 07:34:14,015 - end r7: 0x0
-2026-01-15 07:34:14,015 - end r8: 0x0
-2026-01-15 07:34:14,015 - end r9: 0x0
-2026-01-15 07:34:14,015 - end r10: 0x0
-2026-01-15 07:34:14,015 - end r11: 0x0
-2026-01-15 07:34:14,015 - end r12: 0x0
-2026-01-15 07:34:14,015 - Exiting via os._exit
+2026-01-21 09:31:59,208 - Set max loop times to 5000.
+2026-01-21 09:31:59,218 - [Reset_Handler] Basic Block: addr= 0x00000000080011a0 , size=0x000000000000000e (lr=0x0)
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011a0, total unique blocks: 1
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011a4, total unique blocks: 2
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011a6, total unique blocks: 3
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011a8, total unique blocks: 4
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011aa, total unique blocks: 5
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011ac, total unique blocks: 6
+2026-01-21 09:31:59,219 - [LoopCopyDataInit] Basic Block: addr= 0x00000000080011b4 , size=0x0000000000000006 (lr=0x0)
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011b4, total unique blocks: 7
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011b6, total unique blocks: 8
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011b8, total unique blocks: 9
+2026-01-21 09:31:59,219 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,219 - [DEBUG] New unique block 0x080011ae, total unique blocks: 10
+2026-01-21 09:31:59,220 -         >>> Read: addr= 0x00000000080017a0 size=4 data=0x40021800 pc=0x080011ae
+2026-01-21 09:31:59,220 - [DEBUG] New unique block 0x080011b0, total unique blocks: 11
+2026-01-21 09:31:59,220 -         >>> Write: addr= 0x0000000020000000 size=4 data=0x0000000040021800 pc=0x080011b0
+2026-01-21 09:31:59,220 - [DEBUG] New unique block 0x080011b2, total unique blocks: 12
+2026-01-21 09:31:59,221 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,221 -         >>> Write: addr= 0x0000000020000004 size=4 data=0x0000000040021800 pc=0x080011b0
+2026-01-21 09:31:59,221 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,222 -         >>> Write: addr= 0x0000000020000008 size=4 data=0x0000000040022000 pc=0x080011b0
+2026-01-21 09:31:59,222 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,222 -         >>> Write: addr= 0x000000002000000c size=4 data=0x0000000040020800 pc=0x080011b0
+2026-01-21 09:31:59,223 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,223 -         >>> Write: addr= 0x0000000020000010 size=4 data=0x0000000000f42400 pc=0x080011b0
+2026-01-21 09:31:59,223 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,223 -         >>> Write: addr= 0x0000000020000014 size=4 data=0x0000000000000001 pc=0x080011b0
+2026-01-21 09:31:59,223 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,223 -         >>> Write: addr= 0x0000000020000018 size=4 data=0x0000000000000010 pc=0x080011b0
+2026-01-21 09:31:59,223 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,223 -         >>> Write: addr= 0x000000002000001c size=4 data=0x0000000045200d0a pc=0x080011b0
+2026-01-21 09:31:59,223 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,223 -         >>> Write: addr= 0x0000000020000020 size=4 data=0x00000000706d6178 pc=0x080011b0
+2026-01-21 09:31:59,223 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,223 -         >>> Write: addr= 0x0000000020000024 size=4 data=0x000000004620656c pc=0x080011b0
+2026-01-21 09:31:59,224 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,224 -         >>> Write: addr= 0x0000000020000028 size=4 data=0x0000000073696e69 pc=0x080011b0
+2026-01-21 09:31:59,224 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,224 -         >>> Write: addr= 0x000000002000002c size=4 data=0x000000000a646568 pc=0x080011b0
+2026-01-21 09:31:59,224 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,224 -         >>> Write: addr= 0x0000000020000030 size=4 data=0x000000000d0a000d pc=0x080011b0
+2026-01-21 09:31:59,224 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,224 -         >>> Write: addr= 0x0000000020000034 size=4 data=0x000000002a2a2a20 pc=0x080011b0
+2026-01-21 09:31:59,224 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,224 -         >>> Write: addr= 0x0000000020000038 size=4 data=0x000000005241552a pc=0x080011b0
+2026-01-21 09:31:59,224 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,224 -         >>> Write: addr= 0x000000002000003c size=4 data=0x0000000079482d54 pc=0x080011b0
+2026-01-21 09:31:59,225 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,225 -         >>> Write: addr= 0x0000000020000040 size=4 data=0x0000000074726570 pc=0x080011b0
+2026-01-21 09:31:59,225 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,225 -         >>> Write: addr= 0x0000000020000044 size=4 data=0x00000000696d7265 pc=0x080011b0
+2026-01-21 09:31:59,225 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,225 -         >>> Write: addr= 0x0000000020000048 size=4 data=0x00000000206c616e pc=0x080011b0
+2026-01-21 09:31:59,225 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,225 -         >>> Write: addr= 0x000000002000004c size=4 data=0x000000006d6d6f63 pc=0x080011b0
+2026-01-21 09:31:59,225 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,225 -         >>> Write: addr= 0x0000000020000050 size=4 data=0x0000000063696e75 pc=0x080011b0
+2026-01-21 09:31:59,225 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,225 -         >>> Write: addr= 0x0000000020000054 size=4 data=0x000000006f697461 pc=0x080011b0
+2026-01-21 09:31:59,225 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,226 -         >>> Write: addr= 0x0000000020000058 size=4 data=0x000000006162206e pc=0x080011b0
+2026-01-21 09:31:59,226 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,226 -         >>> Write: addr= 0x000000002000005c size=4 data=0x0000000020646573 pc=0x080011b0
+2026-01-21 09:31:59,226 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,226 -         >>> Read: addr= 0x0000000008001800 size=4 data=0x49206e6f pc=0x080011ae
+2026-01-21 09:31:59,226 -         >>> Write: addr= 0x0000000020000060 size=4 data=0x0000000049206e6f pc=0x080011b0
+2026-01-21 09:31:59,226 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,226 -         >>> Write: addr= 0x0000000020000064 size=4 data=0x000000002a2a2054 pc=0x080011b0
+2026-01-21 09:31:59,226 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,226 -         >>> Write: addr= 0x0000000020000068 size=4 data=0x000000000d0a2a2a pc=0x080011b0
+2026-01-21 09:31:59,226 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,226 -         >>> Write: addr= 0x000000002000006c size=4 data=0x00000000746e4520 pc=0x080011b0
+2026-01-21 09:31:59,226 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,226 -         >>> Write: addr= 0x0000000020000070 size=4 data=0x0000000031207265 pc=0x080011b0
+2026-01-21 09:31:59,227 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,227 -         >>> Write: addr= 0x0000000020000074 size=4 data=0x0000000068632030 pc=0x080011b0
+2026-01-21 09:31:59,227 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,227 -         >>> Write: addr= 0x0000000020000078 size=4 data=0x0000000063617261 pc=0x080011b0
+2026-01-21 09:31:59,227 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,227 -         >>> Write: addr= 0x000000002000007c size=4 data=0x0000000073726574 pc=0x080011b0
+2026-01-21 09:31:59,227 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,227 -         >>> Write: addr= 0x0000000020000080 size=4 data=0x0000000069737520 pc=0x080011b0
+2026-01-21 09:31:59,227 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,227 -         >>> Write: addr= 0x0000000020000084 size=4 data=0x000000006b20676e pc=0x080011b0
+2026-01-21 09:31:59,227 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,227 -         >>> Write: addr= 0x0000000020000088 size=4 data=0x000000006f627965 pc=0x080011b0
+2026-01-21 09:31:59,227 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,227 -         >>> Write: addr= 0x000000002000008c size=4 data=0x0000000020647261 pc=0x080011b0
+2026-01-21 09:31:59,228 - [CopyDataInit] Basic Block: addr= 0x00000000080011ae , size=0x000000000000000c (lr=0x0)
+2026-01-21 09:31:59,228 -         >>> Write: addr= 0x0000000020000090 size=4 data=0x00000000000d0a3a pc=0x080011b0
+2026-01-21 09:31:59,228 - Basic Block: addr= 0x00000000080011ba , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011ba, total unique blocks: 13
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011bc, total unique blocks: 14
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011be, total unique blocks: 15
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011c0, total unique blocks: 16
+2026-01-21 09:31:59,228 - [LoopFillZerobss] Basic Block: addr= 0x00000000080011c6 , size=0x0000000000000004 (lr=0x0)
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011c6, total unique blocks: 17
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011c8, total unique blocks: 18
+2026-01-21 09:31:59,228 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011c2, total unique blocks: 19
+2026-01-21 09:31:59,228 -         >>> Write: addr= 0x0000000020000094 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,228 - [DEBUG] New unique block 0x080011c4, total unique blocks: 20
+2026-01-21 09:31:59,228 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,228 -         >>> Write: addr= 0x0000000020000098 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,228 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,228 -         >>> Write: addr= 0x000000002000009c size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,228 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,228 -         >>> Write: addr= 0x00000000200000a0 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,228 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000a4 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000a8 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000ac size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000b0 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000b4 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000b8 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000bc size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000c0 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,229 -         >>> Write: addr= 0x00000000200000c4 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,229 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000c8 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000cc size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000d0 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000d4 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000d8 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000dc size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000e0 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000e4 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,230 -         >>> Write: addr= 0x00000000200000e8 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,230 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,231 -         >>> Write: addr= 0x00000000200000ec size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,231 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,231 -         >>> Write: addr= 0x00000000200000f0 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,231 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,231 -         >>> Write: addr= 0x00000000200000f4 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,231 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,231 -         >>> Write: addr= 0x00000000200000f8 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,231 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,231 -         >>> Write: addr= 0x00000000200000fc size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,231 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,231 -         >>> Write: addr= 0x0000000020000100 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,231 - [FillZerobss] Basic Block: addr= 0x00000000080011c2 , size=0x0000000000000008 (lr=0x0)
+2026-01-21 09:31:59,231 -         >>> Write: addr= 0x0000000020000104 size=4 data=0x0000000000000000 pc=0x080011c2
+2026-01-21 09:31:59,262 - Basic Block: addr= 0x00000000080011ca , size=0x0000000000000004 (lr=0x0)
+2026-01-21 09:31:59,263 - [DEBUG] New unique block 0x080011ca, total unique blocks: 21
+2026-01-21 09:31:59,264 - [SystemInit] Basic Block: addr= 0x000000000800030c , size=0x000000000000003e (lr=0x80011cf)
+2026-01-21 09:31:59,267 - [DEBUG] New unique block 0x0800030c, total unique blocks: 22
+2026-01-21 09:31:59,267 - [DEBUG] New unique block 0x0800030e, total unique blocks: 23
+2026-01-21 09:31:59,267 -         >>> Read: addr= 0x00000000e000ed88 size=4 data=0x00000000 pc=0x0800030e
+2026-01-21 09:31:59,269 - [DEBUG] New unique block 0x08000312, total unique blocks: 24
+2026-01-21 09:31:59,270 - [DEBUG] New unique block 0x08000316, total unique blocks: 25
+2026-01-21 09:31:59,270 -         >>> Write: addr= 0x00000000e000ed88 size=4 data=0x0000000000f00000 pc=0x08000316
+2026-01-21 09:31:59,270 - [DEBUG] New unique block 0x0800031a, total unique blocks: 26
+2026-01-21 09:31:59,270 - [DEBUG] New unique block 0x0800031c, total unique blocks: 27
+2026-01-21 09:31:59,270 -         >>> Read: addr= 0x0000000040023800 size=4 data=0x00000000 pc=0x0800031c
+2026-01-21 09:31:59,271 - [DEBUG] New unique block 0x0800031e, total unique blocks: 28
+2026-01-21 09:31:59,271 - [DEBUG] New unique block 0x08000320, total unique blocks: 29
+2026-01-21 09:31:59,271 - [DEBUG] New unique block 0x08000324, total unique blocks: 30
+2026-01-21 09:31:59,271 -         >>> Write: addr= 0x0000000040023800 size=4 data=0x0000000000000001 pc=0x08000324
+2026-01-21 09:31:59,271 - [DEBUG] New unique block 0x08000326, total unique blocks: 31
+2026-01-21 09:31:59,273 -         >>> Write: addr= 0x0000000040023808 size=4 data=0x0000000000000000 pc=0x08000326
+2026-01-21 09:31:59,273 - [DEBUG] New unique block 0x08000328, total unique blocks: 32
+2026-01-21 09:31:59,273 - [DEBUG] New unique block 0x0800032a, total unique blocks: 33
+2026-01-21 09:31:59,273 - [DEBUG] New unique block 0x0800032e, total unique blocks: 34
+2026-01-21 09:31:59,273 - [DEBUG] New unique block 0x08000332, total unique blocks: 35
+2026-01-21 09:31:59,326 -         >>> Write: addr= 0x0000000040023800 size=4 data=0x0000000000000001 pc=0x08000332
+2026-01-21 09:31:59,326 - [DEBUG] New unique block 0x08000334, total unique blocks: 36
+2026-01-21 09:31:59,327 - [DEBUG] New unique block 0x08000336, total unique blocks: 37
+2026-01-21 09:31:59,327 -         >>> Write: addr= 0x0000000040023804 size=4 data=0x0000000024003010 pc=0x08000336
+2026-01-21 09:31:59,327 - [DEBUG] New unique block 0x08000338, total unique blocks: 38
+2026-01-21 09:31:59,328 - [DEBUG] New unique block 0x0800033a, total unique blocks: 39
+2026-01-21 09:31:59,328 - [DEBUG] New unique block 0x0800033e, total unique blocks: 40
+2026-01-21 09:31:59,328 -         >>> Write: addr= 0x0000000040023800 size=4 data=0x0000000000000001 pc=0x0800033e
+2026-01-21 09:31:59,328 - [DEBUG] New unique block 0x08000340, total unique blocks: 41
+2026-01-21 09:31:59,328 -         >>> Write: addr= 0x000000004002380c size=4 data=0x0000000000000000 pc=0x08000340
+2026-01-21 09:31:59,328 - [DEBUG] New unique block 0x08000342, total unique blocks: 42
+2026-01-21 09:31:59,328 - [DEBUG] New unique block 0x08000346, total unique blocks: 43
+2026-01-21 09:31:59,328 -         >>> Write: addr= 0x00000000e000ed08 size=4 data=0x0000000008000000 pc=0x08000346
+2026-01-21 09:31:59,328 - [DEBUG] New unique block 0x08000348, total unique blocks: 44
+2026-01-21 09:31:59,328 - Basic Block: addr= 0x00000000080011ce , size=0x0000000000000004 (lr=0x80011cf)
+2026-01-21 09:31:59,328 - [DEBUG] New unique block 0x080011ce, total unique blocks: 45
+2026-01-21 09:31:59,330 - [__libc_init_array] Basic Block: addr= 0x0000000008001418 , size=0x0000000000000010 (lr=0x80011d3)
+2026-01-21 09:31:59,330 - [DEBUG] New unique block 0x08001418, total unique blocks: 46
+2026-01-21 09:31:59,331 -         >>> Write: addr= 0x2001fff0[SP:-010] size=4 data=0x20000108 pc=0x08001418
+2026-01-21 09:31:59,331 -         >>> Write: addr= 0x2001fff4[SP:-00c] size=4 data=0x00000000 pc=0x08001418
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001fff8[SP:-008] size=4 data=0x00000000 pc=0x08001418
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001fffc[SP:-004] size=4 data=0x080011d3 pc=0x08001418
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x0800141a, total unique blocks: 47
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x0800141c, total unique blocks: 48
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x0800141e, total unique blocks: 49
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x08001420, total unique blocks: 50
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x08001422, total unique blocks: 51
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x08001424, total unique blocks: 52
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x08001426, total unique blocks: 53
+2026-01-21 09:31:59,332 - Basic Block: addr= 0x0000000008001428 , size=0x0000000000000004 (lr=0x80011d3)
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x08001428, total unique blocks: 54
+2026-01-21 09:31:59,332 - [_init] Basic Block: addr= 0x0000000008001758 , size=0x000000000000000c (lr=0x800142d)
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x08001758, total unique blocks: 55
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001ffd8[SP:-018] size=4 data=0x00000000 pc=0x08001758
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001ffdc[SP:-014] size=4 data=0x00000000 pc=0x08001758
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001ffe0[SP:-010] size=4 data=0x08001798 pc=0x08001758
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001ffe4[SP:-00c] size=4 data=0x00000000 pc=0x08001758
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001ffe8[SP:-008] size=4 data=0x00000000 pc=0x08001758
+2026-01-21 09:31:59,332 -         >>> Write: addr= 0x2001ffec[SP:-004] size=4 data=0x0800142d pc=0x08001758
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x0800175a, total unique blocks: 56
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x0800175c, total unique blocks: 57
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x0800175e, total unique blocks: 58
+2026-01-21 09:31:59,332 - [DEBUG] New unique block 0x08001760, total unique blocks: 59
+2026-01-21 09:31:59,350 - [DEBUG] New unique block 0x08001762, total unique blocks: 60
+2026-01-21 09:31:59,350 - Basic Block: addr= 0x000000000800142c , size=0x000000000000000e (lr=0x800142d)
+2026-01-21 09:31:59,350 - [DEBUG] New unique block 0x0800142c, total unique blocks: 61
+2026-01-21 09:31:59,350 - [DEBUG] New unique block 0x0800142e, total unique blocks: 62
+2026-01-21 09:31:59,350 - [DEBUG] New unique block 0x08001430, total unique blocks: 63
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08001432, total unique blocks: 64
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08001434, total unique blocks: 65
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08001436, total unique blocks: 66
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08001438, total unique blocks: 67
+2026-01-21 09:31:59,351 - Basic Block: addr= 0x0000000008001446 , size=0x0000000000000006 (lr=0x800142d)
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08001446, total unique blocks: 68
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x0800144a, total unique blocks: 69
+2026-01-21 09:31:59,351 - [frame_dummy] Basic Block: addr= 0x0000000008000224 , size=0x0000000000000006 (lr=0x800144d)
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08000224, total unique blocks: 70
+2026-01-21 09:31:59,351 -         >>> Write: addr= 0x2001ffe8[SP:-008] size=4 data=0x08000225 pc=0x08000224
+2026-01-21 09:31:59,351 -         >>> Write: addr= 0x2001ffec[SP:-004] size=4 data=0x0800144d pc=0x08000224
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08000226, total unique blocks: 71
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08000228, total unique blocks: 72
+2026-01-21 09:31:59,351 - Basic Block: addr= 0x0000000008000232 , size=0x0000000000000008 (lr=0x800144d)
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08000232, total unique blocks: 73
+2026-01-21 09:31:59,351 - [DEBUG] New unique block 0x08000236, total unique blocks: 74
+2026-01-21 09:31:59,394 - [register_tm_clones] Basic Block: addr= 0x00000000080001d8 , size=0x0000000000000010 (lr=0x800144d)
+2026-01-21 09:31:59,394 - [DEBUG] New unique block 0x080001d8, total unique blocks: 75
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080001da, total unique blocks: 76
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080001dc, total unique blocks: 77
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080001de, total unique blocks: 78
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080001e0, total unique blocks: 79
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080001e4, total unique blocks: 80
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080001e6, total unique blocks: 81
+2026-01-21 09:31:59,395 - Basic Block: addr= 0x00000000080001ee , size=0x0000000000000002 (lr=0x800144d)
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080001ee, total unique blocks: 82
+2026-01-21 09:31:59,395 - Basic Block: addr= 0x000000000800144c , size=0x0000000000000004 (lr=0x800144d)
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x0800144c, total unique blocks: 83
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x0800144e, total unique blocks: 84
+2026-01-21 09:31:59,395 - Basic Block: addr= 0x0000000008001436 , size=0x0000000000000004 (lr=0x800144d)
+2026-01-21 09:31:59,395 - Basic Block: addr= 0x000000000800143a , size=0x0000000000000002 (lr=0x800144d)
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x0800143a, total unique blocks: 85
+2026-01-21 09:31:59,395 - Basic Block: addr= 0x00000000080011d2 , size=0x0000000000000004 (lr=0x800144d)
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080011d2, total unique blocks: 86
+2026-01-21 09:31:59,395 - [main] Basic Block: addr= 0x00000000080011f4 , size=0x0000000000000008 (lr=0x80011d7)
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080011f4, total unique blocks: 87
+2026-01-21 09:31:59,395 -         >>> Write: addr= 0x2001fffc[SP:-004] size=4 data=0x080011d7 pc=0x080011f4
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080011f6, total unique blocks: 88
+2026-01-21 09:31:59,395 - [DEBUG] New unique block 0x080011f8, total unique blocks: 89
+2026-01-21 09:31:59,395 - [HAL_Init] Basic Block: addr= 0x00000000080003a4 , size=0x000000000000001a (lr=0x80011fd)
+2026-01-21 09:31:59,410 - [DEBUG] New unique block 0x080003a4, total unique blocks: 90
+2026-01-21 09:31:59,411 -         >>> Write: addr= 0x2001ffa0[SP:-008] size=4 data=0x00000000 pc=0x080003a4
+2026-01-21 09:31:59,411 -         >>> Write: addr= 0x2001ffa4[SP:-004] size=4 data=0x080011fd pc=0x080003a4
+2026-01-21 09:31:59,411 - [DEBUG] New unique block 0x080003a6, total unique blocks: 91
+2026-01-21 09:31:59,411 - [DEBUG] New unique block 0x080003a8, total unique blocks: 92
+2026-01-21 09:31:59,411 -         >>> Read: addr= 0x0000000040023c00 size=4 data=0x00000000 pc=0x080003a8
+2026-01-21 09:31:59,411 - [DEBUG] New unique block 0x080003aa, total unique blocks: 93
+2026-01-21 09:31:59,412 - [DEBUG] New unique block 0x080003ae, total unique blocks: 94
+2026-01-21 09:31:59,412 -         >>> Write: addr= 0x0000000040023c00 size=4 data=0x0000000000000200 pc=0x080003ae
+2026-01-21 09:31:59,412 - [DEBUG] New unique block 0x080003b0, total unique blocks: 95
+2026-01-21 09:31:59,412 - [DEBUG] New unique block 0x080003b2, total unique blocks: 96
+2026-01-21 09:31:59,412 - [DEBUG] New unique block 0x080003b6, total unique blocks: 97
+2026-01-21 09:31:59,412 -         >>> Write: addr= 0x0000000040023c00 size=4 data=0x0000000000000600 pc=0x080003b6
+2026-01-21 09:31:59,412 - [DEBUG] New unique block 0x080003b8, total unique blocks: 98
+2026-01-21 09:31:59,412 - [DEBUG] New unique block 0x080003ba, total unique blocks: 99
+2026-01-21 09:31:59,413 - [HAL_NVIC_SetPriorityGrouping] Basic Block: addr= 0x00000000080003e8 , size=0x0000000000000018 (lr=0x80003bf)
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003e8, total unique blocks: 100
+2026-01-21 09:31:59,413 -         >>> Read: addr= 0x0000000008000408 size=4 data=0xe000ed00 pc=0x080003e8
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003ea, total unique blocks: 101
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003ec, total unique blocks: 102
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003f0, total unique blocks: 103
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003f2, total unique blocks: 104
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003f4, total unique blocks: 105
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003f8, total unique blocks: 106
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003fa, total unique blocks: 107
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003fc, total unique blocks: 108
+2026-01-21 09:31:59,413 - Basic Block: addr= 0x0000000008000400 , size=0x0000000000000008 (lr=0x80003bf)
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x08000400, total unique blocks: 109
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x08000404, total unique blocks: 110
+2026-01-21 09:31:59,413 -         >>> Write: addr= 0x00000000e000ed0c size=4 data=0x0000000005fa0300 pc=0x08000404
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x08000406, total unique blocks: 111
+2026-01-21 09:31:59,413 - Basic Block: addr= 0x00000000080003be , size=0x0000000000000006 (lr=0x80003bf)
+2026-01-21 09:31:59,413 - [DEBUG] New unique block 0x080003be, total unique blocks: 112
+2026-01-21 09:31:59,414 - [DEBUG] New unique block 0x080003c0, total unique blocks: 113
+2026-01-21 09:31:59,423 - [HAL_InitTick] Basic Block: addr= 0x000000000800035c , size=0x000000000000001c (lr=0x80003c5)
+2026-01-21 09:31:59,424 - [DEBUG] New unique block 0x0800035c, total unique blocks: 114
+2026-01-21 09:31:59,424 -         >>> Write: addr= 0x2001ff90[SP:-010] size=4 data=0x05fa0300 pc=0x0800035c
+2026-01-21 09:31:59,425 -         >>> Write: addr= 0x2001ff94[SP:-00c] size=4 data=0x20000108 pc=0x0800035c
+2026-01-21 09:31:59,426 -         >>> Write: addr= 0x2001ff98[SP:-008] size=4 data=0x00000000 pc=0x0800035c
+2026-01-21 09:31:59,426 -         >>> Write: addr= 0x2001ff9c[SP:-004] size=4 data=0x080003c5 pc=0x0800035c
+2026-01-21 09:31:59,426 - [DEBUG] New unique block 0x0800035e, total unique blocks: 115
+2026-01-21 09:31:59,426 - [DEBUG] New unique block 0x08000360, total unique blocks: 116
+2026-01-21 09:31:59,428 -         >>> Read: addr= 0x0000000020000014 size=1 data=0x00000001 pc=0x08000360
+2026-01-21 09:31:59,428 - [DEBUG] New unique block 0x08000362, total unique blocks: 117
+2026-01-21 09:31:59,428 - [DEBUG] New unique block 0x08000366, total unique blocks: 118
+2026-01-21 09:31:59,428 - [DEBUG] New unique block 0x0800036a, total unique blocks: 119
+2026-01-21 09:31:59,428 -         >>> Read: addr= 0x000000000800039c size=4 data=0x20000010 pc=0x0800036a
+2026-01-21 09:31:59,428 - [DEBUG] New unique block 0x0800036c, total unique blocks: 120
+2026-01-21 09:31:59,429 - [DEBUG] New unique block 0x0800036e, total unique blocks: 121
+2026-01-21 09:31:59,429 -         >>> Read: addr= 0x0000000020000010 size=4 data=0x00f42400 pc=0x0800036e
+2026-01-21 09:31:59,429 - [DEBUG] New unique block 0x08000370, total unique blocks: 122
+2026-01-21 09:31:59,429 - [DEBUG] New unique block 0x08000374, total unique blocks: 123
+2026-01-21 09:31:59,429 - [HAL_SYSTICK_Config] Basic Block: addr= 0x000000000800048c , size=0x0000000000000008 (lr=0x8000379)
+2026-01-21 09:31:59,429 - [DEBUG] New unique block 0x0800048c, total unique blocks: 124
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800048e, total unique blocks: 125
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000492, total unique blocks: 126
+2026-01-21 09:31:59,430 - Basic Block: addr= 0x0000000008000494 , size=0x0000000000000018 (lr=0x8000379)
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000494, total unique blocks: 127
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000498, total unique blocks: 128
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800049a, total unique blocks: 129
+2026-01-21 09:31:59,430 -         >>> Write: addr= 0x00000000e000e014 size=4 data=0x0000000000003e7f pc=0x0800049a
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800049c, total unique blocks: 130
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800049e, total unique blocks: 131
+2026-01-21 09:31:59,430 -         >>> Write: addr= 0x00000000e000ed23 size=1 data=0x00000000000000f0 pc=0x0800049e
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x080004a2, total unique blocks: 132
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x080004a4, total unique blocks: 133
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x080004a6, total unique blocks: 134
+2026-01-21 09:31:59,430 -         >>> Write: addr= 0x00000000e000e018 size=4 data=0x0000000000000000 pc=0x080004a6
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x080004a8, total unique blocks: 135
+2026-01-21 09:31:59,430 -         >>> Write: addr= 0x00000000e000e010 size=4 data=0x0000000000000007 pc=0x080004a8
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x080004aa, total unique blocks: 136
+2026-01-21 09:31:59,430 - Basic Block: addr= 0x0000000008000378 , size=0x0000000000000004 (lr=0x8000379)
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000378, total unique blocks: 137
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800037a, total unique blocks: 138
+2026-01-21 09:31:59,430 - Basic Block: addr= 0x000000000800037c , size=0x0000000000000004 (lr=0x8000379)
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800037c, total unique blocks: 139
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800037e, total unique blocks: 140
+2026-01-21 09:31:59,430 - Basic Block: addr= 0x0000000008000380 , size=0x000000000000000c (lr=0x8000379)
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000380, total unique blocks: 141
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000382, total unique blocks: 142
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000384, total unique blocks: 143
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000388, total unique blocks: 144
+2026-01-21 09:31:59,430 - [HAL_NVIC_SetPriority] Basic Block: addr= 0x000000000800040c , size=0x000000000000005a (lr=0x800038d)
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800040c, total unique blocks: 145
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x0800040e, total unique blocks: 146
+2026-01-21 09:31:59,430 -         >>> Write: addr= 0x2001ff84[SP:-00c] size=4 data=0x00000000 pc=0x0800040e
+2026-01-21 09:31:59,430 -         >>> Write: addr= 0x2001ff88[SP:-008] size=4 data=0x0000000f pc=0x0800040e
+2026-01-21 09:31:59,430 -         >>> Write: addr= 0x2001ff8c[SP:-004] size=4 data=0x0800038d pc=0x0800040e
+2026-01-21 09:31:59,430 - [DEBUG] New unique block 0x08000410, total unique blocks: 147
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000412, total unique blocks: 148
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000416, total unique blocks: 149
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800041a, total unique blocks: 150
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800041c, total unique blocks: 151
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800041e, total unique blocks: 152
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000420, total unique blocks: 153
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000422, total unique blocks: 154
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000424, total unique blocks: 155
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000428, total unique blocks: 156
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800042a, total unique blocks: 157
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800042e, total unique blocks: 158
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000432, total unique blocks: 159
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000436, total unique blocks: 160
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000438, total unique blocks: 161
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800043c, total unique blocks: 162
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800043e, total unique blocks: 163
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000440, total unique blocks: 164
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000444, total unique blocks: 165
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800044a, total unique blocks: 166
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800044c, total unique blocks: 167
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000450, total unique blocks: 168
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000452, total unique blocks: 169
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000456, total unique blocks: 170
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000458, total unique blocks: 171
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x0800045e, total unique blocks: 172
+2026-01-21 09:31:59,431 -         >>> Write: addr= 0x00000000e000ed23 size=1 data=0x00000000000000f0 pc=0x0800045e
+2026-01-21 09:31:59,431 - [DEBUG] New unique block 0x08000464, total unique blocks: 173
+2026-01-21 09:31:59,431 - Basic Block: addr= 0x000000000800038c , size=0x0000000000000008 (lr=0x800038d)
+2026-01-21 09:31:59,432 - [DEBUG] New unique block 0x0800038c, total unique blocks: 174
+2026-01-21 09:31:59,432 - [DEBUG] New unique block 0x0800038e, total unique blocks: 175
+2026-01-21 09:31:59,432 - [DEBUG] New unique block 0x08000390, total unique blocks: 176
+2026-01-21 09:31:59,432 -         >>> Write: addr= 0x0000000020000018 size=4 data=0x000000000000000f pc=0x08000390
+2026-01-21 09:31:59,432 - [DEBUG] New unique block 0x08000392, total unique blocks: 177
+2026-01-21 09:31:59,433 - Basic Block: addr= 0x00000000080003c4 , size=0x0000000000000004 (lr=0x800038d)
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x080003c4, total unique blocks: 178
+2026-01-21 09:31:59,433 - [HAL_MspInit] Basic Block: addr= 0x0000000008000358 , size=0x0000000000000002 (lr=0x80003c9)
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08000358, total unique blocks: 179
+2026-01-21 09:31:59,433 - Basic Block: addr= 0x00000000080003c8 , size=0x0000000000000004 (lr=0x80003c9)
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x080003c8, total unique blocks: 180
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x080003ca, total unique blocks: 181
+2026-01-21 09:31:59,433 - Basic Block: addr= 0x00000000080011fc , size=0x0000000000000058 (lr=0x80003c9)
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x080011fc, total unique blocks: 182
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x080011fe, total unique blocks: 183
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08001200, total unique blocks: 184
+2026-01-21 09:31:59,433 -         >>> Write: addr= 0x2001ffac[SP:+004] size=4 data=0x00000000 pc=0x08001200
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08001202, total unique blocks: 185
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08001204, total unique blocks: 186
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08001208, total unique blocks: 187
+2026-01-21 09:31:59,433 -         >>> Write: addr= 0x0000000040023840 size=4 data=0x0000000010000000 pc=0x08001208
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x0800120a, total unique blocks: 188
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x0800120c, total unique blocks: 189
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08001210, total unique blocks: 190
+2026-01-21 09:31:59,433 -         >>> Write: addr= 0x2001ffac[SP:+004] size=4 data=0x10000000 pc=0x08001210
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08001212, total unique blocks: 191
+2026-01-21 09:31:59,433 - [DEBUG] New unique block 0x08001214, total unique blocks: 192
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001216, total unique blocks: 193
+2026-01-21 09:31:59,434 -         >>> Write: addr= 0x2001ffb0[SP:+008] size=4 data=0x00000000 pc=0x08001216
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001218, total unique blocks: 194
+2026-01-21 09:31:59,434 -         >>> Read: addr= 0x0000000040007000 size=4 data=0x00000000 pc=0x08001218
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x0800121a, total unique blocks: 195
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x0800121e, total unique blocks: 196
+2026-01-21 09:31:59,434 -         >>> Write: addr= 0x0000000040007000 size=4 data=0x0000000000004000 pc=0x0800121e
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001220, total unique blocks: 197
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001222, total unique blocks: 198
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001226, total unique blocks: 199
+2026-01-21 09:31:59,434 -         >>> Write: addr= 0x2001ffb0[SP:+008] size=4 data=0x00004000 pc=0x08001226
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001228, total unique blocks: 200
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x0800122a, total unique blocks: 201
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x0800122c, total unique blocks: 202
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001230, total unique blocks: 203
+2026-01-21 09:31:59,434 -         >>> Write: addr= 0x2001ffc8[SP:+020] size=4 data=0x00000001 pc=0x08001230
+2026-01-21 09:31:59,434 -         >>> Write: addr= 0x2001ffcc[SP:+024] size=4 data=0x00010000 pc=0x08001230
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001234, total unique blocks: 204
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001236, total unique blocks: 205
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x0800123a, total unique blocks: 206
+2026-01-21 09:31:59,434 -         >>> Write: addr= 0x2001ffe0[SP:+038] size=4 data=0x00000002 pc=0x0800123a
+2026-01-21 09:31:59,434 -         >>> Write: addr= 0x2001ffe4[SP:+03c] size=4 data=0x00400000 pc=0x0800123a
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x0800123e, total unique blocks: 207
+2026-01-21 09:31:59,434 - [DEBUG] New unique block 0x08001240, total unique blocks: 208
+2026-01-21 09:31:59,435 - [DEBUG] New unique block 0x08001244, total unique blocks: 209
+2026-01-21 09:31:59,435 -         >>> Write: addr= 0x2001ffe8[SP:+040] size=4 data=0x00000019 pc=0x08001244
+2026-01-21 09:31:59,435 -         >>> Write: addr= 0x2001ffec[SP:+044] size=4 data=0x00000150 pc=0x08001244
+2026-01-21 09:31:59,435 - [DEBUG] New unique block 0x08001248, total unique blocks: 210
+2026-01-21 09:31:59,435 - [DEBUG] New unique block 0x0800124a, total unique blocks: 211
+2026-01-21 09:31:59,435 - [DEBUG] New unique block 0x0800124c, total unique blocks: 212
+2026-01-21 09:31:59,435 -         >>> Write: addr= 0x2001fff4[SP:+04c] size=4 data=0x00000007 pc=0x0800124c
+2026-01-21 09:31:59,435 - [DEBUG] New unique block 0x0800124e, total unique blocks: 213
+2026-01-21 09:31:59,435 -         >>> Write: addr= 0x2001fff0[SP:+048] size=4 data=0x00000002 pc=0x0800124e
+2026-01-21 09:31:59,435 - [DEBUG] New unique block 0x08001250, total unique blocks: 214
+2026-01-21 09:31:59,435 - [HAL_RCC_OscConfig] Basic Block: addr= 0x0000000008000710 , size=0x0000000000000008 (lr=0x8001255)
+2026-01-21 09:31:59,435 - [DEBUG] New unique block 0x08000710, total unique blocks: 215
+2026-01-21 09:31:59,435 -         >>> Write: addr= 0x2001ff88[SP:-020] size=4 data=0x2001ffc8 pc=0x08000710
+2026-01-21 09:31:59,435 -         >>> Write: addr= 0x2001ff8c[SP:-01c] size=4 data=0x00000001 pc=0x08000710
+2026-01-21 09:31:59,435 -         >>> Write: addr= 0x2001ff90[SP:-018] size=4 data=0x00000000 pc=0x08000710
+2026-01-21 09:31:59,436 -         >>> Write: addr= 0x2001ff94[SP:-014] size=4 data=0x00000002 pc=0x08000710
+2026-01-21 09:31:59,436 -         >>> Write: addr= 0x2001ff98[SP:-010] size=4 data=0x00000000 pc=0x08000710
+2026-01-21 09:31:59,436 -         >>> Write: addr= 0x2001ff9c[SP:-00c] size=4 data=0x00000000 pc=0x08000710
+2026-01-21 09:31:59,437 -         >>> Write: addr= 0x2001ffa0[SP:-008] size=4 data=0x00000000 pc=0x08000710
+2026-01-21 09:31:59,437 -         >>> Write: addr= 0x2001ffa4[SP:-004] size=4 data=0x08001255 pc=0x08000710
+2026-01-21 09:31:59,437 - [DEBUG] New unique block 0x08000714, total unique blocks: 216
+2026-01-21 09:31:59,437 - [DEBUG] New unique block 0x08000716, total unique blocks: 217
+2026-01-21 09:31:59,437 - Basic Block: addr= 0x0000000008000718 , size=0x0000000000000006 (lr=0x8001255)
+2026-01-21 09:31:59,437 - [DEBUG] New unique block 0x08000718, total unique blocks: 218
+2026-01-21 09:31:59,437 - [DEBUG] New unique block 0x0800071a, total unique blocks: 219
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x0800071c, total unique blocks: 220
+2026-01-21 09:31:59,438 - Basic Block: addr= 0x0000000008000740 , size=0x000000000000000c (lr=0x8001255)
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x08000740, total unique blocks: 221
+2026-01-21 09:31:59,438 -         >>> Read: addr= 0x0000000008000978 size=4 data=0x40023800 pc=0x08000740
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x08000742, total unique blocks: 222
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x08000744, total unique blocks: 223
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x08000748, total unique blocks: 224
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x0800074a, total unique blocks: 225
+2026-01-21 09:31:59,438 - Basic Block: addr= 0x000000000800074c , size=0x000000000000000a (lr=0x8001255)
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x0800074c, total unique blocks: 226
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x0800074e, total unique blocks: 227
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x08000752, total unique blocks: 228
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x08000754, total unique blocks: 229
+2026-01-21 09:31:59,438 - Basic Block: addr= 0x000000000800076e , size=0x000000000000000a (lr=0x8001255)
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x0800076e, total unique blocks: 230
+2026-01-21 09:31:59,438 - [DEBUG] New unique block 0x08000770, total unique blocks: 231
+2026-01-21 09:31:59,439 - [DEBUG] New unique block 0x08000772, total unique blocks: 232
+2026-01-21 09:31:59,439 - [DEBUG] New unique block 0x08000776, total unique blocks: 233
+2026-01-21 09:31:59,439 - Basic Block: addr= 0x0000000008000778 , size=0x000000000000000c (lr=0x8001255)
+2026-01-21 09:31:59,439 - [DEBUG] New unique block 0x08000778, total unique blocks: 234
+2026-01-21 09:31:59,439 - [DEBUG] New unique block 0x0800077a, total unique blocks: 235
+2026-01-21 09:31:59,439 - [DEBUG] New unique block 0x0800077e, total unique blocks: 236
+2026-01-21 09:31:59,439 -         >>> Write: addr= 0x0000000040023800 size=4 data=0x0000000000010001 pc=0x0800077e
+2026-01-21 09:31:59,439 - [DEBUG] New unique block 0x08000780, total unique blocks: 237
+2026-01-21 09:31:59,439 - [HAL_GetTick] Basic Block: addr= 0x00000000080003d0 , size=0x0000000000000006 (lr=0x8000785)
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x080003d0, total unique blocks: 238
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x080003d2, total unique blocks: 239
+2026-01-21 09:31:59,440 -         >>> Read: addr= 0x00000000200000b0 size=4 data=0x00000000 pc=0x080003d2
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x080003d4, total unique blocks: 240
+2026-01-21 09:31:59,440 - Basic Block: addr= 0x0000000008000784 , size=0x000000000000000a (lr=0x8000785)
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x08000784, total unique blocks: 241
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x08000786, total unique blocks: 242
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x08000788, total unique blocks: 243
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x0800078a, total unique blocks: 244
+2026-01-21 09:31:59,440 - [DEBUG] New unique block 0x0800078c, total unique blocks: 245
+2026-01-21 09:31:59,441 - Basic Block: addr= 0x000000000800078e , size=0x0000000000000004 (lr=0x8000785)
+2026-01-21 09:31:59,441 - [DEBUG] New unique block 0x0800078e, total unique blocks: 246
+2026-01-21 09:31:59,441 - [HAL_GetTick] Basic Block: addr= 0x00000000080003d0 , size=0x0000000000000006 (lr=0x8000793)
+2026-01-21 09:31:59,441 -         >>> Read: addr= 0x00000000080003d8 size=4 data=0x200000b0 pc=0x080003d0
+2026-01-21 09:31:59,441 -         >>> Read: addr= 0x00000000200000b0 size=4 data=0x00000000 pc=0x080003d2
+2026-01-21 09:31:59,442 - Basic Block: addr= 0x0000000008000792 , size=0x0000000000000006 (lr=0x8000793)
+2026-01-21 09:31:59,442 - [DEBUG] New unique block 0x08000792, total unique blocks: 247
+2026-01-21 09:31:59,442 - [DEBUG] New unique block 0x08000794, total unique blocks: 248
+2026-01-21 09:31:59,442 - [DEBUG] New unique block 0x08000796, total unique blocks: 249
+2026-01-21 09:31:59,442 - Basic Block: addr= 0x0000000008000788 , size=0x0000000000000006 (lr=0x8000793)
+2026-01-21 09:31:59,442 - Basic Block: addr= 0x000000000800078e , size=0x0000000000000004 (lr=0x8000793)
+2026-01-21 09:31:59,442 - [HAL_GetTick] Basic Block: addr= 0x00000000080003d0 , size=0x0000000000000006 (lr=0x8000793)
+2026-01-21 09:31:59,442 -         >>> Read: addr= 0x00000000080003d8 size=4 data=0x200000b0 pc=0x080003d0
+2026-01-21 09:31:59,442 -         >>> Read: addr= 0x00000000200000b0 size=4 data=0x00000000 pc=0x080003d2
+2026-01-21 09:31:59,442 - Basic Block: addr= 0x0000000008000792 , size=0x0000000000000006 (lr=0x8000793)
+2026-01-21 09:31:59,443 - Instr: f7d90320
+2026-01-21 09:31:59,443 - end pc: 0x8000796
+2026-01-21 09:31:59,443 - end sp: 0x2001ff88
+2026-01-21 09:31:59,443 - end lr: 0x8000793
+2026-01-21 09:31:59,443 - end cpsr: 0x800001f3
+2026-01-21 09:31:59,443 - end xpsr: 0x81000000
+2026-01-21 09:31:59,443 - end msp: 0x2001ff88
+2026-01-21 09:31:59,443 - end psp: 0x0
+2026-01-21 09:31:59,443 - end primask: 0x0
+2026-01-21 09:31:59,443 - end control: 0x0
+2026-01-21 09:31:59,443 - end faultmask: 0x0
+2026-01-21 09:31:59,443 - end basepri: 0x0
+2026-01-21 09:31:59,443 - end ipsr: 0x0
+2026-01-21 09:31:59,443 - end r0: 0x0
+2026-01-21 09:31:59,443 - end r1: 0x1
+2026-01-21 09:31:59,443 - end r2: 0x0
+2026-01-21 09:31:59,443 - end r3: 0x200000b0
+2026-01-21 09:31:59,443 - end r4: 0x2001ffc8
+2026-01-21 09:31:59,443 - end r5: 0x0
+2026-01-21 09:31:59,443 - end r6: 0x40023800
+2026-01-21 09:31:59,443 - end r7: 0x0
+2026-01-21 09:31:59,443 - end r8: 0x0
+2026-01-21 09:31:59,443 - end r9: 0x0
+2026-01-21 09:31:59,443 - end r10: 0x0
+2026-01-21 09:31:59,443 - end r11: 0x0
+2026-01-21 09:31:59,443 - end r12: 0x0
+2026-01-21 09:31:59,443 - Exiting via os._exit
