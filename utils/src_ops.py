@@ -218,7 +218,42 @@ def file_convert_proj2src(file_path: str) -> str:
     """
     if globs.proj_path != globs.src_path:
         # 项目路径和源文件路径不同时，需要转换
-        file_path = file_path.replace(globs.proj_path, globs.src_path.replace(" ", "\\ "))
+        proj_path = globs.proj_path
+        src_path = globs.src_path
+        
+        # 如果file_path已经以src_path开头，直接返回
+        if file_path.startswith(src_path):
+            return file_path
+        
+        # 确保proj_path以/结尾，避免部分匹配
+        if not proj_path.endswith('/'):
+            proj_path_norm = proj_path + '/'
+        else:
+            proj_path_norm = proj_path
+            
+        # 确保src_path以/结尾
+        if not src_path.endswith('/'):
+            src_path_norm = src_path + '/'
+        else:
+            src_path_norm = src_path
+        
+        # 如果file_path以proj_path_norm开头，则替换
+        if file_path.startswith(proj_path_norm):
+            # 移除proj_path_norm，添加src_path_norm
+            relative_path = file_path[len(proj_path_norm):]
+            return src_path_norm + relative_path
+        # 如果file_path以proj_path开头（没有斜杠），也尝试替换
+        elif file_path.startswith(proj_path):
+            # 检查proj_path后面是否有路径分隔符
+            if len(file_path) > len(proj_path) and file_path[len(proj_path)] in ['/', '\\']:
+                relative_path = file_path[len(proj_path):]
+                return src_path_norm + relative_path.lstrip('/\\')
+        
+        # 其他情况，尝试直接替换
+        if proj_path in file_path and not src_path in file_path:
+            # 只替换一次，避免重复替换
+            return file_path.replace(proj_path, src_path, 1)
+        
         return file_path
     else:
         return file_path

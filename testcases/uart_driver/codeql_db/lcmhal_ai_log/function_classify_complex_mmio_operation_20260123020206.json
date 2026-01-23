@@ -1,0 +1,368 @@
+{
+  "messages": [
+    {
+      "content": "\n**Role**: You are an embedded software engineer tasked with replacing driver library functions to eliminate dependencies on peripheral hardware (I/O operations, register access, etc.) while preserving normal functionality and MCU-related operations (including OS scheduling and interrupt triggering).\n\n**Overall Process**:\n1.  **Information Gathering**: Obtain the complete function implementation and context information using available tools.\n2.  **Analysis Phase**: Analyze the function to understand its MMIO accesses, call relationships, data structures used, and core logic.\n3.  **Classification Phase**: Categorize the function into one of the defined types based on the analysis.\n4.  **Processing Phase**:\n    *   For functions classified as **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code according to the specified strategy.\n    *   For functions classified as **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Only provide the classification and reasoning. **Do not generate replacement code** unless explicitly requested later.\n\n---\n\n### **Available Tools for Information Gathering**\n\nYou have access to the following tools to gather information about functions and their context:\n\n1.  **GetFunctionInfo(func_name: str)**: Retrieves detailed information about a function, including its implementation code, parameters, return type, and location.\n    *   **When to use**: Always call this tool first to get the function's implementation code.\n    *   **Example**: `GetFunctionInfo(\"HAL_UART_Receive\")`\n\n2.  **GetMMIOFunctionInfo(func_name: str)**: Checks if a function contains MMIO operations and provides details about those operations.\n    *   **When to use**: After getting the function info, call this to identify any hardware register accesses.\n    *   **Example**: `GetMMIOFunctionInfo(\"UART0_IRQHandler\")`\n\n3.  **GetStructOrEnumInfo(struct_name: str)**: Retrieves information about a specific struct or enum type used by the function.\n    *   **When to use**: When you need to understand the data structures used in the function implementation.\n    *   **Example**: `GetStructOrEnumInfo(\"UART_Type\")`\n\n4.  **GetFunctionCallStack(func_name: str)**: Retrieves information about functions that call this function and functions called by this function.\n    *   **When to use**: When you need to understand the function's context and dependencies.\n    *   **Example**: `GetFunctionCallStack(\"SPI_Transfer\")`\n\n5.  **GetDriverInfo(driver_name: str)**: Retrieves information about a specific driver module.\n    *   **When to use**: When you need to understand the broader driver context of the function.\n    *   **Example**: `GetDriverInfo(\"uart\")`\n\n**Tool Usage Best Practices**:\n- **Always start with GetFunctionInfo** to get the function's implementation code.\n- **Use GetMMIOFunctionInfo** immediately after to identify hardware dependencies.\n- **Use GetStructOrEnumInfo** when you encounter unknown data structures in the function code.\n- **Use GetFunctionCallStack** if you need to understand the function's role in the system or its call relationships.\n- **Use GetDriverInfo** to understand the broader driver context when classifying functions related to a specific peripheral.\n- **Tool Usage Sequence**: GetFunctionInfo → GetMMIOFunctionInfo → [GetStructOrEnumInfo | GetFunctionCallStack | GetDriverInfo] (as needed)\n- **Error Handling**: If a tool call fails (e.g., function not found), try alternative tool calls or classify as NEEDCHECK with explanation.\n\n---\n\n### **Function Classification and Replacement Strategy**\n\n#### **Priority 1: Functions Requiring Replacement (Generate Code)**\n\n1.  **RECV (Data Transmission/Reception Functions)**\n    *   **Identification**: Functions performing critical data I/O, DMA buffer management, or peripheral data transfer (read/write).\n    *   **Examples**: `HAL_UART_Receive`, `ETH_ReadFrame`, `SPI_Receive`\n    *   **Strategy**:\n        *   For **data reception**: Replace with calls to `HAL_BE_In(void* buf, int len)` (fixed size) or `HAL_BE_ENET_ReadFrame(void* buf, int length)` (variable length packet).\n        *   For **data transmission**: Redirect output to `stdout` (e.g., using `printf`) or, if non-critical and does not affect state, skip the operation.\n    *   **Critical**: Preserve all non-I/O logic (buffer pointer updates, state flags, data processing).\n    *   **Example Replacement**:\n        ```c\n        // Original\n        HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)\n        {\n            // ... hardware-specific code ...\n            while ((huart->Instance->SR & UART_FLAG_RXNE) == 0) {\n                // Timeout handling\n            }\n            *pData = (uint8_t)(huart->Instance->DR & (uint8_t)0x00FF);\n            // ... more hardware-specific code ...\n        }\n\n        // Replacement\n        HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)\n        {\n            // Simulate data reception\n            HAL_BE_In(pData, Size);\n            // Preserve non-I/O logic\n            huart->RxXferCount = 0;\n            huart->RxXferSize = Size;\n            huart->RxState = HAL_UART_STATE_READY;\n            return HAL_OK;\n        }\n        ```\n\n2.  **IRQ (Interrupt-Related Functions)**\n    *   **Identification**: Interrupt handlers (e.g., `*_IRQHandler`) or functions containing interrupt enable/disable operations.\n    *   **Examples**: `UART0_IRQHandler`, `EXTI0_IRQHandler`, `HAL_TIM_IRQHandler`\n    *   **Strategy**:\n        *   Remove actual hardware operations (e.g., writing to interrupt control registers).\n        *   **Preserve**: Interrupt flag checks, OS interrupt notifications (e.g., `xSemaphoreGiveFromISR`), state machine updates.\n        *   Ensure the execution flow can reach the original data handling or task triggering branches.\n    *   **Example Replacement**:\n        ```c\n        // Original\n        void UART0_IRQHandler(void)\n        {\n            if ((UART0->S1 & UART_S1_RDRF_MASK) != 0U) {\n                data = UART0->D;\n                process_data(data);\n                xSemaphoreGiveFromISR(semaphore, &xHigherPriorityTaskWoken);\n            }\n            // Clear interrupt flags\n            UART0->S1 |= UART_S1_TDRE_MASK;\n        }\n\n        // Replacement\n        void UART0_IRQHandler(void)\n        {\n            // Simulate interrupt flag being set\n            data = HAL_BE_In(&data, 1);\n            process_data(data);\n            xSemaphoreGiveFromISR(semaphore, &xHigherPriorityTaskWoken);\n            // No need to clear hardware interrupt flags\n        }\n        ```\n\n3.  **INIT (Initialization Functions)**\n    *   **Identification**: Functions that initialize peripheral/configurations or allocate resources.\n    *   **Examples**: `HAL_UART_Init`, `SPI_Init`, `ETH_Init`\n    *   **Strategy**:\n        *   Remove all MMIO/register access operations.\n        *   Preserve resource allocation (e.g., `malloc`), structure initialization, and default value setting.\n        *   Ensure the logical post-initialization state matches the expected state after hardware init.\n    *   **Example Replacement**:\n        ```c\n        // Original\n        HAL_StatusTypeDef HAL_UART_Init(UART_HandleTypeDef *huart)\n        {\n            // Enable UART clock\n            __HAL_RCC_USART1_CLK_ENABLE();\n            // Configure UART registers\n            huart->Instance->CR1 = USART_CR1_UE | USART_CR1_TE | USART_CR1_RE;\n            huart->Instance->BRR = UART_BRR_SAMPLING16(HAL_RCC_GetPCLK2Freq(), huart->Init.BaudRate);\n            // ... more hardware configuration ...\n            huart->State = HAL_UART_STATE_READY;\n            return HAL_OK;\n        }\n\n        // Replacement\n        HAL_StatusTypeDef HAL_UART_Init(UART_HandleTypeDef *huart)\n        {\n            // Preserve structure initialization\n            huart->State = HAL_UART_STATE_READY;\n            huart->ErrorCode = HAL_UART_ERROR_NONE;\n            // Skip hardware-specific configuration\n            return HAL_OK;\n        }\n        ```\n\n4.  **LOOP (Peripheral-Dependent Loops)**\n    *   **Identification**: Loops where the condition or body depends on peripheral registers (e.g., polling status flags).\n    *   **Examples**: Waiting for transmission complete, reading from FIFO until empty\n    *   **Strategy**:\n        *   If waiting for a status flag: **Skip the loop entirely** (assume the condition is already met).\n        *   If reading data from a FIFO until empty: **Replace with a single read or a call to a simulation receive function**.\n        *   Add a comment explaining the original loop's purpose.\n    *   **Examples**:\n        ```c\n        // Original: Wait last char shifted out\n        while (0U == (base->S1 & UART_S1_TC_MASK))\n        {\n        }\n        // Replacement: Skip the wait loop, assume transmission complete\n        /* [LOOP REMOVED] Waited for hardware transmission complete flag */\n\n        // Original: Read to clear overrun flag\n        while ((base->S1 & UART_S1_RDRF_MASK) != 0U)\n        {\n            (void)base->D;\n        }\n        // Replacement: Replace with a single simulated read\n        (void)HAL_BE_In(NULL, 1); /* Simulate reading to clear overrun flag */\n        ```\n\n#### **Priority 2: Classification Only (Do Not Generate Code Now)**\n\n5.  **RETURNOK (Pure Driver Operation Functions)**\n    *   **Identification**: Functions that only manipulate peripheral registers with no impact on upper-layer data structures.\n    *   **Examples**: `HAL_GPIO_WritePin`, `SPI_SetBaudRate`\n    *   **Strategy (Note)**: Would simply return a success value (e.g., `HAL_OK`, `0`) or a safe default.\n\n6.  **SKIP (Non-Critical Driver Functions)**\n    *   **Identification**: Functions performing optional operations that can be safely ignored (e.g., minor configuration, debug output).\n    *   **Examples**: `HAL_UART_MspInit`, `UART_PrintDebugInfo`\n    *   **Strategy (Note)**: Would be replaced with an empty implementation or a success return.\n\n7.  **NEEDCHECK (Mixed-Functionality Functions)**\n    *   **Identification**: Functions mixing hardware operations with significant upper-layer logic (state machines, data structure management, protocol handling), or functions where you cannot confidently determine the classification.\n    *   **Examples**: Complex protocol handlers, state machine functions with hardware dependencies, functions where tool calls failed to provide sufficient information\n    *   **Strategy (Note)**: Would require removing hardware operations while meticulously preserving all non-driver logic. **Flag for manual review**.\n\n8.  **NODRIVER (Non-Driver Functions)**\n    *   **Identification**: Functions incorrectly flagged as driver-dependent but containing no hardware-specific operations.\n    *   **Examples**: Utility functions, data processing functions, math functions\n    *   **Strategy (Note)**: Should be left unchanged.\n\n---\n\n### **General Replacement Rules**\n\n1.  **Return Type**: Do not change the function's return type.\n2.  **No New Declarations**: Do not add `extern` declarations; assume global variables/definitions exist.\n3.  **No New Headers**: Do not add `#include` directives.\n4.  **Preserve OS Operations**: Do not modify any OS-related calls (scheduling, semaphores, queues, interrupt notifications).\n5.  **Preserve Preprocessor Directives**: Keep `#ifdef`, `#if`, etc., unchanged. Do not add new ones.\n6.  **Use Only Provided Helpers**: Only use the helper functions listed below. Do not introduce standard library I/O functions (e.g., `fflush`, `read`, `write`).\n\n**Provided Helper Functions**:\n```c\nint HAL_BE_return_0(); // Returns 0 (typically success)\nint HAL_BE_return_1(); // Returns 1\nint HAL_BE_Out(int len); // Simulates data transmission (can be skipped)\nint HAL_BE_In(void* buf, int len); // Simulates fixed-length data reception\nint HAL_BE_ENET_ReadFrame(void* buf, int length); // Simulates variable-length packet reception\nint HAL_BE_Block_Write(void* buf, int block_size, int block_num); // Simulates block write to storage\nint HAL_BE_Block_Read(void* buf, int block_size, int block_num); // Simulates block read from storage\n```\n\n---\n\n### **Detailed Function Replacement Generation Steps**\n\nWhen generating replacement code for **RECV, IRQ, INIT, or LOOP** functions, follow these meticulous steps:\n\n1.  **Step 1: Parameter and Return Type Analysis**\n    *   **Examine every function parameter and return type**:\n        *   Identify its **data type** (e.g., `uint32_t`, `UART_Type *`, `void *`, `struct eth_frame *`).\n        *   For **pointer parameters**, determine the **underlying data structure** it points to (if not `void*`). Understand if it is used for input, output, or both.\n        *   Note that since potential type conversions may exist within the function context, when `void*` or `void**` appears in parameters or return values, you must carefully examine the context and infer their specific types.\n\n2.  **Step 2: Data Structure and Global Variable Mapping**\n    *   Identify all **structs, enums, and macros** used in the function (e.g., `UART_Type`, `ETH_DMARxDesc_TypeDef`).\n    *   Do not redefine them. Assume their definitions are available globally.\n    *   Note any **global variables** or **peripheral instance pointers** (like `UART0`, `&huart1`) accessed by the function. Their declarations are assumed to exist.\n\n3.  **Step 3: MMIO and Hardware Operation Identification**\n    *   Locate all **register accesses** (e.g., `base->DR = data`, `status = reg->SR`).\n    *   Identify **polling loops** waiting for status flags (`while ((reg->ISR & FLAG) == 0)`).\n    *   Identify **data read/write operations** from/to peripheral data registers or FIFOs (`data = base->RDR`, `base->TDR = *pData++`).\n    *   Identify **interrupt control operations** (enable/disable/clear).\n\n4.  **Step 4: Non-Driver Logic Preservation**\n    *   **Isolate and preserve**:\n        *   **Buffer management logic**: Pointer increments, buffer index updates, length checks.\n        *   **State machine updates**: Changing state variables (`huart->RxState = HAL_UART_STATE_READY`).\n        *   **OS/RTOS interactions**: Calls to `xQueueSendFromISR()`, `xSemaphoreGive()`, `vTaskNotifyGive()`.\n        *   **Error checking and logging**: Conditional checks on data validity, error counter increments (if not tied to hardware status).\n        *   **Callback functions**: Invocations of user-provided callback pointers (`htim->PeriodElapsedCallback()`).\n\n5.  **Step 5: Apply Replacement Strategy & Generate Code**\n    *   **RECV**:\n        *   For **reads**: Replace the hardware read sequence with a call to `HAL_BE_In(buf, len)` or `HAL_BE_ENET_ReadFrame(buf, max_len)`. Ensure the `len` argument matches the original intended read size.\n        *   For **writes**: Replace with `printf` or `HAL_BE_Out(len)`, or if safe, skip. **Crucially, preserve any post-transmission logic** (e.g., updating a `txComplete` flag).\n    *   **IRQ**:\n        *   Remove lines that write to interrupt enable/clear registers.\n        *   Keep the **condition checks** that would typically read interrupt flags, but **replace the MMIO read with a non-zero value or variable** to ensure desired branch execution (especially the branch that handles received data).\n        *   Keep all OS calls and state updates inside those branches.\n    *   **INIT**:\n        *   Remove all register writes (`base->CR1 = VALUE`).\n        *   Keep structure member initialization (`handle->Mode = UART_MODE_TX_RX`).\n        *   Keep memory allocation (`handle->pRxBuffPtr = malloc(SIZE)`).\n        *   Set initialization status variables to their \"ready\" state (`handle->State = HAL_UART_STATE_READY`).\n    *   **LOOP**:\n        *   For **polling/wait loops**: Comment out or remove the entire `while` loop. Add a comment: `/* [LOOP REMOVED] Waited for hardware flag. */`\n        *   For **data drain loops** (reading until a FIFO is empty): Replace with a single call to a helper if needed for state consistency, or remove if only clearing flags.\n\n6.  **Step 6: Final Validation (Mental Check)**\n    *   **Return Value**: Ensure the function returns a value consistent with its original successful execution (e.g., `return HAL_OK;`, `return 0;`, `return numberOfBytesRead;`). Use `HAL_BE_return_0()` or `HAL_BE_return_1()` if appropriate.\n    *   **Control Flow**: Verify that no critical `if` or `switch` branch has become unreachable due to removed hardware conditions. Adjust temporary variables if needed to guide flow.\n    *   **Data Consistency**: Ensure that any output parameters (pointer arguments) are written with plausible data, as the helper functions are expected to simulate this.\n    *   **Compilation Safety**: The generated code must be valid C syntax using only existing types and the allowed helper functions.\n\n**Critical Code Generation Rules**:\n1.  Absolutely prohibit fabricating undefined address constants (such as 0x20000000, 0x40000000, etc.)\n2.  Absolutely prohibit fabricating undeclared global variables, macro definitions, or functions\n3.  Only use:\n    - Variables and parameters existing in the current code snippet\n    - Standard APIs of libraries/frameworks\n    - Reasonable values explicitly derived from the context\n4.  If a parameter requires a specific value, you must:\n    - Use values already present in function parameters\n    - Use existing fields within structures/objects\n    - Or clearly comment on the source of the value\n5.  After generation, verify that every variable/constant has a clearly defined source\n\n---\n\n### **Execution Instructions**\n\nWhen provided with a function name for classification and analysis, follow these steps:\n\n1.  **First, get the function information**:\n    *   **Mandatory**: Call `GetFunctionInfo(func_name)` to obtain the function's implementation code and basic information.\n    *   **Mandatory**: Call `GetMMIOFunctionInfo(func_name)` to identify any hardware register accesses.\n    *   **Optional**: For complex functions, use `GetStructOrEnumInfo(struct_name)` to understand data structures, `GetFunctionCallStack(func_name)` to understand context, and `GetDriverInfo(driver_name)` to understand broader driver context.\n    *   **Complete Information**: Ensure you have sufficient information to make an accurate classification before proceeding.\n\n2.  **Analyze the function**:\n    *   Understand the function's purpose, key operations (MMIO, I/O, OS calls), and control flow.\n    *   Identify any hardware-dependent operations that need to be replaced.\n    *   Map the function to the appropriate classification based on the criteria above.\n\n3.  **Classify the function**:\n    *   Determine the appropriate function type based on the analysis.\n    *   Use the following priority order when multiple classifications might apply: RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER\n    *   If you cannot confidently classify the function (e.g., insufficient information, ambiguous characteristics), use **NEEDCHECK**.\n\n4.  **Generate output according to the classification**:\n    *   For **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code following the detailed steps.\n    *   For **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Provide classification and reasoning only.\n\n**Output Format**: Your response must be structured to match the following fields exactly. Ensure all fields are present and correctly formatted as JSON:\n\n```json\n{\n  \"function_name\": \"<name_of_the_function>\",\n  \"function_type\": \"<one_of_RECV_IRQ_INIT_LOOP_RETURNOK_SKIP_NEEDCHECK_NODRIVER>\",\n  \"functionality\": \"<brief_description_of_function_purpose>\",\n  \"classification_reason\": \"<detailed_explanation_of_classification_based_on_analysis>\",\n  \"has_replacement\": <true_or_false>,\n  \"function_replacement\": \"<complete_replacement_code_or_empty_string>\"\n}\n```\n\n**Output Generation Guidelines**:\n- **function_name**: Exactly match the function name provided in the input.\n- **function_type**: Use only the exact string values defined (case-sensitive).\n- **functionality**: Brief, clear description (1-2 sentences) of what the function does.\n- **classification_reason**: Detailed explanation including:\n  - Key characteristics identified\n  - Tool usage and findings (e.g., \"GetMMIOFunctionInfo revealed register accesses...\")\n  - Why this classification was chosen over others\n  - Any ambiguity or special considerations\n- **has_replacement**: True for RECV, IRQ, INIT, LOOP; False for others.\n- **function_replacement**: Complete replacement code for RECV/IRQ/INIT/LOOP; empty string for others.\n\n**Important Notes**:\n- Ensure your output is compatible with the FunctionClassifyResponse Pydantic model.\n- Always provide the full function signature in the replacement code.\n- Preserve all comments that are not related to hardware operations.\n- If you encounter any errors or ambiguities during analysis, use **NEEDCHECK** classification and explain the issue in the reasoning.\n- Your analysis should be based solely on the information obtained from tool calls, not assumptions.\n",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": "a30744b9-6059-428e-a9a5-d29ec7e4f985"
+    },
+    {
+      "content": "Classify the function : complex_mmio_operation",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": "b8c0aa1c-638a-43bd-bacc-1d4e745baa1b"
+    },
+    {
+      "content": "I'll help you classify the function `complex_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+      "additional_kwargs": {
+        "refusal": null
+      },
+      "response_metadata": {
+        "token_usage": {
+          "completion_tokens": 78,
+          "prompt_tokens": 5706,
+          "total_tokens": 5784,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 5696
+          },
+          "prompt_cache_hit_tokens": 5696,
+          "prompt_cache_miss_tokens": 10
+        },
+        "model_provider": "deepseek",
+        "model_name": "deepseek-chat",
+        "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+        "id": "9d6a145d-525a-48bc-8631-891a0139d335",
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ai",
+      "name": null,
+      "id": "lc_run--8ad2deaa-2322-4d61-ab95-fba409ad3ea7-0",
+      "tool_calls": [
+        {
+          "name": "GetFunctionInfo",
+          "args": {
+            "func_name": "complex_mmio_operation"
+          },
+          "id": "call_00_mCWud2arIKZzXf6PSWIEswnS",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "usage_metadata": {
+        "input_tokens": 5706,
+        "output_tokens": 78,
+        "total_tokens": 5784,
+        "input_token_details": {
+          "cache_read": 5696
+        },
+        "output_token_details": {}
+      }
+    },
+    {
+      "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'complex_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=188, function_content=\\'/* 复杂的 MMIO 操作 */\\\\nvoid complex_mmio_operation(uint8_t *buffer, size_t len)\\\\n{\\\\n    /* 初始化 */\\\\n    USART1->CR1 = 0x2000;\\\\n    USART1->BRR = 0x0341;\\\\n    \\\\n    /* 批量传输 */\\\\n    for (size_t i = 0; i < len; i++) {\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = buffer[i];\\\\n    }\\\\n    \\\\n    /* 条件操作 */\\\\n    if (len > 10) {\\\\n        USART1->CR1 |= 0x1000;  /* 使能 RX */\\\\n    }\\\\n}\\\\n\\', function_content_in_lines={\\'188\\': \\'void complex_mmio_operation(uint8_t *buffer, size_t len)\\', \\'189\\': \\'{\\', \\'190\\': \\'    /* 初始化 */\\', \\'191\\': \\'    USART1->CR1 = 0x2000;\\', \\'192\\': \\'    USART1->BRR = 0x0341;\\', \\'193\\': \\'    \\', \\'194\\': \\'    /* 批量传输 */\\', \\'195\\': \\'    for (size_t i = 0; i < len; i++) {\\', \\'196\\': \\'        while (!(USART1->SR & 0x0080)) {\\', \\'197\\': \\'            __asm__ volatile (\"nop\");\\', \\'198\\': \\'        }\\', \\'199\\': \\'        USART1->DR = buffer[i];\\', \\'200\\': \\'    }\\', \\'201\\': \\'    \\', \\'202\\': \\'    /* 条件操作 */\\', \\'203\\': \\'    if (len > 10) {\\', \\'204\\': \\'        USART1->CR1 |= 0x1000;  /* 使能 RX */\\', \\'205\\': \\'    }\\', \\'206\\': \\'}\\'})', 'id': 'lc_4ab6efa3-308e-427c-b57b-4f835e54e041'}]",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "tool",
+      "name": "GetFunctionInfo",
+      "id": "041cf6ce-781d-4b0f-8212-51311effeae1",
+      "tool_call_id": "call_00_mCWud2arIKZzXf6PSWIEswnS",
+      "artifact": null,
+      "status": "success"
+    },
+    {
+      "content": "Now let me check for MMIO operations in this function:",
+      "additional_kwargs": {
+        "refusal": null
+      },
+      "response_metadata": {
+        "token_usage": {
+          "completion_tokens": 63,
+          "prompt_tokens": 6423,
+          "total_tokens": 6486,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 6336
+          },
+          "prompt_cache_hit_tokens": 6336,
+          "prompt_cache_miss_tokens": 87
+        },
+        "model_provider": "deepseek",
+        "model_name": "deepseek-chat",
+        "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+        "id": "15ae47e6-6588-41c5-91de-a6a2153b35a5",
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ai",
+      "name": null,
+      "id": "lc_run--05c489e2-d221-4f6d-af8c-f14417c71490-0",
+      "tool_calls": [
+        {
+          "name": "GetMMIOFunctionInfo",
+          "args": {
+            "func_name": "complex_mmio_operation"
+          },
+          "id": "call_00_6KhrdwElPGTROPw8RakOG1kZ",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "usage_metadata": {
+        "input_tokens": 6423,
+        "output_tokens": 63,
+        "total_tokens": 6486,
+        "input_token_details": {
+          "cache_read": 6336
+        },
+        "output_token_details": {}
+      }
+    },
+    {
+      "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'complex_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=196, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'complex_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=196, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprInfo(name=\\'... |= ...\\', function=\\'complex_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=204, expr_type=\\'assign\\', enclosing_type=\\'stmt\\'), MmioExprInfo(name=\\'... & ...\\', function=\\'complex_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=196, expr_type=\\'binary\\', enclosing_type=\\'skip\\')]\\nFunction info: FunctionInfo(name=\\'complex_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=188, function_content=\\'/* 复杂的 MMIO 操作 */\\\\nvoid complex_mmio_operation(uint8_t *buffer, size_t len)\\\\n{\\\\n    /* 初始化 */\\\\n    USART1->CR1 = 0x2000;\\\\n    USART1->BRR = 0x0341;\\\\n    \\\\n    /* 批量传输 */\\\\n    for (size_t i = 0; i < len; i++) {\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = buffer[i];\\\\n    }\\\\n    \\\\n    /* 条件操作 */\\\\n    if (len > 10) {\\\\n        USART1->CR1 |= 0x1000;  /* 使能 RX */\\\\n    }\\\\n}\\\\n\\', function_content_in_lines={\\'188\\': \\'void complex_mmio_operation(uint8_t *buffer, size_t len)\\', \\'189\\': \\'{\\', \\'190\\': \\'    /* 初始化 */\\', \\'191\\': \\'    USART1->CR1 = 0x2000;\\', \\'192\\': \\'    USART1->BRR = 0x0341;\\', \\'193\\': \\'    \\', \\'194\\': \\'    /* 批量传输 */\\', \\'195\\': \\'    for (size_t i = 0; i < len; i++) {\\', \\'196\\': \\'        while (!(USART1->SR & 0x0080)) {\\', \\'197\\': \\'            __asm__ volatile (\"nop\");\\', \\'198\\': \\'        }\\', \\'199\\': \\'        USART1->DR = buffer[i];\\', \\'200\\': \\'    }\\', \\'201\\': \\'    \\', \\'202\\': \\'    /* 条件操作 */\\', \\'203\\': \\'    if (len > 10) {\\', \\'204\\': \\'        USART1->CR1 |= 0x1000;  /* 使能 RX */\\', \\'205\\': \\'    }\\', \\'206\\': \\'}\\'})', 'id': 'lc_a351e8b7-ece9-43ed-9fb7-560bdc885de3'}]",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "tool",
+      "name": "GetMMIOFunctionInfo",
+      "id": "b8d401f7-104c-4382-93b6-fd2287993351",
+      "tool_call_id": "call_00_6KhrdwElPGTROPw8RakOG1kZ",
+      "artifact": null,
+      "status": "success"
+    },
+    {
+      "content": "Let me also check the struct information for USART1 to understand the data structure:",
+      "additional_kwargs": {
+        "refusal": null
+      },
+      "response_metadata": {
+        "token_usage": {
+          "completion_tokens": 66,
+          "prompt_tokens": 7433,
+          "total_tokens": 7499,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 6464
+          },
+          "prompt_cache_hit_tokens": 6464,
+          "prompt_cache_miss_tokens": 969
+        },
+        "model_provider": "deepseek",
+        "model_name": "deepseek-chat",
+        "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+        "id": "da36d572-5d5f-47d0-bd7b-2c77e2e817e3",
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ai",
+      "name": null,
+      "id": "lc_run--3d4379df-a1fc-4158-ba42-69fa51449318-0",
+      "tool_calls": [
+        {
+          "name": "GetStructOrEnumInfo",
+          "args": {
+            "struct_name": "USART_Type"
+          },
+          "id": "call_00_GdDiM08wQkrRVwd7J0vY47R6",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "usage_metadata": {
+        "input_tokens": 7433,
+        "output_tokens": 66,
+        "total_tokens": 7499,
+        "input_token_details": {
+          "cache_read": 6464
+        },
+        "output_token_details": {}
+      }
+    },
+    {
+      "content": "[{'type': 'text', 'text': 'Struct or enum not found: USART_Type', 'id': 'lc_4d63737e-57d4-475d-b6fd-0817c8234e9d'}]",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "tool",
+      "name": "GetStructOrEnumInfo",
+      "id": "3f46b894-74f6-4983-906c-c1121867f90f",
+      "tool_call_id": "call_00_GdDiM08wQkrRVwd7J0vY47R6",
+      "artifact": null,
+      "status": "success"
+    },
+    {
+      "content": "Let me check the function call stack to understand the context:",
+      "additional_kwargs": {
+        "refusal": null
+      },
+      "response_metadata": {
+        "token_usage": {
+          "completion_tokens": 62,
+          "prompt_tokens": 7569,
+          "total_tokens": 7631,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 7488
+          },
+          "prompt_cache_hit_tokens": 7488,
+          "prompt_cache_miss_tokens": 81
+        },
+        "model_provider": "deepseek",
+        "model_name": "deepseek-chat",
+        "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+        "id": "3251ebad-3eff-4f8b-831e-5e1a957f680c",
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ai",
+      "name": null,
+      "id": "lc_run--5a7d2a0f-bbdf-4f4f-91c1-d825be39a64c-0",
+      "tool_calls": [
+        {
+          "name": "GetFunctionCallStack",
+          "args": {
+            "func_name": "complex_mmio_operation"
+          },
+          "id": "call_00_4qQLFo0hSNmPdffxMGmxPM4L",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "usage_metadata": {
+        "input_tokens": 7569,
+        "output_tokens": 62,
+        "total_tokens": 7631,
+        "input_token_details": {
+          "cache_read": 7488
+        },
+        "output_token_details": {}
+      }
+    },
+    {
+      "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='main', callee_name='complex_mmio_operation', call_tag='call to complex_mmio_operation', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=234, call_type='direct', ret_type='noReturnValue', start_line_content='    complex_mmio_operation(test_data, sizeof(test_data) - 1);')]\", 'id': 'lc_2864e57f-b0ee-4fe2-87a5-f323c6f30e33'}]",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "tool",
+      "name": "GetFunctionCallStack",
+      "id": "f53f7ec2-7a67-4e1e-95cb-743a6a1f470d",
+      "tool_call_id": "call_00_4qQLFo0hSNmPdffxMGmxPM4L",
+      "artifact": null,
+      "status": "success"
+    },
+    {
+      "content": "Now let me analyze the function based on the information gathered:\n\n## Analysis of `complex_mmio_operation`\n\nFrom the function information, I can see that:\n\n1. **Function Signature**: `void complex_mmio_operation(uint8_t *buffer, size_t len)`\n2. **Function Purpose**: This function performs complex MMIO operations for a USART/UART peripheral. It appears to be a UART transmission function that sends data from a buffer.\n\n3. **Key Operations Identified**:\n   - **Initialization**: Sets USART1 control register (CR1) and baud rate register (BRR)\n   - **Data Transmission Loop**: For each byte in the buffer:\n     - Polls status register (SR) waiting for transmit data register empty flag (0x0080)\n     - Writes data to data register (DR)\n   - **Conditional Operation**: If buffer length > 10, enables RX (receiver) by setting bit 0x1000 in CR1\n\n4. **MMIO Operations**:\n   - `USART1->CR1 = 0x2000` (initialization)\n   - `USART1->BRR = 0x0341` (baud rate configuration)\n   - `while (!(USART1->SR & 0x0080))` (polling wait loop)\n   - `USART1->DR = buffer[i]` (data transmission)\n   - `USART1->CR1 |= 0x1000` (conditional RX enable)\n\n5. **Classification Analysis**:\n   - This function performs **data transmission** (writing buffer to USART DR register) - characteristic of **RECV** type\n   - It contains **polling loops** waiting for hardware flags - characteristic of **LOOP** type  \n   - It has **initialization operations** - characteristic of **INIT** type\n   - The function is primarily focused on **data transmission** with hardware dependencies\n\nBased on the priority order (RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER), this function should be classified as **RECV** because its primary purpose is data transmission (even though it's transmitting, not receiving, the RECV category covers data I/O operations).\n\nHowever, I notice this function is transmitting data, not receiving it. Let me check if there's a driver context:",
+      "additional_kwargs": {
+        "refusal": null
+      },
+      "response_metadata": {
+        "token_usage": {
+          "completion_tokens": 547,
+          "prompt_tokens": 7807,
+          "total_tokens": 8354,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 7616
+          },
+          "prompt_cache_hit_tokens": 7616,
+          "prompt_cache_miss_tokens": 191
+        },
+        "model_provider": "deepseek",
+        "model_name": "deepseek-chat",
+        "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+        "id": "88194eac-7eb3-496f-8c1e-c93347dbc02d",
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ai",
+      "name": null,
+      "id": "lc_run--cb786ea4-3caf-44ad-9c66-5a8b0d80ae08-0",
+      "tool_calls": [
+        {
+          "name": "GetDriverInfo",
+          "args": {
+            "driver_name": "uart"
+          },
+          "id": "call_00_Y5syvg6GwmiLzSoovTIZQXYx",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "usage_metadata": {
+        "input_tokens": 7807,
+        "output_tokens": 547,
+        "total_tokens": 8354,
+        "input_token_details": {
+          "cache_read": 7616
+        },
+        "output_token_details": {}
+      }
+    },
+    {
+      "content": "[{'type': 'text', 'text': 'Driver not found: uart', 'id': 'lc_5bec37a1-4174-46f5-a430-3c0bda73f28a'}]",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "tool",
+      "name": "GetDriverInfo",
+      "id": "c32dfaf4-9b97-4ea9-b7ee-4a4d7972efdd",
+      "tool_call_id": "call_00_Y5syvg6GwmiLzSoovTIZQXYx",
+      "artifact": null,
+      "status": "success"
+    },
+    {
+      "content": "Based on my analysis, this function is primarily a data transmission function with hardware dependencies. According to the classification criteria:\n\n1. **RECV** category includes \"Functions performing critical data I/O\" - this function performs data transmission (writing buffer to USART)\n2. It contains hardware register accesses (MMIO operations)\n3. It has polling loops waiting for hardware status\n4. It performs peripheral initialization\n\nThe function should be classified as **RECV** because it's performing critical data I/O (transmission) even though the name \"RECV\" suggests reception. The strategy for RECV functions includes replacing hardware operations with simulation while preserving non-I/O logic.\n\nLet me generate the replacement code:\n\n```json\n{\n  \"function_name\": \"complex_mmio_operation\",\n  \"function_type\": \"RECV\",\n  \"functionality\": \"Performs UART data transmission with initialization, polling, and conditional configuration operations\",\n  \"classification_reason\": \"This function performs critical data I/O operations (UART transmission) with multiple hardware dependencies: 1) Initializes USART1 registers (CR1, BRR), 2) Contains polling loop waiting for transmit ready flag (USART1->SR & 0x0080), 3) Writes data to USART data register (USART1->DR = buffer[i]), 4) Has conditional hardware configuration (enables RX if len > 10). GetMMIOFunctionInfo confirmed register accesses and polling loops. The function's primary purpose is data transmission, which falls under the RECV category for data I/O functions. Priority order: RECV > IRQ > INIT > LOOP, so RECV classification takes precedence over INIT or LOOP.\",\n  \"has_replacement\": true,\n  \"function_replacement\": \"/* 复杂的 MMIO 操作 */\\nvoid complex_mmio_operation(uint8_t *buffer, size_t len)\\n{\\n    /* 初始化 - Skip hardware initialization */\\n    /* USART1->CR1 = 0x2000; */\\n    /* USART1->BRR = 0x0341; */\\n    \\n    /* 批量传输 */\\n    for (size_t i = 0; i < len; i++) {\\n        /* [LOOP REMOVED] Waited for hardware transmit ready flag */\\n        /* while (!(USART1->SR & 0x0080)) {\\n            __asm__ volatile (\\\"nop\\\");\\n        } */\\n        /* USART1->DR = buffer[i]; */\\n        /* Simulate data transmission */\\n        HAL_BE_Out(1);\\n    }\\n    \\n    /* 条件操作 */\\n    if (len > 10) {\\n        /* Skip hardware RX enable */\\n        /* USART1->CR1 |= 0x1000;  /* 使能 RX */ */\\n    }\\n}\\n\"\n}\n```",
+      "additional_kwargs": {
+        "refusal": null
+      },
+      "response_metadata": {
+        "token_usage": {
+          "completion_tokens": 629,
+          "prompt_tokens": 8420,
+          "total_tokens": 9049,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 8320
+          },
+          "prompt_cache_hit_tokens": 8320,
+          "prompt_cache_miss_tokens": 100
+        },
+        "model_provider": "deepseek",
+        "model_name": "deepseek-chat",
+        "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+        "id": "f319e1ea-647f-4655-9e2d-1ba00b52dc43",
+        "finish_reason": "stop",
+        "logprobs": null
+      },
+      "type": "ai",
+      "name": null,
+      "id": "lc_run--8a23afe7-2104-4fd1-8600-2a6e099cb338-0",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "usage_metadata": {
+        "input_tokens": 8420,
+        "output_tokens": 629,
+        "total_tokens": 9049,
+        "input_token_details": {
+          "cache_read": 8320
+        },
+        "output_token_details": {}
+      }
+    }
+  ],
+  "final_response": {
+    "function_name": "complex_mmio_operation",
+    "function_type": "RECV",
+    "functionality": "Performs UART data transmission with initialization, polling, and conditional configuration operations",
+    "classification_reason": "This function performs critical data I/O operations (UART transmission) with multiple hardware dependencies: 1) Initializes USART1 registers (CR1, BRR), 2) Contains polling loop waiting for transmit ready flag (USART1->SR & 0x0080), 3) Writes data to USART data register (USART1->DR = buffer[i]), 4) Has conditional hardware configuration (enables RX if len > 10). GetMMIOFunctionInfo confirmed register accesses and polling loops. The function's primary purpose is data transmission, which falls under the RECV category for data I/O functions. Priority order: RECV > IRQ > INIT > LOOP, so RECV classification takes precedence over INIT or LOOP.",
+    "has_replacement": true,
+    "function_replacement": "/* 复杂的 MMIO 操作 */\nvoid complex_mmio_operation(uint8_t *buffer, size_t len)\n{\n    /* 初始化 - Skip hardware initialization */\n    /* USART1->CR1 = 0x2000; */\n    /* USART1->BRR = 0x0341; */\n    \n    /* 批量传输 */\n    for (size_t i = 0; i < len; i++) {\n        /* [LOOP REMOVED] Waited for hardware transmit ready flag */\n        /* while (!(USART1->SR & 0x0080)) {\n            __asm__ volatile (\"nop\");\n        } */\n        /* USART1->DR = buffer[i]; */\n        /* Simulate data transmission */\n        HAL_BE_Out(1);\n    }\n    \n    /* 条件操作 */\n    if (len > 10) {\n        /* Skip hardware RX enable */\n        /* USART1->CR1 |= 0x1000;  /* 使能 RX */ */\n    }\n}"
+  }
+}

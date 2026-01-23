@@ -1,0 +1,234 @@
+---
+queries:
+ -
+  pack: getting-started/codeql-extra-queries-cpp#0
+  relativeQueryPath: test_simple.ql
+  relativeBqrsPath: getting-started/codeql-extra-queries-cpp/test_simple.bqrs
+  metadata: {}
+extensionPacks: []
+packs:
+  codeql/cpp-all#1:
+    name: codeql/cpp-all
+    version: 1.4.1
+    isLibrary: true
+    isExtensionPack: false
+    localPath: file:///root/.codeql/packages/codeql/cpp-all/1.4.1/
+    localPackDefinitionFile: file:///root/.codeql/packages/codeql/cpp-all/1.4.1/qlpack.yml
+    headSha: f348b6cbf761f83d170835ae4f59464091d43549
+    runDataExtensions: []
+  getting-started/codeql-extra-queries-cpp#0:
+    name: getting-started/codeql-extra-queries-cpp
+    version: 1.0.0
+    isLibrary: false
+    isExtensionPack: false
+    localPath: file:///home/chenkaiqiu/LCMHalMCPServer/queries/
+    localPackDefinitionFile: file:///home/chenkaiqiu/LCMHalMCPServer/queries/codeql-pack.yml
+    headSha: f8e3c3b44a4394959d0726ad6ee890ab732a63a4
+    runDataExtensions:
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/Boost.Asio.model.yml
+      index: 0
+      firstRowId: 0
+      rowCount: 6
+      locations:
+        lineNumbers: A=7+1*5
+        columnNumbers: A=9*6
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/Boost.Asio.model.yml
+      index: 1
+      firstRowId: 6
+      rowCount: 4
+      locations:
+        lineNumbers: A=17+1*3
+        columnNumbers: A=9*4
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/Boost.Asio.model.yml
+      index: 2
+      firstRowId: 10
+      rowCount: 1
+      locations:
+        lineNumbers: A=25
+        columnNumbers: A=9
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/allocation/Bsd.allocation.model.yml
+      index: 0
+      firstRowId: 11
+      rowCount: 2
+      locations:
+        lineNumbers: A=6+1
+        columnNumbers: A=9*2
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/allocation/Glibc.allocation.model.yml
+      index: 0
+      firstRowId: 13
+      rowCount: 2
+      locations:
+        lineNumbers: A=6+1
+        columnNumbers: A=9*2
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/allocation/OpenSSL.allocation.model.yml
+      index: 0
+      firstRowId: 15
+      rowCount: 4
+      locations:
+        lineNumbers: A=6+1*3
+        columnNumbers: A=9*4
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/allocation/Std.allocation.model.yml
+      index: 0
+      firstRowId: 19
+      rowCount: 10
+      locations:
+        lineNumbers: A=6+1*9
+        columnNumbers: A=9*10
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/allocation/Windows.allocation.model.yml
+      index: 0
+      firstRowId: 29
+      rowCount: 24
+      locations:
+        lineNumbers: A=6+1*23
+        columnNumbers: A=9*24
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/bsl.array.model.yml
+      index: 0
+      firstRowId: 53
+      rowCount: 9
+      locations:
+        lineNumbers: A=6+1*8
+        columnNumbers: A=9*9
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/bsl.deque.model.yml
+      index: 0
+      firstRowId: 62
+      rowCount: 68
+      locations:
+        lineNumbers: A=6+1*67
+        columnNumbers: A=9*68
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/bsl.forward_list.model.yml
+      index: 0
+      firstRowId: 130
+      rowCount: 51
+      locations:
+        lineNumbers: A=6+1*50
+        columnNumbers: A=9*51
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/bsl.list.model.yml
+      index: 0
+      firstRowId: 181
+      rowCount: 66
+      locations:
+        lineNumbers: A=6+1*65
+        columnNumbers: A=9*66
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/bsl.vector.model.yml
+      index: 0
+      firstRowId: 247
+      rowCount: 55
+      locations:
+        lineNumbers: A=6+1*54
+        columnNumbers: A=9*55
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/deallocation/Bsd.deallocation.model.yml
+      index: 0
+      firstRowId: 302
+      rowCount: 3
+      locations:
+        lineNumbers: A=6+1*2
+        columnNumbers: A=9*3
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/deallocation/Std.deallocation.model.yml
+      index: 0
+      firstRowId: 305
+      rowCount: 37
+      locations:
+        lineNumbers: A=6+1*36
+        columnNumbers: A=9*37
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/deallocation/Windows.deallocation.model.yml
+      index: 0
+      firstRowId: 342
+      rowCount: 36
+      locations:
+        lineNumbers: A=6+1*35
+        columnNumbers: A=9*36
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/std.array.model.yml
+      index: 0
+      firstRowId: 378
+      rowCount: 9
+      locations:
+        lineNumbers: A=6+1*8
+        columnNumbers: A=9*9
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/std.deque.model.yml
+      index: 0
+      firstRowId: 387
+      rowCount: 68
+      locations:
+        lineNumbers: A=6+1*67
+        columnNumbers: A=9*68
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/std.format.model.yml
+      index: 0
+      firstRowId: 455
+      rowCount: 9
+      locations:
+        lineNumbers: A=6+1*8
+        columnNumbers: A=9*9
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/std.forward_list.model.yml
+      index: 0
+      firstRowId: 464
+      rowCount: 51
+      locations:
+        lineNumbers: A=6+1*50
+        columnNumbers: A=9*51
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/std.iterator.model.yml
+      index: 0
+      firstRowId: 515
+      rowCount: 6
+      locations:
+        lineNumbers: A=6+1*5
+        columnNumbers: A=9*6
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/std.list.model.yml
+      index: 0
+      firstRowId: 521
+      rowCount: 66
+      locations:
+        lineNumbers: A=6+1*65
+        columnNumbers: A=9*66
+     -
+      pack: codeql/cpp-all#1
+      relativePath: ext/std.vector.model.yml
+      index: 0
+      firstRowId: 587
+      rowCount: 55
+      locations:
+        lineNumbers: A=6+1*54
+        columnNumbers: A=9*55

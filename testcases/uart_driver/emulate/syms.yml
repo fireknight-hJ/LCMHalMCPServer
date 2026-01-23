@@ -1,6 +1,12 @@
 symbols:
-  0: Reset_Handler
+  0: test_mmio_driver.c
   4096: _stack_size
-  134217728: _sidata
+  134217729: mmio_uart_init_direct
+  134217773: mmio_internal_send
+  134217817: mmio_uart_send_string
+  134217861: mmio_uart_conditional_operation
+  134217933: mmio_uart_bulk_transfer
+  134218005: main
+  134218100: _sidata
   536870912: _edata
   536875008: _estack

@@ -1,0 +1,38 @@
+{
+    "functions": {
+        "main": {
+            "name": "main",
+            "file_path": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build/CMakeFiles/3.20.0/CompilerIdCXX/CMakeCXXCompilerId.cpp",
+            "location_line": 711,
+            "function_content": "/*--------------------------------------------------------------------------*/\nint main(int argc, char* argv[])\n{\n  int require = 0;\n  require += info_compiler[argc];\n  require += info_platform[argc];\n#ifdef COMPILER_VERSION_MAJOR\n  require += info_version[argc];\n#endif\n#ifdef COMPILER_VERSION_INTERNAL\n  require += info_version_internal[argc];\n#endif\n#ifdef SIMULATE_ID\n  require += info_simulate[argc];\n#endif\n#ifdef SIMULATE_VERSION_MAJOR\n  require += info_simulate_version[argc];\n#endif\n#if defined(__CRAYXT_COMPUTE_LINUX_TARGET)\n  require += info_cray[argc];\n#endif\n  require += info_language_dialect_default[argc];\n  (void)argv;\n  return require;\n}\n",
+            "function_content_in_lines": {
+                "711": "int main(int argc, char* argv[])",
+                "712": "{",
+                "713": "  int require = 0;",
+                "714": "  require += info_compiler[argc];",
+                "715": "  require += info_platform[argc];",
+                "716": "#ifdef COMPILER_VERSION_MAJOR",
+                "717": "  require += info_version[argc];",
+                "718": "#endif",
+                "719": "#ifdef COMPILER_VERSION_INTERNAL",
+                "720": "  require += info_version_internal[argc];",
+                "721": "#endif",
+                "722": "#ifdef SIMULATE_ID",
+                "723": "  require += info_simulate[argc];",
+                "724": "#endif",
+                "725": "#ifdef SIMULATE_VERSION_MAJOR",
+                "726": "  require += info_simulate_version[argc];",
+                "727": "#endif",
+                "728": "#if defined(__CRAYXT_COMPUTE_LINUX_TARGET)",
+                "729": "  require += info_cray[argc];",
+                "730": "#endif",
+                "731": "  require += info_language_dialect_default[argc];",
+                "732": "  (void)argv;",
+                "733": "  return require;",
+                "734": "}"
+            }
+        }
+    },
+    "structs": {},
+    "enums": {}
+}

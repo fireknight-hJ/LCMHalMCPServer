@@ -1,0 +1,1 @@
+1 0x0 irq 0x0-> 0x800575c __start (from 0x0 CONFIG_GEN_ISR_TABLES)

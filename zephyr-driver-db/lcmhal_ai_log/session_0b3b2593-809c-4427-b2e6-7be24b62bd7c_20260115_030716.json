@@ -1,0 +1,2769 @@
+{
+  "session_id": "0b3b2593-809c-4427-b2e6-7be24b62bd7c",
+  "start_time": "2026-01-15T03:07:16.640109",
+  "logs": [
+    {
+      "timestamp": "2026-01-15T03:07:25.955718",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an embedded software engineer working on decoupling hardware-dependent driver functions (e.g., MMIO accesses, peripheral register manipulations) while preserving overall system functionality—including successful entry into `main()`, proper OS scheduling, and correct interrupt behavior.\n\nYour task is to **iteratively debug and validate** the firmware after replacing hardware-coupled functions with abstraction-compatible stubs or mock implementations.\n\n### Validation Criteria  \nThe firmwa"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:28.767225",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:28.776514",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:30.189842",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:30.190865",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 4,
+        "new_messages": 3,
+        "message_range": [
+          1,
+          3
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:34.176539",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:34.191422",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 5,
+        "new_messages": 4,
+        "message_range": [
+          1,
+          4
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:35.298921",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an experienced embedded software engineer specializing in hardware abstraction layer (HAL) development and debugging. Your task is to **actively and independently analyze emulator error logs** to identify problematic functions, gather necessary context information, and fix these functions in driver source code by replacing hardware-dependent operations with POSIX-compatible implementations, while preserving normal functionality including OS scheduling and interrupt handling.\n\n**CRITICAL"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:38.162933",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:38.164954",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by following the mandatory workflow to actively retrieve the emulator error logs and analyze them.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:38.167355",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:38.170800",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 6,
+        "new_messages": 5,
+        "message_range": [
+          1,
+          5
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:41.519989",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:41.536887",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 7,
+        "new_messages": 6,
+        "message_range": [
+          1,
+          6
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:43.001965",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:43.005696",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 8,
+        "new_messages": 7,
+        "message_range": [
+          1,
+          7
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:45.152735",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:45.171195",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 9,
+        "new_messages": 8,
+        "message_range": [
+          1,
+          8
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:46.587021",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:46.589547",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 10,
+        "new_messages": 9,
+        "message_range": [
+          1,
+          9
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:49.962762",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:49.982511",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 11,
+        "new_messages": 10,
+        "message_range": [
+          1,
+          10
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:49.991024",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:53.212849",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:53.220936",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by following the mandatory workflow to actively retrieve the emulator error logs. Let me first get the execution flow and error information.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:53.227126",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:53.234186",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 12,
+        "new_messages": 11,
+        "message_range": [
+          1,
+          11
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:56.276952",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:56.298672",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 13,
+        "new_messages": 12,
+        "message_range": [
+          1,
+          12
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:57.365642",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an embedded software engineer. Your task is to replace certain functions in the driver library by stripping away peripheral hardware dependencies (such as I/O operations and various peripheral register accesses), while retaining the normal functionality of the functions as well as MCU operations (including OS scheduling and interrupt triggers).\nNow that you have replaced some of the functions involving MMIO and driver operations with the specified replacement functions, your next step i"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:59.874762",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:59.878869",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by building the project to see what errors we encounter, then fix them recursively.",
+            "tool_calls": [
+              {
+                "name": "BuildProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:59.882290",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:07:59.885618",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 14,
+        "new_messages": 13,
+        "message_range": [
+          1,
+          13
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:02.940964",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:02.962846",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 15,
+        "new_messages": 14,
+        "message_range": [
+          1,
+          14
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. Let me try running the emulator again to see if I can get more detailed error information.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:04.391162",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:04.396727",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 16,
+        "new_messages": 15,
+        "message_range": [
+          1,
+          15
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. Let me try running the emulator again to see if I can get more detailed error information.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:15.488277",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:15.514207",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 17,
+        "new_messages": 16,
+        "message_range": [
+          1,
+          16
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. Let me try running the emulator again to see if I can get more detailed error information.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator is still failing with exit code -11 (segmentation fault). Since the Fixer and Builder tools appear to have configuration issues, let me try a different approach. Let me check if there are any existing debug output files or logs that might give us more information about what's happening.\n\nBased on the error from `GetMMIOFunctionEmulateInfo`, it seems the debug output file doesn't exist. This suggests the emulation is failing before it can generate any debug output. The segmentation f",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:16.911093",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:16.916410",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 18,
+        "new_messages": 17,
+        "message_range": [
+          1,
+          17
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. Let me try running the emulator again to see if I can get more detailed error information.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator is still failing with exit code -11 (segmentation fault). Since the Fixer and Builder tools appear to have configuration issues, let me try a different approach. Let me check if there are any existing debug output files or logs that might give us more information about what's happening.\n\nBased on the error from `GetMMIOFunctionEmulateInfo`, it seems the debug output file doesn't exist. This suggests the emulation is failing before it can generate any debug output. The segmentation f",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:31.406081",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:31.433278",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "respond",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 19,
+        "new_messages": 18,
+        "message_range": [
+          1,
+          18
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": ""
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "There seems to be a configuration issue with the tools. Let me try running the emulator again to see if I can get more detailed error information.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulator is still failing with exit code -11 (segmentation fault). Since the Fixer and Builder tools appear to have configuration issues, let me try a different approach. Let me check if there are any existing debug output files or logs that might give us more information about what's happening.\n\nBased on the error from `GetMMIOFunctionEmulateInfo`, it seems the debug output file doesn't exist. This suggests the emulation is failing before it can generate any debug output. The segmentation f",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The output is consistent. The segmentation fault is happening, and without the Fixer and Builder tools working properly, I can't proceed with the debugging workflow as specified.\n\nHowever, looking at the tools available, I notice that `GetMMIOFunctionEmulateInfo` tried to access a file at `/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt`. This suggests that the emulator should be generating debug output, but it's failing before it can do so.\n\nGiven the cons"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:40.417216",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "respond",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 19,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name",
+          "final_response"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-15T03:08:40.434048",
+      "agent_name": "run_emulator",
+      "interaction_type": "result",
+      "function_name": "",
+      "data": {
+        "messages": [
+          {
+            "content": "\nYou are an embedded software engineer working on decoupling hardware-dependent driver functions (e.g., MMIO accesses, peripheral register manipulations) while preserving overall system functionality—including successful entry into `main()`, proper OS scheduling, and correct interrupt behavior.\n\nYour task is to **iteratively debug and validate** the firmware after replacing hardware-coupled functions with abstraction-compatible stubs or mock implementations.\n\n### Validation Criteria  \nThe firmware execution is considered **correct** only if **all** of the following are true:  \n1. The program does **not enter an infinite loop**.  \n2. There are **no exceptions** (e.g., illegal memory access, bus faults).  \n3. Execution **successfully reaches the `main()` function**.\n\n### Debugging Workflow  \nFollow this **strict, state-driven cycle**. **Do not deviate from the sequence**:\n\n1. **Emulate**  \n   → Use the `Emulator` tool to run the firmware.  \n   → If execution meets all validation criteria, **stop**—the task is complete.  \n   → If it fails, proceed to step 2.\n\n2. **Diagnose (exactly once per failure cycle)**  \n   → Use the `Fixer` tool **only once** to analyze emulator logs (e.g., function call traces, MMIO attempts) and **produce concrete source code modifications**.  \n   → The `Fixer` output **must include specific changes** to driver source files (e.g., corrected register mocks, fixed I/O abstractions).  \n   → **After receiving a `Fixer` response—regardless of confidence—you must proceed immediately to step 3.**  \n   → **Do not call `Fixer` again** until after a full new emulation cycle fails.\n\n3. **Build**  \n   → Use the `Builder` tool to recompile the firmware with the proposed changes.  \n   → If the build fails, treat it as an error and **go back to step 2** (i.e., call `Fixer` again to fix build issues).  \n   → If the build succeeds, go to step 1 and **re-emulate**.\n\n### Critical Rules  \n- **One `Fixer` call per failure iteration.** Never call `Fixer` twice in a row.  \n- **Always call `Builder` after `Fixer`.** The only valid transition after `Fixer` is to `Builder`.  \n- **Validation is empirical:** The only way to confirm a fix is successful is through `Emulator`—not through further analysis.  \n- If the program reaches `main()` without exceptions or hangs, **declare success and halt**.\n\nBegin by running the `Emulator`.\n",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "system",
+            "name": null,
+            "id": "7806fce0-065c-4a7e-a614-1133f31c95fe"
+          },
+          {
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run.",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "human",
+            "name": null,
+            "id": "667b8888-d2e3-43f1-b2bd-1514b86c8341"
+          },
+          {
+            "content": "I'll start by running the emulator to see the current state of the firmware execution.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 45,
+                "prompt_tokens": 1050,
+                "total_tokens": 1095,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1024
+                },
+                "prompt_cache_hit_tokens": 1024,
+                "prompt_cache_miss_tokens": 26
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "5c236fdf-9e90-40d6-b436-bf7b3ccf6806",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--9b445894-43bb-4215-904e-646f4eee2c82-0",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": {},
+                "id": "call_00_l85povvPL6jUPUgiyg1uLLQ1",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1050,
+              "output_tokens": 45,
+              "total_tokens": 1095,
+              "input_token_details": {
+                "cache_read": 1024
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "EmulateProject",
+            "id": "25ecda83-8c4b-4906-ae72-ee3751d9b5cb",
+            "tool_call_id": "call_00_l85povvPL6jUPUgiyg1uLLQ1",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "The emulator failed with exit code -11, which typically indicates a segmentation fault or memory access violation. This means the firmware is not meeting our validation criteria. According to the workflow, I need to diagnose the issue using the Fixer tool exactly once.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 77,
+                "prompt_tokens": 1236,
+                "total_tokens": 1313,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1216
+                },
+                "prompt_cache_hit_tokens": 1216,
+                "prompt_cache_miss_tokens": 20
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "58f78eb0-f6e5-4345-8958-565da8a60d0a",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--85f1d84b-490c-4089-8cc8-14738333446d-0",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": {},
+                "id": "call_00_zRflNzk3yTT0gyfsQwYLfAzz",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1236,
+              "output_tokens": 77,
+              "total_tokens": 1313,
+              "input_token_details": {
+                "cache_read": 1216
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "Error: Missing required config key 'N/A' for 'tools'.",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "Fixer",
+            "id": "1bc906d2-beb1-4c99-ae4d-81cd3c53c054",
+            "tool_call_id": "call_00_zRflNzk3yTT0gyfsQwYLfAzz",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "I need to get more information about what's happening. Let me check the MMIO function emulation info and function call stack to better understand the issue.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 62,
+                "prompt_tokens": 1344,
+                "total_tokens": 1406,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1280
+                },
+                "prompt_cache_hit_tokens": 1280,
+                "prompt_cache_miss_tokens": 64
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "ee35aa52-f55d-4e32-b6a7-b788ec78f3ae",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--8b7be68a-314b-42a2-8791-1c4692f4a5b9-0",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": {},
+                "id": "call_00_HqpWKii7tQarfIcuu70KIKUf",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1344,
+              "output_tokens": 62,
+              "total_tokens": 1406,
+              "input_token_details": {
+                "cache_read": 1280
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetMMIOFunctionEmulateInfo",
+            "id": "978d3f7e-1544-40e4-a2fc-60073e5045ad",
+            "tool_call_id": "call_00_HqpWKii7tQarfIcuu70KIKUf",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 1479,
+                "total_tokens": 1511,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1344
+                },
+                "prompt_cache_hit_tokens": 1344,
+                "prompt_cache_miss_tokens": 135
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "856f18e3-0111-4269-92b8-fe08d1944b7f",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--a60ffaab-9c6a-46b0-943d-c046111a95dc-0",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": {},
+                "id": "call_00_mcaMNx1fW7JLfV2yfATvCUuv",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1479,
+              "output_tokens": 32,
+              "total_tokens": 1511,
+              "input_token_details": {
+                "cache_read": 1344
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetFunctionCallsEmulateInfo",
+            "id": "b4872ad0-3a28-4991-8188-17d0f10f423e",
+            "tool_call_id": "call_00_mcaMNx1fW7JLfV2yfATvCUuv",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Let me try the Fixer tool again, as I need to diagnose the issue. The emulator failed with a segmentation fault, so I need to analyze what's causing it.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 62,
+                "prompt_tokens": 1527,
+                "total_tokens": 1589,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1472
+                },
+                "prompt_cache_hit_tokens": 1472,
+                "prompt_cache_miss_tokens": 55
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "5174d6dc-4807-414d-a1a9-697374c4dc23",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--ba046072-9ef5-441e-93b1-65043007a751-0",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": {},
+                "id": "call_00_wHN0ojrECr2hl8JQynFtAT2h",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1527,
+              "output_tokens": 62,
+              "total_tokens": 1589,
+              "input_token_details": {
+                "cache_read": 1472
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "Error: Missing required config key 'N/A' for 'tools'.",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "Fixer",
+            "id": "0772726a-63a6-40c4-818c-478e307ec755",
+            "tool_call_id": "call_00_wHN0ojrECr2hl8JQynFtAT2h",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "It seems there's an issue with the Fixer tool configuration. Let me try to build the project first to see if there are any compilation issues that might be causing the segmentation fault.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 62,
+                "prompt_tokens": 1620,
+                "total_tokens": 1682,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1536
+                },
+                "prompt_cache_hit_tokens": 1536,
+                "prompt_cache_miss_tokens": 84
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "4ff357f3-1951-436f-9623-2bb4b45153e9",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--c41875ca-8cc5-418b-876c-ab1b4e2cc69b-0",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": {},
+                "id": "call_00_tVi4ENojVcMvOVyZqo05Lp1Y",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1620,
+              "output_tokens": 62,
+              "total_tokens": 1682,
+              "input_token_details": {
+                "cache_read": 1536
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "Error: Missing required config key 'N/A' for 'tools'.",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "Builder",
+            "id": "dec15d3b-d4f3-4c90-88ef-ccfa6ab879fd",
+            "tool_call_id": "call_00_tVi4ENojVcMvOVyZqo05Lp1Y",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "There seems to be a configuration issue with the tools. Let me try running the emulator again to see if I can get more detailed error information.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 57,
+                "prompt_tokens": 1713,
+                "total_tokens": 1770,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1664
+                },
+                "prompt_cache_hit_tokens": 1664,
+                "prompt_cache_miss_tokens": 49
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "ed0915d8-9ce6-4905-b575-b5395d54acaa",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--995a62af-bc06-4ff3-939d-7420e5053ef6-0",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": {},
+                "id": "call_00_8TcKpgQezCc2pSP2RrMkZDyY",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1713,
+              "output_tokens": 57,
+              "total_tokens": 1770,
+              "input_token_details": {
+                "cache_read": 1664
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "EmulateProject",
+            "id": "9c2d00ea-78cc-4c37-aa97-f8c4e7f04b32",
+            "tool_call_id": "call_00_8TcKpgQezCc2pSP2RrMkZDyY",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "The emulator is still failing with exit code -11 (segmentation fault). Since the Fixer and Builder tools appear to have configuration issues, let me try a different approach. Let me check if there are any existing debug output files or logs that might give us more information about what's happening.\n\nBased on the error from `GetMMIOFunctionEmulateInfo`, it seems the debug output file doesn't exist. This suggests the emulation is failing before it can generate any debug output. The segmentation fault likely occurs very early in the execution, possibly during initialization or when trying to access hardware registers that haven't been properly stubbed.\n\nSince I can't use the Fixer tool due to configuration issues, let me try to understand the problem by examining what we know:\n\n1. The firmware is failing with a segmentation fault (exit code -11)\n2. This typically happens when there's an illegal memory access\n3. This could be caused by:\n   - Uninitialized pointers\n   - Access to MMIO registers that haven't been properly mocked\n   - Stack overflow or other memory issues\n   - Missing function implementations\n\nLet me try running the emulator one more time to see if there's any additional output:",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 274,
+                "prompt_tokens": 1911,
+                "total_tokens": 2185,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 1728
+                },
+                "prompt_cache_hit_tokens": 1728,
+                "prompt_cache_miss_tokens": 183
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "cb668b08-5c86-4407-add1-3f1cc44fe22c",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--18289242-44c3-4654-a478-41e6a87e1af9-0",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": {},
+                "id": "call_00_RynLfhy2TPqeUCjyZrXSPUsS",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1911,
+              "output_tokens": 274,
+              "total_tokens": 2185,
+              "input_token_details": {
+                "cache_read": 1728
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "{\"std_out\":\"\",\"std_err\":\"/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n\",\"exit_code\":-11}",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "EmulateProject",
+            "id": "ce6bab08-81a5-4cb5-9f36-566df51a9df5",
+            "tool_call_id": "call_00_RynLfhy2TPqeUCjyZrXSPUsS",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "The output is consistent. The segmentation fault is happening, and without the Fixer and Builder tools working properly, I can't proceed with the debugging workflow as specified.\n\nHowever, looking at the tools available, I notice that `GetMMIOFunctionEmulateInfo` tried to access a file at `/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt`. This suggests that the emulator should be generating debug output, but it's failing before it can do so.\n\nGiven the constraints and the fact that the Fixer and Builder tools have configuration issues, I need to work with what's available. The segmentation fault is likely occurring because:\n\n1. **Hardware-dependent functions are not properly stubbed**: When the firmware tries to access hardware registers through MMIO, and those accesses aren't properly intercepted/mocked, it could cause a segmentation fault.\n\n2. **Missing initialization**: Some hardware initialization code might be trying to access uninitialized memory or hardware that doesn't exist in the emulated environment.\n\n3. **Stack or memory issues**: The firmware might have incorrect memory layout or stack configuration for the emulated environment.\n\nWithout being able to use the Fixer tool to analyze and fix the source code, or the Builder tool to rebuild with fixes, I'm limited in what I can do. The emulator is consistently failing with a segmentation fault, which means the firmware is not meeting any of the validation criteria (no infinite loop, no exceptions, reaching main()).\n\nSince I cannot proceed with the debugging workflow due to tool configuration issues, I would need those tools to be properly configured to continue. The current state shows that the firmware has a critical issue (segmentation fault) that needs to be diagnosed and fixed through source code modifications, but the tools required for that diagnosis and repair are not functioning correctly.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 380,
+                "prompt_tokens": 2326,
+                "total_tokens": 2706,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 2112
+                },
+                "prompt_cache_hit_tokens": 2112,
+                "prompt_cache_miss_tokens": 214
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "8fcc2ccb-216c-4d7a-b326-85208c09e871",
+              "finish_reason": "stop",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--52dacb8d-d75a-4adc-a7af-e364c76be597-0",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 2326,
+              "output_tokens": 380,
+              "total_tokens": 2706,
+              "input_token_details": {
+                "cache_read": 2112
+              },
+              "output_token_details": {}
+            }
+          }
+        ],
+        "final_response": {
+          "std_err": "/home/chenkaiqiu/LCMHalMCPServer/.venv/lib/python3.10/site-packages/unicorn/unicorn.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources",
+          "std_out": "",
+          "exit_code": -11,
+          "success": false,
+          "reason": "failure"
+        },
+        "function_name": "run_emulator"
+      },
+      "metadata": {}
+    }
+  ],
+  "agent_message_counts": {
+    "emulator_runner_agent_run_emulator": 19,
+    "fixer_agent_function_fix": 3,
+    "builder_agent_build_project": 3
+  }
+}

@@ -41,8 +41,794 @@
         "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260120100735.json",
         "created_at": "2026-01-20T10:08:26.383039",
         "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260121023001.json",
+        "created_at": "2026-01-21T02:30:01.240739",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122131354.json",
+        "created_at": "2026-01-22T13:13:54.656992",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122131901.json",
+        "created_at": "2026-01-22T13:19:01.430674",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122141732.json",
+        "created_at": "2026-01-22T14:17:32.435363",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122145235.json",
+        "created_at": "2026-01-22T14:52:35.458575",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122154439.json",
+        "created_at": "2026-01-22T15:44:39.749185",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155408.json",
+        "created_at": "2026-01-22T15:54:08.331829",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:57:29.481259",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:57:34.431848",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:57:41.325776",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:57:45.712423",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:57:50.051292",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:57:55.104329",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:58:01.680853",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260122155729.json",
+        "created_at": "2026-01-22T15:58:12.323425",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:43:31.603148",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:43:41.565219",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:43:50.174794",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:43:58.728090",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:44:07.911144",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:44:20.326565",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:44:32.029468",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123024331.json",
+        "created_at": "2026-01-23T02:44:41.681986",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:53:16.222722",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:53:22.866490",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:53:31.278460",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:53:38.194680",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:53:42.798529",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:53:48.084578",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:53:58.400732",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:54:04.152625",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:54:10.056622",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123025316.json",
+        "created_at": "2026-01-23T02:54:21.262352",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123040009.json",
+        "created_at": "2026-01-23T04:00:09.124006",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123040009.json",
+        "created_at": "2026-01-23T04:00:18.750214",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123040009.json",
+        "created_at": "2026-01-23T04:00:27.037339",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123040009.json",
+        "created_at": "2026-01-23T04:00:35.909702",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123040009.json",
+        "created_at": "2026-01-23T04:00:45.380004",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123040009.json",
+        "created_at": "2026-01-23T04:00:55.628600",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123040009.json",
+        "created_at": "2026-01-23T04:01:12.206172",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:00:16.400222",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:00:24.521364",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:00:33.177395",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:00:40.357138",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:00:47.406086",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:00:53.269409",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:00:58.898898",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:01:06.877277",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:01:15.115973",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:01:22.891361",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100016.json",
+        "created_at": "2026-01-23T10:01:30.929058",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100201.json",
+        "created_at": "2026-01-23T10:02:01.837426",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100201.json",
+        "created_at": "2026-01-23T10:02:09.746508",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/emulator_state__20260123100201.json",
+        "created_at": "2026-01-23T10:02:17.294016",
+        "metadata": {}
+      }
+    ],
+    "full_info": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122112518.json",
+        "created_at": "2026-01-22T11:25:18.726191",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122113002.json",
+        "created_at": "2026-01-22T11:30:02.240279",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122114430.json",
+        "created_at": "2026-01-22T11:44:30.745799",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122114737.json",
+        "created_at": "2026-01-22T11:47:37.743203",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122115530.json",
+        "created_at": "2026-01-22T11:55:30.382109",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122115900.json",
+        "created_at": "2026-01-22T11:59:00.206643",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122115958.json",
+        "created_at": "2026-01-22T11:59:58.441165",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122120221.json",
+        "created_at": "2026-01-22T12:02:21.269883",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122120724.json",
+        "created_at": "2026-01-22T12:07:24.735718",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122121342.json",
+        "created_at": "2026-01-22T12:13:42.595406",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122121543.json",
+        "created_at": "2026-01-22T12:15:43.718501",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122121901.json",
+        "created_at": "2026-01-22T12:19:01.272544",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122122740.json",
+        "created_at": "2026-01-22T12:27:40.154766",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122123516.json",
+        "created_at": "2026-01-22T12:35:16.514383",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122124314.json",
+        "created_at": "2026-01-22T12:43:14.052584",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122124728.json",
+        "created_at": "2026-01-22T12:47:28.614223",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122125754.json",
+        "created_at": "2026-01-22T12:57:54.267029",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122130429.json",
+        "created_at": "2026-01-22T13:04:29.417613",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122131114.json",
+        "created_at": "2026-01-22T13:11:14.368172",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122131347.json",
+        "created_at": "2026-01-22T13:13:47.270576",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122141725.json",
+        "created_at": "2026-01-22T14:17:25.396991",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122145228.json",
+        "created_at": "2026-01-22T14:52:28.531551",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122153546.json",
+        "created_at": "2026-01-22T15:35:46.995668",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122154435.json",
+        "created_at": "2026-01-22T15:44:35.253299",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260122155404.json",
+        "created_at": "2026-01-22T15:54:04.135650",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123015450.json",
+        "created_at": "2026-01-23T01:54:50.970130",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123015709.json",
+        "created_at": "2026-01-23T01:57:09.844073",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123015848.json",
+        "created_at": "2026-01-23T01:58:48.038153",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123020206.json",
+        "created_at": "2026-01-23T02:02:06.874364",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123020357.json",
+        "created_at": "2026-01-23T02:03:57.559707",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123020558.json",
+        "created_at": "2026-01-23T02:05:58.230262",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123020739.json",
+        "created_at": "2026-01-23T02:07:39.727410",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123020944.json",
+        "created_at": "2026-01-23T02:09:44.259046",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123021514.json",
+        "created_at": "2026-01-23T02:15:14.437034",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123023506.json",
+        "created_at": "2026-01-23T02:35:06.639984",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123023854.json",
+        "created_at": "2026-01-23T02:38:54.524782",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123024020.json",
+        "created_at": "2026-01-23T02:40:20.160586",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123024323.json",
+        "created_at": "2026-01-23T02:43:23.378447",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123025101.json",
+        "created_at": "2026-01-23T02:51:01.449106",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123025311.json",
+        "created_at": "2026-01-23T02:53:11.881699",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123025852.json",
+        "created_at": "2026-01-23T02:58:52.345618",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123031516.json",
+        "created_at": "2026-01-23T03:15:16.619574",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123033151.json",
+        "created_at": "2026-01-23T03:31:51.427476",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123040001.json",
+        "created_at": "2026-01-23T04:00:01.326069",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123100009.json",
+        "created_at": "2026-01-23T10:00:09.996851",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/full_info_20260123100155.json",
+        "created_at": "2026-01-23T10:01:55.658974",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "function_classify_complex_mmio_operation": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_complex_mmio_operation_20260122152458.json",
+        "created_at": "2026-01-22T15:24:58.995356",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_complex_mmio_operation_20260123020206.json",
+        "created_at": "2026-01-23T02:02:06.608775",
+        "metadata": {}
+      }
+    ],
+    "refined_b96235ea-342d-4836-972c-0f140b8c2e28_analyzer_agent_complex_mmio": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_b96235ea-342d-4836-972c-0f140b8c2e28_analyzer_agent_complex_mmio_operation.json",
+        "created_at": "2026-01-22T15:24:58.978456",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "function_classify_mmio_uart_receive_byte_direct": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_mmio_uart_receive_byte_direct_20260122153538.json",
+        "created_at": "2026-01-22T15:35:38.459238",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_mmio_uart_receive_byte_direct_20260123020146.json",
+        "created_at": "2026-01-23T02:01:46.169464",
+        "metadata": {}
+      }
+    ],
+    "function_classify_loop_mmio_operation": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_loop_mmio_operation_20260122153546.json",
+        "created_at": "2026-01-22T15:35:46.710993",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_loop_mmio_operation_20260123020557.json",
+        "created_at": "2026-01-23T02:05:57.938323",
+        "metadata": {}
+      }
+    ],
+    "refined_038b31ab-3b92-4e83-b6d3-5edbb605f2d7_analyzer_agent_loop_mmio": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_038b31ab-3b92-4e83-b6d3-5edbb605f2d7_analyzer_agent_loop_mmio_operation.json",
+        "created_at": "2026-01-22T15:35:46.680661",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_038b31ab-3b92-4e83-b6d3-5edbb605f2d7_analyzer_agent_mmio_uart_receive_byte": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_038b31ab-3b92-4e83-b6d3-5edbb605f2d7_analyzer_agent_mmio_uart_receive_byte_direct.json",
+        "created_at": "2026-01-22T15:35:38.433494",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "function_classify_mmio_uart_send_byte_direct": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_mmio_uart_send_byte_direct_20260122155403.json",
+        "created_at": "2026-01-22T15:54:03.774603",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/function_classify_mmio_uart_send_byte_direct_20260123020546.json",
+        "created_at": "2026-01-23T02:05:46.485956",
+        "metadata": {}
+      }
+    ],
+    "refined_bbecfd50-7738-4701-975b-bb0197471422_analyzer_agent_mmio_uart_send_byte": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_bbecfd50-7738-4701-975b-bb0197471422_analyzer_agent_mmio_uart_send_byte_direct.json",
+        "created_at": "2026-01-22T15:54:03.758643",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "run_emulator_": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/run_emulator__20260122155816.json",
+        "created_at": "2026-01-22T15:58:16.036691",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/run_emulator__20260123024446.json",
+        "created_at": "2026-01-23T02:44:46.687731",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/run_emulator__20260123025427.json",
+        "created_at": "2026-01-23T02:54:27.777634",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/run_emulator__20260123040117.json",
+        "created_at": "2026-01-23T04:01:17.208206",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/run_emulator__20260123100134.json",
+        "created_at": "2026-01-23T10:01:34.823695",
+        "metadata": {}
+      }
+    ],
+    "refined_0968ec6a-86fe-4e4e-a5e1-975edeb4fb39_emulator_runner_agent_run": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_0968ec6a-86fe-4e4e-a5e1-975edeb4fb39_emulator_runner_agent_run_emulator.json",
+        "created_at": "2026-01-22T15:58:16.015664",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_a71b02d6-007e-41a6-b146-71ba6203b0ff_analyzer_agent_mmio_uart_receive_byte": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_a71b02d6-007e-41a6-b146-71ba6203b0ff_analyzer_agent_mmio_uart_receive_byte_direct.json",
+        "created_at": "2026-01-23T02:01:46.139925",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_a71b02d6-007e-41a6-b146-71ba6203b0ff_analyzer_agent_complex_mmio": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_a71b02d6-007e-41a6-b146-71ba6203b0ff_analyzer_agent_complex_mmio_operation.json",
+        "created_at": "2026-01-23T02:02:06.575357",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_1b6cc638-7cb2-4cff-b313-365cfbb1a915_analyzer_agent_loop_mmio": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_1b6cc638-7cb2-4cff-b313-365cfbb1a915_analyzer_agent_loop_mmio_operation.json",
+        "created_at": "2026-01-23T02:05:57.915255",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_1b6cc638-7cb2-4cff-b313-365cfbb1a915_analyzer_agent_mmio_uart_send_byte": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_1b6cc638-7cb2-4cff-b313-365cfbb1a915_analyzer_agent_mmio_uart_send_byte_direct.json",
+        "created_at": "2026-01-23T02:05:46.470013",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_6e0c1da9-7de9-4c2b-9e2b-601bf7e002ed_emulator_runner_agent_run": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_6e0c1da9-7de9-4c2b-9e2b-601bf7e002ed_emulator_runner_agent_run_emulator.json",
+        "created_at": "2026-01-23T02:44:46.668203",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_139dedfc-f7c0-420e-834b-bc6bacd9451d_emulator_runner_agent_run": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_139dedfc-f7c0-420e-834b-bc6bacd9451d_emulator_runner_agent_run_emulator.json",
+        "created_at": "2026-01-23T02:54:27.576298",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_b1895391-1621-42ca-81c0-25b9f5f17ca9_emulator_runner_agent_run": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_b1895391-1621-42ca-81c0-25b9f5f17ca9_emulator_runner_agent_run_emulator.json",
+        "created_at": "2026-01-23T04:01:17.200027",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_9e8a7632-8cbc-496c-8bee-3892255afc22_emulator_runner_agent_run": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db/lcmhal_ai_log/refined_9e8a7632-8cbc-496c-8bee-3892255afc22_emulator_runner_agent_run_emulator.json",
+        "created_at": "2026-01-23T10:01:34.806554",
+        "metadata": {
+          "scanned": true
+        }
       }
     ]
   },
-  "last_updated": "2026-01-20T10:08:26.383080"
+  "last_updated": "2026-01-23T10:03:24.950206"
 }

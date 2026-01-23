@@ -1,0 +1,15 @@
+[2026-01-06 23:53:06] This is codeql query run /home/chenkaiqiu/LCMHalMCPServer/queries/collectors/common/info_function_collector.ql --database /home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db --output /tmp/tmpxwx7wfac.bqrs
+[2026-01-06 23:53:06] Log file was started late.
+[2026-01-06 23:53:06] Exception caught at top level: Database /home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db contains no datasets.
+                      com.semmle.cli2.database.DatabaseLayout.findUniqueDataset(DatabaseLayout.java:288)
+                      com.semmle.cli2.database.DatabaseLayout.getDatasetPath(DatabaseLayout.java:279)
+                      com.semmle.cli2.DatabaseOrDataset.getDatasetPath(DatabaseOrDataset.java:40)
+                      com.semmle.cli2.ql.RunCommand.executeSubcommand(RunCommand.java:109)
+                      com.semmle.cli2.picocli.SubcommandCommon.lambda$executeSubcommandWithMessages$5(SubcommandCommon.java:892)
+                      com.semmle.cli2.picocli.SubcommandCommon.withCompilationMessages(SubcommandCommon.java:444)
+                      com.semmle.cli2.picocli.SubcommandCommon.executeSubcommandWithMessages(SubcommandCommon.java:890)
+                      com.semmle.cli2.picocli.SubcommandCommon.toplevelMain(SubcommandCommon.java:777)
+                      com.semmle.cli2.picocli.SubcommandCommon.call(SubcommandCommon.java:757)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:238)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:259)
+                      com.semmle.cli2.CodeQL.main(CodeQL.java:113)

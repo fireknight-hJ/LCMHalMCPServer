@@ -316,12 +316,19 @@ class CodeQLQueryServer:
 
     def evaluate_and_wait(self, query_path, db_path, output_path):
         progress_id = self.progress_id
-        progress_cb, done = self.wait_for_progress_done(progress_id)
+        progress_cb, done, error_flag = self.wait_for_progress_done(progress_id)
         self.evaluate_queries(
             query_path, db_path, output_path, progress_callback=progress_cb
         )
-        done.wait()
-        logger.info("[evaluate_and_wait] Query completed.")
+        # Wait with timeout to avoid hanging forever
+        if not done.wait(timeout=300):  # 5 minute timeout
+            logger.error("[evaluate_and_wait] Query timed out after 5 minutes")
+            raise TimeoutError("CodeQL query execution timed out")
+        
+        if error_flag[0]:
+            logger.warning("[evaluate_and_wait] Query completed with errors")
+        else:
+            logger.info("[evaluate_and_wait] Query completed successfully.")
 
     def quick_evaluate_and_wait(
         self,
@@ -334,7 +341,7 @@ class CodeQLQueryServer:
         end_col,
     ):
         progress_id = self.progress_id
-        progress_cb, done = self.wait_for_progress_done(progress_id)
+        progress_cb, done, error_flag = self.wait_for_progress_done(progress_id)
         self.quick_evaluate(
             query_path,
             db_path,
@@ -345,8 +352,15 @@ class CodeQLQueryServer:
             end_col,
             progress_callback=progress_cb,
         )
-        done.wait()
-        logger.info("[evaluate_and_wait] Query completed.")
+        # Wait with timeout to avoid hanging forever
+        if not done.wait(timeout=300):  # 5 minute timeout
+            logger.error("[quick_evaluate_and_wait] Query timed out after 5 minutes")
+            raise TimeoutError("CodeQL quick evaluation timed out")
+        
+        if error_flag[0]:
+            logger.warning("[quick_evaluate_and_wait] Query completed with errors")
+        else:
+            logger.info("[quick_evaluate_and_wait] Query completed successfully.")
 
     def quick_evaluate(
         self,
@@ -432,16 +446,20 @@ class CodeQLQueryServer:
 
     def wait_for_progress_done(self, expected_progress_id):
         event = threading.Event()
+        error_occurred = [False]  # Use list to allow modification in nested function
 
         def progress_callback(message):
-            if (
-                isinstance(message, dict)
-                and message.get("id") == expected_progress_id
-                and message.get("step") == message.get("maxStep")
-            ):
-                event.set()
+            # Check if this is a progress update for our expected ID
+            if isinstance(message, dict) and message.get("id") == expected_progress_id:
+                # Check if progress is complete
+                if message.get("step") == message.get("maxStep"):
+                    event.set()
+                # Check for error messages in progress updates
+                elif "error" in str(message).lower() or "failed" in str(message).lower():
+                    error_occurred[0] = True
+                    event.set()  # Set event even on error to avoid deadlock
 
-        return progress_callback, event
+        return progress_callback, event, error_occurred
 
     def wait_for_completion_callback(self):
         done = threading.Event()

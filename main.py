@@ -7,6 +7,7 @@ from tools.builder.proj_builder import build_proj_dbgen, clear_proj
 from agents.analyzer_agent import analyze_functions
 from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
 from tools.replacer.code_replacer import function_replace
+
 from tools.replacer.code_recover import function_recover
 from tools.emulator.conf_generator import generate_emulator_configs
 # from tools.collector.mmio import function
@@ -16,7 +17,12 @@ from utils.src_ops import src_replace
 async def main():
     # 获取命令行输入的script_path，默认为默认配置中的路径
     import sys
+    import os
     script_path = sys.argv[1] if len(sys.argv) > 1 else globs.default_config["script_path"]
+    
+    # 如果传入的是文件路径，提取目录路径
+    if os.path.isfile(script_path):
+        script_path = os.path.dirname(script_path)
     
     # 从配置文件加载配置
     config = load_config_from_yaml(script_path)

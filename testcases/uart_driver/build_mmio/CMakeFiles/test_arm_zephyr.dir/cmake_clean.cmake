@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_arm_zephyr.dir/test_arm_zephyr.c.o"
-  "CMakeFiles/test_arm_zephyr.dir/test_arm_zephyr.c.o.d"
+  "CMakeFiles/test_arm_zephyr.dir/test_mmio_driver.c.o"
+  "CMakeFiles/test_arm_zephyr.dir/test_mmio_driver.c.o.d"
   "test_arm_zephyr"
   "test_arm_zephyr.pdb"
 )

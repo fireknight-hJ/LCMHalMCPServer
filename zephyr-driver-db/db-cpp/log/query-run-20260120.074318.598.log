@@ -1,0 +1,11 @@
+[2026-01-20 07:43:18] This is codeql query run ../queries/collectors/mmio/mmioinfo_mmioexpr_collector.ql --database=db-cpp/ --output=mmio_results.bqrs
+[2026-01-20 07:43:18] Log file was started late.
+[2026-01-20 07:43:18] Calling plumbing command: codeql resolve ram --dataset=/home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db/db-cpp/db-cpp --format=json
+[2026-01-20 07:43:18] [PROGRESS] resolve ram> Stringpool size measured as 2146774
+[2026-01-20 07:43:18] Plumbing command codeql resolve ram completed:
+                      [
+                        "-J-Xmx12894M",
+                        "--off-heap-ram=16040"
+                      ]
+[2026-01-20 07:43:18] Chaining via /tmp/codeql.4ZJ2xFei to plumbing: execute queries -J-Xmx12894M --off-heap-ram=16040 --verbosity=progress --logdir=/home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db/db-cpp/log --evaluator-log-level=5 --warnings=show --qlconfig-file=/home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db/qlconfig.yml --dynamic-join-order-mode=none --output=/home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db/mmio_results.bqrs -- /home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db/db-cpp/db-cpp path:/home/chenkaiqiu/LCMHalMCPServer/queries/collectors/mmio/mmioinfo_mmioexpr_collector.ql
+[2026-01-20 07:43:18] Exiting with code 70

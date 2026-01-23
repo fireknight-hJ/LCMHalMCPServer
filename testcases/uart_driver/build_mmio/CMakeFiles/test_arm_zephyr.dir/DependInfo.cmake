@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c" "CMakeFiles/test_arm_zephyr.dir/test_arm_zephyr.c.o" "gcc" "CMakeFiles/test_arm_zephyr.dir/test_arm_zephyr.c.o.d"
+  "/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_mmio_driver.c" "CMakeFiles/test_arm_zephyr.dir/test_mmio_driver.c.o" "gcc" "CMakeFiles/test_arm_zephyr.dir/test_mmio_driver.c.o.d"
   )
 
 # Targets to which this target links.

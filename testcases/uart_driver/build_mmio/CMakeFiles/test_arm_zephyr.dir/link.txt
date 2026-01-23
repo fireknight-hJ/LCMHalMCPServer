@@ -1,1 +1,1 @@
-arm-none-eabi-gcc -g -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -nostdlib -static -Wl,--gc-sections -Wl,-Map=test_arm_zephyr.map -T/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/linker.ld CMakeFiles/test_arm_zephyr.dir/test_arm_zephyr.c.o -o test_arm_zephyr 
+arm-none-eabi-gcc -g -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -nostdlib -static -Wl,--gc-sections -Wl,-Map=test_arm_zephyr.map -T/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/linker.ld CMakeFiles/test_arm_zephyr.dir/test_mmio_driver.c.o -o test_arm_zephyr 

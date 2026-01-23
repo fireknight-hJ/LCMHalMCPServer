@@ -24,33 +24,47 @@ model = ChatDeepSeek(
     api_base=llm_deepseek_config["base_url"]
 )
 
-# Set up MCP client
-client = MultiServerMCPClient(
-    {
-        # using connection
-        # "lcmhal_collector": {
-        #     # make sure you start your weather server on port 8000
-        #     "url": "http://localhost:8112/mcp/",
-        #     "transport": "streamable_http",
-        # },
-        "lcmhal_collector": {
-            "command": "python",
-            # Make sure to update to the full absolute path to your math_server.py file
-            "args": [
-                "-m",
-                "tools.collector.mcp_server",
-                "--db-path",
-                globs.db_path,
-                "--transport",
-                "stdio"
-            ],
-            # "cwd": "/home/haojie/workspace/lcmhalmcp",
-            "transport": "stdio"
-        },
+# MCP客户端将在build_graph函数中延迟创建
+client = None
 
-        # using stdio
-    }
-)
+def get_mcp_client():
+    """获取MCP客户端，确保globs已初始化"""
+    global client
+    if client is not None:
+        return client
+    
+    # 确保globs已初始化
+    if not globs.db_path or globs.db_path == 'N/A':
+        # 尝试从配置文件加载
+        from config.globs import load_config_from_yaml, globs_init
+        script_path = '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver'
+        config = load_config_from_yaml(script_path)
+        globs_init(config)
+    
+    # 创建MCP客户端 - 使用正确的配置
+    # 确保db_path已设置
+    db_path = globs.db_path
+    if not db_path or db_path == 'N/A':
+        # 使用默认路径
+        db_path = '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/codeql_db'
+    
+    client = MultiServerMCPClient(
+        {
+            "lcmhal_collector": {
+                "command": "/home/chenkaiqiu/LCMHalMCPServer/.venv/bin/python",
+                "args": [
+                    "-m",
+                    "tools.collector.mcp_server",
+                    "--db-path",
+                    db_path,
+                    "--transport",
+                    "stdio"
+                ],
+                "transport": "stdio"
+            },
+        }
+    )
+    return client
 
 class AgentState(MessagesState):
     # Final structured response from the agent
@@ -67,18 +81,18 @@ async def build_graph():
     if _graph is not None:
         return _graph
     
+    # 获取MCP客户端
+    mcp_client = get_mcp_client()
+    
     # 异步获取工具
-    tools = await client.get_tools()
+    tools = await mcp_client.get_tools()
 
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
     # Set up model with structured output
     model_with_structured_output = model.with_structured_output(FunctionClassifyResponse)
 
-    # Create ToolNode
-    tool_node = ToolNode(tools)
-
-    # Create a wrapper for tool_node to add logging
+    # 创建自定义工具调用函数，避免使用ToolNode
     async def tools_with_logging(state: AgentState):
         agent_name = "analyzer_agent"
         node_name = "tools"
@@ -87,7 +101,43 @@ async def build_graph():
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
-        result = await tool_node.ainvoke(state)
+        # 直接调用工具，避免使用ToolNode
+        messages = state["messages"]
+        last_message = messages[-1]
+        
+        result_messages = []
+        
+        if hasattr(last_message, 'tool_calls') and last_message.tool_calls:
+            for tool_call in last_message.tool_calls:
+                tool_name = tool_call['name']
+                tool_args = tool_call['args']
+                
+                # 查找对应的工具
+                tool = None
+                for t in tools:
+                    if t.name == tool_name:
+                        tool = t
+                        break
+                
+                if tool:
+                    try:
+                        # 调用工具
+                        tool_output = await tool.ainvoke(tool_args)
+                        result_messages.append({
+                            "role": "tool",
+                            "content": str(tool_output),
+                            "tool_call_id": tool_call['id'],
+                            "name": tool_name
+                        })
+                    except Exception as e:
+                        result_messages.append({
+                            "role": "tool",
+                            "content": f"Error: {str(e)}",
+                            "tool_call_id": tool_call['id'],
+                            "name": tool_name
+                        })
+        
+        result = {"messages": result_messages}
         
         if globs.ai_log_enable:
             updated_state = {**state, **result}

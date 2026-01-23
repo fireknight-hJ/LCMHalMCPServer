@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-01-23 02:03:57",
+  "function_classifiers": {
+    "complex_mmio_operation": {
+      "function_name": "complex_mmio_operation",
+      "function_type": "RECV",
+      "functionality": "Performs UART data transmission with initialization, polling, and conditional configuration operations",
+      "classification_reason": "This function performs critical data I/O operations (UART transmission) with multiple hardware dependencies: 1) Initializes USART1 registers (CR1, BRR), 2) Contains polling loop waiting for transmit ready flag (USART1->SR & 0x0080), 3) Writes data to USART data register (USART1->DR = buffer[i]), 4) Has conditional hardware configuration (enables RX if len > 10). GetMMIOFunctionInfo confirmed register accesses and polling loops. The function's primary purpose is data transmission, which falls under the RECV category for data I/O functions. Priority order: RECV > IRQ > INIT > LOOP, so RECV classification takes precedence over INIT or LOOP.",
+      "has_replacement": true,
+      "function_replacement": "/* 复杂的 MMIO 操作 */\nvoid complex_mmio_operation(uint8_t *buffer, size_t len)\n{\n    /* 初始化 - Skip hardware initialization */\n    /* USART1->CR1 = 0x2000; */\n    /* USART1->BRR = 0x0341; */\n    \n    /* 批量传输 */\n    for (size_t i = 0; i < len; i++) {\n        /* [LOOP REMOVED] Waited for hardware transmit ready flag */\n        /* while (!(USART1->SR & 0x0080)) {\n            __asm__ volatile (\"nop\");\n        } */\n        /* USART1->DR = buffer[i]; */\n        /* Simulate data transmission */\n        HAL_BE_Out(1);\n    }\n    \n    /* 条件操作 */\n    if (len > 10) {\n        /* Skip hardware RX enable */\n        /* USART1->CR1 |= 0x1000;  /* 使能 RX */ */\n    }\n}"
+    },
+    "mmio_uart_receive_byte_direct": {
+      "function_name": "mmio_uart_receive_byte_direct",
+      "function_type": "RECV",
+      "functionality": "Receives a single byte from UART hardware by polling the status register and reading from the data register",
+      "classification_reason": "This function performs critical data I/O (UART data reception) with direct hardware register access. GetMMIOFunctionInfo revealed MMIO operations including status register polling (USART1->SR) and data register reading (USART1->DR). The function contains a hardware-dependent polling loop waiting for the RXNE flag and reads data from the peripheral data register, which matches the RECV classification criteria for data reception functions. The function needs replacement to eliminate hardware dependencies while preserving the data reception functionality.",
+      "has_replacement": true,
+      "function_replacement": "uint8_t mmio_uart_receive_byte_direct(void)\n{\n    uint8_t received_byte;\n    \n    /* [LOOP REMOVED] Waited for hardware receive data ready flag */\n    /* Original: while (!(USART1->SR & 0x0020)) { __asm__ volatile (\"nop\"); } */\n    \n    /* Simulate data reception */\n    HAL_BE_In(&received_byte, 1);\n    \n    /* Return the simulated received byte */\n    return received_byte;\n}"
+    }
+  },
+  "replacement_updates": {}
+}

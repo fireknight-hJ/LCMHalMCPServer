@@ -1,0 +1,2260 @@
+{
+  "session_id": "1b6cc638-7cb2-4cff-b313-365cfbb1a915",
+  "start_time": "2026-01-23T02:04:52.735837",
+  "logs": [
+    {
+      "timestamp": "2026-01-23T02:04:53.708673",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\n**Role**: You are an embedded software engineer tasked with replacing driver library functions to eliminate dependencies on peripheral hardware (I/O operations, register access, etc.) while preserving normal functionality and MCU-related operations (including OS scheduling and interrupt triggering).\n\n**Overall Process**:\n1.  **Information Gathering**: Obtain the complete function implementation and context information using available tools.\n2.  **Analysis Phase**: Analyze the function to unders"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:53.750335",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\n**Role**: You are an embedded software engineer tasked with replacing driver library functions to eliminate dependencies on peripheral hardware (I/O operations, register access, etc.) while preserving normal functionality and MCU-related operations (including OS scheduling and interrupt triggering).\n\n**Overall Process**:\n1.  **Information Gathering**: Obtain the complete function implementation and context information using available tools.\n2.  **Analysis Phase**: Analyze the function to unders"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:57.678615",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:57.682483",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:57.760348",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:57.764014",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:58.627390",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:58.630681",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 4,
+        "new_messages": 3,
+        "message_range": [
+          1,
+          3
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:58.713019",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:04:58.716601",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 4,
+        "new_messages": 3,
+        "message_range": [
+          1,
+          3
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:02.048578",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:02.051827",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 5,
+        "new_messages": 4,
+        "message_range": [
+          1,
+          4
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:02.267786",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:02.272790",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 5,
+        "new_messages": 4,
+        "message_range": [
+          1,
+          4
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:02.992544",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:02.997444",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 6,
+        "new_messages": 5,
+        "message_range": [
+          1,
+          5
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprIn"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:03.231822",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:03.236412",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 6,
+        "new_messages": 5,
+        "message_range": [
+          1,
+          5
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\')"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:06.314570",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:06.321822",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 7,
+        "new_messages": 6,
+        "message_range": [
+          1,
+          6
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\')"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the function call stack to understand its context:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:06.630460",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:06.637313",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 7,
+        "new_messages": 6,
+        "message_range": [
+          1,
+          6
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprIn"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the call stack to understand the context better:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:07.271685",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:07.278735",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 8,
+        "new_messages": 7,
+        "message_range": [
+          1,
+          7
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\')"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the function call stack to understand its context:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='mixed_uart_operation', callee_name='mmio_uart_send_byte_direct', call_tag='call to mmio_uart_send_byte_direct', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=142, call_type='direct', ret_type='noReturnValue', start_line_content='        mmio_uart_send_byte_direct(*msg);')]\", 'id': 'lc_70b0a96c-e521-4460-9a17-98195f4be799'}]"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:07.595842",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:07.603320",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 8,
+        "new_messages": 7,
+        "message_range": [
+          1,
+          7
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprIn"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the call stack to understand the context better:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='main', callee_name='loop_mmio_operation', call_tag='call to loop_mmio_operation', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=217, call_type='direct', ret_type='noReturnValue', start_line_content='    loop_mmio_operation(test_data, sizeof(test_data) - 1);')]\", 'id': 'lc_a475f25a-0703-4f9d-ad55-9ad1df17512d'}]"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:09.846164",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:09.854969",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 9,
+        "new_messages": 8,
+        "message_range": [
+          1,
+          8
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\')"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the function call stack to understand its context:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='mixed_uart_operation', callee_name='mmio_uart_send_byte_direct', call_tag='call to mmio_uart_send_byte_direct', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=142, call_type='direct', ret_type='noReturnValue', start_line_content='        mmio_uart_send_byte_direct(*msg);')]\", 'id': 'lc_70b0a96c-e521-4460-9a17-98195f4be799'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check the driver information to understand the broader context:",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": "{'driver_name': 'uart'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:10.717900",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:10.727092",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 9,
+        "new_messages": 8,
+        "message_range": [
+          1,
+          8
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprIn"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the call stack to understand the context better:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='main', callee_name='loop_mmio_operation', call_tag='call to loop_mmio_operation', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=217, call_type='direct', ret_type='noReturnValue', start_line_content='    loop_mmio_operation(test_data, sizeof(test_data) - 1);')]\", 'id': 'lc_a475f25a-0703-4f9d-ad55-9ad1df17512d'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check the driver information to understand the broader context:",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": "{'driver_name': 'uart'}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:10.793598",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:10.802424",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 10,
+        "new_messages": 9,
+        "message_range": [
+          1,
+          9
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\')"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the function call stack to understand its context:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='mixed_uart_operation', callee_name='mmio_uart_send_byte_direct', call_tag='call to mmio_uart_send_byte_direct', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=142, call_type='direct', ret_type='noReturnValue', start_line_content='        mmio_uart_send_byte_direct(*msg);')]\", 'id': 'lc_70b0a96c-e521-4460-9a17-98195f4be799'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check the driver information to understand the broader context:",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": "{'driver_name': 'uart'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Driver not found: uart', 'id': 'lc_a7534b95-611b-41aa-92d5-5513c7c78b5a'}]"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:11.680435",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:11.684765",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 10,
+        "new_messages": 9,
+        "message_range": [
+          1,
+          9
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprIn"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the call stack to understand the context better:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='main', callee_name='loop_mmio_operation', call_tag='call to loop_mmio_operation', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=217, call_type='direct', ret_type='noReturnValue', start_line_content='    loop_mmio_operation(test_data, sizeof(test_data) - 1);')]\", 'id': 'lc_a475f25a-0703-4f9d-ad55-9ad1df17512d'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check the driver information to understand the broader context:",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": "{'driver_name': 'uart'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Driver not found: uart', 'id': 'lc_d7a98cd0-2b05-4ce0-bdfb-9cd72090f9de'}]"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:33.780337",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:33.791533",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "respond",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 11,
+        "new_messages": 10,
+        "message_range": [
+          1,
+          10
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : mmio_uart_send_byte_direct"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\')"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the function call stack to understand its context:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'mmio_uart_send_byte_direct'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='mixed_uart_operation', callee_name='mmio_uart_send_byte_direct', call_tag='call to mmio_uart_send_byte_direct', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=142, call_type='direct', ret_type='noReturnValue', start_line_content='        mmio_uart_send_byte_direct(*msg);')]\", 'id': 'lc_70b0a96c-e521-4460-9a17-98195f4be799'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check the driver information to understand the broader context:",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": "{'driver_name': 'uart'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Driver not found: uart', 'id': 'lc_a7534b95-611b-41aa-92d5-5513c7c78b5a'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Based on my analysis, let me classify the function `mmio_uart_send_byte_direct`:\n\n## Analysis\n\n1. **Function Purpose**: The function `mmio_uart_send_byte_direct` is a UART data transmission function that sends a single byte of data via USART1.\n\n2. **Key Characteristics**:\n   - **Parameter**: `uint8_t data` - the byte to be transmitted\n   - **Return Type**: `void` - no return value\n   - **Hardware Operations**: \n     - Polling loop waiting for USART1 transmit buffer empty flag (`USART1->SR & 0x00"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:45.963891",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:45.973316",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "respond",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 11,
+        "new_messages": 10,
+        "message_range": [
+          1,
+          10
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Classify the function : loop_mmio_operation"
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n "
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check for MMIO operations in this function:",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprIn"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Let me also check the call stack to understand the context better:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": "{'func_name': 'loop_mmio_operation'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='main', callee_name='loop_mmio_operation', call_tag='call to loop_mmio_operation', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=217, call_type='direct', ret_type='noReturnValue', start_line_content='    loop_mmio_operation(test_data, sizeof(test_data) - 1);')]\", 'id': 'lc_a475f25a-0703-4f9d-ad55-9ad1df17512d'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now let me check the driver information to understand the broader context:",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": "{'driver_name': 'uart'}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "[{'type': 'text', 'text': 'Driver not found: uart', 'id': 'lc_d7a98cd0-2b05-4ce0-bdfb-9cd72090f9de'}]"
+          },
+          {
+            "type": "AIMessage",
+            "content": "Based on my analysis, I now have sufficient information to classify the function. Let me analyze what I've found:\n\n1. **Function Information**: The function `loop_mmio_operation` is defined in `/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c` at line 162.\n\n2. **Function Implementation**: The function takes `const uint8_t *data` and `size_t size` as parameters and returns `void`. It contains:\n   - A `for` loop that iterates through each byte in the data buffer\n   - In"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:46.459176",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "respond",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "total_messages": 11,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name",
+          "final_response"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:46.472205",
+      "agent_name": "function_classify",
+      "interaction_type": "result",
+      "function_name": "mmio_uart_send_byte_direct",
+      "data": {
+        "messages": [
+          {
+            "content": "\n**Role**: You are an embedded software engineer tasked with replacing driver library functions to eliminate dependencies on peripheral hardware (I/O operations, register access, etc.) while preserving normal functionality and MCU-related operations (including OS scheduling and interrupt triggering).\n\n**Overall Process**:\n1.  **Information Gathering**: Obtain the complete function implementation and context information using available tools.\n2.  **Analysis Phase**: Analyze the function to understand its MMIO accesses, call relationships, data structures used, and core logic.\n3.  **Classification Phase**: Categorize the function into one of the defined types based on the analysis.\n4.  **Processing Phase**:\n    *   For functions classified as **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code according to the specified strategy.\n    *   For functions classified as **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Only provide the classification and reasoning. **Do not generate replacement code** unless explicitly requested later.\n\n---\n\n### **Available Tools for Information Gathering**\n\nYou have access to the following tools to gather information about functions and their context:\n\n1.  **GetFunctionInfo(func_name: str)**: Retrieves detailed information about a function, including its implementation code, parameters, return type, and location.\n    *   **When to use**: Always call this tool first to get the function's implementation code.\n    *   **Example**: `GetFunctionInfo(\"HAL_UART_Receive\")`\n\n2.  **GetMMIOFunctionInfo(func_name: str)**: Checks if a function contains MMIO operations and provides details about those operations.\n    *   **When to use**: After getting the function info, call this to identify any hardware register accesses.\n    *   **Example**: `GetMMIOFunctionInfo(\"UART0_IRQHandler\")`\n\n3.  **GetStructOrEnumInfo(struct_name: str)**: Retrieves information about a specific struct or enum type used by the function.\n    *   **When to use**: When you need to understand the data structures used in the function implementation.\n    *   **Example**: `GetStructOrEnumInfo(\"UART_Type\")`\n\n4.  **GetFunctionCallStack(func_name: str)**: Retrieves information about functions that call this function and functions called by this function.\n    *   **When to use**: When you need to understand the function's context and dependencies.\n    *   **Example**: `GetFunctionCallStack(\"SPI_Transfer\")`\n\n5.  **GetDriverInfo(driver_name: str)**: Retrieves information about a specific driver module.\n    *   **When to use**: When you need to understand the broader driver context of the function.\n    *   **Example**: `GetDriverInfo(\"uart\")`\n\n**Tool Usage Best Practices**:\n- **Always start with GetFunctionInfo** to get the function's implementation code.\n- **Use GetMMIOFunctionInfo** immediately after to identify hardware dependencies.\n- **Use GetStructOrEnumInfo** when you encounter unknown data structures in the function code.\n- **Use GetFunctionCallStack** if you need to understand the function's role in the system or its call relationships.\n- **Use GetDriverInfo** to understand the broader driver context when classifying functions related to a specific peripheral.\n- **Tool Usage Sequence**: GetFunctionInfo → GetMMIOFunctionInfo → [GetStructOrEnumInfo | GetFunctionCallStack | GetDriverInfo] (as needed)\n- **Error Handling**: If a tool call fails (e.g., function not found), try alternative tool calls or classify as NEEDCHECK with explanation.\n\n---\n\n### **Function Classification and Replacement Strategy**\n\n#### **Priority 1: Functions Requiring Replacement (Generate Code)**\n\n1.  **RECV (Data Transmission/Reception Functions)**\n    *   **Identification**: Functions performing critical data I/O, DMA buffer management, or peripheral data transfer (read/write).\n    *   **Examples**: `HAL_UART_Receive`, `ETH_ReadFrame`, `SPI_Receive`\n    *   **Strategy**:\n        *   For **data reception**: Replace with calls to `HAL_BE_In(void* buf, int len)` (fixed size) or `HAL_BE_ENET_ReadFrame(void* buf, int length)` (variable length packet).\n        *   For **data transmission**: Redirect output to `stdout` (e.g., using `printf`) or, if non-critical and does not affect state, skip the operation.\n    *   **Critical**: Preserve all non-I/O logic (buffer pointer updates, state flags, data processing).\n    *   **Example Replacement**:\n        ```c\n        // Original\n        HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)\n        {\n            // ... hardware-specific code ...\n            while ((huart->Instance->SR & UART_FLAG_RXNE) == 0) {\n                // Timeout handling\n            }\n            *pData = (uint8_t)(huart->Instance->DR & (uint8_t)0x00FF);\n            // ... more hardware-specific code ...\n        }\n\n        // Replacement\n        HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)\n        {\n            // Simulate data reception\n            HAL_BE_In(pData, Size);\n            // Preserve non-I/O logic\n            huart->RxXferCount = 0;\n            huart->RxXferSize = Size;\n            huart->RxState = HAL_UART_STATE_READY;\n            return HAL_OK;\n        }\n        ```\n\n2.  **IRQ (Interrupt-Related Functions)**\n    *   **Identification**: Interrupt handlers (e.g., `*_IRQHandler`) or functions containing interrupt enable/disable operations.\n    *   **Examples**: `UART0_IRQHandler`, `EXTI0_IRQHandler`, `HAL_TIM_IRQHandler`\n    *   **Strategy**:\n        *   Remove actual hardware operations (e.g., writing to interrupt control registers).\n        *   **Preserve**: Interrupt flag checks, OS interrupt notifications (e.g., `xSemaphoreGiveFromISR`), state machine updates.\n        *   Ensure the execution flow can reach the original data handling or task triggering branches.\n    *   **Example Replacement**:\n        ```c\n        // Original\n        void UART0_IRQHandler(void)\n        {\n            if ((UART0->S1 & UART_S1_RDRF_MASK) != 0U) {\n                data = UART0->D;\n                process_data(data);\n                xSemaphoreGiveFromISR(semaphore, &xHigherPriorityTaskWoken);\n            }\n            // Clear interrupt flags\n            UART0->S1 |= UART_S1_TDRE_MASK;\n        }\n\n        // Replacement\n        void UART0_IRQHandler(void)\n        {\n            // Simulate interrupt flag being set\n            data = HAL_BE_In(&data, 1);\n            process_data(data);\n            xSemaphoreGiveFromISR(semaphore, &xHigherPriorityTaskWoken);\n            // No need to clear hardware interrupt flags\n        }\n        ```\n\n3.  **INIT (Initialization Functions)**\n    *   **Identification**: Functions that initialize peripheral/configurations or allocate resources.\n    *   **Examples**: `HAL_UART_Init`, `SPI_Init`, `ETH_Init`\n    *   **Strategy**:\n        *   Remove all MMIO/register access operations.\n        *   Preserve resource allocation (e.g., `malloc`), structure initialization, and default value setting.\n        *   Ensure the logical post-initialization state matches the expected state after hardware init.\n    *   **Example Replacement**:\n        ```c\n        // Original\n        HAL_StatusTypeDef HAL_UART_Init(UART_HandleTypeDef *huart)\n        {\n            // Enable UART clock\n            __HAL_RCC_USART1_CLK_ENABLE();\n            // Configure UART registers\n            huart->Instance->CR1 = USART_CR1_UE | USART_CR1_TE | USART_CR1_RE;\n            huart->Instance->BRR = UART_BRR_SAMPLING16(HAL_RCC_GetPCLK2Freq(), huart->Init.BaudRate);\n            // ... more hardware configuration ...\n            huart->State = HAL_UART_STATE_READY;\n            return HAL_OK;\n        }\n\n        // Replacement\n        HAL_StatusTypeDef HAL_UART_Init(UART_HandleTypeDef *huart)\n        {\n            // Preserve structure initialization\n            huart->State = HAL_UART_STATE_READY;\n            huart->ErrorCode = HAL_UART_ERROR_NONE;\n            // Skip hardware-specific configuration\n            return HAL_OK;\n        }\n        ```\n\n4.  **LOOP (Peripheral-Dependent Loops)**\n    *   **Identification**: Loops where the condition or body depends on peripheral registers (e.g., polling status flags).\n    *   **Examples**: Waiting for transmission complete, reading from FIFO until empty\n    *   **Strategy**:\n        *   If waiting for a status flag: **Skip the loop entirely** (assume the condition is already met).\n        *   If reading data from a FIFO until empty: **Replace with a single read or a call to a simulation receive function**.\n        *   Add a comment explaining the original loop's purpose.\n    *   **Examples**:\n        ```c\n        // Original: Wait last char shifted out\n        while (0U == (base->S1 & UART_S1_TC_MASK))\n        {\n        }\n        // Replacement: Skip the wait loop, assume transmission complete\n        /* [LOOP REMOVED] Waited for hardware transmission complete flag */\n\n        // Original: Read to clear overrun flag\n        while ((base->S1 & UART_S1_RDRF_MASK) != 0U)\n        {\n            (void)base->D;\n        }\n        // Replacement: Replace with a single simulated read\n        (void)HAL_BE_In(NULL, 1); /* Simulate reading to clear overrun flag */\n        ```\n\n#### **Priority 2: Classification Only (Do Not Generate Code Now)**\n\n5.  **RETURNOK (Pure Driver Operation Functions)**\n    *   **Identification**: Functions that only manipulate peripheral registers with no impact on upper-layer data structures.\n    *   **Examples**: `HAL_GPIO_WritePin`, `SPI_SetBaudRate`\n    *   **Strategy (Note)**: Would simply return a success value (e.g., `HAL_OK`, `0`) or a safe default.\n\n6.  **SKIP (Non-Critical Driver Functions)**\n    *   **Identification**: Functions performing optional operations that can be safely ignored (e.g., minor configuration, debug output).\n    *   **Examples**: `HAL_UART_MspInit`, `UART_PrintDebugInfo`\n    *   **Strategy (Note)**: Would be replaced with an empty implementation or a success return.\n\n7.  **NEEDCHECK (Mixed-Functionality Functions)**\n    *   **Identification**: Functions mixing hardware operations with significant upper-layer logic (state machines, data structure management, protocol handling), or functions where you cannot confidently determine the classification.\n    *   **Examples**: Complex protocol handlers, state machine functions with hardware dependencies, functions where tool calls failed to provide sufficient information\n    *   **Strategy (Note)**: Would require removing hardware operations while meticulously preserving all non-driver logic. **Flag for manual review**.\n\n8.  **NODRIVER (Non-Driver Functions)**\n    *   **Identification**: Functions incorrectly flagged as driver-dependent but containing no hardware-specific operations.\n    *   **Examples**: Utility functions, data processing functions, math functions\n    *   **Strategy (Note)**: Should be left unchanged.\n\n---\n\n### **General Replacement Rules**\n\n1.  **Return Type**: Do not change the function's return type.\n2.  **No New Declarations**: Do not add `extern` declarations; assume global variables/definitions exist.\n3.  **No New Headers**: Do not add `#include` directives.\n4.  **Preserve OS Operations**: Do not modify any OS-related calls (scheduling, semaphores, queues, interrupt notifications).\n5.  **Preserve Preprocessor Directives**: Keep `#ifdef`, `#if`, etc., unchanged. Do not add new ones.\n6.  **Use Only Provided Helpers**: Only use the helper functions listed below. Do not introduce standard library I/O functions (e.g., `fflush`, `read`, `write`).\n\n**Provided Helper Functions**:\n```c\nint HAL_BE_return_0(); // Returns 0 (typically success)\nint HAL_BE_return_1(); // Returns 1\nint HAL_BE_Out(int len); // Simulates data transmission (can be skipped)\nint HAL_BE_In(void* buf, int len); // Simulates fixed-length data reception\nint HAL_BE_ENET_ReadFrame(void* buf, int length); // Simulates variable-length packet reception\nint HAL_BE_Block_Write(void* buf, int block_size, int block_num); // Simulates block write to storage\nint HAL_BE_Block_Read(void* buf, int block_size, int block_num); // Simulates block read from storage\n```\n\n---\n\n### **Detailed Function Replacement Generation Steps**\n\nWhen generating replacement code for **RECV, IRQ, INIT, or LOOP** functions, follow these meticulous steps:\n\n1.  **Step 1: Parameter and Return Type Analysis**\n    *   **Examine every function parameter and return type**:\n        *   Identify its **data type** (e.g., `uint32_t`, `UART_Type *`, `void *`, `struct eth_frame *`).\n        *   For **pointer parameters**, determine the **underlying data structure** it points to (if not `void*`). Understand if it is used for input, output, or both.\n        *   Note that since potential type conversions may exist within the function context, when `void*` or `void**` appears in parameters or return values, you must carefully examine the context and infer their specific types.\n\n2.  **Step 2: Data Structure and Global Variable Mapping**\n    *   Identify all **structs, enums, and macros** used in the function (e.g., `UART_Type`, `ETH_DMARxDesc_TypeDef`).\n    *   Do not redefine them. Assume their definitions are available globally.\n    *   Note any **global variables** or **peripheral instance pointers** (like `UART0`, `&huart1`) accessed by the function. Their declarations are assumed to exist.\n\n3.  **Step 3: MMIO and Hardware Operation Identification**\n    *   Locate all **register accesses** (e.g., `base->DR = data`, `status = reg->SR`).\n    *   Identify **polling loops** waiting for status flags (`while ((reg->ISR & FLAG) == 0)`).\n    *   Identify **data read/write operations** from/to peripheral data registers or FIFOs (`data = base->RDR`, `base->TDR = *pData++`).\n    *   Identify **interrupt control operations** (enable/disable/clear).\n\n4.  **Step 4: Non-Driver Logic Preservation**\n    *   **Isolate and preserve**:\n        *   **Buffer management logic**: Pointer increments, buffer index updates, length checks.\n        *   **State machine updates**: Changing state variables (`huart->RxState = HAL_UART_STATE_READY`).\n        *   **OS/RTOS interactions**: Calls to `xQueueSendFromISR()`, `xSemaphoreGive()`, `vTaskNotifyGive()`.\n        *   **Error checking and logging**: Conditional checks on data validity, error counter increments (if not tied to hardware status).\n        *   **Callback functions**: Invocations of user-provided callback pointers (`htim->PeriodElapsedCallback()`).\n\n5.  **Step 5: Apply Replacement Strategy & Generate Code**\n    *   **RECV**:\n        *   For **reads**: Replace the hardware read sequence with a call to `HAL_BE_In(buf, len)` or `HAL_BE_ENET_ReadFrame(buf, max_len)`. Ensure the `len` argument matches the original intended read size.\n        *   For **writes**: Replace with `printf` or `HAL_BE_Out(len)`, or if safe, skip. **Crucially, preserve any post-transmission logic** (e.g., updating a `txComplete` flag).\n    *   **IRQ**:\n        *   Remove lines that write to interrupt enable/clear registers.\n        *   Keep the **condition checks** that would typically read interrupt flags, but **replace the MMIO read with a non-zero value or variable** to ensure desired branch execution (especially the branch that handles received data).\n        *   Keep all OS calls and state updates inside those branches.\n    *   **INIT**:\n        *   Remove all register writes (`base->CR1 = VALUE`).\n        *   Keep structure member initialization (`handle->Mode = UART_MODE_TX_RX`).\n        *   Keep memory allocation (`handle->pRxBuffPtr = malloc(SIZE)`).\n        *   Set initialization status variables to their \"ready\" state (`handle->State = HAL_UART_STATE_READY`).\n    *   **LOOP**:\n        *   For **polling/wait loops**: Comment out or remove the entire `while` loop. Add a comment: `/* [LOOP REMOVED] Waited for hardware flag. */`\n        *   For **data drain loops** (reading until a FIFO is empty): Replace with a single call to a helper if needed for state consistency, or remove if only clearing flags.\n\n6.  **Step 6: Final Validation (Mental Check)**\n    *   **Return Value**: Ensure the function returns a value consistent with its original successful execution (e.g., `return HAL_OK;`, `return 0;`, `return numberOfBytesRead;`). Use `HAL_BE_return_0()` or `HAL_BE_return_1()` if appropriate.\n    *   **Control Flow**: Verify that no critical `if` or `switch` branch has become unreachable due to removed hardware conditions. Adjust temporary variables if needed to guide flow.\n    *   **Data Consistency**: Ensure that any output parameters (pointer arguments) are written with plausible data, as the helper functions are expected to simulate this.\n    *   **Compilation Safety**: The generated code must be valid C syntax using only existing types and the allowed helper functions.\n\n**Critical Code Generation Rules**:\n1.  Absolutely prohibit fabricating undefined address constants (such as 0x20000000, 0x40000000, etc.)\n2.  Absolutely prohibit fabricating undeclared global variables, macro definitions, or functions\n3.  Only use:\n    - Variables and parameters existing in the current code snippet\n    - Standard APIs of libraries/frameworks\n    - Reasonable values explicitly derived from the context\n4.  If a parameter requires a specific value, you must:\n    - Use values already present in function parameters\n    - Use existing fields within structures/objects\n    - Or clearly comment on the source of the value\n5.  After generation, verify that every variable/constant has a clearly defined source\n\n---\n\n### **Execution Instructions**\n\nWhen provided with a function name for classification and analysis, follow these steps:\n\n1.  **First, get the function information**:\n    *   **Mandatory**: Call `GetFunctionInfo(func_name)` to obtain the function's implementation code and basic information.\n    *   **Mandatory**: Call `GetMMIOFunctionInfo(func_name)` to identify any hardware register accesses.\n    *   **Optional**: For complex functions, use `GetStructOrEnumInfo(struct_name)` to understand data structures, `GetFunctionCallStack(func_name)` to understand context, and `GetDriverInfo(driver_name)` to understand broader driver context.\n    *   **Complete Information**: Ensure you have sufficient information to make an accurate classification before proceeding.\n\n2.  **Analyze the function**:\n    *   Understand the function's purpose, key operations (MMIO, I/O, OS calls), and control flow.\n    *   Identify any hardware-dependent operations that need to be replaced.\n    *   Map the function to the appropriate classification based on the criteria above.\n\n3.  **Classify the function**:\n    *   Determine the appropriate function type based on the analysis.\n    *   Use the following priority order when multiple classifications might apply: RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER\n    *   If you cannot confidently classify the function (e.g., insufficient information, ambiguous characteristics), use **NEEDCHECK**.\n\n4.  **Generate output according to the classification**:\n    *   For **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code following the detailed steps.\n    *   For **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Provide classification and reasoning only.\n\n**Output Format**: Your response must be structured to match the following fields exactly. Ensure all fields are present and correctly formatted as JSON:\n\n```json\n{\n  \"function_name\": \"<name_of_the_function>\",\n  \"function_type\": \"<one_of_RECV_IRQ_INIT_LOOP_RETURNOK_SKIP_NEEDCHECK_NODRIVER>\",\n  \"functionality\": \"<brief_description_of_function_purpose>\",\n  \"classification_reason\": \"<detailed_explanation_of_classification_based_on_analysis>\",\n  \"has_replacement\": <true_or_false>,\n  \"function_replacement\": \"<complete_replacement_code_or_empty_string>\"\n}\n```\n\n**Output Generation Guidelines**:\n- **function_name**: Exactly match the function name provided in the input.\n- **function_type**: Use only the exact string values defined (case-sensitive).\n- **functionality**: Brief, clear description (1-2 sentences) of what the function does.\n- **classification_reason**: Detailed explanation including:\n  - Key characteristics identified\n  - Tool usage and findings (e.g., \"GetMMIOFunctionInfo revealed register accesses...\")\n  - Why this classification was chosen over others\n  - Any ambiguity or special considerations\n- **has_replacement**: True for RECV, IRQ, INIT, LOOP; False for others.\n- **function_replacement**: Complete replacement code for RECV/IRQ/INIT/LOOP; empty string for others.\n\n**Important Notes**:\n- Ensure your output is compatible with the FunctionClassifyResponse Pydantic model.\n- Always provide the full function signature in the replacement code.\n- Preserve all comments that are not related to hardware operations.\n- If you encounter any errors or ambiguities during analysis, use **NEEDCHECK** classification and explain the issue in the reasoning.\n- Your analysis should be based solely on the information obtained from tool calls, not assumptions.\n",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "system",
+            "name": null,
+            "id": "02c62313-0a2a-4187-9253-eb82a4f1f392"
+          },
+          {
+            "content": "Classify the function : mmio_uart_send_byte_direct",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "human",
+            "name": null,
+            "id": "549cdf24-9c9a-480a-a594-b656c148015e"
+          },
+          {
+            "content": "I'll help you classify the function `mmio_uart_send_byte_direct`. Let me start by gathering information about this function using the available tools.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 86,
+                "prompt_tokens": 5710,
+                "total_tokens": 5796,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 5696
+                },
+                "prompt_cache_hit_tokens": 5696,
+                "prompt_cache_miss_tokens": 14
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "76cab103-fa5d-4912-8474-1c96e10f5c21",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--e511a6f0-e3f0-4998-9f3d-913889169f94-0",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": {
+                  "func_name": "mmio_uart_send_byte_direct"
+                },
+                "id": "call_00_fdAzrV4VgbiDVLXuAIAKN0Vk",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 5710,
+              "output_tokens": 86,
+              "total_tokens": 5796,
+              "input_token_details": {
+                "cache_read": 5696
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function_content_in_lines={\\'89\\': \\'void mmio_uart_send_byte_direct(uint8_t data)\\', \\'90\\': \\'{\\', \\'91\\': \\'    /* 等待发送缓冲区空 */\\', \\'92\\': \\'    while (!(USART1->SR & 0x0080)) {\\', \\'93\\': \\'        /* 空循环等待 */\\', \\'94\\': \\'        __asm__ volatile (\"nop\");\\', \\'95\\': \\'    }\\', \\'96\\': \\'    \\', \\'97\\': \\'    /* 发送数据 */\\', \\'98\\': \\'    USART1->DR = data;\\', \\'99\\': \\'}\\'})', 'id': 'lc_170a67ad-e9bc-41e5-9908-ba730e0137e4'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetFunctionInfo",
+            "id": "1bbf062a-9a1f-47b9-886f-7690a9d60a59",
+            "tool_call_id": "call_00_fdAzrV4VgbiDVLXuAIAKN0Vk",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Now let me check for MMIO operations in this function:",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 67,
+                "prompt_tokens": 6211,
+                "total_tokens": 6278,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 6144
+                },
+                "prompt_cache_hit_tokens": 6144,
+                "prompt_cache_miss_tokens": 67
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "b563740b-81e9-437d-be2a-aae960f23c67",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--9603730e-487d-4b09-a848-284583fdcc71-0",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": {
+                  "func_name": "mmio_uart_send_byte_direct"
+                },
+                "id": "call_00_BK03SWPX5XRnnTnnzVmGnHVF",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 6211,
+              "output_tokens": 67,
+              "total_tokens": 6278,
+              "input_token_details": {
+                "cache_read": 6144
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprInfo(name=\\'... & ...\\', function=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=92, expr_type=\\'binary\\', enclosing_type=\\'skip\\')]\\nFunction info: FunctionInfo(name=\\'mmio_uart_send_byte_direct\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=89, function_content=\\'USART1->CR3 = 0x0000;  /* 默认设置 */\\\\nvoid mmio_uart_send_byte_direct(uint8_t data)\\\\n{\\\\n    /* 等待发送缓冲区空 */\\\\n    while (!(USART1->SR & 0x0080)) {\\\\n        /* 空循环等待 */\\\\n        __asm__ volatile (\"nop\");\\\\n    }\\\\n    \\\\n    /* 发送数据 */\\\\n    USART1->DR = data;\\\\n}\\\\n\\', function_content_in_lines={\\'89\\': \\'void mmio_uart_send_byte_direct(uint8_t data)\\', \\'90\\': \\'{\\', \\'91\\': \\'    /* 等待发送缓冲区空 */\\', \\'92\\': \\'    while (!(USART1->SR & 0x0080)) {\\', \\'93\\': \\'        /* 空循环等待 */\\', \\'94\\': \\'        __asm__ volatile (\"nop\");\\', \\'95\\': \\'    }\\', \\'96\\': \\'    \\', \\'97\\': \\'    /* 发送数据 */\\', \\'98\\': \\'    USART1->DR = data;\\', \\'99\\': \\'}\\'})', 'id': 'lc_61d8611b-cf14-4d01-ad9c-afbd70180526'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetMMIOFunctionInfo",
+            "id": "04080713-99f5-422a-8bcb-7bb3593c3aea",
+            "tool_call_id": "call_00_BK03SWPX5XRnnTnnzVmGnHVF",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Let me also check the function call stack to understand its context:",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 67,
+                "prompt_tokens": 6938,
+                "total_tokens": 7005,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 6272
+                },
+                "prompt_cache_hit_tokens": 6272,
+                "prompt_cache_miss_tokens": 666
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "2de459a0-aa04-48cf-9211-9c6cc4341c20",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--72d6d511-d8ee-4ba8-98d6-29345aa23892-0",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": {
+                  "func_name": "mmio_uart_send_byte_direct"
+                },
+                "id": "call_00_1uT7aiRw1rHCG1aiGqAgDj0w",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 6938,
+              "output_tokens": 67,
+              "total_tokens": 7005,
+              "input_token_details": {
+                "cache_read": 6272
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='mixed_uart_operation', callee_name='mmio_uart_send_byte_direct', call_tag='call to mmio_uart_send_byte_direct', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=142, call_type='direct', ret_type='noReturnValue', start_line_content='        mmio_uart_send_byte_direct(*msg);')]\", 'id': 'lc_70b0a96c-e521-4460-9a17-98195f4be799'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetFunctionCallStack",
+            "id": "81255611-cf48-49ce-a2af-f19eedcb60a5",
+            "tool_call_id": "call_00_1uT7aiRw1rHCG1aiGqAgDj0w",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Now let me check the driver information to understand the broader context:",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 57,
+                "prompt_tokens": 7187,
+                "total_tokens": 7244,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 6976
+                },
+                "prompt_cache_hit_tokens": 6976,
+                "prompt_cache_miss_tokens": 211
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "25afe6ef-5991-48d3-a842-d073d0e92c23",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--beae1efd-2bf8-451a-97b5-008ffa20fdf5-0",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": {
+                  "driver_name": "uart"
+                },
+                "id": "call_00_StcbDuT0o1OSzTdKfEctKbFU",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 7187,
+              "output_tokens": 57,
+              "total_tokens": 7244,
+              "input_token_details": {
+                "cache_read": 6976
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': 'Driver not found: uart', 'id': 'lc_a7534b95-611b-41aa-92d5-5513c7c78b5a'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetDriverInfo",
+            "id": "7ab621cb-e8f2-45ac-a236-31926ae16535",
+            "tool_call_id": "call_00_StcbDuT0o1OSzTdKfEctKbFU",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Based on my analysis, let me classify the function `mmio_uart_send_byte_direct`:\n\n## Analysis\n\n1. **Function Purpose**: The function `mmio_uart_send_byte_direct` is a UART data transmission function that sends a single byte of data via USART1.\n\n2. **Key Characteristics**:\n   - **Parameter**: `uint8_t data` - the byte to be transmitted\n   - **Return Type**: `void` - no return value\n   - **Hardware Operations**: \n     - Polling loop waiting for USART1 transmit buffer empty flag (`USART1->SR & 0x0080`)\n     - Writing data to USART1 data register (`USART1->DR = data`)\n   - **Control Flow**: Contains a `while` loop that depends on hardware status register\n\n3. **MMIO Analysis**: The function contains:\n   - A polling loop that reads `USART1->SR` register to check transmit buffer status\n   - A write operation to `USART1->DR` register to send data\n   - The MMIO operations are directly tied to peripheral hardware access\n\n4. **Classification Reasoning**:\n   - This function performs **data transmission** (sending a byte via UART)\n   - It contains a **polling loop** waiting for hardware status\n   - It writes data to a peripheral data register\n   - According to the classification criteria, this is a **RECV** function (Data Transmission/Reception Functions) because it performs critical data I/O operations\n   - The function also contains a **LOOP** element (polling wait), but the primary purpose is data transmission\n\n5. **Replacement Strategy**:\n   - For the polling loop: Remove the hardware-dependent wait loop\n   - For data transmission: Replace with `HAL_BE_Out()` to simulate transmission\n   - Preserve the function signature and parameter handling\n\n```json\n{\n  \"function_name\": \"mmio_uart_send_byte_direct\",\n  \"function_type\": \"RECV\",\n  \"functionality\": \"Sends a single byte of data via USART1 UART peripheral using direct MMIO access with polling wait for transmit buffer empty\",\n  \"classification_reason\": \"Function performs data transmission (UART send) with hardware-dependent polling loop. GetMMIOFunctionInfo revealed register accesses to USART1->SR (status check) and USART1->DR (data write). The function contains a while loop polling hardware status flag (0x0080 = transmit buffer empty). This matches RECV classification criteria for data transmission functions. The function is called by mixed_uart_operation for sending data.\",\n  \"has_replacement\": true,\n  \"function_replacement\": \"void mmio_uart_send_byte_direct(uint8_t data)\\n{\\n    /* [LOOP REMOVED] Waited for hardware transmit buffer empty flag */\\n    /* Skip hardware polling: while (!(USART1->SR & 0x0080)) */\\n    \\n    /* Simulate data transmission */\\n    HAL_BE_Out(1); /* Send 1 byte */\\n    \\n    /* Original hardware write removed: USART1->DR = data; */\\n}\"\n}\n```",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 692,
+                "prompt_tokens": 7310,
+                "total_tokens": 8002,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 7232
+                },
+                "prompt_cache_hit_tokens": 7232,
+                "prompt_cache_miss_tokens": 78
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "97ae9989-88f7-4c18-bfac-27ea38bad453",
+              "finish_reason": "stop",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--74e46ea3-a9b3-47d9-9665-0dbbd508d539-0",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 7310,
+              "output_tokens": 692,
+              "total_tokens": 8002,
+              "input_token_details": {
+                "cache_read": 7232
+              },
+              "output_token_details": {}
+            }
+          }
+        ],
+        "final_response": {
+          "function_name": "mmio_uart_send_byte_direct",
+          "function_type": "RECV",
+          "functionality": "Sends a single byte of data via USART1 UART peripheral using direct MMIO access with polling wait for transmit buffer empty",
+          "classification_reason": "Function performs data transmission (UART send) with hardware-dependent polling loop. GetMMIOFunctionInfo revealed register accesses to USART1->SR (status check) and USART1->DR (data write). The function contains a while loop polling hardware status flag (0x0080 = transmit buffer empty). This matches RECV classification criteria for data transmission functions. The function is called by mixed_uart_operation for sending data.",
+          "has_replacement": true,
+          "function_replacement": "void mmio_uart_send_byte_direct(uint8_t data)\n{\n    /* [LOOP REMOVED] Waited for hardware transmit buffer empty flag */\n    /* Skip hardware polling: while (!(USART1->SR & 0x0080)) */\n    \n    /* Simulate data transmission */\n    HAL_BE_Out(1); /* Send 1 byte */\n    \n    /* Original hardware write removed: USART1->DR = data; */\n}"
+        },
+        "function_name": "mmio_uart_send_byte_direct"
+      },
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-23T02:05:57.909448",
+      "agent_name": "analyzer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "respond",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "total_messages": 11,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name",
+          "final_response"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-23T02:05:57.918572",
+      "agent_name": "function_classify",
+      "interaction_type": "result",
+      "function_name": "loop_mmio_operation",
+      "data": {
+        "messages": [
+          {
+            "content": "\n**Role**: You are an embedded software engineer tasked with replacing driver library functions to eliminate dependencies on peripheral hardware (I/O operations, register access, etc.) while preserving normal functionality and MCU-related operations (including OS scheduling and interrupt triggering).\n\n**Overall Process**:\n1.  **Information Gathering**: Obtain the complete function implementation and context information using available tools.\n2.  **Analysis Phase**: Analyze the function to understand its MMIO accesses, call relationships, data structures used, and core logic.\n3.  **Classification Phase**: Categorize the function into one of the defined types based on the analysis.\n4.  **Processing Phase**:\n    *   For functions classified as **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code according to the specified strategy.\n    *   For functions classified as **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Only provide the classification and reasoning. **Do not generate replacement code** unless explicitly requested later.\n\n---\n\n### **Available Tools for Information Gathering**\n\nYou have access to the following tools to gather information about functions and their context:\n\n1.  **GetFunctionInfo(func_name: str)**: Retrieves detailed information about a function, including its implementation code, parameters, return type, and location.\n    *   **When to use**: Always call this tool first to get the function's implementation code.\n    *   **Example**: `GetFunctionInfo(\"HAL_UART_Receive\")`\n\n2.  **GetMMIOFunctionInfo(func_name: str)**: Checks if a function contains MMIO operations and provides details about those operations.\n    *   **When to use**: After getting the function info, call this to identify any hardware register accesses.\n    *   **Example**: `GetMMIOFunctionInfo(\"UART0_IRQHandler\")`\n\n3.  **GetStructOrEnumInfo(struct_name: str)**: Retrieves information about a specific struct or enum type used by the function.\n    *   **When to use**: When you need to understand the data structures used in the function implementation.\n    *   **Example**: `GetStructOrEnumInfo(\"UART_Type\")`\n\n4.  **GetFunctionCallStack(func_name: str)**: Retrieves information about functions that call this function and functions called by this function.\n    *   **When to use**: When you need to understand the function's context and dependencies.\n    *   **Example**: `GetFunctionCallStack(\"SPI_Transfer\")`\n\n5.  **GetDriverInfo(driver_name: str)**: Retrieves information about a specific driver module.\n    *   **When to use**: When you need to understand the broader driver context of the function.\n    *   **Example**: `GetDriverInfo(\"uart\")`\n\n**Tool Usage Best Practices**:\n- **Always start with GetFunctionInfo** to get the function's implementation code.\n- **Use GetMMIOFunctionInfo** immediately after to identify hardware dependencies.\n- **Use GetStructOrEnumInfo** when you encounter unknown data structures in the function code.\n- **Use GetFunctionCallStack** if you need to understand the function's role in the system or its call relationships.\n- **Use GetDriverInfo** to understand the broader driver context when classifying functions related to a specific peripheral.\n- **Tool Usage Sequence**: GetFunctionInfo → GetMMIOFunctionInfo → [GetStructOrEnumInfo | GetFunctionCallStack | GetDriverInfo] (as needed)\n- **Error Handling**: If a tool call fails (e.g., function not found), try alternative tool calls or classify as NEEDCHECK with explanation.\n\n---\n\n### **Function Classification and Replacement Strategy**\n\n#### **Priority 1: Functions Requiring Replacement (Generate Code)**\n\n1.  **RECV (Data Transmission/Reception Functions)**\n    *   **Identification**: Functions performing critical data I/O, DMA buffer management, or peripheral data transfer (read/write).\n    *   **Examples**: `HAL_UART_Receive`, `ETH_ReadFrame`, `SPI_Receive`\n    *   **Strategy**:\n        *   For **data reception**: Replace with calls to `HAL_BE_In(void* buf, int len)` (fixed size) or `HAL_BE_ENET_ReadFrame(void* buf, int length)` (variable length packet).\n        *   For **data transmission**: Redirect output to `stdout` (e.g., using `printf`) or, if non-critical and does not affect state, skip the operation.\n    *   **Critical**: Preserve all non-I/O logic (buffer pointer updates, state flags, data processing).\n    *   **Example Replacement**:\n        ```c\n        // Original\n        HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)\n        {\n            // ... hardware-specific code ...\n            while ((huart->Instance->SR & UART_FLAG_RXNE) == 0) {\n                // Timeout handling\n            }\n            *pData = (uint8_t)(huart->Instance->DR & (uint8_t)0x00FF);\n            // ... more hardware-specific code ...\n        }\n\n        // Replacement\n        HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)\n        {\n            // Simulate data reception\n            HAL_BE_In(pData, Size);\n            // Preserve non-I/O logic\n            huart->RxXferCount = 0;\n            huart->RxXferSize = Size;\n            huart->RxState = HAL_UART_STATE_READY;\n            return HAL_OK;\n        }\n        ```\n\n2.  **IRQ (Interrupt-Related Functions)**\n    *   **Identification**: Interrupt handlers (e.g., `*_IRQHandler`) or functions containing interrupt enable/disable operations.\n    *   **Examples**: `UART0_IRQHandler`, `EXTI0_IRQHandler`, `HAL_TIM_IRQHandler`\n    *   **Strategy**:\n        *   Remove actual hardware operations (e.g., writing to interrupt control registers).\n        *   **Preserve**: Interrupt flag checks, OS interrupt notifications (e.g., `xSemaphoreGiveFromISR`), state machine updates.\n        *   Ensure the execution flow can reach the original data handling or task triggering branches.\n    *   **Example Replacement**:\n        ```c\n        // Original\n        void UART0_IRQHandler(void)\n        {\n            if ((UART0->S1 & UART_S1_RDRF_MASK) != 0U) {\n                data = UART0->D;\n                process_data(data);\n                xSemaphoreGiveFromISR(semaphore, &xHigherPriorityTaskWoken);\n            }\n            // Clear interrupt flags\n            UART0->S1 |= UART_S1_TDRE_MASK;\n        }\n\n        // Replacement\n        void UART0_IRQHandler(void)\n        {\n            // Simulate interrupt flag being set\n            data = HAL_BE_In(&data, 1);\n            process_data(data);\n            xSemaphoreGiveFromISR(semaphore, &xHigherPriorityTaskWoken);\n            // No need to clear hardware interrupt flags\n        }\n        ```\n\n3.  **INIT (Initialization Functions)**\n    *   **Identification**: Functions that initialize peripheral/configurations or allocate resources.\n    *   **Examples**: `HAL_UART_Init`, `SPI_Init`, `ETH_Init`\n    *   **Strategy**:\n        *   Remove all MMIO/register access operations.\n        *   Preserve resource allocation (e.g., `malloc`), structure initialization, and default value setting.\n        *   Ensure the logical post-initialization state matches the expected state after hardware init.\n    *   **Example Replacement**:\n        ```c\n        // Original\n        HAL_StatusTypeDef HAL_UART_Init(UART_HandleTypeDef *huart)\n        {\n            // Enable UART clock\n            __HAL_RCC_USART1_CLK_ENABLE();\n            // Configure UART registers\n            huart->Instance->CR1 = USART_CR1_UE | USART_CR1_TE | USART_CR1_RE;\n            huart->Instance->BRR = UART_BRR_SAMPLING16(HAL_RCC_GetPCLK2Freq(), huart->Init.BaudRate);\n            // ... more hardware configuration ...\n            huart->State = HAL_UART_STATE_READY;\n            return HAL_OK;\n        }\n\n        // Replacement\n        HAL_StatusTypeDef HAL_UART_Init(UART_HandleTypeDef *huart)\n        {\n            // Preserve structure initialization\n            huart->State = HAL_UART_STATE_READY;\n            huart->ErrorCode = HAL_UART_ERROR_NONE;\n            // Skip hardware-specific configuration\n            return HAL_OK;\n        }\n        ```\n\n4.  **LOOP (Peripheral-Dependent Loops)**\n    *   **Identification**: Loops where the condition or body depends on peripheral registers (e.g., polling status flags).\n    *   **Examples**: Waiting for transmission complete, reading from FIFO until empty\n    *   **Strategy**:\n        *   If waiting for a status flag: **Skip the loop entirely** (assume the condition is already met).\n        *   If reading data from a FIFO until empty: **Replace with a single read or a call to a simulation receive function**.\n        *   Add a comment explaining the original loop's purpose.\n    *   **Examples**:\n        ```c\n        // Original: Wait last char shifted out\n        while (0U == (base->S1 & UART_S1_TC_MASK))\n        {\n        }\n        // Replacement: Skip the wait loop, assume transmission complete\n        /* [LOOP REMOVED] Waited for hardware transmission complete flag */\n\n        // Original: Read to clear overrun flag\n        while ((base->S1 & UART_S1_RDRF_MASK) != 0U)\n        {\n            (void)base->D;\n        }\n        // Replacement: Replace with a single simulated read\n        (void)HAL_BE_In(NULL, 1); /* Simulate reading to clear overrun flag */\n        ```\n\n#### **Priority 2: Classification Only (Do Not Generate Code Now)**\n\n5.  **RETURNOK (Pure Driver Operation Functions)**\n    *   **Identification**: Functions that only manipulate peripheral registers with no impact on upper-layer data structures.\n    *   **Examples**: `HAL_GPIO_WritePin`, `SPI_SetBaudRate`\n    *   **Strategy (Note)**: Would simply return a success value (e.g., `HAL_OK`, `0`) or a safe default.\n\n6.  **SKIP (Non-Critical Driver Functions)**\n    *   **Identification**: Functions performing optional operations that can be safely ignored (e.g., minor configuration, debug output).\n    *   **Examples**: `HAL_UART_MspInit`, `UART_PrintDebugInfo`\n    *   **Strategy (Note)**: Would be replaced with an empty implementation or a success return.\n\n7.  **NEEDCHECK (Mixed-Functionality Functions)**\n    *   **Identification**: Functions mixing hardware operations with significant upper-layer logic (state machines, data structure management, protocol handling), or functions where you cannot confidently determine the classification.\n    *   **Examples**: Complex protocol handlers, state machine functions with hardware dependencies, functions where tool calls failed to provide sufficient information\n    *   **Strategy (Note)**: Would require removing hardware operations while meticulously preserving all non-driver logic. **Flag for manual review**.\n\n8.  **NODRIVER (Non-Driver Functions)**\n    *   **Identification**: Functions incorrectly flagged as driver-dependent but containing no hardware-specific operations.\n    *   **Examples**: Utility functions, data processing functions, math functions\n    *   **Strategy (Note)**: Should be left unchanged.\n\n---\n\n### **General Replacement Rules**\n\n1.  **Return Type**: Do not change the function's return type.\n2.  **No New Declarations**: Do not add `extern` declarations; assume global variables/definitions exist.\n3.  **No New Headers**: Do not add `#include` directives.\n4.  **Preserve OS Operations**: Do not modify any OS-related calls (scheduling, semaphores, queues, interrupt notifications).\n5.  **Preserve Preprocessor Directives**: Keep `#ifdef`, `#if`, etc., unchanged. Do not add new ones.\n6.  **Use Only Provided Helpers**: Only use the helper functions listed below. Do not introduce standard library I/O functions (e.g., `fflush`, `read`, `write`).\n\n**Provided Helper Functions**:\n```c\nint HAL_BE_return_0(); // Returns 0 (typically success)\nint HAL_BE_return_1(); // Returns 1\nint HAL_BE_Out(int len); // Simulates data transmission (can be skipped)\nint HAL_BE_In(void* buf, int len); // Simulates fixed-length data reception\nint HAL_BE_ENET_ReadFrame(void* buf, int length); // Simulates variable-length packet reception\nint HAL_BE_Block_Write(void* buf, int block_size, int block_num); // Simulates block write to storage\nint HAL_BE_Block_Read(void* buf, int block_size, int block_num); // Simulates block read from storage\n```\n\n---\n\n### **Detailed Function Replacement Generation Steps**\n\nWhen generating replacement code for **RECV, IRQ, INIT, or LOOP** functions, follow these meticulous steps:\n\n1.  **Step 1: Parameter and Return Type Analysis**\n    *   **Examine every function parameter and return type**:\n        *   Identify its **data type** (e.g., `uint32_t`, `UART_Type *`, `void *`, `struct eth_frame *`).\n        *   For **pointer parameters**, determine the **underlying data structure** it points to (if not `void*`). Understand if it is used for input, output, or both.\n        *   Note that since potential type conversions may exist within the function context, when `void*` or `void**` appears in parameters or return values, you must carefully examine the context and infer their specific types.\n\n2.  **Step 2: Data Structure and Global Variable Mapping**\n    *   Identify all **structs, enums, and macros** used in the function (e.g., `UART_Type`, `ETH_DMARxDesc_TypeDef`).\n    *   Do not redefine them. Assume their definitions are available globally.\n    *   Note any **global variables** or **peripheral instance pointers** (like `UART0`, `&huart1`) accessed by the function. Their declarations are assumed to exist.\n\n3.  **Step 3: MMIO and Hardware Operation Identification**\n    *   Locate all **register accesses** (e.g., `base->DR = data`, `status = reg->SR`).\n    *   Identify **polling loops** waiting for status flags (`while ((reg->ISR & FLAG) == 0)`).\n    *   Identify **data read/write operations** from/to peripheral data registers or FIFOs (`data = base->RDR`, `base->TDR = *pData++`).\n    *   Identify **interrupt control operations** (enable/disable/clear).\n\n4.  **Step 4: Non-Driver Logic Preservation**\n    *   **Isolate and preserve**:\n        *   **Buffer management logic**: Pointer increments, buffer index updates, length checks.\n        *   **State machine updates**: Changing state variables (`huart->RxState = HAL_UART_STATE_READY`).\n        *   **OS/RTOS interactions**: Calls to `xQueueSendFromISR()`, `xSemaphoreGive()`, `vTaskNotifyGive()`.\n        *   **Error checking and logging**: Conditional checks on data validity, error counter increments (if not tied to hardware status).\n        *   **Callback functions**: Invocations of user-provided callback pointers (`htim->PeriodElapsedCallback()`).\n\n5.  **Step 5: Apply Replacement Strategy & Generate Code**\n    *   **RECV**:\n        *   For **reads**: Replace the hardware read sequence with a call to `HAL_BE_In(buf, len)` or `HAL_BE_ENET_ReadFrame(buf, max_len)`. Ensure the `len` argument matches the original intended read size.\n        *   For **writes**: Replace with `printf` or `HAL_BE_Out(len)`, or if safe, skip. **Crucially, preserve any post-transmission logic** (e.g., updating a `txComplete` flag).\n    *   **IRQ**:\n        *   Remove lines that write to interrupt enable/clear registers.\n        *   Keep the **condition checks** that would typically read interrupt flags, but **replace the MMIO read with a non-zero value or variable** to ensure desired branch execution (especially the branch that handles received data).\n        *   Keep all OS calls and state updates inside those branches.\n    *   **INIT**:\n        *   Remove all register writes (`base->CR1 = VALUE`).\n        *   Keep structure member initialization (`handle->Mode = UART_MODE_TX_RX`).\n        *   Keep memory allocation (`handle->pRxBuffPtr = malloc(SIZE)`).\n        *   Set initialization status variables to their \"ready\" state (`handle->State = HAL_UART_STATE_READY`).\n    *   **LOOP**:\n        *   For **polling/wait loops**: Comment out or remove the entire `while` loop. Add a comment: `/* [LOOP REMOVED] Waited for hardware flag. */`\n        *   For **data drain loops** (reading until a FIFO is empty): Replace with a single call to a helper if needed for state consistency, or remove if only clearing flags.\n\n6.  **Step 6: Final Validation (Mental Check)**\n    *   **Return Value**: Ensure the function returns a value consistent with its original successful execution (e.g., `return HAL_OK;`, `return 0;`, `return numberOfBytesRead;`). Use `HAL_BE_return_0()` or `HAL_BE_return_1()` if appropriate.\n    *   **Control Flow**: Verify that no critical `if` or `switch` branch has become unreachable due to removed hardware conditions. Adjust temporary variables if needed to guide flow.\n    *   **Data Consistency**: Ensure that any output parameters (pointer arguments) are written with plausible data, as the helper functions are expected to simulate this.\n    *   **Compilation Safety**: The generated code must be valid C syntax using only existing types and the allowed helper functions.\n\n**Critical Code Generation Rules**:\n1.  Absolutely prohibit fabricating undefined address constants (such as 0x20000000, 0x40000000, etc.)\n2.  Absolutely prohibit fabricating undeclared global variables, macro definitions, or functions\n3.  Only use:\n    - Variables and parameters existing in the current code snippet\n    - Standard APIs of libraries/frameworks\n    - Reasonable values explicitly derived from the context\n4.  If a parameter requires a specific value, you must:\n    - Use values already present in function parameters\n    - Use existing fields within structures/objects\n    - Or clearly comment on the source of the value\n5.  After generation, verify that every variable/constant has a clearly defined source\n\n---\n\n### **Execution Instructions**\n\nWhen provided with a function name for classification and analysis, follow these steps:\n\n1.  **First, get the function information**:\n    *   **Mandatory**: Call `GetFunctionInfo(func_name)` to obtain the function's implementation code and basic information.\n    *   **Mandatory**: Call `GetMMIOFunctionInfo(func_name)` to identify any hardware register accesses.\n    *   **Optional**: For complex functions, use `GetStructOrEnumInfo(struct_name)` to understand data structures, `GetFunctionCallStack(func_name)` to understand context, and `GetDriverInfo(driver_name)` to understand broader driver context.\n    *   **Complete Information**: Ensure you have sufficient information to make an accurate classification before proceeding.\n\n2.  **Analyze the function**:\n    *   Understand the function's purpose, key operations (MMIO, I/O, OS calls), and control flow.\n    *   Identify any hardware-dependent operations that need to be replaced.\n    *   Map the function to the appropriate classification based on the criteria above.\n\n3.  **Classify the function**:\n    *   Determine the appropriate function type based on the analysis.\n    *   Use the following priority order when multiple classifications might apply: RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER\n    *   If you cannot confidently classify the function (e.g., insufficient information, ambiguous characteristics), use **NEEDCHECK**.\n\n4.  **Generate output according to the classification**:\n    *   For **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code following the detailed steps.\n    *   For **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Provide classification and reasoning only.\n\n**Output Format**: Your response must be structured to match the following fields exactly. Ensure all fields are present and correctly formatted as JSON:\n\n```json\n{\n  \"function_name\": \"<name_of_the_function>\",\n  \"function_type\": \"<one_of_RECV_IRQ_INIT_LOOP_RETURNOK_SKIP_NEEDCHECK_NODRIVER>\",\n  \"functionality\": \"<brief_description_of_function_purpose>\",\n  \"classification_reason\": \"<detailed_explanation_of_classification_based_on_analysis>\",\n  \"has_replacement\": <true_or_false>,\n  \"function_replacement\": \"<complete_replacement_code_or_empty_string>\"\n}\n```\n\n**Output Generation Guidelines**:\n- **function_name**: Exactly match the function name provided in the input.\n- **function_type**: Use only the exact string values defined (case-sensitive).\n- **functionality**: Brief, clear description (1-2 sentences) of what the function does.\n- **classification_reason**: Detailed explanation including:\n  - Key characteristics identified\n  - Tool usage and findings (e.g., \"GetMMIOFunctionInfo revealed register accesses...\")\n  - Why this classification was chosen over others\n  - Any ambiguity or special considerations\n- **has_replacement**: True for RECV, IRQ, INIT, LOOP; False for others.\n- **function_replacement**: Complete replacement code for RECV/IRQ/INIT/LOOP; empty string for others.\n\n**Important Notes**:\n- Ensure your output is compatible with the FunctionClassifyResponse Pydantic model.\n- Always provide the full function signature in the replacement code.\n- Preserve all comments that are not related to hardware operations.\n- If you encounter any errors or ambiguities during analysis, use **NEEDCHECK** classification and explain the issue in the reasoning.\n- Your analysis should be based solely on the information obtained from tool calls, not assumptions.\n",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "system",
+            "name": null,
+            "id": "2f96e850-0615-4ea4-b55a-fe13ad5fee8c"
+          },
+          {
+            "content": "Classify the function : loop_mmio_operation",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "human",
+            "name": null,
+            "id": "1ada5a1c-8187-483f-b5e8-83b0ecf43705"
+          },
+          {
+            "content": "I'll help you classify the function `loop_mmio_operation`. Let me start by gathering information about this function using the available tools.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 78,
+                "prompt_tokens": 5706,
+                "total_tokens": 5784,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 5696
+                },
+                "prompt_cache_hit_tokens": 5696,
+                "prompt_cache_miss_tokens": 10
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "8a6e982c-30e9-4d28-b05b-80fe3d76f088",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--3a0b07e5-ed7f-4285-8016-278244b02a46-0",
+            "tool_calls": [
+              {
+                "name": "GetFunctionInfo",
+                "args": {
+                  "func_name": "loop_mmio_operation"
+                },
+                "id": "call_00_OjVLhOPpXSEFPj8XhLhya293",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 5706,
+              "output_tokens": 78,
+              "total_tokens": 5784,
+              "input_token_details": {
+                "cache_read": 5696
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': 'Function info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n    }\\\\n}\\\\n\\', function_content_in_lines={\\'162\\': \\'void loop_mmio_operation(const uint8_t *data, size_t size)\\', \\'163\\': \\'{\\', \\'164\\': \\'    for (size_t i = 0; i < size; i++) {\\', \\'165\\': \\'        /* 循环中的 MMIO 操作 */\\', \\'166\\': \\'        while (!(USART1->SR & 0x0080)) {\\', \\'167\\': \\'            __asm__ volatile (\"nop\");\\', \\'168\\': \\'        }\\', \\'169\\': \\'        USART1->DR = data[i];\\', \\'170\\': \\'    }\\', \\'171\\': \\'}\\'})', 'id': 'lc_8f65bc84-571a-4519-a400-f1d94cb4ae26'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetFunctionInfo",
+            "id": "e0c9cc14-905d-42b3-853f-2e03bd21a290",
+            "tool_call_id": "call_00_OjVLhOPpXSEFPj8XhLhya293",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Now let me check for MMIO operations in this function:",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 63,
+                "prompt_tokens": 6192,
+                "total_tokens": 6255,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 6144
+                },
+                "prompt_cache_hit_tokens": 6144,
+                "prompt_cache_miss_tokens": 48
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "a4ed8848-3534-414e-a25f-965821411875",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--9bb7d790-e267-4545-ae60-c585e1acab10-0",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionInfo",
+                "args": {
+                  "func_name": "loop_mmio_operation"
+                },
+                "id": "call_00_rE2DePoYop5wz1a8myLVmRz3",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 6192,
+              "output_tokens": 63,
+              "total_tokens": 6255,
+              "input_token_details": {
+                "cache_read": 6144
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': 'MMIO Exprs info: [MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'while\\'), MmioExprInfo(name=\\'! ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'unary\\', enclosing_type=\\'control_flow\\'), MmioExprInfo(name=\\'... & ...\\', function=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', start_line=166, expr_type=\\'binary\\', enclosing_type=\\'skip\\')]\\nFunction info: FunctionInfo(name=\\'loop_mmio_operation\\', file_path=\\'/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c\\', location_line=162, function_content=\\'/* 循环中的 MMIO 操作 */\\\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\\\n{\\\\n    for (size_t i = 0; i < size; i++) {\\\\n        /* 循环中的 MMIO 操作 */\\\\n        while (!(USART1->SR & 0x0080)) {\\\\n            __asm__ volatile (\"nop\");\\\\n        }\\\\n        USART1->DR = data[i];\\\\n    }\\\\n}\\\\n\\', function_content_in_lines={\\'162\\': \\'void loop_mmio_operation(const uint8_t *data, size_t size)\\', \\'163\\': \\'{\\', \\'164\\': \\'    for (size_t i = 0; i < size; i++) {\\', \\'165\\': \\'        /* 循环中的 MMIO 操作 */\\', \\'166\\': \\'        while (!(USART1->SR & 0x0080)) {\\', \\'167\\': \\'            __asm__ volatile (\"nop\");\\', \\'168\\': \\'        }\\', \\'169\\': \\'        USART1->DR = data[i];\\', \\'170\\': \\'    }\\', \\'171\\': \\'}\\'})', 'id': 'lc_c7d75ad1-a89f-4c9c-bc2d-5c7b1833039f'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetMMIOFunctionInfo",
+            "id": "22d50c83-dd01-4942-84be-b3aa87e18b1f",
+            "tool_call_id": "call_00_rE2DePoYop5wz1a8myLVmRz3",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Let me also check the call stack to understand the context better:",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 63,
+                "prompt_tokens": 6902,
+                "total_tokens": 6965,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 6208
+                },
+                "prompt_cache_hit_tokens": 6208,
+                "prompt_cache_miss_tokens": 694
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "a0de2312-34d4-4844-b709-c2bfc8bd20ff",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--511ebe17-5cb9-46de-938c-ec290e1ff3fc-0",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallStack",
+                "args": {
+                  "func_name": "loop_mmio_operation"
+                },
+                "id": "call_00_qhdlKNBe5JrKKlj3mphzOrAA",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 6902,
+              "output_tokens": 63,
+              "total_tokens": 6965,
+              "input_token_details": {
+                "cache_read": 6208
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': \"Function call to info: []\\nFunction call from info: [FunctionCallInfo(caller_name='main', callee_name='loop_mmio_operation', call_tag='call to loop_mmio_operation', file_path='/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c', start_line=217, call_type='direct', ret_type='noReturnValue', start_line_content='    loop_mmio_operation(test_data, sizeof(test_data) - 1);')]\", 'id': 'lc_a475f25a-0703-4f9d-ad55-9ad1df17512d'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetFunctionCallStack",
+            "id": "933925cd-4fdb-41f8-8b86-02e745babd68",
+            "tool_call_id": "call_00_qhdlKNBe5JrKKlj3mphzOrAA",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Now let me check the driver information to understand the broader context:",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 57,
+                "prompt_tokens": 7139,
+                "total_tokens": 7196,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 6912
+                },
+                "prompt_cache_hit_tokens": 6912,
+                "prompt_cache_miss_tokens": 227
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "47417ca7-7502-423a-826d-b245d16e49cf",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--2e043574-b36a-432c-921e-aaf7aec75410-0",
+            "tool_calls": [
+              {
+                "name": "GetDriverInfo",
+                "args": {
+                  "driver_name": "uart"
+                },
+                "id": "call_00_dLpfx3hDghlwMrWwMw3XSHZY",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 7139,
+              "output_tokens": 57,
+              "total_tokens": 7196,
+              "input_token_details": {
+                "cache_read": 6912
+              },
+              "output_token_details": {}
+            }
+          },
+          {
+            "content": "[{'type': 'text', 'text': 'Driver not found: uart', 'id': 'lc_d7a98cd0-2b05-4ce0-bdfb-9cd72090f9de'}]",
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "GetDriverInfo",
+            "id": "1d6e2845-4a90-4393-961c-7c19d1cb05d4",
+            "tool_call_id": "call_00_dLpfx3hDghlwMrWwMw3XSHZY",
+            "artifact": null,
+            "status": "success"
+          },
+          {
+            "content": "Based on my analysis, I now have sufficient information to classify the function. Let me analyze what I've found:\n\n1. **Function Information**: The function `loop_mmio_operation` is defined in `/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c` at line 162.\n\n2. **Function Implementation**: The function takes `const uint8_t *data` and `size_t size` as parameters and returns `void`. It contains:\n   - A `for` loop that iterates through each byte in the data buffer\n   - Inside the loop, there's a `while` loop that polls the USART1 status register (USART1->SR) waiting for bit 0x0080 to be set\n   - After the wait loop, it writes data to the USART1 data register (USART1->DR)\n\n3. **MMIO Operations**: The function contains MMIO operations:\n   - Reading from `USART1->SR` in a while loop condition\n   - Writing to `USART1->DR` to transmit data\n\n4. **Call Stack**: The function is called directly from `main()` at line 217.\n\n5. **Function Purpose**: This function appears to be a data transmission function that sends data byte-by-byte through USART1, polling for transmission readiness before writing each byte.\n\n**Classification Analysis**:\n- The function contains a **polling loop** (`while (!(USART1->SR & 0x0080))`) that waits for a hardware status flag\n- It performs **data transmission** by writing to `USART1->DR`\n- This matches the **LOOP** classification criteria: \"Loops where the condition or body depends on peripheral registers (e.g., polling status flags)\"\n- Specifically, it's a polling wait loop for transmission complete status\n\nHowever, looking more closely at the overall functionality, this function is primarily performing **data transmission** (writing data to USART1->DR) with a polling loop. According to the priority order (RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER), since it's performing data transmission, it should be classified as **RECV** (which includes both reception and transmission functions).\n\nBut wait, let me reconsider based on the actual implementation. The function is writing data to a peripheral (transmission), not reading data. The classification guidelines state that RECV includes \"data transmission\" functions, and the strategy for data transmission is to \"redirect output to `stdout` (e.g., using `printf`) or, if non-critical and does not affect state, skip the operation.\"\n\nGiven that this function has a polling loop that depends on peripheral registers, and it's performing data transmission, I believe it should be classified as **RECV** with the polling loop handled as part of the LOOP strategy.\n\nActually, re-examining the classification criteria more carefully:\n- **RECV**: \"Functions performing critical data I/O, DMA buffer management, or peripheral data transfer (read/write)\"\n- **LOOP**: \"Loops where the condition or body depends on peripheral registers (e.g., polling status flags)\"\n\nThis function has BOTH characteristics: it performs data transmission (RECV) AND has a polling loop that depends on peripheral registers (LOOP). According to the priority order (RECV > IRQ > INIT > LOOP), RECV has higher priority than LOOP, so I should classify it as **RECV**.\n\nLet me generate the replacement code accordingly:\n\n```json\n{\n  \"function_name\": \"loop_mmio_operation\",\n  \"function_type\": \"RECV\",\n  \"functionality\": \"Transmits data byte-by-byte through USART1 with polling for transmission readiness\",\n  \"classification_reason\": \"Function performs data transmission (writing to USART1->DR) which falls under RECV classification for peripheral data transfer. It also contains a polling loop waiting for hardware status flag (USART1->SR & 0x0080), but RECV has higher priority than LOOP in the classification hierarchy. GetMMIOFunctionInfo confirmed MMIO operations including register reads and writes. The function is called from main() to transmit test data.\",\n  \"has_replacement\": true,\n  \"function_replacement\": \"/* 循环中的 MMIO 操作 */\\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\\n{\\n    for (size_t i = 0; i < size; i++) {\\n        /* [LOOP REMOVED] Waited for hardware transmission ready flag */\\n        /* Skip the polling loop, assume transmission is ready */\\n        \\n        /* Simulate data transmission */\\n        HAL_BE_Out(1); /* Simulate transmitting one byte */\\n        \\n        /* Preserve any non-I/O logic if present */\\n    }\\n}\"\n}\n```",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 1043,
+                "prompt_tokens": 7262,
+                "total_tokens": 8305,
+                "completion_tokens_details": null,
+                "prompt_tokens_details": {
+                  "audio_tokens": null,
+                  "cached_tokens": 7168
+                },
+                "prompt_cache_hit_tokens": 7168,
+                "prompt_cache_miss_tokens": 94
+              },
+              "model_provider": "deepseek",
+              "model_name": "deepseek-chat",
+              "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache",
+              "id": "c5abe889-e2c8-4241-930a-166936b0f2d5",
+              "finish_reason": "stop",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--86911f08-c53d-4f96-aa6f-eb0ffa2f0155-0",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 7262,
+              "output_tokens": 1043,
+              "total_tokens": 8305,
+              "input_token_details": {
+                "cache_read": 7168
+              },
+              "output_token_details": {}
+            }
+          }
+        ],
+        "final_response": {
+          "function_name": "loop_mmio_operation",
+          "function_type": "RECV",
+          "functionality": "Transmits data byte-by-byte through USART1 with polling for transmission readiness",
+          "classification_reason": "Function performs data transmission (writing to USART1->DR) which falls under RECV classification for peripheral data transfer. It also contains a polling loop waiting for hardware status flag (USART1->SR & 0x0080), but RECV has higher priority than LOOP in the classification hierarchy. GetMMIOFunctionInfo confirmed MMIO operations including register reads and writes. The function is called from main() to transmit test data.",
+          "has_replacement": true,
+          "function_replacement": "/* 循环中的 MMIO 操作 */\nvoid loop_mmio_operation(const uint8_t *data, size_t size)\n{\n    for (size_t i = 0; i < size; i++) {\n        /* [LOOP REMOVED] Waited for hardware transmission ready flag */\n        /* Skip the polling loop, assume transmission is ready */\n        \n        /* Simulate data transmission */\n        HAL_BE_Out(1); /* Simulate transmitting one byte */\n        \n        /* Preserve any non-I/O logic if present */\n    }\n}"
+        },
+        "function_name": "loop_mmio_operation"
+      },
+      "metadata": {}
+    }
+  ],
+  "agent_message_counts": {
+    "analyzer_agent_mmio_uart_send_byte_direct": 11,
+    "analyzer_agent_loop_mmio_operation": 11
+  }
+}

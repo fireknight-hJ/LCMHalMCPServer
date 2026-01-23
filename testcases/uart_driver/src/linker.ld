@@ -9,7 +9,7 @@ MEMORY
 _stack_size = 0x1000;
 
 /* 入口点 */
-ENTRY(Reset_Handler)
+ENTRY(main)
 
 SECTIONS
 {

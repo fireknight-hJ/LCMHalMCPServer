@@ -1,0 +1,3109 @@
+{
+  "session_id": "70138666-bc8a-4c66-ac0b-bdbbeb299554",
+  "start_time": "2026-01-20T02:58:25.785299",
+  "logs": [
+    {
+      "timestamp": "2026-01-20T02:58:35.718282",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an embedded software engineer working on decoupling hardware-dependent driver functions (e.g., MMIO accesses, peripheral register manipulations) while preserving overall system functionality—including successful entry into `main()`, proper OS scheduling, and correct interrupt behavior.\n\nYour task is to **iteratively debug and validate** the firmware after replacing hardware-coupled functions with abstraction-compatible stubs or mock implementations.\n\n### Validation Criteria  \nThe firmwa"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:38.281901",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:38.288054",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:39.841278",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:39.842870",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 4,
+        "new_messages": 3,
+        "message_range": [
+          1,
+          3
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:42.922876",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:42.931470",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 5,
+        "new_messages": 4,
+        "message_range": [
+          1,
+          4
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:44.330230",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an experienced embedded software engineer specializing in hardware abstraction layer (HAL) development and debugging. Your task is to **actively and independently analyze emulator error logs** to identify problematic functions, gather necessary context information, and fix these functions in driver source code by replacing hardware-dependent operations with POSIX-compatible implementations, while preserving normal functionality including OS scheduling and interrupt handling.\n\n**CRITICAL"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:48.045496",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:48.048221",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by following the mandatory workflow to actively retrieve the emulator error logs. Let me begin with the first mandatory step:",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:48.049748",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:48.051713",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 6,
+        "new_messages": 5,
+        "message_range": [
+          1,
+          5
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:51.443908",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:51.453306",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 7,
+        "new_messages": 6,
+        "message_range": [
+          1,
+          6
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:52.826534",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 2,
+        "message_range": [
+          0,
+          1
+        ],
+        "new_messages_summary": [
+          {
+            "type": "SystemMessage",
+            "content": "\nYou are an embedded software engineer. Your task is to replace certain functions in the driver library by stripping away peripheral hardware dependencies (such as I/O operations and various peripheral register accesses), while retaining the normal functionality of the functions as well as MCU operations (including OS scheduling and interrupt triggers).\nNow that you have replaced some of the functions involving MMIO and driver operations with the specified replacement functions, your next step i"
+          },
+          {
+            "type": "HumanMessage",
+            "content": "Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:55.355698",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:55.358793",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by building the project to see what errors we encounter, then fix them recursively.",
+            "tool_calls": [
+              {
+                "name": "BuildProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:55.360702",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:55.362836",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 8,
+        "new_messages": 7,
+        "message_range": [
+          1,
+          7
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:58.716489",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:58:58.727140",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 9,
+        "new_messages": 8,
+        "message_range": [
+          1,
+          8
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:00.291062",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:00.294368",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 10,
+        "new_messages": 9,
+        "message_range": [
+          1,
+          9
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:02.446707",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:02.458130",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 11,
+        "new_messages": 10,
+        "message_range": [
+          1,
+          10
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:04.163053",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:04.167007",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 12,
+        "new_messages": 11,
+        "message_range": [
+          1,
+          11
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:07.676621",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:07.688960",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 13,
+        "new_messages": 12,
+        "message_range": [
+          1,
+          12
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:09.207782",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:09.212798",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 14,
+        "new_messages": 13,
+        "message_range": [
+          1,
+          13
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:11.997000",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:12.009211",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 15,
+        "new_messages": 14,
+        "message_range": [
+          1,
+          14
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:12.014961",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:16.106206",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:16.111661",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by actively retrieving the emulator error logs to understand the current issues. According to the workflow, I need to first call `function_calls_emulate_info()` to get the complete execution flow and error information.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:16.115979",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:16.120806",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 16,
+        "new_messages": 15,
+        "message_range": [
+          1,
+          15
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:18.947474",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:18.961015",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 17,
+        "new_messages": 16,
+        "message_range": [
+          1,
+          16
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now I need to call Builder again after Fixer.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:18.968168",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:21.498974",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:21.505440",
+      "agent_name": "builder_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "build_project",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Build the project and fix the errors recursively. When the build is successful (exit code 0), you should stop working immediately. Warnings do not need to be fixed unless they cause build failure."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by building the project to see the current compilation errors.",
+            "tool_calls": [
+              {
+                "name": "BuildProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:21.510598",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:21.516283",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 18,
+        "new_messages": 17,
+        "message_range": [
+          1,
+          17
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now I need to call Builder again after Fixer.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:25.108416",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:25.122790",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 19,
+        "new_messages": 18,
+        "message_range": [
+          1,
+          18
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now I need to call Builder again after Fixer.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm stuck in a loop with configuration errors. The issue appears to be that the system tools themselves have configuration problems. Let me try one more emulation cycle to see if I can break out of this.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:26.584680",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:26.591716",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 20,
+        "new_messages": 19,
+        "message_range": [
+          1,
+          19
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now I need to call Builder again after Fixer.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm stuck in a loop with configuration errors. The issue appears to be that the system tools themselves have configuration problems. Let me try one more emulation cycle to see if I can break out of this.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:31.465839",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:31.481265",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 21,
+        "new_messages": 20,
+        "message_range": [
+          1,
+          20
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now I need to call Builder again after Fixer.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm stuck in a loop with configuration errors. The issue appears to be that the system tools themselves have configuration problems. Let me try one more emulation cycle to see if I can break out of this.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error is consistent. The problem is that the emulator requires a `semu_config.yml` file that doesn't exist. This is a fundamental setup issue that needs to be addressed. According to the instructions, I should continue following the workflow, but I'm encountering a system-level configuration problem rather than a firmware abstraction issue.\n\nLet me call Fixer one more time to see if it can provide guidance on creating the missing configuration file.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:31.489244",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 2,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:34.645361",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:34.653422",
+      "agent_name": "fixer_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "function_fix",
+      "data": {
+        "total_messages": 3,
+        "new_messages": 2,
+        "message_range": [
+          1,
+          2
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by following the mandatory workflow to actively retrieve the emulator error logs and analyze the problem.",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:34.660381",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "tools",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:34.667843",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 22,
+        "new_messages": 21,
+        "message_range": [
+          1,
+          21
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now I need to call Builder again after Fixer.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm stuck in a loop with configuration errors. The issue appears to be that the system tools themselves have configuration problems. Let me try one more emulation cycle to see if I can break out of this.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error is consistent. The problem is that the emulator requires a `semu_config.yml` file that doesn't exist. This is a fundamental setup issue that needs to be addressed. According to the instructions, I should continue following the workflow, but I'm encountering a system-level configuration problem rather than a firmware abstraction issue.\n\nLet me call Fixer one more time to see if it can provide guidance on creating the missing configuration file.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:41.343745",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "call_model",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 1,
+        "new_messages": 0,
+        "message_range": [],
+        "new_messages_summary": [],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "end"
+      }
+    },
+    {
+      "timestamp": "2026-01-20T02:59:41.357296",
+      "agent_name": "emulator_runner_agent",
+      "interaction_type": "langgraph_node",
+      "node_name": "respond",
+      "function_name": "run_emulator",
+      "data": {
+        "total_messages": 23,
+        "new_messages": 22,
+        "message_range": [
+          1,
+          22
+        ],
+        "new_messages_summary": [
+          {
+            "type": "HumanMessage",
+            "content": "Emulate the project, rerun-fix-rebuild the project until the project is successfully run."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'll start by emulating the project to see its current state.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The emulation failed because the configuration file is missing. This is a build/configuration issue rather than a driver abstraction issue. I need to call the Fixer to analyze this error and provide the necessary fixes.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I need to call the Builder to compile the project after receiving the Fixer's analysis. However, I notice the Fixer returned an error about missing configuration. Let me proceed with the Builder as per the workflow.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm getting the same configuration error from both tools. This suggests there's a system configuration issue. Let me try to get more information about the MMIO functions and function calls to understand the project structure better.",
+            "tool_calls": [
+              {
+                "name": "GetMMIOFunctionEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetMMIOFunctionEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/lcmhal.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "GetFunctionCallsEmulateInfo",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Error calling tool 'GetFunctionCallsEmulateInfo': [Errno 2] No such file or directory: '/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/emulate/debug_output/function.txt'"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The system is trying to access files that don't exist, which confirms there's a configuration or setup issue. According to the workflow, I need to continue with the emulation cycle. Let me try emulating again to see if there's any change.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error persists. I need to call Fixer again (as per the workflow: after a failed emulation, call Fixer once).",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "Now I need to call Builder again after Fixer.",
+            "tool_calls": [
+              {
+                "name": "Builder",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "I'm stuck in a loop with configuration errors. The issue appears to be that the system tools themselves have configuration problems. Let me try one more emulation cycle to see if I can break out of this.",
+            "tool_calls": [
+              {
+                "name": "EmulateProject",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "{\"std_out\":\"[-] Yaml load failed! File not exists: semu_config.yml\\n\",\"std_err\":\"\",\"exit_code\":255}"
+          },
+          {
+            "type": "AIMessage",
+            "content": "The error is consistent. The problem is that the emulator requires a `semu_config.yml` file that doesn't exist. This is a fundamental setup issue that needs to be addressed. According to the instructions, I should continue following the workflow, but I'm encountering a system-level configuration problem rather than a firmware abstraction issue.\n\nLet me call Fixer one more time to see if it can provide guidance on creating the missing configuration file.",
+            "tool_calls": [
+              {
+                "name": "Fixer",
+                "args": "{}"
+              }
+            ]
+          },
+          {
+            "type": "ToolMessage",
+            "content": "Error: Missing required config key 'N/A' for 'tools'."
+          },
+          {
+            "type": "AIMessage",
+            "content": "The tools themselves have configuration issues. This appears to be a system setup problem that prevents the debugging workflow from proceeding. The missing `semu_config.yml` file is critical for the emulator to run, and without it, I cannot proceed with the validation of the firmware abstraction changes.\n\nBased on the workflow rules, I should continue calling Fixer and Builder in sequence after each failed emulation, but the tools themselves are reporting configuration errors. This suggests the "
+          }
+        ],
+        "state_keys": [
+          "messages",
+          "function_name"
+        ]
+      },
+      "metadata": {
+        "phase": "start"
+      }
+    }
+  ],
+  "agent_message_counts": {
+    "emulator_runner_agent_run_emulator": 23,
+    "fixer_agent_function_fix": 3,
+    "builder_agent_build_project": 3
+  }
+}

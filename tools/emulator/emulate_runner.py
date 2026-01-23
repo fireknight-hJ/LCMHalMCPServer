@@ -10,17 +10,19 @@ def run_emulator() -> subprocess.CompletedProcess:
     input_file = f"{globs.script_path}/emulate/base_input/input.bin"  # input_file现在指向script_path下的文件
     config_file = f"{globs.script_path}/emulate/semu_config.yml"
     
+    # 使用当前虚拟环境的Python路径运行fuzzemu.harness模块
+    python_path = sys.executable  # 获取当前Python解释器的路径
+    
     # 使用python -m运行fuzzemu.harness模块
     ret = subprocess.run(
         [
-            "python",
+            python_path,
             "-m",
             "fuzzemu.harness",
             input_file,
             config_file,
             "-d",
-            "5",
-            "--skip-mmio-hook"
+            "5"
         ],
         cwd=globs.script_path+"/emulate",
         check=False,

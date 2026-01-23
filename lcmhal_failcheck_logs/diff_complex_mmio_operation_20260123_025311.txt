@@ -1,0 +1,60 @@
+Error: old_code not found in /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/src/test_arm_zephyr.c
+
+Looking for function: complex_mmio_operation
+
+=== Found similar function in file ===
+void complex_mmio_operation(uint8_t *buffer, size_t len)
+{
+    /* 初始化 */
+    USART1->CR1 = 0x2000;
+    USART1->BRR = 0x0341;
+    
+    /* 批量传输 */
+    for (size_t i = 0; i < len; i++) {
+        while (!(USART1->SR & 0x0080)) {
+            __asm__ volatile ("nop");
+        }
+        USART1->DR = buffer[i];
+    }
+    
+    /* 条件操作 */
+    if (len > 10) {
+        USART1->CR1 |= 0x1000;  // 使能 RX
+    }
+}
+
+=== Diff between old_code and actual code ===
+--- old_code
++++ actual_code
+@@ -14,6 +14,6 @@
+     
+     /* 条件操作 */
+     if (len > 10) {
+-        USART1->CR1 |= 0x1000;  /* 使能 RX */
++        USART1->CR1 |= 0x1000;  // 使能 RX
+     }
+ }
+=== First 200 chars comparison ===
+--- old_code_prefix
++++ content_prefix
+@@ -1,9 +1,11 @@
+-void complex_mmio_operation(uint8_t *buffer, size_t len)
+-{
+-    /* 初始化 */
+-    USART1->CR1 = 0x2000;
+-    USART1->BRR = 0x0341;
+-    
+-    /* 批量传输 */
+-    for (size_t i = 0; i < len; i++) {
+-        while (!
++/*
++ * ARM 架构的 Zephyr 兼容 UART 测试用例
++ * 这个文件包含直接的 MMIO 操作，使用 Zephyr 兼容的 API
++ * 针对 ARM Cortex-M 架构编译，适配模拟器工具链
++ * 简化版本：移除复杂的启动代码，只保留核心 MMIO 函数
++ */
++
++#include <stdint.h>
++#include <stddef.h>
++
++/* Zephyr 兼容类型定义

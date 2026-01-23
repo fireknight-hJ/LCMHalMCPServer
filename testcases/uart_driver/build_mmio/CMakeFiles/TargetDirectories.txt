@@ -1,7 +1,7 @@
 /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/install/strip.dir
-/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/install.dir
-/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/list_install_components.dir
-/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/rebuild_cache.dir
-/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/edit_cache.dir
 /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/install/local.dir
 /home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/test_arm_zephyr.dir
+/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/edit_cache.dir
+/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/rebuild_cache.dir
+/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/install.dir
+/home/chenkaiqiu/LCMHalMCPServer/testcases/uart_driver/build_mmio/CMakeFiles/list_install_components.dir

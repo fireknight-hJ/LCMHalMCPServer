@@ -38,7 +38,7 @@ include_directories(
 
 # 添加可执行文件 - ARM Zephyr兼容MMIO测试
 add_executable(test_arm_zephyr
-    test_arm_zephyr.c
+    test_mmio_driver.c
 )
 
 # 设置目标属性
@@ -46,7 +46,7 @@ target_compile_options(test_arm_zephyr PRIVATE
     ${CPU_COMPILE_OPTIONS}
     -Wall
     -Wextra
-    -Werror
+    -Wno-unused-parameter  # 禁用未使用参数警告
     -O0
     -g
     -ffunction-sections

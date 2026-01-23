@@ -148,8 +148,8 @@ def build_project() -> dict:
     # 构建完成后处理输出文件
     try:
         import os
-        # 获取脚本目录下的ELF文件路径（build.sh生成的）
-        elf_path = os.path.join(globs.script_path, "output.elf")
+        # 获取脚本目录下的ELF文件路径（build.sh生成的，现在在emulate目录下）
+        elf_path = os.path.join(globs.script_path, "emulate", "output.elf")
         
         if os.path.exists(elf_path):
             print(f"ELF file found at: {elf_path}")
@@ -283,8 +283,8 @@ def build_with_raw() -> dict:
     # 构建完成后处理输出文件
     try:
         import os
-        # 获取脚本目录下的ELF文件路径（build.sh生成的）
-        elf_path = os.path.join(globs.script_path, "output.elf")
+        # 获取脚本目录下的ELF文件路径（build.sh生成的，现在在emulate目录下）
+        elf_path = os.path.join(globs.script_path, "emulate", "output.elf")
         
         if os.path.exists(elf_path):
             print(f"ELF file found at: {elf_path}")

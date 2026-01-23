@@ -88,10 +88,7 @@ async def build_graph():
     # Set up model with structured output
     model_with_structured_output = model.with_structured_output(EmulateResult)
 
-    # Create ToolNode
-    tool_node = ToolNode(tools)
-
-    # Create a wrapper for tool_node to add logging
+    # 创建自定义工具调用函数，避免使用ToolNode
     async def tools_with_logging(state: AgentState):
         agent_name = "emulator_runner_agent"
         node_name = "tools"
@@ -100,7 +97,43 @@ async def build_graph():
         if globs.ai_log_enable:
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
-        result = await tool_node.ainvoke(state)
+        # 直接调用工具，避免使用ToolNode
+        messages = state["messages"]
+        last_message = messages[-1]
+        
+        result_messages = []
+        
+        if hasattr(last_message, 'tool_calls') and last_message.tool_calls:
+            for tool_call in last_message.tool_calls:
+                tool_name = tool_call['name']
+                tool_args = tool_call['args']
+                
+                # 查找对应的工具
+                tool = None
+                for t in tools:
+                    if t.name == tool_name:
+                        tool = t
+                        break
+                
+                if tool:
+                    try:
+                        # 调用工具
+                        tool_output = await tool.ainvoke(tool_args)
+                        result_messages.append({
+                            "role": "tool",
+                            "content": str(tool_output),
+                            "tool_call_id": tool_call['id'],
+                            "name": tool_name
+                        })
+                    except Exception as e:
+                        result_messages.append({
+                            "role": "tool",
+                            "content": f"Error: {str(e)}",
+                            "tool_call_id": tool_call['id'],
+                            "name": tool_name
+                        })
+        
+        result = {"messages": result_messages}
         
         if globs.ai_log_enable:
             updated_state = {**state, **result}

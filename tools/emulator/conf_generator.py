@@ -79,8 +79,8 @@ def generate_semu_config():
         generate_rule_config()
     if not Path(f"{globs.script_path}/emulate/base_input/input.bin").exists():
         generate_base_input()
-    # 执行fuzzemu-helper命令，捕获输出以避免干扰MCP通信
-    cmd = f"cd {globs.script_path}/emulate/ && fuzzemu-helper config base_config.yml -s"
+    # 执行fuzzemu-helper命令，使用非交互式方式自动提供入口点输入
+    cmd = f"cd {globs.script_path}/emulate/ && echo '0x8000201' | fuzzemu-helper config base_config.yml -s"
     ret = subprocess.run(
         cmd, 
         shell=True, 
