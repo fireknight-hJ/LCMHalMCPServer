@@ -10,7 +10,7 @@ from config.llm_config import llm_deepseek_config
 from models.analyze_results.function_analyze import FixedFunctionInfo
 from models.analyze_results.function_analyze import ReplacementUpdate
 from prompts.function_fixer import system_prompt_en
-from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
+from prompts.summary_prompt import fixer_summary_prompt_en as SUMMARY_PROMPT
 import os
 import time
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log, dump_json_log
@@ -30,8 +30,6 @@ model = ChatDeepSeek(
 class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: ReplacementUpdate
-    # Counter to prevent infinite loops
-    iteration_count: int = 0
     # Function name being fixed
     function_name: str
 
@@ -154,11 +152,29 @@ async def build_graph():
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
         # Use the imported summary prompt to ensure LLM only summarizes and doesn't call tools
-        response = model_with_structured_output.invoke(
-            state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
-        )
-        # We return the final answer
-        result = {"final_response": response}
+        max_retries = 5
+        retry_count = 0
+        response = None
+        
+        while retry_count < max_retries and response is None:
+            try:
+                response = model_with_structured_output.invoke(
+                    state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
+                )
+                # We return the final answer
+                result = {"final_response": response}
+            except Exception as e:
+                retry_count += 1
+                print(f"[ERROR] Failed to generate structured response (attempt {retry_count}/{max_retries}): {e}")
+                
+        # 如果所有重试都失败，使用回退方案
+        if response is None:
+            print(f"[ERROR] All {max_retries} attempts failed, using fallback")
+            result = {"final_response": ReplacementUpdate(
+                function_name=function_name,
+                replacement_code="",
+                reason="Failed to generate replacement code after multiple attempts"
+            )}
         
         if globs.ai_log_enable:
             updated_state = {**state, **result}
@@ -227,12 +243,24 @@ async def function_fix() -> ReplacementUpdate:
             {"role": "user", "content": f"Analyze the emulator error feedback and fix the problematic functions in the driver source code accordingly."}
         ],
         "function_name": "function_fix"
+        # 移除自定义计数器，直接使用LangGraph的错误处理
     }
-    result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
-    # log ai memory
-    if globs.ai_log_enable:
-        dump_message_json_log("function_fix", result)
-    return result["final_response"]
+    
+    try:
+        result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
+        # log ai memory
+        if globs.ai_log_enable:
+            dump_message_json_log("function_fix", result)
+        return result["final_response"]
+    except Exception as e:
+        from langgraph.errors import GraphRecursionError
+        if isinstance(e, GraphRecursionError):
+            # 捕获LangGraph的递归错误，触发failcheck分析
+            from utils.failcheck import analyze_failed_conversation
+            analyze_failed_conversation(initial_state["messages"], "fixer_agent", 50)  # 50次agent调用
+        else:
+            # 其他错误直接抛出
+            raise
 
 @tool(
     "Fixer",

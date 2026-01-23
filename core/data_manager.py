@@ -65,16 +65,53 @@ class DataManager:
         function_list = get_mmio_func_list(globs.db_path)
         self.mmio_info_list = await analyze_functions(function_list)
         
-        # 处理所有替换更新日志
-        for func_name, classify_res in self.mmio_info_list.items():
-            if check_analyzed_json_log("replacement_update", func_name):
-                json_data = get_analyzed_json_log("replacement_update", func_name)
-                if json_data:
-                    data_dict = json.loads(json_data)
-                    self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
+        # 首先加载所有已经存在的替换更新日志，不管是否是MMIO函数
+        self._load_all_replacement_updates()
         
         # 分文件收集信息
         self._organize_data_by_file()
+    
+    def _load_all_replacement_updates(self):
+        """加载所有已经存在的替换更新日志"""
+        try:
+            import os
+            import json
+            # 检查替换更新日志目录是否存在
+            tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+            if not os.path.exists(tmp_dir):
+                return
+            
+            # 首先收集所有唯一的函数名
+            unique_func_names = set()
+            for file_name in os.listdir(tmp_dir):
+                if file_name.startswith("replacement_update_") and file_name.endswith(".json"):
+                    # 直接读取文件内容，从文件内容中提取函数名
+                    file_path = os.path.join(tmp_dir, file_name)
+                    try:
+                        with open(file_path, "r", encoding="utf-8") as f:
+                            json_data = f.read()
+                            data_dict = json.loads(json_data)
+                            # 从文件内容中提取函数名
+                            if "function_name" in data_dict:
+                                func_name = data_dict["function_name"]
+                                unique_func_names.add(func_name)
+                    except Exception as e:
+                        print(f"Warning: Failed to extract function name from {file_name}: {e}")
+            
+            # 对于每个唯一的函数名，使用get_analyzed_json_log获取最新的更新版本
+            for func_name in unique_func_names:
+                # 使用现有的函数检查并加载替换更新
+                if check_analyzed_json_log("replacement_update", func_name):
+                    json_data = get_analyzed_json_log("replacement_update", func_name)
+                    if json_data:
+                        try:
+                            data_dict = json.loads(json_data)
+                            # 创建ReplacementUpdate对象并添加到replacement_updates
+                            self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
+                        except Exception as e:
+                            print(f"Warning: Failed to parse replacement update for {func_name}: {e}")
+        except Exception as e:
+            print(f"Error loading replacement updates: {e}")
     
     def _organize_data_by_file(self):
         """将数据按文件分类组织"""
@@ -184,7 +221,7 @@ class DataManager:
         
         return result
     
-    def get_function_analysis_and_replacement_formatted(self, func_name: str):
+    def get_function_analysis_and_replacement_formatted(self, func_name: str) -> str:
         """根据函数名获取格式化的函数分析和替换信息（文本格式，便于大模型理解）
         
         Args:
@@ -236,6 +273,47 @@ class DataManager:
         formatted_text.append("\n=== 信息结束 ===")
         
         return "\n".join(formatted_text)
+    
+    def dump_full_info(self):
+        """将所有FunctionClassfier和ReplacementUpdate数据结构dump到同一个log文件中"""
+        try:
+            import os
+            import json
+            import time
+            
+            # 构建全量信息字典
+            full_info = {
+                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                "function_classifiers": {},
+                "replacement_updates": {}
+            }
+            
+            # 添加FunctionClassfier信息
+            for func_name, classify_res in self.mmio_info_list.items():
+                full_info["function_classifiers"][func_name] = classify_res.model_dump()
+            
+            # 添加ReplacementUpdate信息
+            for func_name, replacement_update in self.replacement_updates.items():
+                full_info["replacement_updates"][func_name] = replacement_update.model_dump()
+            
+            # 构建log文件路径
+            tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+            if not os.path.exists(tmp_dir):
+                os.makedirs(tmp_dir)
+            
+            # 使用时间戳确保文件名唯一
+            timestamp = time.strftime("%Y%m%d%H%M%S", time.localtime())
+            file_path = os.path.join(tmp_dir, f"full_info_{timestamp}.json")
+            
+            # 写入log文件
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(full_info, f, ensure_ascii=False, indent=2)
+            
+            print(f"Full info dumped to: {file_path}")
+            return True
+        except Exception as e:
+            print(f"Error dumping full info: {e}")
+            return False
 
 
 # 创建全局数据管理器实例

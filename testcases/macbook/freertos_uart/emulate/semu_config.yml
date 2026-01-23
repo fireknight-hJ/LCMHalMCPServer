@@ -1,6 +1,6 @@
 emulate_mode: emulate
 enable_native: false
-entry_point: 0x8000d09
+entry_point: 0x80011a1
 handlers:
   Delay: do_return
   HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in

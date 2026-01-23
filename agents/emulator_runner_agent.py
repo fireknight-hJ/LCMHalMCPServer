@@ -195,12 +195,24 @@ async def run_emulator() -> EmulateResult:
             {"role": "user", "content": f"Emulate the project, rerun-fix-rebuild the project until the project is successfully run."}
         ],
         "function_name": "run_emulator"
+        # 移除自定义计数器，直接使用LangGraph的错误处理
     }
-    result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
-    # log ai memory
-    if globs.ai_log_enable:
-        dump_message_json_log("run_emulator", result)
-    return result["final_response"]
+    
+    try:
+        result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})
+        # log ai memory
+        if globs.ai_log_enable:
+            dump_message_json_log("run_emulator", result)
+        return result["final_response"]
+    except Exception as e:
+        from langgraph.errors import GraphRecursionError
+        if isinstance(e, GraphRecursionError):
+            # 捕获LangGraph的递归错误，触发failcheck分析
+            from utils.failcheck import analyze_failed_conversation
+            analyze_failed_conversation(initial_state["messages"], "emulator_runner_agent", 50)  # 50次agent调用
+        else:
+            # 其他错误直接抛出
+            raise
 
 
 def dump_message_state(state):

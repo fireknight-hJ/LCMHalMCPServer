@@ -9,7 +9,7 @@ from langchain_core.messages import HumanMessage
 from config.llm_config import llm_deepseek_config
 from models.analyze_results.function_analyze import FunctionClassifyResponse
 from prompts.function_classifier import system_prompting_en
-from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
+from prompts.summary_prompt import function_classify_final_prompt_en as SUMMARY_PROMPT
 import os
 import time
 import asyncio
@@ -55,7 +55,7 @@ client = MultiServerMCPClient(
 class AgentState(MessagesState):
     # Final structured response from the agent
     final_response: FunctionClassifyResponse
-    # Function name being analyzed
+    # Function name being classified
     function_name: str
 
 # 全局变量存储graph实例
@@ -183,12 +183,24 @@ async def function_classify(func_name : str, overwrite: bool = False) -> Functio
             {"role": "user", "content": f"Classify the function : {func_name}"}
         ],
         "function_name": func_name
+        # 移除自定义计数器，直接使用LangGraph的错误处理
     }
-    result = await graph.ainvoke(initial_state)
-    # log ai memory
-    if globs.ai_log_enable:
-        dump_message_json_log("function_classify", result)
-    return result["final_response"]
+    
+    try:
+        result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})  # 添加recursion_limit配置
+        # log ai memory
+        if globs.ai_log_enable:
+            dump_message_json_log("function_classify", result)
+        return result["final_response"]
+    except Exception as e:
+        from langgraph.errors import GraphRecursionError
+        if isinstance(e, GraphRecursionError):
+            # 捕获LangGraph的递归错误，触发failcheck分析
+            from utils.failcheck import analyze_failed_conversation
+            analyze_failed_conversation(initial_state["messages"], "analyzer_agent", 50)  # 50次agent调用
+        else:
+            # 其他错误直接抛出
+            raise
 
 def check_analyzed(func_name: str) -> bool:
     """
