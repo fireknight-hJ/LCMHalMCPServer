@@ -1,0 +1,3 @@
+/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_uart_official/build/CMakeFiles/rebuild_cache.dir
+/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_uart_official/build/CMakeFiles/edit_cache.dir
+/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_uart_official/build/CMakeFiles/zephyr_uart_official.dir

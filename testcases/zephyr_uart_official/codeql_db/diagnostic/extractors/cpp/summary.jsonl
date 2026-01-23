@@ -1,0 +1,35 @@
+{
+    "attributes": {
+        "cache-hits": 0,
+        "cache-misses": 3,
+        "compilers": [
+            {
+                "program": "gcc",
+                "version": "arm-none-eabi-gcc (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
+            },
+            {
+                "program": "gcc",
+                "version": "x86_64-linux-gnu-gcc-9 (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0"
+            },
+            {
+                "program": "gcc-cc1"
+            }
+        ],
+        "extractor-failures": 0,
+        "extractor-successes": 3,
+        "trap-caching": "disabled"
+    },
+    "markdownMessage": "Internal telemetry for the C++ extractor.\n\nNo action needed.",
+    "severity": "note",
+    "source": {
+        "extractorName": "cpp",
+        "id": "cpp/extractor/summary",
+        "name": "C++ extractor telemetry"
+    },
+    "timestamp": "2026-01-23T03:39:55.475771+0000",
+    "visibility": {
+        "cliSummaryTable": false,
+        "statusPage": false,
+        "telemetry": true
+    }
+}

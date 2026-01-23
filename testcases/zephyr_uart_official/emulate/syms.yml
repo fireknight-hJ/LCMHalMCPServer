@@ -1,0 +1,16 @@
+symbols:
+  0: main.c
+  4096: _stack_size
+  134217729: simple_print
+  134217749: mmio_uart_init_direct
+  134217801: mmio_uart_send_byte_direct
+  134217849: mmio_uart_send_string_direct
+  134217893: mixed_uart_operation
+  134217921: conditional_mmio_operation
+  134218013: loop_mmio_operation
+  134218085: struct_mmio_operation
+  134218125: complex_mmio_operation
+  134218225: main
+  134218520: _sidata
+  536870912: _edata
+  536875008: _estack
