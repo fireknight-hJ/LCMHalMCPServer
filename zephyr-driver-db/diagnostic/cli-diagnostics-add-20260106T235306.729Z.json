@@ -1,1 +1,0 @@
-{"timestamp":"2026-01-06T23:53:06.727102494Z","source":{"id":"cli/query/run","name":"CodeQL CLI: query run"},"plaintextMessage":"A fatal error occurred: Database /home/chenkaiqiu/LCMHalMCPServer/zephyr-driver-db contains no datasets.","severity":"error","visibility":{"telemetry":false},"attributes":{"exitCode":2}}
