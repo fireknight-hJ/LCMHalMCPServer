@@ -1,0 +1,300 @@
+{
+  "sessions": {},
+  "legacy_logs": {
+    "full_info": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/full_info_20260123072904.json",
+        "created_at": "2026-01-23T07:29:04.376329",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/full_info_20260123082627.json",
+        "created_at": "2026-01-23T08:26:27.545091",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/full_info_20260123084637.json",
+        "created_at": "2026-01-23T08:46:37.634791",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/full_info_20260123084856.json",
+        "created_at": "2026-01-23T08:48:56.726166",
+        "metadata": {
+          "scanned": true
+        }
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/full_info_20260123130157.json",
+        "created_at": "2026-01-23T13:01:57.415740",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "emulator_state_": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084643.json",
+        "created_at": "2026-01-23T08:46:43.384695",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084643.json",
+        "created_at": "2026-01-23T08:46:53.727364",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084643.json",
+        "created_at": "2026-01-23T08:47:02.464263",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084643.json",
+        "created_at": "2026-01-23T08:47:08.478588",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084643.json",
+        "created_at": "2026-01-23T08:47:15.620589",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084643.json",
+        "created_at": "2026-01-23T08:47:26.672636",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084643.json",
+        "created_at": "2026-01-23T08:47:36.721756",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:49:02.912801",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:49:12.131391",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:49:21.250720",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:49:29.772855",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:49:37.261820",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:49:45.804618",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:49:54.297337",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:50:02.969307",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:50:13.815078",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123084902.json",
+        "created_at": "2026-01-23T08:50:35.426189",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:03.887513",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:12.432275",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:20.493300",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:28.411733",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:36.960349",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:41.599953",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:45.899496",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:51.805321",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:02:57.154436",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:03:02.020469",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123130203.json",
+        "created_at": "2026-01-23T13:03:11.764939",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:04:59.806456",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:05:10.025416",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:05:18.344610",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:05:26.347049",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:05:37.889512",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:05:43.790918",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:05:53.071537",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123150459.json",
+        "created_at": "2026-01-23T15:06:16.821948",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123152712.json",
+        "created_at": "2026-01-23T15:27:12.026705",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123152712.json",
+        "created_at": "2026-01-23T15:27:22.649422",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123152712.json",
+        "created_at": "2026-01-23T15:27:31.895299",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123152712.json",
+        "created_at": "2026-01-23T15:27:42.205160",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123152712.json",
+        "created_at": "2026-01-23T15:27:53.222749",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123152712.json",
+        "created_at": "2026-01-23T15:28:01.567262",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/emulator_state__20260123152712.json",
+        "created_at": "2026-01-23T15:28:30.068152",
+        "metadata": {}
+      }
+    ],
+    "run_emulator_": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/run_emulator__20260123085040.json",
+        "created_at": "2026-01-23T08:50:40.310191",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/run_emulator__20260123130316.json",
+        "created_at": "2026-01-23T13:03:16.229462",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/run_emulator__20260123150620.json",
+        "created_at": "2026-01-23T15:06:20.899608",
+        "metadata": {}
+      },
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/run_emulator__20260123152834.json",
+        "created_at": "2026-01-23T15:28:34.153086",
+        "metadata": {}
+      }
+    ],
+    "refined_69faefb2-c986-44b3-9a30-4dc9eb5ca880_emulator_runner_agent_run": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/refined_69faefb2-c986-44b3-9a30-4dc9eb5ca880_emulator_runner_agent_run_emulator.json",
+        "created_at": "2026-01-23T08:50:40.295963",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ],
+    "refined_77eb3ced-6c13-4a80-8d63-ed2ad8dd17d0_emulator_runner_agent_run": [
+      {
+        "log_file": "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db/lcmhal_ai_log/refined_77eb3ced-6c13-4a80-8d63-ed2ad8dd17d0_emulator_runner_agent_run_emulator.json",
+        "created_at": "2026-01-23T13:03:16.210975",
+        "metadata": {
+          "scanned": true
+        }
+      }
+    ]
+  },
+  "last_updated": "2026-01-23T15:28:34.153130"
+}

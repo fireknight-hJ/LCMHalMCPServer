@@ -1,0 +1,27 @@
+# LCMHal configuration for Zephyr official ETH driver test
+db_path: "/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/codeql_db"
+proj_path: /home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official
+script_path: /home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official
+src_path: /home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_eth_official/src
+
+# Driver specific configuration
+driver_type: eth
+target_arch: posix
+board: qemu_cortex_m3
+
+# Analysis configuration
+analysis_mode: full
+enable_codeql: true
+enable_llm_analysis: true
+enable_emulation: true
+enable_fix_generation: true
+
+# Build configuration
+build_system: cmake
+toolchain: zephyr
+build_dir: build
+
+# Emulation configuration
+emulator: semu
+max_instructions: 1000000
+timeout_seconds: 300

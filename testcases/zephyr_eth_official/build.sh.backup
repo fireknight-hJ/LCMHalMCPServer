@@ -1,0 +1,68 @@
+#!/bin/bash
+# Build script for Zephyr official ETH driver test (full Zephyr build system)
+
+set -e
+
+# Configuration
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BUILD_DIR="${PROJECT_DIR}/build"
+ZEPHYR_BASE="${ZEPHYR_BASE:-/home/chenkaiqiu/LCMHalMCPServer/zephyr_official}"
+
+# Read board from lcmhal_config.yml if available
+LCMHAL_CONFIG="${PROJECT_DIR}/lcmhal_config.yml"
+if [ -f "${LCMHAL_CONFIG}" ]; then
+    BOARD=$(grep -E "^board:" "${LCMHAL_CONFIG}" | awk '{print $2}' | tr -d '"' | tr -d "'")
+    if [ -z "${BOARD}" ]; then
+        BOARD="native_sim/native/64"
+    fi
+else
+    BOARD="native_sim/native/64"
+fi
+
+echo "Building Zephyr ETH driver test for board: ${BOARD}"
+echo "ZEPHYR_BASE: ${ZEPHYR_BASE}"
+
+# Clean build directory if exists
+if [ -d "${BUILD_DIR}" ]; then
+    echo "Cleaning previous build..."
+    rm -rf "${BUILD_DIR}"
+fi
+
+# Create build directory
+mkdir -p "${BUILD_DIR}"
+cd "${BUILD_DIR}"
+
+# Configure with CMake using Zephyr build system
+echo "Configuring project with Zephyr build system..."
+cmake -GNinja -DBOARD=${BOARD} "${PROJECT_DIR}/src" 2>&1 | tee cmake.log
+
+# Build the project
+echo "Building project..."
+ninja 2>&1 | tee build.log
+
+# Check if build succeeded
+if [ $? -eq 0 ]; then
+    echo "Build successful!"
+    echo "Output files:"
+    ls -la zephyr/zephyr.* 2>/dev/null || true
+    
+    # Copy the ELF file to emulate directory
+    if [ -f "zephyr/zephyr.elf" ]; then
+        cp zephyr/zephyr.elf "${PROJECT_DIR}/emulate/output.elf"
+        echo "ELF file copied to ${PROJECT_DIR}/emulate/output.elf"
+        
+        # Generate binary file (only for ARM targets)
+        if [[ "${BOARD}" == *"cortex"* ]] || [[ "${BOARD}" == *"arm"* ]]; then
+            arm-none-eabi-objcopy -O binary zephyr/zephyr.elf "${PROJECT_DIR}/emulate/output.bin"
+            echo "Binary file generated: ${PROJECT_DIR}/emulate/output.bin"
+            
+            arm-none-eabi-objcopy -O ihex zephyr/zephyr.elf "${PROJECT_DIR}/emulate/output.hex"
+            echo "Hex file generated: ${PROJECT_DIR}/emulate/output.hex"
+        else
+            echo "Skipping binary/hex generation for non-ARM board: ${BOARD}"
+        fi
+    fi
+else
+    echo "Build failed!"
+    exit 1
+fi
