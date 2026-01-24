@@ -1,1 +1,0 @@
-arm-none-eabi-gcc -g -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -nostdlib -Wl,--gc-sections -Wl,-Map=zephyr_uart_official.map -static -T/home/chenkaiqiu/LCMHalMCPServer/testcases/zephyr_uart_official/src/linker.ld CMakeFiles/zephyr_uart_official.dir/main.c.o -o zephyr_uart_official 
