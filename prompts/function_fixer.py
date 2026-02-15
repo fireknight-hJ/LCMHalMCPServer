@@ -279,6 +279,7 @@ For each suspected function:
 3. Ignore existing replacements and analyses
 4. Use more than 6 tool calls total per problem
 5. Make changes without checking consistency with existing work
+6. Modify or touch vtor variables or operations
 
 ## ✅ ALWAYS DO:
 1. Start with `GetFunctionAnalysisAndReplacement` for any suspected function

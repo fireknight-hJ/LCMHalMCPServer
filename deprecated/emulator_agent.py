@@ -209,7 +209,7 @@ supervisor = (
 
 def run_emulator() -> EmulateResult:
     graph = supervisor
-    result = await graph.ainvoke({"messages": [
+    result = graph.ainvoke({"messages": [
         {"role": "user", "content": f"emulate the project, rerun-fix-rebuild the project until the project is successfully run."}
     ]}, config={"recursion_limit": 50})
     # log ai memory
@@ -217,9 +217,9 @@ def run_emulator() -> EmulateResult:
         dump_message_json_log("run_emulator", result)
     return result["final_response"]
 
-async def main():
+def main():
     # Test the graph
-    emulate_response = await run_emulator()
+    emulate_response = run_emulator()
     print(f"Emulate response: {emulate_response.model_dump_json()}")
 
 # 运行主函数

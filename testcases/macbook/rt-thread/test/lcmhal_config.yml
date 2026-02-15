@@ -1,5 +1,5 @@
 # LCMHAL配置文件
-script_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/rtthread_test"
+script_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/rt-thread/test"
 db_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_RTThreadTest"
 src_path: "/Users/jie/Documents/workspace/lcmhalgen/rt-thread/examples/test"
 proj_path: "/Users/jie/Documents/workspace/lcmhalgen/rt-thread/bsp/hifive1"

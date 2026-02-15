@@ -1,97 +1,97 @@
-2026-01-15 09:20:46,274 - Set max loop times to 5000.
-2026-01-15 09:20:46,300 - [Reset_Handler] Basic Block: addr= 0x00000000080012fc , size=0x0000000000000002 (lr=0x0)
-2026-01-15 09:20:46,301 - [DEBUG] New unique block 0x080012fc, total unique blocks: 1
-2026-01-15 09:20:46,302 - Basic Block: addr= 0x00000000080012fe , size=0x000000000000000c (lr=0x0)
-2026-01-15 09:20:46,302 - [DEBUG] New unique block 0x080012fe, total unique blocks: 2
-2026-01-15 09:20:46,302 - [DEBUG] New unique block 0x08001300, total unique blocks: 3
-2026-01-15 09:20:46,302 - [DEBUG] New unique block 0x08001302, total unique blocks: 4
-2026-01-15 09:20:46,303 -         >>> Write: addr= 0x00000000e000ed08 size=4 data=0x0000000008001000 pc=0x08001302
-2026-01-15 09:20:46,304 - [DEBUG] New unique block 0x08001304, total unique blocks: 5
-2026-01-15 09:20:46,304 - [DEBUG] New unique block 0x08001306, total unique blocks: 6
-2026-01-15 09:20:46,304 - Basic Block: addr= 0x000000000800130a , size=0x0000000000000006 (lr=0x0)
-2026-01-15 09:20:46,304 - [DEBUG] New unique block 0x0800130a, total unique blocks: 7
-2026-01-15 09:20:46,304 - [DEBUG] New unique block 0x0800130c, total unique blocks: 8
-2026-01-15 09:20:46,304 - Basic Block: addr= 0x0000000008001310 , size=0x0000000000000004 (lr=0x0)
-2026-01-15 09:20:46,304 - [DEBUG] New unique block 0x08001310, total unique blocks: 9
-2026-01-15 09:20:46,304 - [DEBUG] New unique block 0x08001312, total unique blocks: 10
-2026-01-15 09:20:46,305 - [SystemInit] Basic Block: addr= 0x00000000080019ec , size=0x0000000000000040 (lr=0x8001315)
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x080019ec, total unique blocks: 11
-2026-01-15 09:20:46,305 -         >>> Write: addr= 0x2012fff8[SP:-008] size=4 data=0x00000000 pc=0x080019ec
-2026-01-15 09:20:46,305 -         >>> Write: addr= 0x2012fffc[SP:-004] size=4 data=0x08001315 pc=0x080019ec
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x080019ee, total unique blocks: 12
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x080019f0, total unique blocks: 13
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x080019f2, total unique blocks: 14
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x080019f6, total unique blocks: 15
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x080019f8, total unique blocks: 16
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x080019fc, total unique blocks: 17
-2026-01-15 09:20:46,305 -         >>> Write: addr= 0x00000000e000ed88 size=4 data=0x0000000000f00000 pc=0x080019fc
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a00, total unique blocks: 18
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a02, total unique blocks: 19
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a06, total unique blocks: 20
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a08, total unique blocks: 21
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a0c, total unique blocks: 22
-2026-01-15 09:20:46,305 -         >>> Write: addr= 0x00000000e000ed88 size=4 data=0x0000000000f0000f pc=0x08001a0c
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a10, total unique blocks: 23
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a12, total unique blocks: 24
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a16, total unique blocks: 25
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a18, total unique blocks: 26
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a1c, total unique blocks: 27
-2026-01-15 09:20:46,305 - [DEBUG] New unique block 0x08001a20, total unique blocks: 28
-2026-01-15 09:20:46,306 -         >>> Write: addr= 0x00000000e000ed8c size=4 data=0x0000000000000c03 pc=0x08001a20
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a24, total unique blocks: 29
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a26, total unique blocks: 30
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a2a, total unique blocks: 31
-2026-01-15 09:20:46,306 - Basic Block: addr= 0x0000000008001a2c , size=0x0000000000000008 (lr=0x8001315)
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a2c, total unique blocks: 32
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a2e, total unique blocks: 33
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a32, total unique blocks: 34
-2026-01-15 09:20:46,306 - Basic Block: addr= 0x0000000008001a44 , size=0x0000000000000008 (lr=0x8001315)
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a44, total unique blocks: 35
-2026-01-15 09:20:46,306 - [DEBUG] New unique block 0x08001a46, total unique blocks: 36
-2026-01-15 09:20:46,307 -         >>> Read: addr= 0x000000004003301c size=4 data=0x00000000 pc=0x08001a46
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a48, total unique blocks: 37
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a4a, total unique blocks: 38
-2026-01-15 09:20:46,307 - Basic Block: addr= 0x0000000008001a4c , size=0x0000000000000026 (lr=0x8001315)
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a4c, total unique blocks: 39
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a4e, total unique blocks: 40
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a52, total unique blocks: 41
-2026-01-15 09:20:46,307 -         >>> Write: addr= 0x0000000040033800 size=4 data=0x0000000005000000 pc=0x08001a52
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a56, total unique blocks: 42
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a58, total unique blocks: 43
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a5c, total unique blocks: 44
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a5e, total unique blocks: 45
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a62, total unique blocks: 46
-2026-01-15 09:20:46,307 -         >>> Write: addr= 0x0000000040033800 size=4 data=0x0000000085000000 pc=0x08001a62
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a66, total unique blocks: 47
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a68, total unique blocks: 48
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a6a, total unique blocks: 49
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a6e, total unique blocks: 50
-2026-01-15 09:20:46,307 - [DEBUG] New unique block 0x08001a70, total unique blocks: 51
-2026-01-15 09:20:46,307 - Basic Block: addr= 0x0000000008001a68 , size=0x000000000000000a (lr=0x8001315)
-2026-01-15 09:20:46,308 - Instr: fadb0d4b
-2026-01-15 09:20:46,308 - end pc: 0x8001a70
-2026-01-15 09:20:46,308 - end sp: 0x2012fff8
-2026-01-15 09:20:46,308 - end lr: 0x8001315
-2026-01-15 09:20:46,308 - end cpsr: 0xa00001f3
-2026-01-15 09:20:46,308 - end xpsr: 0xa1000000
-2026-01-15 09:20:46,308 - end msp: 0x2012fff8
-2026-01-15 09:20:46,308 - end psp: 0x0
-2026-01-15 09:20:46,308 - end primask: 0x1
-2026-01-15 09:20:46,308 - end control: 0x0
-2026-01-15 09:20:46,308 - end faultmask: 0x0
-2026-01-15 09:20:46,308 - end basepri: 0x0
-2026-01-15 09:20:46,308 - end ipsr: 0x0
-2026-01-15 09:20:46,308 - end r0: 0x80019ed
-2026-01-15 09:20:46,308 - end r1: 0x8001000
-2026-01-15 09:20:46,308 - end r2: 0x40033000
-2026-01-15 09:20:46,308 - end r3: 0x85000000
-2026-01-15 09:20:46,308 - end r4: 0x0
-2026-01-15 09:20:46,308 - end r5: 0x0
-2026-01-15 09:20:46,308 - end r6: 0x0
-2026-01-15 09:20:46,308 - end r7: 0x2012fff8
-2026-01-15 09:20:46,308 - end r8: 0x0
-2026-01-15 09:20:46,308 - end r9: 0x0
-2026-01-15 09:20:46,308 - end r10: 0x0
-2026-01-15 09:20:46,308 - end r11: 0x0
-2026-01-15 09:20:46,308 - end r12: 0x0
-2026-01-15 09:20:46,308 - Exiting via os._exit
+2026-01-23 05:43:27,482 - Set max loop times to 5000.
+2026-01-23 05:43:27,489 - [Reset_Handler] Basic Block: addr= 0x00000000080012fc , size=0x0000000000000002 (lr=0x0)
+2026-01-23 05:43:27,489 - [DEBUG] New unique block 0x080012fc, total unique blocks: 1
+2026-01-23 05:43:27,490 - Basic Block: addr= 0x00000000080012fe , size=0x000000000000000c (lr=0x0)
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x080012fe, total unique blocks: 2
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x08001300, total unique blocks: 3
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x08001302, total unique blocks: 4
+2026-01-23 05:43:27,490 -         >>> Write: addr= 0x00000000e000ed08 size=4 data=0x0000000008001000 pc=0x08001302
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x08001304, total unique blocks: 5
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x08001306, total unique blocks: 6
+2026-01-23 05:43:27,490 - Basic Block: addr= 0x000000000800130a , size=0x0000000000000006 (lr=0x0)
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x0800130a, total unique blocks: 7
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x0800130c, total unique blocks: 8
+2026-01-23 05:43:27,490 - Basic Block: addr= 0x0000000008001310 , size=0x0000000000000004 (lr=0x0)
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x08001310, total unique blocks: 9
+2026-01-23 05:43:27,490 - [DEBUG] New unique block 0x08001312, total unique blocks: 10
+2026-01-23 05:43:27,491 - [SystemInit] Basic Block: addr= 0x00000000080019ec , size=0x0000000000000040 (lr=0x8001315)
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x080019ec, total unique blocks: 11
+2026-01-23 05:43:27,491 -         >>> Write: addr= 0x2012fff8[SP:-008] size=4 data=0x00000000 pc=0x080019ec
+2026-01-23 05:43:27,491 -         >>> Write: addr= 0x2012fffc[SP:-004] size=4 data=0x08001315 pc=0x080019ec
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x080019ee, total unique blocks: 12
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x080019f0, total unique blocks: 13
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x080019f2, total unique blocks: 14
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x080019f6, total unique blocks: 15
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x080019f8, total unique blocks: 16
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x080019fc, total unique blocks: 17
+2026-01-23 05:43:27,491 -         >>> Write: addr= 0x00000000e000ed88 size=4 data=0x0000000000f00000 pc=0x080019fc
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a00, total unique blocks: 18
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a02, total unique blocks: 19
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a06, total unique blocks: 20
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a08, total unique blocks: 21
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a0c, total unique blocks: 22
+2026-01-23 05:43:27,491 -         >>> Write: addr= 0x00000000e000ed88 size=4 data=0x0000000000f0000f pc=0x08001a0c
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a10, total unique blocks: 23
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a12, total unique blocks: 24
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a16, total unique blocks: 25
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a18, total unique blocks: 26
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a1c, total unique blocks: 27
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a20, total unique blocks: 28
+2026-01-23 05:43:27,491 -         >>> Write: addr= 0x00000000e000ed8c size=4 data=0x0000000000000c03 pc=0x08001a20
+2026-01-23 05:43:27,491 - [DEBUG] New unique block 0x08001a24, total unique blocks: 29
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a26, total unique blocks: 30
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a2a, total unique blocks: 31
+2026-01-23 05:43:27,492 - Basic Block: addr= 0x0000000008001a2c , size=0x0000000000000008 (lr=0x8001315)
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a2c, total unique blocks: 32
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a2e, total unique blocks: 33
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a32, total unique blocks: 34
+2026-01-23 05:43:27,492 - Basic Block: addr= 0x0000000008001a44 , size=0x0000000000000008 (lr=0x8001315)
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a44, total unique blocks: 35
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a46, total unique blocks: 36
+2026-01-23 05:43:27,492 -         >>> Read: addr= 0x000000004003301c size=4 data=0x00000000 pc=0x08001a46
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a48, total unique blocks: 37
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a4a, total unique blocks: 38
+2026-01-23 05:43:27,492 - Basic Block: addr= 0x0000000008001a4c , size=0x0000000000000026 (lr=0x8001315)
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a4c, total unique blocks: 39
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a4e, total unique blocks: 40
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a52, total unique blocks: 41
+2026-01-23 05:43:27,492 -         >>> Write: addr= 0x0000000040033800 size=4 data=0x0000000005000000 pc=0x08001a52
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a56, total unique blocks: 42
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a58, total unique blocks: 43
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a5c, total unique blocks: 44
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a5e, total unique blocks: 45
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a62, total unique blocks: 46
+2026-01-23 05:43:27,492 -         >>> Write: addr= 0x0000000040033800 size=4 data=0x0000000085000000 pc=0x08001a62
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a66, total unique blocks: 47
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a68, total unique blocks: 48
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a6a, total unique blocks: 49
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a6e, total unique blocks: 50
+2026-01-23 05:43:27,492 - [DEBUG] New unique block 0x08001a70, total unique blocks: 51
+2026-01-23 05:43:27,492 - Basic Block: addr= 0x0000000008001a68 , size=0x000000000000000a (lr=0x8001315)
+2026-01-23 05:43:27,493 - Instr: fadb0d4b
+2026-01-23 05:43:27,493 - end pc: 0x8001a70
+2026-01-23 05:43:27,493 - end sp: 0x2012fff8
+2026-01-23 05:43:27,493 - end lr: 0x8001315
+2026-01-23 05:43:27,493 - end cpsr: 0xa00001f3
+2026-01-23 05:43:27,493 - end xpsr: 0xa1000000
+2026-01-23 05:43:27,493 - end msp: 0x2012fff8
+2026-01-23 05:43:27,493 - end psp: 0x0
+2026-01-23 05:43:27,493 - end primask: 0x1
+2026-01-23 05:43:27,493 - end control: 0x0
+2026-01-23 05:43:27,493 - end faultmask: 0x0
+2026-01-23 05:43:27,493 - end basepri: 0x0
+2026-01-23 05:43:27,493 - end ipsr: 0x0
+2026-01-23 05:43:27,493 - end r0: 0x80019ed
+2026-01-23 05:43:27,493 - end r1: 0x8001000
+2026-01-23 05:43:27,493 - end r2: 0x40033000
+2026-01-23 05:43:27,493 - end r3: 0x85000000
+2026-01-23 05:43:27,493 - end r4: 0x0
+2026-01-23 05:43:27,493 - end r5: 0x0
+2026-01-23 05:43:27,493 - end r6: 0x0
+2026-01-23 05:43:27,493 - end r7: 0x2012fff8
+2026-01-23 05:43:27,493 - end r8: 0x0
+2026-01-23 05:43:27,493 - end r9: 0x0
+2026-01-23 05:43:27,493 - end r10: 0x0
+2026-01-23 05:43:27,493 - end r11: 0x0
+2026-01-23 05:43:27,493 - end r12: 0x0
+2026-01-23 05:43:27,493 - Exiting via os._exit

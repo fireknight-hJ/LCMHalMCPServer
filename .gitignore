@@ -6,3 +6,5 @@ config/llm_config.py
 .vscode/
 fuzzemu/
 */emulate/
+testcases_out/
+lcmhal_failcheck_logs/

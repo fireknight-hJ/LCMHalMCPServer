@@ -123,7 +123,7 @@ class DataManager:
             file_path = function_info.file_path
             
             # 组织MMIO信息
-            if classify_res.has_replacement:
+            if classify_res and classify_res.has_replacement:
                 self.mmio_infos_by_file.setdefault(file_path, []).append(classify_res)
             
             # 组织替换更新信息
@@ -281,16 +281,23 @@ class DataManager:
             import json
             import time
             
+            # 统计has_replacement为true的函数数量
+            driver_emulation_functions_count = sum(1 for classify_res in self.mmio_info_list.values() if classify_res and classify_res.has_replacement)
+            
             # 构建全量信息字典
             full_info = {
                 "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                "driver_emulation_functions_count": driver_emulation_functions_count,
                 "function_classifiers": {},
                 "replacement_updates": {}
             }
             
             # 添加FunctionClassfier信息
             for func_name, classify_res in self.mmio_info_list.items():
-                full_info["function_classifiers"][func_name] = classify_res.model_dump()
+                if classify_res:
+                    full_info["function_classifiers"][func_name] = classify_res.model_dump()
+                else:
+                    full_info["function_classifiers"][func_name] = None
             
             # 添加ReplacementUpdate信息
             for func_name, replacement_update in self.replacement_updates.items():

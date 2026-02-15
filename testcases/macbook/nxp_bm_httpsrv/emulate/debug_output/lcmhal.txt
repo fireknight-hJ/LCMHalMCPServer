@@ -1,4 +1,4 @@
-2026-01-15 09:21:02,322 - 0x8001312 irq 0x0-> 0x80019ec SystemInit (from 0x80012fc Reset_Handler)
-2026-01-15 09:21:02,324 - [-] Stop due to exceptional loop.
-2026-01-15 09:21:02,324 - current function: SystemInit
-2026-01-15 09:21:02,324 - current caller function: Reset_Handler
+2026-01-23 06:08:28,591 - 0x8001312 irq 0x0-> 0x80019ec SystemInit (from 0x80012fc Reset_Handler)
+2026-01-23 06:08:29,123 - [-] Stop due to exceptional loop.
+2026-01-23 06:08:29,123 - current function: Reset_Handler
+2026-01-23 06:08:29,123 - current caller function: Reset_Handler
