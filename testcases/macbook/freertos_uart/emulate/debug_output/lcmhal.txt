@@ -1,4 +1,11 @@
-2026-01-21 09:31:59,435 - 0x8001250 irq 0x0-> 0x8000710 HAL_RCC_OscConfig (from 0x80011f4 main)
-2026-01-21 09:31:59,442 - [-] Stop due to exceptional loop.
-2026-01-21 09:31:59,443 - current function: HAL_RCC_OscConfig
-2026-01-21 09:31:59,443 - current caller function: HAL_RCC_OscConfig
+2026-01-27 16:32:04,516 - 0x8000508 irq 0x0-> 0x8000360 HAL_RCC_OscConfig (from 0x80004ac main)
+2026-01-27 16:32:04,517 - 0x8000524 irq 0x0-> 0x8000368 HAL_RCC_ClockConfig (from 0x80004ac main)
+2026-01-27 16:32:04,518 - 0x800053e irq 0x0-> 0x8000216 BSP_LED_Init (from 0x80004ac main)
+2026-01-27 16:32:04,518 - 0x8000544 irq 0x0-> 0x8000216 BSP_LED_Init (from 0x80004ac main)
+2026-01-27 16:32:04,519 - 0x800054a irq 0x0-> 0x8000216 BSP_LED_Init (from 0x80004ac main)
+2026-01-27 16:32:04,520 - 0x80003a4 irq 0x0-> 0x8000616 HAL_UART_MspInit (from 0x8000390 HAL_UART_Init)
+2026-01-27 16:32:04,520 - 0x800062e irq 0x0-> 0x8000354 HAL_GPIO_Init (from 0x8000616 HAL_UART_MspInit)
+2026-01-27 16:32:04,520 - 0x800063a irq 0x0-> 0x8000354 HAL_GPIO_Init (from 0x8000616 HAL_UART_MspInit)
+2026-01-27 16:32:04,525 - [-] Stop due to exceptional loop.
+2026-01-27 16:32:04,525 - current function: main
+2026-01-27 16:32:04,525 - current caller function: main

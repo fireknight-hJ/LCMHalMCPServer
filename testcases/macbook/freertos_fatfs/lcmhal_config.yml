@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_fatfs"
+db_path: "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSFatFs"
+src_path: "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/FatFs_USBDisk_RTOS"
+proj_path: "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/FatFs_USBDisk_RTOS"

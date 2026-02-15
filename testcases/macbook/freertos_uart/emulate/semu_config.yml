@@ -1,6 +1,6 @@
 emulate_mode: emulate
 enable_native: false
-entry_point: 0x80011a1
+entry_point: 0x8000459
 handlers:
   Delay: do_return
   HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
@@ -22,7 +22,7 @@ memory_map:
     base_addr: 0x8000000
     file: output.bin
     permissions: r-x
-    size: 0x58bc
+    size: 0x4208
   irq_ret:
     base_addr: 0xfffff000
     permissions: rwx
