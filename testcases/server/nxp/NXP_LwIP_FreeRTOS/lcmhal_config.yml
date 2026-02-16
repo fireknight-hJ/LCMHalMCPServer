@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_LwIP_FreeRTOS"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_FreeRTOS"
+src_path: "/home/haojie/mcuxsdk-workspace/mcuxsdk"
+proj_path: "/home/haojie/mcuxsdk-workspace"

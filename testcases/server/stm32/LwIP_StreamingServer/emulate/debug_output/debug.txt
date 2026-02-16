@@ -1,13 +1,4 @@
-2026-02-16 09:13:10,222 - Set max loop times to 5000.
-2026-02-16 09:13:10,230 - [Reset_Handler] Basic Block: addr= 0x00000000080002f0 , size=0x0000000000000002 (lr=0x0)
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x080002f0, total unique blocks: 1
-2026-02-16 09:13:10,230 - Basic Block: addr= 0x00000000080002f2 , size=0x0000000000000002 (lr=0x0)
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x080002f2, total unique blocks: 2
-2026-02-16 09:13:10,230 - Basic Block: addr= 0x00000000080002f4 , size=0x0000000000000014 (lr=0x0)
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x080002f4, total unique blocks: 3
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x080002f6, total unique blocks: 4
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x080002f8, total unique blocks: 5
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x080002fa, total unique blocks: 6
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x08000304, total unique blocks: 7
-2026-02-16 09:13:10,230 - Basic Block: addr= 0x00000000080005f0 , size=0x0000000000000002 (lr=0x0)
-2026-02-16 09:13:10,230 - [DEBUG] New unique block 0x080005f0, total unique blocks: 8
+2026-02-16 19:10:48,041 - Set max loop times to 5000.
+2026-02-16 19:10:48,097 - Instr: f7d90320
+2026-02-16 19:10:48,097 - end pc: 0x80072a0
+2026-02-16 19:10:48,097 - Exiting via os._exit
