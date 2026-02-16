@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/BLE_HeartRateFreeRTOS"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS"
+src_path: "/home/haojie/posixGen_Demos/BLE_HeartRateFreeRTOS"
+proj_path: "/home/haojie/posixGen_Demos/BLE_HeartRateFreeRTOS"

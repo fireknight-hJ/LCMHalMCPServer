@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/UART_Hyperterminal_IT"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT"
+src_path: "/home/haojie/posixGen_Demos/UART_Hyperterminal_IT"
+proj_path: "/home/haojie/posixGen_Demos/UART_Hyperterminal_IT"

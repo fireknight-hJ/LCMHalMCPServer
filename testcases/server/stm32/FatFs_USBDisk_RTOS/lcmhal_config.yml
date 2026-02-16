@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/FatFs_USBDisk_RTOS"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"
+src_path: "/home/haojie/posixGen_Demos/FatFs_USBDisk_RTOS"
+proj_path: "/home/haojie/posixGen_Demos/FatFs_USBDisk_RTOS"
