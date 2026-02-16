@@ -137,6 +137,8 @@ def build_project() -> dict:
     Returns:
         dict: 构建结果，包含std_err和exit_code
     """
+    # 首先恢复原始文件，确保源文件是干净的原始状态
+    recover_funcs()
     # 替换文件
     replace_funcs()
     # 编译项目
@@ -166,16 +168,17 @@ def build_project() -> dict:
             # 转换ELF文件为BIN文件
             if elf_to_bin(elf_path, bin_path):
                 print("ELF to BIN conversion successful")
-                
-                # 然后再更新syms.yml，确保符号表信息是最新的
-                try:
-                    from tools.emulator.conf_generator import extract_syms
-                    extract_syms()
-                    print("syms.yml updated successfully after build")
-                except Exception as e:
-                    print(f"Warning: Failed to update syms.yml after build: {e}")
             else:
                 print("ELF to BIN conversion failed")
+            
+            # 无论 ELF 到 BIN 转换是否成功，都更新 syms.yml
+            # 因为 syms.yml 的更新依赖于 ELF 文件，而不是 BIN 文件
+            try:
+                from tools.emulator.conf_generator import extract_syms
+                extract_syms()
+                print("syms.yml updated successfully after build")
+            except Exception as e:
+                print(f"Warning: Failed to update syms.yml after build: {e}")
         else:
             print(f"Warning: ELF file not found at {elf_path}")
     except Exception as e:
@@ -301,16 +304,17 @@ def build_with_raw() -> dict:
             # 转换ELF文件为BIN文件
             if elf_to_bin(elf_path, bin_path):
                 print("ELF to BIN conversion successful")
-                
-                # 然后再更新syms.yml，确保符号表信息是最新的
-                try:
-                    from tools.emulator.conf_generator import extract_syms
-                    extract_syms()
-                    print("syms.yml updated successfully after build")
-                except Exception as e:
-                    print(f"Warning: Failed to update syms.yml after build: {e}")
             else:
                 print("ELF to BIN conversion failed")
+            
+            # 无论 ELF 到 BIN 转换是否成功，都更新 syms.yml
+            # 因为 syms.yml 的更新依赖于 ELF 文件，而不是 BIN 文件
+            try:
+                from tools.emulator.conf_generator import extract_syms
+                extract_syms()
+                print("syms.yml updated successfully after build")
+            except Exception as e:
+                print(f"Warning: Failed to update syms.yml after build: {e}")
         else:
             print(f"Warning: ELF file not found at {elf_path}")
     except Exception as e:
