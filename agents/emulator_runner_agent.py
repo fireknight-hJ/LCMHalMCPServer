@@ -209,7 +209,12 @@ async def run_emulator() -> EmulateResult:
         if isinstance(e, GraphRecursionError):
             # 捕获LangGraph的递归错误，触发failcheck分析
             from utils.failcheck import analyze_failed_conversation
-            analyze_failed_conversation(initial_state["messages"], "emulator_runner_agent", 50)  # 50次agent调用
+            analyze_failed_conversation(
+                initial_state["messages"], 
+                "emulator_runner_agent", 
+                50,
+                db_path=globs.db_path
+            )  # 50次agent调用
         else:
             # 其他错误直接抛出
             raise

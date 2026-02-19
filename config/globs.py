@@ -1,7 +1,6 @@
 # 全局的CodeQL数据库路径
-# db_path = "/home/haojie/workspace/DBS/DATABASE_FreeRTOSLwIP_StreamingServer" # linux
-
-db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer" # mac
+db_path = "/home/haojie/workspace/dbs_server/DATABASE_LwIP_StreamingServer" # linux
+# db_path = "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer" # mac
 script_path = ""
 src_path = ""
 proj_path = ""
@@ -19,9 +18,9 @@ from utils.log_index import log_index_manager
 
 # 默认配置
 default_config = {
-    "script_path": "/Users/jie/Documents/workspace/lcmhalgen/LCMHalMCPServer/testcases/macbook/freertos_streamserver",
-    "db_path": "/Users/jie/Documents/workspace/lcmhalgen/LCMHalTest_DBS/DATABASE_FreeRTOSLwIP_StreamingServer",
-    "src_path": "/Users/jie/Documents/workspace/lcmhalgen/posixGen_Demos/LwIP_StreamingServer",
+    "script_path": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/LwIP_StreamingServer",
+    "db_path": "/home/haojie/workspace/dbs_server/DATABASE_LwIP_StreamingServer",
+    "src_path": "/home/haojie/posixGen_Demos/LwIP_StreamingServer",
     "proj_path": "/home/haojie/posixGen_Demos/LwIP_StreamingServer"
 }
 

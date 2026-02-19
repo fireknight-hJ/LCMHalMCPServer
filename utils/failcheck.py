@@ -7,6 +7,8 @@ import config.globs as globs
 from utils.ai_log_manager import ai_log_manager
 import os
 import time
+import json
+import glob
 
 # Initialize the model for failcheck analysis
 failcheck_model = ChatDeepSeek(
@@ -15,22 +17,123 @@ failcheck_model = ChatDeepSeek(
     api_base=llm_deepseek_config["base_url"]
 )
 
-def format_conversation_history(messages):
+
+def get_latest_session_log(db_path: str) -> str:
+    """获取最新的session日志文件路径"""
+    log_dir = os.path.join(db_path, "lcmhal_ai_log")
+    if not os.path.exists(log_dir):
+        return None
+    
+    pattern = os.path.join(log_dir, "session_*.json")
+    files = glob.glob(pattern)
+    
+    if not files:
+        return None
+    
+    latest_file = max(files, key=os.path.getmtime)
+    return latest_file
+
+
+def load_conversation_from_session_log(session_log_file: str) -> list:
+    """从session日志文件加载完整的对话历史"""
+    if not session_log_file or not os.path.exists(session_log_file):
+        return []
+    
+    try:
+        with open(session_log_file, 'r', encoding='utf-8') as f:
+            session_data = json.load(f)
+        
+        logs = session_data.get("logs", [])
+        
+        all_messages = []
+        
+        for log in logs:
+            if log.get("interaction_type") != "langgraph_node":
+                continue
+            
+            node_name = log.get("node_name", "")
+            if node_name not in ["call_model", "respond", "tools"]:
+                continue
+            
+            data = log.get("data", {})
+            new_messages_summary = data.get("new_messages_summary", [])
+            
+            for msg in new_messages_summary:
+                role = msg.get("role", "")
+                content = msg.get("content", "")
+                msg_type = msg.get("type", "")
+                
+                if not content and msg_type != "AIMessage":
+                    continue
+                
+                if role in ["user", "human"]:
+                    all_messages.append({"role": "user", "content": content})
+                elif role == "assistant" or msg_type == "AIMessage":
+                    tool_calls = msg.get("tool_calls", [])
+                    if tool_calls:
+                        for tc in tool_calls:
+                            all_messages.append({
+                                "role": "assistant", 
+                                "content": f"[Tool Call: {tc.get('name')}] {tc.get('args', '')}"
+                            })
+                    if content:
+                        all_messages.append({"role": "assistant", "content": content})
+        
+        return all_messages
+        
+    except Exception as e:
+        print(f"[WARN] Failed to load session log: {e}")
+        return []
+
+
+def format_conversation_history(messages, max_messages=100, max_content_length=500):
     """格式化对话历史，为每个消息添加编号"""
     formatted = []
+    seen_contents = set()
+    
     for i, msg in enumerate(messages, 1):
         role = msg.get("role", "unknown")
         content = msg.get("content", "")
-        formatted.append(f"Message {i} [{role}]: {content[:100]}{'...' if len(content) > 100 else ''}")
+        
+        content_key = f"{role}:{content[:50]}"
+        if content_key in seen_contents:
+            continue
+        seen_contents.add(content_key)
+        
+        truncated = content[:max_content_length]
+        if len(content) > max_content_length:
+            truncated += "..."
+        
+        formatted.append(f"Message {i} [{role}]: {truncated}")
+        
+        if len(formatted) >= max_messages:
+            formatted.append(f"... (and {len(messages) - max_messages} more messages)")
+            break
+    
     return "\n".join(formatted)
 
-def analyze_failed_conversation(messages, agent_name="Unknown Agent", max_iterations=50):
+def analyze_failed_conversation(messages, agent_name="Unknown Agent", max_iterations=50, db_path: str = None):
     """分析失败的对话历史并生成报告"""
     print(f"\n{'='*50}")
     print(f"FAILCHECK ACTIVATED")
     print(f"Agent: {agent_name}")
     print(f"Iterations exceeded: {max_iterations}")
-    print(f"Total messages: {len(messages)}")
+    print(f"Total messages (initial): {len(messages)}")
+    
+    # 尝试从session日志获取完整对话历史
+    if db_path is None:
+        db_path = getattr(globs, 'db_path', None)
+    
+    if db_path:
+        session_log = get_latest_session_log(db_path)
+        if session_log:
+            print(f"Loading conversation from: {session_log}")
+            full_messages = load_conversation_from_session_log(session_log)
+            if full_messages and len(full_messages) > len(messages):
+                messages = full_messages
+                print(f"Loaded {len(messages)} messages from session log")
+    
+    print(f"Total messages (for analysis): {len(messages)}")
     print(f"{'='*50}\n")
     
     # 格式化对话历史
