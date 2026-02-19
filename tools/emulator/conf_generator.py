@@ -17,6 +17,13 @@ baseconfig_dict = {
         'rules': 'semu_rule.txt',
         'enable_native': False,
         'emulate_mode': 'emulate',
+        # loop_whitelist: Functions that should skip loop detection
+        # These are standard library functions that legitimately repeat many times when copying large memory blocks
+        'loop_whitelist': [
+            'memset',
+            'memcpy',
+            'memmove'
+        ],
         'handlers': {
             'Delay': 'do_return',
             'HAL_Delay': 'do_return',
@@ -79,6 +86,15 @@ def generate_semu_config():
         generate_rule_config()
     if not Path(f"{globs.script_path}/emulate/base_input/input.bin").exists():
         generate_base_input()
+    
+    # 检查 output.bin 是否存在，使用实际 bin 文件大小而不是 ELF 文件大小
+    bin_path = Path(f"{globs.script_path}/emulate/output.bin")
+    if bin_path.exists():
+        bin_size = bin_path.stat().st_size
+        # 向上对齐到 0x1000 (4KB)
+        aligned_size = ((bin_size + 0xFFF) & ~0xFFF)
+        print(f"[INFO] output.bin size: {bin_size}, aligned to: {aligned_size}")
+    
     # 执行fuzzemu-helper命令，捕获输出以避免干扰MCP通信
     cmd = f"cd {globs.script_path}/emulate/ && fuzzemu-helper config base_config.yml -s"
     ret = subprocess.run(
@@ -95,6 +111,111 @@ def generate_semu_config():
     else:
         # 只打印成功信息，不打印fuzzemu-helper的详细输出
         print(f"[INFO] 成功生成semu配置文件, 路径: {globs.script_path}/emulate/semu_config.yml")
+    
+    # 修正 flash 大小为实际 bin 文件大小
+    fix_flash_size()
+
+
+def fix_flash_size():
+    """修正 semu_config.yml 中的内存配置，确保对齐到 4KB
+    
+    策略：
+    1. 删除 .isr_vector 条目（如果存在）
+    2. 合并 flash 区域，覆盖 .isr_vector 的地址范围
+    3. 确保 base_addr 和 size 都是 4KB 对齐
+    """
+    config_path = Path(f"{globs.script_path}/emulate/semu_config.yml")
+    bin_path = Path(f"{globs.script_path}/emulate/output.bin")
+    
+    if not config_path.exists() or not bin_path.exists():
+        return
+    
+    bin_size = bin_path.stat().st_size
+    aligned_size = ((bin_size + 0xFFF) & ~0xFFF)  # 对齐到 4KB
+    
+    # 读取配置文件
+    with open(config_path, 'r') as f:
+        content = f.read()
+    
+    # 解析 YAML
+    config = yaml.safe_load(content)
+    
+    memory_map = config.get('memory_map', {})
+    
+    # 获取 flash 配置
+    flash = memory_map.get('flash', {})
+    flash_addr = flash.get('base_addr', 0x8000000)
+    
+    # 对齐地址到 4KB
+    aligned_addr = flash_addr & ~0xFFF
+    
+    # 更新配置
+    config['memory_map'] = {
+        'flash': {
+            'base_addr': hex(aligned_addr),
+            'file': 'output.bin',
+            'permissions': 'r-x',
+            'size': hex(aligned_size)
+        }
+    }
+    
+    # 添加其他必要的内存区域
+    for key in ['irq_ret', 'mmio', 'nvic', 'peripheral', 'ram']:
+        if key in memory_map:
+            config['memory_map'][key] = memory_map[key]
+    
+    # 写回配置文件，保持原有格式
+    with open(config_path, 'w') as f:
+        # 使用原来的格式
+        lines = content.split('\n')
+        new_lines = []
+        in_memory_map = False
+        skip_next = False
+        
+        for i, line in enumerate(lines):
+            # 跳过 .isr_vector 条目
+            if '.isr_vector:' in line:
+                skip_next = True
+                continue
+            if skip_next and line.strip() and line[0] != ' ' and line[0] != '\t':
+                skip_next = False
+            
+            if skip_next and line.strip().startswith('base_addr:'):
+                continue
+            if skip_next and line.strip().startswith('permissions:'):
+                continue
+            if skip_next and line.strip().startswith('size:'):
+                skip_next = False
+                continue
+                
+            if 'memory_map:' in line:
+                in_memory_map = True
+                new_lines.append(line)
+                continue
+                
+            if in_memory_map and line.strip() == 'flash:':
+                # 替换 flash 配置
+                new_lines.append('  flash:')
+                new_lines.append(f'    base_addr: {hex(aligned_addr)}')
+                new_lines.append('    file: output.bin')
+                new_lines.append('    permissions: r-x')
+                new_lines.append(f'    size: {hex(aligned_size)}')
+                # 跳过原来的 flash 配置
+                skip_next = True
+                continue
+                
+            if in_memory_map and line.strip() and not line[0].isspace() and ':' in line:
+                in_memory_map = False
+                
+            if skip_next:
+                continue
+                
+            new_lines.append(line)
+    
+    with open(config_path, 'w') as f:
+        f.write('\n'.join(new_lines))
+    
+    print(f"[INFO] Fixed memory map: base_addr={hex(aligned_addr)}, size={hex(aligned_size)}")
 
 def mmio_funcs_emulate_config():
     global baseconfig_dict
