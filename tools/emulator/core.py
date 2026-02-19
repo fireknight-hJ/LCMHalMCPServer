@@ -8,7 +8,7 @@ from tools.emulator.conf_generator import extract_syms, generate_emulator_config
 
 
 def emulate_proj() -> dict:
-    """运行模拟器，返回模拟结果
+    """运行模拟器，返回模拟器结果
     
     Returns:
         dict: 模拟结果，包含std_out、std_err和exit_code
@@ -27,15 +27,38 @@ def emulate_proj() -> dict:
 
 
 def ensure_emulator_output_exists():
-    """确保模拟器输出文件存在，如果不存在则运行模拟器生成
+    """确保模拟器输出文件存在，如果不存在或ELF文件比输出文件新则运行模拟器生成
     """
     # 检查两个关键文件是否存在
     lcmhal_file = os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt")
     function_file = os.path.join(globs.script_path, "emulate/debug_output/function.txt")
+    elf_file = os.path.join(globs.script_path, "emulate/output.elf")
     
+    # 获取 ELF 文件的修改时间（如果存在）
+    elf_mtime = 0
+    if os.path.exists(elf_file):
+        elf_mtime = os.path.getmtime(elf_file)
+    
+    # 检查输出文件是否存在且比 ELF 文件旧
+    needs_rerun = False
     if not os.path.exists(lcmhal_file) or not os.path.exists(function_file):
-        # 如果任一文件不存在，运行模拟器生成
-        print("模拟器输出文件不存在，正在运行模拟器生成...")
+        needs_rerun = True
+    elif elf_mtime > 0:
+        # ELF 文件比输出文件新，需要重新运行
+        lcmhal_mtime = os.path.getmtime(lcmhal_file)
+        if elf_mtime > lcmhal_mtime:
+            needs_rerun = True
+    
+    if needs_rerun:
+        # 如果需要重新运行，先删除旧的输出文件
+        debug_output_dir = os.path.join(globs.script_path, "emulate/debug_output")
+        if os.path.exists(debug_output_dir):
+            for filename in ['lcmhal.txt', 'function.txt', 'debug.txt']:
+                filepath = os.path.join(debug_output_dir, filename)
+                if os.path.exists(filepath):
+                    os.remove(filepath)
+        # 运行模拟器生成新输出
+        print("模拟器输出文件不存在或已过期，正在运行模拟器生成...")
         emulate_proj()
         print("模拟器运行完成，输出文件已生成")
 
