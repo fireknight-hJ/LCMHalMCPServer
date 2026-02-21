@@ -3,10 +3,9 @@ from langchain_core.tools import tool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.prebuilt import ToolNode
-from langchain_deepseek import ChatDeepSeek
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import tool
-from config.llm_config import llm_deepseek_config
+from config.model_singleton import get_model
 from models.analyze_results.function_analyze import FixedFunctionInfo
 from models.analyze_results.function_analyze import ReplacementUpdate
 from prompts.function_fixer import system_prompt_en
@@ -20,12 +19,8 @@ from tools.builder.core import init_builder
 from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
 from tools.emulator.tool import emulate_proj, mmio_function_emulate_info, function_calls_emulate_info
 
-# Initialize the model
-model = ChatDeepSeek(
-    model=llm_deepseek_config["model_name"], 
-    api_key=llm_deepseek_config["api_key"], 
-    api_base=llm_deepseek_config["base_url"]
-)
+# 使用统一的模型实例
+model = get_model()
 
 class AgentState(MessagesState):
     # Final structured response from the agent

@@ -2,9 +2,8 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.prebuilt import ToolNode
-from langchain_deepseek import ChatDeepSeek
 from langchain_core.messages import HumanMessage
-from config.llm_config import llm_deepseek_config
+from config.model_singleton import get_model
 from models.analyze_results.driverdir_locate import DriverDirLocatorResponse
 from prompts.driverdir_locator import system_prompting_en
 from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
@@ -14,12 +13,8 @@ from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 
-# Initialize the model
-model = ChatDeepSeek(
-    model=llm_deepseek_config["model_name"], 
-    api_key=llm_deepseek_config["api_key"], 
-    api_base=llm_deepseek_config["base_url"]
-)
+# 使用统一的模型实例
+model = get_model()
 
 # Set up MCP client
 client = MultiServerMCPClient(

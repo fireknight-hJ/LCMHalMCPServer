@@ -1,6 +1,5 @@
-from langchain_deepseek import ChatDeepSeek
 from langchain_core.messages import HumanMessage
-from config.llm_config import llm_deepseek_config
+from config.model_singleton import get_model
 from prompts.summary_prompt import failcheck_analyze_prompt_en, failcheck_analyze_prompt_zh
 import sys
 import config.globs as globs
@@ -10,12 +9,8 @@ import time
 import json
 import glob
 
-# Initialize the model for failcheck analysis
-failcheck_model = ChatDeepSeek(
-    model=llm_deepseek_config["model_name"], 
-    api_key=llm_deepseek_config["api_key"], 
-    api_base=llm_deepseek_config["base_url"]
-)
+# 使用统一的模型实例
+failcheck_model = get_model()
 
 
 def get_latest_session_log(db_path: str) -> str:
