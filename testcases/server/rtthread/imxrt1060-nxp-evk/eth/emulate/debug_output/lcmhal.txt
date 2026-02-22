@@ -1,0 +1,2 @@
+2026-02-21 18:39:10,776 - 0x60010bf2 irq 0x0-> 0x6000ec2c BOARD_BootClockRUN (from 0x60010bdc rt_hw_board_init)
+2026-02-21 18:39:10,782 - 0x6000ec62 irq 0x0-> 0x60010f5c CLOCK_InitExternalClk (from 0x6000ec2c BOARD_BootClockRUN)

@@ -13,6 +13,10 @@ cd "$PWDDIR" || {
     exit 1
 }
 
+# 添加 -fcommon 解决 GCC 10+ 多个 __weak 符号重复定义问题
+export CFLAGS="-fcommon $CFLAGS"
+export CMAKE_C_FLAGS="-fcommon"
+
 echo "开始编译项目..."
 ./build.sh -d uart --baremetal
 

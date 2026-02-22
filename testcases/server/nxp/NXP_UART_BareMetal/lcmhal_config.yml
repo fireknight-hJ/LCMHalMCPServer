@@ -2,4 +2,4 @@
 script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_UART_BareMetal"
 db_path: "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_BareMetal"
 src_path: "/home/haojie/mcuxsdk-workspace/mcuxsdk"
-proj_path: "/home/haojie/mcuxsdk-workspace"
+proj_path: "/home/haojie/mcuxsdk-workspace/mcuxsdk"

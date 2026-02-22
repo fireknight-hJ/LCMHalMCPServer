@@ -1,0 +1,74 @@
+emulate_mode: emulate
+enable_native: false
+entry_point: 0x600024bd
+handlers:
+  Delay: do_return
+  HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+  HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+  HAL_BE_In: fuzzemu.handlers.common.hal_in
+  HAL_BE_Out: fuzzemu.handlers.common.hal_out
+  HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+  HAL_BE_return_1: fuzzemu.handlers.common.return_true
+  HAL_Delay: do_return
+  wait: do_return
+  wait_us: do_return
+include:
+- ./syms.yml
+initial_sp: 0x42464346
+isr_vector: 0x0
+loop_whitelist:
+- memset
+- memcpy
+- memmove
+memory_map:
+  flash:
+    base_addr: 0x20000000
+    file: output.bin
+    permissions: r-x
+    size: 0x9000
+  irq_ret:
+    base_addr: 0x20000000
+    permissions: rwx
+    size: 0x9000
+  mmio:
+    base_addr: 0x20000000
+    permissions: rw-
+    size: 0x9000
+  nvic:
+    base_addr: 0x20000000
+    permissions: rw-
+    size: 0x9000
+  peripheral:
+    base_addr: 0x20000000
+    permissions: rw-
+    size: 0x9000
+  ram:
+    base_addr: 0x20000000
+    permissions: rwx
+    size: 0x9000
+mmio_funcs:
+- CLOCK_SetDiv
+- LPI2C_MasterSetBaudRate
+- CLOCK_SetMux
+- CLOCK_InitEnetPll
+- CLOCK_InitVideoPll
+- CLOCK_InitAudioPll
+- CLOCK_InitUsb2Pll
+- CLOCK_InitUsb1Pll
+- CLOCK_InitSysPll
+- CLOCK_InitArmPll
+- LPI2C_MasterReceive
+- LPI2C_GetInstance
+- LPI2C_TransferStateMachineSendCommand
+- LPI2C_SlaveReceive
+- LPI2C_SlaveSend
+- LPI2C_MasterSend
+- main
+- LPI2C_MasterStop
+- LPI2C_MasterWaitForTxReady
+- BOARD_BootClockRUN_528M
+- BOARD_BootClockRUN
+- CLOCK_InitExternalClk
+model: semu
+rules: semu_rule.txt
