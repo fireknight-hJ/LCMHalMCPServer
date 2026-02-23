@@ -81,7 +81,8 @@ async def build_graph():
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
     # Set up model with structured output
-    model_with_structured_output = model.with_structured_output(EmulateResult)
+    # Use json_mode for better compatibility with non-OpenAI models (e.g., GLM)
+    model_with_structured_output = model.with_structured_output(EmulateResult, method="json_mode")
 
     # Create ToolNode
     tool_node = ToolNode(tools)

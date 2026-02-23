@@ -29,8 +29,9 @@ Follow this **strict, state-driven cycle**. **Do not deviate from the sequence**
 
 1. **Emulate**  
    → Use the `Emulator` tool to run the firmware.  
-   → If execution meets all validation criteria, **stop**—the task is complete.  
-   → If it fails, proceed to step 2.
+   → **IMPORTANT**: Use the `CheckEmulationSuccess` tool to determine if the emulation was successful.  
+   → If `CheckEmulationSuccess` returns `success: true`, **stop**—the task is complete.  
+   → If it fails (shows `exceptional_loop`, `main_not_reached`, or other errors), proceed to step 2.
 
 2. **Diagnose (exactly once per failure cycle)**  
    → Use the `Fixer` tool **only once** to analyze emulator logs (e.g., function call traces, MMIO attempts) and **produce concrete source code modifications**.  
@@ -44,11 +45,12 @@ Follow this **strict, state-driven cycle**. **Do not deviate from the sequence**
    → If the build succeeds, go to step 1 and **re-emulate**.
 
 ### Critical Rules  
+- **Always use `CheckEmulationSuccess` to determine success.** Do not guess based on other outputs.  
 - **One `Fixer` call per failure iteration.** Never call `Fixer` twice in a row.  
 - **Always call `Builder` after `Fixer`.** The only valid transition after `Fixer` is to `Builder`.  
-- **Validation is empirical:** The only way to confirm a fix is successful is through `Emulator`—not through further analysis.  
-- If the program reaches `main()` without exceptions or hangs, **declare success and halt**.
+- **Validation is empirical:** The only way to confirm a fix is successful is through `CheckEmulationSuccess`—not through further analysis.  
+- If `CheckEmulationSuccess` returns `success: true`, **declare success and halt**.
 
-Begin by running the `Emulator`.
+Begin by running the `Emulator`, then call `CheckEmulationSuccess`.
 """
 

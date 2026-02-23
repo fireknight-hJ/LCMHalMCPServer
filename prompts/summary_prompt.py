@@ -1,13 +1,30 @@
-summary_prompt_en = """Your current task is to summarize the preceding conversation and generate a final answer.
-**IMPORTANT INSTRUCTIONS**: You must only summarize, you cannot call any tools, you cannot ask questions, and you cannot request more information.
+summary_prompt_en = """Your current task is to generate a final answer in JSON format.
 
-Please summarize the following content:
-1. What is the problem?
-2. What was the analysis process?
-3. What fixes were implemented?
-4. What is the final conclusion?
+**ABSOLUTELY CRITICAL INSTRUCTIONS:**
+1. You CANNOT call any tools
+2. You CANNOT ask questions
+3. You CANNOT request more information
+4. You CANNOT output any text other than the JSON object
+5. You CANNOT wrap the JSON in any code blocks or formatting
 
-Now begin summarizing:"""
+**JSON FORMAT REQUIREMENTS:**
+You must output exactly this JSON format:
+{
+  "std_err": "standard error output from the emulator",
+  "std_out": "standard output from the emulator",
+  "exit_code": 0,
+  "success": true,
+  "reason": "success" or "failure"
+}
+
+Based on the conversation, determine:
+- std_err: Any error messages from emulation (empty string if none)
+- std_out: Summary of what happened during emulation
+- exit_code: 0 if successful, non-zero if failed
+- success: true if the project ran successfully, false otherwise
+- reason: "success" if completed successfully, "failure" if there were issues
+
+Now output the JSON object:"""
 
 # Fixer专用的结构化输出提示
 fixer_summary_prompt_en = """Your current task is to generate a final answer in JSON format.

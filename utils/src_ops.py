@@ -168,11 +168,15 @@ def src_replace(file_path: str, old_code: str, replace_code: str) -> str:
         
         return ""
     # 检查是否已经包含了弱函数定义，没有则添加（防止编译错误）
-    if weak_funcdef not in content:
+    # 只在 .c 文件中添加，不添加到 .h 头文件（避免头文件被包含时产生重复定义）
+    if weak_funcdef not in content and not file_path.endswith('.h'):
         content = weak_funcdef + content
-    content = content.replace(old_code, replace_code)
+    # 处理转义字符：将 \n 转换为真正的换行符
+    # JSON存储时 \n 是转义形式，需要解码为真正的换行符
+    replace_code_decoded = replace_code.encode('utf-8').decode('unicode_escape')
+    content = content.replace(old_code, replace_code_decoded)
     # print(f"Modifying src file {file_path}")
-    
+
     # 写回文件时使用UTF-8编码
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(content)

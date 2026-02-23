@@ -13,6 +13,42 @@ from tools.emulator.conf_generator import generate_emulator_configs
 from utils.src_ops import src_replace
 
 
+def clean_function_logs(func_name: str, log_type: str = "all"):
+    """删除指定函数的分析日志
+    
+    Args:
+        func_name: 函数名
+        log_type: 日志类型 - "replacement", "analysis", "all"
+    """
+    log_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+    if not os.path.exists(log_dir):
+        print(f"日志目录不存在: {log_dir}")
+        return
+    
+    deleted_files = []
+    
+    if log_type in ["replacement", "all"]:
+        for f in os.listdir(log_dir):
+            if f.startswith(f"replacement_update_{func_name}_") and f.endswith(".json"):
+                file_path = os.path.join(log_dir, f)
+                os.remove(file_path)
+                deleted_files.append(file_path)
+                print(f"删除: {f}")
+    
+    if log_type in ["analysis", "all"]:
+        for f in os.listdir(log_dir):
+            if f.startswith(f"function_analysis_{func_name}_") and f.endswith(".json"):
+                file_path = os.path.join(log_dir, f)
+                os.remove(file_path)
+                deleted_files.append(file_path)
+                print(f"删除: {f}")
+    
+    if not deleted_files:
+        print(f"未找到 {func_name} 的日志文件")
+    else:
+        print(f"\n共删除 {len(deleted_files)} 个文件")
+
+
 async def run_workflow():
     config = load_config_from_yaml(globs.script_path)
     
@@ -61,11 +97,39 @@ async def recover_workflow():
 
 async def main():
     parser = argparse.ArgumentParser(description="LCMHAL MCP Tool")
-    parser.add_argument("command", choices=["run", "recover"], help="Command to execute: run or recover")
+    parser.add_argument("command", choices=["run", "recover", "clean"], help="Command to execute: run, recover, or clean")
     parser.add_argument("script_path", nargs="?", default="", help="Path to the script/config file")
     parser.add_argument("--config", "-c", default=None, help="Path to config YAML file (overrides script_path)")
+    parser.add_argument("--func-name", "-f", default=None, help="Function name to clean logs for (used with 'clean' command)")
+    parser.add_argument("--type", "-t", choices=["replacement", "analysis", "all"], default="all", help="Log type to clean (used with 'clean' command)")
     
     args = parser.parse_args()
+    
+    if args.command == "clean":
+        if args.config:
+            config_path = args.config
+        elif args.script_path:
+            config_path = args.script_path
+        else:
+            print("Error: config file path required for clean command")
+            return
+        
+        # load_config_from_yaml 期望目录路径
+        if os.path.isfile(config_path):
+            dir_path = os.path.dirname(config_path)
+        else:
+            dir_path = config_path
+        
+        config = load_config_from_yaml(dir_path)
+        globs.script_path = dir_path
+        globs.globs_init(config)
+        
+        if not args.func_name:
+            print("Error: --func-name is required for clean command")
+            return
+        
+        clean_function_logs(args.func_name, args.type)
+        return
     
     if args.command == "recover":
         if args.config:

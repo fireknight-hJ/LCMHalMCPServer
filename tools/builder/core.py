@@ -13,13 +13,35 @@ def replace_funcs():
     mmio_info_list = data_manager.get_mmio_info_list()
     replacement_updates = data_manager.get_replacement_updates()
     
+    # 收集所有要替换的函数列表
+    all_funcs_to_replace = []
+    
     # 首先处理所有在replacement_updates中的函数，确保它们都被替换
+    for func_name, replacement_update in replacement_updates.items():
+        all_funcs_to_replace.append(func_name)
+    
+    # 然后处理mmio_info_list中不在replacement_updates中的函数
+    for func_name, classify_res in mmio_info_list.items():
+        if func_name not in replacement_updates and classify_res.has_replacement:
+            all_funcs_to_replace.append(func_name)
+    
+    # 替换前打印所有要替换的函数
+    print(f"\n{'='*60}")
+    print(f"[REPLACE] Functions to replace (total: {len(all_funcs_to_replace)}):")
+    for i, func_name in enumerate(all_funcs_to_replace, 1):
+        print(f"  {i}. {func_name}")
+    print(f"{'='*60}\n")
+    
+    # 执行替换
+    replaced_count = 0
     for func_name, replacement_update in replacement_updates.items():
         func_info = get_function_info(globs.db_path, func_name)
         if func_info:
             replace_res = function_replace(func_info, replacement_update.replacement_code)
             if not replace_res:
                 print(f"Warning: Failed to replace function {func_name}")
+            else:
+                replaced_count += 1
         else:
             print(f"Warning: Function {func_name} not found in database")
     
@@ -28,11 +50,19 @@ def replace_funcs():
         if func_name not in replacement_updates and classify_res.has_replacement:
             func_info = get_function_info(globs.db_path, func_name)
             if func_info:
-                replace_res = function_replace(func_info, classify_res.function_replacement)
+                replacement_code = classify_res.function_replacement
+                replace_res = function_replace(func_info, replacement_code)
                 if not replace_res:
                     print(f"Warning: Failed to replace function {func_name}")
+                else:
+                    replaced_count += 1
             else:
                 print(f"Warning: Function {func_name} not found in database")
+    
+    # 替换后打印所有成功替换的函数
+    print(f"\n{'='*60}")
+    print(f"[REPLACE] Successfully replaced functions: {replaced_count}/{len(all_funcs_to_replace)}")
+    print(f"{'='*60}\n")
 
 
 def recover_funcs():
@@ -248,10 +278,38 @@ async def init_builder():
 
 def get_function_analysis_and_replacement(func_name: str) -> dict:
     """根据函数名获取函数的分析和替换信息
-    
+
     Args:
         func_name: 函数名称
-        
+
+    Returns:
+        dict: 包含函数分析信息和替换信息的字典
+            - mmio_info: 函数的MMIO分析信息
+            - replacement_update: 函数的替换更新信息（如果有）
+    """
+    return data_manager.get_function_analysis_and_replacement(func_name)
+
+
+def get_replace_func_details_by_function(func_name: str) -> dict:
+    """根据函数名获取函数的分析和替换信息（按函数查询版本，更常用）
+
+    Args:
+        func_name: 函数名称
+
+    Returns:
+        dict: 包含函数分析信息和替换信息的字典
+            - mmio_info: 函数的MMIO分析信息（如果有）
+            - replacement_update: 函数的替换更新信息（如果有）
+    """
+    return data_manager.get_function_analysis_and_replacement(func_name)
+
+
+def get_function_analysis_and_replacement(func_name: str) -> dict:
+    """根据函数名获取函数的分析和替换信息（按函数查询版本）
+
+    Args:
+        func_name: 函数名称
+
     Returns:
         dict: 包含函数分析信息和替换信息的字典
             - mmio_info: 函数的MMIO分析信息
@@ -262,14 +320,38 @@ def get_function_analysis_and_replacement(func_name: str) -> dict:
 
 def get_function_analysis_and_replacement_formatted(func_name: str) -> str:
     """根据函数名获取格式化的函数分析和替换信息（文本格式，便于大模型理解）
-    
+
     Args:
         func_name: 函数名称
-        
+
+    Returns:
+        str: 格式化的函数分析和替换信息
+    """
+    return data_manager.get_function_analysis_and_replacement_formatted_by_function(func_name)
+
+
+def get_function_analysis_and_replacement_formatted_by_function(func_name: str) -> str:
+    """根据函数名获取格式化的函数分析和替换信息（按函数查询版本）
+
+    Args:
+        func_name: 函数名称
+
     Returns:
         str: 格式化的函数分析和替换信息
     """
     return data_manager.get_function_analysis_and_replacement_formatted(func_name)
+
+
+def get_replace_func_details_by_file(file_path: str) -> dict:
+    """根据文件路径获取替换函数详情（包含替换历史信息，重要改进）
+
+    Args:
+        file_path: 文件的完整路径
+
+    Returns:
+        dict: 替换函数的详细信息
+    """
+    return data_manager.get_replace_func_details_by_file(file_path)
 
 
 def build_with_raw() -> dict:
