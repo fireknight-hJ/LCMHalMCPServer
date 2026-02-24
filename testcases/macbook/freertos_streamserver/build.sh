@@ -28,28 +28,20 @@ make all
 # 检查编译结果
 if [ $? -eq 0 ]; then
     echo "编译成功完成!"
-    # 移动生成的可执行文件到 DBDIR
-    if [ ! -d "$DBDIR/lcmhal_emulate" ]; then
-        mkdir -p "$DBDIR/lcmhal_emulate"
+    # 创建 emulate 目录
+    if [ ! -d "$SCRIPTDIR/emulate" ]; then
+        mkdir -p "$SCRIPTDIR/emulate"
     fi
-    # 强制移动可执行文件到脚本目录，覆盖同名文件
-    # 生成的elf文件名通用名称 "output.elf"
-    mv -f "LwIP_StreamingServer.elf" "$SCRIPTDIR/output.elf" || {
-        echo "错误: 无法移动可执行文件到 $SCRIPTDIR/output.elf"
+    # 移动可执行文件到 emulate 目录
+    mv -f "LwIP_StreamingServer.elf" "$SCRIPTDIR/emulate/output.elf" || {
+        echo "错误: 无法移动可执行文件到 $SCRIPTDIR/emulate/output.elf"
         exit 1
     }
     
-    # 复制可执行文件到emulate目录，供模拟器使用
-    echo "复制可执行文件到emulate目录..."
-    cp -f "$SCRIPTDIR/output.elf" "$SCRIPTDIR/emulate/output.elf" || {
-        echo "错误: 无法复制可执行文件到 $SCRIPTDIR/emulate/output.elf"
-        exit 1
-    }
-    
-    # 从ELF文件生成二进制镜像文件output.bin
-    echo "从ELF文件生成output.bin..."
+    # 从 ELF 文件生成二进制镜像文件 output.bin
+    echo "从 ELF 文件生成 output.bin..."
     arm-none-eabi-objcopy -O binary "$SCRIPTDIR/emulate/output.elf" "$SCRIPTDIR/emulate/output.bin" || {
-        echo "错误: 无法从ELF文件生成output.bin"
+        echo "错误: 无法从 ELF 文件生成 output.bin"
         exit 1
     }
 else
