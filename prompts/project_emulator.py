@@ -29,9 +29,8 @@ Follow this **strict, state-driven cycle**. **Do not deviate from the sequence**
 
 1. **Emulate**  
    → Use the `Emulator` tool to run the firmware.  
-   → **IMPORTANT**: Use the `CheckEmulationSuccess` tool to determine if the emulation was successful.  
-   → If `CheckEmulationSuccess` returns `success: true`, **stop**—the task is complete.  
-   → If it fails (shows `exceptional_loop`, `main_not_reached`, or other errors), proceed to step 2.
+   → **IMPORTANT**: Check the return value for `success` field. If `success: true`, **stop**—the task is complete.  
+   → If `success: false` or `has_exceptional_loop: true`, the emulation failed. Proceed to step 2.
 
 2. **Diagnose (exactly once per failure cycle)**  
    → Use the `Fixer` tool **only once** to analyze emulator logs (e.g., function call traces, MMIO attempts) and **produce concrete source code modifications**.  
@@ -45,12 +44,12 @@ Follow this **strict, state-driven cycle**. **Do not deviate from the sequence**
    → If the build succeeds, go to step 1 and **re-emulate**.
 
 ### Critical Rules  
-- **Always use `CheckEmulationSuccess` to determine success.** Do not guess based on other outputs.  
-- **One `Fixer` call per failure iteration.** Never call `Fixer` twice in a row.  
-- **Always call `Builder` after `Fixer`.** The only valid transition after `Fixer` is to `Builder`.  
-- **Validation is empirical:** The only way to confirm a fix is successful is through `CheckEmulationSuccess`—not through further analysis.  
-- If `CheckEmulationSuccess` returns `success: true`, **declare success and halt**.
+- **Always check the `success` field in Emulator response.** If `success: false` or `has_exceptional_loop: true`, the emulation failed and you must call Fixer.
+- **One `Fixer` call per failure iteration.** Never call `Fixer` twice in a row.
+- **Always call `Builder` after `Fixer`.** The only valid transition after `Fixer` is to `Builder`.
+- **Validation is empirical:** The only way to confirm a fix is successful is through the Emulator's `success` field—not through further analysis.
+- If `success: true`, **declare success and halt**.
 
-Begin by running the `Emulator`, then call `CheckEmulationSuccess`.
+Begin by running the `Emulator`, then check if `success: true`.
 """
 

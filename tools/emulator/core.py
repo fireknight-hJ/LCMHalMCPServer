@@ -11,7 +11,7 @@ def emulate_proj() -> dict:
     """运行模拟器，返回模拟器结果
     
     Returns:
-        dict: 模拟结果，包含std_out、std_err和exit_code
+        dict: 模拟结果，包含std_out、std_err、exit_code和success判断
     """
     # 每次emulate前重新生成syms.yml配置文件，因为重新build后符号表会变化
     extract_syms()
@@ -19,10 +19,25 @@ def emulate_proj() -> dict:
     generate_emulator_configs()
     # 运行模拟器
     ret = run_emulator()
+    
+    # 检查 lcmhal.txt 判断是否有死循环
+    lcmhal_path = os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt")
+    has_loop = False
+    if os.path.exists(lcmhal_path):
+        with open(lcmhal_path, 'r') as f:
+            content = f.read()
+            if 'exceptional loop' in content:
+                has_loop = True
+    
+    # 判断是否成功：exit_code == 0 且没有死循环
+    success = (ret.returncode == 0 and not has_loop)
+    
     return {
         "std_out": ret.stdout,
         "std_err": ret.stderr,
-        "exit_code": ret.returncode
+        "exit_code": ret.returncode,
+        "success": success,
+        "has_exceptional_loop": has_loop
     }
 
 
