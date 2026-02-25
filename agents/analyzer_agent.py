@@ -234,6 +234,12 @@ async def analyze_functions(function_list):
         if isinstance(result, Exception):
             print(f"Error analyzing function {func_name}: {result}")
             continue
+        if result is None:
+            print(f"Warning: function_classify returned None for {func_name}, skip.")
+            continue
+        if not isinstance(result, FunctionClassifyResponse):
+            print(f"Warning: function_classify returned non-Response for {func_name}: type={type(result)}, skip.")
+            continue
         mmio_info_list[func_name] = result
     
     return mmio_info_list

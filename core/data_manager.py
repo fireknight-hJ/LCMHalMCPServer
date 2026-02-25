@@ -142,6 +142,9 @@ class DataManager:
     def _organize_data_by_file(self):
         """将数据按文件分类组织"""
         for func_name, classify_res in self.mmio_info_list.items():
+            if classify_res is None:
+                print(f"Warning: mmio_info_list has None for function {func_name}, skip in _organize_data_by_file.")
+                continue
             function_info = get_function_info(globs.db_path, func_name)
             if not function_info:
                 continue
