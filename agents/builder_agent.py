@@ -15,6 +15,7 @@ from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 from tools.builder.core import init_builder
 from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
+from agents.builder_fixer_agent import builder_fixer_agent
 
 # 使用统一的模型实例
 model = get_model()
@@ -82,12 +83,13 @@ async def build_graph():
     # 初始化builder工具
     await init_builder()
     
-    # 定义工具列表
+    # 定义工具列表（含 BuilderFixer 子 agent，用于在错误过多时委托单函数修复）
     tools = tools + [
         build_project,
         get_replace_func_details_by_file,
         update_function_replacement,
-        get_function_analysis_and_replacement
+        get_function_analysis_and_replacement,
+        builder_fixer_agent,
     ]
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
