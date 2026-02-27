@@ -216,20 +216,22 @@ def build_project() -> dict:
         import traceback
         traceback.print_exc()
     
-    # 结果输出，添加stdout长度限制
-    stdout_limit = 10000  # 设置stdout长度限制为10000字符
+    # 结果输出，添加 stdout/stderr 长度限制，避免 Builder 对话上下文过长导致 API 400
+    stdout_limit = 10000
+    stderr_limit = 8000
     std_out = build_info.std_out
-    
+    std_err = build_info.std_err
+
     if std_out and len(std_out) > stdout_limit:
-        # 如果stdout过长，进行截断并添加提示信息
-        truncated_stdout = std_out[:stdout_limit]
-        std_out = f"{truncated_stdout}\n[TRUNCATED] Output exceeded {stdout_limit} characters. Showing first {stdout_limit} characters only."
-    
+        std_out = std_out[:stdout_limit] + f"\n[TRUNCATED] stdout exceeded {stdout_limit} chars. Showing first {stdout_limit} only."
+    if std_err and len(std_err) > stderr_limit:
+        std_err = std_err[:stderr_limit] + f"\n[TRUNCATED] stderr exceeded {stderr_limit} chars. Use FixFunctionBuildErrors with the specific error lines you need to fix."
+
     # 编译完成后dump全量信息
     data_manager.dump_full_info()
-    
+
     return {
-        "std_err": build_info.std_err,
+        "std_err": std_err,
         "std_out": std_out,
         "exit_code": build_info.exit_code
     }
