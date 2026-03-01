@@ -6,6 +6,7 @@ from tools.collector.collector import get_function_info
 from tools.replacer.code_recover import function_recover
 from tools.replacer.code_replacer import function_replace
 from core.data_manager import data_manager
+from utils.replacement_rubric import check_replacement_rubric
 
 
 def replace_funcs():
@@ -250,7 +251,7 @@ def get_replace_func_details_by_file(file_path: str) -> dict:
 
 
 def update_function_replacement(func_name: str, replace_code: str, reason: str) -> dict:
-    """更新函数替换代码
+    """更新函数替换代码；落盘前先做 rubric 校验，不通过则返回 ok: false 与 reason，不写入。
     
     Args:
         func_name: 函数名称
@@ -258,12 +259,14 @@ def update_function_replacement(func_name: str, replace_code: str, reason: str) 
         reason: 替换原因
         
     Returns:
-        dict: 更新结果
+        dict: 更新结果。rubric 不通过时返回 {"ok": False, "reason": "..."}；成功时返回 {"ok": True, "function_name": ..., "status": "success"}
     """
-    if not data_manager.update_function_replacement(func_name, replace_code, reason):
-        return {"error": f"Function {func_name} not found in MMIO function list."}
-    
+    check_result = check_replacement_rubric(func_name, replace_code)
+    if not check_result["pass"]:
+        return {"ok": False, "reason": check_result["reason"]}
+    data_manager.update_function_replacement(func_name, replace_code, reason)
     return {
+        "ok": True,
         "function_name": func_name,
         "status": "success"
     }
