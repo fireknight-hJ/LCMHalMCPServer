@@ -14,7 +14,7 @@ from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 from tools.builder.core import init_builder
-from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
+from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement, get_function_analysis_and_replacement_formatted
 from agents.builder_fixer_agent import builder_fixer_agent
 
 # 使用统一的模型实例
@@ -89,6 +89,7 @@ async def build_graph():
         get_replace_func_details_by_file,
         update_function_replacement,
         get_function_analysis_and_replacement,
+        get_function_analysis_and_replacement_formatted,
         builder_fixer_agent,
     ]
     # Bind tools to model

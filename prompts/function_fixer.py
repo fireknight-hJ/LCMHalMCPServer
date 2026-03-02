@@ -114,7 +114,7 @@ GetFunctionAnalysisAndReplacement(function_name)
 ### Step 4: Implement Fix (MAKE CHANGES)
 Only after completing Steps 1, 2, and 3 should you implement a fix using `UpdateFunctionReplacement`.
 
-**When `UpdateFunctionReplacement` returns `ok: false`**: The tool returns a rubric check failure with a `reason` (e.g. "must preserve SysTick->LOAD and SysTick->CTRL writes"). You **must** fix the replacement code according to that reason (e.g. add back the required register writes) and call `UpdateFunctionReplacement` again. Do not treat a failed rubric as success; keep retrying until the tool returns `ok: true`.
+**When `UpdateFunctionReplacement` returns `ok: false`**: (1) **Rubric failure** — the tool returns a `reason` (e.g. "must preserve SysTick->LOAD and SysTick->CTRL writes"). Fix the replacement according to that reason and call `UpdateFunctionReplacement` again. (2) **Compile verification failure** — the tool returns `reason: "Compile verification failed for replacement."` and **build_stderr**. Use build_stderr to fix syntax/type errors in the replacement and call `UpdateFunctionReplacement` again. Limit retries per function to 2–3; do not treat failure as success.
 
 # CORE DEBUGGING PRINCIPLES
 
@@ -480,7 +480,7 @@ GetReplaceFuncDetailsByFile(file_path)
 UpdateFunctionReplacement(func_name, replace_code, reason)
 ```
 
-**当 `UpdateFunctionReplacement` 返回 `ok: false` 时**：表示 rubric 校验未通过，工具会返回 `reason`（例如要求保留 SysTick->LOAD/CTRL 的写操作）。你必须根据该原因修改替换代码（例如补回必要的寄存器写），然后再次调用 `UpdateFunctionReplacement`。不要将 rubric 失败视为成功；应持续重试直到工具返回 `ok: true`。
+**当 `UpdateFunctionReplacement` 返回 `ok: false` 时**：（1）**Rubric 失败**：会返回 `reason`（如要求保留 SysTick->LOAD/CTRL 等），需按 reason 修改后再次调用。（2）**编译验证失败**：会返回 `reason: "Compile verification failed for replacement."` 且带 **build_stderr**，需根据 build_stderr 修正语法/类型错误后再次调用。同一函数最多重试 2–3 次，勿将失败视为成功。
 
 # 核心调试原则（CORE DEBUGGING PRINCIPLES）
 

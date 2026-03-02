@@ -16,6 +16,7 @@ from utils.db_cache import dump_message_json_log, check_analyzed_json_log, get_a
 from utils.ai_log_manager import ai_log_manager
 from utils.replacement_rubric import check_replacement_rubric
 from tools.collector.collector import get_function_source
+from tools.builder.tool import verify_replacement as verify_replacement_tool
 import config.globs as globs
 
 # 使用统一的模型实例
@@ -64,8 +65,9 @@ async def build_graph():
     if _graph is not None:
         return _graph
     
-    # 异步获取工具
+    # 异步获取工具（Collector MCP + 本地验证工具）
     tools = await client.get_tools()
+    tools = tools + [verify_replacement_tool]
 
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
@@ -92,6 +94,31 @@ async def build_graph():
         
         return result
 
+    def _get_last_verified_replace_code(messages):
+        """从对话中解析最后一次 VerifyReplacement 且 pass=true 的 replace_code。"""
+        id_to_call = {}
+        for msg in messages:
+            if hasattr(msg, "tool_calls") and msg.tool_calls:
+                for tc in msg.tool_calls:
+                    tid = tc.get("id") if isinstance(tc, dict) else getattr(tc, "id", None)
+                    name = tc.get("name") if isinstance(tc, dict) else getattr(tc, "name", None)
+                    args = tc.get("args") if isinstance(tc, dict) else getattr(tc, "args", {}) or {}
+                    if tid:
+                        id_to_call[tid] = (name, args)
+        last_verified_code = None
+        for msg in messages:
+            if getattr(msg, "tool_call_id", None) and getattr(msg, "content", None):
+                name, args = id_to_call.get(msg.tool_call_id, (None, {}))
+                if name == "VerifyReplacement":
+                    try:
+                        content = msg.content
+                        data = json.loads(content) if isinstance(content, str) else content
+                        if data.get("pass") is True:
+                            last_verified_code = (args or {}).get("replace_code") or last_verified_code
+                    except Exception:
+                        pass
+        return last_verified_code
+
     # Define the function that responds to the user
     def respond(state: AgentState):
         agent_name = "analyzer_agent"
@@ -105,6 +132,10 @@ async def build_graph():
         response = model_with_structured_output.invoke(
             state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
         )
+        # 用最后一次验证通过的 replace_code 覆盖，保证与 VerifyReplacement 结果一致
+        verified_code = _get_last_verified_replace_code(state["messages"])
+        if verified_code is not None and verified_code.strip():
+            response = response.model_copy(update={"function_replacement": verified_code})
         # We return the final answer
         result = {"final_response": response}
         

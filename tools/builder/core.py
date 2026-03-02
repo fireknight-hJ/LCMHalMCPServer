@@ -262,6 +262,71 @@ def get_replace_func_details_by_file(file_path: str) -> dict:
     return data_manager.get_replace_func_details_by_file(file_path)
 
 
+def _compile_verify_single_replacement(func_name: str, replace_code: str) -> dict | None:
+    """对单个函数的替换做一次“临时落盘 + 全项目编译”验证。
+    
+    成功时返回 None；失败时返回形如 update_function_replacement 的错误 dict：
+      {"ok": False, "reason": "...", "build_stderr": "..."}（build_stderr 仅在编译失败时存在）
+    """
+    # db_path 为空时直接跳过编译验证（保持原有行为）
+    if not globs.db_path:
+        return None
+    
+    func_info = get_function_info(globs.db_path, func_name)
+    if not func_info:
+        # 找不到函数信息时也不强制失败，而是跳过验证，让上层继续正常落盘
+        return None
+    
+    # 1) 在源文件中临时应用本次替换
+    applied = function_replace(func_info, replace_code)
+    if not applied:
+        return {
+            "ok": False,
+            "reason": f"Failed to apply replacement into source file for {func_name} during compile verification."
+        }
+    
+    # 2) 运行一次项目构建（使用现有 build.sh/clear.sh 工具链）
+    #    这里不修改 replacement_updates，只在工作树里替换这一处代码做验证
+    try:
+        clear_proj(globs.script_path)
+        build_output = build_proj(globs.script_path)
+    finally:
+        # 3) 无论成败都恢复该文件原始代码，避免污染后续流程
+        function_recover(func_info)
+    
+    if build_output.exit_code != 0:
+        # 编译失败，携带 stderr 返回给上层 Agent，用于驱动重新生成函数体
+        return {
+            "ok": False,
+            "reason": "Compile verification failed for replacement.",
+            "build_stderr": build_output.std_err,
+        }
+    
+    return None
+
+
+def verify_replacement(func_name: str, replace_code: str) -> dict:
+    """仅验证替换代码（Rubric + 可选编译），不落盘。供 FunctionClassifier 等在图内调用。
+
+    Returns:
+        {"pass": True} 或 {"pass": False, "reason": str, "build_stderr": str | None}
+    """
+    original_code = get_function_source(globs.db_path, func_name) if getattr(globs, "db_path", None) else None
+    check_result = check_replacement_rubric(func_name, replace_code, original_code=original_code)
+    if not check_result["pass"]:
+        return {"pass": False, "reason": check_result["reason"], "build_stderr": None}
+
+    if getattr(globs, "enable_compile_verify", False):
+        err = _compile_verify_single_replacement(func_name, replace_code)
+        if err is not None:
+            return {
+                "pass": False,
+                "reason": err.get("reason", "Compile verification failed."),
+                "build_stderr": err.get("build_stderr"),
+            }
+    return {"pass": True}
+
+
 def update_function_replacement(func_name: str, replace_code: str, reason: str) -> dict:
     """更新函数替换代码；落盘前先做 rubric 校验，不通过则返回 ok: false 与 reason，不写入。
     
@@ -277,6 +342,15 @@ def update_function_replacement(func_name: str, replace_code: str, reason: str) 
     check_result = check_replacement_rubric(func_name, replace_code, original_code=original_code)
     if not check_result["pass"]:
         return {"ok": False, "reason": check_result["reason"]}
+    
+    # 可选：在当前项目环境下对单个函数替换做一次全项目编译验证
+    # 目的：尽量在保存 ReplacementUpdate 之前就发现明显的语法/编译错误
+    if getattr(globs, "enable_compile_verify", False):
+        verify_result = _compile_verify_single_replacement(func_name, replace_code)
+        if verify_result is not None:
+            return verify_result
+    
+    # 通过 Rubric（以及可选的编译验证）后，才真正落盘更新
     data_manager.update_function_replacement(func_name, replace_code, reason)
     return {
         "ok": True,

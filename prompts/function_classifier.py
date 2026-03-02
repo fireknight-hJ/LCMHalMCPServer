@@ -36,6 +36,12 @@ You have access to the following tools to gather information about functions and
     *   **When to use**: When you need to understand the broader driver context of the function.
     *   **Example**: `GetDriverInfo("uart")`
 
+6.  **VerifyReplacement(func_name: str, replace_code: str)**: Verifies your replacement code (rubric check and optional project compile). Returns `pass` (true/false); on failure returns `reason` and optionally `build_stderr`. Does not persist. **You must call this before finishing when your classification includes replacement code.**
+    *   **When to use**: After you have decided on replacement code and before you output your final message with no more tool calls. If the tool returns `pass: false`, fix the replacement using `reason` and `build_stderr`, then call VerifyReplacement again until `pass: true`.
+    *   **Example**: `VerifyReplacement("HAL_UART_Receive", "your full replacement function body here")`
+
+**Verification before final output**: Before you output a message that has no further tool calls (so the system can generate the final classification JSON), **if** your classification includes replacement code (`has_replacement` true and non-empty `function_replacement`), you **must** call **VerifyReplacement(function_name, replace_code)** with the function name you are classifying and your proposed replacement code. If the tool returns **pass: false**, use the returned `reason` (and `build_stderr` if present) to fix the replacement, then call VerifyReplacement again. Only when the tool returns **pass: true** (or when you have no replacement code) may you output your final "done" message.
+
 **Tool Usage Best Practices**:
 - **Always start with GetFunctionInfo** to get the function's implementation code.
 - **Use GetMMIOFunctionInfo** immediately after to identify hardware dependencies.
@@ -284,17 +290,19 @@ When generating replacement code for **RECV, IRQ, INIT, or LOOP** functions, fol
     *   **Compilation Safety**: The generated code must be valid C syntax using only existing types and the allowed helper functions.
 
 **Critical Code Generation Rules**:
-1.  Absolutely prohibit fabricating undefined address constants (such as 0x20000000, 0x40000000, etc.)
-2.  Absolutely prohibit fabricating undeclared global variables, macro definitions, or functions
-3.  Only use:
+1.  **Declaration must match original exactly**: The first line of the replacement (function signature) must be identical to the original: same storage class (**static** vs non-static), same return type, same name, same parameters. If the original or the header declares `void Foo(void);` (no static), do **not** write `static void Foo(void)` in the replacement. Mismatch causes "static declaration follows non-static declaration" errors.
+2.  **Use only HAL/struct members that exist for the target**: When setting struct or handle members (e.g. `handle->State`, `handle->ErrorCode`), use **only members that appear in the original function or in the target chip's HAL**. Do not use members from other chip families (e.g. `TIM_HandleTypeDef.ErrorCode` exists in some newer HALs but **not** in STM32F4; `RCC_PLLInitTypeDef.PLLR` exists only on F410/F446/F469/F479/F412/F413/F423, **not** on STM32F401). Using non-existent members causes "has no member named 'X'" compile errors.
+3.  Absolutely prohibit fabricating undefined address constants (such as 0x20000000, 0x40000000, etc.)
+4.  Absolutely prohibit fabricating undeclared global variables, macro definitions, or functions
+5.  Only use:
     - Variables and parameters existing in the current code snippet
     - Standard APIs of libraries/frameworks
     - Reasonable values explicitly derived from the context
-4.  If a parameter requires a specific value, you must:
+6.  If a parameter requires a specific value, you must:
     - Use values already present in function parameters
     - Use existing fields within structures/objects
     - Or clearly comment on the source of the value
-5.  After generation, verify that every variable/constant has a clearly defined source
+7.  After generation, verify that every variable/constant has a clearly defined source
 
 ---
 

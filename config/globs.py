@@ -10,6 +10,8 @@ ai_log_enable = True
 session_id = ""
 # 语言偏好设置，用于控制提示语言选择
 language_preference = "zh"  # 默认使用中文
+# 是否在每次 UpdateFunctionReplacement 时启用“Rubric + 编译验证”事务流程（默认开启）
+enable_compile_verify = True
 
 import os
 import yaml
