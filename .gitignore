@@ -7,3 +7,4 @@ config/llm_config.py
 fuzzemu/
 */emulate/
 lcmhal_failcheck_logs/
+**/debug_output/

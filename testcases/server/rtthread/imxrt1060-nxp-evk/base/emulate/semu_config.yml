@@ -1,0 +1,73 @@
+emulate_mode: emulate
+enable_native: false
+entry_point: 1610622277
+handlers:
+  Delay: do_return
+  HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+  HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+  HAL_BE_In: fuzzemu.handlers.common.hal_in
+  HAL_BE_Out: fuzzemu.handlers.common.hal_out
+  HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+  HAL_BE_return_1: fuzzemu.handlers.common.return_true
+  HAL_Delay: do_return
+  wait: do_return
+  wait_us: do_return
+include:
+- ./syms.yml
+initial_sp: 1111900998
+isr_vector: 0
+loop_whitelist:
+- memset
+- memcpy
+- memmove
+memory_map:
+  flash:
+    base_addr: 1610612736
+    file: output.bin
+    permissions: r-x
+    size: 139264
+  irq_ret:
+    base_addr: 4294963200
+    permissions: rwx
+    size: 4096
+  mmio:
+    base_addr: 1073741824
+    permissions: rw-
+    size: 536870912
+  nvic:
+    base_addr: 3758096384
+    permissions: rw-
+    size: 268435456
+  peripheral:
+    base_addr: 2684354560
+    permissions: rw-
+    size: 1073741824
+  ram:
+    base_addr: 536870912
+    permissions: rwx
+    size: 4194304
+mmio_funcs:
+- imxrt_isr
+- CLOCK_InitEnetPll
+- CLOCK_InitVideoPll
+- CLOCK_InitAudioPll
+- CLOCK_InitUsb2Pll
+- CLOCK_InitUsb1Pll
+- CLOCK_InitSysPll
+- CLOCK_InitArmPll
+- ENET_SetMacController
+- BOARD_BootClockRUN
+- BOARD_ReconfigFlexSpiRxBuffer
+- ENET_TransmitIRQHandler
+- CLOCK_SetDiv
+- CLOCK_SetMux
+- ENET_ReceiveIRQHandler
+- ENET_GetInstance
+- GPIO_GetInstance
+- ENET_LeaveMulticastGroup
+- ENET_AddMulticastGroup
+- ENET_GetRxFrame
+- CLOCK_InitExternalClk
+model: semu
+rules: semu_rule.txt

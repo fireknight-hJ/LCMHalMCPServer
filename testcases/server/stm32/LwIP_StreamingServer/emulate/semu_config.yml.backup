@@ -21,20 +21,16 @@ loop_whitelist:
 - memset
 - memcpy
 - memmove
-- FillZerobss
-- LoopFillZerobss
-- CopyDataInit
-- LoopCopyDataInit
-- memset
-- memcpy
-- memmove
-- Zero_Init
 memory_map:
-  flash:
+  .isr_vector:
     base_addr: 0x8000000
+    permissions: r--
+    size: 0x1f8
+  flash:
+    base_addr: 0x8000200
     file: output.bin
     permissions: r-x
-    size: 0x22000
+    size: 0x342a88
   irq_ret:
     base_addr: 0xfffff000
     permissions: rwx

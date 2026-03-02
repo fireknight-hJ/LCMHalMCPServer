@@ -1,6 +1,0 @@
-2026-02-21 12:02:05,172 - 0x60002492 irq 0x0-> 0x60005364 main (from 0x60002448 _start)
-2026-02-21 12:02:05,212 - 0x60003b68 irq 0x0-> 0x60003b70 BOARD_BootClockRUN (from 0x60003b64 BOARD_InitBootClocks)
-2026-02-21 12:02:05,215 - 0x60003ba6 irq 0x0-> 0x60002cd8 CLOCK_InitExternalClk (from 0x60003b70 BOARD_BootClockRUN)
-2026-02-21 12:02:06,729 - [-] Stop due to exceptional loop.
-2026-02-21 12:02:06,729 - current function: CLOCK_InitExternalClk
-2026-02-21 12:02:06,729 - current caller function: BOARD_BootClockRUN

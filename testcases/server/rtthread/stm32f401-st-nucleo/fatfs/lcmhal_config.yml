@@ -1,5 +1,5 @@
-# LCMHAL配置文件
+# LCMHAL配置文件 (fatfs demo)
 script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/stm32f401-st-nucleo/fatfs"
-db_path: "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_fatfs"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_fatfs_demo"
 src_path: "/home/haojie/rt-thread/bsp/stm32/stm32f401-st-nucleo"
 proj_path: "/home/haojie/rt-thread/bsp/stm32/stm32f401-st-nucleo"

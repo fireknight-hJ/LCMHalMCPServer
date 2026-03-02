@@ -1,0 +1,50 @@
+output.elf:
+  rules: semu_rule.txt
+  enable_native: false
+  emulate_mode: emulate
+  loop_whitelist:
+  - memset
+  - memcpy
+  - memmove
+  - FillZerobss
+  - LoopFillZerobss
+  - CopyDataInit
+  - LoopCopyDataInit
+  - memset
+  - memcpy
+  - memmove
+  - Zero_Init
+  handlers:
+    Delay: do_return
+    HAL_Delay: do_return
+    wait: do_return
+    wait_us: do_return
+    HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+    HAL_BE_In: fuzzemu.handlers.common.hal_in
+    HAL_BE_Out: fuzzemu.handlers.common.hal_out
+    HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+    HAL_BE_return_1: fuzzemu.handlers.common.return_true
+    HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+    HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  mmio_funcs:
+  - rt_hw_pin_init
+  - rt_hw_spi_bus_init
+  - HAL_RCCEx_PeriphCLKConfig
+  - HAL_RCC_MCOConfig
+  - HAL_RCC_OscConfig
+  - HAL_GPIO_Init
+  - HAL_SPI_MspInit
+  - HAL_TIM_Base_MspInit
+  - HAL_UART_MspInit
+  - HAL_ADC_MspInit
+  - HAL_PWREx_ControlVoltageScaling
+  - HAL_MspInit
+  - HAL_TIM_MspPostInit
+  - SystemClock_Config
+  - HAL_GPIO_DeInit
+  - HAL_RCC_ClockConfig
+  - HAL_RCCEx_EnablePLLI2S
+  - HAL_PWREx_EnableBkUpReg
+  - HAL_PWREx_DisableBkUpReg
+  - HAL_RCCEx_DisablePLLI2S
+  - HAL_RCC_DeInit
