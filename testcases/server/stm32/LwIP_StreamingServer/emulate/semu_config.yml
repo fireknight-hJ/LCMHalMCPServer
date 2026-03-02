@@ -21,14 +21,6 @@ loop_whitelist:
 - memset
 - memcpy
 - memmove
-- FillZerobss
-- LoopFillZerobss
-- CopyDataInit
-- LoopCopyDataInit
-- memset
-- memcpy
-- memmove
-- Zero_Init
 memory_map:
   flash:
     base_addr: 0x8000000

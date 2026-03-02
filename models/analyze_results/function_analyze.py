@@ -4,7 +4,7 @@ from typing import Literal, Optional
 class FunctionClassifyResponse(BaseModel):
     """Response of function classify and analysis, including replacement info"""
     function_name: str = Field(description="Name of the function to be classified")
-    function_type: Literal["RECV", "IRQ", "RETURNOK", "SKIP", "NEEDCHECK", "NODRIVER", "INIT", "LOOP"] = Field(default="NEEDCHECK", description="Classification of driver functions based on their functionality and characteristics")
+    function_type: Literal["CORE", "RECV", "IRQ", "RETURNOK", "SKIP", "NEEDCHECK", "NODRIVER", "INIT", "LOOP"] = Field(default="NEEDCHECK", description="CORE = NVIC/OS kernel/VTOR critical (no replacement); SysTick is not CORE. Other types per classification rules.")
     functionality: str = Field(default="", description="Description of the main functionality of the function")
     classification_reason: str = Field(default="", description="Explanation of the classification result")
     has_replacement: bool = Field(default=False, description="Whether the function has a replacement")

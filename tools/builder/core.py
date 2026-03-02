@@ -2,11 +2,19 @@
 # 提供直接调用的函数接口，避免通过MCP客户端启动新进程
 import config.globs as globs
 from tools.builder.proj_builder import build_proj, clear_proj
-from tools.collector.collector import get_function_info
+from tools.collector.collector import get_function_info, get_function_source
 from tools.replacer.code_recover import function_recover
 from tools.replacer.code_replacer import function_replace
 from core.data_manager import data_manager
 from utils.replacement_rubric import check_replacement_rubric
+
+
+def _is_core_function(func_name: str, mmio_info_list: dict) -> bool:
+    """Return True if the function is classified as CORE (OS/NVIC/scheduler-critical); CORE must never be replaced."""
+    if func_name not in mmio_info_list:
+        return False
+    classify_res = mmio_info_list[func_name]
+    return getattr(classify_res, "function_type", None) == "CORE"
 
 
 def replace_funcs():
@@ -14,14 +22,15 @@ def replace_funcs():
     mmio_info_list = data_manager.get_mmio_info_list()
     replacement_updates = data_manager.get_replacement_updates()
     
-    # 收集所有要替换的函数列表
+    # 收集所有要替换的函数列表（CORE 类函数坚决不替换，即使存在 replacement_update）
     all_funcs_to_replace = []
     
-    # 首先处理所有在replacement_updates中的函数，确保它们都被替换
+    # 首先处理所有在replacement_updates中的函数，但排除 CORE 类
     for func_name, replacement_update in replacement_updates.items():
-        all_funcs_to_replace.append(func_name)
+        if not _is_core_function(func_name, mmio_info_list):
+            all_funcs_to_replace.append(func_name)
     
-    # 然后处理mmio_info_list中不在replacement_updates中的函数
+    # 然后处理mmio_info_list中不在replacement_updates中的函数（CORE 的 has_replacement 为 false，自然不会进入）
     for func_name, classify_res in mmio_info_list.items():
         if func_name not in replacement_updates and classify_res.has_replacement:
             all_funcs_to_replace.append(func_name)
@@ -33,9 +42,12 @@ def replace_funcs():
         print(f"  {i}. {func_name}")
     print(f"{'='*60}\n")
     
-    # 执行替换
+    # 执行替换（跳过 CORE 类函数，保留原实现）
     replaced_count = 0
     for func_name, replacement_update in replacement_updates.items():
+        if _is_core_function(func_name, mmio_info_list):
+            print(f"[REPLACE] Skipping CORE function (no replacement): {func_name}")
+            continue
         func_info = get_function_info(globs.db_path, func_name)
         if func_info:
             replace_res = function_replace(func_info, replacement_update.replacement_code)
@@ -261,7 +273,8 @@ def update_function_replacement(func_name: str, replace_code: str, reason: str) 
     Returns:
         dict: 更新结果。rubric 不通过时返回 {"ok": False, "reason": "..."}；成功时返回 {"ok": True, "function_name": ..., "status": "success"}
     """
-    check_result = check_replacement_rubric(func_name, replace_code)
+    original_code = get_function_source(globs.db_path, func_name) if globs.db_path else None
+    check_result = check_replacement_rubric(func_name, replace_code, original_code=original_code)
     if not check_result["pass"]:
         return {"ok": False, "reason": check_result["reason"]}
     data_manager.update_function_replacement(func_name, replace_code, reason)

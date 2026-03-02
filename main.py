@@ -1,5 +1,6 @@
 import asyncio
 import os
+import sys
 import yaml
 import argparse
 import config.globs as globs
@@ -14,11 +15,16 @@ from utils.src_ops import src_replace
 
 
 def clean_function_logs(func_name: str, log_type: str = "all"):
-    """删除指定函数的分析日志
-    
+    """删除指定函数的分析日志，避免旧结果被加载并应用。
+
+    - replacement: 删除 replacement_update_*.json（Fixer 的替换会参与 replace_funcs）
+    - classify: 删除 function_classify_*.json（Classifier 结果会作为 mmio_info_list 被加载）
+    - analysis: 删除 function_analysis_*.json
+    - all: 上述三者都删。对 SystemInit 等 RTOS 关键初始化函数，建议用 all，再配合 --recover 恢复源码。
+
     Args:
         func_name: 函数名
-        log_type: 日志类型 - "replacement", "analysis", "all"
+        log_type: 日志类型 - "replacement", "classify", "analysis", "all"
     """
     log_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
     if not os.path.exists(log_dir):
@@ -30,6 +36,14 @@ def clean_function_logs(func_name: str, log_type: str = "all"):
     if log_type in ["replacement", "all"]:
         for f in os.listdir(log_dir):
             if f.startswith(f"replacement_update_{func_name}_") and f.endswith(".json"):
+                file_path = os.path.join(log_dir, f)
+                os.remove(file_path)
+                deleted_files.append(file_path)
+                print(f"删除: {f}")
+    
+    if log_type in ["classify", "all"]:
+        for f in os.listdir(log_dir):
+            if f.startswith(f"function_classify_{func_name}_") and f.endswith(".json"):
                 file_path = os.path.join(log_dir, f)
                 os.remove(file_path)
                 deleted_files.append(file_path)
@@ -53,6 +67,7 @@ async def run_workflow():
     config = load_config_from_yaml(globs.script_path)
     
     globs.globs_init(config)
+    print(f"[run_workflow] script_path={globs.script_path}, db_path={globs.db_path}", file=sys.stderr)
     
     build_proj_dbgen(globs.script_path, globs.db_path)
     register_db(globs.db_path)
@@ -61,6 +76,12 @@ async def run_workflow():
     from tools.builder.core import build_project
     build_output = build_project()
     print(f"Build project output: {build_output}")
+    # 若首次构建失败，交给 Builder Agent 递归修（含 update_function_replacement 修正签名等）
+    if build_output.get("exit_code", 0) != 0:
+        from agents.builder_agent import run_build_project
+        print("[run_workflow] Build failed, invoking Builder Agent to fix recursively...")
+        builder_result = await run_build_project()
+        print(f"Builder Agent result: {builder_result}")
     generate_emulator_configs()
     from agents.emulator_runner_agent import run_emulator
     emulate_output = await run_emulator()
@@ -101,7 +122,8 @@ async def main():
     parser.add_argument("script_path", nargs="?", default="", help="Path to the script/config file")
     parser.add_argument("--config", "-c", default=None, help="Path to config YAML file (overrides script_path)")
     parser.add_argument("--func-name", "-f", default=None, help="Function name to clean logs for (used with 'clean' command)")
-    parser.add_argument("--type", "-t", choices=["replacement", "analysis", "all"], default="all", help="Log type to clean (used with 'clean' command)")
+    parser.add_argument("--type", "-t", choices=["replacement", "analysis", "classify", "all"], default="all", help="Log type to clean (used with 'clean' command)")
+    parser.add_argument("--recover", "-r", action="store_true", help="After cleaning, recover this function's source file from DB (used with 'clean -f FUNC')")
     
     args = parser.parse_args()
     
@@ -129,6 +151,15 @@ async def main():
             return
         
         clean_function_logs(args.func_name, args.type)
+        if args.recover and args.func_name:
+            func_info = get_function_info(globs.db_path, args.func_name)
+            if func_info:
+                if function_recover(func_info):
+                    print(f"Recovered source file for {args.func_name} from DB: {func_info.file_path}")
+                else:
+                    print(f"Recover failed for {args.func_name}. If DB was built after replacement, restore the file from git, e.g. git checkout -- <file>")
+            else:
+                print(f"Function {args.func_name} not found in DB, skip recover.")
         return
     
     if args.command == "recover":
@@ -141,13 +172,15 @@ async def main():
             return
         await recover_workflow()
     else:
-        # 处理 script_path：如果是配置文件路径，提取目录
+        # run 必须指定 testcase 目录，否则会用到错误 DB（如误用 StreamingServer 导致 F7/F4 混用）
         if args.script_path:
             potential_path = args.script_path
         elif args.config:
             potential_path = args.config
         else:
-            potential_path = globs.default_config["script_path"]
+            print("Error: run 命令必须指定 testcase 目录（包含 lcmhal_config.yml），否则会使用错误 DB。")
+            print("  示例: python main.py run testcases/server/stm32/LwIP_HTTP_Server_Socket_RTOS")
+            return
         
         # 如果传入的是配置文件路径，提取其所在目录
         if os.path.isfile(potential_path):

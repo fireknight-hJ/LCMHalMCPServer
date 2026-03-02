@@ -112,6 +112,24 @@ def get_function_info(db_path: str, func_name: str) -> Optional[Any]:
         print(f"Error getting function info: {e}")
         return None
 
+
+def get_function_source(db_path: str, func_name: str) -> Optional[str]:
+    """Get the original function source code as a single string, for use in rubric checks."""
+    func_info = get_function_info(db_path, func_name)
+    if not func_info or not getattr(func_info, "function_content_in_lines", None):
+        return None
+    lines = func_info.function_content_in_lines
+    idx = getattr(func_info, "location_line", 0)
+    code_list = []
+    while True:
+        line = lines.get(str(idx)) or lines.get(idx)
+        if line is None:
+            break
+        code_list.append(line)
+        idx += 1
+    return "\n".join(code_list) if code_list else None
+
+
 def get_struct_or_enum_info(db_path: str, struct_name: str) -> Dict[str, Any]:
     """获取结构体或枚举信息"""
     try:

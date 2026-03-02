@@ -15,6 +15,7 @@ import asyncio
 from utils.db_cache import dump_message_json_log, check_analyzed_json_log, get_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
 from utils.replacement_rubric import check_replacement_rubric
+from tools.collector.collector import get_function_source
 import config.globs as globs
 
 # 使用统一的模型实例
@@ -190,9 +191,11 @@ async def function_classify(func_name : str, overwrite: bool = False) -> Functio
         final_response = result["final_response"]
         # Rubric check: if classifier produced a replacement, validate it before use
         if getattr(final_response, "has_replacement", False) and getattr(final_response, "function_replacement", "").strip():
+            original_code = get_function_source(globs.db_path, func_name) if globs.db_path else None
             check_result = check_replacement_rubric(
                 func_name,
                 final_response.function_replacement,
+                original_code=original_code,
             )
             if not check_result["pass"]:
                 # Attach failure reason to response for logging / retry

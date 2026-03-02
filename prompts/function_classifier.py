@@ -6,6 +6,7 @@ system_prompting_en = """
 2.  **Analysis Phase**: Analyze the function to understand its MMIO accesses, call relationships, data structures used, and core logic.
 3.  **Classification Phase**: Categorize the function into one of the defined types based on the analysis.
 4.  **Processing Phase**:
+    *   For functions classified as **CORE**: Only provide the classification and reasoning. **Do not generate replacement code.** Output `has_replacement: false`, `function_replacement: ""`.
     *   For functions classified as **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code according to the specified strategy.
     *   For functions classified as **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Only provide the classification and reasoning. **Do not generate replacement code** unless explicitly requested later.
 
@@ -47,6 +48,16 @@ You have access to the following tools to gather information about functions and
 ---
 
 ### **Function Classification and Replacement Strategy**
+
+**Classification priority order (apply first match)**: **CORE > RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER**. If a function belongs to CORE, it **must** be classified as CORE and must **not** be classified as INIT, IRQ, or any other type.
+
+#### **Priority 0: CORE (NVIC / OS Kernel / VTOR) — No Replacement**
+
+0.  **CORE (NVIC / OS kernel / VTOR only; SysTick is *not* CORE)**
+    *   **Identification**: Functions that (1) configure **NVIC** (interrupt enable/priority), or (2) are core to **OS kernel/scheduler/context switch**, or (3) set the **vector table (VTOR)**. The emulator relies on **seeing** these register writes to simulate interrupts and scheduling; replacing or removing them causes HardFault, unresponsive peripheral IRQs, or broken scheduling.
+    *   **In scope**: NVIC configuration (e.g. `HAL_NVIC_EnableIRQ`, `HAL_NVIC_DisableIRQ`, `HAL_NVIC_SetPriority`, `HAL_NVIC_SetPriorityGrouping`); OS kernel/scheduler/context-switch (e.g. `PendSV_Handler`, `SVC_Handler`, `vTaskSwitchContext`, `portYIELD_FROM_ISR`); VTOR/vector-table setup (e.g. `SystemInit` when it writes `SCB->VTOR`). Also any function that **is** one of the above (e.g. direct NVIC/ISER/IPR writes).
+    *   **Out of scope for CORE**: **SysTick**-related functions (e.g. `SysTick_Config`, `HAL_InitTick`, or code that only writes `SysTick->LOAD`/`SysTick->VAL`/`SysTick->CTRL`) are **not** classified as CORE; they are handled by other strategies/rubric rules. Do **not** list SysTick-only functions as CORE examples.
+    *   **Strategy**: **Do not generate a replacement.** Output `has_replacement: false`, `function_replacement: ""`. These functions must keep their original implementation and must not participate in the replacement flow.
 
 #### **Priority 1: Functions Requiring Replacement (Generate Code)**
 
@@ -122,6 +133,7 @@ You have access to the following tools to gather information about functions and
         *   Remove all MMIO/register access operations.
         *   Preserve resource allocation (e.g., `malloc`), structure initialization, and default value setting.
         *   Ensure the logical post-initialization state matches the expected state after hardware init.
+    *   **EXCEPTION — CORE and callers of CORE**: Functions that **are** CORE (NVIC config, OS kernel/scheduler, VTOR setup — **not** SysTick) must be classified as **CORE**, not INIT. Other functions (e.g. `HAL_ETH_MspInit`) that **call** CORE functions may be classified as INIT, but their replacement **must not** remove those CORE calls; the replacement must preserve calls to NVIC/OS/VTOR primitives (the rubric will check this).
     *   **Example Replacement**:
         ```c
         // Original
@@ -181,8 +193,8 @@ You have access to the following tools to gather information about functions and
     *   **Strategy (Note)**: Would simply return a success value (e.g., `HAL_OK`, `0`) or a safe default.
 
 6.  **SKIP (Non-Critical Driver Functions)**
-    *   **Identification**: Functions performing optional operations that can be safely ignored (e.g., minor configuration, debug output).
-    *   **Examples**: `HAL_UART_MspInit`, `UART_PrintDebugInfo`
+    *   **Identification**: Functions performing optional operations that can be safely ignored (e.g., minor configuration, debug output). **Do not** treat any **`*_MspInit` that enables interrupts** (e.g. `HAL_ETH_MspInit` calling `HAL_NVIC_EnableIRQ(ETH_IRQn)`) as SKIP — those must preserve NVIC writes or be SKIP with no replacement (see INIT Exception above).
+    *   **Examples**: `UART_PrintDebugInfo`, optional debug hooks (avoid using `HAL_UART_MspInit` as the only example so the model does not generalize to `HAL_ETH_MspInit`).
     *   **Strategy (Note)**: Would be replaced with an empty implementation or a success return.
 
 7.  **NEEDCHECK (Mixed-Functionality Functions)**
@@ -303,10 +315,11 @@ When provided with a function name for classification and analysis, follow these
 
 3.  **Classify the function**:
     *   Determine the appropriate function type based on the analysis.
-    *   Use the following priority order when multiple classifications might apply: RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER
+    *   Use the following priority order when multiple classifications might apply: **CORE > RECV > IRQ > INIT > LOOP > RETURNOK > SKIP > NEEDCHECK > NODRIVER**. If a function belongs to CORE, it must be classified as CORE, not as INIT or IRQ.
     *   If you cannot confidently classify the function (e.g., insufficient information, ambiguous characteristics), use **NEEDCHECK**.
 
 4.  **Generate output according to the classification**:
+    *   For **CORE**: Provide classification and reasoning only. Output `has_replacement: false`, `function_replacement: ""`.
     *   For **RECV, IRQ, INIT, or LOOP**: Generate the complete replacement code following the detailed steps.
     *   For **RETURNOK, SKIP, NEEDCHECK, or NODRIVER**: Provide classification and reasoning only.
 
@@ -315,7 +328,7 @@ When provided with a function name for classification and analysis, follow these
 ```json
 {
   "function_name": "<name_of_the_function>",
-  "function_type": "<one_of_RECV_IRQ_INIT_LOOP_RETURNOK_SKIP_NEEDCHECK_NODRIVER>",
+  "function_type": "<one_of_CORE_RECV_IRQ_INIT_LOOP_RETURNOK_SKIP_NEEDCHECK_NODRIVER>",
   "functionality": "<brief_description_of_function_purpose>",
   "classification_reason": "<detailed_explanation_of_classification_based_on_analysis>",
   "has_replacement": <true_or_false>,
@@ -325,15 +338,15 @@ When provided with a function name for classification and analysis, follow these
 
 **Output Generation Guidelines**:
 - **function_name**: Exactly match the function name provided in the input.
-- **function_type**: Use only the exact string values defined (case-sensitive).
+- **function_type**: Use only the exact string values defined (case-sensitive). **CORE** means OS/kernel-critical; no replacement.
 - **functionality**: Brief, clear description (1-2 sentences) of what the function does.
 - **classification_reason**: Detailed explanation including:
   - Key characteristics identified
   - Tool usage and findings (e.g., "GetMMIOFunctionInfo revealed register accesses...")
   - Why this classification was chosen over others
   - Any ambiguity or special considerations
-- **has_replacement**: True for RECV, IRQ, INIT, LOOP; False for others.
-- **function_replacement**: Complete replacement code for RECV/IRQ/INIT/LOOP; empty string for others.
+- **has_replacement**: True for RECV, IRQ, INIT, LOOP; **False for CORE** and for RETURNOK, SKIP, NEEDCHECK, NODRIVER.
+- **function_replacement**: Complete replacement code for RECV/IRQ/INIT/LOOP; **empty string for CORE** and for others that do not generate replacement.
 
 **Important Notes**:
 - Ensure your output is compatible with the FunctionClassifyResponse Pydantic model.

@@ -1,6 +1,6 @@
 # Replacement code rubric checker.
-# Uses an AI (LLM) with a prompt to validate replacement code; no hardcoded rules.
-# Used before persisting ReplacementUpdate and after FunctionClassifier output.
+# Uses an AI (LLM) with a prompt to validate replacement code generically (no hardcoded
+# function lists). Used before persisting ReplacementUpdate and after FunctionClassifier output.
 
 from typing import Optional
 
@@ -27,12 +27,16 @@ def check_replacement_rubric(
     original_code: Optional[str] = None,
 ) -> dict:
     """
-    Check replacement code against rubric rules using an AI reviewer.
+    Check replacement code against rubric rules using an AI reviewer (no deterministic
+    pattern checks; all rules are enforced by the LLM prompt). When original_code is
+    provided, the reviewer compares original vs replacement and enforces e.g. that
+    callers of CORE functions must preserve those calls.
 
     Args:
         func_name: Name of the function being replaced.
         replacement_code: The proposed replacement function body/source.
-        original_code: Optional original source; if provided, included in the prompt for context.
+        original_code: Optional original source; if provided, included in the prompt so
+            the reviewer can enforce caller-preservation and other rules.
 
     Returns:
         {"pass": bool, "reason": str}. If pass is False, reason describes what is wrong
@@ -76,8 +80,9 @@ def check_replacement_rubric(
             "reason": getattr(result, "reason", "") or "",
         }
     except Exception as e:
-        # On LLM/network error, allow the replacement (no hard fail) and record the error in reason
+        # On LLM/network error, fail closed: reject the replacement so bad code is not persisted.
+        # Caller can retry or fix; accepting on error allowed stub replacements to slip through.
         return {
-            "pass": True,
-            "reason": f"[Rubric check failed: {e!s}]",
+            "pass": False,
+            "reason": f"[Rubric check failed: {e!s}. Replacement not accepted to avoid persisting invalid code.]",
         }

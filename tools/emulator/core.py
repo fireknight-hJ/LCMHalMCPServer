@@ -20,6 +20,15 @@ def emulate_proj() -> dict:
     # 运行模拟器
     ret = run_emulator()
     
+    # 将模拟器 stdout/stderr 持久化到 debug_output，便于排查 UC_ERR_READ_UNMAPPED 等错误
+    debug_out_dir = os.path.join(globs.script_path, "emulate", "debug_output")
+    os.makedirs(debug_out_dir, exist_ok=True)
+    for name, data in [("stdout.txt", ret.stdout), ("stderr.txt", ret.stderr)]:
+        path = os.path.join(debug_out_dir, name)
+        text = data.decode("utf-8", errors="replace") if isinstance(data, bytes) else (data or "")
+        with open(path, "w") as f:
+            f.write(text)
+    
     # 检查 lcmhal.txt 判断是否有死循环
     lcmhal_path = os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt")
     has_loop = False
