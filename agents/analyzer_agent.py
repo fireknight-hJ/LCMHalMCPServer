@@ -16,7 +16,6 @@ from utils.db_cache import dump_message_json_log, check_analyzed_json_log, get_a
 from utils.ai_log_manager import ai_log_manager
 from utils.replacement_rubric import check_replacement_rubric
 from tools.collector.collector import get_function_source
-from tools.builder.tool import verify_replacement as verify_replacement_tool
 import config.globs as globs
 
 # 使用统一的模型实例
@@ -65,7 +64,8 @@ async def build_graph():
     if _graph is not None:
         return _graph
     
-    # 异步获取工具（Collector MCP + 本地验证工具）
+    # 异步获取工具（Collector MCP + 本地验证工具）；延迟导入避免与 data_manager 循环依赖
+    from tools.builder.tool import verify_replacement as verify_replacement_tool
     tools = await client.get_tools()
     tools = tools + [verify_replacement_tool]
 
