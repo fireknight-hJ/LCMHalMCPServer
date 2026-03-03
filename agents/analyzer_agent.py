@@ -160,17 +160,24 @@ async def build_graph():
         response = model_with_structured_output.invoke(
             state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
         )
-        # 用最后一次验证通过的 replace_code 覆盖，保证与 VerifyReplacement 结果一致
+        # 替换采纳优先级：VerifyReplacement pass > FixFunctionBuildErrors 成功 > 否则清空未验证替换
         verified_code = _get_last_verified_replace_code(state["messages"])
         current_fn = state.get("function_name", "")
+        fixer_success = _has_fix_function_build_errors_success(state["messages"], current_fn)
+
         if verified_code is not None and verified_code.strip():
+            # 有 VerifyReplacement pass=true，直接采用
             response = response.model_copy(update={"function_replacement": verified_code})
+        elif fixer_success:
+            # FixFunctionBuildErrors 成功：直接采纳 fixer 已落盘的替换，无需再 VerifyReplacement
+            from core.data_manager import data_manager
+            ru = data_manager.get_replacement_updates().get(current_fn)
+            if ru and getattr(ru, "replacement_code", "").strip():
+                response = response.model_copy(update={"function_replacement": ru.replacement_code, "has_replacement": True})
         else:
-            # 有替换代码但没有任何一次 VerifyReplacement 返回 pass=true
+            # 既无 VerifyReplacement 通过，又无 FixFunctionBuildErrors 成功：有替换内容则清空（未验证不采纳）
             if getattr(response, "has_replacement", False) and (getattr(response, "function_replacement") or "").strip():
-                # 若 FixFunctionBuildErrors 曾针对当前函数返回 success，则修正已落盘到 replacement_updates，保留 has_replacement 以便 replace_funcs 会替换该函数
-                if not _has_fix_function_build_errors_success(state["messages"], current_fn):
-                    response = response.model_copy(update={"has_replacement": False, "function_replacement": ""})
+                response = response.model_copy(update={"has_replacement": False, "function_replacement": ""})
         # We return the final answer
         result = {"final_response": response}
         
