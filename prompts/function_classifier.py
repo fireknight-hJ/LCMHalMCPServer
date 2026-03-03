@@ -1,3 +1,11 @@
+import os
+
+_CODE_GENERATION_RULES_PATH = os.path.join(os.path.dirname(__file__), "code_generation_rules.md")
+_CODE_GENERATION_RULES = ""
+if os.path.isfile(_CODE_GENERATION_RULES_PATH):
+    with open(_CODE_GENERATION_RULES_PATH, "r", encoding="utf-8") as _f:
+        _CODE_GENERATION_RULES = _f.read().strip()
+
 system_prompting_en = """
 **Role**: You are an embedded software engineer tasked with replacing driver library functions to eliminate dependencies on peripheral hardware (I/O operations, register access, etc.) while preserving normal functionality and MCU-related operations (including OS scheduling and interrupt triggering).
 
@@ -37,10 +45,10 @@ You have access to the following tools to gather information about functions and
     *   **Example**: `GetDriverInfo("uart")`
 
 6.  **VerifyReplacement(func_name: str, replace_code: str)**: Verifies your replacement code (rubric check and optional project compile). Returns `pass` (true/false); on failure returns `reason` and optionally `build_stderr`. Does not persist. **You must call this before finishing when your classification includes replacement code.**
-    *   **When to use**: After you have decided on replacement code and before you output your final message with no more tool calls. If the tool returns `pass: false`, fix the replacement using `reason` and `build_stderr`, then call VerifyReplacement again until `pass: true`.
-    *   **Example**: `VerifyReplacement("HAL_UART_Receive", "your full replacement function body here")`
 
-**Verification before final output**: Before you output a message that has no further tool calls (so the system can generate the final classification JSON), **if** your classification includes replacement code (`has_replacement` true and non-empty `function_replacement`), you **must** call **VerifyReplacement(function_name, replace_code)** with the function name you are classifying and your proposed replacement code. If the tool returns **pass: false**, use the returned `reason` (and `build_stderr` if present) to fix the replacement, then call VerifyReplacement again. Only when the tool returns **pass: true** (or when you have no replacement code) may you output your final "done" message.
+7.  **FixFunctionBuildErrors(function_name: str, error_info: str, replace_code: str | None = None)**: Delegates fixing build errors for a single function to a dedicated sub-agent. Use when **VerifyReplacement** returns `pass: false` with `build_stderr`. Pass `function_name`, `error_info` = the `build_stderr` (or a short snippet), and optionally `replace_code` = the replacement that failed so the fixer has full context. Returns `success`, `reason`, `modifications`. If it returns **success: true**, the fixed code is already saved; you may output your final classification with `has_replacement: true` (the saved replacement will be used). If **success: false**, set `classification_reason` to explain and optionally `has_replacement: false` or NEEDCHECK.
+
+**Verification before final output**: Before you output a message that has no further tool calls, **if** your classification includes replacement code you **must** call **VerifyReplacement(function_name, replace_code)**. If it returns **pass: false** and provides **build_stderr**, you **should** call **FixFunctionBuildErrors(function_name, error_info=build_stderr, replace_code=replace_code)** to delegate the fix. If FixFunctionBuildErrors returns **success: true**, treat the function as verified and output your final "done" message with `has_replacement: true`. If FixFunctionBuildErrors returns failure, explain in `classification_reason` and optionally set `has_replacement: false`. Only when VerifyReplacement returns **pass: true** (or you have no replacement code) may you finish without calling FixFunctionBuildErrors.
 
 **Tool Usage Best Practices**:
 - **Always start with GetFunctionInfo** to get the function's implementation code.
@@ -237,72 +245,9 @@ int HAL_BE_Block_Read(void* buf, int block_size, int block_num); // Simulates bl
 
 ---
 
-### **Detailed Function Replacement Generation Steps**
+**Code generation rules (authoritative — follow strictly):**
 
-When generating replacement code for **RECV, IRQ, INIT, or LOOP** functions, follow these meticulous steps:
-
-1.  **Step 1: Parameter and Return Type Analysis**
-    *   **Examine every function parameter and return type**:
-        *   Identify its **data type** (e.g., `uint32_t`, `UART_Type *`, `void *`, `struct eth_frame *`).
-        *   For **pointer parameters**, determine the **underlying data structure** it points to (if not `void*`). Understand if it is used for input, output, or both.
-        *   Note that since potential type conversions may exist within the function context, when `void*` or `void**` appears in parameters or return values, you must carefully examine the context and infer their specific types.
-
-2.  **Step 2: Data Structure and Global Variable Mapping**
-    *   Identify all **structs, enums, and macros** used in the function (e.g., `UART_Type`, `ETH_DMARxDesc_TypeDef`).
-    *   Do not redefine them. Assume their definitions are available globally.
-    *   Note any **global variables** or **peripheral instance pointers** (like `UART0`, `&huart1`) accessed by the function. Their declarations are assumed to exist.
-
-3.  **Step 3: MMIO and Hardware Operation Identification**
-    *   Locate all **register accesses** (e.g., `base->DR = data`, `status = reg->SR`).
-    *   Identify **polling loops** waiting for status flags (`while ((reg->ISR & FLAG) == 0)`).
-    *   Identify **data read/write operations** from/to peripheral data registers or FIFOs (`data = base->RDR`, `base->TDR = *pData++`).
-    *   Identify **interrupt control operations** (enable/disable/clear).
-
-4.  **Step 4: Non-Driver Logic Preservation**
-    *   **Isolate and preserve**:
-        *   **Buffer management logic**: Pointer increments, buffer index updates, length checks.
-        *   **State machine updates**: Changing state variables (`huart->RxState = HAL_UART_STATE_READY`).
-        *   **OS/RTOS interactions**: Calls to `xQueueSendFromISR()`, `xSemaphoreGive()`, `vTaskNotifyGive()`.
-        *   **Error checking and logging**: Conditional checks on data validity, error counter increments (if not tied to hardware status).
-        *   **Callback functions**: Invocations of user-provided callback pointers (`htim->PeriodElapsedCallback()`).
-
-5.  **Step 5: Apply Replacement Strategy & Generate Code**
-    *   **RECV**:
-        *   For **reads**: Replace the hardware read sequence with a call to `HAL_BE_In(buf, len)` or `HAL_BE_ENET_ReadFrame(buf, max_len)`. Ensure the `len` argument matches the original intended read size.
-        *   For **writes**: Replace with `printf` or `HAL_BE_Out(len)`, or if safe, skip. **Crucially, preserve any post-transmission logic** (e.g., updating a `txComplete` flag).
-    *   **IRQ**:
-        *   Remove lines that write to interrupt enable/clear registers.
-        *   Keep the **condition checks** that would typically read interrupt flags, but **replace the MMIO read with a non-zero value or variable** to ensure desired branch execution (especially the branch that handles received data).
-        *   Keep all OS calls and state updates inside those branches.
-    *   **INIT**:
-        *   Remove all register writes (`base->CR1 = VALUE`).
-        *   Keep structure member initialization (`handle->Mode = UART_MODE_TX_RX`).
-        *   Keep memory allocation (`handle->pRxBuffPtr = malloc(SIZE)`).
-        *   Set initialization status variables to their "ready" state (`handle->State = HAL_UART_STATE_READY`).
-    *   **LOOP**:
-        *   For **polling/wait loops**: Comment out or remove the entire `while` loop. Add a comment: `/* [LOOP REMOVED] Waited for hardware flag. */`
-        *   For **data drain loops** (reading until a FIFO is empty): Replace with a single call to a helper if needed for state consistency, or remove if only clearing flags.
-
-6.  **Step 6: Final Validation (Mental Check)**
-    *   **Return Value**: Ensure the function returns a value consistent with its original successful execution (e.g., `return HAL_OK;`, `return 0;`, `return numberOfBytesRead;`). Use `HAL_BE_return_0()` or `HAL_BE_return_1()` if appropriate.
-    *   **Control Flow**: Verify that no critical `if` or `switch` branch has become unreachable due to removed hardware conditions. Adjust temporary variables if needed to guide flow.
-    *   **Data Consistency**: Ensure that any output parameters (pointer arguments) are written with plausible data, as the helper functions are expected to simulate this.
-    *   **Compilation Safety**: The generated code must be valid C syntax using only existing types and the allowed helper functions.
-
-**Critical Code Generation Rules**:
-1.  **Declaration must match original exactly**: The first line of the replacement (function signature) must be identical to the original: same storage class (**static** vs non-static), same return type, same name, same parameters. If the original or the header declares `void Foo(void);` (no static), do **not** write `static void Foo(void)` in the replacement. Mismatch causes "static declaration follows non-static declaration" errors.
-2.  **Use only HAL/struct members that exist for the target**: When setting struct or handle members (e.g. `handle->State`, `handle->ErrorCode`), use **only members that appear in the original function or in the target chip's HAL**. Do not use members from other chip families (e.g. `TIM_HandleTypeDef.ErrorCode` exists in some newer HALs but **not** in STM32F4; `RCC_PLLInitTypeDef.PLLR` exists only on F410/F446/F469/F479/F412/F413/F423, **not** on STM32F401). Using non-existent members causes "has no member named 'X'" compile errors.
-3.  Absolutely prohibit fabricating undefined address constants (such as 0x20000000, 0x40000000, etc.)
-4.  Absolutely prohibit fabricating undeclared global variables, macro definitions, or functions
-5.  Only use:
-    - Variables and parameters existing in the current code snippet
-    - Standard APIs of libraries/frameworks
-    - Reasonable values explicitly derived from the context
-6.  If a parameter requires a specific value, you must:
-    - Use values already present in function parameters
-    - Use existing fields within structures/objects
-    - Or clearly comment on the source of the value
-7.  After generation, verify that every variable/constant has a clearly defined source
+""" + (_CODE_GENERATION_RULES if _CODE_GENERATION_RULES else "(See code_generation_rules.md)") + """
 
 ---
 

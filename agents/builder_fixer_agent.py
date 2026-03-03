@@ -135,14 +135,23 @@ async def build_graph():
     return _graph
 
 
-async def run_builder_fix(function_name: str, error_info: str) -> BuilderFixerResult:
+async def run_builder_fix(
+    function_name: str, error_info: str, replace_code: str | None = None
+) -> BuilderFixerResult:
     graph = await build_graph()
     user_content = (
         f"Fix the following function so that the given errors are resolved.\n"
         f"function_name: {function_name}\n"
         f"error_info:\n{error_info}\n\n"
-        "Use tools to get context (GetFunctionAnalysisAndReplacement or GetReplaceFuncDetailsByFile), "
-        "then UpdateFunctionReplacement, then BuildProject. "
+    )
+    if replace_code and replace_code.strip():
+        user_content += (
+            "Current replacement code (failed verification; fix this code):\n"
+            "```c\n" + replace_code.strip() + "\n```\n\n"
+        )
+    user_content += (
+        "Use tools to get context (GetFunctionAnalysisAndReplacement or GetReplaceFuncDetailsByFile) if needed, "
+        "then UpdateFunctionReplacement with the fixed code, then BuildProject. "
         "If build succeeds or the given error_info no longer appears in stderr, return success with reason; otherwise return failure with reason."
     )
     initial_state = {
@@ -160,13 +169,15 @@ async def run_builder_fix(function_name: str, error_info: str) -> BuilderFixerRe
 
 @tool(
     "FixFunctionBuildErrors",
-    description="Fix build errors for a single function: given function_name and the stderr/error snippet attributed to it, "
-    "this sub-agent updates that function's replacement and runs build to verify. Returns success/failure, reason, and modifications. "
-    "Use when stderr has many errors and you want to delegate fixing one function at a time to avoid context overflow or step limit.",
+    description="Fix build errors for a single function: given function_name and the stderr/error snippet (error_info). "
+    "Optionally pass replace_code (the current replacement that failed verification) so the fixer has full context. "
+    "Returns success/failure, reason, and modifications. Use when VerifyReplacement returns pass=false with build_stderr.",
 )
-async def builder_fixer_agent(function_name: str, error_info: str) -> dict:
+async def builder_fixer_agent(
+    function_name: str, error_info: str, replace_code: str | None = None
+) -> dict:
     """Invoke BuilderFixer to fix one function. Returns dict with success, reason, modifications."""
-    result = await run_builder_fix(function_name, error_info)
+    result = await run_builder_fix(function_name, error_info, replace_code=replace_code)
     # Optional programmatic check: if agent said success but error_info still in stderr, override to failure
     if result.success and error_info and error_info.strip():
         build_out = core_build_project()

@@ -64,10 +64,11 @@ async def build_graph():
     if _graph is not None:
         return _graph
     
-    # 异步获取工具（Collector MCP + 本地验证工具）；延迟导入避免与 data_manager 循环依赖
+    # 异步获取工具（Collector MCP + 验证与修复委托）；延迟导入避免与 data_manager 循环依赖
     from tools.builder.tool import verify_replacement as verify_replacement_tool
+    from agents.builder_fixer_agent import builder_fixer_agent
     tools = await client.get_tools()
-    tools = tools + [verify_replacement_tool]
+    tools = tools + [verify_replacement_tool, builder_fixer_agent]
 
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
@@ -119,6 +120,33 @@ async def build_graph():
                         pass
         return last_verified_code
 
+    def _has_fix_function_build_errors_success(messages, function_name: str) -> bool:
+        """True 若对话中存在针对当前 function_name 的 FixFunctionBuildErrors 且返回 success。"""
+        id_to_call = {}
+        for msg in messages:
+            if hasattr(msg, "tool_calls") and msg.tool_calls:
+                for tc in msg.tool_calls:
+                    tid = tc.get("id") if isinstance(tc, dict) else getattr(tc, "id", None)
+                    name = tc.get("name") if isinstance(tc, dict) else getattr(tc, "name", None)
+                    args = tc.get("args") if isinstance(tc, dict) else getattr(tc, "args", {}) or {}
+                    if tid:
+                        id_to_call[tid] = (name, args)
+        for msg in messages:
+            if getattr(msg, "tool_call_id", None) and getattr(msg, "content", None):
+                name, args = id_to_call.get(msg.tool_call_id, (None, {}))
+                if name == "FixFunctionBuildErrors":
+                    try:
+                        fn = (args or {}).get("function_name") or ""
+                        if fn != function_name:
+                            continue
+                        content = msg.content
+                        data = json.loads(content) if isinstance(content, str) else content
+                        if data.get("success") is True:
+                            return True
+                    except Exception:
+                        pass
+        return False
+
     # Define the function that responds to the user
     def respond(state: AgentState):
         agent_name = "analyzer_agent"
@@ -134,8 +162,15 @@ async def build_graph():
         )
         # 用最后一次验证通过的 replace_code 覆盖，保证与 VerifyReplacement 结果一致
         verified_code = _get_last_verified_replace_code(state["messages"])
+        current_fn = state.get("function_name", "")
         if verified_code is not None and verified_code.strip():
             response = response.model_copy(update={"function_replacement": verified_code})
+        else:
+            # 有替换代码但没有任何一次 VerifyReplacement 返回 pass=true
+            if getattr(response, "has_replacement", False) and (getattr(response, "function_replacement") or "").strip():
+                # 若 FixFunctionBuildErrors 曾针对当前函数返回 success，则修正已落盘到 replacement_updates，保留 has_replacement 以便 replace_funcs 会替换该函数
+                if not _has_fix_function_build_errors_success(state["messages"], current_fn):
+                    response = response.model_copy(update={"has_replacement": False, "function_replacement": ""})
         # We return the final answer
         result = {"final_response": response}
         
