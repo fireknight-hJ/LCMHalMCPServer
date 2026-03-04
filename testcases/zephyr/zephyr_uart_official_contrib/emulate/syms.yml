@@ -1,0 +1,16 @@
+symbols:
+  0: main.c
+  512: _Min_Heap_Size
+  1024: _Min_Stack_Size
+  134217729: HAL_BE_Out
+  134217749: uart_stm32_init
+  134217787: uart_stm32_poll_out
+  134217833: uart_stm32_poll_in
+  134217879: uart_stm32_print
+  134217973: test_uart_echo
+  134218117: test_uart_performance
+  134218213: test_uart_error_handling
+  134218273: main
+  134218516: _etext
+  134219152: __exidx_start
+  536870912: _edata

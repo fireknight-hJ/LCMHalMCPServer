@@ -1,0 +1,39 @@
+# Zephyr官方Flash驱动测试配置 - 用于开源贡献
+script_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib"
+db_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/codeql_db"
+src_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/src"
+proj_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib"
+
+# 构建配置
+build_command: "bash /home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/build.sh"
+build_dir: "/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/build"
+
+# 模拟器配置
+emulate_dir: "/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/emulate"
+entry_point: "0x8000201"
+
+# 目标板子信息
+target_board: "STM32F103C8T6 (Blue Pill)"
+target_cpu: "ARM Cortex-M3"
+flash_size: "64KB"
+ram_size: "20KB"
+flash_page_size: "1KB"
+
+# 测试配置
+test_cases:
+  - name: "flash_erase_single_page_test"
+    description: "Flash单页擦除测试"
+  - name: "flash_program_test"
+    description: "Flash编程测试"
+  - name: "flash_mass_erase_test"
+    description: "Flash批量擦除测试"
+  - name: "flash_error_handling_test"
+    description: "Flash错误处理测试"
+
+# 分析配置
+analysis_mode: "full"
+enable_codeql: true
+enable_llm_analysis: true
+enable_code_replacement: true
+enable_emulation: true
+enable_feedback_loop: true

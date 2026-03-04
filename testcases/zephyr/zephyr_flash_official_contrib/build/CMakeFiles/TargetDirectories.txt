@@ -1,0 +1,3 @@
+/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/build/CMakeFiles/rebuild_cache.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/build/CMakeFiles/edit_cache.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/build/CMakeFiles/zephyr_flash_test.dir

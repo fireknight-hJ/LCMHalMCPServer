@@ -1,0 +1,7 @@
+/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/install/strip.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/install/local.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/zephyr_uart_contrib.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/install.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/list_install_components.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/edit_cache.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/rebuild_cache.dir

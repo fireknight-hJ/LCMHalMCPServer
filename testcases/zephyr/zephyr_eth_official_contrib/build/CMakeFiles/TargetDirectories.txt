@@ -1,0 +1,3 @@
+/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/build/CMakeFiles/rebuild_cache.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/build/CMakeFiles/edit_cache.dir
+/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/build/CMakeFiles/zephyr_eth_test.dir

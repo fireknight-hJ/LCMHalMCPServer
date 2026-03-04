@@ -1,0 +1,42 @@
+# Zephyr官方ETH驱动测试配置 - 用于开源贡献
+script_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib"
+db_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/codeql_db"
+src_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/src"
+proj_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib"
+
+# 构建配置
+build_command: "bash /home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/build.sh"
+build_dir: "/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/build"
+
+# 模拟器配置
+emulate_dir: "/home/ckq/LCMHalMCPServer/testcases/zephyr_eth_official_contrib/emulate"
+entry_point: "0x8000201"
+
+# 目标板子信息
+target_board: "STM32F746G Discovery"
+target_cpu: "ARM Cortex-M7"
+flash_size: "1024KB"
+ram_size: "320KB"
+ethernet_speed: "100Mbps"
+ethernet_phy: "LAN8742A"
+
+# 测试配置
+test_cases:
+  - name: "eth_init_test"
+    description: "ETH初始化测试"
+  - name: "eth_link_status_test"
+    description: "ETH链路状态测试"
+  - name: "eth_tx_rx_test"
+    description: "ETH发送接收测试"
+  - name: "eth_performance_test"
+    description: "ETH性能测试"
+  - name: "eth_error_handling_test"
+    description: "ETH错误处理测试"
+
+# 分析配置
+analysis_mode: "full"
+enable_codeql: true
+enable_llm_analysis: true
+enable_code_replacement: true
+enable_emulation: true
+enable_feedback_loop: true

@@ -1,0 +1,30 @@
+The target system is: Generic -  - arm
+The host system is: Linux - 6.6.87.2-microsoft-standard-WSL2 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-mthumb;-ffunction-sections;-fdata-sections;-Wall;-Wextra;-Werror;-Os;-g
+Id flags: -c 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+
+The C compiler identification is GNU, found in "/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/3.21.4/CompilerIdC/CMakeCCompilerId.o"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_67cea/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_67cea.dir/build.make CMakeFiles/cmTC_67cea.dir/build
+gmake[1]: Entering directory '/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_67cea.dir/testCCompiler.c.obj
+/usr/bin/arm-none-eabi-gcc   -mcpu=cortex-m3 -mthumb -ffunction-sections -fdata-sections -Wall -Wextra -Werror -Os -g  -o CMakeFiles/cmTC_67cea.dir/testCCompiler.c.obj -c /home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_67cea
+/opt/cmake-3.21.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_67cea.dir/link.txt --verbose=1
+/usr/bin/arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -ffunction-sections -fdata-sections -Wall -Wextra -Werror -Os -g  -mcpu=cortex-m3 -mthumb -Wl,--gc-sections -nostartfiles  CMakeFiles/cmTC_67cea.dir/testCCompiler.c.obj -o cmTC_67cea 
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/ld: warning: cannot find entry symbol _start; defaulting to 00008000
+gmake[1]: Leaving directory '/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/CMakeTmp'
+
+
+

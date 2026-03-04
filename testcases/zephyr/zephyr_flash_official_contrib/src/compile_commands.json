@@ -1,0 +1,8 @@
+[
+  {
+    "directory": "/home/ckq/LCMHalMCPServer/testcases/zephyr_flash_official_contrib/src",
+    "command": "arm-none-eabi-gcc -I. -I/home/ckq/LCMHalMCPServer/zephyr_official/include -I/home/ckq/LCMHalMCPServer/zephyr_official/include/zephyr -I/home/ckq/LCMHalMCPServer/zephyr_official/include/drivers -D__ZEPHYR__ -DKERNEL -DCONFIG_ASSERT=y -DCONFIG_PRINTK=y -DCONFIG_FLASH=y -DCONFIG_FLASH_PAGE_LAYOUT=y -DCONFIG_FLASH_HAS_PAGE_LAYOUT=y -DCONFIG_FLASH_HAS_WRITE_PROTECTION=y -DCONFIG_SOC_SERIES_STM32F1X=y -DCONFIG_SOC_STM32F103C8=y -DCONFIG_FLASH_STM32=y -DCONFIG_FLASH_STM32_BASE=0x40022000 -DCONFIG_FLASH_STM32_PAGE_SIZE=1024 -DCONFIG_FLASH_STM32_SIZE=65536 -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -ffreestanding -nostdlib -Wall -Wextra -Wno-unused-parameter -O0 -g -ffunction-sections -fdata-sections -fno-common -fno-builtin -std=gnu11 -c main.c -o ../build/CMakeFiles/zephyr_flash_contrib.dir/main.c.o",
+    "file": "main.c",
+    "output": "../build/CMakeFiles/zephyr_flash_contrib.dir/main.c.o"
+  }
+]

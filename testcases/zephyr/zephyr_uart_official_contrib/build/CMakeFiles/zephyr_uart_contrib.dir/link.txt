@@ -1,0 +1,1 @@
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -ffunction-sections -fdata-sections -Wall -Wextra -Werror -Os -g -O0 -g3 -mcpu=cortex-m3 -mthumb -Wl,--gc-sections -nostartfiles -T/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/src/linker.ld CMakeFiles/zephyr_uart_contrib.dir/main.c.obj -o zephyr_uart_contrib.elf 

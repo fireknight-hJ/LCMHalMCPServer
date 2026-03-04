@@ -1,0 +1,361 @@
+# LCMHal BLE测试用例配置
+# 用于Zephyr BLE驱动开源贡献测试
+
+# 基本路径配置（globs.py所需）
+script_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_ble_official_contrib"
+db_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_ble_official_contrib/codeql-db"
+src_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_ble_official_contrib/src"
+proj_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_ble_official_contrib"
+
+# 测试用例基本信息
+testcase:
+  name: "zephyr_ble_official_contrib"
+  description: "Zephyr官方BLE驱动测试用例 - 用于开源贡献"
+  target: "nRF52840 Development Kit"
+  architecture: "ARM Cortex-M4"
+  license: "Apache-2.0"
+  version: "1.0.0"
+  author: "LCMHal Test Team"
+  date: "2026-02-25"
+
+# 构建配置
+build:
+  # 构建脚本
+  script: "build.sh"
+  
+  # 构建目录
+  build_dir: "build"
+  
+  # 源文件目录
+  src_dir: "src"
+  
+  # 输出文件
+  output_files:
+    - "zephyr_ble_test.elf"
+    - "zephyr_ble_test.bin"
+    - "zephyr_ble_test.hex"
+    - "zephyr_ble_test.map"
+    - "zephyr_ble_test.dis"
+  
+  # 工具链配置
+  toolchain:
+    prefix: "arm-none-eabi"
+    compiler: "gcc"
+    linker: "ld"
+    objcopy: "objcopy"
+    objdump: "objdump"
+    size: "size"
+  
+  # 编译器标志
+  cflags:
+    - "-mcpu=cortex-m4"
+    - "-mthumb"
+    - "-mfloat-abi=hard"
+    - "-mfpu=fpv4-sp-d16"
+    - "-ffunction-sections"
+    - "-fdata-sections"
+    - "-Wall"
+    - "-Wextra"
+    - "-Werror"
+    - "-Wno-unused-parameter"
+    - "-Wno-unused-variable"
+    - "-Wno-unused-function"
+    - "-Os"
+    - "-std=c11"
+  
+  # 链接器标志
+  ldflags:
+    - "-mcpu=cortex-m4"
+    - "-mthumb"
+    - "-mfloat-abi=hard"
+    - "-mfpu=fpv4-sp-d16"
+    - "-Tsrc/linker.ld"
+    - "-nostartfiles"
+    - "-nostdlib"
+    - "-Wl,--gc-sections"
+    - "-Wl,--print-memory-usage"
+
+# 硬件配置
+hardware:
+  # nRF52840芯片配置
+  chip: "nRF52840"
+  cpu: "Cortex-M4"
+  clock_speed: "64 MHz"
+  flash_size: "1024 KB"
+  ram_size: "256 KB"
+  
+  # BLE无线电配置
+  ble:
+    version: "Bluetooth 5.0"
+    frequency: "2.4 GHz"
+    data_rate: "1 Mbps / 2 Mbps"
+    tx_power: "+8 dBm to -20 dBm"
+    sensitivity: "-96 dBm"
+    range: "Up to 100 meters"
+    
+  # 外设配置
+  peripherals:
+    - "BLE Radio"
+    - "UART"
+    - "SPI"
+    - "I2C"
+    - "ADC"
+    - "PWM"
+    - "RTC"
+    - "WDT"
+
+# 测试配置
+test:
+  # 测试套件
+  test_suite:
+    - "BLE初始化测试"
+    - "BLE发送接收测试"
+    - "BLE扫描测试"
+    - "BLE广播测试"
+    - "BLE GATT测试"
+    - "BLE性能测试"
+    - "BLE错误处理测试"
+  
+  # 测试参数
+  parameters:
+    ble_init_timeout: "1000 ms"
+    ble_tx_timeout: "500 ms"
+    ble_rx_timeout: "500 ms"
+    ble_scan_duration: "1000 ms"
+    ble_adv_duration: "1000 ms"
+    ble_gatt_timeout: "2000 ms"
+  
+  # 预期结果
+  expected_results:
+    ble_init: "成功初始化BLE控制器"
+    ble_tx_rx: "成功发送和接收数据包"
+    ble_scan: "成功启动和停止扫描"
+    ble_adv: "成功启动和停止广播"
+    ble_gatt: "成功发现服务和特征"
+    ble_performance: "数据传输性能符合预期"
+    ble_error_handling: "错误处理机制正常工作"
+
+# 模拟器配置
+emulator:
+  # 模拟器类型
+  type: "fuzzemu"
+  
+  # 模拟器配置目录
+  config_dir: "emulate"
+  
+  # 基础配置
+  base_config: "base_config.yml"
+  
+  # 规则文件
+  rule_file: "semu_rule.txt"
+  
+  # 模拟参数
+  parameters:
+    memory_size: "256 MB"
+    cpu_cores: "1"
+    timeout: "30 seconds"
+    max_iterations: "1000"
+  
+  # 硬件模拟
+  hardware_simulation:
+    nrf52840_registers: true
+    ble_radio: true
+    gpio: true
+    uart: true
+    timer: true
+  
+  # 覆盖率收集
+  coverage:
+    code_coverage: true
+    branch_coverage: true
+    path_coverage: false
+
+# CodeQL分析配置
+codeql:
+  # 数据库创建
+  database:
+    create: true
+    location: "codeql-db"
+    language: "c"
+    source_root: "src"
+  
+  # 查询配置
+  queries:
+    - "security"
+    - "correctness"
+    - "maintainability"
+    - "performance"
+  
+  # 分析参数
+  analysis:
+    threads: "4"
+    memory: "4096"
+    timeout: "300"
+
+# LLM分析配置
+llm:
+  # 模型配置
+  model: "claude-3-5-sonnet"
+  
+  # 分析类型
+  analysis_types:
+    - "code_review"
+    - "bug_detection"
+    - "optimization_suggestions"
+    - "security_analysis"
+  
+  # 提示模板
+  prompt_templates:
+    code_review: "请分析以下BLE驱动代码，检查潜在问题并提供改进建议"
+    bug_detection: "请检测以下代码中的潜在bug和安全漏洞"
+    optimization: "请分析代码性能并提供优化建议"
+  
+  # 输出格式
+  output_format: "markdown"
+
+# 替换器配置
+replacer:
+  # 替换策略
+  strategy: "semantic_preserving"
+  
+  # 替换目标
+  targets:
+    - "HAL_BE_return_0"
+    - "HAL_BE_return_1"
+    - "HAL_BE_Out"
+    - "HAL_BE_In"
+    - "HAL_BE_BLE_ReadPacket"
+    - "HAL_BE_BLE_WritePacket"
+    - "HAL_BE_BLE_StartScan"
+    - "HAL_BE_BLE_StopScan"
+    - "HAL_BE_BLE_StartAdv"
+    - "HAL_BE_BLE_StopAdv"
+  
+  # 替换规则
+  rules:
+    preserve_semantics: true
+    preserve_interface: true
+    optimize_performance: true
+    enhance_security: true
+  
+  # 验证方法
+  validation:
+    compile_check: true
+    functional_test: true
+    performance_test: true
+    security_test: true
+
+# 日志配置
+logging:
+  # 日志级别
+  level: "INFO"
+  
+  # 日志文件
+  file: "lcmhal_ble_test.log"
+  
+  # 日志格式
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 日志轮转
+  rotation:
+    max_size: "10MB"
+    backup_count: "5"
+
+# 监控配置
+monitoring:
+  # 资源监控
+  resources:
+    cpu: true
+    memory: true
+    disk: true
+    network: false
+  
+  # 性能监控
+  performance:
+    execution_time: true
+    memory_usage: true
+    code_coverage: true
+    test_coverage: true
+  
+  # 告警配置
+  alerts:
+    cpu_threshold: "80%"
+    memory_threshold: "90%"
+    timeout_threshold: "60 seconds"
+
+# 报告配置
+report:
+  # 报告格式
+  formats:
+    - "html"
+    - "markdown"
+    - "json"
+    - "pdf"
+  
+  # 报告内容
+  content:
+    summary: true
+    test_results: true
+    code_analysis: true
+    performance_metrics: true
+    security_findings: true
+    recommendations: true
+  
+  # 输出目录
+  output_dir: "reports"
+  
+  # 报告模板
+  template: "default"
+
+# 依赖配置
+dependencies:
+  # 系统依赖
+  system:
+    - "gcc-arm-none-eabi"
+    - "make"
+    - "cmake"
+    - "python3"
+    - "git"
+  
+  # Python依赖
+  python:
+    - "codeql"
+    - "pyyaml"
+    - "requests"
+    - "anthropic"
+  
+  # 工具依赖
+  tools:
+    - "fuzzemu"
+    - "qemu-system-arm"
+    - "openocd"
+
+# 验证配置
+validation:
+  # 构建验证
+  build:
+    check_elf_format: true
+    check_binary_size: true
+    check_symbols: true
+    check_sections: true
+  
+  # 功能验证
+  functional:
+    run_tests: true
+    check_output: true
+    verify_results: true
+    compare_expected: true
+  
+  # 性能验证
+  performance:
+    measure_execution_time: true
+    measure_memory_usage: true
+    measure_code_size: true
+    compare_baseline: true
+  
+  # 安全验证
+  security:
+    static_analysis: true
+    dynamic_analysis: true
+    fuzz_testing: true
+    vulnerability_scan: true

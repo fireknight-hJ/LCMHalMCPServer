@@ -1,0 +1,28 @@
+# Zephyr官方UART驱动测试配置 - 用于开源贡献
+script_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib"
+db_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/codeql_db"
+src_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/src"
+proj_path: "/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib"
+
+# 构建配置
+build_command: "bash /home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build.sh"
+build_dir: "/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build"
+
+# 模拟器配置
+emulate_dir: "/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/emulate"
+entry_point: "0x8000201"
+
+# 目标板子信息
+target_board: "STM32F103C8T6 (Blue Pill)"
+target_cpu: "ARM Cortex-M3"
+flash_size: "64KB"
+ram_size: "20KB"
+
+# 测试配置
+test_cases:
+  - name: "uart_echo_test"
+    description: "UART回显测试"
+  - name: "uart_performance_test"
+    description: "UART性能测试"
+  - name: "uart_error_handling_test"
+    description: "UART错误处理测试"

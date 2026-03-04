@@ -1,0 +1,125 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-mthumb;-ffunction-sections;-fdata-sections;-Wall;-Wextra;-Werror;-Os;-g
+Id flags:  
+
+The output was:
+1
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-exit.o): in function `exit':
+/build/newlib-38V0JC/newlib-4.4.0.20231231/build/arm-none-eabi/thumb/v7-m/nofp/newlib/../../../../../../newlib/libc/stdlib/exit.c:65:(.text+0x14): undefined reference to `_exit'
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-writer.o): in function `_write_r':
+/build/newlib-38V0JC/newlib-4.4.0.20231231/build/arm-none-eabi/thumb/v7-m/nofp/newlib/../../../../../../newlib/libc/reent/writer.c:49:(.text+0x14): undefined reference to `_write'
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sbrkr.o): in function `_sbrk_r':
+/build/newlib-38V0JC/newlib-4.4.0.20231231/build/arm-none-eabi/thumb/v7-m/nofp/newlib/../../../../../../newlib/libc/reent/sbrkr.c:51:(.text+0xc): undefined reference to `_sbrk'
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-closer.o): in function `_close_r':
+/build/newlib-38V0JC/newlib-4.4.0.20231231/build/arm-none-eabi/thumb/v7-m/nofp/newlib/../../../../../../newlib/libc/reent/closer.c:47:(.text+0xc): undefined reference to `_close'
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-readr.o): in function `_read_r':
+/build/newlib-38V0JC/newlib-4.4.0.20231231/build/arm-none-eabi/thumb/v7-m/nofp/newlib/../../../../../../newlib/libc/reent/readr.c:49:(.text+0x14): undefined reference to `_read'
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-lseekr.o): in function `_lseek_r':
+/build/newlib-38V0JC/newlib-4.4.0.20231231/build/arm-none-eabi/thumb/v7-m/nofp/newlib/../../../../../../newlib/libc/reent/lseekr.c:49:(.text+0x14): undefined reference to `_lseek'
+collect2: error: ld returned 1 exit status
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1b956/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1b956.dir/build.make CMakeFiles/cmTC_1b956.dir/build
+gmake[1]: Entering directory '/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1b956.dir/CMakeCCompilerABI.c.obj
+/usr/bin/arm-none-eabi-gcc   -mcpu=cortex-m3 -mthumb -ffunction-sections -fdata-sections -Wall -Wextra -g    -v -o CMakeFiles/cmTC_1b956.dir/CMakeCCompilerABI.c.obj -c /opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/bin/arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: ../configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/lib/include' --mandir='/usr/lib/share/man' --infodir='/usr/lib/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --mandir=/usr/share/man --enable-languages=c,c++,lto --enable-multilib --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --enable-tls --build=x86_64-linux-gnu --target=arm-none-eabi --with-system-zlib --with-gnu-as --with-gnu-ld --with-pkgversion=15:13.2.rel1-2 --without-included-gettext --prefix=/usr/lib --infodir=/usr/share/doc/gcc-arm-none-eabi/info --htmldir=/usr/share/doc/gcc-arm-none-eabi/html --pdfdir=/usr/share/doc/gcc-arm-none-eabi/pdf --bindir=/usr/bin --libexecdir=/usr/lib --libdir=/usr/lib --disable-libstdc++-v3 --host=x86_64-linux-gnu --with-headers=no --without-newlib --with-multilib-list=rmprofile,aprofile ASFLAGS= ASFLAGS_FOR_BUILD= CFLAGS='-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -Wno-format -Wno-error=format-security -fcf-protection -fdebug-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=/usr/src/gcc-arm-none-eabi-15:13.2.rel1-2' 'CFLAGS_FOR_BUILD=-g -O2' CPPFLAGS='-Wdate-time -D_FORTIFY_SOURCE=3' CPPFLAGS_FOR_BUILD= CXXFLAGS='-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -Wno-format -Wno-error=format-security -fcf-protection -fdebug-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=/usr/src/gcc-arm-none-eabi-15:13.2.rel1-2' 'CXXFLAGS_FOR_BUILD=-g -O2' DFLAGS=-frelease DFLAGS_FOR_BUILD=-frelease FCFLAGS='-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -fcf-protection -fdebug-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=/usr/src/gcc-arm-none-eabi-15:13.2.rel1-2' 'FCFLAGS_FOR_BUILD=-g -O2' FFLAGS='-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -fcf-protection -fdebug-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=/usr/src/gcc-arm-none-eabi-15:13.2.rel1-2' 'FFLAGS_FOR_BUILD=-g -O2' LDFLAGS='-Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -Wl,-z,relro' LDFLAGS_FOR_BUILD= OBJCFLAGS='-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -Wno-format -Wno-error=format-security -fcf-protection -fdebug-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=/usr/src/gcc-arm-none-eabi-15:13.2.rel1-2' 'OBJCFLAGS_FOR_BUILD=-g -O2' OBJCXXFLAGS='-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -Wno-format -Wno-error=format-security -fcf-protection -fdebug-prefix-map=/build/gcc-arm-none-eabi-TuTZN0/gcc-arm-none-eabi-13.2.rel1=/usr/src/gcc-arm-none-eabi-15:13.2.rel1-2' 'OBJCXXFLAGS_FOR_BUILD=-g -O2' INHIBIT_LIBC_CFLAGS=-DUSE_TM_CLONE_REGISTRY=0 AR_FOR_TARGET=arm-none-eabi-ar AS_FOR_TARGET=arm-none-eabi-as LD_FOR_TARGET=arm-none-eabi-ld NM_FOR_TARGET=arm-none-eabi-nm OBJDUMP_FOR_TARGET=arm-none-eabi-objdump RANLIB_FOR_TARGET=arm-none-eabi-ranlib READELF_FOR_TARGET=arm-none-eabi-readelf STRIP_FOR_TARGET=arm-none-eabi-strip SED=/bin/sed SHELL=/bin/sh BASH=/bin/bash CONFIG_SHELL=/bin/bash
+Thread model: single
+Supported LTO compression algorithms: zlib
+gcc version 13.2.1 20231009 (15:13.2.rel1-2) 
+COLLECT_GCC_OPTIONS='-mcpu=cortex-m3' '-mthumb' '-ffunction-sections' '-fdata-sections' '-Wall' '-Wextra' '-g' '-v' '-o' 'CMakeFiles/cmTC_1b956.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv7-m' '-march=armv7-m' '-dumpdir' 'CMakeFiles/cmTC_1b956.dir/'
+ /usr/lib/gcc/arm-none-eabi/13.2.1/cc1 -quiet -v -imultilib thumb/v7-m/nofp -D__USES_INITFINI__ /opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_1b956.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -mlibarch=armv7-m -march=armv7-m -g -Wall -Wextra -version -ffunction-sections -fdata-sections -o /tmp/cc49W5ke.s
+GNU C17 (15:13.2.rel1-2) version 13.2.1 20231009 (arm-none-eabi)
+	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/sys-include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc/arm-none-eabi/13.2.1/include
+ /usr/lib/gcc/arm-none-eabi/13.2.1/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 3dedaaa4c0ce80076a39ed0b54adff9d
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c: In function 'HAL_BE_In':
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:14:63: warning: unused parameter 'buf' [-Wunused-parameter]
+   14 | int __attribute__((noinline, used, __weak__)) HAL_BE_In(void* buf, int len){
+      |                                                         ~~~~~~^~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c: In function 'HAL_BE_ENET_ReadFrame':
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:18:75: warning: unused parameter 'buf' [-Wunused-parameter]
+   18 | int __attribute__((noinline, used, __weak__)) HAL_BE_ENET_ReadFrame(void* buf, int length){
+      |                                                                     ~~~~~~^~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:18:84: warning: unused parameter 'length' [-Wunused-parameter]
+   18 | int __attribute__((noinline, used, __weak__)) HAL_BE_ENET_ReadFrame(void* buf, int length){
+      |                                                                                ~~~~^~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c: In function 'HAL_BE_Block_Write':
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:22:72: warning: unused parameter 'buf' [-Wunused-parameter]
+   22 | int __attribute__((noinline, used, __weak__)) HAL_BE_Block_Write(void* buf, int block_size, int block_num){
+      |                                                                  ~~~~~~^~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:22:81: warning: unused parameter 'block_size' [-Wunused-parameter]
+   22 | int __attribute__((noinline, used, __weak__)) HAL_BE_Block_Write(void* buf, int block_size, int block_num){
+      |                                                                             ~~~~^~~~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c: In function 'HAL_BE_Block_Read':
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:26:71: warning: unused parameter 'buf' [-Wunused-parameter]
+   26 | int __attribute__((noinline, used, __weak__)) HAL_BE_Block_Read(void* buf, int block_size, int block_num){
+      |                                                                 ~~~~~~^~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:26:80: warning: unused parameter 'block_size' [-Wunused-parameter]
+   26 | int __attribute__((noinline, used, __weak__)) HAL_BE_Block_Read(void* buf, int block_size, int block_num){
+      |                                                                            ~~~~^~~~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c: In function 'main':
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:47:12: error: variable 'uart_dev' has initializer but incomplete type
+   47 |     struct device uart_dev = {
+      |            ^~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:48:10: error: 'struct device' has no member named 'name'
+   48 |         .name = "USART1",
+      |          ^~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:48:17: warning: excess elements in struct initializer
+   48 |         .name = "USART1",
+      |                 ^~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:48:17: note: (near initialization for 'uart_dev')
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:49:10: error: 'struct device' has no member named 'regs'
+   49 |         .regs = (void *)0x40013800,  /* USART1 base address for STM32 */
+      |          ^~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:49:17: warning: excess elements in struct initializer
+   49 |         .regs = (void *)0x40013800,  /* USART1 base address for STM32 */
+      |                 ^
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:49:17: note: (near initialization for 'uart_dev')
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:47:19: error: storage size of 'uart_dev' isn't known
+   47 |     struct device uart_dev = {
+      |                   ^~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:53:15: warning: implicit declaration of function 'uart_stm32_init' [-Wimplicit-function-declaration]
+   53 |     int ret = uart_stm32_init(&uart_dev);
+      |               ^~~~~~~~~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:60:5: warning: implicit declaration of function 'uart_stm32_print' [-Wimplicit-function-declaration]
+   60 |     uart_stm32_print(&uart_dev, "Zephyr UART Driver Test\n");
+      |     ^~~~~~~~~~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:66:5: warning: implicit declaration of function 'test_uart_echo' [-Wimplicit-function-declaration]
+   66 |     test_uart_echo(&uart_dev);
+      |     ^~~~~~~~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:70:5: warning: implicit declaration of function 'test_uart_performance' [-Wimplicit-function-declaration]
+   70 |     test_uart_performance(&uart_dev);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:74:5: warning: implicit declaration of function 'test_uart_error_handling' [-Wimplicit-function-declaration]
+   74 |     test_uart_error_handling(&uart_dev);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:47:19: warning: unused variable 'uart_dev' [-Wunused-variable]
+   47 |     struct device uart_dev = {
+      |                   ^~~~~~~~
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c: At top level:
+/opt/cmake-3.21.4/share/cmake-3.21/Modules/CMakeCCompilerABI.c:40: error: unterminated #else
+   40 | #ifdef __CLASSIC_C__
+      | 
+gmake[1]: *** [CMakeFiles/cmTC_1b956.dir/build.make:78: CMakeFiles/cmTC_1b956.dir/CMakeCCompilerABI.c.obj] Error 1
+gmake[1]: Leaving directory '/home/ckq/LCMHalMCPServer/testcases/zephyr_uart_official_contrib/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_1b956/fast] Error 2
+
+
+
+

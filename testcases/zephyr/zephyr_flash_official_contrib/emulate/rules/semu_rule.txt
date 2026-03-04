@@ -1,0 +1,15 @@
+# Flash驱动测试规则
+# 内存映射规则
+[memory]
+flash = 0x08000000-0x0800ffff
+ram = 0x20000000-0x20004fff
+periph = 0x40000000-0x5fffffff
+
+# 中断规则
+[interrupt]
+vector_base = 0x08000000
+nvic_enable = true
+
+# 外设规则
+[peripheral]
+flash_registers = 0x40022000-0x4002203f
