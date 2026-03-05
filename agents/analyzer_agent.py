@@ -21,33 +21,10 @@ import config.globs as globs
 # 使用统一的模型实例
 model = get_model()
 
-# Set up MCP client
-client = MultiServerMCPClient(
-    {
-        # using connection
-        # "lcmhal_collector": {
-        #     # make sure you start your weather server on port 8000
-        #     "url": "http://localhost:8112/mcp/",
-        #     "transport": "streamable_http",
-        # },
-        "lcmhal_collector": {
-            "command": "python",
-            # Make sure to update to the full absolute path to your math_server.py file
-            "args": [
-                "-m",
-                "tools.collector.mcp_server",
-                "--db-path",
-                globs.db_path,
-                "--transport",
-                "stdio"
-            ],
-            # "cwd": "/home/haojie/workspace/lcmhalmcp",
-            "transport": "stdio"
-        },
+# MCP client 不再在模块加载时创建，否则会用到 import 时的默认 globs.db_path（main 尚未 globs_init）。
+# 改为在 build_graph() 内用当前 globs.db_path 创建，保证 GetFunctionInfo 等工具连到正确 DB。
+_client = None
 
-        # using stdio
-    }
-)
 
 class AgentState(MessagesState):
     # Final structured response from the agent
@@ -55,19 +32,43 @@ class AgentState(MessagesState):
     # Function name being classified
     function_name: str
 
-# 全局变量存储graph实例
+# 全局变量存储graph实例及创建时使用的 db_path（切换 testcase 时需重建）
 _graph = None
+_graph_db_path = None
 
 async def build_graph():
-    global _graph
+    global _graph, _client, _graph_db_path
+    db_path = getattr(globs, "db_path", None) or ""
+    # 若已构建过但 db_path 已变（例如换了 testcase），则失效缓存，用新 DB 重建
+    if _graph is not None and _graph_db_path != db_path:
+        _graph = None
+        _graph_db_path = None
     # 如果graph已经构建过，直接返回
     if _graph is not None:
         return _graph
-    
+
+    # 用当前 globs.db_path 创建 MCP client，保证 GetFunctionInfo 等连到当前 testcase 的 DB（非默认）
+    _client = MultiServerMCPClient(
+        {
+            "lcmhal_collector": {
+                "command": "python",
+                "args": [
+                    "-m",
+                    "tools.collector.mcp_server",
+                    "--db-path",
+                    db_path,
+                    "--transport",
+                    "stdio"
+                ],
+                "transport": "stdio"
+            },
+        }
+    )
+
     # 异步获取工具（Collector MCP + 验证与修复委托）；延迟导入避免与 data_manager 循环依赖
     from tools.builder.tool import verify_replacement as verify_replacement_tool
     from agents.builder_fixer_agent import builder_fixer_agent
-    tools = await client.get_tools()
+    tools = await _client.get_tools()
     tools = tools + [verify_replacement_tool, builder_fixer_agent]
 
     # Bind tools to model
@@ -237,6 +238,7 @@ async def build_graph():
 
     # Compile the graph and存储到全局变量
     _graph = builder.compile()
+    _graph_db_path = db_path
     return _graph
 
 async def function_classify(func_name : str, overwrite: bool = False) -> FunctionClassifyResponse:
