@@ -216,13 +216,21 @@ def src_insert(file_path: str, insert_code: str, start_line: int = -1) -> str:
     
 def file_convert_proj2src(file_path: str) -> str:
     """
-    将项目路径转换为源文件路径
-    file_path: 项目路径
-    (解决DB中路径与实际源文件路径不同的问题，通过globs.proj_path和globs.src_path转换)
+    将项目路径转换为源文件路径。
+    DB 中路径来自 CodeQL getAbsolutePath()，即构建时的绝对路径，通常与 proj 一致。
+    仅在「构建目录与源码目录分离」时做 proj_path -> src_path 的前缀替换。
     """
-    if globs.proj_path != globs.src_path:
-        # 项目路径和源文件路径不同时，需要转换
-        file_path = file_path.replace(globs.proj_path, globs.src_path.replace(" ", "\\ "))
+    import os
+    # 相对路径：按 proj_path 解析为绝对路径
+    if not os.path.isabs(file_path):
+        return os.path.normpath(os.path.join(globs.proj_path, file_path))
+    if globs.proj_path == globs.src_path:
         return file_path
-    else:
+    # 路径已经在 src_path 下（例如 NXP：proj=workspace, src=workspace/mcuxsdk，DB 已是 workspace/mcuxsdk/...）
+    # 先判断更长的前缀，避免把「已在 src 下」的路径再替换成 src_path + 剩余，导致重复路径
+    if file_path.startswith(globs.src_path):
         return file_path
+    # 构建目录与源码分离：path 以 proj_path 为前缀，映射到 src_path
+    if file_path.startswith(globs.proj_path):
+        return globs.src_path.rstrip("/") + file_path[len(globs.proj_path.rstrip("/")):]
+    return file_path

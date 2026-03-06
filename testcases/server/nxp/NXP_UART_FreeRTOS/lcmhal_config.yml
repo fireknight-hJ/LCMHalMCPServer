@@ -1,5 +1,6 @@
 # LCMHAL配置文件
+# DB 中路径为构建时绝对路径，与源码树一致；proj_path 与 src_path 设为同一源码根即可，无需做路径转换
 script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_UART_FreeRTOS"
 db_path: "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS"
 src_path: "/home/haojie/mcuxsdk-workspace/mcuxsdk"
-proj_path: "/home/haojie/mcuxsdk-workspace"
+proj_path: "/home/haojie/mcuxsdk-workspace/mcuxsdk"
