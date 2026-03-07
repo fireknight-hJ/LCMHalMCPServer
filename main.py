@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 import sys
 import yaml
@@ -118,12 +119,21 @@ async def recover_workflow():
 
 async def main():
     parser = argparse.ArgumentParser(description="LCMHAL MCP Tool")
-    parser.add_argument("command", choices=["run", "recover", "clean"], help="Command to execute: run, recover, or clean")
-    parser.add_argument("script_path", nargs="?", default="", help="Path to the script/config file")
+    parser.add_argument(
+        "command",
+        choices=["run", "recover", "clean", "analyze"],
+        help="Command to execute: run, recover, clean, or analyze a single function",
+    )
+    parser.add_argument("script_path", nargs="?", default="", help="Path to the testcase directory or config file")
     parser.add_argument("--config", "-c", default=None, help="Path to config YAML file (overrides script_path)")
-    parser.add_argument("--func-name", "-f", default=None, help="Function name to clean logs for (used with 'clean' command)")
+    parser.add_argument("--func-name", "-f", default=None, help="Function name (for 'clean' and 'analyze' commands)")
     parser.add_argument("--type", "-t", choices=["replacement", "analysis", "classify", "all"], default="all", help="Log type to clean (used with 'clean' command)")
     parser.add_argument("--recover", "-r", action="store_true", help="After cleaning, recover this function's source file from DB (used with 'clean -f FUNC')")
+    parser.add_argument(
+        "--no-clean",
+        action="store_true",
+        help="For 'analyze' command: do not delete existing logs; reuse previous analysis if present",
+    )
     
     args = parser.parse_args()
     
@@ -171,6 +181,46 @@ async def main():
             print("Error: config file path required for recover command")
             return
         await recover_workflow()
+    elif args.command == "analyze":
+        # 单函数重新分析：可选先清理该函数的日志，然后调用 Analyzer 对单个函数做 classify
+        if not args.func_name:
+            print("Error: analyze 命令需要指定 --func-name")
+            return
+
+        # 和 run 一样，需要明确 testcase 目录，以加载正确的 DB
+        if args.script_path:
+            potential_path = args.script_path
+        elif args.config:
+            potential_path = args.config
+        else:
+            print("Error: analyze 命令必须指定 testcase 目录（包含 lcmhal_config.yml）。")
+            print("  示例: python main.py analyze testcases/server/nxp/NXP_UART_FreeRTOS -f LPUART_ReadNonBlocking")
+            return
+
+        # 如果传入的是配置文件路径，提取其所在目录
+        if os.path.isfile(potential_path):
+            globs.script_path = os.path.dirname(potential_path)
+        else:
+            globs.script_path = potential_path
+
+        config = load_config_from_yaml(globs.script_path)
+        globs.globs_init(config)
+        register_db(globs.db_path)
+
+        # 默认先清掉该函数相关的 AI 日志，确保是真正的“重新分析”；加 --no-clean 可保留旧日志
+        if not args.no_clean:
+            clean_function_logs(args.func_name, "all")
+
+        # 仅对单个函数调用 Analyzer
+        print(f"[analyze] script_path={globs.script_path}, db_path={globs.db_path}", file=sys.stderr)
+        print(f"[analyze] analyzing function: {args.func_name}")
+        result_map = await analyze_functions([args.func_name])
+        res = result_map.get(args.func_name)
+        if res is None:
+            print(f"[analyze] No analysis result for function {args.func_name}")
+        else:
+            # 以 JSON 形式打印，便于后续对比/记录
+            print(json.dumps(res.model_dump(), indent=2, ensure_ascii=False))
     else:
         # run 必须指定 testcase 目录，否则会用到错误 DB（如误用 StreamingServer 导致 F7/F4 混用）
         if args.script_path:
