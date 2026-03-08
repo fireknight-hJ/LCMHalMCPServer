@@ -3,7 +3,6 @@ import json
 import config.globs as globs
 from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.collector.collector import get_mmio_func_list, get_function_info
-from agents.analyzer_agent import analyze_functions
 from utils.db_cache import check_analyzed_json_log, get_analyzed_json_log, dump_json_log
 
 
@@ -87,6 +86,7 @@ class DataManager:
     
     async def load_mmio_functions(self):
         """加载MMIO函数信息"""
+        from agents.analyzer_agent import analyze_functions
         # 处理所有MMIO函数
         function_list = get_mmio_func_list(globs.db_path)
         self.mmio_info_list = await analyze_functions(function_list)

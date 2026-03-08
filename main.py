@@ -7,7 +7,6 @@ import argparse
 import config.globs as globs
 from config.globs import load_config_from_yaml
 from tools.builder.proj_builder import build_proj_dbgen, clear_proj
-from agents.analyzer_agent import analyze_functions
 from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
 from tools.replacer.code_replacer import function_replace
 from tools.replacer.code_recover import function_recover
@@ -214,6 +213,7 @@ async def main():
         # 仅对单个函数调用 Analyzer
         print(f"[analyze] script_path={globs.script_path}, db_path={globs.db_path}", file=sys.stderr)
         print(f"[analyze] analyzing function: {args.func_name}")
+        from agents.analyzer_agent import analyze_functions
         result_map = await analyze_functions([args.func_name])
         res = result_map.get(args.func_name)
         if res is None:
