@@ -18,11 +18,16 @@ baseconfig_dict = {
         'enable_native': False,
         'emulate_mode': 'emulate',
         # loop_whitelist: Functions that should skip loop detection
-        # These are standard library functions that legitimately repeat many times when copying large memory blocks
+        # Standard lib + C runtime init (FillZerobss/LoopFillZerobss etc. are normal on ARM/Cortex-M)
         'loop_whitelist': [
             'memset',
             'memcpy',
-            'memmove'
+            'memmove',
+            'FillZerobss',
+            'LoopFillZerobss',
+            'CopyDataInit',
+            'LoopCopyDataInit',
+            'Zero_Init',
         ],
         'handlers': {
             'Delay': 'do_return',
