@@ -63,6 +63,22 @@ def clean_function_logs(func_name: str, log_type: str = "all"):
         print(f"\n共删除 {len(deleted_files)} 个文件")
 
 
+def clean_all_ai_log():
+    """清空当前 db_path 下 lcmhal_ai_log 目录内全部文件（工具自带实现）。"""
+    log_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
+    if not os.path.exists(log_dir):
+        print(f"日志目录不存在: {log_dir}")
+        return
+    deleted = 0
+    for f in os.listdir(log_dir):
+        path = os.path.join(log_dir, f)
+        if os.path.isfile(path):
+            os.remove(path)
+            deleted += 1
+            print(f"删除: {f}")
+    print(f"\n共删除 {deleted} 个文件，ai_log 已清空")
+
+
 async def run_workflow():
     config = load_config_from_yaml(globs.script_path)
     
@@ -133,6 +149,11 @@ async def main():
         action="store_true",
         help="For 'analyze' command: do not delete existing logs; reuse previous analysis if present",
     )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="For 'clean' command: clean entire lcmhal_ai_log directory for this testcase (ignore --func-name)",
+    )
     
     args = parser.parse_args()
     
@@ -155,11 +176,13 @@ async def main():
         globs.script_path = dir_path
         globs.globs_init(config)
         
-        if not args.func_name:
-            print("Error: --func-name is required for clean command")
+        if getattr(args, "all", False):
+            clean_all_ai_log()
+        elif not args.func_name:
+            print("Error: --func-name is required for clean command (or use --all to clean entire ai_log)")
             return
-        
-        clean_function_logs(args.func_name, args.type)
+        else:
+            clean_function_logs(args.func_name, args.type)
         if args.recover and args.func_name:
             func_info = get_function_info(globs.db_path, args.func_name)
             if func_info:
