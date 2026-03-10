@@ -178,6 +178,7 @@ async def build_graph():
         else:
             # 既无 VerifyReplacement 通过，又无 FixFunctionBuildErrors 成功：有替换内容则清空（未验证不采纳）
             if getattr(response, "has_replacement", False) and (getattr(response, "function_replacement") or "").strip():
+                print(f"[FunctionClassifier] 未采纳未验证替换: {current_fn} (无 VerifyReplacement 通过且无 FixFunctionBuildErrors 成功，审查机制清空)")
                 response = response.model_copy(update={"has_replacement": False, "function_replacement": ""})
         # We return the final answer
         result = {"final_response": response}

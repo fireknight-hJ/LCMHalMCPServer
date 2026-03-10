@@ -30,6 +30,7 @@ RUBRIC_CHECK_SYSTEM_PROMPT = """You are a strict reviewer for embedded firmware 
    - For any init/setup that touches VTOR, SysTick, or NVIC, the replacement must **preserve the observable register writes or API calls**, not replace them with a simple return.
 
 ## Your output
+Respond in valid **JSON** only. Include exactly two fields:
 - **passed**: true if the replacement is acceptable (preserves all required CORE calls and NVIC/SysTick/VTOR writes). false if the replacement violates any rule above.
 - **reason**: If passed is false, give a short, concrete reason so the author knows what to add back. If passed is true, leave reason empty.
 """
@@ -42,7 +43,7 @@ RUBRIC_CHECK_USER_TEMPLATE = """Check the following replacement code for functio
 {replacement_code}
 ```
 
-Answer with passed (true/false) and reason only."""
+Answer in JSON with "passed" (true/false) and "reason" only."""
 
 RUBRIC_CHECK_USER_TEMPLATE_WITH_ORIGINAL = """Check the following replacement code for function **{function_name}**.
 
@@ -58,4 +59,4 @@ RUBRIC_CHECK_USER_TEMPLATE_WITH_ORIGINAL = """Check the following replacement co
 
 Compare original vs replacement: if the original calls CORE functions (NVIC config, OS scheduler, VTOR) or does NVIC/SysTick/VTOR writes, the replacement must preserve those calls or writes. Reject (passed = false) if they were removed.
 
-Answer with passed (true/false) and reason only."""
+Answer in JSON with "passed" (true/false) and "reason" only."""
