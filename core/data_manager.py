@@ -5,6 +5,11 @@ from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.collector.collector import get_mmio_func_list, get_function_info
 from utils.db_cache import check_analyzed_json_log, get_analyzed_json_log, dump_json_log
 
+# 替换历史只保留最近 N 条，避免上下文过长
+REPLACEMENT_HISTORY_MAX_ENTRIES = 2
+# 单文件超过此数量的替换函数时改为渐进披露，不全量返回，由调用方按需用 GetFunctionAnalysisAndReplacementFormatted 查单函数
+MAX_FUNCTIONS_FULL_DISCLOSURE = 10
+
 
 class DataManager:
     def __init__(self):
@@ -65,10 +70,9 @@ class DataManager:
             "reason": reason,
             "timestamp": self._get_timestamp()
         })
-        # 只保留最近N次历史（避免上下文过长）
-        max_history = 10
-        if len(current_history) > max_history:
-            self.replacement_history[func_name] = current_history[-max_history:]
+        # 只保留最近 N 次历史（避免上下文过长）
+        if len(current_history) > REPLACEMENT_HISTORY_MAX_ENTRIES:
+            self.replacement_history[func_name] = current_history[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
         else:
             self.replacement_history[func_name] = current_history
 
@@ -160,7 +164,10 @@ class DataManager:
                 self.replacement_updates_by_file.setdefault(file_path, []).append(self.replacement_updates[func_name])
     
     def get_replace_func_details_by_file(self, file_path: str):
-        """根据文件路径获取替换函数详情（包含替换历史信息，重要改进）"""
+        """根据文件路径获取替换函数详情（包含替换历史信息，重要改进）。
+        若该文件替换函数数超过 MAX_FUNCTIONS_FULL_DISCLOSURE，改为渐进披露：只返回摘要与函数名列表，
+        全量信息请通过 GetFunctionAnalysisAndReplacementFormatted(func_name) 按需获取。
+        """
         # 尝试直接匹配完整文件路径
         mmio_infos = self.mmio_infos_by_file.get(file_path, [])
         replacement_updates = self.replacement_updates_by_file.get(file_path, [])
@@ -171,21 +178,50 @@ class DataManager:
             for info in mmio_infos:
                 if info.function_name:  # 排除空函数名
                     involved_functions.add(info.function_name)
+            for update in replacement_updates:
+                involved_functions.add(update.function_name)
+
+            # 超过阈值时只做渐进披露：返回摘要 + 函数名列表，不返回全量代码
+            if len(involved_functions) > MAX_FUNCTIONS_FULL_DISCLOSURE:
+                summary = []
+                for info in mmio_infos:
+                    if info.function_name:
+                        summary.append({
+                            "function_name": info.function_name,
+                            "function_type": getattr(info, "function_type", "unknown"),
+                            "reason": (info.classification_reason or "")[:200],
+                        })
+                for update in replacement_updates:
+                    if update.function_name not in {s["function_name"] for s in summary}:
+                        summary.append({
+                            "function_name": update.function_name,
+                            "function_type": "replacement_update",
+                            "reason": (update.reason or "")[:200],
+                        })
+                return {
+                    "file_path": file_path,
+                    "progressive_disclosure": True,
+                    "function_count": len(involved_functions),
+                    "function_names": sorted(involved_functions),
+                    "function_summary": summary,
+                    "message": (
+                        f"此文件有 {len(involved_functions)} 个替换函数，为避免上下文过长仅返回摘要。"
+                        "需要某函数全量信息时请调用 GetFunctionAnalysisAndReplacementFormatted(func_name)。"
+                    ),
+                }
 
             result = {
                 "file_path": file_path,
                 "replaced_function_infos": [info.model_dump() for info in mmio_infos],
                 "replacement_updates": [update.model_dump() for update in replacement_updates],
                 "involved_functions": list(involved_functions),
-                "replacement_history": {}  # 为每个函数添加替换历史
+                "replacement_history": {},
             }
 
-            # 为每个涉及的函数收集替换历史
+            # 为每个涉及的函数收集替换历史，只保留最近 N 条
             for func_name in involved_functions:
-                if func_name in self.replacement_history:
-                    result["replacement_history"][func_name] = self.replacement_history[func_name]
-                else:
-                    result["replacement_history"][func_name] = []
+                history = self.replacement_history.get(func_name, [])
+                result["replacement_history"][func_name] = history[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
 
             return result
         
@@ -209,11 +245,46 @@ class DataManager:
         mmio_infos = self.mmio_infos_by_file.get(full_path, [])
         replacement_updates = self.replacement_updates_by_file.get(full_path, [])
         replacement_update_func_names = set([update.function_name for update in replacement_updates])
-        
+        involved_functions = {info.function_name for info in mmio_infos if info.function_name} | set(replacement_update_func_names)
+
+        # 超过阈值时只做渐进披露
+        if len(involved_functions) > MAX_FUNCTIONS_FULL_DISCLOSURE:
+            summary = []
+            for info in mmio_infos:
+                if info.function_name:
+                    summary.append({
+                        "function_name": info.function_name,
+                        "function_type": getattr(info, "function_type", "unknown"),
+                        "reason": (info.classification_reason or "")[:200],
+                    })
+            for update in replacement_updates:
+                if update.function_name not in {s["function_name"] for s in summary}:
+                    summary.append({
+                        "function_name": update.function_name,
+                        "function_type": "replacement_update",
+                        "reason": (update.reason or "")[:200],
+                    })
+            return {
+                "file_path": full_path,
+                "progressive_disclosure": True,
+                "function_count": len(involved_functions),
+                "function_names": sorted(involved_functions),
+                "function_summary": summary,
+                "message": (
+                    f"此文件有 {len(involved_functions)} 个替换函数，为避免上下文过长仅返回摘要。"
+                    "需要某函数全量信息时请调用 GetFunctionAnalysisAndReplacementFormatted(func_name)。"
+                ),
+            }
+
         return {
             "file_path": full_path,
             "replaced_function_infos": [info.model_dump() for info in mmio_infos if info.function_name not in replacement_update_func_names],
-            "replacement_updates": [update.model_dump() for update in replacement_updates]
+            "replacement_updates": [update.model_dump() for update in replacement_updates],
+            "involved_functions": list(involved_functions),
+            "replacement_history": {
+                fn: self.replacement_history.get(fn, [])[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
+                for fn in involved_functions
+            },
         }
     
     def get_function_analysis_and_replacement(self, func_name: str):
@@ -344,6 +415,30 @@ class DataManager:
             return f"错误：{data['error']}"
         if "warnning" in data:
             return f"警告：{data['warnning']}\n匹配的文件路径：\n" + "\n".join(data.get("file_paths", []))
+
+        # 渐进披露：仅返回摘要，提示按需调用单函数接口
+        if data.get("progressive_disclosure"):
+            lines = [
+                f"=== 文件分析与替换信息（摘要）：{data.get('file_path', '未知')} ===",
+                "",
+                data.get("message", ""),
+                "",
+                f"【本文件替换函数数】{data.get('function_count', 0)} 个",
+                "",
+                "【函数名列表】请对需要详情的函数调用 GetFunctionAnalysisAndReplacementFormatted(func_name) 获取全量信息：",
+            ]
+            for fn in data.get("function_names", []):
+                lines.append(f"  - {fn}")
+            if data.get("function_summary"):
+                lines.append("")
+                lines.append("【简要摘要】（每行：函数名 | 类型 | 原因片段）")
+                for s in data["function_summary"][:MAX_FUNCTIONS_FULL_DISCLOSURE]:
+                    lines.append(f"  - {s.get('function_name', '')} | {s.get('function_type', '')} | {s.get('reason', '')[:80]}")
+                if len(data["function_summary"]) > MAX_FUNCTIONS_FULL_DISCLOSURE:
+                    lines.append(f"  ... 共 {len(data['function_summary'])} 条，仅展示前 {MAX_FUNCTIONS_FULL_DISCLOSURE} 条")
+            lines.append("")
+            lines.append("=== 信息结束 ===")
+            return "\n".join(lines)
 
         # 构建格式化文本
         formatted_text = []

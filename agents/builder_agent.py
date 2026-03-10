@@ -164,6 +164,19 @@ async def build_graph():
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
         messages = state["messages"]
+        # 上下文诊断：打印每条 message 的字符数，便于排查 400 context length 堵在哪
+        _total_chars = 0
+        for _i, _m in enumerate(messages):
+            _type = getattr(_m, "__class__", type(_m)).__name__
+            _content = getattr(_m, "content", "")
+            if isinstance(_content, list):
+                _content = str(_content)
+            _len = len(_content) if isinstance(_content, str) else 0
+            _total_chars += _len
+            if _len > 5000:  # 只打印可能撑爆上下文的
+                print(f"[builder context] msg[{_i}] {_type}: {_len} chars (~{_len//4} tokens)")
+        if _total_chars > 100000:
+            print(f"[builder context] TOTAL: {_total_chars} chars (~{_total_chars//4} tokens) — may exceed model limit")
         response = await model_with_tools.ainvoke(messages)
         
         result = {"messages": [response]}
