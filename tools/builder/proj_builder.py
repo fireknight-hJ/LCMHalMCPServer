@@ -18,6 +18,16 @@ def build_proj(conf_path: str):
     """build project, return build result"""
     # 执行conf_path下的build.sh脚本
     build_result = subprocess.run(["bash", "build.sh"], cwd=conf_path, capture_output=True, text=True)
+    # 全量保存 build 的 stdout/stderr 到 testcase 的 emulate/debug_output，便于排查
+    try:
+        debug_dir = os.path.join(conf_path, "emulate", "debug_output")
+        os.makedirs(debug_dir, exist_ok=True)
+        with open(os.path.join(debug_dir, "build_stdout.txt"), "w", encoding="utf-8") as f:
+            f.write(build_result.stdout or "")
+        with open(os.path.join(debug_dir, "build_stderr.txt"), "w", encoding="utf-8") as f:
+            f.write(build_result.stderr or "")
+    except Exception as e:
+        pass  # 不因写日志失败影响主流程
     # 转换为BuildOutput
     build_output = build_result_to_info(build_result)
     return build_output
