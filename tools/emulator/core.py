@@ -101,6 +101,63 @@ def mmio_function_emulate_info() -> str:
     return data
 
 
+def get_fault_function_from_emulate_output(emulate_stdout: str = None) -> str:
+    """从模拟器 stdout 或 debug_output/stdout.txt 解析 UNMAPPED/fault PC，解析为 fault 函数名。
+
+    若未传 emulate_stdout，则读取 script_path/emulate/debug_output/stdout.txt。
+    返回 fault 所在函数名；无法解析或非 fault 输出时返回空字符串。
+    """
+    if emulate_stdout is None:
+        out_path = os.path.join(globs.script_path, "emulate", "debug_output", "stdout.txt")
+        if not os.path.exists(out_path):
+            return ""
+        with open(out_path, "r", encoding="utf-8", errors="replace") as f:
+            emulate_stdout = f.read()
+    if not emulate_stdout or "UNMAPPED" not in emulate_stdout and "fault PC:" not in emulate_stdout:
+        return ""
+    # 解析 fault PC（十六进制）
+    match = re.search(r"fault\s+PC:\s*0x([0-9a-fA-F]+)", emulate_stdout)
+    if not match:
+        return ""
+    try:
+        fault_pc = int(match.group(1), 16)
+    except ValueError:
+        return ""
+    # 从 syms.yml 解析符号表：取 addr <= fault_pc 的最大 addr 对应符号
+    syms_path = os.path.join(globs.script_path, "emulate", "syms.yml")
+    if not os.path.exists(syms_path):
+        return ""
+    sym_list = []  # (addr, name)
+    with open(syms_path, "r", encoding="utf-8", errors="replace") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or line == "symbols:":
+                continue
+            # 格式: "  134221665: BSP_LCD_GetXSize" 或 "  0x08000f60: BSP_LCD_GetXSize"
+            colon = line.find(":")
+            if colon <= 0:
+                continue
+            addr_str = line[:colon].strip()
+            name = line[colon + 1:].strip()
+            if not name:
+                continue
+            try:
+                addr = int(addr_str, 16) if addr_str.startswith("0x") else int(addr_str, 10)
+            except ValueError:
+                continue
+            sym_list.append((addr, name))
+    if not sym_list:
+        return ""
+    sym_list.sort(key=lambda x: x[0])
+    best = None
+    for addr, name in sym_list:
+        if addr <= fault_pc:
+            best = name
+        else:
+            break
+    return best or ""
+
+
 def function_calls_emulate_info(max_loop_lines: int = 5, max_output_lines: int = 1000) -> str:
     """获取所有函数调用栈的模拟器结果信息，并压缩连续重复的行和多行循环
     

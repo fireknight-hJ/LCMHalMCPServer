@@ -11,14 +11,33 @@ from elftools.elf.constants import SH_FLAGS
 from elftools.elf.elffile import ELFFile
 from elftools.elf.sections import SymbolTableSection
 
+# 生成配置时加入 handlers 的符号，模拟器遇到这些符号直接 do_return（人工 mock，不执行原逻辑）
+HANDLERS_DO_RETURN_LIST = [
+    'puts',
+    'DP83848_RegisterBusIO',
+]
+
 # 将字符串模板替换为Python字典结构
+_base_handlers = {
+    'Delay': 'do_return',
+    'HAL_Delay': 'do_return',
+    'wait': 'do_return',
+    'wait_us': 'do_return',
+    'HAL_BE_ENET_ReadFrame': 'fuzzemu.handlers.common.hal_read_frame',
+    'HAL_BE_In': 'fuzzemu.handlers.common.hal_in',
+    'HAL_BE_Out': 'fuzzemu.handlers.common.hal_out',
+    'HAL_BE_return_0': 'fuzzemu.handlers.common.return_zero',
+    'HAL_BE_return_1': 'fuzzemu.handlers.common.return_true',
+    'HAL_BE_Block_Read': 'fuzzemu.handlers.common.hal_block_in',
+    'HAL_BE_Block_Write': 'fuzzemu.handlers.common.hal_block_out'
+}
+
 baseconfig_dict = {
     'output.elf': {
         'rules': 'semu_rule.txt',
         'enable_native': False,
         'emulate_mode': 'emulate',
         # loop_whitelist: Functions that should skip loop detection
-        # Standard lib + C runtime init (FillZerobss/LoopFillZerobss etc. are normal on ARM/Cortex-M)
         'loop_whitelist': [
             'memset',
             'memcpy',
@@ -29,19 +48,7 @@ baseconfig_dict = {
             'LoopCopyDataInit',
             'Zero_Init',
         ],
-        'handlers': {
-            'Delay': 'do_return',
-            'HAL_Delay': 'do_return',
-            'wait': 'do_return',
-            'wait_us': 'do_return',
-            'HAL_BE_ENET_ReadFrame': 'fuzzemu.handlers.common.hal_read_frame',
-            'HAL_BE_In': 'fuzzemu.handlers.common.hal_in',
-            'HAL_BE_Out': 'fuzzemu.handlers.common.hal_out',
-            'HAL_BE_return_0': 'fuzzemu.handlers.common.return_zero',
-            'HAL_BE_return_1': 'fuzzemu.handlers.common.return_true',
-            'HAL_BE_Block_Read': 'fuzzemu.handlers.common.hal_block_in',
-            'HAL_BE_Block_Write': 'fuzzemu.handlers.common.hal_block_out'
-        }
+        'handlers': dict(_base_handlers, **{name: 'do_return' for name in HANDLERS_DO_RETURN_LIST})
     }
 }
 
