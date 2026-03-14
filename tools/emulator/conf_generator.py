@@ -1,6 +1,7 @@
 from config import globs
 from tools.collector.collector import get_mmio_func_list, register_db, get_function_info
 from pathlib import Path
+import re
 import subprocess
 import sys  # 添加sys模块导入
 import shutil
@@ -14,7 +15,17 @@ from elftools.elf.sections import SymbolTableSection
 # 生成配置时加入 handlers 的符号，模拟器遇到这些符号直接 do_return（人工 mock，不执行原逻辑）
 HANDLERS_DO_RETURN_LIST = [
     'puts',
-    'DP83848_RegisterBusIO',
+    'fflush',
+    'DP83848_Init',
+    'HAL_ETH_ReadPHYRegister',
+]
+
+# 遇到这些符号时跳过原逻辑，并将返回值设为 1（r0=1）
+HANDLERS_RETURN_1_LIST = []
+
+# 遇到这些符号时跳过原逻辑，并将返回值设为 2（r0=2），例如 DP83848_GetLinkState 返回 2 表示 100M 全双工 link up
+HANDLERS_RETURN_2_LIST = [
+    'DP83848_GetLinkState',
 ]
 
 # 将字符串模板替换为Python字典结构
@@ -48,7 +59,12 @@ baseconfig_dict = {
             'LoopCopyDataInit',
             'Zero_Init',
         ],
-        'handlers': dict(_base_handlers, **{name: 'do_return' for name in HANDLERS_DO_RETURN_LIST})
+        'handlers': dict(
+            _base_handlers,
+            **{name: 'do_return' for name in HANDLERS_DO_RETURN_LIST},
+            **{name: 'fuzzemu.handlers.common.return_1' for name in HANDLERS_RETURN_1_LIST},
+            **{name: 'fuzzemu.handlers.common.return_2' for name in HANDLERS_RETURN_2_LIST},
+        )
     }
 }
 
@@ -126,6 +142,37 @@ def generate_semu_config():
     
     # 修正 flash 大小为实际 bin 文件大小
     fix_flash_size()
+    # 若 syms 中有 _estack，用其修正 initial_sp（与固件链接脚本一致，避免栈顶错误导致 PC 跳到 0）
+    fix_initial_sp_from_syms()
+
+
+def fix_initial_sp_from_syms():
+    """若 syms.yml 中存在 _estack，则用其值覆盖 semu_config 的 initial_sp。"""
+    syms_path = Path(globs.script_path) / "emulate" / "syms.yml"
+    config_path = Path(globs.script_path) / "emulate" / "semu_config.yml"
+    if not syms_path.exists() or not config_path.exists():
+        return
+    estack_addr = None
+    with open(syms_path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if line.endswith("_estack"):
+                try:
+                    # 格式为 "  decimal_addr: _estack" 或 "decimal_addr: _estack"
+                    estack_addr = int(line.split(":")[0].strip())
+                    break
+                except (ValueError, IndexError):
+                    continue
+    if estack_addr is None:
+        return
+    sp_hex = hex(estack_addr)
+    content = config_path.read_text()
+    if "initial_sp:" not in content:
+        return
+    new_content = re.sub(r"initial_sp:\s*0x[0-9a-fA-F]+", f"initial_sp: {sp_hex}", content, count=1)
+    if new_content != content:
+        config_path.write_text(new_content)
+        print(f"[INFO] Set initial_sp from _estack: {sp_hex}")
 
 
 def fix_flash_size():
