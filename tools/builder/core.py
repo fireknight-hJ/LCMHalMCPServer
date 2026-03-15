@@ -317,12 +317,12 @@ def verify_replacement(func_name: str, replace_code: str) -> dict:
     """仅验证替换代码（Rubric + 可选编译），不落盘。供 FunctionClassifier 等在图内调用。
 
     Returns:
-        {"pass": True} 或 {"pass": False, "reason": str, "build_stderr": str | None}
+        {"pass": True, "function_name": str} 或 {"pass": False, "reason": str, "build_stderr": str | None, "function_name": str}
     """
     original_code = get_function_source(globs.db_path, func_name) if getattr(globs, "db_path", None) else None
     check_result = check_replacement_rubric(func_name, replace_code, original_code=original_code)
     if not check_result["pass"]:
-        return {"pass": False, "reason": check_result["reason"], "build_stderr": None}
+        return {"pass": False, "reason": check_result["reason"], "build_stderr": None, "function_name": func_name}
 
     if getattr(globs, "enable_compile_verify", False):
         err = _compile_verify_single_replacement(func_name, replace_code)
@@ -331,8 +331,9 @@ def verify_replacement(func_name: str, replace_code: str) -> dict:
                 "pass": False,
                 "reason": err.get("reason", "Compile verification failed."),
                 "build_stderr": err.get("build_stderr"),
+                "function_name": func_name,
             }
-    return {"pass": True}
+    return {"pass": True, "function_name": func_name}
 
 
 def update_function_replacement(func_name: str, replace_code: str, reason: str) -> dict:
