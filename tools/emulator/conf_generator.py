@@ -17,15 +17,37 @@ HANDLERS_DO_RETURN_LIST = [
     'puts',
     'fflush',
     'DP83848_Init',
-    'HAL_ETH_ReadPHYRegister',
+    'stm32_putc',
+    'DelayLoop',              # 纯忙等延时
+    'SDK_DelayAtLeastUs',     # NXP SDK 延时
+    'LPUART_WriteBlocking',   # 阻塞写 UART，模拟器无硬件
+    'ENET_SetSMI',            # SMI/MDIO 配置在模拟器无意义，整体跳过；避免进入内部 assert
 ]
+
+# 不直接跳过 __assert_func / sys_assert，应通过满足导致 assert 的条件解决（见 doc 与下方 PHY 读）
 
 # 遇到这些符号时跳过原逻辑，并将返回值设为 1（r0=1）
 HANDLERS_RETURN_1_LIST = []
 
-# 遇到这些符号时跳过原逻辑，并将返回值设为 2（r0=2），例如 DP83848_GetLinkState 返回 2 表示 100M 全双工 link up
+# 遇到这些符号时跳过原逻辑，并将返回值设为 2（r0=2），例如 100M 全双工 link up
 HANDLERS_RETURN_2_LIST = [
     'DP83848_GetLinkState',
+    'PHY_GetLinkStatus',      # 模拟器无 PHY，直接返回“link up”
+    'PHY_GetLinkSpeedDuplex', # 同上，返回 2 表示 100M 全双工
+]
+
+# 遇到这些符号时跳过原逻辑，并将返回值设为 0（r0=0，如 HAL_OK / kStatus_Success）
+# HAL_ETH_ReadPHYRegister 返回 0 表示“读成功”；ethernetif_phy_init/PHY_Init 跳过时返回 0 表示成功，避免 assert 及未初始化 ops 导致 blx 0
+HANDLERS_RETURN_ZERO_LIST = [
+    'HAL_RCC_ClockConfig',
+    'HAL_ETH_ReadPHYRegister',
+    'ethernetif_phy_init',
+    'PHY_Init',
+]
+
+# 遇到这些符号时 r0 返回 0x2000（DP83848 PHY ID），满足 ethernetif_phy_init 等对 PHY 检测的 assert
+HANDLERS_RETURN_PHY_ID_LIST = [
+    'ENET_MDIORead',
 ]
 
 # 将字符串模板替换为Python字典结构
@@ -48,7 +70,7 @@ baseconfig_dict = {
         'rules': 'semu_rule.txt',
         'enable_native': False,
         'emulate_mode': 'emulate',
-        # loop_whitelist: Functions that should skip loop detection
+        # loop_whitelist: Functions that should skip loop detection (含启动/时钟初始化中的合法循环)
         'loop_whitelist': [
             'memset',
             'memcpy',
@@ -58,12 +80,16 @@ baseconfig_dict = {
             'CopyDataInit',
             'LoopCopyDataInit',
             'Zero_Init',
+            'Reset_Handler',   # 复位后首条 C 逻辑，内含 .data/.bss 等初始化循环
+            'SystemInit',     # 系统/时钟初始化，常有 PLL 等等待循环
         ],
         'handlers': dict(
             _base_handlers,
             **{name: 'do_return' for name in HANDLERS_DO_RETURN_LIST},
             **{name: 'fuzzemu.handlers.common.return_1' for name in HANDLERS_RETURN_1_LIST},
             **{name: 'fuzzemu.handlers.common.return_2' for name in HANDLERS_RETURN_2_LIST},
+            **{name: 'fuzzemu.handlers.common.return_zero' for name in HANDLERS_RETURN_ZERO_LIST},
+            **{name: 'fuzzemu.handlers.common.return_phy_id' for name in HANDLERS_RETURN_PHY_ID_LIST},
         )
     }
 }
@@ -144,6 +170,38 @@ def generate_semu_config():
     fix_flash_size()
     # 若 syms 中有 _estack，用其修正 initial_sp（与固件链接脚本一致，避免栈顶错误导致 PC 跳到 0）
     fix_initial_sp_from_syms()
+    # 展开 handler 简短别名：return_zero / return_0 -> 返回 0 的完整路径
+    expand_handler_aliases()
+
+
+# handler 简短别名 -> fuzzemu 完整路径（配置里可写 return_zero 表示“返回 0”）
+HANDLER_ALIASES = {
+    "return_zero": "fuzzemu.handlers.common.return_zero",
+    "return_0": "fuzzemu.handlers.common.return_zero",
+}
+
+
+def expand_handler_aliases():
+    """将 semu_config.yml 里 handlers 的简短别名展开为完整路径。"""
+    config_path = Path(globs.script_path) / "emulate" / "semu_config.yml"
+    if not config_path.exists():
+        return
+    content = config_path.read_text()
+    changed = False
+    for alias, full in HANDLER_ALIASES.items():
+        # 只替换作为值的 ": alias"（行尾或后接空格/注释）
+        old = f": {alias}\n"
+        new = f": {full}\n"
+        if old in content:
+            content = content.replace(old, new)
+            changed = True
+        old2 = f": {alias} "
+        new2 = f": {full} "
+        if old2 in content:
+            content = content.replace(old2, new2)
+            changed = True
+    if changed:
+        config_path.write_text(content)
 
 
 def fix_initial_sp_from_syms():
@@ -204,9 +262,19 @@ def fix_flash_size():
     # 获取 flash 配置
     flash = memory_map.get('flash', {})
     flash_addr = flash.get('base_addr', 0x8000000)
+    if isinstance(flash_addr, str):
+        flash_addr = int(flash_addr, 0)
     
     # 对齐地址到 4KB
     aligned_addr = flash_addr & ~0xFFF
+    
+    # 与 flash 同址的 region（如 fuzzemu-helper 生成的 peripheral_ram）会导致 Unicorn UC_ERR_MAP，需要移除
+    def _addr_val(v):
+        a = v.get('base_addr') if isinstance(v, dict) else None
+        if a is None:
+            return None
+        return int(a, 0) if isinstance(a, str) else a
+    overlapping = {k for k, v in memory_map.items() if k != 'flash' and _addr_val(v) == flash_addr}
     
     # 更新配置
     config['memory_map'] = {
@@ -218,58 +286,70 @@ def fix_flash_size():
         }
     }
     
-    # 添加其他必要的内存区域
+    # 添加其他必要的内存区域（排除与 flash 重叠的）
     for key in ['irq_ret', 'mmio', 'nvic', 'peripheral', 'ram']:
-        if key in memory_map:
+        if key in memory_map and key not in overlapping:
             config['memory_map'][key] = memory_map[key]
     
     # 写回配置文件，保持原有格式
-    with open(config_path, 'w') as f:
-        # 使用原来的格式
-        lines = content.split('\n')
-        new_lines = []
-        in_memory_map = False
-        skip_next = False
+    lines = content.split('\n')
+    new_lines = []
+    in_memory_map = False
+    skip_next = False
+    skip_region = None  # 要整块跳过的 region 名（与 flash 重叠）
+    
+    for i, line in enumerate(lines):
+        # 跳过 .isr_vector 条目
+        if '.isr_vector:' in line:
+            skip_next = True
+            continue
+        if skip_next and line.strip() and line[0] != ' ' and line[0] != '\t':
+            skip_next = False
         
-        for i, line in enumerate(lines):
-            # 跳过 .isr_vector 条目
-            if '.isr_vector:' in line:
-                skip_next = True
+        if skip_next and line.strip().startswith('base_addr:'):
+            continue
+        if skip_next and line.strip().startswith('permissions:'):
+            continue
+        if skip_next and line.strip().startswith('size:'):
+            skip_next = False
+            continue
+        
+        # 跳过与 flash 重叠的 region 整块（直到下一个 memory_map 下的 region 名，形如 "  name:"）
+        if skip_region is not None:
+            if line.startswith('  ') and not line.startswith('    ') and line.strip().endswith(':'):
+                skip_region = None  # 下一个 region，保留该行
+            else:
                 continue
-            if skip_next and line.strip() and line[0] != ' ' and line[0] != '\t':
-                skip_next = False
             
-            if skip_next and line.strip().startswith('base_addr:'):
-                continue
-            if skip_next and line.strip().startswith('permissions:'):
-                continue
-            if skip_next and line.strip().startswith('size:'):
-                skip_next = False
-                continue
-                
-            if 'memory_map:' in line:
-                in_memory_map = True
-                new_lines.append(line)
-                continue
-                
-            if in_memory_map and line.strip() == 'flash:':
-                # 替换 flash 配置
-                new_lines.append('  flash:')
-                new_lines.append(f'    base_addr: {hex(aligned_addr)}')
-                new_lines.append('    file: output.bin')
-                new_lines.append('    permissions: r-x')
-                new_lines.append(f'    size: {hex(aligned_size)}')
-                # 跳过原来的 flash 配置
-                skip_next = True
-                continue
-                
-            if in_memory_map and line.strip() and not line[0].isspace() and ':' in line:
-                in_memory_map = False
-                
-            if skip_next:
-                continue
-                
+        if 'memory_map:' in line:
+            in_memory_map = True
             new_lines.append(line)
+            continue
+        
+        # memory_map 下形如 "  region_name:"（两空格开头，非四空格）
+        if in_memory_map and line.startswith('  ') and not line.startswith('    ') and line.strip().endswith(':'):
+            region_name = line.strip().rstrip(':').strip()
+            if region_name in overlapping:
+                skip_region = region_name
+                continue
+        
+        if in_memory_map and line.strip() == 'flash:':
+            # 替换 flash 配置
+            new_lines.append('  flash:')
+            new_lines.append(f'    base_addr: {hex(aligned_addr)}')
+            new_lines.append('    file: output.bin')
+            new_lines.append('    permissions: r-x')
+            new_lines.append(f'    size: {hex(aligned_size)}')
+            skip_next = True
+            continue
+            
+        if in_memory_map and line.strip() and not line[0].isspace() and ':' in line:
+            in_memory_map = False
+            
+        if skip_next:
+            continue
+            
+        new_lines.append(line)
     
     with open(config_path, 'w') as f:
         f.write('\n'.join(new_lines))
