@@ -80,6 +80,23 @@ def clean_all_ai_log():
     print(f"\n共删除 {deleted} 个文件，ai_log 已清空")
 
 
+async def run_build_workflow():
+    """仅执行构建：init_builder（加载 MMIO 并分析）→ replace_funcs → 编译 → 生成 emulate 配置。不接入 Builder 智能体。"""
+    config = load_config_from_yaml(globs.script_path)
+    globs.globs_init(config)
+    print(f"[build] script_path={globs.script_path}, db_path={globs.db_path}", file=sys.stderr)
+
+    build_proj_dbgen(globs.script_path, globs.db_path)
+    register_db(globs.db_path)
+    from tools.builder.core import init_builder, build_project
+    await init_builder()
+    build_output = build_project()
+    print(f"Build project output: {build_output}")
+    if build_output.get("exit_code", 0) == 0:
+        generate_emulator_configs()
+    return build_output
+
+
 async def run_workflow():
     config = load_config_from_yaml(globs.script_path)
     
@@ -192,8 +209,8 @@ async def main():
     parser = argparse.ArgumentParser(description="LCMHAL MCP Tool")
     parser.add_argument(
         "command",
-        choices=["run", "emulate", "recover", "clean", "analyze", "dump-replacements"],
-        help="Command to execute: run, emulate, recover, clean, analyze a single function, or dump replacement logs",
+        choices=["run", "build", "emulate", "recover", "clean", "analyze", "dump-replacements"],
+        help="Command to execute: run, build (init_builder + replace + compile), emulate, recover, clean, analyze, or dump-replacements",
     )
     parser.add_argument("script_path", nargs="?", default="", help="Path to the testcase directory or config file")
     parser.add_argument("--config", "-c", default=None, help="Path to config YAML file (overrides script_path)")
@@ -296,10 +313,22 @@ async def main():
         lines.append(f"- **Testcase 路径**: `{dir_path}`")
         lines.append("")
 
-        # 收集所有有替换记录的函数名（优先使用 replacement_history，兜底用 replacement_updates）
+        # 收集所有“实际发生过替换”的函数名：
+        # 1) 有 ReplacementUpdate 历史的
+        # 2) 有当前 ReplacementUpdate 的
+        # 3) FunctionClassifier 判定 has_replacement=True 的（即使从未有过 ReplacementUpdate）
         replacement_history = getattr(data_manager, "replacement_history", {}) or {}
         replacement_updates = getattr(data_manager, "replacement_updates", {}) or {}
-        func_names = sorted(set(replacement_history.keys()) | set(replacement_updates.keys()))
+        mmio_info_list = data_manager.get_mmio_info_list() or {}
+
+        func_names = set(replacement_history.keys()) | set(replacement_updates.keys())
+        for fn, info in mmio_info_list.items():
+            try:
+                if getattr(info, "has_replacement", False):
+                    func_names.add(fn)
+            except Exception:
+                continue
+        func_names = sorted(func_names)
 
         if not func_names:
             lines.append("当前 testcase 未发现任何 ReplacementUpdate 日志记录。")
@@ -315,7 +344,15 @@ async def main():
                 file_path = func_info.get("file_path", "未知")
                 location_line = func_info.get("location_line", "未知")
                 history_list = replacement_history.get(func_name, [])
-                replace_count = len(history_list) if history_list else (1 if func_name in replacement_updates else 0)
+                # 估算“替换次数”：有历史则用历史长度，否则如果存在当前 ReplacementUpdate 或 has_replacement，则视为 1
+                if history_list:
+                    replace_count = len(history_list)
+                else:
+                    if func_name in replacement_updates:
+                        replace_count = 1
+                    else:
+                        mi = mmio_info_list.get(func_name)
+                        replace_count = 1 if (mi and getattr(mi, "has_replacement", False)) else 0
                 lines.append(f"| `{func_name}` | `{file_path}` | {location_line} | {replace_count} |")
 
             # 第二章：按函数详细展示（Markdown 小节 + 文本块）
@@ -406,6 +443,22 @@ async def main():
         else:
             # 以 JSON 形式打印，便于后续对比/记录
             print(json.dumps(res.model_dump(), indent=2, ensure_ascii=False))
+    elif args.command == "build":
+        # build：仅构建（init_builder + replace + 编译 + 生成 emulate 配置）
+        if args.script_path:
+            potential_path = args.script_path
+        elif args.config:
+            potential_path = args.config
+        else:
+            print("Error: build 命令必须指定 testcase 目录（包含 lcmhal_config.yml）。")
+            print("  示例: python main.py build testcases/server/stm32/UART_Hyperterminal_IT")
+            return
+        if os.path.isfile(potential_path):
+            globs.script_path = os.path.dirname(potential_path)
+        else:
+            globs.script_path = potential_path
+        await run_build_workflow()
+
     else:
         # run 必须指定 testcase 目录，否则会用到错误 DB（如误用 StreamingServer 导致 F7/F4 混用）
         if args.script_path:
