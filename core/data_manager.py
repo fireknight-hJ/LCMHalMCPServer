@@ -387,15 +387,29 @@ class DataManager:
             formatted_text.append(f"- 行号：{func_info.get('location_line', '未知')}")
             formatted_text.append(f"- 函数内容：{func_info.get('function_content', '无法获取')}")
 
-        # 添加初始分析信息
+        # 添加初始分析信息（与 FunctionClassifyResponse 字段一致：function_type, functionality, classification_reason, function_replacement）
         if "mmio_info" in data:
             mmio_info = data["mmio_info"]
-            formatted_text.append("\n【初始分析】")
-            formatted_text.append(f"- 函数用途：{mmio_info.get('usage_type', '未知')}")
+            formatted_text.append("\n【初始分析（FunctionClassifier）】")
+            formatted_text.append(f"- 函数类型：{mmio_info.get('function_type', mmio_info.get('usage_type', '未知'))}")
+            formatted_text.append(f"- 函数用途/功能描述：{mmio_info.get('functionality', mmio_info.get('usage_type', '无'))}")
             formatted_text.append(f"- 是否需要替换：{'是' if mmio_info.get('has_replacement', False) else '否'}")
-            formatted_text.append(f"- 替换原因：{mmio_info.get('reason', '无')}")
-            formatted_text.append(f"- 原始代码：{mmio_info.get('original_code', '无法获取')}")
-            formatted_text.append(f"- 推荐替换代码：{mmio_info.get('recommended_code', '无')}")
+            formatted_text.append(f"- 分类/替换原因：{mmio_info.get('classification_reason', mmio_info.get('reason', '无'))}")
+            # 原始代码：Classifier 不存，用上方「函数基本信息」中的函数内容
+            orig = mmio_info.get('original_code', '')
+            if orig:
+                formatted_text.append(f"- 原始代码片段：{orig[:500]}{'...' if len(orig) > 500 else ''}")
+            else:
+                formatted_text.append("- 原始代码：见上方【函数基本信息】中的函数内容")
+            # FunctionClassifier 的替换代码字段名为 function_replacement
+            rec_code = mmio_info.get('function_replacement', mmio_info.get('recommended_code', ''))
+            formatted_text.append("- 推荐/初始替换代码（FunctionClassifier）：")
+            if rec_code:
+                formatted_text.append("```")
+                formatted_text.append(rec_code)
+                formatted_text.append("```")
+            else:
+                formatted_text.append("  无（或仅通过 ReplacementUpdate 提供）")
 
         # 添加更新信息
         if "replacement_update" in data:
