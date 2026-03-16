@@ -70,9 +70,18 @@ Builder 工具在编译前会进行函数替换，编译完成后会自动复原
 - 查看源码不会找到任何替换内容
 - 必须从 AI log 中查看替换记录
 
+**通过 dump-replacements 生成 replacement_log.md（推荐）**：
+- 在 testcase 目录下执行：`python main.py dump-replacements --config <testcase目录或config.yml>`
+- 或使用 lcmhal 封装：`./lcmhal dump-replacements <testcase路径>`
+- 默认会在该 testcase 目录下生成 **replacement_log.md**，包含：
+  - **1. 替换函数总览**：函数名、文件路径、行号、替换次数
+  - **2. 各函数替换详情**：每个函数的分析摘要与替换内容（来自 data_manager / AI log）
+- 可选指定输出文件：`--log-file 其他名.md` 或 `--log-file /绝对路径.md`
+- 排查执行问题时，先看 `replacement_log.md` 即可快速了解当前有哪些函数被替换、替换成了什么，再结合 lcmhal.txt/function.txt 定位问题。
+
 AI log 目录：`DATABASE_PATH/lcmhal_ai_log/`
 
-查找替换记录：
+查找替换记录（若未生成 replacement_log.md）：
 - 搜索包含 `ReplacementUpdate` 的日志
 - 搜索 `replacement_code` 字段
 - 或查看 main.py 输出中的 `[REPLACE]` 信息
