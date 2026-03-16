@@ -192,8 +192,8 @@ async def main():
     parser = argparse.ArgumentParser(description="LCMHAL MCP Tool")
     parser.add_argument(
         "command",
-        choices=["run", "emulate", "recover", "clean", "analyze"],
-        help="Command to execute: run, emulate, recover, clean, or analyze a single function",
+        choices=["run", "emulate", "recover", "clean", "analyze", "dump-replacements"],
+        help="Command to execute: run, emulate, recover, clean, analyze a single function, or dump replacement logs",
     )
     parser.add_argument("script_path", nargs="?", default="", help="Path to the testcase directory or config file")
     parser.add_argument("--config", "-c", default=None, help="Path to config YAML file (overrides script_path)")
@@ -209,6 +209,11 @@ async def main():
         "--all",
         action="store_true",
         help="For 'clean' command: clean entire lcmhal_ai_log directory for this testcase (ignore --func-name)",
+    )
+    parser.add_argument(
+        "--log-file",
+        default=None,
+        help="For 'dump-replacements' command: output log filename (default: replacement_log.md in testcase config directory)",
     )
     
     args = parser.parse_args()
@@ -248,6 +253,90 @@ async def main():
                     print(f"Recover failed for {args.func_name}. If DB was built after replacement, restore the file from git, e.g. git checkout -- <file>")
             else:
                 print(f"Function {args.func_name} not found in DB, skip recover.")
+        return
+
+    if args.command == "dump-replacements":
+        # 解析配置路径（与 clean 命令类似）
+        if args.config:
+            config_path = args.config
+        elif args.script_path:
+            config_path = args.script_path
+        else:
+            print("Error: config file path required for dump-replacements command")
+            return
+
+        # load_config_from_yaml 期望目录路径
+        if os.path.isfile(config_path):
+            dir_path = os.path.dirname(config_path)
+        else:
+            dir_path = config_path
+
+        config = load_config_from_yaml(dir_path)
+        globs.script_path = dir_path
+        globs.globs_init(config)
+
+        # 加载 MMIO/替换信息（含历史），以便复用 data_manager 的格式化接口
+        from core.data_manager import data_manager
+        await data_manager.load_mmio_functions()
+
+        # 构造输出文件路径：默认在配置目录下的 replacement_log.md
+        if args.log_file:
+            log_filename = args.log_file
+        else:
+            log_filename = "replacement_log.md"
+        if not os.path.isabs(log_filename):
+            log_path = os.path.join(dir_path, log_filename)
+        else:
+            log_path = log_filename
+
+        lines = []
+        # 顶部信息（Markdown 标题）
+        lines.append("## LCMHAL 函数替换日志")
+        lines.append("")
+        lines.append(f"- **Testcase 路径**: `{dir_path}`")
+        lines.append("")
+
+        # 收集所有有替换记录的函数名（优先使用 replacement_history，兜底用 replacement_updates）
+        replacement_history = getattr(data_manager, "replacement_history", {}) or {}
+        replacement_updates = getattr(data_manager, "replacement_updates", {}) or {}
+        func_names = sorted(set(replacement_history.keys()) | set(replacement_updates.keys()))
+
+        if not func_names:
+            lines.append("当前 testcase 未发现任何 ReplacementUpdate 日志记录。")
+        else:
+            # 第一章：总览表
+            lines.append("## 1. 替换函数总览")
+            lines.append("")
+            lines.append("| 函数名 | 文件路径 | 行号 | 替换次数 |")
+            lines.append("|--------|----------|------|----------|")
+            for func_name in func_names:
+                info = data_manager.get_function_analysis_and_replacement(func_name)
+                func_info = info.get("function_info", {}) or {}
+                file_path = func_info.get("file_path", "未知")
+                location_line = func_info.get("location_line", "未知")
+                history_list = replacement_history.get(func_name, [])
+                replace_count = len(history_list) if history_list else (1 if func_name in replacement_updates else 0)
+                lines.append(f"| `{func_name}` | `{file_path}` | {location_line} | {replace_count} |")
+
+            # 第二章：按函数详细展示（Markdown 小节 + 文本块）
+            lines.append("")
+            lines.append("## 2. 各函数替换详情")
+            lines.append("")
+            for func_name in func_names:
+                lines.append(f"### {func_name}")
+                lines.append("")
+                formatted = data_manager.get_function_analysis_and_replacement_formatted_by_function(func_name)
+                lines.append("```text")
+                lines.append(formatted)
+                lines.append("```")
+                lines.append("")
+
+        try:
+            with open(log_path, "w", encoding="utf-8") as f:
+                f.write("\n".join(lines))
+            print(f"Replacement log written to: {log_path}")
+        except Exception as e:
+            print(f"Error writing replacement log to {log_path}: {e}")
         return
     
     if args.command == "recover":

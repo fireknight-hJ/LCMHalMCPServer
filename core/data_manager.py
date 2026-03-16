@@ -110,36 +110,61 @@ class DataManager:
             tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
             if not os.path.exists(tmp_dir):
                 return
-            
-            # 首先收集所有唯一的函数名
-            unique_func_names = set()
+
+            # 收集每个函数的所有 ReplacementUpdate 日志，用于重建历史
+            updates_by_func = {}
             for file_name in os.listdir(tmp_dir):
-                if file_name.startswith("replacement_update_") and file_name.endswith(".json"):
-                    # 直接读取文件内容，从文件内容中提取函数名
-                    file_path = os.path.join(tmp_dir, file_name)
-                    try:
-                        with open(file_path, "r", encoding="utf-8") as f:
-                            json_data = f.read()
-                            data_dict = json.loads(json_data)
-                            # 从文件内容中提取函数名
-                            if "function_name" in data_dict:
-                                func_name = data_dict["function_name"]
-                                unique_func_names.add(func_name)
-                    except Exception as e:
-                        print(f"Warning: Failed to extract function name from {file_name}: {e}")
-            
-            # 对于每个唯一的函数名，使用get_analyzed_json_log获取最新的更新版本
-            for func_name in unique_func_names:
-                # 使用现有的函数检查并加载替换更新
-                if check_analyzed_json_log("replacement_update", func_name):
-                    json_data = get_analyzed_json_log("replacement_update", func_name)
-                    if json_data:
-                        try:
-                            data_dict = json.loads(json_data)
-                            # 创建ReplacementUpdate对象并添加到replacement_updates
-                            self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
-                        except Exception as e:
-                            print(f"Warning: Failed to parse replacement update for {func_name}: {e}")
+                if not (file_name.startswith("replacement_update_") and file_name.endswith(".json")):
+                    continue
+                file_path = os.path.join(tmp_dir, file_name)
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        data_dict = json.load(f)
+                    func_name = data_dict.get("function_name")
+                    if not func_name:
+                        continue
+                    # 记录单条更新（包含原始 dict 与文件 mtime，便于排序）
+                    updates_by_func.setdefault(func_name, []).append(
+                        {
+                            "data": data_dict,
+                            "_mtime": os.path.getmtime(file_path),
+                        }
+                    )
+                except Exception as e:
+                    print(f"Warning: Failed to extract replacement update from {file_name}: {e}")
+
+            # 根据收集到的信息，重建 replacement_updates 与 replacement_history
+            for func_name, entries in updates_by_func.items():
+                # 按 timestamp（若有）+ mtime 排序，得到时间顺序
+                def _sort_key(ent):
+                    ts = ent["data"].get("timestamp") or ""
+                    return (ts, ent.get("_mtime", 0.0))
+
+                entries.sort(key=_sort_key)
+
+                # 最新一条作为当前 replacement_update
+                latest = entries[-1]["data"]
+                try:
+                    self.replacement_updates[func_name] = ReplacementUpdate(**latest)
+                except Exception as e:
+                    print(f"Warning: Failed to parse latest replacement update for {func_name}: {e}")
+                    continue
+
+                # 重建该函数的历史版本，只保留最近 REPLACEMENT_HISTORY_MAX_ENTRIES 条
+                history = []
+                for ent in entries:
+                    d = ent["data"]
+                    history.append(
+                        {
+                            "replacement_code": d.get("replacement_code", ""),
+                            "reason": d.get("reason", ""),
+                            "timestamp": d.get("timestamp", ""),
+                        }
+                    )
+                if history:
+                    if len(history) > REPLACEMENT_HISTORY_MAX_ENTRIES:
+                        history = history[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
+                    self.replacement_history[func_name] = history
         except Exception as e:
             print(f"Error loading replacement updates: {e}")
     
