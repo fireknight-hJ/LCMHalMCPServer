@@ -133,8 +133,30 @@ def generate_base_input():
         print("[ERROR] 输入模板文件不存在，路径：", input_template_path)
         exit(1)
 
+def _base_config_valid(base_path):
+    """base_config.yml 必须是以 output.elf 为唯一顶层 key，且其下含 rules。
+    fuzzemu-helper 按此格式把 base_config 合并进 semu_config；格式错误会导致生成的
+    semu_config 缺少 rules/model/mmio_funcs，进而报 Config Error: 'rules' not exists。
+    详见 doc/NXP_LwIP_BareMetal_emulate_fixes_summary.md 或 fuzzemu helper/dump_config.py。
+    """
+    if not base_path.exists():
+        return False
+    try:
+        with open(base_path, "r") as f:
+            data = yaml.safe_load(f)
+    except Exception:
+        return False
+    if not isinstance(data, dict) or len(data) != 1 or "output.elf" not in data:
+        return False
+    elf_cfg = data["output.elf"]
+    return isinstance(elf_cfg, dict) and "rules" in elf_cfg
+
+
 def generate_semu_config():
-    if not Path(f"{globs.script_path}/emulate/base_config.yml").exists():
+    base_config_path = Path(f"{globs.script_path}/emulate/base_config.yml")
+    if not base_config_path.exists() or not _base_config_valid(base_config_path):
+        if base_config_path.exists():
+            print("[INFO] base_config.yml 格式无效（需以 output.elf 为 key 且含 rules），已重新生成")
         generate_base_config()
     if not Path(f"{globs.script_path}/emulate/semu_rule.txt").exists():
         generate_rule_config()
@@ -265,6 +287,14 @@ def fix_flash_size():
     if isinstance(flash_addr, str):
         flash_addr = int(flash_addr, 0)
     
+    # NXP i.MX RT 等：entry 在 0x6xxxxxxx（FlexSPI/XIP），若 flash 被误放在 0x20000000 会导致 INVALID Fetch
+    entry = config.get('entry_point')
+    if entry is not None:
+        entry = int(entry, 0) if isinstance(entry, str) else entry
+        if (0x60000000 <= entry < 0x60400000) and (flash_addr == 0x20000000):
+            flash_addr = 0x60000000
+            print(f"[INFO] entry_point 0x{entry:x} in XIP range, set flash base to 0x60000000")
+    
     # 对齐地址到 4KB
     aligned_addr = flash_addr & ~0xFFF
     
@@ -315,9 +345,12 @@ def fix_flash_size():
             continue
         
         # 跳过与 flash 重叠的 region 整块（直到下一个 memory_map 下的 region 名，形如 "  name:"）
+        # 若已离开 memory_map（顶格或空行），则停止跳过，避免把 mmio_funcs/model/rules 等截掉（如 NXP ram 与 flash 同址时）
         if skip_region is not None:
             if line.startswith('  ') and not line.startswith('    ') and line.strip().endswith(':'):
                 skip_region = None  # 下一个 region，保留该行
+            elif not line.startswith(' ') and not line.startswith('\t'):
+                skip_region = None  # 顶格行 = 新顶层 key，已离开 memory_map，保留后续内容
             else:
                 continue
             
