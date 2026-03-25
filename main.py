@@ -209,10 +209,24 @@ async def main():
     parser = argparse.ArgumentParser(description="LCMHAL MCP Tool")
     parser.add_argument(
         "command",
-        choices=["run", "build", "emulate", "recover", "clean", "analyze", "dump-replacements"],
-        help="Command to execute: run, build (init_builder + replace + compile), emulate, recover, clean, analyze, or dump-replacements",
+        choices=[
+            "run",
+            "build",
+            "emulate",
+            "recover",
+            "clean",
+            "analyze",
+            "dump-replacements",
+            "classify-stats",
+        ],
+        help="Command to execute: run, build, emulate, recover, clean, analyze, dump-replacements, or classify-stats",
     )
-    parser.add_argument("script_path", nargs="?", default="", help="Path to the testcase directory or config file")
+    parser.add_argument(
+        "script_path",
+        nargs="?",
+        default="",
+        help="Path to testcase dir, lcmhal_config.yml, or (for classify-stats) a root dir to scan recursively",
+    )
     parser.add_argument("--config", "-c", default=None, help="Path to config YAML file (overrides script_path)")
     parser.add_argument("--func-name", "-f", default=None, help="Function name (for 'clean' and 'analyze' commands)")
     parser.add_argument("--type", "-t", choices=["replacement", "analysis", "classify", "all"], default="all", help="Log type to clean (used with 'clean' command)")
@@ -231,6 +245,21 @@ async def main():
         "--log-file",
         default=None,
         help="For 'dump-replacements' command: output log filename (default: replacement_log.md in testcase config directory)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="For 'classify-stats': print machine-readable JSON only (no human-readable tables)",
+    )
+    parser.add_argument(
+        "--no-lists",
+        action="store_true",
+        help="For 'classify-stats': only print counts per type (and per-type has_replacement split), omit per-function lists",
+    )
+    parser.add_argument(
+        "--no-batch-summary",
+        action="store_true",
+        help="For 'classify-stats' batch mode: omit merged totals across all testcases",
     )
     
     args = parser.parse_args()
@@ -374,6 +403,139 @@ async def main():
             print(f"Replacement log written to: {log_path}")
         except Exception as e:
             print(f"Error writing replacement log to {log_path}: {e}")
+        return
+
+    if args.command == "classify-stats":
+        if args.config:
+            user_path = args.config
+        elif args.script_path:
+            user_path = args.script_path
+        else:
+            print("Error: testcase 目录、根目录或 lcmhal_config.yml 路径必填（classify-stats 需定位 db_path）")
+            print("  单例: python main.py classify-stats testcases/server/nxp/NXP_UART_BareMetal")
+            print("  批量: python main.py classify-stats testcases/server/nxp   # 递归子目录中含 lcmhal_config.yml 的均统计")
+            return
+
+        from utils.classify_log_stats import aggregate_classify_stats, format_classify_stats_text, summarize_batch_counts
+        from utils.lcmhal_testcase_scan import read_db_path_from_testcase_dir, resolve_classify_stats_targets
+
+        testcase_dirs, mode = resolve_classify_stats_targets(user_path)
+        if mode == "invalid":
+            print(f"Error: 路径不存在或不是目录/文件: {user_path}")
+            return
+        if not testcase_dirs:
+            scanned = os.path.abspath(user_path) if not os.path.isfile(user_path) else os.path.dirname(os.path.abspath(user_path))
+            print(f"Error: 未找到任何 lcmhal_config.yml（已扫描: {scanned}）")
+            return
+
+        scan_root = os.path.abspath(user_path if os.path.isdir(user_path) else os.path.dirname(os.path.abspath(user_path)))
+
+        batch_results: list = []
+        for td in testcase_dirs:
+            db_path, err = read_db_path_from_testcase_dir(td)
+            entry = {"testcase_dir": os.path.abspath(td), "db_path": db_path, "config_error": err}
+            if err:
+                entry["stats"] = {
+                    "log_dir": "",
+                    "by_type": {},
+                    "counts": {},
+                    "by_type_has_replacement": {},
+                    "counts_has_replacement": {},
+                    "per_function": {},
+                    "parse_errors": [],
+                    "total_functions": 0,
+                    "error": err,
+                }
+            else:
+                log_dir = os.path.join(db_path, "lcmhal_ai_log")
+                st = aggregate_classify_stats(log_dir)
+                st["testcase_dir"] = os.path.abspath(td)
+                entry["stats"] = st
+            batch_results.append(entry)
+
+        # 单 testcase
+        if len(testcase_dirs) == 1:
+            stats = batch_results[0]["stats"]
+            if args.no_lists:
+                slim = {
+                    "testcase_dir": stats.get("testcase_dir"),
+                    "log_dir": stats.get("log_dir"),
+                    "total_functions": stats.get("total_functions"),
+                    "counts": stats.get("counts"),
+                    "counts_has_replacement": stats.get("counts_has_replacement"),
+                    "error": stats.get("error"),
+                }
+                if args.json:
+                    print(json.dumps(slim, ensure_ascii=False, indent=2))
+                else:
+                    print(format_classify_stats_text(stats, include_lists=False))
+            elif args.json:
+                print(json.dumps(stats, ensure_ascii=False, indent=2))
+            else:
+                print(format_classify_stats_text(stats, include_lists=True))
+            return
+
+        # 批量
+        summary_src = [br["stats"] for br in batch_results if not br.get("config_error")]
+        summary = summarize_batch_counts(summary_src) if summary_src else {
+            "summary_counts": {},
+            "summary_counts_has_replacement": {},
+            "summary_total_functions": 0,
+        }
+
+        if args.json:
+            out = {
+                "scan_root": scan_root,
+                "mode": "batch",
+                "testcase_count": len(batch_results),
+                **summary,
+                "testcases": batch_results,
+            }
+            if args.no_batch_summary:
+                out.pop("summary_counts", None)
+                out.pop("summary_counts_has_replacement", None)
+                out.pop("summary_total_functions", None)
+            print(json.dumps(out, ensure_ascii=False, indent=2))
+            return
+
+        print(f"批量 classify-stats: 扫描根目录 {scan_root}")
+        print(f"共 {len(batch_results)} 个 testcase（含 lcmhal_config.yml）\n")
+        if not args.no_batch_summary and summary.get("summary_counts"):
+            print("=== 汇总（全部 testcase 计数相加）===")
+            print(f"  总函数条目数: {summary.get('summary_total_functions', 0)}")
+            for t, n in (summary.get("summary_counts") or {}).items():
+                rep = (summary.get("summary_counts_has_replacement") or {}).get(t) or {}
+                if t == "PARSE_ERROR":
+                    print(f"  {t}: {n}")
+                else:
+                    print(f"  {t}: {n} (has_replacement=true: {rep.get('true', 0)}, false: {rep.get('false', 0)})")
+            print("")
+
+        for br in batch_results:
+            td = br["testcase_dir"]
+            print("=" * 60)
+            print(f"Testcase: {td}")
+            if br.get("config_error"):
+                print(f"  [跳过] 配置错误: {br['config_error']}")
+                continue
+            st = br["stats"]
+            if args.no_lists:
+                print(f"  日志目录: {st.get('log_dir')}")
+                if st.get("error"):
+                    print(f"  错误: {st['error']}")
+                else:
+                    print(f"  已统计函数数: {st.get('total_functions', 0)}")
+                    for t, n in sorted((st.get('counts') or {}).items(), key=lambda x: (-x[1], x[0])):
+                        if t == "PARSE_ERROR":
+                            print(f"    {t}: {n}")
+                            continue
+                        rep = (st.get("counts_has_replacement") or {}).get(t) or {}
+                        print(f"    {t}: {n} (true: {rep.get('true', 0)}, false: {rep.get('false', 0)})")
+            else:
+                block = format_classify_stats_text(st, include_lists=True)
+                for line in block.splitlines():
+                    print(f"  {line}" if line else "")
+            print("")
         return
     
     if args.command == "recover":
