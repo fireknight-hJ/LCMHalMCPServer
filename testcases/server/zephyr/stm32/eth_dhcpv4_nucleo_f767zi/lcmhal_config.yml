@@ -1,0 +1,5 @@
+# LCMHAL 配置文件 — Zephyr dhcpv4_client @ nucleo_f767zi
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/stm32/eth_dhcpv4_nucleo_f767zi"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_eth_dhcpv4_nucleo_f767zi"
+src_path: "/home/haojie/zephyrproject/zephyr"
+proj_path: "/home/haojie/zephyrproject"

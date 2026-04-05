@@ -1,0 +1,5 @@
+# LCMHAL 配置文件 — Zephyr echo_bot @ mimxrt1060_evk
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/nxp/uart_echo_mimxrt1060"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_uart_echo_mimxrt1060"
+src_path: "/home/haojie/zephyrproject/zephyr"
+proj_path: "/home/haojie/zephyrproject"

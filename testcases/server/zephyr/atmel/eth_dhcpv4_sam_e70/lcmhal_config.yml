@@ -1,0 +1,5 @@
+# LCMHAL 配置文件 — Zephyr dhcpv4_client @ sam_e70_xplained
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/eth_dhcpv4_sam_e70"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_eth_dhcpv4_sam_e70"
+src_path: "/home/haojie/zephyrproject/zephyr"
+proj_path: "/home/haojie/zephyrproject"
