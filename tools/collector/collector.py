@@ -58,17 +58,38 @@ def get_tree_in_db_zip(db_path: str) -> str:
 
 # MMIO相关接口
 def get_mmio_func_list(db_path: str) -> List[str]:
-    """获取MMIO函数列表"""
+    """获取 CodeQL 认定的全部 MMIO 相关函数名（`info_mmio_function_collector.ql` / `MMIOFunction`），已排序。
+
+    条件：函数体内存在 `MMIOFieldAccess`，或通过 inline/weak 调用链触及 MMIO（见 `MMIOAnalyzer.isMMIOFunction`）。
+    用于 Builder / FunctionClassifier / emulate `mmio_funcs` 等与「含 MMIO 操作」相关的流程。
+    """
     try:
         codebase_infos = get_global_codebase_infos(db_path)
-        func_list = list(codebase_infos.mmio_infos.mmioinfo_mmioexpr_dict.keys())
-        return func_list
+        return sorted(codebase_infos.mmio_infos.mmio_functions.keys())
     except Exception as e:
         print(f"Error getting MMIO function list: {e}")
         return []
 
+
+def get_mmio_func_list_interesting_mmioexpr(db_path: str) -> List[str]:
+    """较窄子集：`mmioinfo_mmioexpr_collector.ql`（需 `isInterestingMMIOFunction` + `MMIOTracedExpr`）。
+
+    数量通常远小于 `get_mmio_func_list()`；仅在为旧行为或对比统计保留时使用。
+    """
+    try:
+        codebase_infos = get_global_codebase_infos(db_path)
+        return list(codebase_infos.mmio_infos.mmioinfo_mmioexpr_dict.keys())
+    except Exception as e:
+        print(f"Error getting interesting-MMIO-expr function list: {e}")
+        return []
+
+
+def get_mmio_func_list_all(db_path: str) -> List[str]:
+    """与 `get_mmio_func_list()` 相同；保留别名以便旧代码与文档引用。"""
+    return get_mmio_func_list(db_path)
+
 def get_mmio_files(db_path: str) -> List[str]:
-    """获取MMIO相关文件列表"""
+    """获取 MMIO 相关文件列表（interesting expr 子集 + `MMIOFunction` 全集上的文件路径并集）。"""
     try:
         codebase_infos = get_global_codebase_infos(db_path)
         mmio_files: Set[str] = set()
@@ -78,25 +99,41 @@ def get_mmio_files(db_path: str) -> List[str]:
                     mmio_files.add(info.file_path)
             else:
                 mmio_files.add(mmio_info.file_path)
+        for fi in codebase_infos.mmio_infos.mmio_functions.values():
+            if fi is not None and getattr(fi, "file_path", None):
+                mmio_files.add(fi.file_path)
         return list(mmio_files)
     except Exception as e:
         print(f"Error getting MMIO files: {e}")
         return []
 
 def get_mmio_func_info(db_path: str, func_name: str) -> Dict[str, Any]:
-    """获取MMIO函数详细信息"""
+    """获取 MMIO 函数详细信息。优先返回 interesting-MMIO-expr 子集中的逐条表达式；否则仅返回 `MMIOFunction` 元数据。"""
     try:
         codebase_infos = get_global_codebase_infos(db_path)
         mmio_func_info = codebase_infos.mmio_infos.mmioinfo_mmioexpr_dict.get(func_name)
         common_func_info = codebase_infos.common_infos.functions.get(func_name)
-        
-        if not mmio_func_info or not common_func_info:
-            return {"error": f"MMIO function not found: {func_name}"}
-        
-        return {
-            "function_info": common_func_info,
-            "mmio_exprs_info": mmio_func_info
-        }
+
+        if not common_func_info:
+            return {"error": f"Function not found in database: {func_name}"}
+
+        if mmio_func_info is not None:
+            return {
+                "function_info": common_func_info,
+                "mmio_exprs_info": mmio_func_info,
+            }
+
+        if func_name in codebase_infos.mmio_infos.mmio_functions:
+            return {
+                "function_info": common_func_info,
+                "mmio_exprs_info": [],
+                "mmio_note": (
+                    "In CodeQL MMIOFunction set but no per-expr row in mmioinfo_mmioexpr_collector "
+                    "(interesting-MMIO-expr subset); use function body for access detail."
+                ),
+            }
+
+        return {"error": f"MMIO function not found: {func_name}"}
     except Exception as e:
         print(f"Error getting MMIO function info: {e}")
         return {"error": str(e)}

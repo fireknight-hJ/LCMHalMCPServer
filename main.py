@@ -323,7 +323,14 @@ async def main():
 
         # 加载 MMIO/替换信息（含历史），以便复用 data_manager 的格式化接口
         from core.data_manager import data_manager
+        from tools.collector.collector import (
+            get_mmio_func_list,
+            get_mmio_func_list_interesting_mmioexpr,
+        )
+
         await data_manager.load_mmio_functions()
+        all_mmio_func_names = get_mmio_func_list(globs.db_path)
+        interesting_mmioexpr_names = get_mmio_func_list_interesting_mmioexpr(globs.db_path)
 
         # 构造输出文件路径：默认在配置目录下的 replacement_log.md
         if args.log_file:
@@ -360,7 +367,11 @@ async def main():
         func_names = sorted(func_names)
 
         if not func_names:
-            lines.append("当前 testcase 未发现任何 ReplacementUpdate 日志记录。")
+            lines.append(
+                "当前 testcase **没有**可写入下方「替换章节」的条目：无 `replacement_update_*.json`，"
+                "且 FunctionClassifier 对 MMIO 函数的 **`has_replacement` 均为 false** 时，也不会出现在替换总览里。"
+            )
+            lines.append("")
         else:
             # 第一章：总览表
             lines.append("## 1. 替换函数总览")
@@ -397,6 +408,63 @@ async def main():
                 lines.append("```")
                 lines.append("")
 
+        # FunctionClassifier：与 get_mmio_func_list() 一致（CodeQL MMIOFunction 全集）
+        n_all = len(all_mmio_func_names)
+        n_classified = len(mmio_info_list)
+        n_interesting = len(interesting_mmioexpr_names)
+        if mmio_info_list:
+            lines.append(
+                f"## FunctionClassifier 汇总（已跑 classify：**{n_classified}** 个；CodeQL `MMIOFunction`：**{n_all}** 个）"
+            )
+            lines.append("")
+            lines.append(
+                "说明：`load_mmio_functions()` 对 **`get_mmio_func_list()`** 中的全部函数调用 `function_classify`（与 "
+                "`info_mmio_function_collector.ql` / **`MMIOFunction`** 一致，凡含 MMIO 操作均纳入）。"
+                f"较窄的 **interesting MMIO expr** 子集（`get_mmio_func_list_interesting_mmioexpr()`）本 DB 共 **{n_interesting}** 个，仅作对比，见文末附录。"
+                "下表为已缓存的 classify；**「替换」章节**仍仅含 `replacement_update_*` 或 `has_replacement=true`。"
+            )
+            lines.append("")
+            lines.append("| 函数名 | function_type | has_replacement | 简述 |")
+            lines.append("|--------|---------------|-----------------|------|")
+
+            def _md_cell(s: str, max_len: int = 120) -> str:
+                if not s:
+                    return ""
+                one = " ".join(s.split())
+                if len(one) > max_len:
+                    one = one[: max_len - 3] + "..."
+                return one.replace("|", "\\|")
+
+            for fn in sorted(mmio_info_list.keys()):
+                info = mmio_info_list.get(fn)
+                if info is None:
+                    continue
+                try:
+                    ftype = getattr(info, "function_type", "") or ""
+                    has_rep = getattr(info, "has_replacement", False)
+                    blurb = getattr(info, "functionality", "") or getattr(info, "classification_reason", "") or ""
+                    lines.append(
+                        f"| `{fn}` | {ftype} | {has_rep} | {_md_cell(blurb)} |"
+                    )
+                except Exception:
+                    lines.append(f"| `{fn}` | (error) | | |")
+
+            lines.append("")
+
+        if interesting_mmioexpr_names and n_interesting < n_all:
+            lines.append(
+                f"## 附录：interesting MMIO expr 子集（共 {n_interesting} 个，较 `get_mmio_func_list()` 更窄）"
+            )
+            lines.append("")
+            lines.append(
+                "来自 `mmioinfo_mmioexpr_collector.ql`（`isInterestingMMIOFunction` + `MMIOTracedExpr`）。"
+                "Classifier 已改为覆盖 **全部** `MMIOFunction`，本附录仅便于对照旧口径。"
+            )
+            lines.append("")
+            for name in sorted(interesting_mmioexpr_names):
+                lines.append(f"- `{name}`")
+            lines.append("")
+
         try:
             with open(log_path, "w", encoding="utf-8") as f:
                 f.write("\n".join(lines))
@@ -416,7 +484,12 @@ async def main():
             print("  批量: python main.py classify-stats testcases/server/nxp   # 递归子目录中含 lcmhal_config.yml 的均统计")
             return
 
-        from utils.classify_log_stats import aggregate_classify_stats, format_classify_stats_text, summarize_batch_counts
+        from utils.classify_log_stats import (
+            aggregate_classify_stats,
+            format_classify_stats_text,
+            summarize_batch_counts,
+            summarize_batch_unique_by_function_name,
+        )
         from utils.lcmhal_testcase_scan import read_db_path_from_testcase_dir, resolve_classify_stats_targets
 
         testcase_dirs, mode = resolve_classify_stats_targets(user_path)
@@ -482,6 +555,11 @@ async def main():
             "summary_counts_has_replacement": {},
             "summary_total_functions": 0,
         }
+        summary_unique = summarize_batch_unique_by_function_name(summary_src) if summary_src else {
+            "summary_unique_counts": {},
+            "summary_unique_counts_has_replacement": {},
+            "summary_unique_total_functions": 0,
+        }
 
         if args.json:
             out = {
@@ -489,19 +567,23 @@ async def main():
                 "mode": "batch",
                 "testcase_count": len(batch_results),
                 **summary,
+                **summary_unique,
                 "testcases": batch_results,
             }
             if args.no_batch_summary:
                 out.pop("summary_counts", None)
                 out.pop("summary_counts_has_replacement", None)
                 out.pop("summary_total_functions", None)
+                out.pop("summary_unique_counts", None)
+                out.pop("summary_unique_counts_has_replacement", None)
+                out.pop("summary_unique_total_functions", None)
             print(json.dumps(out, ensure_ascii=False, indent=2))
             return
 
         print(f"批量 classify-stats: 扫描根目录 {scan_root}")
         print(f"共 {len(batch_results)} 个 testcase（含 lcmhal_config.yml）\n")
         if not args.no_batch_summary and summary.get("summary_counts"):
-            print("=== 汇总（全部 testcase 计数相加）===")
+            print("=== 汇总（全部 testcase 计数相加，未去重）===")
             print(f"  总函数条目数: {summary.get('summary_total_functions', 0)}")
             for t, n in (summary.get("summary_counts") or {}).items():
                 rep = (summary.get("summary_counts_has_replacement") or {}).get(t) or {}
@@ -510,6 +592,14 @@ async def main():
                 else:
                     print(f"  {t}: {n} (has_replacement=true: {rep.get('true', 0)}, false: {rep.get('false', 0)})")
             print("")
+
+            if summary_unique.get("summary_unique_counts"):
+                print("=== 汇总（按函数名去重）===")
+                print(f"  去重后函数数: {summary_unique.get('summary_unique_total_functions', 0)}")
+                for t, n in (summary_unique.get("summary_unique_counts") or {}).items():
+                    rep = (summary_unique.get("summary_unique_counts_has_replacement") or {}).get(t) or {}
+                    print(f"  {t}: {n} (has_replacement=true: {rep.get('true', 0)}, false: {rep.get('false', 0)})")
+                print("")
 
         for br in batch_results:
             td = br["testcase_dir"]
