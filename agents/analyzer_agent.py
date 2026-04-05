@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 from langchain_core.tools import tool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.chat_models import init_chat_model
@@ -314,12 +315,42 @@ def function_classify_from_log(func_name: str) -> FunctionClassifyResponse:
     json_data = json.loads(infos)
     return FunctionClassifyResponse(**json_data["final_response"])
 
+def _analyze_max_concurrent() -> Optional[int]:
+    """并发上限：环境变量 LCMHAL_ANALYZE_MAX_CONCURRENT；未设置时默认 8；0 或负数表示不限制。"""
+    raw = os.environ.get("LCMHAL_ANALYZE_MAX_CONCURRENT", "").strip()
+    if raw == "":
+        return 8
+    try:
+        n = int(raw, 10)
+    except ValueError:
+        return 8
+    if n <= 0:
+        return None
+    return n
+
+
 async def analyze_functions(function_list):
     mmio_info_list = {}
-    tasks = []
-    for func_name in function_list:
-        tasks.append(function_classify(func_name))
-    
+    max_c = _analyze_max_concurrent()
+    nfn = len(function_list)
+    if max_c is None:
+        print(f"[analyze_functions] classifying {nfn} functions (LCMHAL_ANALYZE_MAX_CONCURRENT=0: unlimited concurrency)")
+    else:
+        print(f"[analyze_functions] classifying {nfn} functions (max concurrent: {max_c}, env LCMHAL_ANALYZE_MAX_CONCURRENT)")
+
+    if max_c is None:
+
+        async def _run(fn: str):
+            return await function_classify(fn)
+
+    else:
+        sem = asyncio.Semaphore(max_c)
+
+        async def _run(fn: str):
+            async with sem:
+                return await function_classify(fn)
+
+    tasks = [_run(func_name) for func_name in function_list]
     results = await asyncio.gather(*tasks, return_exceptions=True)
     
     for func_name, result in zip(function_list, results):
