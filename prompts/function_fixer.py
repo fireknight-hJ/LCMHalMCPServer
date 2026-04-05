@@ -296,12 +296,9 @@ These loops wait for peripheral flags. You should modify them to avoid blocking 
 **Identification**: Optional or debug functionality
 **Strategy**: Empty implementation
 
-## 7. NEEDCHECK (Complex Mixed Functions) - MANUAL REVIEW
-**Identification**: Mix of hardware and business logic
-**Strategy**: Remove hardware parts, preserve logic
-
-## 8. NODRIVER (Misclassified Functions) - NO CHANGE
-**Strategy**: Preserve original implementation
+## 7. NODRIVER (Misclassified / Ambiguous) - NO CHANGE OR MANUAL FOLLOW-UP
+**Identification**: No real driver semantics, false-positive MMIO, or mixed/unclear cases that do not fit other types
+**Strategy**: Preserve original implementation; document ambiguity in analysis when needed
 
 # TOOL USAGE CONSTRAINTS AND EFFICIENCY
 
@@ -628,11 +625,8 @@ UpdateFunctionReplacement(func_name, replace_code, reason)
 ## 7. SKIP（可选/调试）— 最低优先级
 **策略**：安全时用空实现
 
-## 8. NEEDCHECK（混合逻辑复杂）— 需要谨慎
-**策略**：去硬件部分、保留业务逻辑与状态维护
-
-## 9. NODRIVER（误分类）— 不改
-**策略**：保留原实现
+## 8. NODRIVER（误分类 / 不明确）— 一般不改
+**策略**：保留原实现；混合或不确定时在分析中说明
 
 # 工具调用约束与效率（TOOL USAGE）
 
@@ -776,17 +770,9 @@ Function Classification and Rewriting Strategies:
   * Identification: Functions performing non-critical driver operations that can be safely ignored.
   * Strategy: Completely remove or use empty implementations (e.g., keep empty function bodies for void functions).
 
-7. NEEDCHECK (Complex Mixed-Functionality Functions)
-  • Identification: Functions mixing driver operations with non-driver logic such as data structure maintenance.)
-  • Strategy: Remove driver operations, preserve non-driver logic.
-    ◦ Identify and preserve data structure operations and program state management (upper-layer logic).
-    ◦ Maintain program state management.
-    ◦ Keep OS-related operations unchanged.
-    ◦ Flag for manual review and verification.
-
-6. NODRIVER (Non-Driver Functions)
-  • Identification: Functions incorrectly marked as driver-dependent.
-  • Strategy: Preserve original implementation without changes.
+7. NODRIVER (Non-Driver / Ambiguous Mixed Cases)
+  • Identification: Functions incorrectly marked as driver-dependent, no real peripheral semantics, or mixed/unclear cases that do not fit other types.
+  • Strategy: Preserve original implementation without changes; document ambiguity when needed.
 """
 
 """

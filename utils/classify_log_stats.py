@@ -13,9 +13,9 @@ import os
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Tuple
 
-# 与 models.analyze_results.function_analyze.FunctionClassifyResponse 一致
+# 与 models.analyze_results.function_analyze.FunctionClassifyResponse 一致（旧日志中的 NEEDCHECK 会归并为 NODRIVER）
 VALID_TYPES = frozenset(
-    {"CORE", "RECV", "IRQ", "RETURNOK", "SKIP", "NEEDCHECK", "NODRIVER", "INIT", "LOOP"}
+    {"CORE", "RECV", "IRQ", "RETURNOK", "SKIP", "NODRIVER", "INIT", "LOOP"}
 )
 
 
@@ -107,6 +107,8 @@ def aggregate_classify_stats(log_dir: str) -> Dict[str, Any]:
 
         name_in_json = fr.get("function_name") or func
         ftype = fr.get("function_type")
+        if ftype == "NEEDCHECK":
+            ftype = "NODRIVER"  # legacy classify logs
         if not ftype or ftype not in VALID_TYPES:
             ftype = "UNKNOWN"
         has_rep = bool(fr.get("has_replacement", False))
@@ -217,5 +219,130 @@ def summarize_batch_counts(batch_stats: List[Dict[str, Any]]) -> Dict[str, Any]:
             sorted(merged_rep.items(), key=lambda x: (-(x[1].get("true", 0) + x[1].get("false", 0)), x[0]))
         ),
         "summary_total_functions": total_functions,
+    }
+
+
+_TYPE_PRIORITY = {
+    "CORE": 0,
+    "RECV": 1,
+    "IRQ": 2,
+    "INIT": 3,
+    "LOOP": 4,
+    "RETURNOK": 5,
+    "SKIP": 6,
+    "NODRIVER": 7,
+    "UNKNOWN": 8,
+    "PARSE_ERROR": 9,
+}
+
+
+def summarize_batch_unique_by_function_name(batch_stats: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    批量汇总（去重版）：跨 demo 按 function_name 去重，避免同名函数在不同 demo 中重复计数。
+
+    - 去重键：per_function 的 key（即 function_name）
+    - 若同名函数在不同 demo 中出现不同 function_type：取更“高优先级”的类型（_TYPE_PRIORITY 越小优先级越高）
+    - has_replacement：若任一 demo 为 true，则视为 true
+    """
+    merged_type_by_fn: Dict[str, str] = {}
+    merged_has_rep_by_fn: Dict[str, bool] = {}
+
+    for s in batch_stats:
+        pf = (s.get("per_function") or {})
+        if not isinstance(pf, dict):
+            continue
+        for fn, info in pf.items():
+            if not fn or not isinstance(fn, str):
+                continue
+            if not isinstance(info, dict):
+                continue
+            t = info.get("function_type") or "UNKNOWN"
+            if t not in _TYPE_PRIORITY:
+                t = "UNKNOWN"
+            has_rep = bool(info.get("has_replacement", False))
+
+            prev_t = merged_type_by_fn.get(fn)
+            if prev_t is None or _TYPE_PRIORITY.get(t, 99) < _TYPE_PRIORITY.get(prev_t, 99):
+                merged_type_by_fn[fn] = t
+            merged_has_rep_by_fn[fn] = merged_has_rep_by_fn.get(fn, False) or has_rep
+
+    counts: Dict[str, int] = defaultdict(int)
+    counts_has_rep: Dict[str, Dict[str, int]] = defaultdict(lambda: {"true": 0, "false": 0})
+    for fn, t in merged_type_by_fn.items():
+        counts[t] += 1
+        if merged_has_rep_by_fn.get(fn, False):
+            counts_has_rep[t]["true"] += 1
+        else:
+            counts_has_rep[t]["false"] += 1
+
+    return {
+        "summary_unique_counts": dict(sorted(counts.items(), key=lambda x: (-x[1], x[0]))),
+        "summary_unique_counts_has_replacement": dict(
+            sorted(counts_has_rep.items(), key=lambda x: (-(x[1].get("true", 0) + x[1].get("false", 0)), x[0]))
+        ),
+        "summary_unique_total_functions": len(merged_type_by_fn),
+    }
+
+
+_TYPE_PRIORITY = {
+    "CORE": 0,
+    "RECV": 1,
+    "IRQ": 2,
+    "INIT": 3,
+    "LOOP": 4,
+    "RETURNOK": 5,
+    "SKIP": 6,
+    "NODRIVER": 7,
+    "UNKNOWN": 8,
+    "PARSE_ERROR": 9,
+}
+
+
+def summarize_batch_unique_by_function_name(batch_stats: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    批量汇总（去重版）：跨 demo 按 function_name 去重，避免同名函数在不同 demo 中重复计数。
+
+    - 去重键：per_function 的 key（即 function_name）
+    - 若同名函数在不同 demo 中出现不同 function_type：取更“高优先级”的类型（_TYPE_PRIORITY 越小优先级越高）
+    - has_replacement：若任一 demo 为 true，则视为 true
+    """
+    merged_type_by_fn: Dict[str, str] = {}
+    merged_has_rep_by_fn: Dict[str, bool] = {}
+
+    for s in batch_stats:
+        pf = (s.get("per_function") or {})
+        if not isinstance(pf, dict):
+            continue
+        for fn, info in pf.items():
+            if not fn or not isinstance(fn, str):
+                continue
+            if not isinstance(info, dict):
+                continue
+            t = info.get("function_type") or "UNKNOWN"
+            if t not in _TYPE_PRIORITY:
+                t = "UNKNOWN"
+            has_rep = bool(info.get("has_replacement", False))
+
+            prev_t = merged_type_by_fn.get(fn)
+            if prev_t is None or _TYPE_PRIORITY.get(t, 99) < _TYPE_PRIORITY.get(prev_t, 99):
+                merged_type_by_fn[fn] = t
+            merged_has_rep_by_fn[fn] = merged_has_rep_by_fn.get(fn, False) or has_rep
+
+    # 聚合计数
+    counts: Dict[str, int] = defaultdict(int)
+    counts_has_rep: Dict[str, Dict[str, int]] = defaultdict(lambda: {"true": 0, "false": 0})
+    for fn, t in merged_type_by_fn.items():
+        counts[t] += 1
+        if merged_has_rep_by_fn.get(fn, False):
+            counts_has_rep[t]["true"] += 1
+        else:
+            counts_has_rep[t]["false"] += 1
+
+    return {
+        "summary_unique_counts": dict(sorted(counts.items(), key=lambda x: (-x[1], x[0]))),
+        "summary_unique_counts_has_replacement": dict(
+            sorted(counts_has_rep.items(), key=lambda x: (-(x[1].get("true", 0) + x[1].get("false", 0)), x[0]))
+        ),
+        "summary_unique_total_functions": len(merged_type_by_fn),
     }
 

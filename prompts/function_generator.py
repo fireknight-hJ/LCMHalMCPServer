@@ -30,25 +30,16 @@ SKIP (Non-Essential Driver Functions)
 Identification: Functions performing non-critical driver operations that can be safely omitted
 Strategy: Complete removal or empty implementation (eg: Use empty function body for void functions)
 
-NEEDCHECK (Complex Hybrid Functions)
-Identification: Functions mixing driver operations with non-driver data structure maintenance
-Strategy: Remove driver operations while retaining non-driver logic
-Identify and preserve data structure manipulation and program state management(upper-layer logic)
-Maintain program state management
-Keep OS-related operations intact
-Flag for manual review and validation
-
-NODRIVER (Non-Driver Functions)
-Identification: Functions incorrectly flagged as driver-dependent
-Strategy: Preserve original implementation unchanged
+NODRIVER (Non-Driver / Ambiguous Mixed Cases)
+Identification: Functions incorrectly flagged as driver-dependent, no real peripheral semantics, or mixed/unclear cases that do not fit other types
+Strategy: Preserve original implementation unchanged; when mixed logic requires stripping hardware, remove driver calls while preserving non-driver logic and document ambiguity
 
 Code Generation Guidelines
 For RECV functions: Implement POSIX I/O equivalents with proper error handling
 For IRQ functions: Create event simulation mechanisms with appropriate timing
 For RETURNOK functions: Return success codes without performing operations
 For SKIP functions: Create minimal implementations or remove entirely
-For NEEDCHECK functions: Remove driver calls while preserving non-driver logic
-For NODRIVER functions: Keep original code completely intact
+For NODRIVER functions: Keep original code completely intact unless a minimal de-hardware edit is clearly required; then preserve non-driver logic
 
 Validation Requirements 
 notice that do not change the return type of the function, eg. the return type of the function is void, then the return type of the rewritten function should also be void.

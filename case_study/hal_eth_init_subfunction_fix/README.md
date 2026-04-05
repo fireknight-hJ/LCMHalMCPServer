@@ -126,7 +126,7 @@ DOWNSTREAM analysis:
 #### a) 添加 LOOP 类型到分类模型
 文件：`models/analyze_results/function_analyze.py`
 ```python
-function_type: Literal["RECV", "IRQ", "RETURNOK", "SKIP", "NEEDCHECK", "NODRIVER", "INIT", "LOOP"] = Field(default="NEEDCHECK", ...)
+function_type: Literal["RECV", "IRQ", "RETURNOK", "SKIP", "NODRIVER", "INIT", "LOOP"] = Field(default="NODRIVER", ...)
 ```
 
 #### b) 添加 None 检查

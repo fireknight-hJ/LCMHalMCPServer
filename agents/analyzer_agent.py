@@ -1,5 +1,5 @@
 import json
-from typing import Optional
+from typing import Optional, Any
 from langchain_core.tools import tool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.chat_models import init_chat_model
@@ -246,8 +246,15 @@ async def build_graph():
 async def function_classify(func_name : str, overwrite: bool = False) -> FunctionClassifyResponse:
     # 检查函数是否已经分析过
     if check_analyzed(func_name) and not overwrite:
-        # print(f"Function {func_name} has been analyzed, skip.")
-        return function_classify_from_log(func_name)
+        # 旧版本曾输出 NEEDCHECK，已从 schema 移除：强制重新用大模型分类以写入新结果
+        if _raw_function_type_from_classify_log(func_name) == "NEEDCHECK":
+            print(f"[FunctionClassifier] 检测到旧日志分类 NEEDCHECK，重新分析: {func_name}", flush=True)
+            return await function_classify(func_name, overwrite=True)
+        try:
+            return function_classify_from_log(func_name)
+        except Exception as e:
+            print(f"[FunctionClassifier] 读取缓存失败 {func_name}: {e}，将重新分析", flush=True)
+            return await function_classify(func_name, overwrite=True)
     # 构建graph
     graph = await build_graph()
     # llm 调用
@@ -314,6 +321,23 @@ def function_classify_from_log(func_name: str) -> FunctionClassifyResponse:
     infos = get_analyzed(func_name)
     json_data = json.loads(infos)
     return FunctionClassifyResponse(**json_data["final_response"])
+
+
+def _raw_function_type_from_classify_log(func_name: str) -> Optional[str]:
+    """读取最新 function_classify 日志中 final_response.function_type，不经过 Pydantic（兼容已废弃的 NEEDCHECK 等）。"""
+    try:
+        infos = get_analyzed(func_name)
+        if not infos:
+            return None
+        json_data: Any = json.loads(infos)
+        fr = json_data.get("final_response")
+        if not isinstance(fr, dict):
+            return None
+        ft = fr.get("function_type")
+        return ft if isinstance(ft, str) else None
+    except Exception:
+        return None
+
 
 def _analyze_max_concurrent() -> Optional[int]:
     """并发上限：环境变量 LCMHAL_ANALYZE_MAX_CONCURRENT；未设置时默认 8；0 或负数表示不限制。"""

@@ -46,15 +46,7 @@ Function Classification and Rewriting Strategies:
   * Identification: Functions performing non-critical driver operations that can be safely ignored.
   * Strategy: Completely remove or use empty implementations (e.g., keep empty function bodies for void functions).
 
-7. NEEDCHECK (Complex Mixed-Functionality Functions)
-  • Identification: Functions mixing driver operations with non-driver logic such as data structure maintenance.)
-  • Strategy: Remove driver operations, preserve non-driver logic.
-    ◦ Identify and preserve data structure operations and program state management (upper-layer logic).
-    ◦ Maintain program state management.
-    ◦ Keep OS-related operations unchanged.
-    ◦ Flag for manual review and verification.
-
-6. NODRIVER (Non-Driver Functions)
-  • Identification: Functions incorrectly marked as driver-dependent.
-  • Strategy: Preserve original implementation without changes.
+7. NODRIVER (Non-Driver / Ambiguous Mixed Cases)
+  • Identification: Functions incorrectly marked as driver-dependent, no real peripheral semantics, or mixed/unclear cases that do not fit other types.
+  • Strategy: Preserve original implementation without changes; document ambiguity when needed.
 """
