@@ -59,6 +59,10 @@ You have access to the following tools to gather information about functions and
 - **Tool Usage Sequence**: GetFunctionInfo → GetMMIOFunctionInfo → [GetStructOrEnumInfo | GetFunctionCallStack | GetDriverInfo] (as needed)
 - **Error Handling**: If a tool call fails (e.g., function not found), try alternative tool calls or classify as NEEDCHECK with explanation.
 
+**Source code vs. static MMIO hints (CodeQL)** — apply before mapping to INIT/LOOP:
+- `GetMMIOFunctionInfo` uses CodeQL-derived heuristics and may report **false positives** (e.g. ordinary struct field access mis-tagged as MMIO).
+- If **GetFunctionInfo** shows the function only performs **network/protocol stack logic, packet or buffer handling, or ordinary memory/data structure access**, with **no clear peripheral register semantics** (no explicit device register programming, no polling of hardware-ready/status bits tied to a specific peripheral), you **must not** classify the function as **INIT** or **LOOP** **only because** `GetMMIOFunctionInfo` lists MMIO-related entries. Prefer **NODRIVER** when there are genuinely no hardware-specific operations, or **NEEDCHECK** when the situation is mixed or unclear; state this conflict explicitly in `classification_reason`.
+
 ---
 
 ### **Function Classification and Replacement Strategy**
@@ -263,6 +267,7 @@ When provided with a function name for classification and analysis, follow these
 
 2.  **Analyze the function**:
     *   Understand the function's purpose, key operations (MMIO, I/O, OS calls), and control flow.
+    *   Apply **Source code vs. static MMIO hints (CodeQL)** (see above): when source shows only network/protocol/memory data paths, do not upgrade to INIT/LOOP based on `GetMMIOFunctionInfo` alone; prefer NODRIVER or NEEDCHECK.
     *   Identify any hardware-dependent operations that need to be replaced.
     *   Map the function to the appropriate classification based on the criteria above.
 
