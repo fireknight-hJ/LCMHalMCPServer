@@ -50,3 +50,57 @@ Function Classification and Rewriting Strategies:
   • Identification: Functions incorrectly marked as driver-dependent, no real peripheral semantics, or mixed/unclear cases that do not fit other types.
   • Strategy: Preserve original implementation without changes; document ambiguity when needed.
 """
+
+# Shared replacement taxonomy and hard constraints.
+# Reused by FunctionClassifier prompt and VerifyReplacement rubric prompt/check.
+FUNCTION_REPLACEMENT_SHARED_RULES = """
+Shared Function Replacement Taxonomy and Hard Constraints:
+
+Type taxonomy (for replacement-related decisions):
+- CORE / RECV / IRQ / INIT / LOOP / RETURNOK / SKIP / NODRIVER
+
+INIT hard constraints (anti-stub):
+1) Do NOT replace INIT with an empty stub when original has semantic-bridging behavior.
+2) For thin-wrapper INIT functions (argument checks + key delegate call), prefer NO replacement:
+   keep function_type=INIT, set has_replacement=false, function_replacement="",
+   and preserve original implementation.
+3) Only replace thin-wrapper INIT when there is concrete runtime/build evidence that
+   the wrapper itself is the fault point. In that case, replacement must preserve an
+   equivalent semantic path and key delegate semantics.
+4) Preserve critical parameter semantics (e.g., nextTcd scatter/gather semantics, address-domain conversion).
+5) If hardware writes are removed, keep minimal upper-layer-visible semantics (state propagation, linkage semantics).
+6) If replacement is intentionally degraded (compile-only fallback), explicitly mark semantic degradation in reason.
+
+Thin-wrapper INIT concrete examples:
+- Example A (should NOT replace wrapper itself):
+  Original:
+  ```c
+  void EDMA_SetTransferConfig(EDMA_Type *base, uint32_t channel,
+                              const edma_transfer_config_t *config, edma_tcd_t *nextTcd)
+  {
+      assert(config != NULL);
+      if (nextTcd != NULL) {
+          nextTcd = (edma_tcd_t *)CONVERT_TO_DMA_ADDRESS(nextTcd);
+      }
+      EDMA_TcdSetTransferConfigExt(base, EDMA_TCD_BASE(base, channel), config, nextTcd);
+  }
+  ```
+  Expected decision:
+  - function_type=INIT
+  - has_replacement=false
+  - keep original wrapper; if needed, process callee `EDMA_TcdSetTransferConfigExt`.
+
+- Example B (replace only with concrete evidence, preserve bridge semantics):
+  If runtime evidence proves wrapper is fault point, replacement must still keep:
+  - argument validation
+  - `nextTcd`/address-domain conversion semantics
+  - equivalent delegate path (direct call or semantically-equivalent logic)
+  Forbidden fallback:
+  ```c
+  (void)base; (void)channel; (void)config; (void)nextTcd; return;
+  ```
+
+Verifier-oriented rejection hints:
+- Reject replacement if original contains a key delegate call but replacement removes it without equivalent logic.
+- Reject replacement if original contains nextTcd + address conversion semantics but replacement drops both.
+"""

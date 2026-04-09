@@ -1,6 +1,7 @@
 # Prompt for AI-based replacement code rubric checker.
 # The checker uses this prompt + function name + replacement code (and optional original)
 # and asks the model to decide pass/fail and reason.
+from prompts.public import FUNCTION_REPLACEMENT_SHARED_RULES
 
 RUBRIC_CHECK_SYSTEM_PROMPT = """You are a strict reviewer for embedded firmware replacement code. Your task is to decide whether a proposed **replacement** for a given function is acceptable, or must be rejected with a clear reason for the author to fix.
 
@@ -34,6 +35,11 @@ Respond in valid **JSON** only. Include exactly two fields:
 - **passed**: true if the replacement is acceptable (preserves all required CORE calls and NVIC/SysTick/VTOR writes). false if the replacement violates any rule above.
 - **reason**: If passed is false, give a short, concrete reason so the author knows what to add back. If passed is true, leave reason empty.
 """
+
+RUBRIC_CHECK_SYSTEM_PROMPT += (
+    "\n\n## Shared replacement rules (must enforce)\n"
+    + FUNCTION_REPLACEMENT_SHARED_RULES.strip()
+)
 
 # User message template: filled with function_name, replacement_code, and optionally original_code.
 RUBRIC_CHECK_USER_TEMPLATE = """Check the following replacement code for function **{function_name}**.

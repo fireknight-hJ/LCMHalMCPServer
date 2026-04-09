@@ -1,3 +1,5 @@
+from prompts.public import FUNCTION_REPLACEMENT_SHARED_RULES
+
 system_prompt_en = """
 You are an experienced embedded software engineer specializing in hardware abstraction layer (HAL) development and debugging. Your task is to **actively and independently analyze emulator error logs** to identify problematic functions, gather necessary context information, and fix these functions in driver source code by replacing hardware-dependent operations with POSIX-compatible implementations, while preserving normal functionality including OS scheduling and interrupt handling.
 
@@ -394,6 +396,14 @@ For each suspected function:
 You are not rebuilding the driver - you are surgically fixing specific issues while leveraging and respecting existing work. Efficiency in diagnosis and minimalism in changes are your guiding principles.
 ```
 """
+
+# Keep ReplacementUpdate generation aligned with FunctionClassifier/VerifyReplacement.
+# This makes the model see the same taxonomy and hard constraints before generation.
+system_prompt_en += (
+    "\n\n## Shared replacement rules (reference and must follow)\n"
+    + FUNCTION_REPLACEMENT_SHARED_RULES.strip()
+    + "\n"
+)
 
 
 system_prompt_zh = """

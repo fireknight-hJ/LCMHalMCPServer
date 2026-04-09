@@ -1,4 +1,5 @@
 import os
+from prompts.public import FUNCTION_REPLACEMENT_SHARED_RULES
 
 _CODE_GENERATION_RULES_PATH = os.path.join(os.path.dirname(__file__), "code_generation_rules.md")
 _CODE_GENERATION_RULES = ""
@@ -151,6 +152,37 @@ You have access to the following tools to gather information about functions and
         *   Remove all MMIO/register access operations.
         *   Preserve resource allocation (e.g., `malloc`), structure initialization, and default value setting.
         *   Ensure the logical post-initialization state matches the expected state after hardware init.
+    *   **ANTI-STUB HARD RULES (MUST)**:
+        *   **Do not replace INIT functions with empty stubs** (`(void)` only, no effect) when the original function contains non-trivial semantic bridging.
+        *   For **thin-wrapper INIT functions** (functions that mainly validate arguments and delegate to one key config call), default to **no replacement**: keep `function_type=INIT`, set `has_replacement=false`, `function_replacement=""`, and keep original implementation.
+        *   Only if there is concrete evidence the wrapper itself is the failing point, you may replace it; then you **must keep an equivalent semantic path** and must not drop key delegate semantics.
+        *   If the original has **critical parameter semantics** (e.g. scatter/gather pointers like `nextTcd`, address-domain conversion, descriptor linking, state propagation), you must preserve those semantics. They cannot be dropped just to pass compile.
+        *   If hardware register writes are removed, keep minimal semantic operations needed by upper layers (state transitions, descriptor linkage semantics, essential argument transformations).
+        *   If your replacement is intentionally degraded (temporary compile-only fallback), explicitly state this in `classification_reason` as **semantic degradation**, not final replacement.
+    *   **Thin-wrapper INIT Example (Do this)**:
+        ```c
+        // Original wrapper:
+        void EDMA_SetTransferConfig(..., edma_tcd_t *nextTcd)
+        {
+            assert(config != NULL);
+            if (nextTcd != NULL) {
+                nextTcd = (edma_tcd_t *)CONVERT_TO_DMA_ADDRESS(nextTcd);
+            }
+            EDMA_TcdSetTransferConfigExt(..., nextTcd);
+        }
+        ```
+        Expected output:
+        - `function_type=INIT`
+        - `has_replacement=false`
+        - `function_replacement=""`
+        - Explain that wrapper is semantic bridge; handle callee if replacement is needed.
+    *   **Thin-wrapper INIT Anti-example (Do NOT do this)**:
+        ```c
+        void EDMA_SetTransferConfig(...) {
+            (void)base; (void)channel; (void)config; (void)nextTcd;
+        }
+        ```
+        This drops delegate + address-domain conversion semantics and must be rejected.
     *   **EXCEPTION — CORE and callers of CORE**: Functions that **are** CORE (NVIC config, OS kernel/scheduler, VTOR setup — **not** SysTick) must be classified as **CORE**, not INIT. Other functions (e.g. `HAL_ETH_MspInit`) that **call** CORE functions may be classified as INIT, but their replacement **must not** remove those CORE calls; the replacement must preserve calls to NVIC/OS/VTOR primitives (the rubric will check this).
     *   **Example Replacement**:
         ```c
@@ -298,8 +330,8 @@ When provided with a function name for classification and analysis, follow these
   - Tool usage and findings (e.g., "GetMMIOFunctionInfo revealed register accesses...")
   - Why this classification was chosen over others
   - Any ambiguity or special considerations
-- **has_replacement**: True for RECV, IRQ, INIT, LOOP; **False for CORE** and for RETURNOK, SKIP, NODRIVER.
-- **function_replacement**: Complete replacement code for RECV/IRQ/INIT/LOOP; **empty string for CORE** and for others that do not generate replacement.
+- **has_replacement**: Usually True for RECV/IRQ/LOOP; for INIT it is conditional. Thin-wrapper INIT should default to **False** (keep original). **False for CORE** and for RETURNOK, SKIP, NODRIVER.
+- **function_replacement**: Provide full replacement code only when `has_replacement=true`. For thin-wrapper INIT and all non-replacement cases, use empty string.
 
 **Important Notes**:
 - Ensure your output is compatible with the FunctionClassifyResponse Pydantic model.
@@ -308,3 +340,11 @@ When provided with a function name for classification and analysis, follow these
 - If you encounter any errors or ambiguities during analysis, use **NODRIVER** classification and explain the issue in the reasoning.
 - Your analysis should be based solely on the information obtained from tool calls, not assumptions.
 """
+
+# Reuse shared replacement taxonomy/constraints in classifier prompt to keep
+# FunctionClassifier and VerifyReplacement aligned on the same rule source.
+system_prompting_en += (
+    "\n\n### Shared Replacement Rules (Reusable)\n\n"
+    + FUNCTION_REPLACEMENT_SHARED_RULES.strip()
+    + "\n"
+)
