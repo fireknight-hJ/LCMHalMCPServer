@@ -52,7 +52,8 @@ class AILogManager:
                 "session_id": session_id,
                 "start_time": datetime.now().isoformat(),
                 "logs": [],
-                "agent_message_counts": {}
+                "agent_message_counts": {},
+                "llm_usage_records": [],
             }
             
             self._save_session_metadata()
@@ -185,11 +186,37 @@ class AILogManager:
             return
         
         try:
+            if self.log_dir:
+                Path(self.log_dir).mkdir(parents=True, exist_ok=True)
             with open(self.session_log_file, 'w', encoding='utf-8') as f:
                 json.dump(self.session_metadata, f, ensure_ascii=False, indent=2)
         except Exception as e:
             print(f"[ERROR] Failed to save session metadata: {e}")
     
+    def append_llm_usage_record(
+        self,
+        agent_name: str,
+        node_name: str,
+        function_name: Optional[str],
+        elapsed_ms: float,
+        usage: Optional[Dict[str, Any]] = None,
+    ):
+        """记录单次 LLM 调用耗时与 usage（供毕设/实验统计）。"""
+        if not self._enabled or self.session_id is None:
+            return
+        rec: Dict[str, Any] = {
+            "timestamp": datetime.now().isoformat(),
+            "agent_name": agent_name,
+            "node_name": node_name,
+            "function_name": function_name,
+            "elapsed_ms": round(float(elapsed_ms), 3),
+        }
+        if usage:
+            rec["usage"] = self._serialize_data(usage)
+        with self._session_lock:
+            self.session_metadata.setdefault("llm_usage_records", []).append(rec)
+            self._save_session_metadata()
+
     def finalize_session(self):
         if self.session_id is None:
             return
@@ -197,6 +224,13 @@ class AILogManager:
         with self._session_lock:
             self.session_metadata["end_time"] = datetime.now().isoformat()
             self.session_metadata["log_count"] = len(self.session_metadata.get("logs", []))
+            recs = self.session_metadata.get("llm_usage_records") or []
+            if recs:
+                total_ms = sum(float(r.get("elapsed_ms") or 0) for r in recs if isinstance(r, dict))
+                self.session_metadata["llm_usage_summary"] = {
+                    "invoke_count": len(recs),
+                    "total_elapsed_ms": round(total_ms, 3),
+                }
             self._save_session_metadata()
     
     def export_session(self, file_path: Optional[str] = None) -> str:

@@ -348,3 +348,23 @@ system_prompting_en += (
     + FUNCTION_REPLACEMENT_SHARED_RULES.strip()
     + "\n"
 )
+
+# --- 实验模式追加片段（由 agents/analyzer_agent 按 globs 拼接，勿单独使用）---
+CLASSIFIER_PROMPT_EXPERIMENT_NO_VERIFY = """
+
+### Experiment mode: no_feedback (no compile/verify loop)
+
+- You do **not** have **VerifyReplacement** or **FixFunctionBuildErrors** tools.
+- When classification (and replacement code if applicable) is ready, **stop calling tools** so the pipeline can produce the final structured summary.
+- Replacement text in the final output is **not** compile-verified by this run; still follow the rubric and shared rules to maximize quality.
+"""
+
+CLASSIFIER_PROMPT_EXPERIMENT_SOURCE_ONLY = """
+
+### Experiment mode: minimal tools (source-only context)
+
+- You **only** have **GetFunctionInfo** for code context. **GetMMIOFunctionInfo**, **GetStructOrEnumInfo**, **GetFunctionCallStack**, and **GetDriverInfo** are **not** available.
+- **Mandatory first step**: Call `GetFunctionInfo(func_name)` once (or again if the first call failed).
+- Classify using **source code only**. State explicitly in `classification_reason` that CodeQL/MMIO static hints were **unavailable** in this experimental setting.
+- Do **not** claim results from tools you cannot call.
+"""

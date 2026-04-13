@@ -5,6 +5,7 @@ from tools.collector.driver import *
 from tools.collector.mmio import *
 from utils.db_file import list_files_in_db_zip
 from models.query_results.common import FunctionCallInfo
+import config.globs as globs
 
 # 存储全部三类代码信息
 class CodebaseInfos:
@@ -58,14 +59,23 @@ def get_tree_in_db_zip(db_path: str) -> str:
 
 # MMIO相关接口
 def get_mmio_func_list(db_path: str) -> List[str]:
-    """获取 CodeQL 认定的全部 MMIO 相关函数名（`info_mmio_function_collector.ql` / `MMIOFunction`），已排序。
+    """获取用于后续流程的 MMIO 函数集合，已排序。
 
-    条件：函数体内存在 `MMIOFieldAccess`，或通过 inline/weak 调用链触及 MMIO（见 `MMIOAnalyzer.isMMIOFunction`）。
+    默认来源：CodeQL `MMIOFunction`（`info_mmio_function_collector.ql`）。
+    可选并入：`BufferFunction`（`info_buffer_function_collector.ql`），由
+    `globs.enable_buffer_functions_as_mmio` 控制（默认开启）。
+
+    说明：并入 BufferFunction 用于减少 UART 收发/阻塞写等 buffer 路径漏检，
+    这些函数常见为“通过 buffer 到 MMIO 的数据流”，但不一定命中 MMIOFieldAccess 口径。
+
     用于 Builder / FunctionClassifier / emulate `mmio_funcs` 等与「含 MMIO 操作」相关的流程。
     """
     try:
         codebase_infos = get_global_codebase_infos(db_path)
-        return sorted(codebase_infos.mmio_infos.mmio_functions.keys())
+        mmio_names = set(codebase_infos.mmio_infos.mmio_functions.keys())
+        if getattr(globs, "enable_buffer_functions_as_mmio", True):
+            mmio_names.update(codebase_infos.mmio_infos.buffer_functions.keys())
+        return sorted(mmio_names)
     except Exception as e:
         print(f"Error getting MMIO function list: {e}")
         return []

@@ -8,7 +8,11 @@ from langgraph.prebuilt import ToolNode
 from langchain_core.messages import HumanMessage
 from config.model_singleton import get_model
 from models.analyze_results.function_analyze import FunctionClassifyResponse
-from prompts.function_classifier import system_prompting_en
+from prompts.function_classifier import (
+    system_prompting_en,
+    CLASSIFIER_PROMPT_EXPERIMENT_NO_VERIFY,
+    CLASSIFIER_PROMPT_EXPERIMENT_SOURCE_ONLY,
+)
 from prompts.summary_prompt import function_classify_final_prompt_en as SUMMARY_PROMPT
 import os
 import time
@@ -33,18 +37,33 @@ class AgentState(MessagesState):
     # Function name being classified
     function_name: str
 
-# 全局变量存储graph实例及创建时使用的 db_path（切换 testcase 时需重建）
+# 全局变量存储 graph 及构建键（db / 实验模式变化时需重建）
 _graph = None
-_graph_db_path = None
+_graph_key = None
+
+MINIMAL_COLLECTOR_TOOL_NAMES = frozenset({"GetFunctionInfo"})
+
+
+def _classifier_system_prompt() -> str:
+    p = system_prompting_en
+    if getattr(globs, "experiment_mode", "full") == "no_feedback":
+        p += CLASSIFIER_PROMPT_EXPERIMENT_NO_VERIFY
+    if getattr(globs, "tool_profile", "full") == "minimal":
+        p += CLASSIFIER_PROMPT_EXPERIMENT_SOURCE_ONLY
+    return p
+
 
 async def build_graph():
-    global _graph, _client, _graph_db_path
+    global _graph, _client, _graph_key  # noqa: PLW0603
     db_path = getattr(globs, "db_path", None) or ""
-    # 若已构建过但 db_path 已变（例如换了 testcase），则失效缓存，用新 DB 重建
-    if _graph is not None and _graph_db_path != db_path:
+    key = (
+        db_path,
+        getattr(globs, "experiment_mode", "full"),
+        getattr(globs, "tool_profile", "full"),
+    )
+    if _graph is not None and _graph_key != key:
         _graph = None
-        _graph_db_path = None
-    # 如果graph已经构建过，直接返回
+        _graph_key = None
     if _graph is not None:
         return _graph
 
@@ -66,11 +85,18 @@ async def build_graph():
         }
     )
 
-    # 异步获取工具（Collector MCP + 验证与修复委托）；延迟导入避免与 data_manager 循环依赖
-    from tools.builder.tool import verify_replacement as verify_replacement_tool
-    from agents.builder_fixer_agent import builder_fixer_agent
     tools = await _client.get_tools()
-    tools = tools + [verify_replacement_tool, builder_fixer_agent]
+    if getattr(globs, "tool_profile", "full") == "minimal":
+        tools = [t for t in tools if getattr(t, "name", None) in MINIMAL_COLLECTOR_TOOL_NAMES]
+        if not tools:
+            raise RuntimeError(
+                "tool_profile=minimal but MCP 工具列表中未找到 GetFunctionInfo；请检查 langchain_mcp_adapters 暴露的工具名。"
+            )
+    if getattr(globs, "experiment_mode", "full") != "no_feedback":
+        from tools.builder.tool import verify_replacement as verify_replacement_tool
+        from agents.builder_fixer_agent import builder_fixer_agent
+
+        tools = tools + [verify_replacement_tool, builder_fixer_agent]
 
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
@@ -162,25 +188,34 @@ async def build_graph():
         response = model_with_structured_output.invoke(
             state["messages"] + [HumanMessage(content=SUMMARY_PROMPT)]
         )
-        # 替换采纳优先级：VerifyReplacement pass > FixFunctionBuildErrors 成功 > 否则清空未验证替换
-        verified_code = _get_last_verified_replace_code(state["messages"])
         current_fn = state.get("function_name", "")
-        fixer_success = _has_fix_function_build_errors_success(state["messages"], current_fn)
 
-        if verified_code is not None and verified_code.strip():
-            # 有 VerifyReplacement pass=true，直接采用
-            response = response.model_copy(update={"function_replacement": verified_code})
-        elif fixer_success:
-            # FixFunctionBuildErrors 成功：直接采纳 fixer 已落盘的替换，无需再 VerifyReplacement
-            from core.data_manager import data_manager
-            ru = data_manager.get_replacement_updates().get(current_fn)
-            if ru and getattr(ru, "replacement_code", "").strip():
-                response = response.model_copy(update={"function_replacement": ru.replacement_code, "has_replacement": True})
+        if getattr(globs, "experiment_mode", "full") == "no_feedback":
+            # 实验：不经过 Verify/Fixer，直接采纳结构化摘要中的替换字段
+            pass
         else:
-            # 既无 VerifyReplacement 通过，又无 FixFunctionBuildErrors 成功：有替换内容则清空（未验证不采纳）
-            if getattr(response, "has_replacement", False) and (getattr(response, "function_replacement") or "").strip():
-                print(f"[FunctionClassifier] 未采纳未验证替换: {current_fn} (无 VerifyReplacement 通过且无 FixFunctionBuildErrors 成功，审查机制清空)")
-                response = response.model_copy(update={"has_replacement": False, "function_replacement": ""})
+            # 替换采纳优先级：VerifyReplacement pass > FixFunctionBuildErrors 成功 > 否则清空未验证替换
+            verified_code = _get_last_verified_replace_code(state["messages"])
+            fixer_success = _has_fix_function_build_errors_success(state["messages"], current_fn)
+
+            if verified_code is not None and verified_code.strip():
+                response = response.model_copy(update={"function_replacement": verified_code})
+            elif fixer_success:
+                from core.data_manager import data_manager
+                ru = data_manager.get_replacement_updates().get(current_fn)
+                if ru and getattr(ru, "replacement_code", "").strip():
+                    response = response.model_copy(
+                        update={"function_replacement": ru.replacement_code, "has_replacement": True}
+                    )
+            else:
+                if getattr(response, "has_replacement", False) and (
+                    getattr(response, "function_replacement") or ""
+                ).strip():
+                    print(
+                        f"[FunctionClassifier] 未采纳未验证替换: {current_fn} "
+                        f"(无 VerifyReplacement 通过且无 FixFunctionBuildErrors 成功，审查机制清空)"
+                    )
+                    response = response.model_copy(update={"has_replacement": False, "function_replacement": ""})
         # We return the final answer
         result = {"final_response": response}
         
@@ -214,8 +249,20 @@ async def build_graph():
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
         messages = state["messages"]
+        from utils.llm_usage import extract_usage_from_message
+
+        t0 = time.perf_counter()
         response = await model_with_tools.ainvoke(messages)
-        
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        if getattr(globs, "llm_usage_log_enable", False):
+            ai_log_manager.append_llm_usage_record(
+                agent_name=agent_name,
+                node_name=node_name,
+                function_name=function_name,
+                elapsed_ms=elapsed_ms,
+                usage=extract_usage_from_message(response),
+            )
+
         result = {"messages": [response]}
         
         if globs.ai_log_enable:
@@ -240,7 +287,7 @@ async def build_graph():
 
     # Compile the graph and存储到全局变量
     _graph = builder.compile()
-    _graph_db_path = db_path
+    _graph_key = key
     return _graph
 
 async def function_classify(func_name : str, overwrite: bool = False) -> FunctionClassifyResponse:
@@ -260,15 +307,17 @@ async def function_classify(func_name : str, overwrite: bool = False) -> Functio
     # llm 调用
     initial_state = {
         "messages": [
-            {"role": "system", "content": system_prompting_en},
+            {"role": "system", "content": _classifier_system_prompt()},
             {"role": "user", "content": f"Classify the function : {func_name}"}
         ],
         "function_name": func_name
         # 移除自定义计数器，直接使用LangGraph的错误处理
     }
-    
+
+    _rec_lim = int(getattr(globs, "analyzer_recursion_limit", 50) or 50)
+
     try:
-        result = await graph.ainvoke(initial_state, config={"recursion_limit": 50})  # 添加recursion_limit配置
+        result = await graph.ainvoke(initial_state, config={"recursion_limit": _rec_lim})
         # log ai memory
         if globs.ai_log_enable:
             dump_message_json_log("function_classify", result)
@@ -293,11 +342,11 @@ async def function_classify(func_name : str, overwrite: bool = False) -> Functio
             # 捕获LangGraph的递归错误，触发failcheck分析
             from utils.failcheck import analyze_failed_conversation
             analyze_failed_conversation(
-                initial_state["messages"], 
-                "analyzer_agent", 
-                50,
-                db_path=globs.db_path
-            )  # 50次agent调用
+                initial_state["messages"],
+                "analyzer_agent",
+                _rec_lim,
+                db_path=globs.db_path,
+            )
         else:
             # 其他错误直接抛出
             raise

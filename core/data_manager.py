@@ -91,6 +91,12 @@ class DataManager:
     async def load_mmio_functions(self):
         """加载MMIO函数信息"""
         from agents.analyzer_agent import analyze_functions
+        # 同一进程内多次切换 testcase/db 时必须清空，否则会混入上一 testcase 的替换/按文件索引，
+        # 且 _organize_data_by_file 会对 mmio_infos_by_file 重复 append。
+        self.replacement_updates = {}
+        self.replacement_history = {}
+        self.mmio_infos_by_file = {}
+        self.replacement_updates_by_file = {}
         # 处理所有MMIO函数
         function_list = get_mmio_func_list(globs.db_path)
         self.mmio_info_list = await analyze_functions(function_list)
