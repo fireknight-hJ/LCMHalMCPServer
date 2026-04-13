@@ -31,6 +31,10 @@ SKIP_SUBDIR_NAMES = frozenset(
 def find_testcase_dirs_under_root(root: str) -> List[str]:
     """
     递归遍历 root，返回所有「直接包含 lcmhal_config.yml」的目录绝对路径，按路径排序去重。
+
+    规则：
+    - 若某目录已命中 lcmhal_config.yml，则该目录视为一个 testcase 根目录；
+    - 命中后不再继续向其子目录递归（避免重复/嵌套 testcase 造成重复统计）。
     """
     root = os.path.abspath(root)
     if not os.path.isdir(root):
@@ -42,6 +46,8 @@ def find_testcase_dirs_under_root(root: str) -> List[str]:
         ]
         if CONFIG_FILENAME in filenames:
             found.append(os.path.abspath(dirpath))
+            # 命中后不再递归该目录的子目录
+            dirnames[:] = []
     return sorted(set(found))
 
 

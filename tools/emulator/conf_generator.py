@@ -18,6 +18,7 @@ HANDLERS_DO_RETURN_LIST = [
     'fflush',
     'DP83848_Init',
     'stm32_putc',
+    'rt_thread_mdelay',        # RT-Thread 线程延时，避免在模拟器里真正 sleep
     'DelayLoop',              # 纯忙等延时
     'SDK_DelayAtLeastUs',     # NXP SDK 延时
     'LPUART_WriteBlocking',   # 阻塞写 UART，模拟器无硬件

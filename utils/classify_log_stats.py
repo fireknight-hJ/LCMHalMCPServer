@@ -50,6 +50,44 @@ def latest_classify_log_paths(log_dir: str) -> Dict[str, str]:
     return {fn: p for fn, (_, p) in by_func.items()}
 
 
+def latest_replacement_update_log_paths(
+    log_dir: str,
+) -> Tuple[Dict[str, str], List[Dict[str, str]]]:
+    """
+    每个 function_name -> 最新一条 replacement_update 日志路径。
+    排序键与 data_manager._load_all_replacement_updates 一致：(timestamp, mtime)。
+    返回 (func_name -> path, parse_errors)。
+    """
+    pattern = os.path.join(log_dir, "replacement_update_*_*.json")
+    by_func: Dict[str, Tuple[Tuple[str, float], str]] = {}
+    parse_errors: List[Dict[str, str]] = []
+
+    for path in glob.glob(pattern):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            parse_errors.append({"path": path, "error": str(e)})
+            continue
+        if not isinstance(data, dict):
+            parse_errors.append({"path": path, "error": "root is not a dict"})
+            continue
+        func_name = data.get("function_name")
+        if not func_name or not isinstance(func_name, str):
+            parse_errors.append({"path": path, "error": "missing or invalid function_name"})
+            continue
+        ts = data.get("timestamp") or ""
+        if not isinstance(ts, str):
+            ts = str(ts)
+        mtime = os.path.getmtime(path)
+        key = (ts, mtime)
+        prev = by_func.get(func_name)
+        if prev is None or prev[0] < key:
+            by_func[func_name] = (key, path)
+
+    return {fn: p for fn, (_, p) in by_func.items()}, parse_errors
+
+
 def _read_final_response(path: str) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:
     """返回 (final_response dict, 错误信息)。"""
     try:
@@ -74,7 +112,8 @@ def aggregate_classify_stats(log_dir: str) -> Dict[str, Any]:
       - counts: { type: n } 及 UNKNOWN / PARSE_ERROR                        (旧)
       - by_type_has_replacement: {type: {"true": [...], "false": [...]}}   (新)
       - counts_has_replacement: {type: {"true": n, "false": n}}            (新)
-      - per_function: {func: {function_type, has_replacement, log_path}}   (新)
+      - per_function: 含 has_replacement_update、replacement_update_log_path（若有）
+      - replacement_update_*：见 aggregate 返回体
       - parse_errors: [{ function, path, error }]
       - log_dir, total_functions
     """
@@ -88,10 +127,16 @@ def aggregate_classify_stats(log_dir: str) -> Dict[str, Any]:
             "per_function": {},
             "parse_errors": [],
             "total_functions": 0,
+            "replacement_update_count": 0,
+            "replacement_update_functions": [],
+            "replacement_update_by_function": {},
+            "replacement_update_only_functions": [],
+            "replacement_update_parse_errors": [],
             "error": "log directory does not exist",
         }
 
     latest = latest_classify_log_paths(log_dir)
+    rep_latest, rep_parse_errors = latest_replacement_update_log_paths(log_dir)
     by_type: Dict[str, List[str]] = defaultdict(list)
     by_type_has_rep: Dict[str, Dict[str, List[str]]] = defaultdict(
         lambda: {"true": [], "false": []}
@@ -121,6 +166,15 @@ def aggregate_classify_stats(log_dir: str) -> Dict[str, Any]:
             "log_path": os.path.abspath(path),
         }
 
+    classify_fn_set = set(per_function.keys())
+    for fn, info in per_function.items():
+        rpath = rep_latest.get(fn)
+        info["has_replacement_update"] = rpath is not None
+        if rpath:
+            info["replacement_update_log_path"] = os.path.abspath(rpath)
+
+    replacement_update_only = sorted(set(rep_latest.keys()) - classify_fn_set, key=str)
+
     for t in list(by_type.keys()):
         by_type[t] = sorted(set(by_type[t]), key=str)
         by_type_has_rep[t]["true"] = sorted(set(by_type_has_rep[t]["true"]), key=str)
@@ -133,6 +187,12 @@ def aggregate_classify_stats(log_dir: str) -> Dict[str, Any]:
     for t, split in by_type_has_rep.items():
         counts_has_rep[t] = {"true": len(split.get("true", [])), "false": len(split.get("false", []))}
 
+    rep_sorted_names = sorted(rep_latest.keys(), key=str)
+    rep_by_fn = {
+        fn: {"log_path": os.path.abspath(p)}
+        for fn, p in rep_latest.items()
+    }
+
     return {
         "log_dir": os.path.abspath(log_dir),
         "by_type": dict(sorted(by_type.items(), key=lambda x: (-len(x[1]), x[0]))),
@@ -142,6 +202,11 @@ def aggregate_classify_stats(log_dir: str) -> Dict[str, Any]:
         "per_function": per_function,
         "parse_errors": parse_errors,
         "total_functions": len(latest),
+        "replacement_update_count": len(rep_latest),
+        "replacement_update_functions": rep_sorted_names,
+        "replacement_update_by_function": rep_by_fn,
+        "replacement_update_only_functions": replacement_update_only,
+        "replacement_update_parse_errors": rep_parse_errors,
     }
 
 
@@ -154,6 +219,10 @@ def format_classify_stats_text(stats: Dict[str, Any], include_lists: bool = True
 
     lines.append(f"日志目录: {stats['log_dir']}")
     lines.append(f"已统计函数数（每函数取最新 classify 日志）: {stats['total_functions']}")
+    ru_n = int(stats.get("replacement_update_count") or 0)
+    lines.append(
+        f"ReplacementUpdate 函数数（每函数取最新 replacement_update_* 日志，见 JSON 中 function_name）: {ru_n}"
+    )
     lines.append("")
 
     lines.append("按分类计数（含 has_replacement 拆分）:")
@@ -182,6 +251,28 @@ def format_classify_stats_text(stats: Dict[str, Any], include_lists: bool = True
             for fn in t_false:
                 lines.append(f"      - {fn}")
 
+        lines.append("")
+        lines.append(f"ReplacementUpdate 函数列表（共 {ru_n}）:")
+        for fn in stats.get("replacement_update_functions") or []:
+            lines.append(f"  - {fn}")
+        only_ru = stats.get("replacement_update_only_functions") or []
+        if only_ru:
+            lines.append("")
+            lines.append(
+                f"仅有 replacement_update、当前无 classify 条目的函数（共 {len(only_ru)}）:"
+            )
+            for fn in only_ru:
+                lines.append(f"  - {fn}")
+
+    ru_errs = stats.get("replacement_update_parse_errors") or []
+    if ru_errs:
+        lines.append("")
+        lines.append(f"ReplacementUpdate 日志解析失败 ({len(ru_errs)}):")
+        for e in ru_errs[:30]:
+            lines.append(f"  - {e.get('path')}: {e.get('error')}")
+        if len(ru_errs) > 30:
+            lines.append(f"  ... 另有 {len(ru_errs) - 30} 条")
+
     errs = stats.get("parse_errors") or []
     if errs:
         lines.append("")
@@ -198,9 +289,11 @@ def summarize_batch_counts(batch_stats: List[Dict[str, Any]]) -> Dict[str, Any]:
     merged: Dict[str, int] = defaultdict(int)
     merged_rep: Dict[str, Dict[str, int]] = defaultdict(lambda: {"true": 0, "false": 0})
     total_functions = 0
+    total_replacement_update = 0
 
     for s in batch_stats:
         total_functions += int(s.get("total_functions") or 0)
+        total_replacement_update += int(s.get("replacement_update_count") or 0)
         for k, v in (s.get("counts") or {}).items():
             try:
                 merged[k] += int(v)
@@ -219,6 +312,7 @@ def summarize_batch_counts(batch_stats: List[Dict[str, Any]]) -> Dict[str, Any]:
             sorted(merged_rep.items(), key=lambda x: (-(x[1].get("true", 0) + x[1].get("false", 0)), x[0]))
         ),
         "summary_total_functions": total_functions,
+        "summary_total_replacement_update_functions": total_replacement_update,
     }
 
 
@@ -284,65 +378,16 @@ def summarize_batch_unique_by_function_name(batch_stats: List[Dict[str, Any]]) -
     }
 
 
-_TYPE_PRIORITY = {
-    "CORE": 0,
-    "RECV": 1,
-    "IRQ": 2,
-    "INIT": 3,
-    "LOOP": 4,
-    "RETURNOK": 5,
-    "SKIP": 6,
-    "NODRIVER": 7,
-    "UNKNOWN": 8,
-    "PARSE_ERROR": 9,
-}
-
-
-def summarize_batch_unique_by_function_name(batch_stats: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    批量汇总（去重版）：跨 demo 按 function_name 去重，避免同名函数在不同 demo 中重复计数。
-
-    - 去重键：per_function 的 key（即 function_name）
-    - 若同名函数在不同 demo 中出现不同 function_type：取更“高优先级”的类型（_TYPE_PRIORITY 越小优先级越高）
-    - has_replacement：若任一 demo 为 true，则视为 true
-    """
-    merged_type_by_fn: Dict[str, str] = {}
-    merged_has_rep_by_fn: Dict[str, bool] = {}
-
+def summarize_batch_unique_replacement_updates(batch_stats: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """跨 testcase 合并：至少在一个 demo 中出现 replacement_update 的函数名（去重、排序）。"""
+    names: set = set()
     for s in batch_stats:
-        pf = (s.get("per_function") or {})
-        if not isinstance(pf, dict):
-            continue
-        for fn, info in pf.items():
-            if not fn or not isinstance(fn, str):
-                continue
-            if not isinstance(info, dict):
-                continue
-            t = info.get("function_type") or "UNKNOWN"
-            if t not in _TYPE_PRIORITY:
-                t = "UNKNOWN"
-            has_rep = bool(info.get("has_replacement", False))
-
-            prev_t = merged_type_by_fn.get(fn)
-            if prev_t is None or _TYPE_PRIORITY.get(t, 99) < _TYPE_PRIORITY.get(prev_t, 99):
-                merged_type_by_fn[fn] = t
-            merged_has_rep_by_fn[fn] = merged_has_rep_by_fn.get(fn, False) or has_rep
-
-    # 聚合计数
-    counts: Dict[str, int] = defaultdict(int)
-    counts_has_rep: Dict[str, Dict[str, int]] = defaultdict(lambda: {"true": 0, "false": 0})
-    for fn, t in merged_type_by_fn.items():
-        counts[t] += 1
-        if merged_has_rep_by_fn.get(fn, False):
-            counts_has_rep[t]["true"] += 1
-        else:
-            counts_has_rep[t]["false"] += 1
-
+        for fn in s.get("replacement_update_functions") or []:
+            if isinstance(fn, str) and fn:
+                names.add(fn)
+    sorted_names = sorted(names, key=str)
     return {
-        "summary_unique_counts": dict(sorted(counts.items(), key=lambda x: (-x[1], x[0]))),
-        "summary_unique_counts_has_replacement": dict(
-            sorted(counts_has_rep.items(), key=lambda x: (-(x[1].get("true", 0) + x[1].get("false", 0)), x[0]))
-        ),
-        "summary_unique_total_functions": len(merged_type_by_fn),
+        "summary_unique_replacement_update_count": len(sorted_names),
+        "summary_unique_replacement_update_functions": sorted_names,
     }
 

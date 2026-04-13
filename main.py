@@ -261,7 +261,32 @@ async def main():
         action="store_true",
         help="For 'classify-stats' batch mode: omit merged totals across all testcases",
     )
-    
+    # 毕设/消融：仅 analyze 在加载 lcmhal_config 后会合并进 config（见 analyze 分支）
+    parser.add_argument(
+        "--experiment-mode",
+        choices=["full", "no_feedback"],
+        default=None,
+        help="Override experiment_mode: no_feedback disables VerifyReplacement/Fixer (analyze only)",
+    )
+    parser.add_argument(
+        "--tool-profile",
+        choices=["full", "minimal"],
+        default=None,
+        help="Override tool_profile: minimal keeps only GetFunctionInfo (analyze only)",
+    )
+    parser.add_argument(
+        "--analyzer-recursion-limit",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Override LangGraph recursion_limit for classifier (analyze only)",
+    )
+    parser.add_argument(
+        "--llm-usage-log",
+        action="store_true",
+        help="Enable LLM usage+timing records in session JSON under lcmhal_ai_log (analyze only)",
+    )
+
     args = parser.parse_args()
     
     if args.command == "clean":
@@ -489,8 +514,96 @@ async def main():
             format_classify_stats_text,
             summarize_batch_counts,
             summarize_batch_unique_by_function_name,
+            summarize_batch_unique_replacement_updates,
         )
         from utils.lcmhal_testcase_scan import read_db_path_from_testcase_dir, resolve_classify_stats_targets
+
+        def _write_auto_stats_file(testcase_dir: str, stats_obj: dict):
+            """自动将完整 classify 统计写入 testcase 目录，便于后续复用。"""
+            out_path = os.path.join(testcase_dir, "classify_stats_output.json")
+            try:
+                with open(out_path, "w", encoding="utf-8") as f:
+                    json.dump(stats_obj, f, ensure_ascii=False, indent=2)
+                print(f"[classify-stats] auto output written: {out_path}")
+            except Exception as e:
+                print(f"[classify-stats] auto output write failed: {out_path}, err={e}")
+
+        def _demo_alias_from_relpath(rel_path: str) -> str:
+            """给 demo 生成稳定短名：最后两级目录 + 简短哈希后缀，避免重名。"""
+            import hashlib
+            parts = [p for p in rel_path.replace("\\", "/").split("/") if p]
+            tail = parts[-2:] if len(parts) >= 2 else parts
+            base = "-".join(tail) if tail else "demo"
+            digest = hashlib.md5(rel_path.encode("utf-8")).hexdigest()[:6]
+            return f"{base}-{digest}"
+
+        def _write_batch_markdown_summary(scan_root_dir: str, results: list):
+            """批量模式：在根目录输出 markdown 汇总表（每 demo 各类型计数 + 总计行）。"""
+            # 只统计配置正常、且有 stats 的条目
+            valid = [r for r in results if not r.get("config_error") and isinstance(r.get("stats"), dict)]
+            if not valid:
+                return
+
+            # 收集所有类型列（按字母序，PARSE_ERROR 放最后）
+            all_types = set()
+            for r in valid:
+                counts = (r["stats"].get("counts") or {})
+                all_types.update(counts.keys())
+            all_types = sorted([t for t in all_types if t != "PARSE_ERROR"])
+            if "PARSE_ERROR" in {k for r in valid for k in (r["stats"].get("counts") or {}).keys()}:
+                all_types.append("PARSE_ERROR")
+
+            md_path = os.path.join(scan_root_dir, "classify_stats_summary.md")
+            lines = []
+            lines.append("# Classify Stats Batch Summary")
+            lines.append("")
+            lines.append(f"- Scan root: `{scan_root_dir}`")
+            lines.append(f"- Testcase count: **{len(valid)}**")
+            lines.append("")
+
+            header = ["DemoPath", "DemoName"] + all_types + ["RepUpd", "TOTAL"]
+            sep = ["---"] * len(header)
+            lines.append("| " + " | ".join(header) + " |")
+            lines.append("| " + " | ".join(sep) + " |")
+
+            totals_by_type = {t: 0 for t in all_types}
+            grand_total = 0
+            grand_rep_upd = 0
+            root_abs = os.path.abspath(scan_root_dir)
+
+            for r in sorted(valid, key=lambda x: x.get("testcase_dir", "")):
+                td = os.path.abspath(r["testcase_dir"])
+                rel = os.path.relpath(td, root_abs)
+                alias = _demo_alias_from_relpath(rel)
+                counts = r["stats"].get("counts") or {}
+                row_total = 0
+                row_cells = [f"`{rel}`", f"`{alias}`"]
+                for t in all_types:
+                    v = int(counts.get(t, 0) or 0)
+                    row_cells.append(str(v))
+                    row_total += v
+                    totals_by_type[t] += v
+                rep_n = int(r["stats"].get("replacement_update_count") or 0)
+                row_cells.append(str(rep_n))
+                grand_rep_upd += rep_n
+                row_cells.append(str(row_total))
+                grand_total += row_total
+                lines.append("| " + " | ".join(row_cells) + " |")
+
+            total_row = (
+                ["**TOTAL**", "-"]
+                + [str(totals_by_type[t]) for t in all_types]
+                + [str(grand_rep_upd), str(grand_total)]
+            )
+            lines.append("| " + " | ".join(total_row) + " |")
+            lines.append("")
+
+            try:
+                with open(md_path, "w", encoding="utf-8") as f:
+                    f.write("\n".join(lines))
+                print(f"[classify-stats] batch markdown summary written: {md_path}")
+            except Exception as e:
+                print(f"[classify-stats] batch markdown summary write failed: {md_path}, err={e}")
 
         testcase_dirs, mode = resolve_classify_stats_targets(user_path)
         if mode == "invalid":
@@ -517,6 +630,11 @@ async def main():
                     "per_function": {},
                     "parse_errors": [],
                     "total_functions": 0,
+                    "replacement_update_count": 0,
+                    "replacement_update_functions": [],
+                    "replacement_update_by_function": {},
+                    "replacement_update_only_functions": [],
+                    "replacement_update_parse_errors": [],
                     "error": err,
                 }
             else:
@@ -529,11 +647,16 @@ async def main():
         # 单 testcase
         if len(testcase_dirs) == 1:
             stats = batch_results[0]["stats"]
+            # 无论终端显示模式如何，自动落一份“完整统计”到 testcase 目录：
+            # 包含计数、每函数列表、has_replacement 拆分等。
+            _write_auto_stats_file(batch_results[0]["testcase_dir"], stats)
             if args.no_lists:
                 slim = {
                     "testcase_dir": stats.get("testcase_dir"),
                     "log_dir": stats.get("log_dir"),
                     "total_functions": stats.get("total_functions"),
+                    "replacement_update_count": stats.get("replacement_update_count"),
+                    "replacement_update_functions": stats.get("replacement_update_functions"),
                     "counts": stats.get("counts"),
                     "counts_has_replacement": stats.get("counts_has_replacement"),
                     "error": stats.get("error"),
@@ -554,11 +677,16 @@ async def main():
             "summary_counts": {},
             "summary_counts_has_replacement": {},
             "summary_total_functions": 0,
+            "summary_total_replacement_update_functions": 0,
         }
         summary_unique = summarize_batch_unique_by_function_name(summary_src) if summary_src else {
             "summary_unique_counts": {},
             "summary_unique_counts_has_replacement": {},
             "summary_unique_total_functions": 0,
+        }
+        summary_unique_rep = summarize_batch_unique_replacement_updates(summary_src) if summary_src else {
+            "summary_unique_replacement_update_count": 0,
+            "summary_unique_replacement_update_functions": [],
         }
 
         if args.json:
@@ -568,15 +696,19 @@ async def main():
                 "testcase_count": len(batch_results),
                 **summary,
                 **summary_unique,
+                **summary_unique_rep,
                 "testcases": batch_results,
             }
             if args.no_batch_summary:
                 out.pop("summary_counts", None)
                 out.pop("summary_counts_has_replacement", None)
                 out.pop("summary_total_functions", None)
+                out.pop("summary_total_replacement_update_functions", None)
                 out.pop("summary_unique_counts", None)
                 out.pop("summary_unique_counts_has_replacement", None)
                 out.pop("summary_unique_total_functions", None)
+                out.pop("summary_unique_replacement_update_count", None)
+                out.pop("summary_unique_replacement_update_functions", None)
             print(json.dumps(out, ensure_ascii=False, indent=2))
             return
 
@@ -585,6 +717,10 @@ async def main():
         if not args.no_batch_summary and summary.get("summary_counts"):
             print("=== 汇总（全部 testcase 计数相加，未去重）===")
             print(f"  总函数条目数: {summary.get('summary_total_functions', 0)}")
+            print(
+                f"  ReplacementUpdate 函数数（各 demo 相加，未去重）: "
+                f"{summary.get('summary_total_replacement_update_functions', 0)}"
+            )
             for t, n in (summary.get("summary_counts") or {}).items():
                 rep = (summary.get("summary_counts_has_replacement") or {}).get(t) or {}
                 if t == "PARSE_ERROR":
@@ -601,8 +737,24 @@ async def main():
                     print(f"  {t}: {n} (has_replacement=true: {rep.get('true', 0)}, false: {rep.get('false', 0)})")
                 print("")
 
+            if summary_unique_rep.get("summary_unique_replacement_update_count", 0) or summary_unique_rep.get(
+                "summary_unique_replacement_update_functions"
+            ):
+                print("=== ReplacementUpdate（跨 demo 按函数名去重）===")
+                print(
+                    f"  去重后函数数: {summary_unique_rep.get('summary_unique_replacement_update_count', 0)}"
+                )
+                names = summary_unique_rep.get("summary_unique_replacement_update_functions") or []
+                if names:
+                    print("  函数列表:")
+                    for fn in names:
+                        print(f"    - {fn}")
+                print("")
+
         for br in batch_results:
             td = br["testcase_dir"]
+            # 批量模式下也给每个 testcase 自动落一份完整统计
+            _write_auto_stats_file(td, br["stats"])
             print("=" * 60)
             print(f"Testcase: {td}")
             if br.get("config_error"):
@@ -615,6 +767,9 @@ async def main():
                     print(f"  错误: {st['error']}")
                 else:
                     print(f"  已统计函数数: {st.get('total_functions', 0)}")
+                    print(
+                        f"  ReplacementUpdate 函数数: {int(st.get('replacement_update_count') or 0)}"
+                    )
                     for t, n in sorted((st.get('counts') or {}).items(), key=lambda x: (-x[1], x[0])):
                         if t == "PARSE_ERROR":
                             print(f"    {t}: {n}")
@@ -626,6 +781,9 @@ async def main():
                 for line in block.splitlines():
                     print(f"  {line}" if line else "")
             print("")
+
+        # 批量模式结束后，在扫描根目录输出一份总览 Markdown
+        _write_batch_markdown_summary(scan_root, batch_results)
         return
     
     if args.command == "recover":
@@ -677,6 +835,16 @@ async def main():
             globs.script_path = potential_path
 
         config = load_config_from_yaml(globs.script_path)
+        if not isinstance(config, dict):
+            config = {}
+        if args.experiment_mode is not None:
+            config["experiment_mode"] = args.experiment_mode
+        if args.tool_profile is not None:
+            config["tool_profile"] = args.tool_profile
+        if args.analyzer_recursion_limit is not None:
+            config["analyzer_recursion_limit"] = args.analyzer_recursion_limit
+        if args.llm_usage_log:
+            config["llm_usage_log_enable"] = True
         globs.globs_init(config)
         register_db(globs.db_path)
 

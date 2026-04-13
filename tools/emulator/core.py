@@ -50,6 +50,34 @@ def emulate_proj() -> dict:
     }
 
 
+def fuzz_proj() -> dict:
+    """运行 fuzz 测试，返回执行结果。
+
+    与 emulate 类似，前置会更新符号与配置；最后一步改为 run_fuzz。
+    """
+    extract_syms()
+    generate_emulator_configs()
+
+    from tools.emulator.emulate_runner import run_fuzz
+    ret = run_fuzz()
+
+    debug_out_dir = os.path.join(globs.script_path, "emulate", "debug_output")
+    os.makedirs(debug_out_dir, exist_ok=True)
+    for name, data in [("fuzz_stdout.txt", ret.stdout), ("fuzz_stderr.txt", ret.stderr)]:
+        path = os.path.join(debug_out_dir, name)
+        text = data.decode("utf-8", errors="replace") if isinstance(data, bytes) else (data or "")
+        with open(path, "w") as f:
+            f.write(text)
+
+    success = (ret.returncode == 0)
+    return {
+        "std_out": ret.stdout,
+        "std_err": ret.stderr,
+        "exit_code": ret.returncode,
+        "success": success,
+    }
+
+
 def ensure_emulator_output_exists():
     """确保模拟器输出文件存在，如果不存在或ELF文件比输出文件新则运行模拟器生成
     """
