@@ -177,8 +177,20 @@ async def build_graph():
                 print(f"[builder context] msg[{_i}] {_type}: {_len} chars (~{_len//4} tokens)")
         if _total_chars > 100000:
             print(f"[builder context] TOTAL: {_total_chars} chars (~{_total_chars//4} tokens) — may exceed model limit")
+        from utils.llm_usage import extract_usage_from_message
+
+        t0 = time.perf_counter()
         response = await model_with_tools.ainvoke(messages)
-        
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        if getattr(globs, "llm_usage_log_enable", False):
+            ai_log_manager.append_llm_usage_record(
+                agent_name=agent_name,
+                node_name=node_name,
+                function_name=function_name,
+                elapsed_ms=elapsed_ms,
+                usage=extract_usage_from_message(response),
+            )
+
         result = {"messages": [response]}
         
         if globs.ai_log_enable:

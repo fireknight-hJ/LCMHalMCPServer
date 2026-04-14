@@ -166,3 +166,16 @@ def finalize_session():
             {"script_path": script_path, "db_path": db_path}
         )
         print(f"Session {session_id} finalized and logged.")
+        summ = (ai_log_manager.session_metadata or {}).get("llm_usage_summary")
+        if summ and isinstance(summ, dict):
+            n = summ.get("invoke_count", 0)
+            tms = summ.get("total_elapsed_ms", 0)
+            tp = summ.get("total_prompt_tokens")
+            tc = summ.get("total_completion_tokens")
+            tt = summ.get("total_tokens")
+            line = f"[LLM Usage] invokes={n} total_elapsed_ms={tms}"
+            if tp is not None and tc is not None:
+                line += f" prompt_tokens={tp} completion_tokens={tc}"
+                if tt is not None:
+                    line += f" total_tokens={tt}"
+            print(line)

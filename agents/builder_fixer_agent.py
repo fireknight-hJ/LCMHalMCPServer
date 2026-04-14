@@ -8,7 +8,10 @@ from config.model_singleton import get_model
 from models.build_results.builder_fixer_result import BuilderFixerResult
 from prompts.builder_fixer import system_prompt_en
 from prompts.summary_prompt import builder_fixer_summary_prompt_en as SUMMARY_PROMPT
+import time
+
 from utils.ai_log_manager import ai_log_manager
+from utils.llm_usage import extract_usage_from_message
 import config.globs as globs
 from tools.builder.core import init_builder, build_project as core_build_project
 from tools.builder.tool import (
@@ -114,7 +117,17 @@ async def build_graph():
                 agent_name, node_name, state, function_name
             )
         messages = state["messages"]
+        t0 = time.perf_counter()
         response = await model_with_tools.ainvoke(messages)
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        if getattr(globs, "llm_usage_log_enable", False):
+            ai_log_manager.append_llm_usage_record(
+                agent_name=agent_name,
+                node_name=node_name,
+                function_name=function_name,
+                elapsed_ms=elapsed_ms,
+                usage=extract_usage_from_message(response),
+            )
         result = {"messages": [response]}
         if globs.ai_log_enable:
             updated_state = {**state, **result}

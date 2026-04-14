@@ -900,4 +900,12 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    finally:
+        try:
+            from config import globs as _globs
+
+            _globs.finalize_session()
+        except Exception as _e:
+            print(f"[WARN] finalize_session failed: {_e}")
