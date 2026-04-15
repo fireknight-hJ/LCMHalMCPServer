@@ -103,4 +103,12 @@ Thin-wrapper INIT concrete examples:
 Verifier-oriented rejection hints:
 - Reject replacement if original contains a key delegate call but replacement removes it without equivalent logic.
 - Reject replacement if original contains nextTcd + address conversion semantics but replacement drops both.
+
+Pattern — **MSMF** (mixed software state + MMIO-gated control flow; see `prompts/code_generation_rules.md`):
+1) **Identification**: function updates **handle/queue/descriptor/list state in RAM** and uses **MMIO reads** largely to **gate** branches (busy, which link is active, early returns), not only as payload I/O.
+2) **Forbidden**: replacement that is **only** `return HAL_OK` / `return kStatus_Success` / empty while the original performed non-trivial RAM-side updates or delegate calls those layers depend on.
+3) **Required**: preserve OEM **ordering** of RAM updates and delegate calls; steer emulation by **execution-flow rewrites** for branch-only MMIO predicates (constants, `goto`, `if (0)`). **No** new `#ifdef` / project macros in replacement text; keep OEM `#if` as-is.
+4) **Not RETURNOK**: do not classify MSMF functions as RETURNOK/SKIP success stubs solely because register traffic appears high — classify per **RAM semantics** (usually INIT with structured replacement, or another type if I/O/IRQ dominates).
+
+**Examples** (illustrative): `EDMA_SubmitTransfer` (Case 20 appendix); other DMA **submit/arm** paths; peripheral **start transfer** helpers that update software rings and branch on `BUSY`/`READY` MMIO.
 """

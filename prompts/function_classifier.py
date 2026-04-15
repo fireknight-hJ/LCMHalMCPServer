@@ -159,6 +159,10 @@ You have access to the following tools to gather information about functions and
         *   If the original has **critical parameter semantics** (e.g. scatter/gather pointers like `nextTcd`, address-domain conversion, descriptor linking, state propagation), you must preserve those semantics. They cannot be dropped just to pass compile.
         *   If hardware register writes are removed, keep minimal semantic operations needed by upper layers (state transitions, descriptor linkage semantics, essential argument transformations).
         *   If your replacement is intentionally degraded (temporary compile-only fallback), explicitly state this in `classification_reason` as **semantic degradation**, not final replacement.
+    *   **Pattern — mixed software state + MMIO-gated control flow (MSMF)** — **not** thin-wrapper INIT, **not** RETURNOK-as-stub:
+        *   **Identification (general)**: The function **updates RAM-visible driver state** (queues, indices, linked descriptors, handle fields, shadow config) **and** uses **MMIO reads** primarily to **gate** control flow (busy / active slot / early `return`), not only as byte-stream I/O. Applies to **eDMA submit + TCD pool** (`EDMA_SubmitTransfer`), other **DMA submit/arm** paths, and analogous **“program queue + poll peripheral status”** drivers.
+        *   **Classification**: Prefer **INIT** with `has_replacement=true` when emulation must steer **MMIO-driven branches** while preserving RAM-side semantics. **Do not** classify as **RETURNOK** or **SKIP** solely because `GetMMIOFunctionInfo` lists many accesses — weigh **whether callers depend on updated handle/queue state**.
+        *   **Replacement strategy (methodology)**: Preserve **OEM block order** for RAM updates and delegate calls. Steer predicates with **execution-flow rewrites only** (constants for branch-only locals, `goto`, `if (0)`); **no** new `#ifdef`. Full rule text: `prompts/code_generation_rules.md` section **Pattern: MSMF**; worked example: `doc/replacement_update_cases/case_20_edma_submittransfer.md` appendix. **Forbidden**: body that only returns `kStatus_Success` / `HAL_OK` while dropping queue/descriptor/handle updates.
     *   **Thin-wrapper INIT Example (Do this)**:
         ```c
         // Original wrapper:
@@ -238,9 +242,10 @@ You have access to the following tools to gather information about functions and
 #### **Priority 2: Classification Only (Do Not Generate Code Now)**
 
 5.  **RETURNOK (Pure Driver Operation Functions)**
-    *   **Identification**: Functions that only manipulate peripheral registers with no impact on upper-layer data structures.
+    *   **Identification**: Functions that only manipulate peripheral registers with **no** meaningful updates to **upper-layer-visible data structures** (no software queues, no linked descriptors maintained in RAM by this function).
     *   **Examples**: `HAL_GPIO_WritePin`, `SPI_SetBaudRate`
-    *   **Strategy (Note)**: Would simply return a success value (e.g., `HAL_OK`, `0`) or a safe default.
+    *   **Out of scope for RETURNOK**: Any **MSMF** function (mixed software state + MMIO-gated control flow; see `code_generation_rules.md`) — e.g. **DMA submit** paths that maintain **queues/descriptors** in RAM, or similar **arm/kick** routines — classify as **INIT** (or another non-RETURNOK type), **not** “return success only”.
+    *   **Strategy (Note)**: Would simply return a success value (e.g., `HAL_OK`, `0`) or a safe default **only** when identification holds.
 
 6.  **SKIP (Non-Critical Driver Functions)**
     *   **Identification**: Functions performing optional operations that can be safely ignored (e.g., minor configuration, debug output). **Do not** treat any **`*_MspInit` that enables interrupts** (e.g. `HAL_ETH_MspInit` calling `HAL_NVIC_EnableIRQ(ETH_IRQn)`) as SKIP — those must preserve NVIC writes or be SKIP with no replacement (see INIT Exception above).
