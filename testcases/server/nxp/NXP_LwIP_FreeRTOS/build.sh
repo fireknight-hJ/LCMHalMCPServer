@@ -14,7 +14,11 @@ cd "$PWDDIR" || {
 }
 
 echo "开始编译项目..."
-./build.sh -d lwip --freertos
+# mcuxsdk-workspace 下的 build.sh 目前仅兼容 lwip 裸机包装；此处直接调用 build_firmware.sh
+export BOARD="${BOARD:-evkbimxrt1050}"
+export APP_PATH="mcuxsdk/examples/lwip_examples/lwip_httpsrv/freertos"
+export BUILD_DIR="$PWDDIR/build-eth-freertos"
+./build_firmware.sh
 
 if [ $? -eq 0 ]; then
     echo "编译成功完成!"

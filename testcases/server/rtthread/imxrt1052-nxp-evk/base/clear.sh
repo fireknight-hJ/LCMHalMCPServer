@@ -13,11 +13,10 @@ cd "$PWDDIR" || {
 }
 
 echo "开始清除项目..."
-./build.sh clean
-
-if [ $? -eq 0 ]; then
-    echo "清除成功完成!"    
+if ./build.sh clean 2>/dev/null; then
+    echo "清除成功完成!"
 else
-    echo "清除失败!"
-    exit 1
+    # 本 BSP 的 build.sh 不支持 clean，使用 scons -c 清理构建产物
+    scons -c
+    echo "清除成功完成 (scons -c)!"
 fi

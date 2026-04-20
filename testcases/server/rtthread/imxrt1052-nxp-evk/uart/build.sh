@@ -9,7 +9,7 @@ if [ ! -d "$PWDDIR" ]; then
 fi
 
 cd "$PWDDIR" || {
-    echo "错误: 无法切换到目录 $PWWDIR"
+    echo "错误: 无法切换到目录 $PWDDIR"
     exit 1
 }
 
@@ -21,8 +21,8 @@ if [ $? -eq 0 ]; then
     if [ ! -d "$SCRIPTDIR/emulate" ]; then
         mkdir -p "$SCRIPTDIR/emulate"
     fi
-    # RT-Thread 默认生成的 ELF 名称为 rt-thread.elf，这里将其统一重命名为 output.elf 供 emulator 使用
-    mv -f "rt-thread.elf" "$SCRIPTDIR/emulate/output.elf" || {
+    # RT-Thread 本 BSP 生成的 ELF 名称为 rtthread.elf，这里将其统一重命名为 output.elf 供 emulator 使用
+    mv -f "rtthread.elf" "$SCRIPTDIR/emulate/output.elf" || {
         echo "错误: 无法移动可执行文件到 $SCRIPTDIR/emulate/output.elf"
         exit 1
     }

@@ -14,7 +14,12 @@ cd "$PWDDIR" || {
 }
 
 echo "开始编译项目..."
-./build.sh -d i2c --baremetal
+# mcuxsdk-workspace 下的 build.sh 目前仅兼容 lwip 包装；此处直接调用 build_firmware.sh
+export BOARD="${BOARD:-evkbimxrt1050}"
+# interrupt_transfer 示例目录缺少 CMakeLists.txt；使用有 CMake 工程的 interrupt 示例
+export APP_PATH="mcuxsdk/examples/driver_examples/lpi2c/interrupt"
+export BUILD_DIR="$PWDDIR/build-i2c"
+./build_firmware.sh
 
 if [ $? -eq 0 ]; then
     echo "编译成功完成!"
