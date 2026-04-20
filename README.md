@@ -17,6 +17,89 @@
 之后运行main.py (入参为testcases目录)
 工具会自动尝试按照 codeql初步分析 + llm代码分析 + 代码替换&编译生成新的elf + 动态运行反馈 流程进行测试
 
+## 批处理脚本使用
+
+### 1) 平台批处理脚本
+
+四个平台脚本分别是：
+
+- `scripts/batch_main_analyze_zephyr_parallel.sh`
+- `scripts/batch_main_analyze_rtthread_parallel.sh`
+- `scripts/batch_main_analyze_stm32_parallel.sh`
+- `scripts/batch_main_analyze_nxp_parallel.sh`
+
+默认并发为 `3`（可通过第一个参数覆盖），每个 demo 会执行：
+
+1. `python main.py <MAIN_CMD> <demo>`
+2. `python main.py dump-replacements <demo>`
+3. `python main.py classify-stats <demo> --json --no-lists > <demo>/classify_stats.json`
+
+示例：
+
+```shell
+# 默认（MAIN_CMD=run）
+scripts/batch_main_analyze_zephyr_parallel.sh 3
+
+# 只跑前半段（不进 emulate）
+MAIN_CMD=build scripts/batch_main_analyze_rtthread_parallel.sh 3
+
+# 跳过主流程，仅补跑汇总（dump + classify-stats）
+MAIN_CMD= scripts/batch_main_analyze_stm32_parallel.sh 3
+
+# 只跑单个 demo
+scripts/batch_main_analyze_nxp_parallel.sh 3 testcases/server/nxp/NXP_UART_BareMetal
+```
+
+### 2) 自适应总控脚本
+
+统一调度四个平台（默认顺序：`zephyr -> rtthread -> stm32 -> nxp`）：
+
+- 脚本：`scripts/batch_main_analyze_adaptive.py`
+- 默认 `MAIN_CMD=build`
+- 平台内并发基线默认 `3`
+- 根据“上一个时间窗口”的 retry 密度自动降并发
+
+常用命令：
+
+```shell
+# 正常执行
+python scripts/batch_main_analyze_adaptive.py
+
+# 只预览将要执行的命令/并发
+python scripts/batch_main_analyze_adaptive.py --dry-run
+
+# 指定平台顺序或子集
+python scripts/batch_main_analyze_adaptive.py --platforms zephyr rtthread
+
+# 切回 run 模式
+python scripts/batch_main_analyze_adaptive.py --main-cmd run
+
+# 调整窗口和阈值
+python scripts/batch_main_analyze_adaptive.py \
+  --window-minutes 10 \
+  --high-threshold 40 \
+  --critical-threshold 100 \
+  --base-jobs 3 --min-jobs 1
+```
+
+### 3) 检查功能（缓存/日志/后台进程）
+
+`adaptive` 脚本内置检查模式，输出三类信息：
+
+1. CodeQL/collector 缓存是否齐全（`src.zip`、`lcmhal_tmp/common_info.json`、`driver_info.json`、`mmio_info.json`）
+2. `lcmhal_ai_log` 覆盖情况（`function_classify_*`、`replacement_update_*` 数量）
+3. 当前后台相关 demo 进程（含 `main.py build/run/analyze/dump/classify`）
+
+示例：
+
+```shell
+# 只检查，不执行批处理
+python scripts/batch_main_analyze_adaptive.py --check-only
+
+# 先检查，再执行
+python scripts/batch_main_analyze_adaptive.py --check
+```
+
 
 start server: 
 
