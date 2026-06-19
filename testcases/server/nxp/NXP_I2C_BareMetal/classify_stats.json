@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_I2C_BareMetal",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log",
+  "total_functions": 104,
+  "counts": {
+    "INIT": 51,
+    "RETURNOK": 15,
+    "IRQ": 11,
+    "NODRIVER": 9,
+    "RECV": 7,
+    "LOOP": 5,
+    "SKIP": 5,
+    "CORE": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 37,
+      "false": 14
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 15
+    },
+    "IRQ": {
+      "true": 5,
+      "false": 6
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 9
+    },
+    "RECV": {
+      "true": 4,
+      "false": 3
+    },
+    "LOOP": {
+      "true": 3,
+      "false": 2
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 4
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

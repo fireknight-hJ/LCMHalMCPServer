@@ -1,0 +1,13 @@
+output.elf:
+  rules: semu_rule.txt
+  enable_native: false
+  emulate_mode: emulate
+  loop_whitelist:
+    - memset
+    - memcpy
+    - memmove
+  handlers:
+    Delay: do_return
+    HAL_Delay: do_return
+    wait: do_return
+    wait_us: do_return

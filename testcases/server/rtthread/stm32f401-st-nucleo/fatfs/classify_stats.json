@@ -1,0 +1,36 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/stm32f401-st-nucleo/fatfs",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_fatfs_demo/lcmhal_ai_log",
+  "total_functions": 56,
+  "counts": {
+    "INIT": 39,
+    "RETURNOK": 11,
+    "IRQ": 3,
+    "SKIP": 2,
+    "LOOP": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 35,
+      "false": 4
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 11
+    },
+    "IRQ": {
+      "true": 3,
+      "false": 0
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 1
+    },
+    "LOOP": {
+      "true": 1,
+      "false": 0
+    }
+  },
+  "error": null
+}

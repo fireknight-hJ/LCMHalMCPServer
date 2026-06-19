@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/i2c",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_i2c/lcmhal_ai_log",
+  "total_functions": 110,
+  "counts": {
+    "INIT": 53,
+    "RETURNOK": 29,
+    "RECV": 7,
+    "SKIP": 7,
+    "NODRIVER": 5,
+    "IRQ": 4,
+    "LOOP": 3,
+    "CORE": 2,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 42,
+      "false": 11
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 29
+    },
+    "RECV": {
+      "true": 4,
+      "false": 3
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 7
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 5
+    },
+    "IRQ": {
+      "true": 2,
+      "false": 2
+    },
+    "LOOP": {
+      "true": 2,
+      "false": 1
+    },
+    "CORE": {
+      "true": 0,
+      "false": 2
+    }
+  },
+  "error": null
+}

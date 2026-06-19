@@ -1,0 +1,5 @@
+# LCMHAL 配置文件 — Zephyr hts221 @ disco_l475_iot1
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/stm32/i2c_hts221_disco_l475"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_i2c_hts221_disco_l475"
+src_path: "/home/haojie/zephyrproject/zephyr"
+proj_path: "/home/haojie/zephyrproject"

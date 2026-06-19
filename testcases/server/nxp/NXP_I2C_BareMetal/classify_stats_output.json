@@ -1,0 +1,1183 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "BOARD_BootClockRUN",
+      "BOARD_BootClockRUN_528M",
+      "BOARD_InitHardware",
+      "BOARD_InitPins",
+      "CLOCK_DeinitAudioPll",
+      "CLOCK_DeinitExternalClk",
+      "CLOCK_DeinitRcOsc24M",
+      "CLOCK_DeinitSysPll",
+      "CLOCK_DeinitUsb1Pll",
+      "CLOCK_DeinitUsb2Pll",
+      "CLOCK_DeinitVideoPll",
+      "CLOCK_DisableUsbhs0PhyPllClock",
+      "CLOCK_EnableUsbhs0Clock",
+      "CLOCK_EnableUsbhs0PhyPllClock",
+      "CLOCK_EnableUsbhs1Clock",
+      "CLOCK_EnableUsbhs1PhyPllClock",
+      "CLOCK_GetPeriphClkFreq",
+      "CLOCK_GetSemcFreq",
+      "CLOCK_GetSysPfdFreq",
+      "CLOCK_GetUsb1PfdFreq",
+      "CLOCK_InitArmPll",
+      "CLOCK_InitAudioPll",
+      "CLOCK_InitEnetPll",
+      "CLOCK_InitExternalClk",
+      "CLOCK_InitRcOsc24M",
+      "CLOCK_InitSysPfd",
+      "CLOCK_InitSysPll",
+      "CLOCK_InitUsb1Pfd",
+      "CLOCK_InitUsb1Pll",
+      "CLOCK_InitUsb2Pll",
+      "CLOCK_InitVideoPll",
+      "CLOCK_SetClockOutput1",
+      "CLOCK_SetClockOutput2",
+      "CLOCK_SwitchOsc",
+      "DCDC_Deinit",
+      "GPIO_PinInit",
+      "LPI2C_MasterConfigureDataMatch",
+      "LPI2C_MasterDeinit",
+      "LPI2C_MasterInit",
+      "LPI2C_MasterStart",
+      "LPI2C_MasterTransferAbort",
+      "LPI2C_MasterTransferCreateHandle",
+      "LPI2C_MasterTransferNonBlocking",
+      "LPI2C_SlaveDeinit",
+      "LPI2C_SlaveInit",
+      "LPI2C_SlaveTransferCreateHandle",
+      "LPI2C_SlaveTransferNonBlocking",
+      "LPI2C_TransferStateMachineSendCommand",
+      "LPUART_Init",
+      "LPUART_TransferStartRingBuffer",
+      "SystemCoreClockUpdate"
+    ],
+    "RETURNOK": [
+      "CLOCK_DeinitEnetPll",
+      "CLOCK_DeinitSysPfd",
+      "CLOCK_DisableUsbhs1PhyPllClock",
+      "CLOCK_GetAhbFreq",
+      "CLOCK_GetClockOutCLKO1Freq",
+      "CLOCK_GetClockOutClkO2Freq",
+      "CLOCK_GetIpgFreq",
+      "CLOCK_GetPerClkFreq",
+      "CLOCK_GetPllFreq",
+      "CLOCK_IsSysPfdEnabled",
+      "CLOCK_IsUsb1PfdEnabled",
+      "LPI2C_CheckForBusyBus",
+      "LPI2C_MasterCheckAndClearError",
+      "LPI2C_MasterSetBaudRate",
+      "LPI2C_SlaveCheckAndClearError"
+    ],
+    "IRQ": [
+      "LPI2C1_IRQHandler",
+      "LPI2C3_IRQHandler",
+      "LPI2C_CommonIRQHandler",
+      "LPI2C_MasterTransferHandleIRQ",
+      "LPI2C_RunTransferStateMachine",
+      "LPI2C_SlaveTransferHandleIRQ",
+      "LPUART_TransferAbortReceive",
+      "LPUART_TransferHandleIDLEReady",
+      "LPUART_TransferHandleSendDataEmpty",
+      "LPUART_TransferSendNonBlocking",
+      "LPUART_TransferStopRingBuffer"
+    ],
+    "NODRIVER": [
+      "BOARD_DebugConsoleSrcFreq",
+      "CLOCK_GetFreq",
+      "CLOCK_GetPllUsb1SWFreq",
+      "CLOCK_SetDiv",
+      "CLOCK_SetMux",
+      "LPI2C_GetInstance",
+      "LPI2C_MasterTransferGetCount",
+      "LPI2C_TransferStateMachineStopState",
+      "main"
+    ],
+    "RECV": [
+      "LPI2C_MasterReceive",
+      "LPI2C_MasterSend",
+      "LPI2C_MasterTransferBlocking",
+      "LPI2C_SlaveReceive",
+      "LPI2C_TransferStateMachineTransferData",
+      "LPUART_TransferHandleReceiveDataFull",
+      "LPUART_TransferReceiveNonBlocking"
+    ],
+    "LOOP": [
+      "LPI2C_MasterStop",
+      "LPI2C_MasterWaitForTxReady",
+      "LPI2C_SlaveSend",
+      "LPI2C_TransferStateMachineWaitState",
+      "LPUART_Deinit"
+    ],
+    "SKIP": [
+      "CLOCK_DeinitArmPll",
+      "CLOCK_DeinitUsb1Pfd",
+      "DCDC_Init",
+      "LPI2C_SlaveTransferAbort",
+      "LPI2C_TransferStateMachineReadCommand"
+    ],
+    "CORE": [
+      "SystemInit"
+    ]
+  },
+  "counts": {
+    "INIT": 51,
+    "RETURNOK": 15,
+    "IRQ": 11,
+    "NODRIVER": 9,
+    "RECV": 7,
+    "LOOP": 5,
+    "SKIP": 5,
+    "CORE": 1,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "BOARD_BootClockRUN",
+        "BOARD_BootClockRUN_528M",
+        "BOARD_InitHardware",
+        "BOARD_InitPins",
+        "CLOCK_DeinitAudioPll",
+        "CLOCK_DeinitExternalClk",
+        "CLOCK_DeinitUsb1Pll",
+        "CLOCK_DisableUsbhs0PhyPllClock",
+        "CLOCK_EnableUsbhs0Clock",
+        "CLOCK_EnableUsbhs0PhyPllClock",
+        "CLOCK_EnableUsbhs1PhyPllClock",
+        "CLOCK_GetPeriphClkFreq",
+        "CLOCK_GetSemcFreq",
+        "CLOCK_GetSysPfdFreq",
+        "CLOCK_InitArmPll",
+        "CLOCK_InitAudioPll",
+        "CLOCK_InitEnetPll",
+        "CLOCK_InitRcOsc24M",
+        "CLOCK_InitSysPfd",
+        "CLOCK_InitSysPll",
+        "CLOCK_InitUsb1Pll",
+        "CLOCK_InitUsb2Pll",
+        "CLOCK_InitVideoPll",
+        "CLOCK_SetClockOutput1",
+        "CLOCK_SwitchOsc",
+        "DCDC_Deinit",
+        "GPIO_PinInit",
+        "LPI2C_MasterConfigureDataMatch",
+        "LPI2C_MasterDeinit",
+        "LPI2C_MasterInit",
+        "LPI2C_MasterTransferAbort",
+        "LPI2C_MasterTransferCreateHandle",
+        "LPI2C_SlaveInit",
+        "LPI2C_SlaveTransferNonBlocking",
+        "LPI2C_TransferStateMachineSendCommand",
+        "LPUART_Init",
+        "SystemCoreClockUpdate"
+      ],
+      "false": [
+        "CLOCK_DeinitRcOsc24M",
+        "CLOCK_DeinitSysPll",
+        "CLOCK_DeinitUsb2Pll",
+        "CLOCK_DeinitVideoPll",
+        "CLOCK_EnableUsbhs1Clock",
+        "CLOCK_GetUsb1PfdFreq",
+        "CLOCK_InitExternalClk",
+        "CLOCK_InitUsb1Pfd",
+        "CLOCK_SetClockOutput2",
+        "LPI2C_MasterStart",
+        "LPI2C_MasterTransferNonBlocking",
+        "LPI2C_SlaveDeinit",
+        "LPI2C_SlaveTransferCreateHandle",
+        "LPUART_TransferStartRingBuffer"
+      ]
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "CLOCK_DeinitEnetPll",
+        "CLOCK_DeinitSysPfd",
+        "CLOCK_DisableUsbhs1PhyPllClock",
+        "CLOCK_GetAhbFreq",
+        "CLOCK_GetClockOutCLKO1Freq",
+        "CLOCK_GetClockOutClkO2Freq",
+        "CLOCK_GetIpgFreq",
+        "CLOCK_GetPerClkFreq",
+        "CLOCK_GetPllFreq",
+        "CLOCK_IsSysPfdEnabled",
+        "CLOCK_IsUsb1PfdEnabled",
+        "LPI2C_CheckForBusyBus",
+        "LPI2C_MasterCheckAndClearError",
+        "LPI2C_MasterSetBaudRate",
+        "LPI2C_SlaveCheckAndClearError"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "LPI2C1_IRQHandler",
+        "LPI2C3_IRQHandler",
+        "LPI2C_MasterTransferHandleIRQ",
+        "LPI2C_SlaveTransferHandleIRQ",
+        "LPUART_TransferHandleIDLEReady"
+      ],
+      "false": [
+        "LPI2C_CommonIRQHandler",
+        "LPI2C_RunTransferStateMachine",
+        "LPUART_TransferAbortReceive",
+        "LPUART_TransferHandleSendDataEmpty",
+        "LPUART_TransferSendNonBlocking",
+        "LPUART_TransferStopRingBuffer"
+      ]
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "BOARD_DebugConsoleSrcFreq",
+        "CLOCK_GetFreq",
+        "CLOCK_GetPllUsb1SWFreq",
+        "CLOCK_SetDiv",
+        "CLOCK_SetMux",
+        "LPI2C_GetInstance",
+        "LPI2C_MasterTransferGetCount",
+        "LPI2C_TransferStateMachineStopState",
+        "main"
+      ]
+    },
+    "RECV": {
+      "true": [
+        "LPI2C_MasterSend",
+        "LPI2C_SlaveReceive",
+        "LPI2C_TransferStateMachineTransferData",
+        "LPUART_TransferReceiveNonBlocking"
+      ],
+      "false": [
+        "LPI2C_MasterReceive",
+        "LPI2C_MasterTransferBlocking",
+        "LPUART_TransferHandleReceiveDataFull"
+      ]
+    },
+    "LOOP": {
+      "true": [
+        "LPI2C_MasterWaitForTxReady",
+        "LPI2C_TransferStateMachineWaitState",
+        "LPUART_Deinit"
+      ],
+      "false": [
+        "LPI2C_MasterStop",
+        "LPI2C_SlaveSend"
+      ]
+    },
+    "SKIP": {
+      "true": [
+        "LPI2C_TransferStateMachineReadCommand"
+      ],
+      "false": [
+        "CLOCK_DeinitArmPll",
+        "CLOCK_DeinitUsb1Pfd",
+        "DCDC_Init",
+        "LPI2C_SlaveTransferAbort"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "SystemInit"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 37,
+      "false": 14
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 15
+    },
+    "IRQ": {
+      "true": 5,
+      "false": 6
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 9
+    },
+    "RECV": {
+      "true": 4,
+      "false": 3
+    },
+    "LOOP": {
+      "true": 3,
+      "false": 2
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 4
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "per_function": {
+    "GPIO_PinInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_GPIO_PinInit_20260406213503.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406213310.json"
+    },
+    "LPUART_TransferHandleIDLEReady": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferHandleIDLEReady_20260406213059.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleIDLEReady_20260406212555.json"
+    },
+    "CLOCK_GetFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetFreq_20260406194635.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitAudioPll_20260406213958.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitAudioPll_20260406213823.json"
+    },
+    "LPUART_TransferStartRingBuffer": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferStartRingBuffer_20260406211954.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferStartRingBuffer_20260406211724.json"
+    },
+    "LPI2C_RunTransferStateMachine": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_RunTransferStateMachine_20260406205622.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_TransferStateMachineSendCommand": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_TransferStateMachineSendCommand_20260406210045.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitRcOsc24M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitRcOsc24M_20260406213439.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitRcOsc24M_20260406213154.json"
+    },
+    "LPUART_TransferHandleReceiveDataFull": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferHandleReceiveDataFull_20260406213525.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleReceiveDataFull_20260406213241.json"
+    },
+    "SystemCoreClockUpdate": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_SystemCoreClockUpdate_20260406211237.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_SystemCoreClockUpdate_20260406210931.json"
+    },
+    "CLOCK_DeinitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitVideoPll_20260406194512.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetAhbFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetAhbFreq_20260406194544.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferSendNonBlocking": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferSendNonBlocking_20260406213251.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferSendNonBlocking_20260406213036.json"
+    },
+    "CLOCK_SwitchOsc": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SwitchOsc_20260406213723.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SwitchOsc_20260406213605.json"
+    },
+    "LPI2C_CommonIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_CommonIRQHandler_20260406213652.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_CommonIRQHandler_20260406213438.json"
+    },
+    "CLOCK_GetPllFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPllFreq_20260406194814.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterStart": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterStart_20260406213030.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterStart_20260406212913.json"
+    },
+    "CLOCK_EnableUsbhs0Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0Clock_20260406194618.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterDeinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterDeinit_20260406200254.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterDeinit_20260406213253.json"
+    },
+    "LPI2C_MasterTransferBlocking": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterTransferBlocking_20260406212320.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterTransferBlocking_20260406212051.json"
+    },
+    "CLOCK_GetSemcFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetSemcFreq_20260406194806.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_SlaveTransferHandleIRQ": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveTransferHandleIRQ_20260406210056.json",
+      "has_replacement_update": false
+    },
+    "SystemInit": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_SystemInit_20260406210551.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferStopRingBuffer": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferStopRingBuffer_20260406212106.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferStopRingBuffer_20260406211322.json"
+    },
+    "CLOCK_GetUsb1PfdFreq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetUsb1PfdFreq_20260406211428.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_GetUsb1PfdFreq_20260406211332.json"
+    },
+    "LPI2C_MasterTransferCreateHandle": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterTransferCreateHandle_20260406212424.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterTransferCreateHandle_20260406215455.json"
+    },
+    "CLOCK_DeinitSysPfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPfd_20260406194413.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterStop": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterStop_20260406212738.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterStop_20260219023315.json"
+    },
+    "CLOCK_EnableUsbhs1PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1PhyPllClock_20260406211830.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1PhyPllClock_20260406211646.json"
+    },
+    "CLOCK_InitUsb1Pfd": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pfd_20260406211907.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetIpgFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetIpgFreq_20260406194725.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterWaitForTxReady": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterWaitForTxReady_20260406212504.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterWaitForTxReady_20260219023247.json"
+    },
+    "CLOCK_DeinitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitAudioPll_20260406194334.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterReceive": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterReceive_20260406213233.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterReceive_20260219023259.json"
+    },
+    "CLOCK_InitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitExternalClk_20260406212517.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitExternalClk_20260406211216.json"
+    },
+    "LPI2C_SlaveTransferAbort": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveTransferAbort_20260406210028.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_Init_20260406211950.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClockOutput1": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput1_20260406213657.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput1_20260406213223.json"
+    },
+    "DCDC_Init": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_DCDC_Init_20260406211014.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pll_20260406214453.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitUsb1Pll_20260406214126.json"
+    },
+    "CLOCK_DeinitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pll_20260406194443.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterCheckAndClearError": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterCheckAndClearError_20260406200852.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitExternalClk_20260406194344.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_IsSysPfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_IsSysPfdEnabled_20260406195859.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitEnetPll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitEnetPll_20260406194330.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_IsUsb1PfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_IsUsb1PfdEnabled_20260406195654.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferAbortReceive": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferAbortReceive_20260406212115.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferAbortReceive_20260406211551.json"
+    },
+    "DCDC_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_DCDC_Deinit_20260406201630.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterTransferNonBlocking": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterTransferNonBlocking_20260406211137.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs1Clock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1Clock_20260406212129.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterSetBaudRate": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterSetBaudRate_20260219111201.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterSetBaudRate_20260406215335.json"
+    },
+    "CLOCK_GetSysPfdFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetSysPfdFreq_20260406194811.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitArmPll_20260406211556.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitArmPll_20260406211456.json"
+    },
+    "LPI2C_MasterTransferHandleIRQ": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterTransferHandleIRQ_20260406202509.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferReceiveNonBlocking": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferReceiveNonBlocking_20260406213147.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferReceiveNonBlocking_20260406212518.json"
+    },
+    "LPI2C_MasterSend": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterSend_20260406212658.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterSend_20260406212259.json"
+    },
+    "LPI2C_SlaveDeinit": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveDeinit_20260406211214.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_SlaveDeinit_20260406213545.json"
+    },
+    "LPUART_TransferHandleSendDataEmpty": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferHandleSendDataEmpty_20260406213538.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleSendDataEmpty_20260406213346.json"
+    },
+    "LPI2C_SlaveSend": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveSend_20260406212315.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitVideoPll_20260406213546.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitVideoPll_20260406213353.json"
+    },
+    "LPI2C_SlaveTransferCreateHandle": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveTransferCreateHandle_20260406212322.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_SlaveTransferCreateHandle_20260406215245.json"
+    },
+    "CLOCK_InitSysPfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitSysPfd_20260406211048.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitSysPfd_20260406210814.json"
+    },
+    "BOARD_DebugConsoleSrcFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_BOARD_DebugConsoleSrcFreq_20260406194328.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs0PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs0PhyPllClock_20260406213954.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_DisableUsbhs0PhyPllClock_20260406213702.json"
+    },
+    "LPI2C_MasterInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterInit_20260406202516.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_CheckForBusyBus": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_CheckForBusyBus_20260406201629.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_SlaveTransferNonBlocking": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveTransferNonBlocking_20260406204933.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_SlaveInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveInit_20260406204632.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_TransferStateMachineReadCommand": {
+      "function_type": "SKIP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_TransferStateMachineReadCommand_20260406210029.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPll_20260406194414.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_TransferStateMachineStopState": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_TransferStateMachineStopState_20260406211021.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetMux": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetMux_20260219111159.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetMux_20260218192237.json"
+    },
+    "LPI2C_SlaveCheckAndClearError": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveCheckAndClearError_20260406203536.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_TransferStateMachineTransferData": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_TransferStateMachineTransferData_20260406211932.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_TransferStateMachineTransferData_20260406205618.json"
+    },
+    "LPI2C_MasterTransferGetCount": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterTransferGetCount_20260406200859.json",
+      "has_replacement_update": false
+    },
+    "LPI2C1_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C1_IRQHandler_20260406204908.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClockOutput2": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput2_20260406210405.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput2_20260406205945.json"
+    },
+    "LPI2C3_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C3_IRQHandler_20260406210022.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_MasterTransferAbort": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterTransferAbort_20260406200450.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPllUsb1SWFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPllUsb1SWFreq_20260406194656.json",
+      "has_replacement_update": false
+    },
+    "BOARD_BootClockRUN_528M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_528M_20260406201408.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitHardware": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_BOARD_InitHardware_20260406194412.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Deinit": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPUART_Deinit_20260406210034.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPeriphClkFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPeriphClkFreq_20260406194653.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb2Pll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb2Pll_20260406194438.json",
+      "has_replacement_update": false
+    },
+    "main": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_main_20260219111201.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutCLKO1Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetClockOutCLKO1Freq_20260406194608.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPerClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPerClkFreq_20260406194621.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitEnetPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitEnetPll_20260219111230.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitEnetPll_20260406215409.json"
+    },
+    "CLOCK_DeinitArmPll": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitArmPll_20260406194323.json",
+      "has_replacement_update": false
+    },
+    "BOARD_BootClockRUN": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_20260219111157.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_BOARD_BootClockRUN_20260219023431.json"
+    },
+    "LPI2C_GetInstance": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_GetInstance_20260219111155.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_TransferStateMachineWaitState": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_TransferStateMachineWaitState_20260406210009.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb2Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitUsb2Pll_20260219111225.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitUsb2Pll_20260406215327.json"
+    },
+    "CLOCK_EnableUsbhs0PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0PhyPllClock_20260406194656.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitPins": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_BOARD_InitPins_20260406194354.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitSysPll_20260219111219.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitSysPll_20260406212324.json"
+    },
+    "LPI2C_MasterConfigureDataMatch": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_MasterConfigureDataMatch_20260406200240.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb1Pfd": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pfd_20260406194425.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetDiv": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetDiv_20260219111151.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetDiv_20260218192229.json"
+    },
+    "CLOCK_DeinitRcOsc24M": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitRcOsc24M_20260406194425.json",
+      "has_replacement_update": false
+    },
+    "LPI2C_SlaveReceive": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_LPI2C_SlaveReceive_20260219111158.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_SlaveReceive_20260219111431.json"
+    },
+    "CLOCK_DisableUsbhs1PhyPllClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs1PhyPllClock_20260406194500.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutClkO2Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetClockOutClkO2Freq_20260406194551.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 104,
+  "replacement_update_count": 45,
+  "replacement_update_functions": [
+    "BOARD_BootClockRUN",
+    "CLOCK_DisableUsbhs0PhyPllClock",
+    "CLOCK_EnableUsbhs1PhyPllClock",
+    "CLOCK_GetUsb1PfdFreq",
+    "CLOCK_InitArmPll",
+    "CLOCK_InitAudioPll",
+    "CLOCK_InitEnetPll",
+    "CLOCK_InitExternalClk",
+    "CLOCK_InitRcOsc24M",
+    "CLOCK_InitSysPfd",
+    "CLOCK_InitSysPll",
+    "CLOCK_InitUsb1Pll",
+    "CLOCK_InitUsb2Pll",
+    "CLOCK_InitVideoPll",
+    "CLOCK_SetClockOutput1",
+    "CLOCK_SetClockOutput2",
+    "CLOCK_SetDiv",
+    "CLOCK_SetMux",
+    "CLOCK_SwitchOsc",
+    "GPIO_PinInit",
+    "HAL_UartSendBlocking",
+    "LPI2C_CommonIRQHandler",
+    "LPI2C_MasterDeinit",
+    "LPI2C_MasterReceive",
+    "LPI2C_MasterSend",
+    "LPI2C_MasterSetBaudRate",
+    "LPI2C_MasterStart",
+    "LPI2C_MasterStop",
+    "LPI2C_MasterTransferBlocking",
+    "LPI2C_MasterTransferCreateHandle",
+    "LPI2C_MasterWaitForTxReady",
+    "LPI2C_SlaveDeinit",
+    "LPI2C_SlaveReceive",
+    "LPI2C_SlaveTransferCreateHandle",
+    "LPI2C_TransferStateMachineTransferData",
+    "LPUART_TransferAbortReceive",
+    "LPUART_TransferHandleIDLEReady",
+    "LPUART_TransferHandleReceiveDataFull",
+    "LPUART_TransferHandleSendDataEmpty",
+    "LPUART_TransferReceiveNonBlocking",
+    "LPUART_TransferSendNonBlocking",
+    "LPUART_TransferStartRingBuffer",
+    "LPUART_TransferStopRingBuffer",
+    "LPUART_WriteBlocking",
+    "SystemCoreClockUpdate"
+  ],
+  "replacement_update_by_function": {
+    "LPI2C_SlaveTransferCreateHandle": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_SlaveTransferCreateHandle_20260406215245.json"
+    },
+    "LPI2C_MasterStop": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterStop_20260219023315.json"
+    },
+    "CLOCK_InitAudioPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitAudioPll_20260406213823.json"
+    },
+    "CLOCK_InitEnetPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitEnetPll_20260406215409.json"
+    },
+    "HAL_UartSendBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_HAL_UartSendBlocking_20260406214605.json"
+    },
+    "LPUART_TransferSendNonBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferSendNonBlocking_20260406213036.json"
+    },
+    "LPUART_TransferHandleIDLEReady": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleIDLEReady_20260406212555.json"
+    },
+    "CLOCK_InitVideoPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitVideoPll_20260406213353.json"
+    },
+    "GPIO_PinInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406213310.json"
+    },
+    "LPI2C_MasterTransferCreateHandle": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterTransferCreateHandle_20260406215455.json"
+    },
+    "LPUART_TransferHandleReceiveDataFull": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleReceiveDataFull_20260406213241.json"
+    },
+    "SystemCoreClockUpdate": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_SystemCoreClockUpdate_20260406210931.json"
+    },
+    "CLOCK_InitArmPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitArmPll_20260406211456.json"
+    },
+    "LPUART_TransferHandleSendDataEmpty": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleSendDataEmpty_20260406213346.json"
+    },
+    "CLOCK_InitRcOsc24M": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitRcOsc24M_20260406213154.json"
+    },
+    "CLOCK_EnableUsbhs1PhyPllClock": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1PhyPllClock_20260406211646.json"
+    },
+    "LPI2C_MasterStart": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterStart_20260406212913.json"
+    },
+    "LPI2C_SlaveDeinit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_SlaveDeinit_20260406213545.json"
+    },
+    "CLOCK_InitSysPfd": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitSysPfd_20260406210814.json"
+    },
+    "LPUART_TransferReceiveNonBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferReceiveNonBlocking_20260406212518.json"
+    },
+    "LPI2C_MasterTransferBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterTransferBlocking_20260406212051.json"
+    },
+    "CLOCK_SetDiv": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetDiv_20260218192229.json"
+    },
+    "LPI2C_MasterDeinit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterDeinit_20260406213253.json"
+    },
+    "CLOCK_GetUsb1PfdFreq": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_GetUsb1PfdFreq_20260406211332.json"
+    },
+    "CLOCK_SwitchOsc": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SwitchOsc_20260406213605.json"
+    },
+    "LPI2C_MasterSend": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterSend_20260406212259.json"
+    },
+    "CLOCK_DisableUsbhs0PhyPllClock": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_DisableUsbhs0PhyPllClock_20260406213702.json"
+    },
+    "CLOCK_InitUsb1Pll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitUsb1Pll_20260406214126.json"
+    },
+    "CLOCK_SetMux": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetMux_20260218192237.json"
+    },
+    "LPI2C_MasterWaitForTxReady": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterWaitForTxReady_20260219023247.json"
+    },
+    "LPI2C_MasterReceive": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterReceive_20260219023259.json"
+    },
+    "LPI2C_SlaveReceive": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_SlaveReceive_20260219111431.json"
+    },
+    "LPUART_TransferStartRingBuffer": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferStartRingBuffer_20260406211724.json"
+    },
+    "LPUART_WriteBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_WriteBlocking_20260406214525.json"
+    },
+    "CLOCK_InitExternalClk": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitExternalClk_20260406211216.json"
+    },
+    "LPI2C_CommonIRQHandler": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_CommonIRQHandler_20260406213438.json"
+    },
+    "LPUART_TransferAbortReceive": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferAbortReceive_20260406211551.json"
+    },
+    "LPI2C_TransferStateMachineTransferData": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_TransferStateMachineTransferData_20260406205618.json"
+    },
+    "BOARD_BootClockRUN": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_BOARD_BootClockRUN_20260219023431.json"
+    },
+    "LPI2C_MasterSetBaudRate": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPI2C_MasterSetBaudRate_20260406215335.json"
+    },
+    "CLOCK_SetClockOutput2": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput2_20260406205945.json"
+    },
+    "CLOCK_InitUsb2Pll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitUsb2Pll_20260406215327.json"
+    },
+    "CLOCK_SetClockOutput1": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput1_20260406213223.json"
+    },
+    "LPUART_TransferStopRingBuffer": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferStopRingBuffer_20260406211322.json"
+    },
+    "CLOCK_InitSysPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitSysPll_20260406212324.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "HAL_UartSendBlocking",
+    "LPUART_WriteBlocking"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_I2C_BareMetal"
+}

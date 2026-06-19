@@ -1,0 +1,4 @@
+db_path: /home/haojie/workspace/dbs_server/DATABASE_LwIP_StreamingServer
+proj_path: /home/haojie/posixGen_Demos/LwIP_StreamingServer
+script_path: /home/haojie/workspace/lcmhalmcp/testcases/server/stm32/LwIP_StreamingServer
+src_path: /home/haojie/posixGen_Demos/LwIP_StreamingServer

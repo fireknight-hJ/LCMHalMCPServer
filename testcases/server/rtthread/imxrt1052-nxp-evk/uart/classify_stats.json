@@ -1,0 +1,41 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/uart",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log",
+  "total_functions": 73,
+  "counts": {
+    "INIT": 43,
+    "RETURNOK": 22,
+    "SKIP": 4,
+    "CORE": 2,
+    "IRQ": 1,
+    "NODRIVER": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 38,
+      "false": 5
+    },
+    "RETURNOK": {
+      "true": 1,
+      "false": 21
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 3
+    },
+    "CORE": {
+      "true": 0,
+      "false": 2
+    },
+    "IRQ": {
+      "true": 1,
+      "false": 0
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

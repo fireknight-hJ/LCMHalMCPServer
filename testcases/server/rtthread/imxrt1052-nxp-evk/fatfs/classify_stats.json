@@ -1,0 +1,41 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/fatfs",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_fatfs/lcmhal_ai_log",
+  "total_functions": 53,
+  "counts": {
+    "INIT": 32,
+    "RETURNOK": 12,
+    "SKIP": 5,
+    "LOOP": 2,
+    "CORE": 1,
+    "NODRIVER": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 27,
+      "false": 5
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 12
+    },
+    "SKIP": {
+      "true": 2,
+      "false": 3
+    },
+    "LOOP": {
+      "true": 2,
+      "false": 0
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

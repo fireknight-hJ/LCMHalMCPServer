@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_LwIP_FreeRTOS",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_FreeRTOS/lcmhal_ai_log",
+  "total_functions": 107,
+  "counts": {
+    "INIT": 54,
+    "RETURNOK": 28,
+    "IRQ": 8,
+    "RECV": 5,
+    "LOOP": 4,
+    "NODRIVER": 4,
+    "CORE": 2,
+    "SKIP": 2,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 54,
+      "false": 0
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 28
+    },
+    "IRQ": {
+      "true": 7,
+      "false": 1
+    },
+    "RECV": {
+      "true": 5,
+      "false": 0
+    },
+    "LOOP": {
+      "true": 4,
+      "false": 0
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 4
+    },
+    "CORE": {
+      "true": 0,
+      "false": 2
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 2
+    }
+  },
+  "error": null
+}

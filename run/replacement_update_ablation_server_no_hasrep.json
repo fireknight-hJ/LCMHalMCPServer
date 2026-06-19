@@ -1,0 +1,413 @@
+{
+  "root": "/home/haojie/workspace/lcmhalmcp/testcases/server",
+  "demo_count": 39,
+  "positive_types": [
+    "INIT",
+    "IRQ",
+    "LOOP",
+    "RECV"
+  ],
+  "include_has_replacement_in_baseline": false,
+  "overall": {
+    "total_functions": 4244,
+    "baseline_predicted_count_sum": 2181,
+    "with_ru_predicted_count_sum": 2221,
+    "ru_increment_count_sum": 40,
+    "ru_increment_ratio_over_total": 0.00942507068803016,
+    "ru_increment_ratio_over_baseline": 0.018340210912425492,
+    "replacement_update_log_function_count_sum": 516,
+    "ru_only_function_union_count": 30
+  },
+  "demos": [
+    {
+      "rel_path": "nxp/NXP_FATFS_BareMetal",
+      "total": 67,
+      "baseline_count": 42,
+      "with_ru_count": 43,
+      "ru_increment_count": 1,
+      "ru_increment_ratio_total": 0.014925373134328358,
+      "ru_increment_ratio_baseline": 0.023809523809523808,
+      "ru_log_function_count": 26
+    },
+    {
+      "rel_path": "nxp/NXP_FATFS_FreeRTOS",
+      "total": 65,
+      "baseline_count": 41,
+      "with_ru_count": 41,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 34
+    },
+    {
+      "rel_path": "nxp/NXP_I2C_BareMetal",
+      "total": 104,
+      "baseline_count": 74,
+      "with_ru_count": 77,
+      "ru_increment_count": 3,
+      "ru_increment_ratio_total": 0.028846153846153848,
+      "ru_increment_ratio_baseline": 0.04054054054054054,
+      "ru_log_function_count": 45
+    },
+    {
+      "rel_path": "nxp/NXP_I2C_FreeRTOS",
+      "total": 0,
+      "baseline_count": 0,
+      "with_ru_count": 0,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "nxp/NXP_LwIP_BareMetal",
+      "total": 105,
+      "baseline_count": 64,
+      "with_ru_count": 66,
+      "ru_increment_count": 2,
+      "ru_increment_ratio_total": 0.01904761904761905,
+      "ru_increment_ratio_baseline": 0.03125,
+      "ru_log_function_count": 20
+    },
+    {
+      "rel_path": "nxp/NXP_LwIP_FreeRTOS",
+      "total": 107,
+      "baseline_count": 71,
+      "with_ru_count": 71,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 9
+    },
+    {
+      "rel_path": "nxp/NXP_UART_BareMetal",
+      "total": 90,
+      "baseline_count": 49,
+      "with_ru_count": 56,
+      "ru_increment_count": 7,
+      "ru_increment_ratio_total": 0.07777777777777778,
+      "ru_increment_ratio_baseline": 0.14285714285714285,
+      "ru_log_function_count": 33
+    },
+    {
+      "rel_path": "nxp/NXP_UART_FreeRTOS",
+      "total": 91,
+      "baseline_count": 62,
+      "with_ru_count": 62,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 25
+    },
+    {
+      "rel_path": "rtthread/imxrt1052-nxp-evk/base",
+      "total": 53,
+      "baseline_count": 37,
+      "with_ru_count": 37,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 18
+    },
+    {
+      "rel_path": "rtthread/imxrt1052-nxp-evk/fatfs",
+      "total": 53,
+      "baseline_count": 34,
+      "with_ru_count": 37,
+      "ru_increment_count": 3,
+      "ru_increment_ratio_total": 0.05660377358490566,
+      "ru_increment_ratio_baseline": 0.08823529411764706,
+      "ru_log_function_count": 24
+    },
+    {
+      "rel_path": "rtthread/imxrt1052-nxp-evk/i2c",
+      "total": 110,
+      "baseline_count": 67,
+      "with_ru_count": 67,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 33
+    },
+    {
+      "rel_path": "rtthread/imxrt1052-nxp-evk/uart",
+      "total": 73,
+      "baseline_count": 44,
+      "with_ru_count": 46,
+      "ru_increment_count": 2,
+      "ru_increment_ratio_total": 0.0273972602739726,
+      "ru_increment_ratio_baseline": 0.045454545454545456,
+      "ru_log_function_count": 20
+    },
+    {
+      "rel_path": "rtthread/imxrt1060-nxp-evk/base",
+      "total": 65,
+      "baseline_count": 15,
+      "with_ru_count": 15,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 4
+    },
+    {
+      "rel_path": "rtthread/imxrt1060-nxp-evk/eth",
+      "total": 73,
+      "baseline_count": 26,
+      "with_ru_count": 26,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 5
+    },
+    {
+      "rel_path": "rtthread/stm32f401-st-nucleo/base",
+      "total": 55,
+      "baseline_count": 34,
+      "with_ru_count": 38,
+      "ru_increment_count": 4,
+      "ru_increment_ratio_total": 0.07272727272727272,
+      "ru_increment_ratio_baseline": 0.11764705882352941,
+      "ru_log_function_count": 26
+    },
+    {
+      "rel_path": "rtthread/stm32f401-st-nucleo/eth",
+      "total": 55,
+      "baseline_count": 36,
+      "with_ru_count": 37,
+      "ru_increment_count": 1,
+      "ru_increment_ratio_total": 0.01818181818181818,
+      "ru_increment_ratio_baseline": 0.027777777777777776,
+      "ru_log_function_count": 19
+    },
+    {
+      "rel_path": "rtthread/stm32f401-st-nucleo/fatfs",
+      "total": 56,
+      "baseline_count": 43,
+      "with_ru_count": 43,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 14
+    },
+    {
+      "rel_path": "rtthread/stm32f401-st-nucleo/fatfst-nucleo/fatfs",
+      "total": 281,
+      "baseline_count": 182,
+      "with_ru_count": 184,
+      "ru_increment_count": 2,
+      "ru_increment_ratio_total": 0.0071174377224199285,
+      "ru_increment_ratio_baseline": 0.01098901098901099,
+      "ru_log_function_count": 18
+    },
+    {
+      "rel_path": "rtthread/stm32f401-st-nucleo/i2c",
+      "total": 55,
+      "baseline_count": 38,
+      "with_ru_count": 38,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 5
+    },
+    {
+      "rel_path": "rtthread/stm32f401-st-nucleo/uart",
+      "total": 55,
+      "baseline_count": 40,
+      "with_ru_count": 40,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 11
+    },
+    {
+      "rel_path": "stm32/BLE_HeartRateFreeRTOS",
+      "total": 109,
+      "baseline_count": 65,
+      "with_ru_count": 65,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "stm32/FatFs_USBDisk_RTOS",
+      "total": 0,
+      "baseline_count": 0,
+      "with_ru_count": 0,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "stm32/LwIP_HTTP_Server_Raw",
+      "total": 106,
+      "baseline_count": 82,
+      "with_ru_count": 85,
+      "ru_increment_count": 3,
+      "ru_increment_ratio_total": 0.02830188679245283,
+      "ru_increment_ratio_baseline": 0.036585365853658534,
+      "ru_log_function_count": 3
+    },
+    {
+      "rel_path": "stm32/LwIP_HTTP_Server_SocketRTOS",
+      "total": 281,
+      "baseline_count": 182,
+      "with_ru_count": 184,
+      "ru_increment_count": 2,
+      "ru_increment_ratio_total": 0.0071174377224199285,
+      "ru_increment_ratio_baseline": 0.01098901098901099,
+      "ru_log_function_count": 18
+    },
+    {
+      "rel_path": "stm32/LwIP_HTTP_Server_Socket_RTOS",
+      "total": 304,
+      "baseline_count": 221,
+      "with_ru_count": 221,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 17
+    },
+    {
+      "rel_path": "stm32/LwIP_StreamingServer",
+      "total": 281,
+      "baseline_count": 182,
+      "with_ru_count": 184,
+      "ru_increment_count": 2,
+      "ru_increment_ratio_total": 0.0071174377224199285,
+      "ru_increment_ratio_baseline": 0.01098901098901099,
+      "ru_log_function_count": 18
+    },
+    {
+      "rel_path": "stm32/UART_Hyperterminal_IT",
+      "total": 120,
+      "baseline_count": 87,
+      "with_ru_count": 89,
+      "ru_increment_count": 2,
+      "ru_increment_ratio_total": 0.016666666666666666,
+      "ru_increment_ratio_baseline": 0.022988505747126436,
+      "ru_log_function_count": 8
+    },
+    {
+      "rel_path": "zephyr/atmel/eth_dhcpv4_sam_e70",
+      "total": 188,
+      "baseline_count": 12,
+      "with_ru_count": 13,
+      "ru_increment_count": 1,
+      "ru_increment_ratio_total": 0.005319148936170213,
+      "ru_increment_ratio_baseline": 0.08333333333333333,
+      "ru_log_function_count": 7
+    },
+    {
+      "rel_path": "zephyr/atmel/fs_littlefs_atsame54",
+      "total": 76,
+      "baseline_count": 19,
+      "with_ru_count": 21,
+      "ru_increment_count": 2,
+      "ru_increment_ratio_total": 0.02631578947368421,
+      "ru_increment_ratio_baseline": 0.10526315789473684,
+      "ru_log_function_count": 25
+    },
+    {
+      "rel_path": "zephyr/atmel/i2c_shell_atsame54",
+      "total": 79,
+      "baseline_count": 16,
+      "with_ru_count": 16,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 11
+    },
+    {
+      "rel_path": "zephyr/atmel/uart_echo_atsame54",
+      "total": 63,
+      "baseline_count": 13,
+      "with_ru_count": 16,
+      "ru_increment_count": 3,
+      "ru_increment_ratio_total": 0.047619047619047616,
+      "ru_increment_ratio_baseline": 0.23076923076923078,
+      "ru_log_function_count": 13
+    },
+    {
+      "rel_path": "zephyr/nxp/eth_dhcpv4_mimxrt1060",
+      "total": 276,
+      "baseline_count": 71,
+      "with_ru_count": 71,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 5
+    },
+    {
+      "rel_path": "zephyr/nxp/fs_littlefs_mimxrt1060",
+      "total": 113,
+      "baseline_count": 32,
+      "with_ru_count": 32,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 2
+    },
+    {
+      "rel_path": "zephyr/nxp/i2c_fxos8700_lpc55",
+      "total": 150,
+      "baseline_count": 61,
+      "with_ru_count": 61,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "zephyr/nxp/uart_echo_mimxrt1060",
+      "total": 103,
+      "baseline_count": 30,
+      "with_ru_count": 30,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "zephyr/stm32/eth_dhcpv4_nucleo_f767zi",
+      "total": 260,
+      "baseline_count": 37,
+      "with_ru_count": 37,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "zephyr/stm32/fs_littlefs_disco_l475",
+      "total": 50,
+      "baseline_count": 32,
+      "with_ru_count": 32,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "zephyr/stm32/i2c_hts221_disco_l475",
+      "total": 37,
+      "baseline_count": 21,
+      "with_ru_count": 21,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    },
+    {
+      "rel_path": "zephyr/stm32/uart_echo_disco_l475",
+      "total": 35,
+      "baseline_count": 19,
+      "with_ru_count": 19,
+      "ru_increment_count": 0,
+      "ru_increment_ratio_total": 0.0,
+      "ru_increment_ratio_baseline": 0.0,
+      "ru_log_function_count": 0
+    }
+  ]
+}

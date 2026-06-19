@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-04-15 05:27:59",
+  "case_count": 3,
+  "cases": [
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/BLE_HeartRateFreeRTOS",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS",
+      "return_code": 2,
+      "elapsed_sec_wall": 0.018,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/session_d84f7e7d-5612-47d8-a7ab-24c75e5b4de2_20260415_034311.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": "/usr/bin/python: can't open file '/home/haojie/workspace/lcmhalmcp/main.py': [Errno 2] No such file or directory\n"
+    },
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/FatFs_USBDisk_RTOS",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS",
+      "return_code": 2,
+      "elapsed_sec_wall": 0.022,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/lcmhal_ai_log/session_dd6f8ede-69a6-485a-a5a8-218b9cf99a25_20260414_231016.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": "/usr/bin/python: can't open file '/home/haojie/workspace/lcmhalmcp/main.py': [Errno 2] No such file or directory\n"
+    },
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/LwIP_HTTP_Server_Raw",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_LwIP_HTTP_Server_Raw",
+      "return_code": 2,
+      "elapsed_sec_wall": 0.019,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_LwIP_HTTP_Server_Raw/lcmhal_ai_log/session_3524c566-4eee-4fce-9efa-a67c1ddfab2a_20260414_231037.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": "/usr/bin/python: can't open file '/home/haojie/workspace/lcmhalmcp/main.py': [Errno 2] No such file or directory\n"
+    }
+  ],
+  "overall": {
+    "success_count": 0,
+    "total_tokens": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_llm_elapsed_ms": 0.0,
+    "total_wall_sec": 0.059,
+    "analyzer_tokens": 0,
+    "builder_tokens": 0,
+    "fixer_tokens": 0,
+    "emulator_tokens": 0
+  }
+}

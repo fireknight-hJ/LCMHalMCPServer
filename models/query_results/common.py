@@ -36,18 +36,31 @@ class FunctionInfo(QueryInfo):
 
     @staticmethod
     def resolve_from_query_result(db_path: str, result: List[Dict[str, Any]]) -> Dict[str, 'FunctionInfo']:
-        """从查询结果解析函数信息，返回字典，键为函数名"""
-        functions: Dict[str, FunctionInfo] = {}
+        """从查询结果解析函数信息，返回字典，键为函数名。
+        当同一函数名存在多处定义（如 __weak 与强符号）时，优先保留非 __weak（weak_flag='normal'）的定义。"""
+        # result 每行: (func_name, file_path, location_line, weak_flag, driver_flag)
+        candidates: Dict[str, List[tuple]] = {}
         for item in result:
             func_name, file_path, location_line = item[0], item[1], item[2]
+            weak_flag = item[3] if len(item) > 3 else "normal"
+            candidates.setdefault(func_name, []).append((file_path, location_line, weak_flag))
+        functions: Dict[str, FunctionInfo] = {}
+        for func_name, rows in candidates.items():
+            # 优先选 non-weak：若有 weak_flag == "normal" 则用第一个这样的定义，否则用第一个
+            chosen = rows[0]
+            for r in rows:
+                if r[2] == "normal":
+                    chosen = r
+                    break
+            file_path, location_line, _ = chosen
             function_content, function_content_in_lines = read_struct_with_start_line_from_db(db_path, file_path, location_line, func_name)
-            if function_content == "" :
+            if function_content == "":
                 continue
             functions[func_name] = FunctionInfo(
                 name=func_name,
                 file_path=file_path,
                 location_line=location_line,
-                function_content=function_content, 
+                function_content=function_content,
                 function_content_in_lines=function_content_in_lines
             )
         return functions

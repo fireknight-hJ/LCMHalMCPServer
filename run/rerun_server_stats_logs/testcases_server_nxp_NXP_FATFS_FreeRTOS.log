@@ -1,0 +1,9 @@
+2026-04-07 22:27:09,628 - INFO - [*] Read loop started
+Session ID: 66c98137-9d2e-489d-b863-cf726734c18a
+2026-04-07 22:27:10,058 - INFO - [CodeQL stderr] [2026-04-07 22:27:10] This is codeql execute query-server2 --debug --tuple-counting --threads=0 --evaluator-log-level 5 -v --log-to-stderr
+2026-04-07 22:27:10,058 - INFO - [CodeQL stderr] [2026-04-07 22:27:10] Creating executor with 128 threads.
+[analyze_functions] classifying 65 functions (max concurrent: 8, env LCMHAL_ANALYZE_MAX_CONCURRENT)
+Replacement log written to: testcases/server/nxp/NXP_FATFS_FreeRTOS/replacement_log.md
+2026-04-07 22:27:14,252 - INFO - [*] Read loop started
+=== START testcases/server/nxp/NXP_FATFS_FreeRTOS ===
+=== DONE ===

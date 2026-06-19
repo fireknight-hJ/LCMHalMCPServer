@@ -1,11 +1,13 @@
 # Builder工具的LangChain工具函数模块
 # 提供直接调用的工具函数，使用@tool装饰器定义
 import asyncio
+import json
 from langchain.tools import tool
 from tools.builder.core import (
     build_project as core_build_project,
     get_replace_func_details_by_file as core_get_replace_func_details_by_file,
     update_function_replacement as core_update_function_replacement,
+    verify_replacement as core_verify_replacement,
     get_function_analysis_and_replacement as core_get_function_analysis_and_replacement,
     get_function_analysis_and_replacement_formatted as core_get_function_analysis_and_replacement_formatted,
     init_builder as core_init_builder
@@ -65,3 +67,13 @@ def get_function_analysis_and_replacement(func_name: str) -> dict:
 def get_function_analysis_and_replacement_formatted(func_name: str) -> str:
     """根据函数名获取格式化的函数分析和替换信息，便于大模型理解"""
     return core_get_function_analysis_and_replacement_formatted(func_name)
+
+
+@tool(
+    "VerifyReplacement",
+    description="Verify replacement code for a function: runs rubric check and optional project compile. Returns pass (true/false), and on failure: reason and build_stderr. Do not persist. Call this before finishing when your classification includes replacement code; if pass is false, fix the replacement and call again."
+)
+def verify_replacement(func_name: str, replace_code: str) -> str:
+    """仅验证替换代码（Rubric + 可选编译），不落盘。返回 JSON：pass、失败时的 reason 与 build_stderr。"""
+    out = core_verify_replacement(func_name, replace_code)
+    return json.dumps(out, ensure_ascii=False)

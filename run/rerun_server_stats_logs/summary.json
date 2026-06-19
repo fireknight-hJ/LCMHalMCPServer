@@ -1,0 +1,597 @@
+{
+  "started_at": "2026-04-07 22:27:09",
+  "total": 39,
+  "ok": [
+    {
+      "demo": "testcases/server/nxp/NXP_FATFS_BareMetal",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_FATFS_BareMetal.log",
+      "elapsed_s": 4.7
+    },
+    {
+      "demo": "testcases/server/nxp/NXP_FATFS_FreeRTOS",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_FATFS_FreeRTOS.log",
+      "elapsed_s": 4.9
+    },
+    {
+      "demo": "testcases/server/nxp/NXP_I2C_BareMetal",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_I2C_BareMetal.log",
+      "elapsed_s": 5.3
+    },
+    {
+      "demo": "testcases/server/nxp/NXP_I2C_FreeRTOS",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_I2C_FreeRTOS.log",
+      "elapsed_s": 6.4
+    },
+    {
+      "demo": "testcases/server/nxp/NXP_LwIP_BareMetal",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_LwIP_BareMetal.log",
+      "elapsed_s": 5.1
+    },
+    {
+      "demo": "testcases/server/nxp/NXP_UART_FreeRTOS",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_UART_FreeRTOS.log",
+      "elapsed_s": 4.8
+    },
+    {
+      "demo": "testcases/server/rtthread/imxrt1052-nxp-evk/base",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_imxrt1052-nxp-evk_base.log",
+      "elapsed_s": 5.3
+    },
+    {
+      "demo": "testcases/server/rtthread/imxrt1052-nxp-evk/fatfs",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_imxrt1052-nxp-evk_fatfs.log",
+      "elapsed_s": 5.1
+    },
+    {
+      "demo": "testcases/server/rtthread/imxrt1052-nxp-evk/i2c",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_imxrt1052-nxp-evk_i2c.log",
+      "elapsed_s": 5.1
+    },
+    {
+      "demo": "testcases/server/rtthread/imxrt1052-nxp-evk/uart",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_imxrt1052-nxp-evk_uart.log",
+      "elapsed_s": 5.0
+    },
+    {
+      "demo": "testcases/server/nxp/NXP_UART_BareMetal",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_UART_BareMetal.log",
+      "elapsed_s": 196.9
+    },
+    {
+      "demo": "testcases/server/rtthread/stm32f401-st-nucleo/base",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_stm32f401-st-nucleo_base.log",
+      "elapsed_s": 6.0
+    },
+    {
+      "demo": "testcases/server/rtthread/stm32f401-st-nucleo/eth",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_stm32f401-st-nucleo_eth.log",
+      "elapsed_s": 5.4
+    },
+    {
+      "demo": "testcases/server/rtthread/stm32f401-st-nucleo/fatfs",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_stm32f401-st-nucleo_fatfs.log",
+      "elapsed_s": 6.3
+    },
+    {
+      "demo": "testcases/server/rtthread/stm32f401-st-nucleo/i2c",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_stm32f401-st-nucleo_i2c.log",
+      "elapsed_s": 4.5
+    },
+    {
+      "demo": "testcases/server/rtthread/stm32f401-st-nucleo/uart",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_stm32f401-st-nucleo_uart.log",
+      "elapsed_s": 5.0
+    },
+    {
+      "demo": "testcases/server/stm32/FatFs_USBDisk_RTOS",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_stm32_FatFs_USBDisk_RTOS.log",
+      "elapsed_s": 7.5
+    },
+    {
+      "demo": "testcases/server/stm32/LwIP_HTTP_Server_Socket_RTOS",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_stm32_LwIP_HTTP_Server_Socket_RTOS.log",
+      "elapsed_s": 7.7
+    },
+    {
+      "demo": "testcases/server/zephyr/atmel/eth_dhcpv4_sam_e70",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_atmel_eth_dhcpv4_sam_e70.log",
+      "elapsed_s": 6.1
+    },
+    {
+      "demo": "testcases/server/zephyr/atmel/fs_littlefs_atsame54",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_atmel_fs_littlefs_atsame54.log",
+      "elapsed_s": 5.2
+    },
+    {
+      "demo": "testcases/server/zephyr/atmel/i2c_shell_atsame54",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_atmel_i2c_shell_atsame54.log",
+      "elapsed_s": 5.1
+    },
+    {
+      "demo": "testcases/server/zephyr/atmel/uart_echo_atsame54",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_atmel_uart_echo_atsame54.log",
+      "elapsed_s": 4.6
+    },
+    {
+      "demo": "testcases/server/zephyr/nxp/eth_dhcpv4_mimxrt1060",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_nxp_eth_dhcpv4_mimxrt1060.log",
+      "elapsed_s": 6.0
+    },
+    {
+      "demo": "testcases/server/zephyr/nxp/fs_littlefs_mimxrt1060",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_nxp_fs_littlefs_mimxrt1060.log",
+      "elapsed_s": 4.7
+    },
+    {
+      "demo": "testcases/server/zephyr/nxp/i2c_fxos8700_lpc55",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_nxp_i2c_fxos8700_lpc55.log",
+      "elapsed_s": 4.8
+    },
+    {
+      "demo": "testcases/server/zephyr/nxp/uart_echo_mimxrt1060",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_nxp_uart_echo_mimxrt1060.log",
+      "elapsed_s": 4.6
+    },
+    {
+      "demo": "testcases/server/zephyr/stm32/eth_dhcpv4_nucleo_f767zi",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_stm32_eth_dhcpv4_nucleo_f767zi.log",
+      "elapsed_s": 5.4
+    },
+    {
+      "demo": "testcases/server/zephyr/stm32/fs_littlefs_disco_l475",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_stm32_fs_littlefs_disco_l475.log",
+      "elapsed_s": 5.8
+    },
+    {
+      "demo": "testcases/server/zephyr/stm32/i2c_hts221_disco_l475",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_stm32_i2c_hts221_disco_l475.log",
+      "elapsed_s": 5.7
+    },
+    {
+      "demo": "testcases/server/zephyr/stm32/uart_echo_disco_l475",
+      "ok": true,
+      "steps": [
+        {
+          "cmd": "dump-replacements",
+          "exit": 0
+        },
+        {
+          "cmd": "classify-stats",
+          "exit": 0
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_zephyr_stm32_uart_echo_disco_l475.log",
+      "elapsed_s": 5.7
+    }
+  ],
+  "failed": [
+    {
+      "demo": "testcases/server/nxp/NXP_LwIP_FreeRTOS",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_nxp_NXP_LwIP_FreeRTOS.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/rtthread/imxrt1060-nxp-evk/base",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_imxrt1060-nxp-evk_base.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/rtthread/imxrt1060-nxp-evk/eth",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_imxrt1060-nxp-evk_eth.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/rtthread/stm32f401-st-nucleo/fatfst-nucleo/fatfs",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_rtthread_stm32f401-st-nucleo_fatfst-nucleo_fatfs.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/stm32/BLE_HeartRateFreeRTOS",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_stm32_BLE_HeartRateFreeRTOS.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/stm32/LwIP_HTTP_Server_Raw",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_stm32_LwIP_HTTP_Server_Raw.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/stm32/LwIP_HTTP_Server_SocketRTOS",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_stm32_LwIP_HTTP_Server_SocketRTOS.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/stm32/LwIP_StreamingServer",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_stm32_LwIP_StreamingServer.log",
+      "elapsed_s": 900.1
+    },
+    {
+      "demo": "testcases/server/stm32/UART_Hyperterminal_IT",
+      "ok": false,
+      "steps": [
+        {
+          "cmd": "timeout",
+          "exit": "timeout"
+        }
+      ],
+      "log": "/home/haojie/workspace/lcmhalmcp/run/rerun_server_stats_logs/testcases_server_stm32_UART_Hyperterminal_IT.log",
+      "elapsed_s": 900.0
+    }
+  ],
+  "finished_at": "2026-04-07 23:12:24"
+}

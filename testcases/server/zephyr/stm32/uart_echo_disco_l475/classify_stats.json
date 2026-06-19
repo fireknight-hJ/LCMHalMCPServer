@@ -1,0 +1,10 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/stm32/uart_echo_disco_l475",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475/lcmhal_ai_log",
+  "total_functions": 0,
+  "counts": {
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {},
+  "error": null
+}

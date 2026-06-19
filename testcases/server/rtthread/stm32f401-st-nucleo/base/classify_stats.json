@@ -1,0 +1,46 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/stm32f401-st-nucleo/base",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log",
+  "total_functions": 55,
+  "counts": {
+    "INIT": 28,
+    "RETURNOK": 15,
+    "SKIP": 4,
+    "IRQ": 3,
+    "LOOP": 3,
+    "CORE": 1,
+    "NODRIVER": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 26,
+      "false": 2
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 15
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 4
+    },
+    "IRQ": {
+      "true": 3,
+      "false": 0
+    },
+    "LOOP": {
+      "true": 3,
+      "false": 0
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

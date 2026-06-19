@@ -1,0 +1,869 @@
+## LCMHAL 函数替换日志
+
+- **Testcase 路径**: `testcases/server/stm32/UART_Hyperterminal_IT`
+
+## 1. 替换函数总览
+
+| 函数名 | 文件路径 | 行号 | 替换次数 |
+|--------|----------|------|----------|
+| `BSP_COM_Init` | `/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/BSP/STM324xG_EVAL/stm324xg_eval.c` | 351 | 1 |
+| `HAL_GPIO_ReadPin` | `/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c` | 375 | 1 |
+| `HAL_GPIO_WritePin` | `/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c` | 410 | 1 |
+| `HAL_UART_Receive_IT` | `/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c` | 1347 | 2 |
+| `HAL_UART_Transmit_DMA` | `/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c` | 1379 | 1 |
+| `HAL_UART_Transmit_IT` | `/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c` | 1308 | 2 |
+| `UART_Start_Receive_IT` | `/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c` | 3236 | 1 |
+
+## 2. 各函数替换详情
+
+### BSP_COM_Init
+
+```text
+=== BSP_COM_Init 函数分析与替换信息 ===
+
+【函数基本信息】
+- 文件路径：/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/BSP/STM324xG_EVAL/stm324xg_eval.c
+- 行号：351
+- 函数内容：void BSP_COM_Init(COM_TypeDef COM, UART_HandleTypeDef *huart)
+{
+  GPIO_InitTypeDef GPIO_InitStruct;
+  
+  /* Enable GPIO clock */
+  EVAL_COMx_TX_GPIO_CLK_ENABLE(COM);
+  EVAL_COMx_RX_GPIO_CLK_ENABLE(COM);
+  
+  /* Enable USART clock */
+  EVAL_COMx_CLK_ENABLE(COM);
+  
+  /* Configure USART Tx as alternate function */
+  GPIO_InitStruct.Pin = COM_TX_PIN[COM];
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Alternate = COM_TX_AF[COM];
+  HAL_GPIO_Init(COM_TX_PORT[COM], &GPIO_InitStruct);
+  
+  /* Configure USART Rx as alternate function */
+  GPIO_InitStruct.Pin = COM_RX_PIN[COM];
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Alternate = COM_RX_AF[COM];
+  HAL_GPIO_Init(COM_RX_PORT[COM], &GPIO_InitStruct);
+  
+  /* USART configuration */
+  huart->Instance = COM_USART[COM];
+  HAL_UART_Init(huart);
+}
+
+
+【初始分析】
+- 函数用途：未知
+- 是否需要替换：是
+- 替换原因：无
+- 原始代码：无法获取
+- 推荐替换代码：无
+
+【替换更新】
+- 更新代码：/**
+* @brief  Configures COM port.
+* @param  COM: COM port to be configured.
+*          This parameter can be one of the following values:
+*            @arg  COM1
+*            @arg  COM2
+* @param  huart: Pointer to a UART_HandleTypeDef structure that contains the
+*                configuration information for the specified USART peripheral.
+*/
+void BSP_COM_Init(COM_TypeDef COM, UART_HandleTypeDef *huart)
+{
+  /* Set the UART instance based on COM port */
+  huart->Instance = COM_USART[COM];
+  
+  /* Initialize UART - hardware-specific operations will be handled in HAL_UART_Init */
+  HAL_UART_Init(huart);
+}
+- 更新原因：Simplify BSP_COM_Init implementation by removing commented-out hardware operations and keeping only essential UART instance assignment and initialization call. This should resolve any potential syntax issues from malformed comments.
+
+【替换历史版本】
+- 总共 1 次替换尝试
+
+  版本 1:
+    替换代码：/**
+* @brief  Configures COM port.
+* @param  COM: COM port to be configured.
+*          This parameter can be one of the following values:
+*            @arg  COM1
+*            @arg  COM2
+* @param  huart: Pointer to a UART_HandleTypeDef structure that contains the
+*                configuration information for the specified USART peripheral.
+*/
+void BSP_COM_Init(COM_TypeDef COM, UART_HandleTypeDef *huart)
+{
+  /* Set the UART instance based on COM port */
+  huart->Instance = COM_USART[COM];
+  
+  /* Initialize UART - hardware-specific operations will be handled in HAL_UART_Init */
+  HAL_UART_Init(huart);
+}
+    原因：Simplify BSP_COM_Init implementation by removing commented-out hardware operations and keeping only essential UART instance assignment and initialization call. This should resolve any potential syntax issues from malformed comments.
+    时间：
+
+=== 信息结束 ===
+```
+
+### HAL_GPIO_ReadPin
+
+```text
+=== HAL_GPIO_ReadPin 函数分析与替换信息 ===
+
+【函数基本信息】
+- 文件路径：/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+- 行号：375
+- 函数内容：GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+  GPIO_PinState bitstatus;
+
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+
+  if((GPIOx->IDR & GPIO_Pin) != (uint32_t)GPIO_PIN_RESET)
+  {
+    bitstatus = GPIO_PIN_SET;
+  }
+  else
+  {
+    bitstatus = GPIO_PIN_RESET;
+  }
+  return bitstatus;
+}
+
+
+【替换更新】
+- 更新代码：GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+
+  /* In emulation mode, return a default value */
+  /* The original code reads from GPIOx->IDR register */
+  /* We preserve the parameter checking but return a safe default */
+  
+  /* Return PIN_RESET as a safe default in emulation */
+  return GPIO_PIN_RESET;
+}
+- 更新原因：Fix potential emulator issues by avoiding hardware register reads in HAL_GPIO_ReadPin. The original function reads from GPIOx->IDR register which is a hardware operation. In emulation, reading from hardware registers that aren't properly handled can cause issues. The replacement preserves parameter checking but returns a safe default value (GPIO_PIN_RESET) instead of reading from hardware.
+
+【替换历史版本】
+- 总共 1 次替换尝试
+
+  版本 1:
+    替换代码：GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+
+  /* In emulation mode, return a default value */
+  /* The original code reads from GPIOx->IDR register */
+  /* We preserve the parameter checking but return a safe default */
+  
+  /* Return PIN_RESET as a safe default in emulation */
+  return GPIO_PIN_RESET;
+}
+    原因：Fix potential emulator issues by avoiding hardware register reads in HAL_GPIO_ReadPin. The original function reads from GPIOx->IDR register which is a hardware operation. In emulation, reading from hardware registers that aren't properly handled can cause issues. The replacement preserves parameter checking but returns a safe default value (GPIO_PIN_RESET) instead of reading from hardware.
+    时间：
+
+=== 信息结束 ===
+```
+
+### HAL_GPIO_WritePin
+
+```text
+=== HAL_GPIO_WritePin 函数分析与替换信息 ===
+
+【函数基本信息】
+- 文件路径：/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+- 行号：410
+- 函数内容：void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+  assert_param(IS_GPIO_PIN_ACTION(PinState));
+
+  if(PinState != GPIO_PIN_RESET)
+  {
+    GPIOx->BSRR = GPIO_Pin;
+  }
+  else
+  {
+    GPIOx->BSRR = (uint32_t)GPIO_Pin << 16U;
+  }
+}
+
+
+【替换更新】
+- 更新代码：void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+  assert_param(IS_GPIO_PIN_ACTION(PinState));
+
+  /* In emulation mode, skip hardware register writes */
+  /* The original code would write to GPIOx->BSRR register */
+  /* We preserve the parameter checking but skip the actual hardware operation */
+  
+  /* No operation in emulation */
+}
+- 更新原因：Fix potential emulator issues by skipping hardware register writes in HAL_GPIO_WritePin. The original function writes to GPIOx->BSRR register which is a hardware operation. In emulation, writing to hardware registers that aren't properly handled can cause issues. The replacement preserves parameter checking but skips the actual hardware write operation. This function is called from BSP_LED_On in UART completion callbacks, so fixing it might resolve the exceptional loop issue.
+
+【替换历史版本】
+- 总共 1 次替换尝试
+
+  版本 1:
+    替换代码：void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+  assert_param(IS_GPIO_PIN_ACTION(PinState));
+
+  /* In emulation mode, skip hardware register writes */
+  /* The original code would write to GPIOx->BSRR register */
+  /* We preserve the parameter checking but skip the actual hardware operation */
+  
+  /* No operation in emulation */
+}
+    原因：Fix potential emulator issues by skipping hardware register writes in HAL_GPIO_WritePin. The original function writes to GPIOx->BSRR register which is a hardware operation. In emulation, writing to hardware registers that aren't properly handled can cause issues. The replacement preserves parameter checking but skips the actual hardware write operation. This function is called from BSP_LED_On in UART completion callbacks, so fixing it might resolve the exceptional loop issue.
+    时间：
+
+=== 信息结束 ===
+```
+
+### HAL_UART_Receive_IT
+
+```text
+=== HAL_UART_Receive_IT 函数分析与替换信息 ===
+
+【函数基本信息】
+- 文件路径：/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
+- 行号：1347
+- 函数内容：HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Rx process is not already ongoing */
+  if (huart->RxState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    /* Set Reception type to Standard reception */
+    huart->ReceptionType = HAL_UART_RECEPTION_STANDARD;
+
+    return (UART_Start_Receive_IT(huart, pData, Size));
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+
+
+【替换更新】
+- 更新代码：HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Rx process is not already ongoing */
+  if (huart->RxState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    /* Set Reception type to Standard reception */
+    huart->ReceptionType = HAL_UART_RECEPTION_STANDARD;
+
+    /* Call UART_Start_Receive_IT to set up buffers and state */
+    /* This sets RxState to BUSY_RX and configures buffers */
+    UART_Start_Receive_IT(huart, pData, Size);
+    
+    /* In emulation mode, simulate receiving all data immediately */
+    /* Use HAL_BE_In to simulate receiving data from stdin */
+    if (Size > 0)
+    {
+      HAL_BE_In(pData, Size);
+    }
+    
+    /* Immediately complete the reception */
+    /* Update state to indicate reception is complete */
+    huart->RxState = HAL_UART_STATE_READY;
+    huart->RxXferCount = 0U;
+    
+    /* Initialize type of RxEvent to Transfer Complete */
+    huart->RxEventType = HAL_UART_RXEVENT_TC;
+    
+    /* Call the reception complete callback */
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+    /*Call registered Rx complete callback*/
+    huart->RxCpltCallback(huart);
+#else
+    /*Call legacy weak Rx complete callback*/
+    HAL_UART_RxCpltCallback(huart);
+#endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+- 更新原因：Simplify HAL_UART_Receive_IT replacement by removing hardware interrupt disable macros that might cause emulator issues. The previous replacement used __HAL_UART_DISABLE_IT macros which might expand to hardware register writes. In emulation, we don't need to actually disable hardware interrupts - we just need to simulate the behavior. The simplified replacement immediately completes reception, updates state to READY, and calls the callback without touching hardware registers. Note: We still call UART_Start_Receive_IT to set up buffers, but that function also writes to hardware registers. We might need to fix that too if issues persist.
+
+【替换历史版本】
+- 总共 2 次替换尝试
+
+  版本 1:
+    替换代码：HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Rx process is not already ongoing */
+  if (huart->RxState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    /* Set Reception type to Standard reception */
+    huart->ReceptionType = HAL_UART_RECEPTION_STANDARD;
+
+    /* Call UART_Start_Receive_IT to set up buffers and state */
+    /* This sets RxState to BUSY_RX and configures buffers */
+    UART_Start_Receive_IT(huart, pData, Size);
+    
+    /* In emulation mode, simulate receiving all data immediately */
+    /* Use HAL_BE_In to simulate receiving data from stdin */
+    if (Size > 0)
+    {
+      HAL_BE_In(pData, Size);
+    }
+    
+    /* Immediately complete the reception */
+    /* Disable the UART interrupts (preserved for NVIC operations) */
+    __HAL_UART_DISABLE_IT(huart, UART_IT_RXNE);
+    __HAL_UART_DISABLE_IT(huart, UART_IT_PE);
+    __HAL_UART_DISABLE_IT(huart, UART_IT_ERR);
+    
+    /* Update state to indicate reception is complete */
+    huart->RxState = HAL_UART_STATE_READY;
+    huart->RxXferCount = 0U;
+    
+    /* Initialize type of RxEvent to Transfer Complete */
+    huart->RxEventType = HAL_UART_RXEVENT_TC;
+    
+    /* Call the reception complete callback */
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+    /*Call registered Rx complete callback*/
+    huart->RxCpltCallback(huart);
+#else
+    /*Call legacy weak Rx complete callback*/
+    HAL_UART_RxCpltCallback(huart);
+#endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+    原因：Fix exceptional loop in main by completing UART reception immediately in emulation mode. The original code sets state to BUSY_RX and enables RX interrupts, but in emulation there are no hardware interrupts to trigger data reception. This causes HAL_UART_GetState to always return busy state, creating an infinite loop. The replacement simulates immediate reception completion: 1) Calls UART_Start_Receive_IT to set up buffers, 2) Uses HAL_BE_In to simulate receiving all data at once, 3) Updates state to READY, 4) Calls the reception complete callback. This ensures HAL_UART_GetState returns READY state, breaking the infinite loop.
+    时间：
+
+  版本 2:
+    替换代码：HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Rx process is not already ongoing */
+  if (huart->RxState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    /* Set Reception type to Standard reception */
+    huart->ReceptionType = HAL_UART_RECEPTION_STANDARD;
+
+    /* Call UART_Start_Receive_IT to set up buffers and state */
+    /* This sets RxState to BUSY_RX and configures buffers */
+    UART_Start_Receive_IT(huart, pData, Size);
+    
+    /* In emulation mode, simulate receiving all data immediately */
+    /* Use HAL_BE_In to simulate receiving data from stdin */
+    if (Size > 0)
+    {
+      HAL_BE_In(pData, Size);
+    }
+    
+    /* Immediately complete the reception */
+    /* Update state to indicate reception is complete */
+    huart->RxState = HAL_UART_STATE_READY;
+    huart->RxXferCount = 0U;
+    
+    /* Initialize type of RxEvent to Transfer Complete */
+    huart->RxEventType = HAL_UART_RXEVENT_TC;
+    
+    /* Call the reception complete callback */
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+    /*Call registered Rx complete callback*/
+    huart->RxCpltCallback(huart);
+#else
+    /*Call legacy weak Rx complete callback*/
+    HAL_UART_RxCpltCallback(huart);
+#endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+    原因：Simplify HAL_UART_Receive_IT replacement by removing hardware interrupt disable macros that might cause emulator issues. The previous replacement used __HAL_UART_DISABLE_IT macros which might expand to hardware register writes. In emulation, we don't need to actually disable hardware interrupts - we just need to simulate the behavior. The simplified replacement immediately completes reception, updates state to READY, and calls the callback without touching hardware registers. Note: We still call UART_Start_Receive_IT to set up buffers, but that function also writes to hardware registers. We might need to fix that too if issues persist.
+    时间：
+
+=== 信息结束 ===
+```
+
+### HAL_UART_Transmit_DMA
+
+```text
+=== HAL_UART_Transmit_DMA 函数分析与替换信息 ===
+
+【函数基本信息】
+- 文件路径：/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
+- 行号：1379
+- 函数内容：HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size)
+{
+  const uint32_t *tmp;
+
+  /* Check that a Tx process is not already ongoing */
+  if (huart->gState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    huart->pTxBuffPtr = pData;
+    huart->TxXferSize = Size;
+    huart->TxXferCount = Size;
+
+    huart->ErrorCode = HAL_UART_ERROR_NONE;
+    huart->gState = HAL_UART_STATE_BUSY_TX;
+
+    /* Set the UART DMA transfer complete callback */
+    huart->hdmatx->XferCpltCallback = UART_DMATransmitCplt;
+
+    /* Set the UART DMA Half transfer complete callback */
+    huart->hdmatx->XferHalfCpltCallback = UART_DMATxHalfCplt;
+
+    /* Set the DMA error callback */
+    huart->hdmatx->XferErrorCallback = UART_DMAError;
+
+    /* Set the DMA abort callback */
+    huart->hdmatx->XferAbortCallback = NULL;
+
+    /* Enable the UART transmit DMA stream */
+    tmp = (const uint32_t *)&pData;
+    HAL_DMA_Start_IT(huart->hdmatx, *(const uint32_t *)tmp, (uint32_t)&huart->Instance->DR, Size);
+
+    /* Clear the TC flag in the SR register by writing 0 to it */
+    __HAL_UART_CLEAR_FLAG(huart, UART_FLAG_TC);
+
+    /* Enable the DMA transfer for transmit request by setting the DMAT bit
+       in the UART CR3 register */
+    ATOMIC_SET_BIT(huart->Instance->CR3, USART_CR3_DMAT);
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+
+
+【初始分析】
+- 函数用途：未知
+- 是否需要替换：是
+- 替换原因：无
+- 原始代码：无法获取
+- 推荐替换代码：无
+
+【替换更新】
+- 更新代码：HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Tx process is not already ongoing */
+  if (huart->gState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    huart->pTxBuffPtr = pData;
+    huart->TxXferSize = Size;
+    huart->TxXferCount = Size;
+
+    huart->ErrorCode = HAL_UART_ERROR_NONE;
+    huart->gState = HAL_UART_STATE_BUSY_TX;
+
+    /* Set the UART DMA transfer complete callback */
+    huart->hdmatx->XferCpltCallback = UART_DMATransmitCplt;
+
+    /* Set the UART DMA Half transfer complete callback */
+    huart->hdmatx->XferHalfCpltCallback = UART_DMATxHalfCplt;
+
+    /* Set the DMA error callback */
+    huart->hdmatx->XferErrorCallback = UART_DMAError;
+
+    /* Set the DMA abort callback */
+    huart->hdmatx->XferAbortCallback = NULL;
+
+    /* Simulate data transmission using HAL_BE_Out */
+    HAL_BE_Out(Size);
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+- 更新原因：Fix syntax errors in HAL_UART_Transmit_DMA replacement code. The original errors suggest comment syntax issues and unexpected tokens. This cleaned version ensures proper C syntax with correct comment formatting and complete function structure.
+
+【替换历史版本】
+- 总共 1 次替换尝试
+
+  版本 1:
+    替换代码：HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Tx process is not already ongoing */
+  if (huart->gState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    huart->pTxBuffPtr = pData;
+    huart->TxXferSize = Size;
+    huart->TxXferCount = Size;
+
+    huart->ErrorCode = HAL_UART_ERROR_NONE;
+    huart->gState = HAL_UART_STATE_BUSY_TX;
+
+    /* Set the UART DMA transfer complete callback */
+    huart->hdmatx->XferCpltCallback = UART_DMATransmitCplt;
+
+    /* Set the UART DMA Half transfer complete callback */
+    huart->hdmatx->XferHalfCpltCallback = UART_DMATxHalfCplt;
+
+    /* Set the DMA error callback */
+    huart->hdmatx->XferErrorCallback = UART_DMAError;
+
+    /* Set the DMA abort callback */
+    huart->hdmatx->XferAbortCallback = NULL;
+
+    /* Simulate data transmission using HAL_BE_Out */
+    HAL_BE_Out(Size);
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+    原因：Fix syntax errors in HAL_UART_Transmit_DMA replacement code. The original errors suggest comment syntax issues and unexpected tokens. This cleaned version ensures proper C syntax with correct comment formatting and complete function structure.
+    时间：
+
+=== 信息结束 ===
+```
+
+### HAL_UART_Transmit_IT
+
+```text
+=== HAL_UART_Transmit_IT 函数分析与替换信息 ===
+
+【函数基本信息】
+- 文件路径：/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
+- 行号：1308
+- 函数内容：HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Tx process is not already ongoing */
+  if (huart->gState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    huart->pTxBuffPtr = pData;
+    huart->TxXferSize = Size;
+    huart->TxXferCount = Size;
+
+    huart->ErrorCode = HAL_UART_ERROR_NONE;
+    huart->gState = HAL_UART_STATE_BUSY_TX;
+
+    /* Enable the UART Transmit data register empty Interrupt */
+    __HAL_UART_ENABLE_IT(huart, UART_IT_TXE);
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+
+
+【替换更新】
+- 更新代码：HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Tx process is not already ongoing */
+  if (huart->gState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    huart->pTxBuffPtr = pData;
+    huart->TxXferSize = Size;
+    huart->TxXferCount = Size;
+
+    huart->ErrorCode = HAL_UART_ERROR_NONE;
+    huart->gState = HAL_UART_STATE_BUSY_TX;
+
+    /* In emulation mode, immediately simulate transmission completion */
+    /* Simulate sending data using HAL_BE_Out */
+    if (Size > 0)
+    {
+      HAL_BE_Out(Size);
+    }
+    
+    /* Immediately complete transmission */
+    huart->TxXferCount = 0U;
+    
+    /* Tx process is ended, restore huart->gState to Ready */
+    huart->gState = HAL_UART_STATE_READY;
+    
+    /* Call the transmission complete callback */
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+    /*Call registered Tx complete callback*/
+    huart->TxCpltCallback(huart);
+#else
+    /*Call legacy weak Tx complete callback*/
+    HAL_UART_TxCpltCallback(huart);
+#endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+- 更新原因：Simplify HAL_UART_Transmit_IT replacement by removing hardware interrupt enable/disable macros that might cause emulator issues. The previous replacement used __HAL_UART_ENABLE_IT and __HAL_UART_DISABLE_IT macros which might expand to hardware register writes. In emulation, we don't need to actually enable/disable hardware interrupts - we just need to simulate the behavior. The simplified replacement immediately completes transmission, updates state to READY, and calls the callback without touching hardware registers.
+
+【替换历史版本】
+- 总共 2 次替换尝试
+
+  版本 1:
+    替换代码：HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Tx process is not already ongoing */
+  if (huart->gState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    huart->pTxBuffPtr = pData;
+    huart->TxXferSize = Size;
+    huart->TxXferCount = Size;
+
+    huart->ErrorCode = HAL_UART_ERROR_NONE;
+    huart->gState = HAL_UART_STATE_BUSY_TX;
+
+    /* In emulation mode, immediately simulate transmission completion */
+    /* Simulate sending data using HAL_BE_Out */
+    if (Size > 0)
+    {
+      HAL_BE_Out(Size);
+    }
+    
+    /* Immediately complete transmission */
+    huart->TxXferCount = 0U;
+    
+    /* Disable the UART Transmit Data Register Empty Interrupt */
+    /* Preserved for potential NVIC operations */
+    __HAL_UART_DISABLE_IT(huart, UART_IT_TXE);
+    
+    /* Enable the UART Transmit Complete Interrupt */
+    /* Preserved for potential NVIC operations */
+    __HAL_UART_ENABLE_IT(huart, UART_IT_TC);
+    
+    /* Immediately complete transmission (simulating UART_EndTransmit_IT) */
+    /* Disable the UART Transmit Complete Interrupt */
+    __HAL_UART_DISABLE_IT(huart, UART_IT_TC);
+    
+    /* Tx process is ended, restore huart->gState to Ready */
+    huart->gState = HAL_UART_STATE_READY;
+    
+    /* Call the transmission complete callback */
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+    /*Call registered Tx complete callback*/
+    huart->TxCpltCallback(huart);
+#else
+    /*Call legacy weak Tx complete callback*/
+    HAL_UART_TxCpltCallback(huart);
+#endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+    原因：Fix exceptional loop in main by completing UART transmission immediately in emulation mode. The original code sets state to BUSY_TX and enables TXE interrupt, but in emulation there are no hardware interrupts to trigger completion. This causes HAL_UART_GetState to always return busy state, creating an infinite loop. The replacement simulates immediate transmission completion: 1) Uses HAL_BE_Out to simulate sending data, 2) Updates state to READY, 3) Calls the transmission complete callback. This ensures HAL_UART_GetState returns READY state, breaking the infinite loop. Duplicated UART_EndTransmit_IT logic to avoid static function call issues.
+    时间：
+
+  版本 2:
+    替换代码：HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size)
+{
+  /* Check that a Tx process is not already ongoing */
+  if (huart->gState == HAL_UART_STATE_READY)
+  {
+    if ((pData == NULL) || (Size == 0U))
+    {
+      return HAL_ERROR;
+    }
+
+    huart->pTxBuffPtr = pData;
+    huart->TxXferSize = Size;
+    huart->TxXferCount = Size;
+
+    huart->ErrorCode = HAL_UART_ERROR_NONE;
+    huart->gState = HAL_UART_STATE_BUSY_TX;
+
+    /* In emulation mode, immediately simulate transmission completion */
+    /* Simulate sending data using HAL_BE_Out */
+    if (Size > 0)
+    {
+      HAL_BE_Out(Size);
+    }
+    
+    /* Immediately complete transmission */
+    huart->TxXferCount = 0U;
+    
+    /* Tx process is ended, restore huart->gState to Ready */
+    huart->gState = HAL_UART_STATE_READY;
+    
+    /* Call the transmission complete callback */
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+    /*Call registered Tx complete callback*/
+    huart->TxCpltCallback(huart);
+#else
+    /*Call legacy weak Tx complete callback*/
+    HAL_UART_TxCpltCallback(huart);
+#endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+
+    return HAL_OK;
+  }
+  else
+  {
+    return HAL_BUSY;
+  }
+}
+    原因：Simplify HAL_UART_Transmit_IT replacement by removing hardware interrupt enable/disable macros that might cause emulator issues. The previous replacement used __HAL_UART_ENABLE_IT and __HAL_UART_DISABLE_IT macros which might expand to hardware register writes. In emulation, we don't need to actually enable/disable hardware interrupts - we just need to simulate the behavior. The simplified replacement immediately completes transmission, updates state to READY, and calls the callback without touching hardware registers.
+    时间：
+
+=== 信息结束 ===
+```
+
+### UART_Start_Receive_IT
+
+```text
+=== UART_Start_Receive_IT 函数分析与替换信息 ===
+
+【函数基本信息】
+- 文件路径：/home/haojie/posixGen_Demos/UART_Hyperterminal_IT/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
+- 行号：3236
+- 函数内容：HAL_StatusTypeDef UART_Start_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+  huart->pRxBuffPtr = pData;
+  huart->RxXferSize = Size;
+  huart->RxXferCount = Size;
+
+  huart->ErrorCode = HAL_UART_ERROR_NONE;
+  huart->RxState = HAL_UART_STATE_BUSY_RX;
+
+  if (huart->Init.Parity != UART_PARITY_NONE)
+  {
+    /* Enable the UART Parity Error Interrupt */
+    __HAL_UART_ENABLE_IT(huart, UART_IT_PE);
+  }
+
+  /* Enable the UART Error Interrupt: (Frame error, noise error, overrun error) */
+  __HAL_UART_ENABLE_IT(huart, UART_IT_ERR);
+
+  /* Enable the UART Data Register not empty Interrupt */
+  __HAL_UART_ENABLE_IT(huart, UART_IT_RXNE);
+
+  return HAL_OK;
+}
+
+
+【替换更新】
+- 更新代码：HAL_StatusTypeDef UART_Start_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+  huart->pRxBuffPtr = pData;
+  huart->RxXferSize = Size;
+  huart->RxXferCount = Size;
+
+  huart->ErrorCode = HAL_UART_ERROR_NONE;
+  huart->RxState = HAL_UART_STATE_BUSY_RX;
+
+  /* In emulation mode, skip hardware interrupt enable operations */
+  /* The original code enables UART interrupts (PE, ERR, RXNE) */
+  /* We preserve the state setting but skip hardware operations */
+  
+  return HAL_OK;
+}
+- 更新原因：Fix UART_Start_Receive_IT by skipping hardware interrupt enable operations. The original function enables UART interrupts (PE, ERR, RXNE) by writing to hardware registers. In emulation, these hardware writes can cause issues. The replacement preserves the buffer setup and state management but skips the hardware interrupt enable operations.
+
+【替换历史版本】
+- 总共 1 次替换尝试
+
+  版本 1:
+    替换代码：HAL_StatusTypeDef UART_Start_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+{
+  huart->pRxBuffPtr = pData;
+  huart->RxXferSize = Size;
+  huart->RxXferCount = Size;
+
+  huart->ErrorCode = HAL_UART_ERROR_NONE;
+  huart->RxState = HAL_UART_STATE_BUSY_RX;
+
+  /* In emulation mode, skip hardware interrupt enable operations */
+  /* The original code enables UART interrupts (PE, ERR, RXNE) */
+  /* We preserve the state setting but skip hardware operations */
+  
+  return HAL_OK;
+}
+    原因：Fix UART_Start_Receive_IT by skipping hardware interrupt enable operations. The original function enables UART interrupts (PE, ERR, RXNE) by writing to hardware registers. In emulation, these hardware writes can cause issues. The replacement preserves the buffer setup and state management but skips the hardware interrupt enable operations.
+    时间：
+
+=== 信息结束 ===
+```

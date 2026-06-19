@@ -1,0 +1,784 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "BOARD_BootClockRUN",
+      "BOARD_InitPins",
+      "CLOCK_DeinitArmPll",
+      "CLOCK_DeinitAudioPll",
+      "CLOCK_DeinitUsb1Pll",
+      "CLOCK_DeinitVideoPll",
+      "CLOCK_EnableUsbhs0Clock",
+      "CLOCK_EnableUsbhs0PhyPllClock",
+      "CLOCK_EnableUsbhs1Clock",
+      "CLOCK_EnableUsbhs1PhyPllClock",
+      "CLOCK_GetFreq",
+      "CLOCK_InitArmPll",
+      "CLOCK_InitAudioPll",
+      "CLOCK_InitEnetPll",
+      "CLOCK_InitExternalClk",
+      "CLOCK_InitRcOsc24M",
+      "CLOCK_InitSysPfd",
+      "CLOCK_InitSysPll",
+      "CLOCK_InitUsb1Pfd",
+      "CLOCK_InitUsb1Pll",
+      "CLOCK_InitUsb2Pll",
+      "CLOCK_InitVideoPll",
+      "CLOCK_SwitchOsc",
+      "DMAMUX_Init",
+      "EDMA_AbortTransfer",
+      "EDMA_Deinit",
+      "EDMA_Init",
+      "EDMA_InstallTCD",
+      "EDMA_ResetChannel",
+      "EDMA_SetChannelLink",
+      "EDMA_SetMinorOffsetConfig",
+      "EDMA_SetModulo",
+      "EDMA_SetTransferConfig",
+      "EDMA_StartTransfer",
+      "GPIO_PinInit",
+      "LPUART_Deinit",
+      "LPUART_Init",
+      "SystemCoreClockUpdate",
+      "XBARA_Deinit",
+      "XBARA_Init",
+      "XBARB_Deinit",
+      "XBARB_Init",
+      "imxrt_pin_mode"
+    ],
+    "RETURNOK": [
+      "CLOCK_DeinitEnetPll",
+      "CLOCK_DeinitExternalClk",
+      "CLOCK_DeinitRcOsc24M",
+      "CLOCK_DeinitSysPfd",
+      "CLOCK_DeinitSysPll",
+      "CLOCK_DeinitUsb1Pfd",
+      "CLOCK_DeinitUsb2Pll",
+      "CLOCK_GetAhbFreq",
+      "CLOCK_GetIpgFreq",
+      "CLOCK_GetPerClkFreq",
+      "CLOCK_GetPllFreq",
+      "CLOCK_GetSemcFreq",
+      "CLOCK_GetSysPfdFreq",
+      "CLOCK_GetUsb1PfdFreq",
+      "EDMA_ClearChannelStatusFlags",
+      "EDMA_DisableChannelInterrupts",
+      "EDMA_EnableChannelInterrupts",
+      "EDMA_GetChannelStatusFlags",
+      "EDMA_GetRemainingMajorLoopCount",
+      "EDMA_SetBandWidth",
+      "EDMA_SubmitTransfer",
+      "GetUartSrcFreq"
+    ],
+    "SKIP": [
+      "CLOCK_DisableUsbhs0PhyPllClock",
+      "CLOCK_DisableUsbhs1PhyPllClock",
+      "DMAMUX_Deinit",
+      "EDMA_StopTransfer"
+    ],
+    "CORE": [
+      "EDMA_CreateHandle",
+      "SystemInit"
+    ],
+    "IRQ": [
+      "EDMA_HandleIRQ"
+    ],
+    "NODRIVER": [
+      "CLOCK_GetPeriphClkFreq"
+    ]
+  },
+  "counts": {
+    "INIT": 43,
+    "RETURNOK": 22,
+    "SKIP": 4,
+    "CORE": 2,
+    "IRQ": 1,
+    "NODRIVER": 1,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "BOARD_BootClockRUN",
+        "BOARD_InitPins",
+        "CLOCK_DeinitArmPll",
+        "CLOCK_DeinitAudioPll",
+        "CLOCK_DeinitVideoPll",
+        "CLOCK_EnableUsbhs0Clock",
+        "CLOCK_EnableUsbhs0PhyPllClock",
+        "CLOCK_EnableUsbhs1Clock",
+        "CLOCK_EnableUsbhs1PhyPllClock",
+        "CLOCK_InitArmPll",
+        "CLOCK_InitAudioPll",
+        "CLOCK_InitEnetPll",
+        "CLOCK_InitExternalClk",
+        "CLOCK_InitSysPll",
+        "CLOCK_InitUsb1Pfd",
+        "CLOCK_InitUsb1Pll",
+        "CLOCK_InitUsb2Pll",
+        "CLOCK_InitVideoPll",
+        "CLOCK_SwitchOsc",
+        "DMAMUX_Init",
+        "EDMA_AbortTransfer",
+        "EDMA_Deinit",
+        "EDMA_Init",
+        "EDMA_InstallTCD",
+        "EDMA_ResetChannel",
+        "EDMA_SetMinorOffsetConfig",
+        "EDMA_SetModulo",
+        "EDMA_SetTransferConfig",
+        "EDMA_StartTransfer",
+        "GPIO_PinInit",
+        "LPUART_Deinit",
+        "LPUART_Init",
+        "SystemCoreClockUpdate",
+        "XBARA_Deinit",
+        "XBARA_Init",
+        "XBARB_Deinit",
+        "XBARB_Init",
+        "imxrt_pin_mode"
+      ],
+      "false": [
+        "CLOCK_DeinitUsb1Pll",
+        "CLOCK_GetFreq",
+        "CLOCK_InitRcOsc24M",
+        "CLOCK_InitSysPfd",
+        "EDMA_SetChannelLink"
+      ]
+    },
+    "RETURNOK": {
+      "true": [
+        "EDMA_SubmitTransfer"
+      ],
+      "false": [
+        "CLOCK_DeinitEnetPll",
+        "CLOCK_DeinitExternalClk",
+        "CLOCK_DeinitRcOsc24M",
+        "CLOCK_DeinitSysPfd",
+        "CLOCK_DeinitSysPll",
+        "CLOCK_DeinitUsb1Pfd",
+        "CLOCK_DeinitUsb2Pll",
+        "CLOCK_GetAhbFreq",
+        "CLOCK_GetIpgFreq",
+        "CLOCK_GetPerClkFreq",
+        "CLOCK_GetPllFreq",
+        "CLOCK_GetSemcFreq",
+        "CLOCK_GetSysPfdFreq",
+        "CLOCK_GetUsb1PfdFreq",
+        "EDMA_ClearChannelStatusFlags",
+        "EDMA_DisableChannelInterrupts",
+        "EDMA_EnableChannelInterrupts",
+        "EDMA_GetChannelStatusFlags",
+        "EDMA_GetRemainingMajorLoopCount",
+        "EDMA_SetBandWidth",
+        "GetUartSrcFreq"
+      ]
+    },
+    "SKIP": {
+      "true": [
+        "EDMA_StopTransfer"
+      ],
+      "false": [
+        "CLOCK_DisableUsbhs0PhyPllClock",
+        "CLOCK_DisableUsbhs1PhyPllClock",
+        "DMAMUX_Deinit"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "EDMA_CreateHandle",
+        "SystemInit"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "EDMA_HandleIRQ"
+      ],
+      "false": []
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "CLOCK_GetPeriphClkFreq"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 38,
+      "false": 5
+    },
+    "RETURNOK": {
+      "true": 1,
+      "false": 21
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 3
+    },
+    "CORE": {
+      "true": 0,
+      "false": 2
+    },
+    "IRQ": {
+      "true": 1,
+      "false": 0
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "per_function": {
+    "EDMA_ResetChannel": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_ResetChannel_20260407042252.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_ResetChannel_20260407042126.json"
+    },
+    "CLOCK_GetIpgFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetIpgFreq_20260406202453.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSemcFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetSemcFreq_20260406202453.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0PhyPllClock_20260406201458.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitAudioPll_20260407042825.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_CLOCK_InitAudioPll_20260407042727.json"
+    },
+    "DMAMUX_Deinit": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_DMAMUX_Deinit_20260406211455.json",
+      "has_replacement_update": false
+    },
+    "EDMA_InstallTCD": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_InstallTCD_20260407041549.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_InstallTCD_20260407041149.json"
+    },
+    "imxrt_pin_mode": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_imxrt_pin_mode_20260407042239.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_imxrt_pin_mode_20260407041741.json"
+    },
+    "CLOCK_EnableUsbhs1PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1PhyPllClock_20260406195900.json",
+      "has_replacement_update": false
+    },
+    "BOARD_BootClockRUN": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_20260406195730.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitArmPll_20260406194905.json",
+      "has_replacement_update": false
+    },
+    "EDMA_SubmitTransfer": {
+      "function_type": "RETURNOK",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_SubmitTransfer_20260407041921.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_SubmitTransfer_20260407041638.json"
+    },
+    "CLOCK_DeinitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitAudioPll_20260406194907.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb2Pll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb2Pll_20260406195736.json",
+      "has_replacement_update": false
+    },
+    "EDMA_GetChannelStatusFlags": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_GetChannelStatusFlags_20260407034006.json",
+      "has_replacement_update": false
+    },
+    "EDMA_HandleIRQ": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_HandleIRQ_20260407041047.json",
+      "has_replacement_update": false
+    },
+    "SystemCoreClockUpdate": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_SystemCoreClockUpdate_20260407041006.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs0PhyPllClock": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs0PhyPllClock_20260406195816.json",
+      "has_replacement_update": false
+    },
+    "EDMA_DisableChannelInterrupts": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_DisableChannelInterrupts_20260406211647.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0Clock_20260406201500.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb1Pfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pfd_20260407033853.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitRcOsc24M": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitRcOsc24M_20260406211203.json",
+      "has_replacement_update": false
+    },
+    "EDMA_SetMinorOffsetConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_SetMinorOffsetConfig_20260407042351.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_SetMinorOffsetConfig_20260407042241.json"
+    },
+    "CLOCK_GetPerClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetPerClkFreq_20260406201721.json",
+      "has_replacement_update": false
+    },
+    "GPIO_PinInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_GPIO_PinInit_20260407041337.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260407041028.json"
+    },
+    "XBARA_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_XBARA_Deinit_20260407041941.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_XBARA_Deinit_20260407041655.json"
+    },
+    "CLOCK_GetAhbFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetAhbFreq_20260406202452.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_LPUART_Init_20260407042137.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_LPUART_Init_20260407041909.json"
+    },
+    "CLOCK_DisableUsbhs1PhyPllClock": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs1PhyPllClock_20260406195843.json",
+      "has_replacement_update": false
+    },
+    "EDMA_SetModulo": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_SetModulo_20260407034812.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetUsb1PfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetUsb1PfdFreq_20260406202058.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitVideoPll_20260406210730.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitVideoPll_20260406195759.json",
+      "has_replacement_update": false
+    },
+    "XBARB_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_XBARB_Deinit_20260407041510.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitExternalClk_20260407033909.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_LPUART_Deinit_20260407040939.json",
+      "has_replacement_update": false
+    },
+    "XBARA_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_XBARA_Init_20260407042108.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_XBARA_Init_20260407041906.json"
+    },
+    "CLOCK_DeinitUsb1Pfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pfd_20260406194848.json",
+      "has_replacement_update": false
+    },
+    "EDMA_AbortTransfer": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_AbortTransfer_20260407042621.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_AbortTransfer_20260407042504.json"
+    },
+    "SystemInit": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_SystemInit_20260407040547.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb2Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitUsb2Pll_20260407033754.json",
+      "has_replacement_update": false
+    },
+    "EDMA_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_Init_20260407042531.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_Init_20260407042441.json"
+    },
+    "EDMA_CreateHandle": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_CreateHandle_20260407033742.json",
+      "has_replacement_update": false
+    },
+    "EDMA_StopTransfer": {
+      "function_type": "SKIP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_StopTransfer_20260407042024.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_StopTransfer_20260407041805.json"
+    },
+    "XBARB_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_XBARB_Init_20260407042054.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_XBARB_Init_20260407041636.json"
+    },
+    "CLOCK_GetFreq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetFreq_20260406202103.json",
+      "has_replacement_update": false
+    },
+    "DMAMUX_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_DMAMUX_Init_20260406210314.json",
+      "has_replacement_update": false
+    },
+    "EDMA_SetBandWidth": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_SetBandWidth_20260407033942.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitArmPll_20260407033749.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitPins": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_BOARD_InitPins_20260406200059.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitEnetPll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitEnetPll_20260406194743.json",
+      "has_replacement_update": false
+    },
+    "EDMA_GetRemainingMajorLoopCount": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_GetRemainingMajorLoopCount_20260407033927.json",
+      "has_replacement_update": false
+    },
+    "EDMA_SetChannelLink": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_SetChannelLink_20260407040551.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitExternalClk": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitExternalClk_20260406194840.json",
+      "has_replacement_update": false
+    },
+    "EDMA_ClearChannelStatusFlags": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_ClearChannelStatusFlags_20260406211204.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitRcOsc24M": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitRcOsc24M_20260406194743.json",
+      "has_replacement_update": false
+    },
+    "GetUartSrcFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_GetUartSrcFreq_20260407040926.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pll_20260406194854.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SwitchOsc": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_SwitchOsc_20260406211648.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitSysPll_20260406203708.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitSysPfd": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitSysPfd_20260406210334.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pll_20260406210343.json",
+      "has_replacement_update": false
+    },
+    "EDMA_SetTransferConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_SetTransferConfig_20260407042212.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_SetTransferConfig_20260407042020.json"
+    },
+    "CLOCK_GetSysPfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetSysPfdFreq_20260406203033.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitEnetPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_InitEnetPll_20260406203327.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPll_20260406194836.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPllFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetPllFreq_20260406202102.json",
+      "has_replacement_update": false
+    },
+    "EDMA_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_Deinit_20260407033751.json",
+      "has_replacement_update": false
+    },
+    "EDMA_EnableChannelInterrupts": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_EnableChannelInterrupts_20260407033837.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPfd_20260406194742.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPeriphClkFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_GetPeriphClkFreq_20260406201507.json",
+      "has_replacement_update": false
+    },
+    "EDMA_StartTransfer": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_EDMA_StartTransfer_20260407041528.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_StartTransfer_20260407041208.json"
+    },
+    "CLOCK_EnableUsbhs1Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1Clock_20260406201455.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 73,
+  "replacement_update_count": 20,
+  "replacement_update_functions": [
+    "CLOCK_InitAudioPll",
+    "EDMA_AbortTransfer",
+    "EDMA_Init",
+    "EDMA_InstallTCD",
+    "EDMA_ResetChannel",
+    "EDMA_SetMinorOffsetConfig",
+    "EDMA_SetTransferConfig",
+    "EDMA_StartTransfer",
+    "EDMA_StopTransfer",
+    "EDMA_SubmitTransfer",
+    "GPIO_PinInit",
+    "LPUART_DisableInterrupts",
+    "LPUART_EnableInterrupts",
+    "LPUART_GetStatusFlags",
+    "LPUART_Init",
+    "XBARA_Deinit",
+    "XBARA_Init",
+    "XBARB_Init",
+    "imxrt_pin_mode",
+    "imxrt_putc"
+  ],
+  "replacement_update_by_function": {
+    "imxrt_putc": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_imxrt_putc_20260407043003.json"
+    },
+    "EDMA_InstallTCD": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_InstallTCD_20260407041149.json"
+    },
+    "XBARA_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_XBARA_Init_20260407041906.json"
+    },
+    "imxrt_pin_mode": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_imxrt_pin_mode_20260407041741.json"
+    },
+    "LPUART_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_LPUART_Init_20260407041909.json"
+    },
+    "CLOCK_InitAudioPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_CLOCK_InitAudioPll_20260407042727.json"
+    },
+    "EDMA_SetTransferConfig": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_SetTransferConfig_20260407042020.json"
+    },
+    "GPIO_PinInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260407041028.json"
+    },
+    "EDMA_SubmitTransfer": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_SubmitTransfer_20260407041638.json"
+    },
+    "LPUART_DisableInterrupts": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_LPUART_DisableInterrupts_20260407043115.json"
+    },
+    "LPUART_EnableInterrupts": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_LPUART_EnableInterrupts_20260407043057.json"
+    },
+    "LPUART_GetStatusFlags": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_LPUART_GetStatusFlags_20260407043029.json"
+    },
+    "EDMA_AbortTransfer": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_AbortTransfer_20260407042504.json"
+    },
+    "XBARA_Deinit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_XBARA_Deinit_20260407041655.json"
+    },
+    "EDMA_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_Init_20260407042441.json"
+    },
+    "XBARB_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_XBARB_Init_20260407041636.json"
+    },
+    "EDMA_StartTransfer": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_StartTransfer_20260407041208.json"
+    },
+    "EDMA_ResetChannel": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_ResetChannel_20260407042126.json"
+    },
+    "EDMA_SetMinorOffsetConfig": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_SetMinorOffsetConfig_20260407042241.json"
+    },
+    "EDMA_StopTransfer": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_uart/lcmhal_ai_log/replacement_update_EDMA_StopTransfer_20260407041805.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "LPUART_DisableInterrupts",
+    "LPUART_EnableInterrupts",
+    "LPUART_GetStatusFlags",
+    "imxrt_putc"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/uart"
+}

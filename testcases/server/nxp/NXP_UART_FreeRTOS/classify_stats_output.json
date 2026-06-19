@@ -1,0 +1,978 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "BOARD_BootClockRUN",
+      "BOARD_BootClockRUN_528M",
+      "BOARD_DebugConsoleSrcFreq",
+      "BOARD_InitPins",
+      "CLOCK_DeinitArmPll",
+      "CLOCK_DeinitAudioPll",
+      "CLOCK_DeinitEnetPll",
+      "CLOCK_DeinitExternalClk",
+      "CLOCK_DeinitSysPll",
+      "CLOCK_DeinitUsb1Pll",
+      "CLOCK_DeinitUsb2Pll",
+      "CLOCK_DeinitVideoPll",
+      "CLOCK_EnableUsbhs0Clock",
+      "CLOCK_EnableUsbhs0PhyPllClock",
+      "CLOCK_EnableUsbhs1Clock",
+      "CLOCK_EnableUsbhs1PhyPllClock",
+      "CLOCK_GetClockOutClkO2Freq",
+      "CLOCK_GetPeriphClkFreq",
+      "CLOCK_GetPllUsb1SWFreq",
+      "CLOCK_GetSemcFreq",
+      "CLOCK_InitArmPll",
+      "CLOCK_InitAudioPll",
+      "CLOCK_InitEnetPll",
+      "CLOCK_InitExternalClk",
+      "CLOCK_InitRcOsc24M",
+      "CLOCK_InitSysPfd",
+      "CLOCK_InitSysPll",
+      "CLOCK_InitUsb1Pfd",
+      "CLOCK_InitUsb1Pll",
+      "CLOCK_InitUsb2Pll",
+      "CLOCK_InitVideoPll",
+      "CLOCK_SetDiv",
+      "CLOCK_SwitchOsc",
+      "DCDC_Init",
+      "GPIO_PinInit",
+      "LPUART_Deinit",
+      "LPUART_Enable9bitMode",
+      "LPUART_EnableInterrupts",
+      "LPUART_Init",
+      "LPUART_RTOS_Init",
+      "LPUART_TransferAbortSend",
+      "LPUART_TransferCreateHandle",
+      "LPUART_TransferStartRingBuffer",
+      "SystemCoreClockUpdate"
+    ],
+    "RETURNOK": [
+      "CLOCK_DeinitRcOsc24M",
+      "CLOCK_DeinitSysPfd",
+      "CLOCK_DeinitUsb1Pfd",
+      "CLOCK_DisableUsbhs0PhyPllClock",
+      "CLOCK_DisableUsbhs1PhyPllClock",
+      "CLOCK_GetAhbFreq",
+      "CLOCK_GetClockOutCLKO1Freq",
+      "CLOCK_GetIpgFreq",
+      "CLOCK_GetPerClkFreq",
+      "CLOCK_GetPllFreq",
+      "CLOCK_GetSysPfdFreq",
+      "CLOCK_GetUsb1PfdFreq",
+      "CLOCK_IsSysPfdEnabled",
+      "CLOCK_IsUsb1PfdEnabled",
+      "CLOCK_SetClockOutput1",
+      "CLOCK_SetClockOutput2",
+      "LPUART_ClearStatusFlags",
+      "LPUART_DisableInterrupts",
+      "LPUART_GetEnabledInterrupts",
+      "LPUART_GetStatusFlags",
+      "LPUART_SendAddress",
+      "LPUART_SetBaudRate",
+      "LPUART_TransferGetSendCount",
+      "LPUART_TransferStopRingBuffer"
+    ],
+    "RECV": [
+      "LPUART_ReadBlocking",
+      "LPUART_ReadBlocking16bit",
+      "LPUART_ReadNonBlocking",
+      "LPUART_ReadNonBlocking16bit",
+      "LPUART_TransferHandleReceiveDataFull",
+      "LPUART_TransferReceiveNonBlocking",
+      "LPUART_WriteNonBlocking16bit",
+      "uart_task"
+    ],
+    "IRQ": [
+      "LPUART_TransferHandleIDLEReady",
+      "LPUART_TransferHandleIRQ",
+      "LPUART_TransferHandleSendDataEmpty",
+      "LPUART_TransferHandleTransmissionComplete",
+      "LPUART_TransferSendNonBlocking"
+    ],
+    "LOOP": [
+      "CLOCK_SetMux",
+      "LPUART_WaitForReadData",
+      "LPUART_WriteBlocking",
+      "LPUART_WriteBlocking16bit",
+      "LPUART_WriteNonBlocking"
+    ],
+    "SKIP": [
+      "DCDC_Deinit",
+      "LPUART_GetInstance",
+      "LPUART_TransferAbortReceive"
+    ],
+    "CORE": [
+      "SystemInit"
+    ],
+    "NODRIVER": [
+      "CLOCK_GetFreq"
+    ]
+  },
+  "counts": {
+    "INIT": 44,
+    "RETURNOK": 24,
+    "RECV": 8,
+    "IRQ": 5,
+    "LOOP": 5,
+    "SKIP": 3,
+    "CORE": 1,
+    "NODRIVER": 1,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "BOARD_BootClockRUN",
+        "BOARD_BootClockRUN_528M",
+        "BOARD_DebugConsoleSrcFreq",
+        "BOARD_InitPins",
+        "CLOCK_DeinitAudioPll",
+        "CLOCK_DeinitEnetPll",
+        "CLOCK_DeinitSysPll",
+        "CLOCK_DeinitUsb1Pll",
+        "CLOCK_DeinitUsb2Pll",
+        "CLOCK_DeinitVideoPll",
+        "CLOCK_EnableUsbhs0Clock",
+        "CLOCK_EnableUsbhs1Clock",
+        "CLOCK_EnableUsbhs1PhyPllClock",
+        "CLOCK_GetClockOutClkO2Freq",
+        "CLOCK_GetPeriphClkFreq",
+        "CLOCK_GetPllUsb1SWFreq",
+        "CLOCK_GetSemcFreq",
+        "CLOCK_InitRcOsc24M",
+        "CLOCK_InitSysPfd",
+        "CLOCK_InitSysPll",
+        "CLOCK_InitUsb1Pfd",
+        "CLOCK_InitUsb1Pll",
+        "CLOCK_SwitchOsc",
+        "DCDC_Init",
+        "GPIO_PinInit",
+        "LPUART_Deinit",
+        "LPUART_Enable9bitMode",
+        "LPUART_EnableInterrupts",
+        "LPUART_Init",
+        "LPUART_RTOS_Init",
+        "LPUART_TransferAbortSend",
+        "LPUART_TransferCreateHandle",
+        "LPUART_TransferStartRingBuffer",
+        "SystemCoreClockUpdate"
+      ],
+      "false": [
+        "CLOCK_DeinitArmPll",
+        "CLOCK_DeinitExternalClk",
+        "CLOCK_EnableUsbhs0PhyPllClock",
+        "CLOCK_InitArmPll",
+        "CLOCK_InitAudioPll",
+        "CLOCK_InitEnetPll",
+        "CLOCK_InitExternalClk",
+        "CLOCK_InitUsb2Pll",
+        "CLOCK_InitVideoPll",
+        "CLOCK_SetDiv"
+      ]
+    },
+    "RETURNOK": {
+      "true": [
+        "LPUART_TransferGetSendCount"
+      ],
+      "false": [
+        "CLOCK_DeinitRcOsc24M",
+        "CLOCK_DeinitSysPfd",
+        "CLOCK_DeinitUsb1Pfd",
+        "CLOCK_DisableUsbhs0PhyPllClock",
+        "CLOCK_DisableUsbhs1PhyPllClock",
+        "CLOCK_GetAhbFreq",
+        "CLOCK_GetClockOutCLKO1Freq",
+        "CLOCK_GetIpgFreq",
+        "CLOCK_GetPerClkFreq",
+        "CLOCK_GetPllFreq",
+        "CLOCK_GetSysPfdFreq",
+        "CLOCK_GetUsb1PfdFreq",
+        "CLOCK_IsSysPfdEnabled",
+        "CLOCK_IsUsb1PfdEnabled",
+        "CLOCK_SetClockOutput1",
+        "CLOCK_SetClockOutput2",
+        "LPUART_ClearStatusFlags",
+        "LPUART_DisableInterrupts",
+        "LPUART_GetEnabledInterrupts",
+        "LPUART_GetStatusFlags",
+        "LPUART_SendAddress",
+        "LPUART_SetBaudRate",
+        "LPUART_TransferStopRingBuffer"
+      ]
+    },
+    "RECV": {
+      "true": [
+        "LPUART_ReadBlocking"
+      ],
+      "false": [
+        "LPUART_ReadBlocking16bit",
+        "LPUART_ReadNonBlocking",
+        "LPUART_ReadNonBlocking16bit",
+        "LPUART_TransferHandleReceiveDataFull",
+        "LPUART_TransferReceiveNonBlocking",
+        "LPUART_WriteNonBlocking16bit",
+        "uart_task"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "LPUART_TransferHandleIRQ",
+        "LPUART_TransferHandleTransmissionComplete",
+        "LPUART_TransferSendNonBlocking"
+      ],
+      "false": [
+        "LPUART_TransferHandleIDLEReady",
+        "LPUART_TransferHandleSendDataEmpty"
+      ]
+    },
+    "LOOP": {
+      "true": [],
+      "false": [
+        "CLOCK_SetMux",
+        "LPUART_WaitForReadData",
+        "LPUART_WriteBlocking",
+        "LPUART_WriteBlocking16bit",
+        "LPUART_WriteNonBlocking"
+      ]
+    },
+    "SKIP": {
+      "true": [],
+      "false": [
+        "DCDC_Deinit",
+        "LPUART_GetInstance",
+        "LPUART_TransferAbortReceive"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "SystemInit"
+      ]
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "CLOCK_GetFreq"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 34,
+      "false": 10
+    },
+    "RETURNOK": {
+      "true": 1,
+      "false": 23
+    },
+    "RECV": {
+      "true": 1,
+      "false": 7
+    },
+    "IRQ": {
+      "true": 3,
+      "false": 2
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 5
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 3
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "per_function": {
+    "CLOCK_DeinitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pll_20260406231448.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitUsb1Pll_20260406231052.json"
+    },
+    "CLOCK_GetClockOutCLKO1Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetClockOutCLKO1Freq_20260406213617.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetFreq_20260406215050.json",
+      "has_replacement_update": false
+    },
+    "SystemInit": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_SystemInit_20260406225531.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs1PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1PhyPllClock_20260406231716.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1PhyPllClock_20260406231540.json"
+    },
+    "CLOCK_GetAhbFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetAhbFreq_20260406214257.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_IsUsb1PfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_IsUsb1PfdEnabled_20260406220911.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutClkO2Freq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetClockOutClkO2Freq_20260406214602.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb2Pll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitUsb2Pll_20260309033913.json",
+      "has_replacement_update": false
+    },
+    "LPUART_GetEnabledInterrupts": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_GetEnabledInterrupts_20260406225036.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs1PhyPllClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs1PhyPllClock_20260406213030.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferAbortReceive": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferAbortReceive_20260406230841.json",
+      "has_replacement_update": false
+    },
+    "LPUART_GetStatusFlags": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_GetStatusFlags_20260406225523.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferAbortSend": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferAbortSend_20260406230327.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferSendNonBlocking": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferSendNonBlocking_20260406231141.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferSendNonBlocking_20260310025352.json"
+    },
+    "CLOCK_GetUsb1PfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetUsb1PfdFreq_20260406222326.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitExternalClk_20260406212554.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SwitchOsc": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SwitchOsc_20260406223843.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitVideoPll_20260406231812.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitVideoPll_20260406231705.json"
+    },
+    "LPUART_EnableInterrupts": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_EnableInterrupts_20260406230340.json",
+      "has_replacement_update": false
+    },
+    "LPUART_SendAddress": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_SendAddress_20260406230613.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferGetSendCount": {
+      "function_type": "RETURNOK",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferGetSendCount_20260406230631.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Enable9bitMode": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_Enable9bitMode_20260406225538.json",
+      "has_replacement_update": false
+    },
+    "GPIO_PinInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_GPIO_PinInit_20260406231424.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406231109.json"
+    },
+    "CLOCK_EnableUsbhs1Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1Clock_20260406231459.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1Clock_20260406231313.json"
+    },
+    "LPUART_TransferCreateHandle": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferCreateHandle_20260406230842.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferCreateHandle_20260310025416.json"
+    },
+    "LPUART_WriteBlocking": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_WriteBlocking_20260309033936.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_WriteBlocking_20260309172358.json"
+    },
+    "CLOCK_DeinitUsb2Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb2Pll_20260406212714.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetIpgFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetIpgFreq_20260406215049.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitExternalClk_20260309033927.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPerClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPerClkFreq_20260406215049.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0Clock_20260406230604.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClockOutput2": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput2_20260406220047.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetMux": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SetMux_20260309033924.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitRcOsc24M": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitRcOsc24M_20260406212548.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs0PhyPllClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs0PhyPllClock_20260406212706.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitAudioPll_20260309033921.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitEnetPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitEnetPll_20260406212605.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitAudioPll_20260406232039.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitAudioPll_20260406231947.json"
+    },
+    "CLOCK_GetPeriphClkFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPeriphClkFreq_20260406215947.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClockOutput1": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput1_20260406220907.json",
+      "has_replacement_update": false
+    },
+    "LPUART_GetInstance": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_GetInstance_20260309023907.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitSysPll_20260309023937.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitArmPll_20260406212554.json",
+      "has_replacement_update": false
+    },
+    "LPUART_SetBaudRate": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_SetBaudRate_20260309033854.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPllUsb1SWFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPllUsb1SWFreq_20260406214422.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleIRQ": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleIRQ_20260406231012.json",
+      "has_replacement_update": false
+    },
+    "uart_task": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_uart_task_20260309034037.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_uart_task_20260406232303.json"
+    },
+    "LPUART_RTOS_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_RTOS_Init_20260406230402.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_RTOS_Init_20260310025306.json"
+    },
+    "BOARD_DebugConsoleSrcFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_DebugConsoleSrcFreq_20260406231529.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_DebugConsoleSrcFreq_20260406231231.json"
+    },
+    "LPUART_TransferHandleTransmissionComplete": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleTransmissionComplete_20260406231401.json",
+      "has_replacement_update": false
+    },
+    "LPUART_WaitForReadData": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_WaitForReadData_20260309034034.json",
+      "has_replacement_update": false
+    },
+    "LPUART_DisableInterrupts": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_DisableInterrupts_20260406224404.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPll_20260406231722.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitSysPll_20260406231553.json"
+    },
+    "LPUART_TransferStopRingBuffer": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferStopRingBuffer_20260406230614.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitPins": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_InitPins_20260406231906.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_InitPins_20260406231808.json"
+    },
+    "CLOCK_InitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pll_20260309024017.json",
+      "has_replacement_update": false
+    },
+    "DCDC_Deinit": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_DCDC_Deinit_20260406222301.json",
+      "has_replacement_update": false
+    },
+    "LPUART_WriteNonBlocking": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_WriteNonBlocking_20260309033912.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSemcFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetSemcFreq_20260406220508.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0PhyPllClock_20260406230822.json",
+      "has_replacement_update": false
+    },
+    "LPUART_WriteBlocking16bit": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_WriteBlocking16bit_20260309033952.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_WriteBlocking16bit_20260309172608.json"
+    },
+    "LPUART_TransferStartRingBuffer": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferStartRingBuffer_20260406231408.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferStartRingBuffer_20260310025437.json"
+    },
+    "LPUART_ReadBlocking16bit": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_ReadBlocking16bit_20260309033937.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_Init_20260309024114.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Init_20260309171831.json"
+    },
+    "CLOCK_GetPllFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPllFreq_20260406215906.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetDiv": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SetDiv_20260309033953.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleReceiveDataFull": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleReceiveDataFull_20260309034142.json",
+      "has_replacement_update": false
+    },
+    "SystemCoreClockUpdate": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_SystemCoreClockUpdate_20260406231238.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitArmPll_20260309033910.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPfd_20260406212550.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb1Pfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pfd_20260406212640.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitRcOsc24M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitRcOsc24M_20260406220908.json",
+      "has_replacement_update": false
+    },
+    "BOARD_BootClockRUN_528M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_528M_20260309023949.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSysPfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetSysPfdFreq_20260406215946.json",
+      "has_replacement_update": false
+    },
+    "DCDC_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_DCDC_Init_20260406223229.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleSendDataEmpty": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleSendDataEmpty_20260309034007.json",
+      "has_replacement_update": false
+    },
+    "LPUART_ReadNonBlocking16bit": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_ReadNonBlocking16bit_20260309033920.json",
+      "has_replacement_update": false
+    },
+    "LPUART_ClearStatusFlags": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_ClearStatusFlags_20260406230011.json",
+      "has_replacement_update": false
+    },
+    "LPUART_ReadNonBlocking": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_ReadNonBlocking_20260309023920.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_IsSysPfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_IsSysPfdEnabled_20260406215949.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_Deinit_20260309023959.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Deinit_20260309035128.json"
+    },
+    "LPUART_ReadBlocking": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_ReadBlocking_20260309024158.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_ReadBlocking_20260309035213.json"
+    },
+    "CLOCK_InitUsb1Pfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pfd_20260406220513.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitEnetPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitEnetPll_20260309033915.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitSysPfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitSysPfd_20260406220511.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleIDLEReady": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleIDLEReady_20260309034029.json",
+      "has_replacement_update": false
+    },
+    "BOARD_BootClockRUN": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_20260309024034.json",
+      "has_replacement_update": false
+    },
+    "LPUART_WriteNonBlocking16bit": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_WriteNonBlocking16bit_20260309034005.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferReceiveNonBlocking": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferReceiveNonBlocking_20260309034229.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferReceiveNonBlocking_20260310025332.json"
+    },
+    "CLOCK_InitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitVideoPll_20260309033917.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 91,
+  "replacement_update_count": 25,
+  "replacement_update_functions": [
+    "BOARD_DebugConsoleSrcFreq",
+    "BOARD_InitPins",
+    "CLOCK_DeinitAudioPll",
+    "CLOCK_DeinitSysPll",
+    "CLOCK_DeinitUsb1Pll",
+    "CLOCK_DeinitVideoPll",
+    "CLOCK_EnableUsbhs1Clock",
+    "CLOCK_EnableUsbhs1PhyPllClock",
+    "DbgConsole_Putchar",
+    "GPIO_PinInit",
+    "LPUART_Deinit",
+    "LPUART_Init",
+    "LPUART_RTOS_Init",
+    "LPUART_RTOS_Receive",
+    "LPUART_RTOS_Send",
+    "LPUART_ReadBlocking",
+    "LPUART_TransferCreateHandle",
+    "LPUART_TransferReceiveNonBlocking",
+    "LPUART_TransferSendNonBlocking",
+    "LPUART_TransferStartRingBuffer",
+    "LPUART_WriteBlocking",
+    "LPUART_WriteBlocking16bit",
+    "prvCheckTasksWaitingTermination",
+    "prvIdleTask",
+    "uart_task"
+  ],
+  "replacement_update_by_function": {
+    "CLOCK_EnableUsbhs1Clock": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1Clock_20260406231313.json"
+    },
+    "LPUART_RTOS_Send": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_RTOS_Send_20260310025249.json"
+    },
+    "prvIdleTask": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_prvIdleTask_20260406233930.json"
+    },
+    "LPUART_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Init_20260309171831.json"
+    },
+    "CLOCK_DeinitAudioPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitAudioPll_20260406231947.json"
+    },
+    "BOARD_InitPins": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_InitPins_20260406231808.json"
+    },
+    "LPUART_RTOS_Receive": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_RTOS_Receive_20260406232327.json"
+    },
+    "uart_task": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_uart_task_20260406232303.json"
+    },
+    "DbgConsole_Putchar": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_DbgConsole_Putchar_20260309172925.json"
+    },
+    "LPUART_ReadBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_ReadBlocking_20260309035213.json"
+    },
+    "prvCheckTasksWaitingTermination": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_prvCheckTasksWaitingTermination_20260406233435.json"
+    },
+    "LPUART_TransferSendNonBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferSendNonBlocking_20260310025352.json"
+    },
+    "LPUART_TransferStartRingBuffer": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferStartRingBuffer_20260310025437.json"
+    },
+    "LPUART_WriteBlocking16bit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_WriteBlocking16bit_20260309172608.json"
+    },
+    "LPUART_WriteBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_WriteBlocking_20260309172358.json"
+    },
+    "CLOCK_DeinitVideoPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitVideoPll_20260406231705.json"
+    },
+    "CLOCK_EnableUsbhs1PhyPllClock": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1PhyPllClock_20260406231540.json"
+    },
+    "CLOCK_DeinitSysPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitSysPll_20260406231553.json"
+    },
+    "GPIO_PinInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406231109.json"
+    },
+    "BOARD_DebugConsoleSrcFreq": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_DebugConsoleSrcFreq_20260406231231.json"
+    },
+    "CLOCK_DeinitUsb1Pll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_DeinitUsb1Pll_20260406231052.json"
+    },
+    "LPUART_TransferCreateHandle": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferCreateHandle_20260310025416.json"
+    },
+    "LPUART_RTOS_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_RTOS_Init_20260310025306.json"
+    },
+    "LPUART_TransferReceiveNonBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferReceiveNonBlocking_20260310025332.json"
+    },
+    "LPUART_Deinit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Deinit_20260309035128.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "DbgConsole_Putchar",
+    "LPUART_RTOS_Receive",
+    "LPUART_RTOS_Send",
+    "prvCheckTasksWaitingTermination",
+    "prvIdleTask"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_UART_FreeRTOS"
+}

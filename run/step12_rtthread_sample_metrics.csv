@@ -1,0 +1,4 @@
+testcase_dir,return_code,elapsed_sec_wall,invoke_count,prompt_tokens,completion_tokens,total_tokens,total_elapsed_ms_llm,analyzer_tokens,builder_tokens,fixer_tokens,emulator_tokens,session_file
+/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/base,0,11.3,0,0,0,0,0.0,0,0,0,0,/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_base/lcmhal_ai_log/session_76f113ce-60b1-49fc-b633-814f3695f85b_20260414_234037.json
+/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/fatfs,0,9.201,0,0,0,0,0.0,0,0,0,0,/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_fatfs/lcmhal_ai_log/session_18728cbf-41fc-4bfd-a642-b00772702b7f_20260414_234049.json
+/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/i2c,0,8.193,0,0,0,0,0.0,0,0,0,0,/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_i2c/lcmhal_ai_log/session_a18e59b9-240c-4632-a292-1bf94b4a4d38_20260414_234058.json

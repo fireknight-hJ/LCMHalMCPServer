@@ -1,0 +1,10 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/FatFs_USBDisk_RTOS",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/lcmhal_ai_log",
+  "total_functions": 0,
+  "counts": {
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {},
+  "error": null
+}

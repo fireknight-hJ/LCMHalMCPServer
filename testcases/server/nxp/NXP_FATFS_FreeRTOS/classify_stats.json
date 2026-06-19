@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_FATFS_FreeRTOS",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log",
+  "total_functions": 65,
+  "counts": {
+    "INIT": 36,
+    "RETURNOK": 16,
+    "SKIP": 5,
+    "IRQ": 2,
+    "NODRIVER": 2,
+    "RECV": 2,
+    "CORE": 1,
+    "LOOP": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 33,
+      "false": 3
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 16
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 4
+    },
+    "IRQ": {
+      "true": 1,
+      "false": 1
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 2
+    },
+    "RECV": {
+      "true": 1,
+      "false": 1
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

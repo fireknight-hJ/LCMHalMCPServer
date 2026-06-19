@@ -1,0 +1,36 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/i2c_shell_atsame54",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_i2c_shell_atsame54/lcmhal_ai_log",
+  "total_functions": 79,
+  "counts": {
+    "NODRIVER": 44,
+    "CORE": 19,
+    "INIT": 13,
+    "LOOP": 2,
+    "IRQ": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "NODRIVER": {
+      "true": 0,
+      "false": 44
+    },
+    "CORE": {
+      "true": 0,
+      "false": 19
+    },
+    "INIT": {
+      "true": 11,
+      "false": 2
+    },
+    "LOOP": {
+      "true": 2,
+      "false": 0
+    },
+    "IRQ": {
+      "true": 1,
+      "false": 0
+    }
+  },
+  "error": null
+}

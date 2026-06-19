@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/nxp/eth_dhcpv4_mimxrt1060",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_eth_dhcpv4_mimxrt1060/lcmhal_ai_log",
+  "total_functions": 276,
+  "counts": {
+    "NODRIVER": 160,
+    "INIT": 56,
+    "RETURNOK": 24,
+    "CORE": 19,
+    "RECV": 7,
+    "IRQ": 6,
+    "LOOP": 2,
+    "SKIP": 2,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "NODRIVER": {
+      "true": 0,
+      "false": 160
+    },
+    "INIT": {
+      "true": 8,
+      "false": 48
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 24
+    },
+    "CORE": {
+      "true": 0,
+      "false": 19
+    },
+    "RECV": {
+      "true": 2,
+      "false": 5
+    },
+    "IRQ": {
+      "true": 2,
+      "false": 4
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 2
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 2
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,454 @@
+2026-04-07 22:58:02,206 - INFO - [*] Read loop started
+Session ID: 9285894c-9a6b-48c6-b12f-0f4fa1c36841
+2026-04-07 22:58:02,646 - INFO - [CodeQL stderr] [2026-04-07 22:58:02] This is codeql execute query-server2 --debug --tuple-counting --threads=0 --evaluator-log-level 5 -v --log-to-stderr
+2026-04-07 22:58:02,656 - INFO - [CodeQL stderr] [2026-04-07 22:58:02] Creating executor with 128 threads.
+2026-04-07 22:58:05,469 - WARNING - 在数据库路径 /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 中未找到 db-* 目录
+2026-04-07 22:58:05,469 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=0
+2026-04-07 22:58:05,470 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": [
+        "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475"
+      ]
+    },
+    "progressId": 0
+  }
+}
+
+2026-04-07 22:58:05,488 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [SPAMMY] execute query-server2> registerDatabases called with [/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475]
+2026-04-07 22:58:05,503 - INFO - [stdout] Content-Length: 138
+2026-04-07 22:58:05,503 - INFO - [raw response body] {"jsonrpc":"2.0","id":1,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475"]}}
+2026-04-07 22:58:05,503 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475"
+    ]
+  }
+}
+
+2026-04-07 22:58:05,504 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=1
+2026-04-07 22:58:05,504 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/4ccd59a4-4af0-4ed9-a167-d1e764c0db8a.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 1
+  }
+}
+
+2026-04-07 22:58:05,515 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:58:05,515 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:58:05,515 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:58:05,516 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:58:05,516 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:58:05,516 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:58:05,516 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:58:05,526 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:58:05,526 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:58:05,526 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:58:05,526 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:58:05,526 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/4ccd59a4-4af0-4ed9-a167-d1e764c0db8a.bqrs
+2026-04-07 22:58:05,526 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:58:05,529 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [ERROR] Error running query
+2026-04-07 22:58:05,529 - INFO - [stdout] Content-Length: 196
+2026-04-07 22:58:05,529 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:05,529 - INFO - [raw response body] {"jsonrpc":"2.0","id":2,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.","evaluationTime":-1}}
+2026-04-07 22:58:05,529 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:58:05,529 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:58:05,529 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:58:05,530 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.', 'evaluationTime': -1}
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:58:05,530 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:58:05,530 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at com.semmle.cli2.database.DatabaseLayout.<init>(DatabaseLayout.java:213)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at com.semmle.cli2.database.DatabaseLayout.load(DatabaseLayout.java:137)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:05,531 - INFO - [CodeQL stderr] ... 10 common frames omitted
+2026-04-07 22:58:05,962 - INFO - [!] Database /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 already registered.
+2026-04-07 22:58:05,962 - INFO - [INFO] No new databases to register.
+2026-04-07 22:58:05,963 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=2
+2026-04-07 22:58:05,963 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": []
+    },
+    "progressId": 2
+  }
+}
+
+2026-04-07 22:58:05,964 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [SPAMMY] execute query-server2> registerDatabases called with []
+2026-04-07 22:58:05,964 - INFO - [stdout] Content-Length: 138
+2026-04-07 22:58:05,964 - INFO - [raw response body] {"jsonrpc":"2.0","id":3,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475"]}}
+2026-04-07 22:58:05,965 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475"
+    ]
+  }
+}
+
+2026-04-07 22:58:05,965 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=3
+2026-04-07 22:58:05,965 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/68f38c77-1e56-45dc-a40c-037f3c945165.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 3
+  }
+}
+
+2026-04-07 22:58:05,966 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:58:05,966 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:58:05,966 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:58:05,966 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:58:05,967 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:58:05,967 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:58:05,967 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:58:05,967 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:58:05,967 - INFO - [CodeQL stderr] [2026-04-07 22:58:05] [ERROR] Error running query
+2026-04-07 22:58:05,967 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:58:05,967 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:05,968 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:58:05,968 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:58:05,968 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:58:05,968 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:58:05,968 - INFO - [stdout] Content-Length: 196
+2026-04-07 22:58:05,968 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:58:05,968 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:58:05,968 - INFO - [raw response body] {"jsonrpc":"2.0","id":4,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.","evaluationTime":-1}}
+2026-04-07 22:58:05,969 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/68f38c77-1e56-45dc-a40c-037f3c945165.bqrs
+2026-04-07 22:58:05,969 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:58:05,969 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:58:05,969 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:58:05,969 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.', 'evaluationTime': -1}
+2026-04-07 22:58:05,970 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:58:05,970 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:05,970 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:58:05,970 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:58:05,970 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.cli2.database.DatabaseLayout.<init>(DatabaseLayout.java:213)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.cli2.database.DatabaseLayout.load(DatabaseLayout.java:137)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:05,971 - INFO - [CodeQL stderr] ... 10 common frames omitted
+2026-04-07 22:58:06,401 - INFO - [!] Database /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 already registered.
+2026-04-07 22:58:06,401 - INFO - [INFO] No new databases to register.
+2026-04-07 22:58:06,401 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=4
+2026-04-07 22:58:06,401 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": []
+    },
+    "progressId": 4
+  }
+}
+
+2026-04-07 22:58:06,402 - INFO - [CodeQL stderr] [2026-04-07 22:58:06] [SPAMMY] execute query-server2> registerDatabases called with []
+2026-04-07 22:58:06,402 - INFO - [stdout] Content-Length: 138
+2026-04-07 22:58:06,403 - INFO - [raw response body] {"jsonrpc":"2.0","id":5,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475"]}}
+2026-04-07 22:58:06,403 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475"
+    ]
+  }
+}
+
+2026-04-07 22:58:06,403 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=5
+2026-04-07 22:58:06,404 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/b8bd14eb-15ed-4197-8527-c7950fb4a592.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 5
+  }
+}
+
+2026-04-07 22:58:06,405 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:58:06,405 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:58:06,405 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:58:06,405 - INFO - [CodeQL stderr] [2026-04-07 22:58:06] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:58:06,405 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:58:06,405 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:58:06,406 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:58:06,406 - INFO - [CodeQL stderr] [2026-04-07 22:58:06] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:58:06,406 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:58:06,406 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:58:06,406 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:58:06,406 - INFO - [stdout] Content-Length: 196
+2026-04-07 22:58:06,406 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:58:06,406 - INFO - [CodeQL stderr] [2026-04-07 22:58:06] [ERROR] Error running query
+2026-04-07 22:58:06,407 - INFO - [raw response body] {"jsonrpc":"2.0","id":6,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.","evaluationTime":-1}}
+2026-04-07 22:58:06,407 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/b8bd14eb-15ed-4197-8527-c7950fb4a592.bqrs
+2026-04-07 22:58:06,407 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:06,407 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:58:06,407 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:58:06,407 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.', 'evaluationTime': -1}
+2026-04-07 22:58:06,408 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:58:06,408 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:06,408 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:58:06,409 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_Zephyr_stm32_uart_echo_disco_l475 is not a recognized CodeQL database.
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] at com.semmle.cli2.database.DatabaseLayout.<init>(DatabaseLayout.java:213)
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] at com.semmle.cli2.database.DatabaseLayout.load(DatabaseLayout.java:137)
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:58:06,410 - INFO - [CodeQL stderr] ... 10 common frames omitted
+Error getting MMIO function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+[analyze_functions] classifying 0 functions (max concurrent: 8, env LCMHAL_ANALYZE_MAX_CONCURRENT)
+Error getting MMIO function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+Error getting interesting-MMIO-expr function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+Replacement log written to: testcases/server/zephyr/stm32/uart_echo_disco_l475/replacement_log.md
+2026-04-07 22:58:07,693 - INFO - [*] Read loop started
+=== START testcases/server/zephyr/stm32/uart_echo_disco_l475 ===
+=== DONE ===

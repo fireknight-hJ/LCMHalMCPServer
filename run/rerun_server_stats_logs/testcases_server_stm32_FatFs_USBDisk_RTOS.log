@@ -1,0 +1,451 @@
+2026-04-07 22:42:29,998 - INFO - [*] Read loop started
+Session ID: e6904da1-7eb3-4b18-8f73-c498a4d57490
+2026-04-07 22:42:30,482 - INFO - [CodeQL stderr] [2026-04-07 22:42:30] This is codeql execute query-server2 --debug --tuple-counting --threads=0 --evaluator-log-level 5 -v --log-to-stderr
+2026-04-07 22:42:30,492 - INFO - [CodeQL stderr] [2026-04-07 22:42:30] Creating executor with 128 threads.
+2026-04-07 22:42:33,589 - WARNING - 在数据库路径 /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS 中未找到 db-* 目录
+2026-04-07 22:42:33,589 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=0
+2026-04-07 22:42:33,589 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": [
+        "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"
+      ]
+    },
+    "progressId": 0
+  }
+}
+
+2026-04-07 22:42:33,605 - INFO - [CodeQL stderr] [2026-04-07 22:42:33] [SPAMMY] execute query-server2> registerDatabases called with [/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS]
+2026-04-07 22:42:33,614 - INFO - [stdout] Content-Length: 123
+2026-04-07 22:42:33,614 - INFO - [raw response body] {"jsonrpc":"2.0","id":1,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"]}}
+2026-04-07 22:42:33,614 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"
+    ]
+  }
+}
+
+2026-04-07 22:42:33,615 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=1
+2026-04-07 22:42:33,615 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/3fbc20b2-1060-4990-aab8-138a49ecf22e.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 1
+  }
+}
+
+2026-04-07 22:42:33,623 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:42:33,624 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:42:33,624 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:42:33,625 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:42:33,625 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:42:33,625 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:42:33,625 - INFO - [CodeQL stderr] [2026-04-07 22:42:33] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:42:34,008 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:42:34,008 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:42:34,009 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:42:34,009 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:42:34,009 - INFO - [CodeQL stderr] [2026-04-07 22:42:34] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:42:34,009 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/3fbc20b2-1060-4990-aab8-138a49ecf22e.bqrs
+2026-04-07 22:42:34,013 - INFO - [CodeQL stderr] [2026-04-07 22:42:34] [ERROR] Error running query
+2026-04-07 22:42:34,013 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:34,013 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:42:34,013 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:42:34,013 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.cli2.ql.dataset.DatasetLayout.<init>(DatasetLayout.java:38)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:34,014 - INFO - [CodeQL stderr] ... 10 common frames omitted
+2026-04-07 22:42:34,015 - INFO - [stdout] Content-Length: 167
+2026-04-07 22:42:34,015 - INFO - [raw response body] {"jsonrpc":"2.0","id":2,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.","evaluationTime":-1}}
+2026-04-07 22:42:34,015 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:42:34,015 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.', 'evaluationTime': -1}
+2026-04-07 22:42:34,015 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:34,537 - INFO - [!] Database /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS already registered.
+2026-04-07 22:42:34,537 - INFO - [INFO] No new databases to register.
+2026-04-07 22:42:34,537 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=2
+2026-04-07 22:42:34,537 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": []
+    },
+    "progressId": 2
+  }
+}
+
+2026-04-07 22:42:34,539 - INFO - [CodeQL stderr] [2026-04-07 22:42:34] [SPAMMY] execute query-server2> registerDatabases called with []
+2026-04-07 22:42:34,539 - INFO - [stdout] Content-Length: 123
+2026-04-07 22:42:34,539 - INFO - [raw response body] {"jsonrpc":"2.0","id":3,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"]}}
+2026-04-07 22:42:34,539 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"
+    ]
+  }
+}
+
+2026-04-07 22:42:34,539 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=3
+2026-04-07 22:42:34,540 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/95c10e82-a0b4-4a04-8519-e4da2a52ff1c.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 3
+  }
+}
+
+2026-04-07 22:42:34,541 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:42:34,541 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:42:34,541 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:42:34,541 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:42:34,541 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:42:34,541 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:42:34,541 - INFO - [CodeQL stderr] [2026-04-07 22:42:34] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:42:34,545 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:42:34,545 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:42:34,545 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:42:34,545 - INFO - [CodeQL stderr] [2026-04-07 22:42:34] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:42:34,545 - INFO - [stdout] Content-Length: 167
+2026-04-07 22:42:34,545 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:42:34,545 - INFO - [raw response body] {"jsonrpc":"2.0","id":4,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.","evaluationTime":-1}}
+2026-04-07 22:42:34,545 - INFO - [CodeQL stderr] [2026-04-07 22:42:34] [ERROR] Error running query
+2026-04-07 22:42:34,545 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/95c10e82-a0b4-4a04-8519-e4da2a52ff1c.bqrs
+2026-04-07 22:42:34,546 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:42:34,546 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:34,546 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.', 'evaluationTime': -1}
+2026-04-07 22:42:34,546 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:42:34,546 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:34,546 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:42:34,547 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:34,548 - INFO - [CodeQL stderr] at com.semmle.cli2.ql.dataset.DatasetLayout.<init>(DatasetLayout.java:38)
+2026-04-07 22:42:34,548 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:42:34,548 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:34,548 - INFO - [CodeQL stderr] ... 10 common frames omitted
+2026-04-07 22:42:35,038 - INFO - [!] Database /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS already registered.
+2026-04-07 22:42:35,038 - INFO - [INFO] No new databases to register.
+2026-04-07 22:42:35,038 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=4
+2026-04-07 22:42:35,038 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": []
+    },
+    "progressId": 4
+  }
+}
+
+2026-04-07 22:42:35,039 - INFO - [CodeQL stderr] [2026-04-07 22:42:35] [SPAMMY] execute query-server2> registerDatabases called with []
+2026-04-07 22:42:35,039 - INFO - [stdout] Content-Length: 123
+2026-04-07 22:42:35,039 - INFO - [raw response body] {"jsonrpc":"2.0","id":5,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"]}}
+2026-04-07 22:42:35,040 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS"
+    ]
+  }
+}
+
+2026-04-07 22:42:35,040 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=5
+2026-04-07 22:42:35,041 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/3659856c-bee1-4c8e-8b24-05700c833747.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 5
+  }
+}
+
+2026-04-07 22:42:35,042 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:42:35,042 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:42:35,042 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:42:35,042 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:42:35,042 - INFO - [CodeQL stderr] [2026-04-07 22:42:35] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:42:35,042 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:42:35,042 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:42:35,045 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:42:35,045 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:42:35,045 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:42:35,045 - INFO - [CodeQL stderr] [2026-04-07 22:42:35] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:42:35,045 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:42:35,046 - INFO - [stdout] Content-Length: 167
+2026-04-07 22:42:35,046 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/3659856c-bee1-4c8e-8b24-05700c833747.bqrs
+2026-04-07 22:42:35,046 - INFO - [raw response body] {"jsonrpc":"2.0","id":6,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.","evaluationTime":-1}}
+2026-04-07 22:42:35,046 - INFO - [CodeQL stderr] [2026-04-07 22:42:35] [ERROR] Error running query
+2026-04-07 22:42:35,046 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:42:35,046 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:35,046 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.', 'evaluationTime': -1}
+2026-04-07 22:42:35,046 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:42:35,047 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:35,047 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:42:35,047 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:42:35,047 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:42:35,047 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_FatFs_USBDisk_RTOS/db-cpp does not exist.
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.cli2.ql.dataset.DatasetLayout.<init>(DatasetLayout.java:38)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:42:35,048 - INFO - [CodeQL stderr] ... 10 common frames omitted
+Error getting MMIO function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+[analyze_functions] classifying 0 functions (max concurrent: 8, env LCMHAL_ANALYZE_MAX_CONCURRENT)
+Error getting MMIO function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+Error getting interesting-MMIO-expr function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+Replacement log written to: testcases/server/stm32/FatFs_USBDisk_RTOS/replacement_log.md
+2026-04-07 22:42:37,173 - INFO - [*] Read loop started
+=== START testcases/server/stm32/FatFs_USBDisk_RTOS ===
+=== DONE ===

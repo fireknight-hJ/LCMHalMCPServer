@@ -1,0 +1,5 @@
+# LCMHAL 配置文件 — Zephyr fxos8700 (accel) @ lpcxpresso55s69_cpu0
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/nxp/i2c_fxos8700_lpc55"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55"
+src_path: "/home/haojie/zephyrproject/zephyr"
+proj_path: "/home/haojie/zephyrproject"

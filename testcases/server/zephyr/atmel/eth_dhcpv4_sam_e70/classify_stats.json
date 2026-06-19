@@ -1,0 +1,36 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/eth_dhcpv4_sam_e70",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_eth_dhcpv4_sam_e70/lcmhal_ai_log",
+  "total_functions": 188,
+  "counts": {
+    "NODRIVER": 160,
+    "CORE": 15,
+    "INIT": 10,
+    "RECV": 2,
+    "RETURNOK": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "NODRIVER": {
+      "true": 0,
+      "false": 160
+    },
+    "CORE": {
+      "true": 0,
+      "false": 15
+    },
+    "INIT": {
+      "true": 10,
+      "false": 0
+    },
+    "RECV": {
+      "true": 2,
+      "false": 0
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

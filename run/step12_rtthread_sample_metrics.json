@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-04-14 23:41:06",
+  "case_count": 3,
+  "cases": [
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/base",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_base",
+      "return_code": 0,
+      "elapsed_sec_wall": 11.3,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_base/lcmhal_ai_log/session_76f113ce-60b1-49fc-b633-814f3695f85b_20260414_234037.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": ""
+    },
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/fatfs",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_fatfs",
+      "return_code": 0,
+      "elapsed_sec_wall": 9.201,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_fatfs/lcmhal_ai_log/session_18728cbf-41fc-4bfd-a642-b00772702b7f_20260414_234049.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": ""
+    },
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/imxrt1052-nxp-evk/i2c",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_i2c",
+      "return_code": 0,
+      "elapsed_sec_wall": 8.193,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_imxrt1052_i2c/lcmhal_ai_log/session_a18e59b9-240c-4632-a292-1bf94b4a4d38_20260414_234058.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": ""
+    }
+  ],
+  "overall": {
+    "success_count": 3,
+    "total_tokens": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_llm_elapsed_ms": 0.0,
+    "total_wall_sec": 28.694,
+    "analyzer_tokens": 0,
+    "builder_tokens": 0,
+    "fixer_tokens": 0,
+    "emulator_tokens": 0
+  }
+}

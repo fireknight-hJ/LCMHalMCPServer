@@ -1,0 +1,680 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "HAL_ADC_MspDeInit",
+      "HAL_DMAEx_MultiBufferStart_IT",
+      "HAL_DeInit",
+      "HAL_GPIO_Init",
+      "HAL_HalfDuplex_Init",
+      "HAL_Init",
+      "HAL_LIN_Init",
+      "HAL_MultiProcessor_Init",
+      "HAL_PWREx_ControlVoltageScaling",
+      "HAL_PWREx_EnableBkUpReg",
+      "HAL_PWR_ConfigPVD",
+      "HAL_PWR_EnterSTOPMode",
+      "HAL_RCCEx_EnablePLLI2S",
+      "HAL_RCCEx_GetPeriphCLKConfig",
+      "HAL_RCCEx_PeriphCLKConfig",
+      "HAL_RCC_ClockConfig",
+      "HAL_RCC_OscConfig",
+      "HAL_SPI_DeInit",
+      "HAL_SPI_Init",
+      "HAL_SPI_MspInit",
+      "HAL_TIM_Base_MspDeInit",
+      "HAL_TIM_MspPostInit",
+      "HAL_UART_DeInit",
+      "HAL_UART_Init",
+      "SystemClock_Config",
+      "SystemCoreClockUpdate",
+      "rt_hw_pin_init",
+      "stm32_dma_config"
+    ],
+    "RETURNOK": [
+      "HAL_GPIO_DeInit",
+      "HAL_GPIO_LockPin",
+      "HAL_GPIO_ReadPin",
+      "HAL_GPIO_TogglePin",
+      "HAL_GPIO_WritePin",
+      "HAL_PWREx_GetVoltageRange",
+      "HAL_PWR_DeInit",
+      "HAL_PWR_DisableBkUpAccess",
+      "HAL_PWR_DisableWakeUpPin",
+      "HAL_PWR_EnableWakeUpPin",
+      "HAL_RCCEx_GetPeriphCLKFreq",
+      "HAL_RCC_GetClockConfig",
+      "HAL_RCC_GetPCLK1Freq",
+      "HAL_RCC_GetPCLK2Freq",
+      "HAL_RCC_MCOConfig"
+    ],
+    "SKIP": [
+      "HAL_ADC_MspInit",
+      "HAL_PWR_EnableBkUpAccess",
+      "HAL_TIM_Base_MspInit",
+      "HAL_UART_MspInit"
+    ],
+    "IRQ": [
+      "HAL_GPIO_EXTI_IRQHandler",
+      "HAL_PWR_PVD_IRQHandler",
+      "HAL_RCC_NMI_IRQHandler"
+    ],
+    "LOOP": [
+      "HAL_PWREx_DisableBkUpReg",
+      "HAL_RCCEx_DisablePLLI2S",
+      "HAL_RCC_DeInit"
+    ],
+    "CORE": [
+      "HAL_PWR_EnterSTANDBYMode"
+    ],
+    "NODRIVER": [
+      "HAL_MspInit"
+    ]
+  },
+  "counts": {
+    "INIT": 28,
+    "RETURNOK": 15,
+    "SKIP": 4,
+    "IRQ": 3,
+    "LOOP": 3,
+    "CORE": 1,
+    "NODRIVER": 1,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "HAL_ADC_MspDeInit",
+        "HAL_DMAEx_MultiBufferStart_IT",
+        "HAL_DeInit",
+        "HAL_GPIO_Init",
+        "HAL_HalfDuplex_Init",
+        "HAL_Init",
+        "HAL_LIN_Init",
+        "HAL_MultiProcessor_Init",
+        "HAL_PWREx_ControlVoltageScaling",
+        "HAL_PWREx_EnableBkUpReg",
+        "HAL_PWR_ConfigPVD",
+        "HAL_PWR_EnterSTOPMode",
+        "HAL_RCCEx_EnablePLLI2S",
+        "HAL_RCCEx_GetPeriphCLKConfig",
+        "HAL_RCCEx_PeriphCLKConfig",
+        "HAL_RCC_ClockConfig",
+        "HAL_RCC_OscConfig",
+        "HAL_SPI_Init",
+        "HAL_SPI_MspInit",
+        "HAL_TIM_MspPostInit",
+        "HAL_UART_DeInit",
+        "HAL_UART_Init",
+        "SystemClock_Config",
+        "SystemCoreClockUpdate",
+        "rt_hw_pin_init",
+        "stm32_dma_config"
+      ],
+      "false": [
+        "HAL_SPI_DeInit",
+        "HAL_TIM_Base_MspDeInit"
+      ]
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "HAL_GPIO_DeInit",
+        "HAL_GPIO_LockPin",
+        "HAL_GPIO_ReadPin",
+        "HAL_GPIO_TogglePin",
+        "HAL_GPIO_WritePin",
+        "HAL_PWREx_GetVoltageRange",
+        "HAL_PWR_DeInit",
+        "HAL_PWR_DisableBkUpAccess",
+        "HAL_PWR_DisableWakeUpPin",
+        "HAL_PWR_EnableWakeUpPin",
+        "HAL_RCCEx_GetPeriphCLKFreq",
+        "HAL_RCC_GetClockConfig",
+        "HAL_RCC_GetPCLK1Freq",
+        "HAL_RCC_GetPCLK2Freq",
+        "HAL_RCC_MCOConfig"
+      ]
+    },
+    "SKIP": {
+      "true": [],
+      "false": [
+        "HAL_ADC_MspInit",
+        "HAL_PWR_EnableBkUpAccess",
+        "HAL_TIM_Base_MspInit",
+        "HAL_UART_MspInit"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "HAL_GPIO_EXTI_IRQHandler",
+        "HAL_PWR_PVD_IRQHandler",
+        "HAL_RCC_NMI_IRQHandler"
+      ],
+      "false": []
+    },
+    "LOOP": {
+      "true": [
+        "HAL_PWREx_DisableBkUpReg",
+        "HAL_RCCEx_DisablePLLI2S",
+        "HAL_RCC_DeInit"
+      ],
+      "false": []
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "HAL_PWR_EnterSTANDBYMode"
+      ]
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "HAL_MspInit"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 26,
+      "false": 2
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 15
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 4
+    },
+    "IRQ": {
+      "true": 3,
+      "false": 0
+    },
+    "LOOP": {
+      "true": 3,
+      "false": 0
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "per_function": {
+    "HAL_DMAEx_MultiBufferStart_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_DMAEx_MultiBufferStart_IT_20260407043714.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_DeInit": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_DeInit_20260224060435.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_GetClockConfig": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_GetClockConfig_20260407043844.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_LockPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_GPIO_LockPin_20260407043615.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_TogglePin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_GPIO_TogglePin_20260407043616.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWR_EnableBkUpAccess": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_EnableBkUpAccess_20260407043808.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCCEx_GetPeriphCLKFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCCEx_GetPeriphCLKFreq_20260407043847.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_UART_DeInit_20260407044000.json",
+      "has_replacement_update": false
+    },
+    "HAL_MspInit": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_MspInit_20260224060332.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_EnableBkUpReg": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWREx_EnableBkUpReg_20260224060348.json",
+      "has_replacement_update": false
+    },
+    "HAL_LIN_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_LIN_Init_20260407043745.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_DeInit": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_GPIO_DeInit_20260224060341.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_GetPCLK2Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_GetPCLK2Freq_20260407043850.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_GetPCLK2Freq_20260225194030.json"
+    },
+    "HAL_RCCEx_PeriphCLKConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCCEx_PeriphCLKConfig_20260225114655.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCCEx_PeriphCLKConfig_20260225115105.json"
+    },
+    "HAL_PWR_EnterSTOPMode": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_EnterSTOPMode_20260407043902.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_MCOConfig": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_MCOConfig_20260224060342.json",
+      "has_replacement_update": false
+    },
+    "HAL_TIM_Base_MspDeInit": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_TIM_Base_MspDeInit_20260407043950.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_MspInit": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_UART_MspInit_20260224060334.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWR_EnableWakeUpPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_EnableWakeUpPin_20260407043813.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCCEx_EnablePLLI2S": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCCEx_EnablePLLI2S_20260224060414.json",
+      "has_replacement_update": false
+    },
+    "HAL_TIM_Base_MspInit": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_TIM_Base_MspInit_20260224060339.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_TIM_Base_MspInit_20260225120042.json"
+    },
+    "HAL_GPIO_ReadPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_GPIO_ReadPin_20260407043622.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWR_ConfigPVD": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_ConfigPVD_20260407043759.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_EXTI_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_GPIO_EXTI_IRQHandler_20260407043646.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCCEx_GetPeriphCLKConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCCEx_GetPeriphCLKConfig_20260407043905.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWR_EnterSTANDBYMode": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_EnterSTANDBYMode_20260407043833.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_UART_Init_20260407044056.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_UART_Init_20260225193940.json"
+    },
+    "HAL_RCC_NMI_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_NMI_IRQHandler_20260407043916.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCCEx_DisablePLLI2S": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCCEx_DisablePLLI2S_20260224060347.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_ControlVoltageScaling": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWREx_ControlVoltageScaling_20260224060407.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableBkUpReg": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWREx_DisableBkUpReg_20260224060343.json",
+      "has_replacement_update": false
+    },
+    "rt_hw_pin_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_rt_hw_pin_init_20260407044005.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_rt_hw_pin_init_20260225115946.json"
+    },
+    "HAL_MultiProcessor_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_MultiProcessor_Init_20260407043748.json",
+      "has_replacement_update": false
+    },
+    "HAL_ADC_MspInit": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_ADC_MspInit_20260224060331.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_ADC_MspInit_20260225120008.json"
+    },
+    "HAL_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_DeInit_20260407043644.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_GPIO_Init_20260224060442.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_OscConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_OscConfig_20260224060425.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_OscConfig_20260226061636.json"
+    },
+    "HAL_RCC_ClockConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_ClockConfig_20260224060453.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_ClockConfig_20260226071022.json"
+    },
+    "HAL_SPI_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_SPI_DeInit_20260407043920.json",
+      "has_replacement_update": false
+    },
+    "HAL_TIM_MspPostInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_TIM_MspPostInit_20260407044013.json",
+      "has_replacement_update": false
+    },
+    "HAL_SPI_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_SPI_Init_20260407044042.json",
+      "has_replacement_update": false
+    },
+    "HAL_SPI_MspInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_SPI_MspInit_20260224060353.json",
+      "has_replacement_update": false
+    },
+    "SystemClock_Config": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_SystemClock_Config_20260224060417.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_SystemClock_Config_20260225115042.json"
+    },
+    "HAL_ADC_MspDeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_ADC_MspDeInit_20260407043654.json",
+      "has_replacement_update": false
+    },
+    "stm32_dma_config": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_stm32_dma_config_20260407044138.json",
+      "has_replacement_update": false
+    },
+    "SystemCoreClockUpdate": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_SystemCoreClockUpdate_20260407044041.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_SystemCoreClockUpdate_20260225115406.json"
+    },
+    "HAL_GPIO_WritePin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_GPIO_WritePin_20260407043623.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWR_DisableBkUpAccess": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_DisableBkUpAccess_20260407043746.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWR_DisableWakeUpPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_DisableWakeUpPin_20260407043747.json",
+      "has_replacement_update": false
+    },
+    "HAL_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_Init_20260407043804.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_Init_20260407045007.json"
+    },
+    "HAL_PWREx_GetVoltageRange": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWREx_GetVoltageRange_20260407043718.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_GetPCLK1Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_RCC_GetPCLK1Freq_20260407043846.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_GetPCLK1Freq_20260225194019.json"
+    },
+    "HAL_PWR_DeInit": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_DeInit_20260407043731.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWR_PVD_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_PWR_PVD_IRQHandler_20260407043834.json",
+      "has_replacement_update": false
+    },
+    "HAL_HalfDuplex_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/function_classify_HAL_HalfDuplex_Init_20260407043737.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 55,
+  "replacement_update_count": 26,
+  "replacement_update_functions": [
+    "HAL_ADC_MspInit",
+    "HAL_Delay",
+    "HAL_Init",
+    "HAL_InitTick",
+    "HAL_NVIC_EnableIRQ",
+    "HAL_NVIC_SetPriority",
+    "HAL_NVIC_SetPriorityGrouping",
+    "HAL_RCCEx_PeriphCLKConfig",
+    "HAL_RCC_ClockConfig",
+    "HAL_RCC_GetPCLK1Freq",
+    "HAL_RCC_GetPCLK2Freq",
+    "HAL_RCC_GetSysClockFreq",
+    "HAL_RCC_OscConfig",
+    "HAL_TIM_Base_MspInit",
+    "HAL_UART_IRQHandler",
+    "HAL_UART_Init",
+    "HAL_UART_Receive",
+    "HAL_UART_Transmit",
+    "SystemClock_Config",
+    "SystemCoreClockUpdate",
+    "SystemInit",
+    "UART_SetConfig",
+    "UART_WaitOnFlagUntilTimeout",
+    "rt_hw_pin_init",
+    "stm32_putc",
+    "uart_isr"
+  ],
+  "replacement_update_by_function": {
+    "HAL_UART_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_UART_Init_20260225193940.json"
+    },
+    "stm32_putc": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_stm32_putc_20260225194541.json"
+    },
+    "UART_SetConfig": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_UART_SetConfig_20260225194006.json"
+    },
+    "HAL_NVIC_EnableIRQ": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_NVIC_EnableIRQ_20260226070902.json"
+    },
+    "HAL_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_Init_20260407045007.json"
+    },
+    "HAL_RCC_OscConfig": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_OscConfig_20260226061636.json"
+    },
+    "HAL_RCC_ClockConfig": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_ClockConfig_20260226071022.json"
+    },
+    "HAL_InitTick": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_InitTick_20260226045140.json"
+    },
+    "UART_WaitOnFlagUntilTimeout": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_UART_WaitOnFlagUntilTimeout_20260407044443.json"
+    },
+    "HAL_RCCEx_PeriphCLKConfig": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCCEx_PeriphCLKConfig_20260225115105.json"
+    },
+    "HAL_NVIC_SetPriorityGrouping": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_NVIC_SetPriorityGrouping_20260226055422.json"
+    },
+    "HAL_RCC_GetSysClockFreq": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_GetSysClockFreq_20260226061510.json"
+    },
+    "SystemCoreClockUpdate": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_SystemCoreClockUpdate_20260225115406.json"
+    },
+    "HAL_UART_Receive": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_UART_Receive_20260407044507.json"
+    },
+    "HAL_Delay": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_Delay_20260407044545.json"
+    },
+    "HAL_TIM_Base_MspInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_TIM_Base_MspInit_20260225120042.json"
+    },
+    "SystemClock_Config": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_SystemClock_Config_20260225115042.json"
+    },
+    "HAL_ADC_MspInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_ADC_MspInit_20260225120008.json"
+    },
+    "HAL_RCC_GetPCLK2Freq": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_GetPCLK2Freq_20260225194030.json"
+    },
+    "HAL_RCC_GetPCLK1Freq": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_RCC_GetPCLK1Freq_20260225194019.json"
+    },
+    "HAL_NVIC_SetPriority": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_NVIC_SetPriority_20260226055414.json"
+    },
+    "HAL_UART_IRQHandler": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_UART_IRQHandler_20260407045423.json"
+    },
+    "SystemInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_SystemInit_20260226181411.json"
+    },
+    "uart_isr": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_uart_isr_20260407045447.json"
+    },
+    "rt_hw_pin_init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_rt_hw_pin_init_20260225115946.json"
+    },
+    "HAL_UART_Transmit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base/lcmhal_ai_log/replacement_update_HAL_UART_Transmit_20260407044430.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "HAL_Delay",
+    "HAL_InitTick",
+    "HAL_NVIC_EnableIRQ",
+    "HAL_NVIC_SetPriority",
+    "HAL_NVIC_SetPriorityGrouping",
+    "HAL_RCC_GetSysClockFreq",
+    "HAL_UART_IRQHandler",
+    "HAL_UART_Receive",
+    "HAL_UART_Transmit",
+    "SystemInit",
+    "UART_SetConfig",
+    "UART_WaitOnFlagUntilTimeout",
+    "stm32_putc",
+    "uart_isr"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/stm32f401-st-nucleo/base"
+}

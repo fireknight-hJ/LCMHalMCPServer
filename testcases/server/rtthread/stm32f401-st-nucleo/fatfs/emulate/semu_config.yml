@@ -1,0 +1,131 @@
+emulate_mode: emulate
+enable_native: false
+entry_point: 0x8004c5d
+handlers:
+  DP83848_GetLinkState: fuzzemu.handlers.common.return_2
+  DP83848_Init: do_return
+  Delay: do_return
+  DelayLoop: do_return
+  ENET_MDIORead: fuzzemu.handlers.common.return_phy_id
+  ENET_SetSMI: do_return
+  HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+  HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+  HAL_BE_In: fuzzemu.handlers.common.hal_in
+  HAL_BE_Out: fuzzemu.handlers.common.hal_out
+  HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+  HAL_BE_return_1: fuzzemu.handlers.common.return_true
+  HAL_Delay: do_return
+  HAL_ETH_ReadPHYRegister: fuzzemu.handlers.common.return_zero
+  HAL_RCC_ClockConfig: fuzzemu.handlers.common.return_zero
+  LPUART_WriteBlocking: do_return
+  PHY_GetLinkSpeedDuplex: fuzzemu.handlers.common.return_2
+  PHY_GetLinkStatus: fuzzemu.handlers.common.return_2
+  PHY_Init: fuzzemu.handlers.common.return_zero
+  SDK_DelayAtLeastUs: do_return
+  ethernetif_phy_init: fuzzemu.handlers.common.return_zero
+  fflush: do_return
+  puts: do_return
+  rt_thread_mdelay: do_return
+  stm32_putc: do_return
+  wait: do_return
+  wait_us: do_return
+include:
+- ./syms.yml
+initial_sp: 0x20000884
+isr_vector: 0x8000000
+loop_whitelist:
+- memset
+- memcpy
+- memmove
+- FillZerobss
+- LoopFillZerobss
+- CopyDataInit
+- LoopCopyDataInit
+- Zero_Init
+- Reset_Handler
+- SystemInit
+memory_map:
+  flash:
+    base_addr: 0x8000000
+    file: output.bin
+    permissions: r-x
+    size: 0x1c000
+  irq_ret:
+    base_addr: 0xfffff000
+    permissions: rwx
+    size: 0x1000
+  mmio:
+    base_addr: 0x40000000
+    permissions: rw-
+    size: 0x20000000
+  nvic:
+    base_addr: 0xe0000000
+    permissions: rw-
+    size: 0x10000000
+  peripheral:
+    base_addr: 0xa0000000
+    permissions: rw-
+    size: 0x40000000
+  peripheral_ram:
+    base_addr: 0x60000000
+    permissions: rw-
+    size: 0x40000000
+  ram:
+    base_addr: 0x20000000
+    permissions: rwx
+    size: 0x400000
+mmio_funcs:
+- HAL_ADC_MspDeInit
+- HAL_ADC_MspInit
+- HAL_DMAEx_MultiBufferStart_IT
+- HAL_DeInit
+- HAL_GPIO_DeInit
+- HAL_GPIO_EXTI_IRQHandler
+- HAL_GPIO_Init
+- HAL_GPIO_LockPin
+- HAL_GPIO_ReadPin
+- HAL_GPIO_TogglePin
+- HAL_GPIO_WritePin
+- HAL_HalfDuplex_Init
+- HAL_Init
+- HAL_LIN_Init
+- HAL_MultiProcessor_Init
+- HAL_PWREx_ControlVoltageScaling
+- HAL_PWREx_DisableBkUpReg
+- HAL_PWREx_EnableBkUpReg
+- HAL_PWREx_GetVoltageRange
+- HAL_PWR_ConfigPVD
+- HAL_PWR_DeInit
+- HAL_PWR_DisableBkUpAccess
+- HAL_PWR_DisableWakeUpPin
+- HAL_PWR_EnableBkUpAccess
+- HAL_PWR_EnableWakeUpPin
+- HAL_PWR_EnterSTANDBYMode
+- HAL_PWR_EnterSTOPMode
+- HAL_PWR_PVD_IRQHandler
+- HAL_RCCEx_DisablePLLI2S
+- HAL_RCCEx_EnablePLLI2S
+- HAL_RCCEx_GetPeriphCLKConfig
+- HAL_RCCEx_GetPeriphCLKFreq
+- HAL_RCCEx_PeriphCLKConfig
+- HAL_RCC_ClockConfig
+- HAL_RCC_GetClockConfig
+- HAL_RCC_GetPCLK1Freq
+- HAL_RCC_GetPCLK2Freq
+- HAL_RCC_MCOConfig
+- HAL_RCC_NMI_IRQHandler
+- HAL_SPI_DeInit
+- HAL_SPI_Init
+- HAL_TIM_Base_MspDeInit
+- HAL_TIM_Base_MspInit
+- HAL_TIM_MspPostInit
+- HAL_UART_DeInit
+- HAL_UART_Init
+- SystemClock_Config
+- SystemCoreClockUpdate
+- rt_hw_pin_init
+- rt_hw_spi_bus_init
+- stm32_dma_config
+model: semu
+rules: semu_rule.txt

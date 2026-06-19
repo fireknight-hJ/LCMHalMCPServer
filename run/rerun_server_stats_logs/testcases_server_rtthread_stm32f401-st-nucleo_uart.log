@@ -1,0 +1,9 @@
+2026-04-07 22:42:19,191 - INFO - [*] Read loop started
+Session ID: 0a8bd9de-5fd8-4348-8325-61ab40667d11
+2026-04-07 22:42:19,691 - INFO - [CodeQL stderr] [2026-04-07 22:42:19] This is codeql execute query-server2 --debug --tuple-counting --threads=0 --evaluator-log-level 5 -v --log-to-stderr
+2026-04-07 22:42:19,696 - INFO - [CodeQL stderr] [2026-04-07 22:42:19] Creating executor with 128 threads.
+[analyze_functions] classifying 50 functions (max concurrent: 8, env LCMHAL_ANALYZE_MAX_CONCURRENT)
+Replacement log written to: testcases/server/rtthread/stm32f401-st-nucleo/uart/replacement_log.md
+2026-04-07 22:42:23,918 - INFO - [*] Read loop started
+=== START testcases/server/rtthread/stm32f401-st-nucleo/uart ===
+=== DONE ===

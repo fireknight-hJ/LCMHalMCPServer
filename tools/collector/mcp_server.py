@@ -91,7 +91,10 @@ async def collect_mmio_func_info(func_name: str) -> str:
         result = get_mmio_func_info(globs.db_path, func_name)
         if "error" in result:
             return result["error"]
-        return f"MMIO Exprs info: {result['mmio_exprs_info']}\nFunction info: {result['function_info']}"
+        out = f"MMIO Exprs info: {result['mmio_exprs_info']}\nFunction info: {result['function_info']}"
+        if result.get("mmio_note"):
+            out += f"\nNote: {result['mmio_note']}"
+        return out
     except Exception as e:
         return f"Error collecting MMIO function info: {e}"
 

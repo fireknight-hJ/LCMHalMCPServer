@@ -1,0 +1,36 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/nxp/uart_echo_mimxrt1060",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_uart_echo_mimxrt1060/lcmhal_ai_log",
+  "total_functions": 103,
+  "counts": {
+    "NODRIVER": 34,
+    "INIT": 29,
+    "RETURNOK": 23,
+    "CORE": 16,
+    "RECV": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "NODRIVER": {
+      "true": 0,
+      "false": 34
+    },
+    "INIT": {
+      "true": 2,
+      "false": 27
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 23
+    },
+    "CORE": {
+      "true": 0,
+      "false": 16
+    },
+    "RECV": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

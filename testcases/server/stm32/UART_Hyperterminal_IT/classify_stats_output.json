@@ -1,0 +1,1123 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "BSP_COM_Init",
+      "BSP_LED_Init",
+      "BSP_PB_Init",
+      "FLASH_Erase_Sector",
+      "FLASH_MassErase",
+      "FLASH_Program_DoubleWord",
+      "FLASH_Program_Word",
+      "FSMC_BANK3_MspInit",
+      "FSMC_NORSRAM_DeInit",
+      "FSMC_NORSRAM_Extended_Timing_Init",
+      "FSMC_NORSRAM_Init",
+      "FSMC_NORSRAM_Timing_Init",
+      "HAL_DeInit",
+      "HAL_FLASHEx_Erase",
+      "HAL_FLASHEx_Erase_IT",
+      "HAL_FLASH_OB_Unlock",
+      "HAL_FLASH_Program",
+      "HAL_FLASH_Program_IT",
+      "HAL_FLASH_Unlock",
+      "HAL_GPIO_Init",
+      "HAL_HalfDuplex_EnableReceiver",
+      "HAL_HalfDuplex_EnableTransmitter",
+      "HAL_HalfDuplex_Init",
+      "HAL_I2C_DeInit",
+      "HAL_I2C_DisableListen_IT",
+      "HAL_I2C_EnableListen_IT",
+      "HAL_I2C_Init",
+      "HAL_I2C_Master_Abort_IT",
+      "HAL_I2C_Master_Receive_DMA",
+      "HAL_I2C_Master_Receive_IT",
+      "HAL_I2C_Master_Seq_Receive_IT",
+      "HAL_I2C_Master_Seq_Transmit_DMA",
+      "HAL_I2C_Master_Seq_Transmit_IT",
+      "HAL_I2C_Master_Transmit_IT",
+      "HAL_I2C_Mem_Read_IT",
+      "HAL_I2C_Mem_Write_IT",
+      "HAL_I2C_Slave_Seq_Receive_IT",
+      "HAL_I2C_Slave_Seq_Transmit_IT",
+      "HAL_RCC_ClockConfig",
+      "HAL_RCC_OscConfig",
+      "HAL_UART_Abort",
+      "HAL_UART_AbortTransmit_IT",
+      "I2Cx_MspInit",
+      "SystemClock_Config",
+      "UART_Start_Receive_DMA"
+    ],
+    "RETURNOK": [
+      "FLASH_OB_GetUser",
+      "FLASH_Program_Byte",
+      "FLASH_SetErrorCode",
+      "FSMC_BANK3_WriteData",
+      "FSMC_BANK3_WriteReg",
+      "FSMC_NORSRAM_WriteOperation_Disable",
+      "FSMC_NORSRAM_WriteOperation_Enable",
+      "HAL_FLASH_Lock",
+      "HAL_FLASH_OB_Lock",
+      "HAL_GPIO_DeInit",
+      "HAL_GPIO_LockPin",
+      "HAL_GPIO_ReadPin",
+      "HAL_GPIO_TogglePin",
+      "HAL_GPIO_WritePin",
+      "HAL_I2C_IsDeviceReady",
+      "HAL_LIN_SendBreak",
+      "HAL_MultiProcessor_EnterMuteMode",
+      "HAL_MultiProcessor_ExitMuteMode",
+      "HAL_UART_AbortTransmit",
+      "HAL_UART_DMAPause",
+      "HAL_UART_DMAResume",
+      "HAL_UART_DMAStop",
+      "I2C_MasterRequestRead",
+      "UART_EndRxTransfer"
+    ],
+    "RECV": [
+      "FSMC_BANK3_ReadData",
+      "HAL_I2C_Master_Receive",
+      "HAL_I2C_Master_Seq_Receive_DMA",
+      "HAL_I2C_Master_Transmit",
+      "HAL_I2C_Master_Transmit_DMA",
+      "HAL_I2C_Mem_Read",
+      "HAL_I2C_Mem_Read_DMA",
+      "HAL_I2C_Mem_Write",
+      "HAL_I2C_Mem_Write_DMA",
+      "HAL_I2C_Slave_Receive",
+      "HAL_I2C_Slave_Seq_Receive_DMA",
+      "HAL_I2C_Slave_Seq_Transmit_DMA",
+      "HAL_I2C_Slave_Transmit",
+      "HAL_UARTEx_ReceiveToIdle",
+      "HAL_UARTEx_ReceiveToIdle_DMA",
+      "HAL_UARTEx_ReceiveToIdle_IT",
+      "HAL_UART_Receive",
+      "HAL_UART_Transmit",
+      "HAL_UART_Transmit_DMA",
+      "UART_Receive_IT"
+    ],
+    "LOOP": [
+      "FLASH_WaitForLastOperation",
+      "I2C_DMAAbort",
+      "I2C_RequestMemoryRead",
+      "I2C_RequestMemoryWrite",
+      "I2C_WaitOnBTFFlagUntilTimeout",
+      "I2C_WaitOnFlagUntilTimeout",
+      "I2C_WaitOnMasterAddressFlagUntilTimeout",
+      "I2C_WaitOnRXNEFlagUntilTimeout",
+      "I2C_WaitOnSTOPFlagUntilTimeout",
+      "I2C_WaitOnSTOPRequestThroughIT",
+      "I2C_WaitOnTXEFlagUntilTimeout",
+      "UART_WaitOnFlagUntilTimeout"
+    ],
+    "IRQ": [
+      "HAL_FLASH_IRQHandler",
+      "HAL_GPIO_EXTI_IRQHandler",
+      "HAL_I2C_ER_IRQHandler",
+      "HAL_I2C_EV_IRQHandler",
+      "HAL_UART_IRQHandler",
+      "I2C_Master_ADDR",
+      "I2C_Slave_ADDR",
+      "I2C_Slave_STOPF",
+      "UART_DMAReceiveCplt",
+      "UART_DMATransmitCplt"
+    ],
+    "NODRIVER": [
+      "HAL_UART_AbortReceive",
+      "HAL_UART_AbortReceive_IT",
+      "HAL_UART_Abort_IT",
+      "UART_EndTxTransfer"
+    ],
+    "SKIP": [
+      "FLASH_FlushCaches",
+      "FLASH_Program_HalfWord",
+      "HAL_RCC_MCOConfig"
+    ],
+    "CORE": [
+      "HAL_UART_MspInit",
+      "I2Cx_ITConfig"
+    ]
+  },
+  "counts": {
+    "INIT": 45,
+    "RETURNOK": 24,
+    "RECV": 20,
+    "LOOP": 12,
+    "IRQ": 10,
+    "NODRIVER": 4,
+    "SKIP": 3,
+    "CORE": 2,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "BSP_COM_Init",
+        "BSP_LED_Init",
+        "BSP_PB_Init",
+        "FLASH_Erase_Sector",
+        "FLASH_MassErase",
+        "FLASH_Program_DoubleWord",
+        "FLASH_Program_Word",
+        "FSMC_BANK3_MspInit",
+        "FSMC_NORSRAM_DeInit",
+        "FSMC_NORSRAM_Extended_Timing_Init",
+        "FSMC_NORSRAM_Init",
+        "FSMC_NORSRAM_Timing_Init",
+        "HAL_DeInit",
+        "HAL_FLASHEx_Erase",
+        "HAL_FLASHEx_Erase_IT",
+        "HAL_FLASH_OB_Unlock",
+        "HAL_FLASH_Program",
+        "HAL_FLASH_Program_IT",
+        "HAL_FLASH_Unlock",
+        "HAL_GPIO_Init",
+        "HAL_HalfDuplex_EnableReceiver",
+        "HAL_HalfDuplex_EnableTransmitter",
+        "HAL_HalfDuplex_Init",
+        "HAL_I2C_DeInit",
+        "HAL_I2C_DisableListen_IT",
+        "HAL_I2C_EnableListen_IT",
+        "HAL_I2C_Init",
+        "HAL_I2C_Master_Abort_IT",
+        "HAL_I2C_Master_Receive_DMA",
+        "HAL_I2C_Master_Receive_IT",
+        "HAL_I2C_Master_Seq_Receive_IT",
+        "HAL_I2C_Master_Seq_Transmit_DMA",
+        "HAL_I2C_Master_Seq_Transmit_IT",
+        "HAL_I2C_Master_Transmit_IT",
+        "HAL_I2C_Mem_Read_IT",
+        "HAL_I2C_Mem_Write_IT",
+        "HAL_I2C_Slave_Seq_Receive_IT",
+        "HAL_I2C_Slave_Seq_Transmit_IT",
+        "HAL_RCC_OscConfig",
+        "HAL_UART_Abort",
+        "HAL_UART_AbortTransmit_IT",
+        "I2Cx_MspInit",
+        "SystemClock_Config",
+        "UART_Start_Receive_DMA"
+      ],
+      "false": [
+        "HAL_RCC_ClockConfig"
+      ]
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "FLASH_OB_GetUser",
+        "FLASH_Program_Byte",
+        "FLASH_SetErrorCode",
+        "FSMC_BANK3_WriteData",
+        "FSMC_BANK3_WriteReg",
+        "FSMC_NORSRAM_WriteOperation_Disable",
+        "FSMC_NORSRAM_WriteOperation_Enable",
+        "HAL_FLASH_Lock",
+        "HAL_FLASH_OB_Lock",
+        "HAL_GPIO_DeInit",
+        "HAL_GPIO_LockPin",
+        "HAL_GPIO_ReadPin",
+        "HAL_GPIO_TogglePin",
+        "HAL_GPIO_WritePin",
+        "HAL_I2C_IsDeviceReady",
+        "HAL_LIN_SendBreak",
+        "HAL_MultiProcessor_EnterMuteMode",
+        "HAL_MultiProcessor_ExitMuteMode",
+        "HAL_UART_AbortTransmit",
+        "HAL_UART_DMAPause",
+        "HAL_UART_DMAResume",
+        "HAL_UART_DMAStop",
+        "I2C_MasterRequestRead",
+        "UART_EndRxTransfer"
+      ]
+    },
+    "RECV": {
+      "true": [
+        "FSMC_BANK3_ReadData",
+        "HAL_I2C_Master_Receive",
+        "HAL_I2C_Master_Seq_Receive_DMA",
+        "HAL_I2C_Master_Transmit",
+        "HAL_I2C_Master_Transmit_DMA",
+        "HAL_I2C_Mem_Read",
+        "HAL_I2C_Mem_Read_DMA",
+        "HAL_I2C_Mem_Write",
+        "HAL_I2C_Mem_Write_DMA",
+        "HAL_I2C_Slave_Receive",
+        "HAL_I2C_Slave_Seq_Receive_DMA",
+        "HAL_I2C_Slave_Seq_Transmit_DMA",
+        "HAL_I2C_Slave_Transmit",
+        "HAL_UARTEx_ReceiveToIdle",
+        "HAL_UARTEx_ReceiveToIdle_DMA",
+        "HAL_UARTEx_ReceiveToIdle_IT",
+        "HAL_UART_Receive",
+        "HAL_UART_Transmit",
+        "HAL_UART_Transmit_DMA",
+        "UART_Receive_IT"
+      ],
+      "false": []
+    },
+    "LOOP": {
+      "true": [
+        "FLASH_WaitForLastOperation",
+        "I2C_DMAAbort",
+        "I2C_RequestMemoryRead",
+        "I2C_RequestMemoryWrite",
+        "I2C_WaitOnBTFFlagUntilTimeout",
+        "I2C_WaitOnFlagUntilTimeout",
+        "I2C_WaitOnMasterAddressFlagUntilTimeout",
+        "I2C_WaitOnRXNEFlagUntilTimeout",
+        "I2C_WaitOnSTOPFlagUntilTimeout",
+        "I2C_WaitOnSTOPRequestThroughIT",
+        "I2C_WaitOnTXEFlagUntilTimeout",
+        "UART_WaitOnFlagUntilTimeout"
+      ],
+      "false": []
+    },
+    "IRQ": {
+      "true": [
+        "HAL_FLASH_IRQHandler",
+        "HAL_GPIO_EXTI_IRQHandler",
+        "HAL_I2C_ER_IRQHandler",
+        "HAL_I2C_EV_IRQHandler",
+        "HAL_UART_IRQHandler",
+        "I2C_Master_ADDR",
+        "I2C_Slave_ADDR",
+        "I2C_Slave_STOPF",
+        "UART_DMAReceiveCplt",
+        "UART_DMATransmitCplt"
+      ],
+      "false": []
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "HAL_UART_AbortReceive",
+        "HAL_UART_AbortReceive_IT",
+        "HAL_UART_Abort_IT",
+        "UART_EndTxTransfer"
+      ]
+    },
+    "SKIP": {
+      "true": [
+        "FLASH_Program_HalfWord"
+      ],
+      "false": [
+        "FLASH_FlushCaches",
+        "HAL_RCC_MCOConfig"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "HAL_UART_MspInit",
+        "I2Cx_ITConfig"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 44,
+      "false": 1
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 24
+    },
+    "RECV": {
+      "true": 20,
+      "false": 0
+    },
+    "LOOP": {
+      "true": 12,
+      "false": 0
+    },
+    "IRQ": {
+      "true": 10,
+      "false": 0
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 4
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 2
+    },
+    "CORE": {
+      "true": 0,
+      "false": 2
+    }
+  },
+  "per_function": {
+    "HAL_UART_AbortTransmit": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_AbortTransmit_20260313150951.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_DMAResume": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_DMAResume_20260313150855.json",
+      "has_replacement_update": false
+    },
+    "UART_EndRxTransfer": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_UART_EndRxTransfer_20260313151657.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_EXTI_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_GPIO_EXTI_IRQHandler_20260407230304.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Program_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASH_Program_IT_20260407230309.json",
+      "has_replacement_update": false
+    },
+    "FLASH_Program_HalfWord": {
+      "function_type": "SKIP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_Program_HalfWord_20260407225846.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_ER_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_ER_IRQHandler_20260407230943.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Program": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASH_Program_20260407230230.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_GPIO_Init_20260313151222.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Lock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASH_Lock_20260407230038.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_Receive": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_Receive_20260313151114.json",
+      "has_replacement_update": false
+    },
+    "HAL_UARTEx_ReceiveToIdle_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UARTEx_ReceiveToIdle_DMA_20260313151220.json",
+      "has_replacement_update": false
+    },
+    "HAL_HalfDuplex_EnableTransmitter": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_HalfDuplex_EnableTransmitter_20260407230630.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_DeInit": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_GPIO_DeInit_20260313151639.json",
+      "has_replacement_update": false
+    },
+    "FSMC_BANK3_WriteReg": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_BANK3_WriteReg_20260407225822.json",
+      "has_replacement_update": false
+    },
+    "HAL_LIN_SendBreak": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_LIN_SendBreak_20260313150843.json",
+      "has_replacement_update": false
+    },
+    "HAL_HalfDuplex_EnableReceiver": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_HalfDuplex_EnableReceiver_20260407230613.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_Abort": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_Abort_20260313151811.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_Erase": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASHEx_Erase_20260313151218.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Slave_Receive": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Slave_Receive_20260313151838.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_TogglePin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_GPIO_TogglePin_20260407230328.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_Transmit_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_Transmit_DMA_20260313152347.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_UART_Transmit_DMA_20260313152137.json"
+    },
+    "I2Cx_ITConfig": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2Cx_ITConfig_20260313151639.json",
+      "has_replacement_update": false
+    },
+    "FSMC_BANK3_WriteData": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_BANK3_WriteData_20260407225815.json",
+      "has_replacement_update": false
+    },
+    "I2C_WaitOnFlagUntilTimeout": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_WaitOnFlagUntilTimeout_20260313151038.json",
+      "has_replacement_update": false
+    },
+    "UART_DMATransmitCplt": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_UART_DMATransmitCplt_20260313151007.json",
+      "has_replacement_update": false
+    },
+    "FSMC_NORSRAM_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_NORSRAM_Init_20260407230207.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Seq_Transmit_DMA": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Seq_Transmit_DMA_20260313151404.json",
+      "has_replacement_update": false
+    },
+    "FLASH_Program_Word": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_Program_Word_20260407225841.json",
+      "has_replacement_update": false
+    },
+    "FSMC_NORSRAM_Extended_Timing_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_NORSRAM_Extended_Timing_Init_20260407230106.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_AbortReceive_IT": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_AbortReceive_IT_20260313150900.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Seq_Receive_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Seq_Receive_DMA_20260313151352.json",
+      "has_replacement_update": false
+    },
+    "HAL_HalfDuplex_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_HalfDuplex_Init_20260407230751.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Slave_Seq_Transmit_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Slave_Seq_Transmit_IT_20260313151746.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_DeInit_20260407230747.json",
+      "has_replacement_update": false
+    },
+    "FSMC_NORSRAM_WriteOperation_Enable": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_NORSRAM_WriteOperation_Enable_20260407225935.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Abort_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Abort_IT_20260407231208.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Receive_DMA": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Receive_DMA_20260313151902.json",
+      "has_replacement_update": false
+    },
+    "HAL_UARTEx_ReceiveToIdle_IT": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UARTEx_ReceiveToIdle_IT_20260313151116.json",
+      "has_replacement_update": false
+    },
+    "SystemClock_Config": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_SystemClock_Config_20260313151734.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_EnableListen_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_EnableListen_IT_20260407230802.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Mem_Write_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Mem_Write_IT_20260313151947.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_WritePin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_GPIO_WritePin_20260407230353.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_GPIO_WritePin_20260316194742.json"
+    },
+    "HAL_I2C_DisableListen_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_DisableListen_IT_20260407230744.json",
+      "has_replacement_update": false
+    },
+    "I2C_WaitOnRXNEFlagUntilTimeout": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_WaitOnRXNEFlagUntilTimeout_20260313150911.json",
+      "has_replacement_update": false
+    },
+    "FSMC_NORSRAM_Timing_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_NORSRAM_Timing_Init_20260407230117.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Slave_Transmit": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Slave_Transmit_20260313151936.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_Erase_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASHEx_Erase_IT_20260407230129.json",
+      "has_replacement_update": false
+    },
+    "I2C_Slave_ADDR": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_Slave_ADDR_20260313151840.json",
+      "has_replacement_update": false
+    },
+    "UART_EndTxTransfer": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_UART_EndTxTransfer_20260313150855.json",
+      "has_replacement_update": false
+    },
+    "BSP_PB_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_BSP_PB_Init_20260313151955.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Seq_Receive_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Seq_Receive_IT_20260313151939.json",
+      "has_replacement_update": false
+    },
+    "BSP_COM_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_BSP_COM_Init_20260313152405.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_BSP_COM_Init_20260313152243.json"
+    },
+    "HAL_I2C_EV_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_EV_IRQHandler_20260407231110.json",
+      "has_replacement_update": false
+    },
+    "HAL_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_DeInit_20260407230044.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Slave_Seq_Receive_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Slave_Seq_Receive_IT_20260313151906.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Unlock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASH_Unlock_20260407230333.json",
+      "has_replacement_update": false
+    },
+    "I2C_Slave_STOPF": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_Slave_STOPF_20260313152139.json",
+      "has_replacement_update": false
+    },
+    "UART_WaitOnFlagUntilTimeout": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_UART_WaitOnFlagUntilTimeout_20260313151800.json",
+      "has_replacement_update": false
+    },
+    "BSP_LED_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_BSP_LED_Init_20260313151756.json",
+      "has_replacement_update": false
+    },
+    "UART_Receive_IT": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_UART_Receive_IT_20260313152041.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_AbortReceive": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_AbortReceive_20260313150905.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Transmit_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Transmit_IT_20260313151855.json",
+      "has_replacement_update": false
+    },
+    "I2C_RequestMemoryRead": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_RequestMemoryRead_20260313151843.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_ReadPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_GPIO_ReadPin_20260407230223.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_GPIO_ReadPin_20260316194808.json"
+    },
+    "HAL_UART_AbortTransmit_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_AbortTransmit_IT_20260313151215.json",
+      "has_replacement_update": false
+    },
+    "FSMC_BANK3_ReadData": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_BANK3_ReadData_20260407225839.json",
+      "has_replacement_update": false
+    },
+    "FSMC_NORSRAM_WriteOperation_Disable": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_NORSRAM_WriteOperation_Disable_20260407225931.json",
+      "has_replacement_update": false
+    },
+    "I2C_WaitOnSTOPFlagUntilTimeout": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_WaitOnSTOPFlagUntilTimeout_20260313151753.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Mem_Read_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Mem_Read_IT_20260313151851.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Slave_Seq_Transmit_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Slave_Seq_Transmit_DMA_20260313152039.json",
+      "has_replacement_update": false
+    },
+    "I2C_DMAAbort": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_DMAAbort_20260313152828.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Mem_Write_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Mem_Write_DMA_20260313151952.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_OB_Unlock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASH_OB_Unlock_20260407230154.json",
+      "has_replacement_update": false
+    },
+    "I2C_RequestMemoryWrite": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_RequestMemoryWrite_20260313151742.json",
+      "has_replacement_update": false
+    },
+    "UART_Start_Receive_DMA": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_UART_Start_Receive_DMA_20260313151858.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetUser": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_OB_GetUser_20260407225721.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Init_20260407231105.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_ClockConfig": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_RCC_ClockConfig_20260313151137.json",
+      "has_replacement_update": false
+    },
+    "FLASH_Program_DoubleWord": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_Program_DoubleWord_20260407225837.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_OscConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_RCC_OscConfig_20260313152913.json",
+      "has_replacement_update": false
+    },
+    "UART_DMAReceiveCplt": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_UART_DMAReceiveCplt_20260313151212.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Mem_Read_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Mem_Read_DMA_20260313151418.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_IsDeviceReady": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_IsDeviceReady_20260313150904.json",
+      "has_replacement_update": false
+    },
+    "FSMC_NORSRAM_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_NORSRAM_DeInit_20260407225929.json",
+      "has_replacement_update": false
+    },
+    "I2C_Master_ADDR": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_Master_ADDR_20260313152114.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_IRQHandler_20260313152011.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Seq_Transmit_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Seq_Transmit_IT_20260313151229.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASH_IRQHandler_20260407230315.json",
+      "has_replacement_update": false
+    },
+    "FLASH_SetErrorCode": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_SetErrorCode_20260407225724.json",
+      "has_replacement_update": false
+    },
+    "I2C_WaitOnMasterAddressFlagUntilTimeout": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_WaitOnMasterAddressFlagUntilTimeout_20260313151658.json",
+      "has_replacement_update": false
+    },
+    "I2C_WaitOnTXEFlagUntilTimeout": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_WaitOnTXEFlagUntilTimeout_20260313151141.json",
+      "has_replacement_update": false
+    },
+    "I2C_WaitOnBTFFlagUntilTimeout": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_WaitOnBTFFlagUntilTimeout_20260313151806.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Receive_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Receive_IT_20260313151152.json",
+      "has_replacement_update": false
+    },
+    "FLASH_Erase_Sector": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_Erase_Sector_20260407225809.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Mem_Read": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Mem_Read_20260313151051.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_Transmit": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_Transmit_20260313151148.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_LockPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_GPIO_LockPin_20260407230246.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Transmit": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Transmit_20260313151918.json",
+      "has_replacement_update": false
+    },
+    "FSMC_BANK3_MspInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FSMC_BANK3_MspInit_20260313151950.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_Abort_IT": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_Abort_IT_20260313150850.json",
+      "has_replacement_update": false
+    },
+    "HAL_UARTEx_ReceiveToIdle": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UARTEx_ReceiveToIdle_20260313151326.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_OB_Lock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_FLASH_OB_Lock_20260407230100.json",
+      "has_replacement_update": false
+    },
+    "HAL_MultiProcessor_EnterMuteMode": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_MultiProcessor_EnterMuteMode_20260313150842.json",
+      "has_replacement_update": false
+    },
+    "HAL_MultiProcessor_ExitMuteMode": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_MultiProcessor_ExitMuteMode_20260313150833.json",
+      "has_replacement_update": false
+    },
+    "HAL_RCC_MCOConfig": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_RCC_MCOConfig_20260313150908.json",
+      "has_replacement_update": false
+    },
+    "I2C_WaitOnSTOPRequestThroughIT": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_WaitOnSTOPRequestThroughIT_20260313150939.json",
+      "has_replacement_update": false
+    },
+    "FLASH_FlushCaches": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_FlushCaches_20260313150843.json",
+      "has_replacement_update": false
+    },
+    "FLASH_MassErase": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_MassErase_20260407225856.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Slave_Seq_Receive_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Slave_Seq_Receive_DMA_20260313151411.json",
+      "has_replacement_update": false
+    },
+    "I2C_MasterRequestRead": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2C_MasterRequestRead_20260313150857.json",
+      "has_replacement_update": false
+    },
+    "FLASH_WaitForLastOperation": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_WaitForLastOperation_20260313151156.json",
+      "has_replacement_update": false
+    },
+    "I2Cx_MspInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_I2Cx_MspInit_20260313150949.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Receive": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Receive_20260313151208.json",
+      "has_replacement_update": false
+    },
+    "FLASH_Program_Byte": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_FLASH_Program_Byte_20260407225723.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_MspInit": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_MspInit_20260313150849.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Mem_Write": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Mem_Write_20260313151334.json",
+      "has_replacement_update": false
+    },
+    "HAL_I2C_Master_Transmit_DMA": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_I2C_Master_Transmit_DMA_20260313152845.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_DMAPause": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_DMAPause_20260313150851.json",
+      "has_replacement_update": false
+    },
+    "HAL_UART_DMAStop": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/function_classify_HAL_UART_DMAStop_20260313150846.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 120,
+  "replacement_update_count": 8,
+  "replacement_update_functions": [
+    "BSP_COM_Init",
+    "HAL_GPIO_ReadPin",
+    "HAL_GPIO_WritePin",
+    "HAL_UART_GetState",
+    "HAL_UART_Receive_IT",
+    "HAL_UART_Transmit_DMA",
+    "HAL_UART_Transmit_IT",
+    "UART_Start_Receive_IT"
+  ],
+  "replacement_update_by_function": {
+    "HAL_UART_Transmit_IT": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_UART_Transmit_IT_20260316195000.json"
+    },
+    "HAL_UART_GetState": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_UART_GetState_20260317050252.json"
+    },
+    "HAL_GPIO_WritePin": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_GPIO_WritePin_20260316194742.json"
+    },
+    "BSP_COM_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_BSP_COM_Init_20260313152243.json"
+    },
+    "HAL_UART_Receive_IT": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_UART_Receive_IT_20260316195033.json"
+    },
+    "HAL_UART_Transmit_DMA": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_UART_Transmit_DMA_20260313152137.json"
+    },
+    "HAL_GPIO_ReadPin": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_HAL_GPIO_ReadPin_20260316194808.json"
+    },
+    "UART_Start_Receive_IT": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_UART_Hyperterminal_IT/lcmhal_ai_log/replacement_update_UART_Start_Receive_IT_20260316195054.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "HAL_UART_GetState",
+    "HAL_UART_Receive_IT",
+    "HAL_UART_Transmit_IT",
+    "UART_Start_Receive_IT"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/UART_Hyperterminal_IT"
+}

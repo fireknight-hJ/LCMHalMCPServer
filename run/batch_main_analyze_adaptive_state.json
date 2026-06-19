@@ -1,0 +1,6 @@
+{
+  "rtthread": 3,
+  "stm32": 1,
+  "nxp": 3,
+  "zephyr": 3
+}

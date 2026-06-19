@@ -2,9 +2,8 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.prebuilt import ToolNode
-from langchain_deepseek import ChatDeepSeek
 from langchain_core.messages import HumanMessage
-from config.llm_config import llm_deepseek_config
+from config.model_singleton import get_model
 from models.analyze_results.driverdir_locate import DriverDirLocatorResponse
 from prompts.driverdir_locator import system_prompting_en
 from prompts.summary_prompt import summary_prompt_en as SUMMARY_PROMPT
@@ -14,12 +13,8 @@ from utils.db_cache import dump_message_json_log, check_analyzed_json_log
 from utils.ai_log_manager import ai_log_manager
 import config.globs as globs
 
-# Initialize the model
-model = ChatDeepSeek(
-    model=llm_deepseek_config["model_name"], 
-    api_key=llm_deepseek_config["api_key"], 
-    api_base=llm_deepseek_config["base_url"]
-)
+# 使用统一的模型实例
+model = get_model()
 
 # Set up MCP client
 client = MultiServerMCPClient(
@@ -95,7 +90,8 @@ async def build_graph():
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
     # Set up model with structured output
-    model_with_structured_output = model.with_structured_output(DriverDirLocatorResponse)
+    # Use json_mode for better compatibility with non-OpenAI models (e.g., GLM)
+    model_with_structured_output = model.with_structured_output(DriverDirLocatorResponse, method="json_mode")
 
     # Create ToolNode
     tool_node = ToolNode(tools)
@@ -163,8 +159,20 @@ async def build_graph():
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
         messages = state["messages"]
+        from utils.llm_usage import extract_usage_from_message
+
+        t0 = time.perf_counter()
         response = await model_with_tools.ainvoke(messages)
-        
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        if getattr(globs, "llm_usage_log_enable", False):
+            ai_log_manager.append_llm_usage_record(
+                agent_name=agent_name,
+                node_name=node_name,
+                function_name=function_name,
+                elapsed_ms=elapsed_ms,
+                usage=extract_usage_from_message(response),
+            )
+
         result = {"messages": [response]}
         
         if globs.ai_log_enable:
@@ -213,7 +221,12 @@ async def driver_dir_locate() -> DriverDirLocatorResponse:
         if isinstance(e, GraphRecursionError):
             # 捕获LangGraph的递归错误，触发failcheck分析
             from utils.failcheck import analyze_failed_conversation
-            analyze_failed_conversation(initial_state["messages"], "driver_locator_agent", 50)  # 50次agent调用
+            analyze_failed_conversation(
+                initial_state["messages"], 
+                "driver_locator_agent", 
+                50,
+                db_path=globs.db_path
+            )  # 50次agent调用
         else:
             # 其他错误直接抛出
             raise

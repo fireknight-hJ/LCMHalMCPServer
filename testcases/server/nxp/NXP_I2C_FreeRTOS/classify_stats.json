@@ -1,0 +1,10 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_I2C_FreeRTOS",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/lcmhal_ai_log",
+  "total_functions": 0,
+  "counts": {
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {},
+  "error": null
+}

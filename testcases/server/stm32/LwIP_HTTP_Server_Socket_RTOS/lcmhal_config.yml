@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/LwIP_HTTP_Server_Socket_RTOS"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_LwIP_HTTP_Server_Socket_RTOS"
+src_path: "/home/haojie/posixGen_Demos/LwIP_HTTP_Server_Socket_RTOS"
+proj_path: "/home/haojie/posixGen_Demos/LwIP_HTTP_Server_Socket_RTOS"

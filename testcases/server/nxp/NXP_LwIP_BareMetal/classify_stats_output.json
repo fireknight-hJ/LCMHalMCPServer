@@ -1,0 +1,1064 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "BOARD_BootClockRUN",
+      "BOARD_BootClockRUN_528M",
+      "BOARD_DebugConsoleSrcFreq",
+      "BOARD_InitHardware",
+      "BOARD_InitPins",
+      "CLOCK_DeinitArmPll",
+      "CLOCK_DeinitExternalClk",
+      "CLOCK_DeinitRcOsc24M",
+      "CLOCK_DeinitSysPll",
+      "CLOCK_DeinitVideoPll",
+      "CLOCK_EnableUsbhs0Clock",
+      "CLOCK_EnableUsbhs0PhyPllClock",
+      "CLOCK_EnableUsbhs1Clock",
+      "CLOCK_EnableUsbhs1PhyPllClock",
+      "CLOCK_GetPeriphClkFreq",
+      "CLOCK_InitArmPll",
+      "CLOCK_InitAudioPll",
+      "CLOCK_InitEnetPll",
+      "CLOCK_InitExternalClk",
+      "CLOCK_InitRcOsc24M",
+      "CLOCK_InitSysPfd",
+      "CLOCK_InitSysPll",
+      "CLOCK_InitUsb1Pfd",
+      "CLOCK_InitUsb1Pll",
+      "CLOCK_InitUsb2Pll",
+      "CLOCK_InitVideoPll",
+      "CLOCK_SetMux",
+      "CLOCK_SwitchOsc",
+      "DCDC_Init",
+      "ENET_ActiveSendRing",
+      "ENET_AddMulticastGroup",
+      "ENET_Deinit",
+      "ENET_Init",
+      "ENET_SetMII",
+      "ENET_SetMacController",
+      "ENET_SetSMI",
+      "GPIO_PinInit",
+      "GPIO_PinSetInterruptConfig",
+      "LPUART_Init",
+      "LPUART_TransferSendNonBlocking",
+      "LPUART_TransferStartRingBuffer",
+      "LPUART_TransferStopRingBuffer",
+      "MDIO_Init",
+      "SystemCoreClockUpdate",
+      "ethernetif_plat_init"
+    ],
+    "RETURNOK": [
+      "CLOCK_DeinitEnetPll",
+      "CLOCK_DeinitSysPfd",
+      "CLOCK_DeinitUsb1Pfd",
+      "CLOCK_DeinitUsb1Pll",
+      "CLOCK_DisableUsbhs0PhyPllClock",
+      "CLOCK_DisableUsbhs1PhyPllClock",
+      "CLOCK_GetAhbFreq",
+      "CLOCK_GetClockOutCLKO1Freq",
+      "CLOCK_GetClockOutClkO2Freq",
+      "CLOCK_GetIpgFreq",
+      "CLOCK_GetPerClkFreq",
+      "CLOCK_GetPllFreq",
+      "CLOCK_GetPllUsb1SWFreq",
+      "CLOCK_GetSemcFreq",
+      "CLOCK_GetSysPfdFreq",
+      "CLOCK_GetUsb1PfdFreq",
+      "CLOCK_IsSysPfdEnabled",
+      "CLOCK_IsUsb1PfdEnabled",
+      "CLOCK_SetClockOutput1",
+      "ENET_GetStatistics",
+      "ENET_LeaveMulticastGroup",
+      "ENET_MDIOC45Write",
+      "ENET_MDIOWrite",
+      "ENET_ResetStatistics",
+      "ENET_SetMacAddr",
+      "GPIO_PinWrite",
+      "HAL_GpioDeinit",
+      "HAL_GpioGetInput",
+      "LPUART_TransferAbortReceive"
+    ],
+    "RECV": [
+      "ENET_GetMacAddr",
+      "ENET_GetRxFrame",
+      "ENET_MDIOC45Read",
+      "ENET_MDIORead",
+      "ENET_SendFrame",
+      "ENET_StartTxFrame",
+      "ENET_UpdateReadBuffers",
+      "LPUART_TransferHandleReceiveDataFull",
+      "LPUART_TransferReceiveNonBlocking",
+      "SILICONID_ReadUniqueID"
+    ],
+    "SKIP": [
+      "CLOCK_DeinitAudioPll",
+      "CLOCK_DeinitUsb2Pll",
+      "CLOCK_SetClockOutput2",
+      "CLOCK_SetDiv",
+      "DCDC_Deinit",
+      "ENET_Down",
+      "ENET_EnableStatistics"
+    ],
+    "IRQ": [
+      "ENET_CommonFrame0IRQHandler",
+      "ENET_ErrorIRQHandler",
+      "ENET_ReceiveIRQHandler",
+      "ENET_TransmitIRQHandler",
+      "HAL_GpioInterruptHandle",
+      "LPUART_TransferHandleIDLEReady"
+    ],
+    "LOOP": [
+      "ENET_MDIOWaitTransferOver",
+      "LPUART_Deinit",
+      "LPUART_TransferHandleSendDataEmpty"
+    ],
+    "NODRIVER": [
+      "CLOCK_GetFreq",
+      "ENET_GetInstance",
+      "GPIO_GetInstance"
+    ],
+    "CORE": [
+      "HAL_GpioSetTriggerMode",
+      "SystemInit"
+    ]
+  },
+  "counts": {
+    "INIT": 45,
+    "RETURNOK": 29,
+    "RECV": 10,
+    "SKIP": 7,
+    "IRQ": 6,
+    "LOOP": 3,
+    "NODRIVER": 3,
+    "CORE": 2,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "BOARD_BootClockRUN",
+        "BOARD_BootClockRUN_528M",
+        "BOARD_DebugConsoleSrcFreq",
+        "BOARD_InitHardware",
+        "BOARD_InitPins",
+        "CLOCK_DeinitArmPll",
+        "CLOCK_DeinitRcOsc24M",
+        "CLOCK_DeinitSysPll",
+        "CLOCK_DeinitVideoPll",
+        "CLOCK_EnableUsbhs0Clock",
+        "CLOCK_EnableUsbhs0PhyPllClock",
+        "CLOCK_EnableUsbhs1Clock",
+        "CLOCK_EnableUsbhs1PhyPllClock",
+        "CLOCK_GetPeriphClkFreq",
+        "CLOCK_InitArmPll",
+        "CLOCK_InitAudioPll",
+        "CLOCK_InitExternalClk",
+        "CLOCK_InitRcOsc24M",
+        "CLOCK_InitSysPfd",
+        "CLOCK_InitSysPll",
+        "CLOCK_InitUsb1Pfd",
+        "CLOCK_InitUsb1Pll",
+        "CLOCK_InitUsb2Pll",
+        "CLOCK_InitVideoPll",
+        "CLOCK_SetMux",
+        "CLOCK_SwitchOsc",
+        "DCDC_Init",
+        "ENET_ActiveSendRing",
+        "ENET_AddMulticastGroup",
+        "ENET_Deinit",
+        "ENET_Init",
+        "ENET_SetMII",
+        "ENET_SetMacController",
+        "ENET_SetSMI",
+        "GPIO_PinInit",
+        "LPUART_Init",
+        "LPUART_TransferSendNonBlocking",
+        "LPUART_TransferStartRingBuffer",
+        "LPUART_TransferStopRingBuffer",
+        "MDIO_Init",
+        "SystemCoreClockUpdate",
+        "ethernetif_plat_init"
+      ],
+      "false": [
+        "CLOCK_DeinitExternalClk",
+        "CLOCK_InitEnetPll",
+        "GPIO_PinSetInterruptConfig"
+      ]
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "CLOCK_DeinitEnetPll",
+        "CLOCK_DeinitSysPfd",
+        "CLOCK_DeinitUsb1Pfd",
+        "CLOCK_DeinitUsb1Pll",
+        "CLOCK_DisableUsbhs0PhyPllClock",
+        "CLOCK_DisableUsbhs1PhyPllClock",
+        "CLOCK_GetAhbFreq",
+        "CLOCK_GetClockOutCLKO1Freq",
+        "CLOCK_GetClockOutClkO2Freq",
+        "CLOCK_GetIpgFreq",
+        "CLOCK_GetPerClkFreq",
+        "CLOCK_GetPllFreq",
+        "CLOCK_GetPllUsb1SWFreq",
+        "CLOCK_GetSemcFreq",
+        "CLOCK_GetSysPfdFreq",
+        "CLOCK_GetUsb1PfdFreq",
+        "CLOCK_IsSysPfdEnabled",
+        "CLOCK_IsUsb1PfdEnabled",
+        "CLOCK_SetClockOutput1",
+        "ENET_GetStatistics",
+        "ENET_LeaveMulticastGroup",
+        "ENET_MDIOC45Write",
+        "ENET_MDIOWrite",
+        "ENET_ResetStatistics",
+        "ENET_SetMacAddr",
+        "GPIO_PinWrite",
+        "HAL_GpioDeinit",
+        "HAL_GpioGetInput",
+        "LPUART_TransferAbortReceive"
+      ]
+    },
+    "RECV": {
+      "true": [
+        "ENET_GetMacAddr",
+        "ENET_GetRxFrame",
+        "ENET_MDIOC45Read",
+        "ENET_MDIORead",
+        "ENET_SendFrame",
+        "ENET_StartTxFrame",
+        "ENET_UpdateReadBuffers",
+        "LPUART_TransferHandleReceiveDataFull",
+        "LPUART_TransferReceiveNonBlocking",
+        "SILICONID_ReadUniqueID"
+      ],
+      "false": []
+    },
+    "SKIP": {
+      "true": [
+        "CLOCK_DeinitAudioPll",
+        "ENET_Down"
+      ],
+      "false": [
+        "CLOCK_DeinitUsb2Pll",
+        "CLOCK_SetClockOutput2",
+        "CLOCK_SetDiv",
+        "DCDC_Deinit",
+        "ENET_EnableStatistics"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "ENET_CommonFrame0IRQHandler",
+        "ENET_ErrorIRQHandler",
+        "HAL_GpioInterruptHandle",
+        "LPUART_TransferHandleIDLEReady"
+      ],
+      "false": [
+        "ENET_ReceiveIRQHandler",
+        "ENET_TransmitIRQHandler"
+      ]
+    },
+    "LOOP": {
+      "true": [
+        "ENET_MDIOWaitTransferOver",
+        "LPUART_Deinit",
+        "LPUART_TransferHandleSendDataEmpty"
+      ],
+      "false": []
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "CLOCK_GetFreq",
+        "ENET_GetInstance",
+        "GPIO_GetInstance"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "HAL_GpioSetTriggerMode",
+        "SystemInit"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 42,
+      "false": 3
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 29
+    },
+    "RECV": {
+      "true": 10,
+      "false": 0
+    },
+    "SKIP": {
+      "true": 2,
+      "false": 5
+    },
+    "IRQ": {
+      "true": 4,
+      "false": 2
+    },
+    "LOOP": {
+      "true": 3,
+      "false": 0
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 3
+    },
+    "CORE": {
+      "true": 0,
+      "false": 2
+    }
+  },
+  "per_function": {
+    "LPUART_TransferHandleReceiveDataFull": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferHandleReceiveDataFull_20260406205442.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleReceiveDataFull_20260406205230.json"
+    },
+    "LPUART_TransferSendNonBlocking": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferSendNonBlocking_20260406205425.json",
+      "has_replacement_update": false
+    },
+    "ENET_MDIOC45Read": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_MDIOC45Read_20260406200902.json",
+      "has_replacement_update": false
+    },
+    "BOARD_DebugConsoleSrcFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_BOARD_DebugConsoleSrcFreq_20260406200155.json",
+      "has_replacement_update": false
+    },
+    "ENET_AddMulticastGroup": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_AddMulticastGroup_20260314201306.json",
+      "has_replacement_update": false
+    },
+    "GPIO_PinInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_GPIO_PinInit_20260406205909.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406205804.json"
+    },
+    "ENET_SetMacAddr": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_SetMacAddr_20260406201058.json",
+      "has_replacement_update": false
+    },
+    "GPIO_PinSetInterruptConfig": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_GPIO_PinSetInterruptConfig_20260406205510.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_GPIO_PinSetInterruptConfig_20260406205257.json"
+    },
+    "ENET_MDIOWaitTransferOver": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_MDIOWaitTransferOver_20260314200931.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitVideoPll_20260314202610.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitVideoPll_20260314202310.json"
+    },
+    "BOARD_BootClockRUN_528M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_528M_20260314201951.json",
+      "has_replacement_update": false
+    },
+    "ENET_StartTxFrame": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_StartTxFrame_20260406202032.json",
+      "has_replacement_update": false
+    },
+    "ENET_UpdateReadBuffers": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_UpdateReadBuffers_20260406205920.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_UpdateReadBuffers_20260406205759.json"
+    },
+    "ENET_ActiveSendRing": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_ActiveSendRing_20260406200724.json",
+      "has_replacement_update": false
+    },
+    "SystemInit": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_SystemInit_20260406205019.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pll_20260314200949.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_Init_20260406205714.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_LPUART_Init_20260406205543.json"
+    },
+    "CLOCK_EnableUsbhs1Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1Clock_20260406200338.json",
+      "has_replacement_update": false
+    },
+    "ENET_MDIORead": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_MDIORead_20260406201224.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitArmPll_20260406200138.json",
+      "has_replacement_update": false
+    },
+    "HAL_GpioDeinit": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_HAL_GpioDeinit_20260406202124.json",
+      "has_replacement_update": false
+    },
+    "SILICONID_ReadUniqueID": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_SILICONID_ReadUniqueID_20260406205526.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_SILICONID_ReadUniqueID_20260406205327.json"
+    },
+    "ENET_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_Init_20260406200859.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetFreq_20260406200416.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferStartRingBuffer": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferStartRingBuffer_20260406205147.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitHardware": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_BOARD_InitHardware_20260406200213.json",
+      "has_replacement_update": false
+    },
+    "DCDC_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_DCDC_Init_20260406200706.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitEnetPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitEnetPll_20260314202618.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitEnetPll_20260406212211.json"
+    },
+    "ENET_ErrorIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_ErrorIRQHandler_20260406200812.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleIDLEReady": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferHandleIDLEReady_20260406203714.json",
+      "has_replacement_update": false
+    },
+    "SystemCoreClockUpdate": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_SystemCoreClockUpdate_20260406205240.json",
+      "has_replacement_update": false
+    },
+    "ENET_SetMII": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_SetMII_20260406201116.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs0PhyPllClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs0PhyPllClock_20260406200302.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb1Pfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pfd_20260406200225.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Deinit": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_Deinit_20260406205652.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_LPUART_Deinit_20260406205457.json"
+    },
+    "GPIO_PinWrite": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_GPIO_PinWrite_20260406201643.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetDiv": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetDiv_20260314203023.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetDiv_20260314202858.json"
+    },
+    "ENET_SetSMI": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_SetSMI_20260406210132.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_SetSMI_20260406210037.json"
+    },
+    "LPUART_TransferStopRingBuffer": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferStopRingBuffer_20260406205114.json",
+      "has_replacement_update": false
+    },
+    "ENET_GetInstance": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_GetInstance_20260314200906.json",
+      "has_replacement_update": false
+    },
+    "ENET_Down": {
+      "function_type": "SKIP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_Down_20260406200740.json",
+      "has_replacement_update": false
+    },
+    "ENET_SendFrame": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_SendFrame_20260406201101.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_SendFrame_20260406210723.json"
+    },
+    "CLOCK_EnableUsbhs1PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1PhyPllClock_20260406200423.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb1Pfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pfd_20260406200609.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetUsb1PfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetUsb1PfdFreq_20260406200526.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb2Pll": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb2Pll_20260406200251.json",
+      "has_replacement_update": false
+    },
+    "ENET_CommonFrame0IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_CommonFrame0IRQHandler_20260406200750.json",
+      "has_replacement_update": false
+    },
+    "ENET_LeaveMulticastGroup": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_LeaveMulticastGroup_20260314200906.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferReceiveNonBlocking": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferReceiveNonBlocking_20260406204127.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitExternalClk_20260314202231.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitExternalClk_20260314202111.json"
+    },
+    "CLOCK_GetIpgFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetIpgFreq_20260406200436.json",
+      "has_replacement_update": false
+    },
+    "ENET_EnableStatistics": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_EnableStatistics_20260406200705.json",
+      "has_replacement_update": false
+    },
+    "ENET_ReceiveIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_ReceiveIRQHandler_20260406210344.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_ReceiveIRQHandler_20260406205336.json"
+    },
+    "GPIO_GetInstance": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_GPIO_GetInstance_20260314200842.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferAbortReceive": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferAbortReceive_20260406203257.json",
+      "has_replacement_update": false
+    },
+    "HAL_GpioSetTriggerMode": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_HAL_GpioSetTriggerMode_20260406202110.json",
+      "has_replacement_update": false
+    },
+    "ENET_MDIOC45Write": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_MDIOC45Write_20260406200923.json",
+      "has_replacement_update": false
+    },
+    "ENET_GetRxFrame": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_GetRxFrame_20260317104131.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SwitchOsc": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SwitchOsc_20260406200634.json",
+      "has_replacement_update": false
+    },
+    "MDIO_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_MDIO_Init_20260406205436.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0Clock_20260406200336.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitUsb1Pll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pll_20260406200232.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitAudioPll_20260314200942.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClockOutput1": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput1_20260406200553.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitSysPfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitSysPfd_20260406200606.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitAudioPll": {
+      "function_type": "SKIP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitAudioPll_20260406200143.json",
+      "has_replacement_update": false
+    },
+    "ethernetif_plat_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ethernetif_plat_init_20260406204129.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ethernetif_plat_init_20260406210636.json"
+    },
+    "HAL_GpioGetInput": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_HAL_GpioGetInput_20260406205726.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_HAL_GpioGetInput_20260406205552.json"
+    },
+    "CLOCK_GetSemcFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetSemcFreq_20260406200456.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitRcOsc24M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitRcOsc24M_20260406200551.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_IsUsb1PfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_IsUsb1PfdEnabled_20260406200548.json",
+      "has_replacement_update": false
+    },
+    "ENET_GetMacAddr": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_GetMacAddr_20260406200802.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitPins": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_BOARD_InitPins_20260406200320.json",
+      "has_replacement_update": false
+    },
+    "ENET_MDIOWrite": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_MDIOWrite_20260406200932.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutCLKO1Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetClockOutCLKO1Freq_20260406200356.json",
+      "has_replacement_update": false
+    },
+    "ENET_TransmitIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_TransmitIRQHandler_20260314202641.json",
+      "has_replacement_update": false
+    },
+    "HAL_GpioInterruptHandle": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_HAL_GpioInterruptHandle_20260314201002.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitEnetPll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitEnetPll_20260406200123.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs1PhyPllClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs1PhyPllClock_20260406200305.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClockOutput2": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput2_20260406200558.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb2Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitUsb2Pll_20260314200924.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitUsb2Pll_20260406211312.json"
+    },
+    "CLOCK_GetAhbFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetAhbFreq_20260406200409.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitExternalClk_20260406200120.json",
+      "has_replacement_update": false
+    },
+    "BOARD_BootClockRUN": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_20260314200952.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPll_20260406200222.json",
+      "has_replacement_update": false
+    },
+    "ENET_SetMacController": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_SetMacController_20260314201903.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_SetMacController_20260315083024.json"
+    },
+    "ENET_ResetStatistics": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_ResetStatistics_20260406200913.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleSendDataEmpty": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_LPUART_TransferHandleSendDataEmpty_20260406204215.json",
+      "has_replacement_update": false
+    },
+    "ENET_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_Deinit_20260406200758.json",
+      "has_replacement_update": false
+    },
+    "DCDC_Deinit": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_DCDC_Deinit_20260406200630.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPllFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPllFreq_20260406200449.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetMux": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_SetMux_20260314200954.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPfd_20260406200205.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0PhyPllClock_20260406200354.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitRcOsc24M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitRcOsc24M_20260406200134.json",
+      "has_replacement_update": false
+    },
+    "ENET_GetStatistics": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_ENET_GetStatistics_20260406200808.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSysPfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetSysPfdFreq_20260406200509.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_DeinitVideoPll_20260406200300.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPeriphClkFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPeriphClkFreq_20260406200507.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutClkO2Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetClockOutClkO2Freq_20260406200351.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitSysPll_20260314200940.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitSysPll_20260406211927.json"
+    },
+    "CLOCK_GetPllUsb1SWFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPllUsb1SWFreq_20260406200446.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_InitArmPll_20260314200955.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPerClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_GetPerClkFreq_20260406200434.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_IsSysPfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/function_classify_CLOCK_IsSysPfdEnabled_20260406200541.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 105,
+  "replacement_update_count": 20,
+  "replacement_update_functions": [
+    "CLOCK_InitEnetPll",
+    "CLOCK_InitExternalClk",
+    "CLOCK_InitSysPll",
+    "CLOCK_InitUsb2Pll",
+    "CLOCK_InitVideoPll",
+    "CLOCK_SetDiv",
+    "ENET_IncreaseIndex",
+    "ENET_ReceiveIRQHandler",
+    "ENET_SendFrame",
+    "ENET_SetMacController",
+    "ENET_SetSMI",
+    "ENET_UpdateReadBuffers",
+    "GPIO_PinInit",
+    "GPIO_PinSetInterruptConfig",
+    "HAL_GpioGetInput",
+    "LPUART_Deinit",
+    "LPUART_Init",
+    "LPUART_TransferHandleReceiveDataFull",
+    "SILICONID_ReadUniqueID",
+    "ethernetif_plat_init"
+  ],
+  "replacement_update_by_function": {
+    "SILICONID_ReadUniqueID": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_SILICONID_ReadUniqueID_20260406205327.json"
+    },
+    "LPUART_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_LPUART_Init_20260406205543.json"
+    },
+    "CLOCK_InitUsb2Pll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitUsb2Pll_20260406211312.json"
+    },
+    "GPIO_PinInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406205804.json"
+    },
+    "CLOCK_SetDiv": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_SetDiv_20260314202858.json"
+    },
+    "CLOCK_InitEnetPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitEnetPll_20260406212211.json"
+    },
+    "HAL_GpioGetInput": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_HAL_GpioGetInput_20260406205552.json"
+    },
+    "CLOCK_InitSysPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitSysPll_20260406211927.json"
+    },
+    "ethernetif_plat_init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ethernetif_plat_init_20260406210636.json"
+    },
+    "LPUART_Deinit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_LPUART_Deinit_20260406205457.json"
+    },
+    "GPIO_PinSetInterruptConfig": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_GPIO_PinSetInterruptConfig_20260406205257.json"
+    },
+    "ENET_SendFrame": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_SendFrame_20260406210723.json"
+    },
+    "ENET_SetMacController": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_SetMacController_20260315083024.json"
+    },
+    "CLOCK_InitVideoPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitVideoPll_20260314202310.json"
+    },
+    "ENET_ReceiveIRQHandler": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_ReceiveIRQHandler_20260406205336.json"
+    },
+    "ENET_SetSMI": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_SetSMI_20260406210037.json"
+    },
+    "ENET_UpdateReadBuffers": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_UpdateReadBuffers_20260406205759.json"
+    },
+    "ENET_IncreaseIndex": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_ENET_IncreaseIndex_20260406210802.json"
+    },
+    "CLOCK_InitExternalClk": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_CLOCK_InitExternalClk_20260314202111.json"
+    },
+    "LPUART_TransferHandleReceiveDataFull": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_LwIP_BareMetal/lcmhal_ai_log/replacement_update_LPUART_TransferHandleReceiveDataFull_20260406205230.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "ENET_IncreaseIndex"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_LwIP_BareMetal"
+}

@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_UART_FreeRTOS",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_UART_FreeRTOS/lcmhal_ai_log",
+  "total_functions": 91,
+  "counts": {
+    "INIT": 44,
+    "RETURNOK": 24,
+    "RECV": 8,
+    "IRQ": 5,
+    "LOOP": 5,
+    "SKIP": 3,
+    "CORE": 1,
+    "NODRIVER": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 34,
+      "false": 10
+    },
+    "RETURNOK": {
+      "true": 1,
+      "false": 23
+    },
+    "RECV": {
+      "true": 1,
+      "false": 7
+    },
+    "IRQ": {
+      "true": 3,
+      "false": 2
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 5
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 3
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

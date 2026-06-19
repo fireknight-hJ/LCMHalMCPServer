@@ -1,0 +1,55 @@
+output.elf:
+  rules: semu_rule.txt
+  enable_native: false
+  emulate_mode: emulate
+  loop_whitelist:
+  - memset
+  - memcpy
+  - memmove
+  - FillZerobss
+  - LoopFillZerobss
+  - CopyDataInit
+  - LoopCopyDataInit
+  - Zero_Init
+  - Reset_Handler
+  - SystemInit
+  handlers:
+    Delay: do_return
+    HAL_Delay: do_return
+    wait: do_return
+    wait_us: do_return
+    HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+    HAL_BE_In: fuzzemu.handlers.common.hal_in
+    HAL_BE_Out: fuzzemu.handlers.common.hal_out
+    HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+    HAL_BE_return_1: fuzzemu.handlers.common.return_true
+    HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+    HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+    puts: do_return
+    fflush: do_return
+    DP83848_Init: do_return
+    stm32_putc: do_return
+    rt_thread_mdelay: do_return
+    DelayLoop: do_return
+    SDK_DelayAtLeastUs: do_return
+    LPUART_WriteBlocking: do_return
+    ENET_SetSMI: do_return
+    DP83848_GetLinkState: fuzzemu.handlers.common.return_2
+    PHY_GetLinkStatus: fuzzemu.handlers.common.return_2
+    PHY_GetLinkSpeedDuplex: fuzzemu.handlers.common.return_2
+    HAL_RCC_ClockConfig: fuzzemu.handlers.common.return_zero
+    HAL_ETH_ReadPHYRegister: fuzzemu.handlers.common.return_zero
+    ethernetif_phy_init: fuzzemu.handlers.common.return_zero
+    PHY_Init: fuzzemu.handlers.common.return_zero
+    ENET_MDIORead: fuzzemu.handlers.common.return_phy_id
+  mmio_funcs:
+  - HAL_RCCEx_PeriphCLKConfig
+  - HAL_ETH_Init
+  - HAL_RCC_MCOConfig
+  - HAL_RCC_OscConfig
+  - HAL_RCC_ClockConfig
+  - HAL_RCCEx_EnablePLLSAI
+  - HAL_RCCEx_EnablePLLI2S
+  - HAL_RCC_DeInit
+  - HAL_RCCEx_DisablePLLSAI
+  - HAL_RCCEx_DisablePLLI2S

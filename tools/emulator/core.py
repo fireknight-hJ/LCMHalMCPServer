@@ -8,10 +8,10 @@ from tools.emulator.conf_generator import extract_syms, generate_emulator_config
 
 
 def emulate_proj() -> dict:
-    """运行模拟器，返回模拟结果
+    """运行模拟器，返回模拟器结果
     
     Returns:
-        dict: 模拟结果，包含std_out、std_err和exit_code
+        dict: 模拟结果，包含std_out、std_err、exit_code和success判断
     """
     # 每次emulate前重新生成syms.yml配置文件，因为重新build后符号表会变化
     extract_syms()
@@ -19,23 +19,98 @@ def emulate_proj() -> dict:
     generate_emulator_configs()
     # 运行模拟器
     ret = run_emulator()
+    
+    # 将模拟器 stdout/stderr 持久化到 debug_output，便于排查 UC_ERR_READ_UNMAPPED 等错误
+    debug_out_dir = os.path.join(globs.script_path, "emulate", "debug_output")
+    os.makedirs(debug_out_dir, exist_ok=True)
+    for name, data in [("stdout.txt", ret.stdout), ("stderr.txt", ret.stderr)]:
+        path = os.path.join(debug_out_dir, name)
+        text = data.decode("utf-8", errors="replace") if isinstance(data, bytes) else (data or "")
+        with open(path, "w") as f:
+            f.write(text)
+    
+    # 检查 lcmhal.txt 判断是否有死循环
+    lcmhal_path = os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt")
+    has_loop = False
+    if os.path.exists(lcmhal_path):
+        with open(lcmhal_path, 'r') as f:
+            content = f.read()
+            if 'exceptional loop' in content:
+                has_loop = True
+    
+    # 判断是否成功：exit_code == 0 且没有死循环
+    success = (ret.returncode == 0 and not has_loop)
+    
     return {
         "std_out": ret.stdout,
         "std_err": ret.stderr,
-        "exit_code": ret.returncode
+        "exit_code": ret.returncode,
+        "success": success,
+        "has_exceptional_loop": has_loop
+    }
+
+
+def fuzz_proj() -> dict:
+    """运行 fuzz 测试，返回执行结果。
+
+    与 emulate 类似，前置会更新符号与配置；最后一步改为 run_fuzz。
+    """
+    extract_syms()
+    generate_emulator_configs()
+
+    from tools.emulator.emulate_runner import run_fuzz
+    ret = run_fuzz()
+
+    debug_out_dir = os.path.join(globs.script_path, "emulate", "debug_output")
+    os.makedirs(debug_out_dir, exist_ok=True)
+    for name, data in [("fuzz_stdout.txt", ret.stdout), ("fuzz_stderr.txt", ret.stderr)]:
+        path = os.path.join(debug_out_dir, name)
+        text = data.decode("utf-8", errors="replace") if isinstance(data, bytes) else (data or "")
+        with open(path, "w") as f:
+            f.write(text)
+
+    success = (ret.returncode == 0)
+    return {
+        "std_out": ret.stdout,
+        "std_err": ret.stderr,
+        "exit_code": ret.returncode,
+        "success": success,
     }
 
 
 def ensure_emulator_output_exists():
-    """确保模拟器输出文件存在，如果不存在则运行模拟器生成
+    """确保模拟器输出文件存在，如果不存在或ELF文件比输出文件新则运行模拟器生成
     """
     # 检查两个关键文件是否存在
     lcmhal_file = os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt")
     function_file = os.path.join(globs.script_path, "emulate/debug_output/function.txt")
+    elf_file = os.path.join(globs.script_path, "emulate/output.elf")
     
+    # 获取 ELF 文件的修改时间（如果存在）
+    elf_mtime = 0
+    if os.path.exists(elf_file):
+        elf_mtime = os.path.getmtime(elf_file)
+    
+    # 检查输出文件是否存在且比 ELF 文件旧
+    needs_rerun = False
     if not os.path.exists(lcmhal_file) or not os.path.exists(function_file):
-        # 如果任一文件不存在，运行模拟器生成
-        print("模拟器输出文件不存在，正在运行模拟器生成...")
+        needs_rerun = True
+    elif elf_mtime > 0:
+        # ELF 文件比输出文件新，需要重新运行
+        lcmhal_mtime = os.path.getmtime(lcmhal_file)
+        if elf_mtime > lcmhal_mtime:
+            needs_rerun = True
+    
+    if needs_rerun:
+        # 如果需要重新运行，先删除旧的输出文件
+        debug_output_dir = os.path.join(globs.script_path, "emulate/debug_output")
+        if os.path.exists(debug_output_dir):
+            for filename in ['lcmhal.txt', 'function.txt', 'debug.txt']:
+                filepath = os.path.join(debug_output_dir, filename)
+                if os.path.exists(filepath):
+                    os.remove(filepath)
+        # 运行模拟器生成新输出
+        print("模拟器输出文件不存在或已过期，正在运行模拟器生成...")
         emulate_proj()
         print("模拟器运行完成，输出文件已生成")
 
@@ -52,6 +127,63 @@ def mmio_function_emulate_info() -> str:
     with open(os.path.join(globs.script_path, "emulate/debug_output/lcmhal.txt"), "r") as f:
         data = "".join(f.readlines())
     return data
+
+
+def get_fault_function_from_emulate_output(emulate_stdout: str = None) -> str:
+    """从模拟器 stdout 或 debug_output/stdout.txt 解析 UNMAPPED/fault PC，解析为 fault 函数名。
+
+    若未传 emulate_stdout，则读取 script_path/emulate/debug_output/stdout.txt。
+    返回 fault 所在函数名；无法解析或非 fault 输出时返回空字符串。
+    """
+    if emulate_stdout is None:
+        out_path = os.path.join(globs.script_path, "emulate", "debug_output", "stdout.txt")
+        if not os.path.exists(out_path):
+            return ""
+        with open(out_path, "r", encoding="utf-8", errors="replace") as f:
+            emulate_stdout = f.read()
+    if not emulate_stdout or "UNMAPPED" not in emulate_stdout and "fault PC:" not in emulate_stdout:
+        return ""
+    # 解析 fault PC（十六进制）
+    match = re.search(r"fault\s+PC:\s*0x([0-9a-fA-F]+)", emulate_stdout)
+    if not match:
+        return ""
+    try:
+        fault_pc = int(match.group(1), 16)
+    except ValueError:
+        return ""
+    # 从 syms.yml 解析符号表：取 addr <= fault_pc 的最大 addr 对应符号
+    syms_path = os.path.join(globs.script_path, "emulate", "syms.yml")
+    if not os.path.exists(syms_path):
+        return ""
+    sym_list = []  # (addr, name)
+    with open(syms_path, "r", encoding="utf-8", errors="replace") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or line == "symbols:":
+                continue
+            # 格式: "  134221665: BSP_LCD_GetXSize" 或 "  0x08000f60: BSP_LCD_GetXSize"
+            colon = line.find(":")
+            if colon <= 0:
+                continue
+            addr_str = line[:colon].strip()
+            name = line[colon + 1:].strip()
+            if not name:
+                continue
+            try:
+                addr = int(addr_str, 16) if addr_str.startswith("0x") else int(addr_str, 10)
+            except ValueError:
+                continue
+            sym_list.append((addr, name))
+    if not sym_list:
+        return ""
+    sym_list.sort(key=lambda x: x[0])
+    best = None
+    for addr, name in sym_list:
+        if addr <= fault_pc:
+            best = name
+        else:
+            break
+    return best or ""
 
 
 def function_calls_emulate_info(max_loop_lines: int = 5, max_output_lines: int = 1000) -> str:

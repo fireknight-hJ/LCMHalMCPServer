@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/nxp/i2c_fxos8700_lpc55",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log",
+  "total_functions": 150,
+  "counts": {
+    "INIT": 46,
+    "RETURNOK": 35,
+    "NODRIVER": 33,
+    "CORE": 19,
+    "IRQ": 12,
+    "LOOP": 2,
+    "SKIP": 2,
+    "RECV": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 3,
+      "false": 43
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 35
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 33
+    },
+    "CORE": {
+      "true": 0,
+      "false": 19
+    },
+    "IRQ": {
+      "true": 0,
+      "false": 12
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 2
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 2
+    },
+    "RECV": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

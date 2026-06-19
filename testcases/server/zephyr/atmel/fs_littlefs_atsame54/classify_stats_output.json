@@ -1,0 +1,842 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log",
+  "by_type": {
+    "NODRIVER": [
+      "add_to_waitq_locked",
+      "arch_new_thread",
+      "encode_float",
+      "first",
+      "fs_get_mnt_point",
+      "fs_init",
+      "fs_mount",
+      "fs_opendir",
+      "fs_readdir",
+      "fs_readmount",
+      "fs_unmount",
+      "init_ready_q",
+      "k_heap_init",
+      "k_mbox_get",
+      "k_mbox_init",
+      "k_mem_slab_init",
+      "k_msgq_cleanup",
+      "k_msgq_init",
+      "k_stack_cleanup",
+      "k_stack_init",
+      "k_timer_init",
+      "k_work_cancel_sync",
+      "k_work_flush",
+      "k_work_flush_delayable",
+      "k_work_init_delayable",
+      "k_work_queue_start",
+      "mbox_message_put",
+      "next",
+      "remove_timeout",
+      "timeout_rem",
+      "z_abort_timeout",
+      "z_add_timeout",
+      "z_cbvprintf_impl",
+      "z_impl_k_condvar_init",
+      "z_impl_k_mutex_init",
+      "z_impl_k_queue_init",
+      "z_impl_k_sem_init",
+      "z_impl_k_timer_status_sync",
+      "z_init_thread_base",
+      "z_set_prio"
+    ],
+    "CORE": [
+      "adjust_owner_prio",
+      "halt_thread",
+      "k_work_cancel_delayable_sync",
+      "move_thread_to_end_of_prio_q",
+      "ready_thread",
+      "sam0_eic_enable_interrupt",
+      "update_cache",
+      "z_impl_k_mutex_lock",
+      "z_impl_k_yield",
+      "z_priq_dumb_best",
+      "z_priq_dumb_remove",
+      "z_priq_mq_best",
+      "z_sched_waitq_walk",
+      "z_timer_expiration_handler",
+      "z_unpend_all"
+    ],
+    "INIT": [
+      "dfll_init",
+      "dpll_init",
+      "flash_sam0_init",
+      "gclk_connect",
+      "gclk_reset",
+      "osc32k_init",
+      "sam0_eic_acquire",
+      "sam0_eic_init",
+      "sam0_eic_release",
+      "uart_sam0_init",
+      "z_arm_platform_init",
+      "z_setup_new_thread"
+    ],
+    "LOOP": [
+      "flash_sam0_check_status",
+      "flash_sam0_erase_row",
+      "flash_sam0_wait_ready",
+      "flash_sam0_write_protection",
+      "wait_synchronization"
+    ],
+    "RETURNOK": [
+      "sam0_eic_disable_interrupt",
+      "sam0_eic_interrupt_pending"
+    ],
+    "IRQ": [
+      "sam0_eic_isr"
+    ],
+    "RECV": [
+      "flash_sam0_write_page"
+    ]
+  },
+  "counts": {
+    "NODRIVER": 40,
+    "CORE": 15,
+    "INIT": 12,
+    "LOOP": 5,
+    "RETURNOK": 2,
+    "IRQ": 1,
+    "RECV": 1,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "add_to_waitq_locked",
+        "arch_new_thread",
+        "encode_float",
+        "first",
+        "fs_get_mnt_point",
+        "fs_init",
+        "fs_mount",
+        "fs_opendir",
+        "fs_readdir",
+        "fs_readmount",
+        "fs_unmount",
+        "init_ready_q",
+        "k_heap_init",
+        "k_mbox_get",
+        "k_mbox_init",
+        "k_mem_slab_init",
+        "k_msgq_cleanup",
+        "k_msgq_init",
+        "k_stack_cleanup",
+        "k_stack_init",
+        "k_timer_init",
+        "k_work_cancel_sync",
+        "k_work_flush",
+        "k_work_flush_delayable",
+        "k_work_init_delayable",
+        "k_work_queue_start",
+        "mbox_message_put",
+        "next",
+        "remove_timeout",
+        "timeout_rem",
+        "z_abort_timeout",
+        "z_add_timeout",
+        "z_cbvprintf_impl",
+        "z_impl_k_condvar_init",
+        "z_impl_k_mutex_init",
+        "z_impl_k_queue_init",
+        "z_impl_k_sem_init",
+        "z_impl_k_timer_status_sync",
+        "z_init_thread_base",
+        "z_set_prio"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "adjust_owner_prio",
+        "halt_thread",
+        "k_work_cancel_delayable_sync",
+        "move_thread_to_end_of_prio_q",
+        "ready_thread",
+        "sam0_eic_enable_interrupt",
+        "update_cache",
+        "z_impl_k_mutex_lock",
+        "z_impl_k_yield",
+        "z_priq_dumb_best",
+        "z_priq_dumb_remove",
+        "z_priq_mq_best",
+        "z_sched_waitq_walk",
+        "z_timer_expiration_handler",
+        "z_unpend_all"
+      ]
+    },
+    "INIT": {
+      "true": [
+        "dfll_init",
+        "dpll_init",
+        "flash_sam0_init",
+        "gclk_connect",
+        "gclk_reset",
+        "osc32k_init",
+        "sam0_eic_acquire",
+        "sam0_eic_init",
+        "sam0_eic_release",
+        "uart_sam0_init",
+        "z_arm_platform_init",
+        "z_setup_new_thread"
+      ],
+      "false": []
+    },
+    "LOOP": {
+      "true": [
+        "flash_sam0_check_status",
+        "flash_sam0_erase_row",
+        "flash_sam0_wait_ready",
+        "flash_sam0_write_protection",
+        "wait_synchronization"
+      ],
+      "false": []
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "sam0_eic_disable_interrupt",
+        "sam0_eic_interrupt_pending"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "sam0_eic_isr"
+      ],
+      "false": []
+    },
+    "RECV": {
+      "true": [
+        "flash_sam0_write_page"
+      ],
+      "false": []
+    }
+  },
+  "counts_has_replacement": {
+    "NODRIVER": {
+      "true": 0,
+      "false": 40
+    },
+    "CORE": {
+      "true": 0,
+      "false": 15
+    },
+    "INIT": {
+      "true": 12,
+      "false": 0
+    },
+    "LOOP": {
+      "true": 5,
+      "false": 0
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 2
+    },
+    "IRQ": {
+      "true": 1,
+      "false": 0
+    },
+    "RECV": {
+      "true": 1,
+      "false": 0
+    }
+  },
+  "per_function": {
+    "osc32k_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_osc32k_init_20260406180001.json",
+      "has_replacement_update": false
+    },
+    "k_work_queue_start": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_work_queue_start_20260406175932.json",
+      "has_replacement_update": false
+    },
+    "gclk_connect": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_gclk_connect_20260406175753.json",
+      "has_replacement_update": false
+    },
+    "sam0_eic_acquire": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_sam0_eic_acquire_20260406180116.json",
+      "has_replacement_update": false
+    },
+    "k_work_cancel_sync": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_work_cancel_sync_20260406175853.json",
+      "has_replacement_update": false
+    },
+    "flash_sam0_write_page": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_flash_sam0_write_page_20260406175716.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_write_page_20260406202153.json"
+    },
+    "uart_sam0_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_uart_sam0_init_20260406180415.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_uart_sam0_init_20260406180714.json"
+    },
+    "z_arm_platform_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_arm_platform_init_20260406180318.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_mutex_lock": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_impl_k_mutex_lock_20260406180410.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_yield": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_impl_k_yield_20260406180527.json",
+      "has_replacement_update": false
+    },
+    "k_mbox_get": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_mbox_get_20260406175807.json",
+      "has_replacement_update": false
+    },
+    "flash_sam0_check_status": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_flash_sam0_check_status_20260406175604.json",
+      "has_replacement_update": false
+    },
+    "z_priq_dumb_remove": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_priq_dumb_remove_20260406180602.json",
+      "has_replacement_update": false
+    },
+    "k_msgq_cleanup": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_msgq_cleanup_20260406175826.json",
+      "has_replacement_update": false
+    },
+    "flash_sam0_write_protection": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_flash_sam0_write_protection_20260406175649.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_write_protection_20260407034034.json"
+    },
+    "z_priq_dumb_best": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_priq_dumb_best_20260406180534.json",
+      "has_replacement_update": false
+    },
+    "fs_readmount": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_fs_readmount_20260406175718.json",
+      "has_replacement_update": false
+    },
+    "move_thread_to_end_of_prio_q": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_move_thread_to_end_of_prio_q_20260406175927.json",
+      "has_replacement_update": false
+    },
+    "gclk_reset": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_gclk_reset_20260406175757.json",
+      "has_replacement_update": false
+    },
+    "halt_thread": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_halt_thread_20260406175744.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_condvar_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_impl_k_condvar_init_20260406180405.json",
+      "has_replacement_update": false
+    },
+    "z_sched_waitq_walk": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_sched_waitq_walk_20260406180552.json",
+      "has_replacement_update": false
+    },
+    "z_unpend_all": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_unpend_all_20260406180640.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_sem_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_impl_k_sem_init_20260406180435.json",
+      "has_replacement_update": false
+    },
+    "sam0_eic_interrupt_pending": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_sam0_eic_interrupt_pending_20260406180058.json",
+      "has_replacement_update": false
+    },
+    "k_work_flush": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_work_flush_20260406175857.json",
+      "has_replacement_update": false
+    },
+    "fs_opendir": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_fs_opendir_20260406175718.json",
+      "has_replacement_update": false
+    },
+    "sam0_eic_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_sam0_eic_init_20260406180546.json",
+      "has_replacement_update": false
+    },
+    "update_cache": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_update_cache_20260406180128.json",
+      "has_replacement_update": false
+    },
+    "dpll_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_dpll_init_20260406175617.json",
+      "has_replacement_update": false
+    },
+    "dfll_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_dfll_init_20260406175546.json",
+      "has_replacement_update": false
+    },
+    "z_timer_expiration_handler": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_timer_expiration_handler_20260406180628.json",
+      "has_replacement_update": false
+    },
+    "k_mem_slab_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_mem_slab_init_20260406175808.json",
+      "has_replacement_update": false
+    },
+    "sam0_eic_enable_interrupt": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_sam0_eic_enable_interrupt_20260406180024.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_sam0_eic_enable_interrupt_20260406195217.json"
+    },
+    "z_setup_new_thread": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_setup_new_thread_20260406180814.json",
+      "has_replacement_update": false
+    },
+    "timeout_rem": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_timeout_rem_20260406180118.json",
+      "has_replacement_update": false
+    },
+    "k_heap_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_heap_init_20260406175803.json",
+      "has_replacement_update": false
+    },
+    "k_mbox_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_mbox_init_20260406175802.json",
+      "has_replacement_update": false
+    },
+    "flash_sam0_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_flash_sam0_init_20260406175630.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_init_20260407034020.json"
+    },
+    "k_work_cancel_delayable_sync": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_work_cancel_delayable_sync_20260406175842.json",
+      "has_replacement_update": false
+    },
+    "next": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_next_20260406175925.json",
+      "has_replacement_update": false
+    },
+    "z_add_timeout": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_add_timeout_20260406180254.json",
+      "has_replacement_update": false
+    },
+    "flash_sam0_wait_ready": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_flash_sam0_wait_ready_20260406175632.json",
+      "has_replacement_update": false
+    },
+    "z_abort_timeout": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_abort_timeout_20260406180247.json",
+      "has_replacement_update": false
+    },
+    "fs_mount": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_fs_mount_20260406175706.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_mutex_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_impl_k_mutex_init_20260406180418.json",
+      "has_replacement_update": false
+    },
+    "k_stack_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_stack_init_20260406175837.json",
+      "has_replacement_update": false
+    },
+    "first": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_first_20260406175531.json",
+      "has_replacement_update": false
+    },
+    "adjust_owner_prio": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_adjust_owner_prio_20260406175532.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_timer_status_sync": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_impl_k_timer_status_sync_20260406180459.json",
+      "has_replacement_update": false
+    },
+    "k_work_flush_delayable": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_work_flush_delayable_20260406175907.json",
+      "has_replacement_update": false
+    },
+    "add_to_waitq_locked": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_add_to_waitq_locked_20260406175528.json",
+      "has_replacement_update": false
+    },
+    "z_priq_mq_best": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_priq_mq_best_20260406180612.json",
+      "has_replacement_update": false
+    },
+    "wait_synchronization": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_wait_synchronization_20260406180325.json",
+      "has_replacement_update": false
+    },
+    "fs_get_mnt_point": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_fs_get_mnt_point_20260406175634.json",
+      "has_replacement_update": false
+    },
+    "z_set_prio": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_set_prio_20260406180607.json",
+      "has_replacement_update": false
+    },
+    "k_stack_cleanup": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_stack_cleanup_20260406175843.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_queue_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_impl_k_queue_init_20260406180432.json",
+      "has_replacement_update": false
+    },
+    "remove_timeout": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_remove_timeout_20260406175954.json",
+      "has_replacement_update": false
+    },
+    "z_cbvprintf_impl": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_cbvprintf_impl_20260406180252.json",
+      "has_replacement_update": false
+    },
+    "sam0_eic_disable_interrupt": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_sam0_eic_disable_interrupt_20260406180024.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_sam0_eic_disable_interrupt_20260406195239.json"
+    },
+    "flash_sam0_erase_row": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_flash_sam0_erase_row_20260406175654.json",
+      "has_replacement_update": false
+    },
+    "encode_float": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_encode_float_20260406175535.json",
+      "has_replacement_update": false
+    },
+    "arch_new_thread": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_arch_new_thread_20260406175530.json",
+      "has_replacement_update": false
+    },
+    "mbox_message_put": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_mbox_message_put_20260406175931.json",
+      "has_replacement_update": false
+    },
+    "z_init_thread_base": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_z_init_thread_base_20260406180614.json",
+      "has_replacement_update": false
+    },
+    "sam0_eic_release": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_sam0_eic_release_20260406180336.json",
+      "has_replacement_update": false
+    },
+    "k_work_init_delayable": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_work_init_delayable_20260406175919.json",
+      "has_replacement_update": false
+    },
+    "k_timer_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_timer_init_20260406175844.json",
+      "has_replacement_update": false
+    },
+    "fs_unmount": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_fs_unmount_20260406175726.json",
+      "has_replacement_update": false
+    },
+    "sam0_eic_isr": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_sam0_eic_isr_20260406180056.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_sam0_eic_isr_20260406203901.json"
+    },
+    "fs_readdir": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_fs_readdir_20260406175722.json",
+      "has_replacement_update": false
+    },
+    "init_ready_q": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_init_ready_q_20260406175800.json",
+      "has_replacement_update": false
+    },
+    "ready_thread": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_ready_thread_20260406175936.json",
+      "has_replacement_update": false
+    },
+    "k_msgq_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_k_msgq_init_20260406175840.json",
+      "has_replacement_update": false
+    },
+    "fs_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/function_classify_fs_init_20260406175641.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 76,
+  "replacement_update_count": 25,
+  "replacement_update_functions": [
+    "arm_core_mpu_disable",
+    "arm_core_mpu_enable",
+    "elapsed",
+    "flash_sam0_erase",
+    "flash_sam0_init",
+    "flash_sam0_read",
+    "flash_sam0_write",
+    "flash_sam0_write_page",
+    "flash_sam0_write_protection",
+    "mpu_configure_dynamic_mpu_regions",
+    "region_init",
+    "sam0_eic_disable_interrupt",
+    "sam0_eic_enable_interrupt",
+    "sam0_eic_isr",
+    "set_eic_enable",
+    "set_region_number",
+    "soc_port_configure",
+    "soc_port_pinmux_set",
+    "sys_clock_isr",
+    "uart_sam0_init",
+    "uart_sam0_irq_rx_ready",
+    "uart_sam0_irq_tx_ready",
+    "uart_sam0_isr",
+    "uart_sam0_poll_in",
+    "uart_sam0_poll_out"
+  ],
+  "replacement_update_by_function": {
+    "uart_sam0_poll_out": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_uart_sam0_poll_out_20260406202524.json"
+    },
+    "flash_sam0_erase": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_erase_20260406203018.json"
+    },
+    "flash_sam0_read": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_read_20260407033955.json"
+    },
+    "sam0_eic_disable_interrupt": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_sam0_eic_disable_interrupt_20260406195239.json"
+    },
+    "sys_clock_isr": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_sys_clock_isr_20260406202258.json"
+    },
+    "uart_sam0_irq_rx_ready": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_uart_sam0_irq_rx_ready_20260406194346.json"
+    },
+    "flash_sam0_write_page": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_write_page_20260406202153.json"
+    },
+    "flash_sam0_write_protection": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_write_protection_20260407034034.json"
+    },
+    "soc_port_pinmux_set": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_soc_port_pinmux_set_20260406200617.json"
+    },
+    "mpu_configure_dynamic_mpu_regions": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_mpu_configure_dynamic_mpu_regions_20260407034421.json"
+    },
+    "uart_sam0_isr": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_uart_sam0_isr_20260406203918.json"
+    },
+    "sam0_eic_enable_interrupt": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_sam0_eic_enable_interrupt_20260406195217.json"
+    },
+    "region_init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_region_init_20260406204159.json"
+    },
+    "sam0_eic_isr": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_sam0_eic_isr_20260406203901.json"
+    },
+    "arm_core_mpu_enable": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_arm_core_mpu_enable_20260406204226.json"
+    },
+    "uart_sam0_init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_uart_sam0_init_20260406180714.json"
+    },
+    "uart_sam0_irq_tx_ready": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_uart_sam0_irq_tx_ready_20260406194326.json"
+    },
+    "flash_sam0_write": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_write_20260406202933.json"
+    },
+    "set_region_number": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_set_region_number_20260406204342.json"
+    },
+    "flash_sam0_init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_flash_sam0_init_20260407034020.json"
+    },
+    "set_eic_enable": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_set_eic_enable_20260406194846.json"
+    },
+    "uart_sam0_poll_in": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_uart_sam0_poll_in_20260406194419.json"
+    },
+    "elapsed": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_elapsed_20260406194500.json"
+    },
+    "arm_core_mpu_disable": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_arm_core_mpu_disable_20260406204248.json"
+    },
+    "soc_port_configure": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/replacement_update_soc_port_configure_20260406200541.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "arm_core_mpu_disable",
+    "arm_core_mpu_enable",
+    "elapsed",
+    "flash_sam0_erase",
+    "flash_sam0_read",
+    "flash_sam0_write",
+    "mpu_configure_dynamic_mpu_regions",
+    "region_init",
+    "set_eic_enable",
+    "set_region_number",
+    "soc_port_configure",
+    "soc_port_pinmux_set",
+    "sys_clock_isr",
+    "uart_sam0_irq_rx_ready",
+    "uart_sam0_irq_tx_ready",
+    "uart_sam0_isr",
+    "uart_sam0_poll_in",
+    "uart_sam0_poll_out"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/fs_littlefs_atsame54"
+}

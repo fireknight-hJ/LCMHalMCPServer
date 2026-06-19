@@ -1,0 +1,46 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/nxp/fs_littlefs_mimxrt1060",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_fs_littlefs_mimxrt1060/lcmhal_ai_log",
+  "total_functions": 113,
+  "counts": {
+    "NODRIVER": 44,
+    "INIT": 30,
+    "RETURNOK": 19,
+    "CORE": 15,
+    "SKIP": 3,
+    "LOOP": 1,
+    "RECV": 1,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "NODRIVER": {
+      "true": 0,
+      "false": 44
+    },
+    "INIT": {
+      "true": 2,
+      "false": 28
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 19
+    },
+    "CORE": {
+      "true": 0,
+      "false": 15
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 3
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 1
+    },
+    "RECV": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "error": null
+}

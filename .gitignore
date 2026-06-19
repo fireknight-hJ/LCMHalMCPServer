@@ -8,3 +8,10 @@ fuzzemu/
 */emulate/
 testcases_out/
 lcmhal_failcheck_logs/
+runs/e3b_uncertainty/
+runs/*.log
+**/emulate/core
+**/debug_output/
+**/emulate/output.elf
+**/emulate/output.bin
+run/batch_main_analyze_*_logs/

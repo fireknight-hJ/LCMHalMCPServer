@@ -7,6 +7,8 @@ from typing import Dict, Any, Optional, List
 from datetime import datetime
 import threading
 
+from utils.llm_usage import sum_prompt_completion_tokens
+
 
 class AILogManager:
     _instance = None
@@ -52,7 +54,8 @@ class AILogManager:
                 "session_id": session_id,
                 "start_time": datetime.now().isoformat(),
                 "logs": [],
-                "agent_message_counts": {}
+                "agent_message_counts": {},
+                "llm_usage_records": [],
             }
             
             self._save_session_metadata()
@@ -185,11 +188,43 @@ class AILogManager:
             return
         
         try:
+            if self.log_dir:
+                Path(self.log_dir).mkdir(parents=True, exist_ok=True)
             with open(self.session_log_file, 'w', encoding='utf-8') as f:
                 json.dump(self.session_metadata, f, ensure_ascii=False, indent=2)
         except Exception as e:
             print(f"[ERROR] Failed to save session metadata: {e}")
     
+    def append_llm_usage_record(
+        self,
+        agent_name: str,
+        node_name: str,
+        function_name: Optional[str],
+        elapsed_ms: float,
+        usage: Optional[Dict[str, Any]] = None,
+    ):
+        """记录单次 LLM 调用耗时与 usage（供毕设/实验统计）。"""
+        if not self._enabled or self.session_id is None:
+            return
+        rec: Dict[str, Any] = {
+            "timestamp": datetime.now().isoformat(),
+            "agent_name": agent_name,
+            "node_name": node_name,
+            "function_name": function_name,
+            "elapsed_ms": round(float(elapsed_ms), 3),
+        }
+        if usage:
+            ser = self._serialize_data(usage)
+            rec["usage"] = ser
+            sums = sum_prompt_completion_tokens(ser if isinstance(ser, dict) else {})
+            if sums:
+                rec["prompt_tokens"] = sums["prompt_tokens"]
+                rec["completion_tokens"] = sums["completion_tokens"]
+                rec["total_tokens"] = sums["prompt_tokens"] + sums["completion_tokens"]
+        with self._session_lock:
+            self.session_metadata.setdefault("llm_usage_records", []).append(rec)
+            self._save_session_metadata()
+
     def finalize_session(self):
         if self.session_id is None:
             return
@@ -197,6 +232,72 @@ class AILogManager:
         with self._session_lock:
             self.session_metadata["end_time"] = datetime.now().isoformat()
             self.session_metadata["log_count"] = len(self.session_metadata.get("logs", []))
+            recs = self.session_metadata.get("llm_usage_records") or []
+            if recs:
+                total_ms = 0.0
+                tp = tc = 0
+                by_agent: Dict[str, Dict[str, Any]] = {}
+                by_node: Dict[str, Dict[str, Any]] = {}
+                by_function: Dict[str, Dict[str, Any]] = {}
+
+                def _bump(
+                    bucket: Dict[str, Dict[str, Any]],
+                    key: str,
+                    elapsed: float,
+                    pt: int,
+                    ct: int,
+                ) -> None:
+                    if key not in bucket:
+                        bucket[key] = {
+                            "invoke_count": 0,
+                            "total_elapsed_ms": 0.0,
+                            "prompt_tokens": 0,
+                            "completion_tokens": 0,
+                        }
+                    e = bucket[key]
+                    e["invoke_count"] += 1
+                    e["total_elapsed_ms"] = round(e["total_elapsed_ms"] + elapsed, 3)
+                    e["prompt_tokens"] += pt
+                    e["completion_tokens"] += ct
+
+                for r in recs:
+                    if not isinstance(r, dict):
+                        continue
+                    elapsed = float(r.get("elapsed_ms") or 0)
+                    total_ms += elapsed
+                    pt = r.get("prompt_tokens")
+                    ct = r.get("completion_tokens")
+                    if (pt is None or ct is None) and r.get("usage"):
+                        u = r["usage"]
+                        sums = sum_prompt_completion_tokens(u if isinstance(u, dict) else {})
+                        if sums:
+                            pt = sums["prompt_tokens"] if pt is None else pt
+                            ct = sums["completion_tokens"] if ct is None else ct
+                    pi = int(pt) if pt is not None else 0
+                    ci = int(ct) if ct is not None else 0
+                    tp += pi
+                    tc += ci
+                    ag = str(r.get("agent_name") or "unknown")
+                    nd = str(r.get("node_name") or "unknown")
+                    fn = str(r.get("function_name") or "")
+                    _bump(by_agent, ag, elapsed, pi, ci)
+                    _bump(by_node, nd, elapsed, pi, ci)
+                    _bump(by_function, fn or "(none)", elapsed, pi, ci)
+
+                n = len(recs)
+                summary: Dict[str, Any] = {
+                    "invoke_count": n,
+                    "total_elapsed_ms": round(total_ms, 3),
+                    "avg_elapsed_ms": round(total_ms / n, 3) if n else 0.0,
+                    "by_agent": by_agent,
+                    "by_node": by_node,
+                    "by_function": by_function,
+                }
+                if tp or tc:
+                    summary["total_prompt_tokens"] = tp
+                    summary["total_completion_tokens"] = tc
+                    summary["total_tokens"] = tp + tc
+                self.session_metadata["llm_usage_summary"] = summary
             self._save_session_metadata()
     
     def export_session(self, file_path: Optional[str] = None) -> str:

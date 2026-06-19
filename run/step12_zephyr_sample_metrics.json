@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-04-15 00:11:31",
+  "case_count": 3,
+  "cases": [
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/eth_dhcpv4_sam_e70",
+      "db_path": "",
+      "return_code": 124,
+      "elapsed_sec_wall": 1800.0,
+      "session_file": "",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": "timeout after 1800s"
+    },
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/fs_littlefs_atsame54",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54",
+      "return_code": 0,
+      "elapsed_sec_wall": 12.605,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/session_8ca0a6c2-f096-476d-a0ab-0c5bf8f07b2b_20260415_001106.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": ""
+    },
+    {
+      "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/i2c_shell_atsame54",
+      "db_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_i2c_shell_atsame54",
+      "return_code": 0,
+      "elapsed_sec_wall": 12.661,
+      "session_file": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_i2c_shell_atsame54/lcmhal_ai_log/session_fbe28177-ec75-4e98-bf46-bd5cfddac662_20260415_001119.json",
+      "invoke_count": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "total_elapsed_ms_llm": 0.0,
+      "analyzer_tokens": 0,
+      "builder_tokens": 0,
+      "fixer_tokens": 0,
+      "emulator_tokens": 0,
+      "error": ""
+    }
+  ],
+  "overall": {
+    "success_count": 2,
+    "total_tokens": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_llm_elapsed_ms": 0.0,
+    "total_wall_sec": 1825.266,
+    "analyzer_tokens": 0,
+    "builder_tokens": 0,
+    "fixer_tokens": 0,
+    "emulator_tokens": 0
+  }
+}

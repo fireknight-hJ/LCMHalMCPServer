@@ -1,0 +1,51 @@
+{
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/LwIP_StreamingServer",
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_LwIP_StreamingServer/lcmhal_ai_log",
+  "total_functions": 281,
+  "counts": {
+    "INIT": 137,
+    "RETURNOK": 82,
+    "LOOP": 24,
+    "RECV": 12,
+    "IRQ": 9,
+    "NODRIVER": 8,
+    "CORE": 6,
+    "SKIP": 3,
+    "PARSE_ERROR": 0
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 117,
+      "false": 20
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 82
+    },
+    "LOOP": {
+      "true": 24,
+      "false": 0
+    },
+    "RECV": {
+      "true": 12,
+      "false": 0
+    },
+    "IRQ": {
+      "true": 7,
+      "false": 2
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 8
+    },
+    "CORE": {
+      "true": 0,
+      "false": 6
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 2
+    }
+  },
+  "error": null
+}

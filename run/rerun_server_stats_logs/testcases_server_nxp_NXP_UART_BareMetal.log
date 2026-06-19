@@ -1,0 +1,181 @@
+2026-04-07 22:27:14,917 - INFO - [*] Read loop started
+Session ID: c7fdd2d3-3718-48b6-85c0-ca728861713e
+2026-04-07 22:27:15,386 - INFO - [CodeQL stderr] [2026-04-07 22:27:15] This is codeql execute query-server2 --debug --tuple-counting --threads=0 --evaluator-log-level 5 -v --log-to-stderr
+2026-04-07 22:27:15,397 - INFO - [CodeQL stderr] [2026-04-07 22:27:15] Creating executor with 128 threads.
+[analyze_functions] classifying 86 functions (max concurrent: 8, env LCMHAL_ANALYZE_MAX_CONCURRENT)
+[FunctionClassifier] 检测到旧日志分类 NEEDCHECK，重新分析: BOARD_BootClockRUN
+2026-04-07 22:27:19,474 - INFO - [*] Read loop started
+/home/haojie/.local/lib/python3.10/site-packages/fastmcp/server/server.py:259: DeprecationWarning: Providing `port` when creating a server is deprecated. Provide it when calling `run` or as a global setting instead.
+  self._handle_deprecated_settings(
+
+
+╭────────────────────────────────────────────────────────────────────────────╮
+│                                                                            │
+│        _ __ ___  _____           __  __  _____________    ____    ____     │
+│       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+│      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+│     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+│    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+│                                                                            │
+│                                                                            │
+│                                FastMCP  2.0                                │
+│                                                                            │
+│                                                                            │
+│                 🖥️ Server name:     LCMHalMCP                              │
+│                 📦 Transport:       STDIO                                  │
+│                                                                            │
+│                 🏎️ FastMCP version: 2.12.3                                 │
+│                 🤝 MCP SDK version: 1.14.0                                 │
+│                                                                            │
+│                 📚 Docs:            https://gofastmcp.com                  │
+│                 🚀 Deploy:          https://fastmcp.cloud                  │
+│                                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+
+[04/07/26 22:27:19] INFO     Starting MCP server 'LCMHalMCP' with server.py:1495
+                             transport 'stdio'                                  
+2026-04-07 22:27:19,584 - INFO - Processing request of type ListToolsRequest
+2026-04-07 22:27:20,147 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 22:27:24,290 - INFO - [*] Read loop started
+/home/haojie/.local/lib/python3.10/site-packages/fastmcp/server/server.py:259: DeprecationWarning: Providing `port` when creating a server is deprecated. Provide it when calling `run` or as a global setting instead.
+  self._handle_deprecated_settings(
+
+
+╭────────────────────────────────────────────────────────────────────────────╮
+│                                                                            │
+│        _ __ ___  _____           __  __  _____________    ____    ____     │
+│       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+│      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+│     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+│    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+│                                                                            │
+│                                                                            │
+│                                FastMCP  2.0                                │
+│                                                                            │
+│                                                                            │
+│                 🖥️ Server name:     LCMHalMCP                              │
+│                 📦 Transport:       STDIO                                  │
+│                                                                            │
+│                 🏎️ FastMCP version: 2.12.3                                 │
+│                 🤝 MCP SDK version: 1.14.0                                 │
+│                                                                            │
+│                 📚 Docs:            https://gofastmcp.com                  │
+│                 🚀 Deploy:          https://fastmcp.cloud                  │
+│                                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+
+[04/07/26 22:27:24] INFO     Starting MCP server 'LCMHalMCP' with server.py:1495
+                             transport 'stdio'                                  
+2026-04-07 22:27:24,416 - INFO - Processing request of type CallToolRequest
+2026-04-07 22:27:24,421 - INFO - Processing request of type ListToolsRequest
+2026-04-07 22:27:24,890 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 22:27:28,330 - INFO - [*] Read loop started
+/home/haojie/.local/lib/python3.10/site-packages/fastmcp/server/server.py:259: DeprecationWarning: Providing `port` when creating a server is deprecated. Provide it when calling `run` or as a global setting instead.
+  self._handle_deprecated_settings(
+
+
+╭────────────────────────────────────────────────────────────────────────────╮
+│                                                                            │
+│        _ __ ___  _____           __  __  _____________    ____    ____     │
+│       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+│      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+│     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+│    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+│                                                                            │
+│                                                                            │
+│                                FastMCP  2.0                                │
+│                                                                            │
+│                                                                            │
+│                 🖥️ Server name:     LCMHalMCP                              │
+│                 📦 Transport:       STDIO                                  │
+│                                                                            │
+│                 🏎️ FastMCP version: 2.12.3                                 │
+│                 🤝 MCP SDK version: 1.14.0                                 │
+│                                                                            │
+│                 📚 Docs:            https://gofastmcp.com                  │
+│                 🚀 Deploy:          https://fastmcp.cloud                  │
+│                                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+
+[04/07/26 22:27:28] INFO     Starting MCP server 'LCMHalMCP' with server.py:1495
+                             transport 'stdio'                                  
+2026-04-07 22:27:28,433 - INFO - Processing request of type CallToolRequest
+2026-04-07 22:27:28,438 - INFO - Processing request of type ListToolsRequest
+2026-04-07 22:27:28,936 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 22:27:58,914 - INFO - [*] Read loop started
+/home/haojie/.local/lib/python3.10/site-packages/fastmcp/server/server.py:259: DeprecationWarning: Providing `port` when creating a server is deprecated. Provide it when calling `run` or as a global setting instead.
+  self._handle_deprecated_settings(
+
+
+╭────────────────────────────────────────────────────────────────────────────╮
+│                                                                            │
+│        _ __ ___  _____           __  __  _____________    ____    ____     │
+│       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+│      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+│     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+│    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+│                                                                            │
+│                                                                            │
+│                                FastMCP  2.0                                │
+│                                                                            │
+│                                                                            │
+│                 🖥️ Server name:     LCMHalMCP                              │
+│                 📦 Transport:       STDIO                                  │
+│                                                                            │
+│                 🏎️ FastMCP version: 2.12.3                                 │
+│                 🤝 MCP SDK version: 1.14.0                                 │
+│                                                                            │
+│                 📚 Docs:            https://gofastmcp.com                  │
+│                 🚀 Deploy:          https://fastmcp.cloud                  │
+│                                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+
+[04/07/26 22:27:59] INFO     Starting MCP server 'LCMHalMCP' with server.py:1495
+                             transport 'stdio'                                  
+2026-04-07 22:27:59,017 - INFO - Processing request of type CallToolRequest
+2026-04-07 22:27:59,022 - INFO - Processing request of type ListToolsRequest
+2026-04-07 22:27:59,544 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 22:28:33,025 - INFO - [*] Read loop started
+/home/haojie/.local/lib/python3.10/site-packages/fastmcp/server/server.py:259: DeprecationWarning: Providing `port` when creating a server is deprecated. Provide it when calling `run` or as a global setting instead.
+  self._handle_deprecated_settings(
+
+
+╭────────────────────────────────────────────────────────────────────────────╮
+│                                                                            │
+│        _ __ ___  _____           __  __  _____________    ____    ____     │
+│       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+│      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+│     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+│    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+│                                                                            │
+│                                                                            │
+│                                FastMCP  2.0                                │
+│                                                                            │
+│                                                                            │
+│                 🖥️ Server name:     LCMHalMCP                              │
+│                 📦 Transport:       STDIO                                  │
+│                                                                            │
+│                 🏎️ FastMCP version: 2.12.3                                 │
+│                 🤝 MCP SDK version: 1.14.0                                 │
+│                                                                            │
+│                 📚 Docs:            https://gofastmcp.com                  │
+│                 🚀 Deploy:          https://fastmcp.cloud                  │
+│                                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+
+[04/07/26 22:28:33] INFO     Starting MCP server 'LCMHalMCP' with server.py:1495
+                             transport 'stdio'                                  
+2026-04-07 22:28:33,126 - INFO - Processing request of type CallToolRequest
+2026-04-07 22:28:33,130 - INFO - Processing request of type ListToolsRequest
+2026-04-07 22:28:33,697 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 22:30:30,514 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 400 Bad Request"
+Error analyzing function BOARD_BootClockRUN: Error code: 400 - {'error': {'message': "An assistant message with 'tool_calls' must be followed by tool messages responding to each 'tool_call_id'. (insufficient tool messages following tool_calls message)", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Replacement log written to: testcases/server/nxp/NXP_UART_BareMetal/replacement_log.md
+2026-04-07 22:30:31,526 - INFO - [*] Read loop started
+=== START testcases/server/nxp/NXP_UART_BareMetal ===
+=== DONE ===

@@ -1,0 +1,18 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/lcmhal_ai_log",
+  "by_type": {},
+  "counts": {
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {},
+  "counts_has_replacement": {},
+  "per_function": {},
+  "parse_errors": [],
+  "total_functions": 0,
+  "replacement_update_count": 0,
+  "replacement_update_functions": [],
+  "replacement_update_by_function": {},
+  "replacement_update_only_functions": [],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_I2C_FreeRTOS"
+}

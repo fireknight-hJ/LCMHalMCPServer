@@ -1,0 +1,967 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "APPD_Init",
+      "APPD_SetCPU2GpioConfig",
+      "BSP_LED_Init",
+      "Config_HSE",
+      "DMA_SetConfig",
+      "EnterLowPower",
+      "FLASH_FlushCaches",
+      "FLASH_OB_GetC2BootResetConfig",
+      "FLASH_OB_GetSecureMemoryConfig",
+      "FLASH_OB_GetWRP",
+      "FLASH_OB_IPCCBufferAddrConfig",
+      "FLASH_OB_OptrConfig",
+      "FLASH_OB_PCROP1AConfig",
+      "FLASH_OB_PCROP1BConfig",
+      "FLASH_OB_ProceedWriteOperation",
+      "FLASH_OB_SecureConfig",
+      "FLASH_OB_WRPConfig",
+      "FLASH_Program_DoubleWord",
+      "FLASH_Program_Fast",
+      "HAL_DMA_Abort",
+      "HAL_DMA_Abort_IT",
+      "HAL_DMA_DeInit",
+      "HAL_DMA_Init",
+      "HAL_DMA_Start",
+      "HAL_DMA_Start_IT",
+      "HAL_DeInit",
+      "HAL_EXTI_ClearConfigLine",
+      "HAL_EXTI_SetConfigLine",
+      "HAL_FLASHEx_Erase_IT",
+      "HAL_FLASHEx_ForceFlashEmpty",
+      "HAL_FLASH_OB_Launch",
+      "HAL_FLASH_OB_Lock",
+      "HAL_FLASH_OB_Unlock",
+      "HAL_FLASH_Program",
+      "HAL_FLASH_Program_IT",
+      "HAL_FLASH_Unlock",
+      "HAL_GPIO_DeInit",
+      "HAL_GPIO_Init",
+      "HAL_HalfDuplex_EnableReceiver",
+      "HAL_HalfDuplex_Init",
+      "HAL_IPCC_DeInit",
+      "HAL_IPCC_Init",
+      "HAL_Init",
+      "HAL_LIN_Init",
+      "HAL_LIN_SendBreak",
+      "HAL_MultiProcessorEx_AddressLength_Set",
+      "HAL_MultiProcessor_DisableMuteMode",
+      "HAL_MultiProcessor_EnableMuteMode",
+      "HAL_MultiProcessor_EnterMuteMode",
+      "HAL_MultiProcessor_Init",
+      "HAL_PWREx_ConfigPVM",
+      "HAL_PWREx_ConfigSMPS",
+      "HAL_PWREx_ControlVoltageScaling",
+      "HAL_PWREx_DisableBORH_SMPSBypassIT",
+      "HAL_PWREx_DisableGPIOPullDown",
+      "HAL_PWREx_DisableLowPowerRunMode"
+    ],
+    "RETURNOK": [
+      "FLASH_AcknowledgePageErase",
+      "FLASH_OB_GetIPCCBufferAddr",
+      "FLASH_OB_GetPCROP",
+      "FLASH_OB_GetRDP",
+      "FLASH_OB_GetUser",
+      "FLASH_PageErase",
+      "HAL_EXTI_ClearPending",
+      "HAL_EXTI_GenerateSWI",
+      "HAL_EXTI_GetConfigLine",
+      "HAL_EXTI_GetPending",
+      "HAL_FLASHEx_AllowOperation",
+      "HAL_FLASHEx_FlashEmptyCheck",
+      "HAL_FLASHEx_IsOperationSuspended",
+      "HAL_FLASHEx_SuspendOperation",
+      "HAL_FLASH_Lock",
+      "HAL_GPIO_LockPin",
+      "HAL_GPIO_ReadPin",
+      "HAL_GPIO_TogglePin",
+      "HAL_GPIO_WriteMultipleStatePin",
+      "HAL_GPIO_WritePin",
+      "HAL_HSEM_FastTake",
+      "HAL_HSEM_GetClearKey",
+      "HAL_HSEM_IsSemTaken",
+      "HAL_HSEM_ReleaseAll",
+      "HAL_HSEM_SetClearKey",
+      "HAL_HSEM_Take",
+      "HAL_HalfDuplex_EnableTransmitter",
+      "HAL_PWREx_ClearWakeupFlag",
+      "HAL_PWREx_Disable802ActivityIT",
+      "HAL_PWREx_DisableBLEActivityIT",
+      "HAL_PWREx_DisableFlashPowerDown",
+      "HAL_PWREx_DisableGPIOPullUp",
+      "HAL_PWREx_DisableHOLDC2IT",
+      "HAL_PWREx_DisableInternalWakeUpLine",
+      "HAL_PWREx_DisablePullUpPullDownConfig",
+      "HAL_PWREx_DisableVddUSB"
+    ],
+    "IRQ": [
+      "HAL_DMAEx_MUX_IRQHandler",
+      "HAL_DMA_IRQHandler",
+      "HAL_EXTI_IRQHandler",
+      "HAL_FLASH_IRQHandler",
+      "HAL_GPIO_EXTI_IRQHandler",
+      "HAL_HSEM_IRQHandler"
+    ],
+    "SKIP": [
+      "HAL_HSEM_DeactivateNotification",
+      "HAL_HSEM_Release",
+      "HAL_PWREx_DisableBatteryCharging",
+      "HAL_PWREx_DisablePVM1",
+      "HAL_PWREx_DisablePVM3",
+      "HAL_PWREx_DisableRFPhaseIT"
+    ],
+    "LOOP": [
+      "ExitLowPower",
+      "FLASH_WaitForLastOperation",
+      "HAL_DMA_PollForTransfer"
+    ],
+    "CORE": [
+      "BSP_PB_Init",
+      "HAL_HSEM_ActivateNotification"
+    ]
+  },
+  "counts": {
+    "INIT": 56,
+    "RETURNOK": 36,
+    "IRQ": 6,
+    "SKIP": 6,
+    "LOOP": 3,
+    "CORE": 2,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "APPD_Init",
+        "APPD_SetCPU2GpioConfig",
+        "BSP_LED_Init",
+        "EnterLowPower",
+        "FLASH_OB_GetC2BootResetConfig",
+        "FLASH_OB_GetSecureMemoryConfig",
+        "FLASH_OB_GetWRP",
+        "FLASH_OB_IPCCBufferAddrConfig",
+        "FLASH_OB_OptrConfig",
+        "FLASH_OB_PCROP1AConfig",
+        "FLASH_OB_PCROP1BConfig",
+        "FLASH_OB_ProceedWriteOperation",
+        "FLASH_OB_SecureConfig",
+        "FLASH_OB_WRPConfig",
+        "FLASH_Program_DoubleWord",
+        "FLASH_Program_Fast",
+        "HAL_DMA_Abort",
+        "HAL_DMA_Abort_IT",
+        "HAL_DMA_DeInit",
+        "HAL_DMA_Init",
+        "HAL_DMA_Start",
+        "HAL_DMA_Start_IT",
+        "HAL_DeInit",
+        "HAL_EXTI_ClearConfigLine",
+        "HAL_EXTI_SetConfigLine",
+        "HAL_FLASHEx_Erase_IT",
+        "HAL_FLASH_OB_Lock",
+        "HAL_FLASH_Program",
+        "HAL_FLASH_Program_IT",
+        "HAL_FLASH_Unlock",
+        "HAL_GPIO_DeInit",
+        "HAL_GPIO_Init",
+        "HAL_HalfDuplex_EnableReceiver",
+        "HAL_HalfDuplex_Init",
+        "HAL_IPCC_DeInit",
+        "HAL_IPCC_Init",
+        "HAL_Init",
+        "HAL_LIN_Init",
+        "HAL_LIN_SendBreak",
+        "HAL_MultiProcessorEx_AddressLength_Set",
+        "HAL_MultiProcessor_DisableMuteMode",
+        "HAL_MultiProcessor_EnableMuteMode",
+        "HAL_MultiProcessor_EnterMuteMode",
+        "HAL_MultiProcessor_Init",
+        "HAL_PWREx_ConfigPVM",
+        "HAL_PWREx_ConfigSMPS",
+        "HAL_PWREx_ControlVoltageScaling",
+        "HAL_PWREx_DisableGPIOPullDown",
+        "HAL_PWREx_DisableLowPowerRunMode"
+      ],
+      "false": [
+        "Config_HSE",
+        "DMA_SetConfig",
+        "FLASH_FlushCaches",
+        "HAL_FLASHEx_ForceFlashEmpty",
+        "HAL_FLASH_OB_Launch",
+        "HAL_FLASH_OB_Unlock",
+        "HAL_PWREx_DisableBORH_SMPSBypassIT"
+      ]
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "FLASH_AcknowledgePageErase",
+        "FLASH_OB_GetIPCCBufferAddr",
+        "FLASH_OB_GetPCROP",
+        "FLASH_OB_GetRDP",
+        "FLASH_OB_GetUser",
+        "FLASH_PageErase",
+        "HAL_EXTI_ClearPending",
+        "HAL_EXTI_GenerateSWI",
+        "HAL_EXTI_GetConfigLine",
+        "HAL_EXTI_GetPending",
+        "HAL_FLASHEx_AllowOperation",
+        "HAL_FLASHEx_FlashEmptyCheck",
+        "HAL_FLASHEx_IsOperationSuspended",
+        "HAL_FLASHEx_SuspendOperation",
+        "HAL_FLASH_Lock",
+        "HAL_GPIO_LockPin",
+        "HAL_GPIO_ReadPin",
+        "HAL_GPIO_TogglePin",
+        "HAL_GPIO_WriteMultipleStatePin",
+        "HAL_GPIO_WritePin",
+        "HAL_HSEM_FastTake",
+        "HAL_HSEM_GetClearKey",
+        "HAL_HSEM_IsSemTaken",
+        "HAL_HSEM_ReleaseAll",
+        "HAL_HSEM_SetClearKey",
+        "HAL_HSEM_Take",
+        "HAL_HalfDuplex_EnableTransmitter",
+        "HAL_PWREx_ClearWakeupFlag",
+        "HAL_PWREx_Disable802ActivityIT",
+        "HAL_PWREx_DisableBLEActivityIT",
+        "HAL_PWREx_DisableFlashPowerDown",
+        "HAL_PWREx_DisableGPIOPullUp",
+        "HAL_PWREx_DisableHOLDC2IT",
+        "HAL_PWREx_DisableInternalWakeUpLine",
+        "HAL_PWREx_DisablePullUpPullDownConfig",
+        "HAL_PWREx_DisableVddUSB"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "HAL_DMAEx_MUX_IRQHandler",
+        "HAL_DMA_IRQHandler",
+        "HAL_EXTI_IRQHandler",
+        "HAL_FLASH_IRQHandler",
+        "HAL_GPIO_EXTI_IRQHandler",
+        "HAL_HSEM_IRQHandler"
+      ],
+      "false": []
+    },
+    "SKIP": {
+      "true": [],
+      "false": [
+        "HAL_HSEM_DeactivateNotification",
+        "HAL_HSEM_Release",
+        "HAL_PWREx_DisableBatteryCharging",
+        "HAL_PWREx_DisablePVM1",
+        "HAL_PWREx_DisablePVM3",
+        "HAL_PWREx_DisableRFPhaseIT"
+      ]
+    },
+    "LOOP": {
+      "true": [
+        "ExitLowPower",
+        "FLASH_WaitForLastOperation",
+        "HAL_DMA_PollForTransfer"
+      ],
+      "false": []
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "BSP_PB_Init",
+        "HAL_HSEM_ActivateNotification"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 49,
+      "false": 7
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 36
+    },
+    "IRQ": {
+      "true": 6,
+      "false": 0
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 6
+    },
+    "LOOP": {
+      "true": 3,
+      "false": 0
+    },
+    "CORE": {
+      "true": 0,
+      "false": 2
+    }
+  },
+  "per_function": {
+    "FLASH_OB_PCROP1AConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_PCROP1AConfig_20260407040952.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisablePVM3": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisablePVM3_20260407225654.json",
+      "has_replacement_update": false
+    },
+    "ExitLowPower": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_ExitLowPower_20260407034542.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_DeInit_20260407044436.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableGPIOPullUp": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableGPIOPullUp_20260407225653.json",
+      "has_replacement_update": false
+    },
+    "HAL_MultiProcessor_EnableMuteMode": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_MultiProcessor_EnableMuteMode_20260407224658.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetRDP": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_GetRDP_20260407035156.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableGPIOPullDown": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableGPIOPullDown_20260407225505.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_TogglePin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_TogglePin_20260407061021.json",
+      "has_replacement_update": false
+    },
+    "FLASH_WaitForLastOperation": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_WaitForLastOperation_20260407043308.json",
+      "has_replacement_update": false
+    },
+    "HAL_EXTI_ClearPending": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_EXTI_ClearPending_20260407045006.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableBatteryCharging": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableBatteryCharging_20260407225416.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_PCROP1BConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_PCROP1BConfig_20260407041347.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_Release": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_Release_20260407063340.json",
+      "has_replacement_update": false
+    },
+    "APPD_SetCPU2GpioConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_APPD_SetCPU2GpioConfig_20260407035109.json",
+      "has_replacement_update": false
+    },
+    "APPD_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_APPD_Init_20260407035129.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_Disable802ActivityIT": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_Disable802ActivityIT_20260407224657.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableBORH_SMPSBypassIT": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableBORH_SMPSBypassIT_20260407225722.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetIPCCBufferAddr": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_GetIPCCBufferAddr_20260407034822.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_IsSemTaken": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_IsSemTaken_20260407065633.json",
+      "has_replacement_update": false
+    },
+    "EnterLowPower": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_EnterLowPower_20260407035959.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_ReadPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_ReadPin_20260407055257.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMAEx_MUX_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMAEx_MUX_IRQHandler_20260407043852.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableBLEActivityIT": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableBLEActivityIT_20260407225647.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_OptrConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_OptrConfig_20260407040310.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_OB_Unlock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_OB_Unlock_20260407054055.json",
+      "has_replacement_update": false
+    },
+    "HAL_MultiProcessorEx_AddressLength_Set": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_MultiProcessorEx_AddressLength_Set_20260407224715.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_WRPConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_WRPConfig_20260407043859.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_ConfigPVM": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_ConfigPVM_20260407225235.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_EXTI_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_EXTI_IRQHandler_20260407055100.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetPCROP": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_GetPCROP_20260407035048.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_Init_20260407063833.json",
+      "has_replacement_update": false
+    },
+    "DMA_SetConfig": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_DMA_SetConfig_20260407034237.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableLowPowerRunMode": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableLowPowerRunMode_20260407225555.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_LockPin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_LockPin_20260407062456.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetSecureMemoryConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_GetSecureMemoryConfig_20260407035316.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_WritePin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_WritePin_20260407062454.json",
+      "has_replacement_update": false
+    },
+    "HAL_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_Init_20260407224551.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_IRQHandler_20260407065846.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_Start_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_Start_IT_20260407044949.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetUser": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_GetUser_20260407035312.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableInternalWakeUpLine": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableInternalWakeUpLine_20260407225658.json",
+      "has_replacement_update": false
+    },
+    "HAL_EXTI_SetConfigLine": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_EXTI_SetConfigLine_20260407224415.json",
+      "has_replacement_update": false
+    },
+    "HAL_HalfDuplex_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HalfDuplex_Init_20260407224540.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisablePVM1": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisablePVM1_20260407225655.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_PollForTransfer": {
+      "function_type": "LOOP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_PollForTransfer_20260407044956.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_DeactivateNotification": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_DeactivateNotification_20260407062540.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableFlashPowerDown": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableFlashPowerDown_20260407225652.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_IRQHandler_20260407053409.json",
+      "has_replacement_update": false
+    },
+    "HAL_HalfDuplex_EnableTransmitter": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HalfDuplex_EnableTransmitter_20260407063347.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_Take": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_Take_20260407063343.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_SecureConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_SecureConfig_20260407041830.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableHOLDC2IT": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableHOLDC2IT_20260407225659.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableRFPhaseIT": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableRFPhaseIT_20260407225608.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_ConfigSMPS": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_ConfigSMPS_20260407225209.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_FastTake": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_FastTake_20260407063339.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_ForceFlashEmpty": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASHEx_ForceFlashEmpty_20260407052912.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_IRQHandler_20260407043847.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_ActivateNotification": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_ActivateNotification_20260407065710.json",
+      "has_replacement_update": false
+    },
+    "HAL_HalfDuplex_EnableReceiver": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HalfDuplex_EnableReceiver_20260407063828.json",
+      "has_replacement_update": false
+    },
+    "FLASH_PageErase": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_PageErase_20260407043314.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetC2BootResetConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_GetC2BootResetConfig_20260407034423.json",
+      "has_replacement_update": false
+    },
+    "BSP_LED_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_BSP_LED_Init_20260407034459.json",
+      "has_replacement_update": false
+    },
+    "HAL_MultiProcessor_EnterMuteMode": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_MultiProcessor_EnterMuteMode_20260407224615.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_Start": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_Start_20260407224313.json",
+      "has_replacement_update": false
+    },
+    "HAL_IPCC_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_IPCC_DeInit_20260407224418.json",
+      "has_replacement_update": false
+    },
+    "HAL_EXTI_ClearConfigLine": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_EXTI_ClearConfigLine_20260407044936.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_IPCCBufferAddrConfig": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_IPCCBufferAddrConfig_20260407040301.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_ProceedWriteOperation": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_ProceedWriteOperation_20260407042756.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_ControlVoltageScaling": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_ControlVoltageScaling_20260407225722.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_OB_Lock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_OB_Lock_20260407054040.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_AllowOperation": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASHEx_AllowOperation_20260407224226.json",
+      "has_replacement_update": false
+    },
+    "FLASH_OB_GetWRP": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_OB_GetWRP_20260407035710.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Unlock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_Unlock_20260407055058.json",
+      "has_replacement_update": false
+    },
+    "HAL_MultiProcessor_DisableMuteMode": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_MultiProcessor_DisableMuteMode_20260407224453.json",
+      "has_replacement_update": false
+    },
+    "FLASH_Program_Fast": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_Program_Fast_20260407043851.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_GetClearKey": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_GetClearKey_20260407063334.json",
+      "has_replacement_update": false
+    },
+    "HAL_LIN_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_LIN_Init_20260407224619.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisablePullUpPullDownConfig": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisablePullUpPullDownConfig_20260407225709.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_OB_Launch": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_OB_Launch_20260407053327.json",
+      "has_replacement_update": false
+    },
+    "FLASH_Program_DoubleWord": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_Program_DoubleWord_20260407043849.json",
+      "has_replacement_update": false
+    },
+    "FLASH_FlushCaches": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_FlushCaches_20260407034351.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_Init_20260407045423.json",
+      "has_replacement_update": false
+    },
+    "HAL_EXTI_GetPending": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_EXTI_GetPending_20260407044920.json",
+      "has_replacement_update": false
+    },
+    "FLASH_AcknowledgePageErase": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_FLASH_AcknowledgePageErase_20260407034304.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_WriteMultipleStatePin": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_WriteMultipleStatePin_20260407062539.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_ReleaseAll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_ReleaseAll_20260407063344.json",
+      "has_replacement_update": false
+    },
+    "HAL_EXTI_GetConfigLine": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_EXTI_GetConfigLine_20260407044930.json",
+      "has_replacement_update": false
+    },
+    "HAL_LIN_SendBreak": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_LIN_SendBreak_20260407224436.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_FlashEmptyCheck": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASHEx_FlashEmptyCheck_20260407054027.json",
+      "has_replacement_update": false
+    },
+    "HAL_GPIO_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_GPIO_DeInit_20260407055259.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_IsOperationSuspended": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASHEx_IsOperationSuspended_20260407053324.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_Abort": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_Abort_20260407044349.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Program": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_Program_20260407055302.json",
+      "has_replacement_update": false
+    },
+    "BSP_PB_Init": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_BSP_PB_Init_20260407034107.json",
+      "has_replacement_update": false
+    },
+    "HAL_EXTI_GenerateSWI": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_EXTI_GenerateSWI_20260407044931.json",
+      "has_replacement_update": false
+    },
+    "HAL_DMA_Abort_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DMA_Abort_IT_20260407044943.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_Erase_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASHEx_Erase_IT_20260407054050.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Lock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_Lock_20260407054049.json",
+      "has_replacement_update": false
+    },
+    "HAL_DeInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_DeInit_20260407224327.json",
+      "has_replacement_update": false
+    },
+    "HAL_IPCC_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_IPCC_Init_20260407224413.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_DisableVddUSB": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_DisableVddUSB_20260407225528.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASH_Program_IT": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASH_Program_IT_20260407063831.json",
+      "has_replacement_update": false
+    },
+    "HAL_HSEM_SetClearKey": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_HSEM_SetClearKey_20260407063319.json",
+      "has_replacement_update": false
+    },
+    "Config_HSE": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_Config_HSE_20260407034126.json",
+      "has_replacement_update": false
+    },
+    "HAL_EXTI_IRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_EXTI_IRQHandler_20260407052853.json",
+      "has_replacement_update": false
+    },
+    "HAL_MultiProcessor_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_MultiProcessor_Init_20260407224913.json",
+      "has_replacement_update": false
+    },
+    "HAL_FLASHEx_SuspendOperation": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_FLASHEx_SuspendOperation_20260407052454.json",
+      "has_replacement_update": false
+    },
+    "HAL_PWREx_ClearWakeupFlag": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_BLE_HeartRateFreeRTOS/lcmhal_ai_log/function_classify_HAL_PWREx_ClearWakeupFlag_20260407224433.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 109,
+  "replacement_update_count": 0,
+  "replacement_update_functions": [],
+  "replacement_update_by_function": {},
+  "replacement_update_only_functions": [],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/stm32/BLE_HeartRateFreeRTOS"
+}

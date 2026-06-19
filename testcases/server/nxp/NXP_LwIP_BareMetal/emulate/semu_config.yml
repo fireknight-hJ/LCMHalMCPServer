@@ -1,0 +1,311 @@
+emulate_mode: emulate
+enable_native: false
+entry_point: 0x600024bd
+handlers:
+  DP83848_GetLinkState: fuzzemu.handlers.common.return_2
+  DP83848_Init: do_return
+  Delay: do_return
+  DelayLoop: do_return
+  ENET_MDIORead: fuzzemu.handlers.common.return_phy_id
+  ENET_SetSMI: do_return
+  HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+  HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+  HAL_BE_In: fuzzemu.handlers.common.hal_in
+  HAL_BE_Out: fuzzemu.handlers.common.hal_out
+  HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+  HAL_BE_return_1: fuzzemu.handlers.common.return_true
+  HAL_Delay: do_return
+  HAL_ETH_ReadPHYRegister: fuzzemu.handlers.common.return_zero
+  HAL_RCC_ClockConfig: fuzzemu.handlers.common.return_zero
+  LPUART_WriteBlocking: do_return
+  PHY_GetLinkSpeedDuplex: fuzzemu.handlers.common.return_2
+  PHY_GetLinkStatus: fuzzemu.handlers.common.return_2
+  PHY_Init: fuzzemu.handlers.common.return_zero
+  SDK_DelayAtLeastUs: do_return
+  ethernetif_phy_init: fuzzemu.handlers.common.return_zero
+  fflush: do_return
+  puts: do_return
+  rt_thread_mdelay: do_return
+  stm32_putc: do_return
+  wait: do_return
+  wait_us: do_return
+include:
+- ./syms.yml
+initial_sp: 0x42464346
+isr_vector: 0x20000000
+loop_whitelist:
+- memset
+- memcpy
+- memmove
+- FillZerobss
+- LoopFillZerobss
+- CopyDataInit
+- LoopCopyDataInit
+- Zero_Init
+- Reset_Handler
+- SystemInit
+memory_map:
+  flash:
+    base_addr: 0x60000000
+    file: output.bin
+    permissions: r-x
+    size: 0x21000
+  irq_ret:
+    base_addr: 0xfffff000
+    permissions: rwx
+    size: 0x1000
+  mmio:
+    base_addr: 0x40000000
+    permissions: rw-
+    size: 0x20000000
+  nvic:
+    base_addr: 0xe0000000
+    permissions: rw-
+    size: 0x10000000
+  peripheral:
+    base_addr: 0xa0000000
+    permissions: rw-
+    size: 0x40000000
+  ram:
+    base_addr: 0x20000000
+    permissions: rwx
+    size: 0x400000
+mmio_funcs:
+- BOARD_BootClockRUN
+- BOARD_BootClockRUN_528M
+- BOARD_DebugConsoleSrcFreq
+- BOARD_InitHardware
+- BOARD_InitPins
+- CLOCK_DeinitArmPll
+- CLOCK_DeinitAudioPll
+- CLOCK_DeinitEnetPll
+- CLOCK_DeinitExternalClk
+- CLOCK_DeinitRcOsc24M
+- CLOCK_DeinitSysPfd
+- CLOCK_DeinitSysPll
+- CLOCK_DeinitUsb1Pfd
+- CLOCK_DeinitUsb1Pll
+- CLOCK_DeinitUsb2Pll
+- CLOCK_DeinitVideoPll
+- CLOCK_DisableUsbhs0PhyPllClock
+- CLOCK_DisableUsbhs1PhyPllClock
+- CLOCK_EnableUsbhs0Clock
+- CLOCK_EnableUsbhs0PhyPllClock
+- CLOCK_EnableUsbhs1Clock
+- CLOCK_EnableUsbhs1PhyPllClock
+- CLOCK_GetAhbFreq
+- CLOCK_GetClockOutCLKO1Freq
+- CLOCK_GetClockOutClkO2Freq
+- CLOCK_GetFreq
+- CLOCK_GetIpgFreq
+- CLOCK_GetPerClkFreq
+- CLOCK_GetPeriphClkFreq
+- CLOCK_GetPllFreq
+- CLOCK_GetPllUsb1SWFreq
+- CLOCK_GetSemcFreq
+- CLOCK_GetSysPfdFreq
+- CLOCK_GetUsb1PfdFreq
+- CLOCK_InitArmPll
+- CLOCK_InitAudioPll
+- CLOCK_InitEnetPll
+- CLOCK_InitExternalClk
+- CLOCK_InitRcOsc24M
+- CLOCK_InitSysPfd
+- CLOCK_InitSysPll
+- CLOCK_InitUsb1Pfd
+- CLOCK_InitUsb1Pll
+- CLOCK_InitUsb2Pll
+- CLOCK_InitVideoPll
+- CLOCK_IsSysPfdEnabled
+- CLOCK_IsUsb1PfdEnabled
+- CLOCK_SetClockOutput1
+- CLOCK_SetClockOutput2
+- CLOCK_SwitchOsc
+- DCDC_Deinit
+- DCDC_Init
+- ENET_ActiveSendRing
+- ENET_AddMulticastGroup
+- ENET_CommonFrame0IRQHandler
+- ENET_Deinit
+- ENET_Down
+- ENET_EnableStatistics
+- ENET_ErrorIRQHandler
+- ENET_GetMacAddr
+- ENET_GetRxFrame
+- ENET_GetStatistics
+- ENET_Init
+- ENET_LeaveMulticastGroup
+- ENET_MDIOC45Read
+- ENET_MDIOC45Write
+- ENET_MDIORead
+- ENET_MDIOWaitTransferOver
+- ENET_MDIOWrite
+- ENET_ReceiveIRQHandler
+- ENET_ResetStatistics
+- ENET_SendFrame
+- ENET_SetMII
+- ENET_SetMacAddr
+- ENET_SetMacController
+- ENET_SetSMI
+- ENET_StartTxFrame
+- ENET_TransmitIRQHandler
+- ENET_Up
+- ENET_UpdateReadBuffers
+- GPIO_PinInit
+- GPIO_PinSetInterruptConfig
+- GPIO_PinWrite
+- HAL_GpioDeinit
+- HAL_GpioGetInput
+- HAL_GpioInterruptHandle
+- HAL_GpioSetTriggerMode
+- HAL_UartSendBlocking
+- LPUART_Deinit
+- LPUART_Init
+- LPUART_ReadNonBlocking
+- LPUART_ReadNonBlocking16bit
+- LPUART_TransferAbortReceive
+- LPUART_TransferHandleIDLEReady
+- LPUART_TransferHandleReceiveDataFull
+- LPUART_TransferHandleSendDataEmpty
+- LPUART_TransferReceiveNonBlocking
+- LPUART_TransferSendNonBlocking
+- LPUART_TransferStartRingBuffer
+- LPUART_TransferStopRingBuffer
+- LPUART_WriteBlocking
+- LPUART_WriteBlocking16bit
+- LPUART_WriteNonBlocking
+- LPUART_WriteNonBlocking16bit
+- MDIO_Init
+- MDIO_Read
+- SILICONID_ConvertToMacAddr
+- SILICONID_GetID
+- SILICONID_ReadUniqueID
+- SystemCoreClockUpdate
+- SystemInit
+- dhcp_bind
+- dhcp_cleanup
+- dhcp_create_msg
+- dhcp_discover
+- dhcp_inform
+- dhcp_parse_reply
+- dhcp_rebind
+- dhcp_reboot
+- dhcp_recv
+- dhcp_release_and_stop
+- dhcp_renew
+- dhcp_select
+- do_memp_free_pool
+- do_memp_malloc_pool
+- etharp_input
+- etharp_output
+- etharp_raw
+- ethernet_input
+- ethernet_output
+- ethernetif_linkoutput
+- ethernetif_plat_init
+- ethernetif_rx_frame_to_pbufs
+- ethip6_output
+- fs_open
+- http_err
+- http_init_file
+- http_parse_request
+- http_poll
+- http_recv
+- http_send_data_nonssi
+- http_sent
+- http_write
+- icmp6_input
+- icmp6_param_problem
+- icmp6_send_response_with_addrs_and_netif
+- icmp_input
+- icmp_send_response
+- inet_chksum_pbuf
+- inet_cksum_pseudo_base
+- inet_cksum_pseudo_partial_base
+- ip4_frag
+- ip4_input
+- ip4_output_if_src
+- ip4_reass
+- ip4addr_aton
+- ip6_frag
+- ip6_frag_alloc_pbuf_custom_ref
+- ip6_input
+- ip6_options_add_hbh_ra
+- ip6_output
+- ip6_output_if_src
+- ip6_reass
+- ip6_reass_free_complete_datagram
+- ip6addr_aton
+- ip_frag_alloc_pbuf_custom_ref
+- ip_input
+- ip_reass_chain_frag_into_datagram_and_validate
+- ip_reass_enqueue_new_datagram
+- ip_reass_free_complete_datagram
+- ipaddr_addr
+- ipaddr_aton
+- lowpan6_decompress
+- lowpan6_decompress_hdr
+- lowpan6_frag
+- lowpan6_hwaddr_to_addr
+- lowpan6_input
+- lowpan6_output
+- lowpan6_parse_iee802154_header
+- lwip_strnstr
+- main
+- mem_free
+- mem_init
+- mem_malloc
+- mem_to_ptr
+- mem_trim
+- memp_free
+- memp_free_pool
+- memp_init_pool
+- memp_malloc
+- mld6_get_data
+- mld6_input
+- mld6_send
+- nd6_input
+- nd6_send_na
+- nd6_send_ns
+- nd6_send_q
+- nd6_send_rs
+- pbuf_add_header_impl
+- pbuf_alloc
+- pbuf_alloc_reference
+- pbuf_alloced_custom
+- pbuf_copy_partial
+- pbuf_copy_partial_pbuf
+- pbuf_get_contiguous
+- pbuf_init_alloced_pbuf
+- pbuf_put_at
+- pbuf_realloc
+- pbuf_remove_header
+- pbuf_take
+- pbuf_take_at
+- pbuf_try_get_at
+- ptr_to_mem
+- rfc7668_compress
+- rfc7668_input
+- sys_timeout_abs
+- tcp_alloc
+- tcp_create_segment
+- tcp_get_next_optbyte
+- tcp_input
+- tcp_listen_input
+- tcp_listen_with_backlog_and_err
+- tcp_output_alloc_header_common
+- tcp_output_control_segment_netif
+- tcp_output_fill_options
+- tcp_output_segment
+- tcp_split_unsent_seg
+- tcp_write
+- tcp_zero_window_probe
+- udp_input
+- udp_new
+- udp_sendto_if_src
+- zepif_init
+- zepif_linkoutput
+- zepif_udp_recv
+model: semu
+rules: semu_rule.txt

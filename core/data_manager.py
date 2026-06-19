@@ -3,8 +3,12 @@ import json
 import config.globs as globs
 from models.analyze_results.function_analyze import ReplacementUpdate
 from tools.collector.collector import get_mmio_func_list, get_function_info
-from agents.analyzer_agent import analyze_functions
 from utils.db_cache import check_analyzed_json_log, get_analyzed_json_log, dump_json_log
+
+# 替换历史只保留最近 N 条，避免上下文过长
+REPLACEMENT_HISTORY_MAX_ENTRIES = 2
+# 单文件超过此数量的替换函数时改为渐进披露，不全量返回，由调用方按需用 GetFunctionAnalysisAndReplacementFormatted 查单函数
+MAX_FUNCTIONS_FULL_DISCLOSURE = 10
 
 
 class DataManager:
@@ -17,6 +21,8 @@ class DataManager:
         self.replacement_updates = {}
         # 替换更新按文件分类
         self.replacement_updates_by_file = {}
+        # 替换历史版本信息（重要改进：提供完整的历史上下文）
+        self.replacement_history = {}
         
     
     def replacement_update_log(self, replacement_update: ReplacementUpdate):
@@ -44,23 +50,53 @@ class DataManager:
         """更新函数替换代码"""
         # 不再检查函数是否在mmio_info_list中，允许更新任何函数
         replacement_update = ReplacementUpdate(
-            function_name=func_name, 
-            replacement_code=replace_code, 
+            function_name=func_name,
+            replacement_code=replace_code,
             reason=reason
         )
-        
+
         self.replacement_updates[func_name] = replacement_update
         self.replacement_update_log(replacement_update)
-        
+
+        # 维护替换历史版本（重要改进）
+        if func_name not in self.replacement_history:
+            self.replacement_history[func_name] = []
+
+        # 获取当前历史
+        current_history = self.replacement_history.get(func_name, [])
+        # 添加新的替换到历史
+        current_history.append({
+            "replacement_code": replace_code,
+            "reason": reason,
+            "timestamp": self._get_timestamp()
+        })
+        # 只保留最近 N 次历史（避免上下文过长）
+        if len(current_history) > REPLACEMENT_HISTORY_MAX_ENTRIES:
+            self.replacement_history[func_name] = current_history[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
+        else:
+            self.replacement_history[func_name] = current_history
+
         # 更新按文件分类的替换更新信息
         function_info = get_function_info(globs.db_path, func_name)
         if function_info:
             self.replacement_updates_by_file.setdefault(function_info.file_path, []).append(replacement_update)
-        
+
         return True
+
+    def _get_timestamp(self) -> str:
+        """获取当前时间戳"""
+        import time
+        return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     
     async def load_mmio_functions(self):
         """加载MMIO函数信息"""
+        from agents.analyzer_agent import analyze_functions
+        # 同一进程内多次切换 testcase/db 时必须清空，否则会混入上一 testcase 的替换/按文件索引，
+        # 且 _organize_data_by_file 会对 mmio_infos_by_file 重复 append。
+        self.replacement_updates = {}
+        self.replacement_history = {}
+        self.mmio_infos_by_file = {}
+        self.replacement_updates_by_file = {}
         # 处理所有MMIO函数
         function_list = get_mmio_func_list(globs.db_path)
         self.mmio_info_list = await analyze_functions(function_list)
@@ -80,42 +116,70 @@ class DataManager:
             tmp_dir = os.path.join(globs.db_path, "lcmhal_ai_log")
             if not os.path.exists(tmp_dir):
                 return
-            
-            # 首先收集所有唯一的函数名
-            unique_func_names = set()
+
+            # 收集每个函数的所有 ReplacementUpdate 日志，用于重建历史
+            updates_by_func = {}
             for file_name in os.listdir(tmp_dir):
-                if file_name.startswith("replacement_update_") and file_name.endswith(".json"):
-                    # 直接读取文件内容，从文件内容中提取函数名
-                    file_path = os.path.join(tmp_dir, file_name)
-                    try:
-                        with open(file_path, "r", encoding="utf-8") as f:
-                            json_data = f.read()
-                            data_dict = json.loads(json_data)
-                            # 从文件内容中提取函数名
-                            if "function_name" in data_dict:
-                                func_name = data_dict["function_name"]
-                                unique_func_names.add(func_name)
-                    except Exception as e:
-                        print(f"Warning: Failed to extract function name from {file_name}: {e}")
-            
-            # 对于每个唯一的函数名，使用get_analyzed_json_log获取最新的更新版本
-            for func_name in unique_func_names:
-                # 使用现有的函数检查并加载替换更新
-                if check_analyzed_json_log("replacement_update", func_name):
-                    json_data = get_analyzed_json_log("replacement_update", func_name)
-                    if json_data:
-                        try:
-                            data_dict = json.loads(json_data)
-                            # 创建ReplacementUpdate对象并添加到replacement_updates
-                            self.replacement_updates[func_name] = ReplacementUpdate(**data_dict)
-                        except Exception as e:
-                            print(f"Warning: Failed to parse replacement update for {func_name}: {e}")
+                if not (file_name.startswith("replacement_update_") and file_name.endswith(".json")):
+                    continue
+                file_path = os.path.join(tmp_dir, file_name)
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        data_dict = json.load(f)
+                    func_name = data_dict.get("function_name")
+                    if not func_name:
+                        continue
+                    # 记录单条更新（包含原始 dict 与文件 mtime，便于排序）
+                    updates_by_func.setdefault(func_name, []).append(
+                        {
+                            "data": data_dict,
+                            "_mtime": os.path.getmtime(file_path),
+                        }
+                    )
+                except Exception as e:
+                    print(f"Warning: Failed to extract replacement update from {file_name}: {e}")
+
+            # 根据收集到的信息，重建 replacement_updates 与 replacement_history
+            for func_name, entries in updates_by_func.items():
+                # 按 timestamp（若有）+ mtime 排序，得到时间顺序
+                def _sort_key(ent):
+                    ts = ent["data"].get("timestamp") or ""
+                    return (ts, ent.get("_mtime", 0.0))
+
+                entries.sort(key=_sort_key)
+
+                # 最新一条作为当前 replacement_update
+                latest = entries[-1]["data"]
+                try:
+                    self.replacement_updates[func_name] = ReplacementUpdate(**latest)
+                except Exception as e:
+                    print(f"Warning: Failed to parse latest replacement update for {func_name}: {e}")
+                    continue
+
+                # 重建该函数的历史版本，只保留最近 REPLACEMENT_HISTORY_MAX_ENTRIES 条
+                history = []
+                for ent in entries:
+                    d = ent["data"]
+                    history.append(
+                        {
+                            "replacement_code": d.get("replacement_code", ""),
+                            "reason": d.get("reason", ""),
+                            "timestamp": d.get("timestamp", ""),
+                        }
+                    )
+                if history:
+                    if len(history) > REPLACEMENT_HISTORY_MAX_ENTRIES:
+                        history = history[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
+                    self.replacement_history[func_name] = history
         except Exception as e:
             print(f"Error loading replacement updates: {e}")
     
     def _organize_data_by_file(self):
         """将数据按文件分类组织"""
         for func_name, classify_res in self.mmio_info_list.items():
+            if classify_res is None:
+                print(f"Warning: mmio_info_list has None for function {func_name}, skip in _organize_data_by_file.")
+                continue
             function_info = get_function_info(globs.db_path, func_name)
             if not function_info:
                 continue
@@ -131,17 +195,66 @@ class DataManager:
                 self.replacement_updates_by_file.setdefault(file_path, []).append(self.replacement_updates[func_name])
     
     def get_replace_func_details_by_file(self, file_path: str):
-        """根据文件路径获取替换函数详情"""
+        """根据文件路径获取替换函数详情（包含替换历史信息，重要改进）。
+        若该文件替换函数数超过 MAX_FUNCTIONS_FULL_DISCLOSURE，改为渐进披露：只返回摘要与函数名列表，
+        全量信息请通过 GetFunctionAnalysisAndReplacementFormatted(func_name) 按需获取。
+        """
         # 尝试直接匹配完整文件路径
         mmio_infos = self.mmio_infos_by_file.get(file_path, [])
         replacement_updates = self.replacement_updates_by_file.get(file_path, [])
-        
+
         if mmio_infos:
-            return {
+            # 找出该文件中所有涉及到的函数名
+            involved_functions = set()
+            for info in mmio_infos:
+                if info.function_name:  # 排除空函数名
+                    involved_functions.add(info.function_name)
+            for update in replacement_updates:
+                involved_functions.add(update.function_name)
+
+            # 超过阈值时只做渐进披露：返回摘要 + 函数名列表，不返回全量代码
+            if len(involved_functions) > MAX_FUNCTIONS_FULL_DISCLOSURE:
+                summary = []
+                for info in mmio_infos:
+                    if info.function_name:
+                        summary.append({
+                            "function_name": info.function_name,
+                            "function_type": getattr(info, "function_type", "unknown"),
+                            "reason": (info.classification_reason or "")[:200],
+                        })
+                for update in replacement_updates:
+                    if update.function_name not in {s["function_name"] for s in summary}:
+                        summary.append({
+                            "function_name": update.function_name,
+                            "function_type": "replacement_update",
+                            "reason": (update.reason or "")[:200],
+                        })
+                return {
+                    "file_path": file_path,
+                    "progressive_disclosure": True,
+                    "function_count": len(involved_functions),
+                    "function_names": sorted(involved_functions),
+                    "function_summary": summary,
+                    "message": (
+                        f"此文件有 {len(involved_functions)} 个替换函数，为避免上下文过长仅返回摘要。"
+                        "需要某函数全量信息时请调用 GetFunctionAnalysisAndReplacementFormatted(func_name)。"
+                    ),
+                }
+
+            result = {
                 "file_path": file_path,
                 "replaced_function_infos": [info.model_dump() for info in mmio_infos],
-                "replacement_updates": [update.model_dump() for update in replacement_updates]
+                "replacement_updates": [update.model_dump() for update in replacement_updates],
+                "involved_functions": list(involved_functions),
+                "replacement_history": {},
             }
+
+            # 为每个涉及的函数收集替换历史，只保留最近 N 条
+            for func_name in involved_functions:
+                history = self.replacement_history.get(func_name, [])
+                result["replacement_history"][func_name] = history[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
+
+            return result
         
         # 模糊匹配c文件名称
         file_name = file_path.split("/")[-1]
@@ -163,11 +276,46 @@ class DataManager:
         mmio_infos = self.mmio_infos_by_file.get(full_path, [])
         replacement_updates = self.replacement_updates_by_file.get(full_path, [])
         replacement_update_func_names = set([update.function_name for update in replacement_updates])
-        
+        involved_functions = {info.function_name for info in mmio_infos if info.function_name} | set(replacement_update_func_names)
+
+        # 超过阈值时只做渐进披露
+        if len(involved_functions) > MAX_FUNCTIONS_FULL_DISCLOSURE:
+            summary = []
+            for info in mmio_infos:
+                if info.function_name:
+                    summary.append({
+                        "function_name": info.function_name,
+                        "function_type": getattr(info, "function_type", "unknown"),
+                        "reason": (info.classification_reason or "")[:200],
+                    })
+            for update in replacement_updates:
+                if update.function_name not in {s["function_name"] for s in summary}:
+                    summary.append({
+                        "function_name": update.function_name,
+                        "function_type": "replacement_update",
+                        "reason": (update.reason or "")[:200],
+                    })
+            return {
+                "file_path": full_path,
+                "progressive_disclosure": True,
+                "function_count": len(involved_functions),
+                "function_names": sorted(involved_functions),
+                "function_summary": summary,
+                "message": (
+                    f"此文件有 {len(involved_functions)} 个替换函数，为避免上下文过长仅返回摘要。"
+                    "需要某函数全量信息时请调用 GetFunctionAnalysisAndReplacementFormatted(func_name)。"
+                ),
+            }
+
         return {
             "file_path": full_path,
             "replaced_function_infos": [info.model_dump() for info in mmio_infos if info.function_name not in replacement_update_func_names],
-            "replacement_updates": [update.model_dump() for update in replacement_updates]
+            "replacement_updates": [update.model_dump() for update in replacement_updates],
+            "involved_functions": list(involved_functions),
+            "replacement_history": {
+                fn: self.replacement_history.get(fn, [])[-REPLACEMENT_HISTORY_MAX_ENTRIES:]
+                for fn in involved_functions
+            },
         }
     
     def get_function_analysis_and_replacement(self, func_name: str):
@@ -221,26 +369,22 @@ class DataManager:
         
         return result
     
-    def get_function_analysis_and_replacement_formatted(self, func_name: str) -> str:
-        """根据函数名获取格式化的函数分析和替换信息（文本格式，便于大模型理解）
-        
+    def get_function_analysis_and_replacement_formatted_by_function(self, func_name: str) -> str:
+        """根据函数名获取格式化的函数分析和替换信息（文本格式，便于大模型理解，按函数查询版本）
+
         Args:
             func_name: 函数名称
-            
+
         Returns:
             str: 格式化的函数分析和替换信息
         """
         # 首先获取结构化数据
         data = self.get_function_analysis_and_replacement(func_name)
-        
-        # 检查是否有错误
-        if "error" in data:
-            return f"错误：{data['error']}"
-        
+
         # 构建格式化文本
         formatted_text = []
         formatted_text.append(f"=== {func_name} 函数分析与替换信息 ===")
-        
+
         # 添加函数基本信息
         if "function_info" in data:
             func_info = data["function_info"]
@@ -248,30 +392,142 @@ class DataManager:
             formatted_text.append(f"- 文件路径：{func_info.get('file_path', '未知')}")
             formatted_text.append(f"- 行号：{func_info.get('location_line', '未知')}")
             formatted_text.append(f"- 函数内容：{func_info.get('function_content', '无法获取')}")
-        
-        # 添加初始分析信息
+
+        # 添加初始分析信息（与 FunctionClassifyResponse 字段一致：function_type, functionality, classification_reason, function_replacement）
         if "mmio_info" in data:
             mmio_info = data["mmio_info"]
-            formatted_text.append("\n【初始分析】")
-            formatted_text.append(f"- 函数用途：{mmio_info.get('usage_type', '未知')}")
+            formatted_text.append("\n【初始分析（FunctionClassifier）】")
+            formatted_text.append(f"- 函数类型：{mmio_info.get('function_type', mmio_info.get('usage_type', '未知'))}")
+            formatted_text.append(f"- 函数用途/功能描述：{mmio_info.get('functionality', mmio_info.get('usage_type', '无'))}")
             formatted_text.append(f"- 是否需要替换：{'是' if mmio_info.get('has_replacement', False) else '否'}")
-            formatted_text.append(f"- 替换原因：{mmio_info.get('reason', '无')}")
-            formatted_text.append(f"- 原始代码：{mmio_info.get('original_code', '无法获取')}")
-            formatted_text.append(f"- 推荐替换代码：{mmio_info.get('recommended_code', '无')}")
-        
+            formatted_text.append(f"- 分类/替换原因：{mmio_info.get('classification_reason', mmio_info.get('reason', '无'))}")
+            # 原始代码：Classifier 不存，用上方「函数基本信息」中的函数内容
+            orig = mmio_info.get('original_code', '')
+            if orig:
+                formatted_text.append(f"- 原始代码片段：{orig[:500]}{'...' if len(orig) > 500 else ''}")
+            else:
+                formatted_text.append("- 原始代码：见上方【函数基本信息】中的函数内容")
+            # FunctionClassifier 的替换代码字段名为 function_replacement
+            rec_code = mmio_info.get('function_replacement', mmio_info.get('recommended_code', ''))
+            formatted_text.append("- 推荐/初始替换代码（FunctionClassifier）：")
+            if rec_code:
+                formatted_text.append("```")
+                formatted_text.append(rec_code)
+                formatted_text.append("```")
+            else:
+                formatted_text.append("  无（或仅通过 ReplacementUpdate 提供）")
+
         # 添加更新信息
         if "replacement_update" in data:
             update = data["replacement_update"]
             formatted_text.append("\n【替换更新】")
             formatted_text.append(f"- 更新代码：{update.get('replacement_code', '无')}")
             formatted_text.append(f"- 更新原因：{update.get('reason', '无')}")
-        
+
+        # 添加替换历史版本信息（关键改进：按函数查询，显示完整历史）
+        if func_name in self.replacement_history:
+            formatted_text.append("\n【替换历史版本】")
+            history_count = len(self.replacement_history[func_name])
+            formatted_text.append(f"- 总共 {history_count} 次替换尝试")
+            for idx, hist_entry in enumerate(self.replacement_history[func_name], start=1):
+                formatted_text.append(f"\n  版本 {idx}:")
+                formatted_text.append(f"    替换代码：{hist_entry.get('replacement_code', '无')}")
+                formatted_text.append(f"    原因：{hist_entry.get('reason', '无')}")
+                formatted_text.append(f"    时间：{hist_entry.get('timestamp', '未知')}")
+
         # 添加提示信息
         if "message" in data:
             formatted_text.append(f"\n【提示】{data['message']}")
-        
+
         formatted_text.append("\n=== 信息结束 ===")
-        
+
+        return "\n".join(formatted_text)
+
+    def get_function_analysis_and_replacement_formatted_by_file(self, file_path: str) -> str:
+        """根据文件路径获取格式化的函数分析和替换信息（文本格式，便于大模型理解）
+
+        Args:
+            file_path: 文件的完整路径
+
+        Returns:
+            str: 格式化的函数分析和替换信息
+        """
+        # 首先获取结构化数据
+        data = self.get_replace_func_details_by_file(file_path)
+
+        # 检查是否有错误或警告
+        if "error" in data:
+            return f"错误：{data['error']}"
+        if "warnning" in data:
+            return f"警告：{data['warnning']}\n匹配的文件路径：\n" + "\n".join(data.get("file_paths", []))
+
+        # 渐进披露：仅返回摘要，提示按需调用单函数接口
+        if data.get("progressive_disclosure"):
+            lines = [
+                f"=== 文件分析与替换信息（摘要）：{data.get('file_path', '未知')} ===",
+                "",
+                data.get("message", ""),
+                "",
+                f"【本文件替换函数数】{data.get('function_count', 0)} 个",
+                "",
+                "【函数名列表】请对需要详情的函数调用 GetFunctionAnalysisAndReplacementFormatted(func_name) 获取全量信息：",
+            ]
+            for fn in data.get("function_names", []):
+                lines.append(f"  - {fn}")
+            if data.get("function_summary"):
+                lines.append("")
+                lines.append("【简要摘要】（每行：函数名 | 类型 | 原因片段）")
+                for s in data["function_summary"][:MAX_FUNCTIONS_FULL_DISCLOSURE]:
+                    lines.append(f"  - {s.get('function_name', '')} | {s.get('function_type', '')} | {s.get('reason', '')[:80]}")
+                if len(data["function_summary"]) > MAX_FUNCTIONS_FULL_DISCLOSURE:
+                    lines.append(f"  ... 共 {len(data['function_summary'])} 条，仅展示前 {MAX_FUNCTIONS_FULL_DISCLOSURE} 条")
+            lines.append("")
+            lines.append("=== 信息结束 ===")
+            return "\n".join(lines)
+
+        # 构建格式化文本
+        formatted_text = []
+        formatted_text.append(f"=== 文件分析与替换信息：{data.get('file_path', '未知')} ===")
+
+        # 添加被替换的函数信息
+        if "replaced_function_infos" in data and data["replaced_function_infos"]:
+            formatted_text.append(f"\n【已替换函数列表】（共 {len(data['replaced_function_infos'])} 个）")
+            for idx, func_info in enumerate(data["replaced_function_infos"], start=1):
+                formatted_text.append(f"\n  {idx}. {func_info.get('function_name', '未知')}")
+                formatted_text.append(f"     类型：{func_info.get('function_type', '未知')}")
+                formatted_text.append(f"     原因：{func_info.get('reason', '无')}")
+                if func_info.get('original_code'):
+                    formatted_text.append(f"     原始代码：{func_info.get('original_code', '')[:100]}...")
+
+        # 添加替换更新信息
+        if "replacement_updates" in data and data["replacement_updates"]:
+            formatted_text.append(f"\n【替换更新记录】（共 {len(data['replacement_updates'])} 个）")
+            for idx, update in enumerate(data["replacement_updates"], start=1):
+                formatted_text.append(f"\n  {idx}. {update.get('function_name', '未知')}")
+                formatted_text.append(f"     替换代码：{update.get('replacement_code', '')[:100]}...")
+                formatted_text.append(f"     更新原因：{update.get('reason', '无')}")
+
+        # 添加替换历史版本信息（关键改进：按文件聚合所有函数的替换历史）
+        if "replacement_history" in data and data["replacement_history"]:
+            formatted_text.append(f"\n【替换历史版本】（涉及 {len(data['replacement_history'])} 个函数）")
+            for func_name, history_list in data["replacement_history"].items():
+                if history_list:  # 只显示有历史记录的函数
+                    formatted_text.append(f"\n  函数：{func_name}")
+                    formatted_text.append(f"  替换次数：{len(history_list)}")
+                    for idx, hist_entry in enumerate(history_list, start=1):
+                        formatted_text.append(f"\n    版本 {idx}:")
+                        formatted_text.append(f"      替换代码：{hist_entry.get('replacement_code', '无')}")
+                        formatted_text.append(f"      原因：{hist_entry.get('reason', '无')}")
+                        formatted_text.append(f"      时间：{hist_entry.get('timestamp', '未知')}")
+
+        # 添加涉及的函数列表
+        if "involved_functions" in data:
+            formatted_text.append(f"\n【涉及的函数列表】（共 {len(data['involved_functions'])} 个）")
+            for func_name in data["involved_functions"]:
+                formatted_text.append(f"  - {func_name}")
+
+        formatted_text.append("\n=== 信息结束 ===")
+
         return "\n".join(formatted_text)
     
     def dump_full_info(self):

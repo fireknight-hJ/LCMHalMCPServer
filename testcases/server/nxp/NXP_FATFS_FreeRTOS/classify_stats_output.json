@@ -1,0 +1,815 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "BOARD_BootClockRUN",
+      "BOARD_BootClockRUN_528M",
+      "BOARD_DebugConsoleSrcFreq",
+      "BOARD_InitHardware",
+      "BOARD_InitPins",
+      "CLOCK_DeinitEnetPll",
+      "CLOCK_DeinitExternalClk",
+      "CLOCK_DeinitUsb1Pll",
+      "CLOCK_DeinitVideoPll",
+      "CLOCK_EnableUsbhs0Clock",
+      "CLOCK_EnableUsbhs0PhyPllClock",
+      "CLOCK_EnableUsbhs1Clock",
+      "CLOCK_EnableUsbhs1PhyPllClock",
+      "CLOCK_GetPeriphClkFreq",
+      "CLOCK_GetSemcFreq",
+      "CLOCK_InitArmPll",
+      "CLOCK_InitAudioPll",
+      "CLOCK_InitEnetPll",
+      "CLOCK_InitExternalClk",
+      "CLOCK_InitRcOsc24M",
+      "CLOCK_InitSysPfd",
+      "CLOCK_InitSysPll",
+      "CLOCK_InitUsb1Pfd",
+      "CLOCK_InitUsb1Pll",
+      "CLOCK_InitUsb2Pll",
+      "CLOCK_InitVideoPll",
+      "CLOCK_SetClockOutput1",
+      "CLOCK_SetClockOutput2",
+      "CLOCK_SwitchOsc",
+      "DCDC_Deinit",
+      "DCDC_Init",
+      "GPIO_PinInit",
+      "LPUART_Init",
+      "LPUART_TransferSendNonBlocking",
+      "LPUART_TransferStartRingBuffer",
+      "SystemCoreClockUpdate"
+    ],
+    "RETURNOK": [
+      "CLOCK_DeinitArmPll",
+      "CLOCK_DeinitRcOsc24M",
+      "CLOCK_DeinitUsb1Pfd",
+      "CLOCK_DisableUsbhs0PhyPllClock",
+      "CLOCK_DisableUsbhs1PhyPllClock",
+      "CLOCK_GetAhbFreq",
+      "CLOCK_GetClockOutCLKO1Freq",
+      "CLOCK_GetClockOutClkO2Freq",
+      "CLOCK_GetIpgFreq",
+      "CLOCK_GetPerClkFreq",
+      "CLOCK_GetPllUsb1SWFreq",
+      "CLOCK_GetSysPfdFreq",
+      "CLOCK_GetUsb1PfdFreq",
+      "CLOCK_IsSysPfdEnabled",
+      "CLOCK_IsUsb1PfdEnabled",
+      "LPUART_TransferStopRingBuffer"
+    ],
+    "SKIP": [
+      "CLOCK_DeinitAudioPll",
+      "CLOCK_DeinitSysPfd",
+      "CLOCK_DeinitSysPll",
+      "CLOCK_DeinitUsb2Pll",
+      "LPUART_TransferAbortReceive"
+    ],
+    "IRQ": [
+      "LPUART_TransferHandleIDLEReady",
+      "LPUART_TransferHandleSendDataEmpty"
+    ],
+    "NODRIVER": [
+      "CLOCK_GetFreq",
+      "CLOCK_GetPllFreq"
+    ],
+    "RECV": [
+      "LPUART_TransferHandleReceiveDataFull",
+      "LPUART_TransferReceiveNonBlocking"
+    ],
+    "CORE": [
+      "SystemInit"
+    ],
+    "LOOP": [
+      "LPUART_Deinit"
+    ]
+  },
+  "counts": {
+    "INIT": 36,
+    "RETURNOK": 16,
+    "SKIP": 5,
+    "IRQ": 2,
+    "NODRIVER": 2,
+    "RECV": 2,
+    "CORE": 1,
+    "LOOP": 1,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "BOARD_BootClockRUN_528M",
+        "BOARD_InitHardware",
+        "BOARD_InitPins",
+        "CLOCK_DeinitEnetPll",
+        "CLOCK_DeinitExternalClk",
+        "CLOCK_DeinitUsb1Pll",
+        "CLOCK_DeinitVideoPll",
+        "CLOCK_EnableUsbhs0Clock",
+        "CLOCK_EnableUsbhs0PhyPllClock",
+        "CLOCK_EnableUsbhs1Clock",
+        "CLOCK_EnableUsbhs1PhyPllClock",
+        "CLOCK_GetPeriphClkFreq",
+        "CLOCK_GetSemcFreq",
+        "CLOCK_InitArmPll",
+        "CLOCK_InitAudioPll",
+        "CLOCK_InitEnetPll",
+        "CLOCK_InitExternalClk",
+        "CLOCK_InitRcOsc24M",
+        "CLOCK_InitSysPfd",
+        "CLOCK_InitSysPll",
+        "CLOCK_InitUsb1Pfd",
+        "CLOCK_InitUsb1Pll",
+        "CLOCK_InitUsb2Pll",
+        "CLOCK_SetClockOutput1",
+        "CLOCK_SetClockOutput2",
+        "CLOCK_SwitchOsc",
+        "DCDC_Deinit",
+        "DCDC_Init",
+        "GPIO_PinInit",
+        "LPUART_Init",
+        "LPUART_TransferSendNonBlocking",
+        "LPUART_TransferStartRingBuffer",
+        "SystemCoreClockUpdate"
+      ],
+      "false": [
+        "BOARD_BootClockRUN",
+        "BOARD_DebugConsoleSrcFreq",
+        "CLOCK_InitVideoPll"
+      ]
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "CLOCK_DeinitArmPll",
+        "CLOCK_DeinitRcOsc24M",
+        "CLOCK_DeinitUsb1Pfd",
+        "CLOCK_DisableUsbhs0PhyPllClock",
+        "CLOCK_DisableUsbhs1PhyPllClock",
+        "CLOCK_GetAhbFreq",
+        "CLOCK_GetClockOutCLKO1Freq",
+        "CLOCK_GetClockOutClkO2Freq",
+        "CLOCK_GetIpgFreq",
+        "CLOCK_GetPerClkFreq",
+        "CLOCK_GetPllUsb1SWFreq",
+        "CLOCK_GetSysPfdFreq",
+        "CLOCK_GetUsb1PfdFreq",
+        "CLOCK_IsSysPfdEnabled",
+        "CLOCK_IsUsb1PfdEnabled",
+        "LPUART_TransferStopRingBuffer"
+      ]
+    },
+    "SKIP": {
+      "true": [
+        "LPUART_TransferAbortReceive"
+      ],
+      "false": [
+        "CLOCK_DeinitAudioPll",
+        "CLOCK_DeinitSysPfd",
+        "CLOCK_DeinitSysPll",
+        "CLOCK_DeinitUsb2Pll"
+      ]
+    },
+    "IRQ": {
+      "true": [
+        "LPUART_TransferHandleSendDataEmpty"
+      ],
+      "false": [
+        "LPUART_TransferHandleIDLEReady"
+      ]
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "CLOCK_GetFreq",
+        "CLOCK_GetPllFreq"
+      ]
+    },
+    "RECV": {
+      "true": [
+        "LPUART_TransferReceiveNonBlocking"
+      ],
+      "false": [
+        "LPUART_TransferHandleReceiveDataFull"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "SystemInit"
+      ]
+    },
+    "LOOP": {
+      "true": [],
+      "false": [
+        "LPUART_Deinit"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 33,
+      "false": 3
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 16
+    },
+    "SKIP": {
+      "true": 1,
+      "false": 4
+    },
+    "IRQ": {
+      "true": 1,
+      "false": 1
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 2
+    },
+    "RECV": {
+      "true": 1,
+      "false": 1
+    },
+    "CORE": {
+      "true": 0,
+      "false": 1
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "per_function": {
+    "DCDC_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_DCDC_Deinit_20260406202136.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_DCDC_Deinit_20260406201746.json"
+    },
+    "CLOCK_IsSysPfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_IsSysPfdEnabled_20260406200248.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitRcOsc24M": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitRcOsc24M_20260406194427.json",
+      "has_replacement_update": false
+    },
+    "GPIO_PinInit": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_GPIO_PinInit_20260406202259.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406201856.json"
+    },
+    "LPUART_TransferStopRingBuffer": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferStopRingBuffer_20260406201832.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb1Pfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pfd_20260406203100.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitUsb1Pfd_20260406202925.json"
+    },
+    "CLOCK_DeinitSysPll": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPll_20260406194428.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitUsb1Pll_20260406203203.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitUsb1Pll_20260406203059.json"
+    },
+    "LPUART_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_Init_20260406202457.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Init_20260406202223.json"
+    },
+    "CLOCK_InitAudioPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitAudioPll_20260406203113.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitAudioPll_20260406202919.json"
+    },
+    "CLOCK_SetClockOutput2": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput2_20260406201859.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput2_20260406201507.json"
+    },
+    "CLOCK_InitSysPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitSysPll_20260406195320.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitVideoPll_20260406203138.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitVideoPll_20260406203007.json"
+    },
+    "LPUART_TransferHandleIDLEReady": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleIDLEReady_20260406202606.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferHandleIDLEReady_20260406202517.json"
+    },
+    "LPUART_TransferAbortReceive": {
+      "function_type": "SKIP",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferAbortReceive_20260406201834.json",
+      "has_replacement_update": false
+    },
+    "LPUART_Deinit": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_Deinit_20260406202622.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Deinit_20260406202338.json"
+    },
+    "BOARD_BootClockRUN_528M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_528M_20260406202635.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_BootClockRUN_528M_20260406202521.json"
+    },
+    "CLOCK_GetPerClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPerClkFreq_20260406194633.json",
+      "has_replacement_update": false
+    },
+    "SystemInit": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_SystemInit_20260406201556.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitPins": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_InitPins_20260406194420.json",
+      "has_replacement_update": false
+    },
+    "BOARD_DebugConsoleSrcFreq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_DebugConsoleSrcFreq_20260406194350.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SwitchOsc": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SwitchOsc_20260406202512.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_SwitchOsc_20260406202113.json"
+    },
+    "LPUART_TransferReceiveNonBlocking": {
+      "function_type": "RECV",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferReceiveNonBlocking_20260406202920.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferReceiveNonBlocking_20260406202605.json"
+    },
+    "CLOCK_InitArmPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitArmPll_20260406202906.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitArmPll_20260406202759.json"
+    },
+    "CLOCK_DeinitAudioPll": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitAudioPll_20260406194324.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitUsb2Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitUsb2Pll_20260406202849.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitUsb2Pll_20260406202712.json"
+    },
+    "CLOCK_GetAhbFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetAhbFreq_20260406194555.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_IsUsb1PfdEnabled": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_IsUsb1PfdEnabled_20260406200943.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClockOutput1": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_SetClockOutput1_20260406202042.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput1_20260406201542.json"
+    },
+    "CLOCK_InitSysPfd": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitSysPfd_20260406202657.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitSysPfd_20260406202408.json"
+    },
+    "CLOCK_GetSysPfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetSysPfdFreq_20260406194710.json",
+      "has_replacement_update": false
+    },
+    "DCDC_Init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_DCDC_Init_20260406202625.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_DCDC_Init_20260406202426.json"
+    },
+    "CLOCK_InitRcOsc24M": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitRcOsc24M_20260406203351.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitRcOsc24M_20260406203245.json"
+    },
+    "CLOCK_DeinitUsb1Pll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pll_20260406194514.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetFreq_20260406194611.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleSendDataEmpty": {
+      "function_type": "IRQ",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleSendDataEmpty_20260406201333.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferHandleSendDataEmpty_20260406201224.json"
+    },
+    "CLOCK_InitEnetPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitEnetPll_20260406203228.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitEnetPll_20260406203120.json"
+    },
+    "LPUART_TransferSendNonBlocking": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferSendNonBlocking_20260406202225.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPllFreq": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPllFreq_20260406194657.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetUsb1PfdFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetUsb1PfdFreq_20260406194729.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitVideoPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitVideoPll_20260406194520.json",
+      "has_replacement_update": false
+    },
+    "LPUART_TransferHandleReceiveDataFull": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferHandleReceiveDataFull_20260406202831.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs1Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1Clock_20260406203607.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1Clock_20260406203514.json"
+    },
+    "CLOCK_DeinitUsb1Pfd": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb1Pfd_20260406194448.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSemcFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetSemcFreq_20260406203149.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_GetSemcFreq_20260406203023.json"
+    },
+    "CLOCK_GetIpgFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetIpgFreq_20260406194647.json",
+      "has_replacement_update": false
+    },
+    "SystemCoreClockUpdate": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_SystemCoreClockUpdate_20260406201016.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_SystemCoreClockUpdate_20260406204328.json"
+    },
+    "LPUART_TransferStartRingBuffer": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_LPUART_TransferStartRingBuffer_20260406200522.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPeriphClkFreq": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPeriphClkFreq_20260406194706.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutCLKO1Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetClockOutCLKO1Freq_20260406194557.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs0PhyPllClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs0PhyPllClock_20260406194510.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutClkO2Freq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetClockOutClkO2Freq_20260406194602.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitEnetPll": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitEnetPll_20260406194341.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_InitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_InitExternalClk_20260406203434.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitExternalClk_20260406203238.json"
+    },
+    "CLOCK_DeinitUsb2Pll": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitUsb2Pll_20260406194505.json",
+      "has_replacement_update": false
+    },
+    "BOARD_BootClockRUN": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_BootClockRUN_20260406202950.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_BootClockRUN_20260406204135.json"
+    },
+    "CLOCK_EnableUsbhs1PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs1PhyPllClock_20260406194618.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0Clock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0Clock_20260406194559.json",
+      "has_replacement_update": false
+    },
+    "BOARD_InitHardware": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_BOARD_InitHardware_20260406194359.json",
+      "has_replacement_update": true,
+      "replacement_update_log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_InitHardware_20260406204018.json"
+    },
+    "CLOCK_GetPllUsb1SWFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_GetPllUsb1SWFreq_20260406194657.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitExternalClk": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitExternalClk_20260406194418.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DisableUsbhs1PhyPllClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DisableUsbhs1PhyPllClock_20260406194511.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitArmPll": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitArmPll_20260406194320.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0PhyPllClock_20260406194552.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_DeinitSysPfd": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/function_classify_CLOCK_DeinitSysPfd_20260406194447.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 65,
+  "replacement_update_count": 34,
+  "replacement_update_functions": [
+    "BOARD_BootClockRUN",
+    "BOARD_BootClockRUN_528M",
+    "BOARD_InitHardware",
+    "CLOCK_EnableUsbhs1Clock",
+    "CLOCK_GetSemcFreq",
+    "CLOCK_InitArmPll",
+    "CLOCK_InitAudioPll",
+    "CLOCK_InitEnetPll",
+    "CLOCK_InitExternalClk",
+    "CLOCK_InitRcOsc24M",
+    "CLOCK_InitSysPfd",
+    "CLOCK_InitUsb1Pfd",
+    "CLOCK_InitUsb1Pll",
+    "CLOCK_InitUsb2Pll",
+    "CLOCK_InitVideoPll",
+    "CLOCK_SetClockOutput1",
+    "CLOCK_SetClockOutput2",
+    "CLOCK_SwitchOsc",
+    "DCDC_Deinit",
+    "DCDC_Init",
+    "DbgConsole_Init",
+    "DbgConsole_Putchar",
+    "GPIO_PinInit",
+    "HAL_UartInit",
+    "HAL_UartSendBlocking",
+    "LPUART_Deinit",
+    "LPUART_Init",
+    "LPUART_TransferHandleIDLEReady",
+    "LPUART_TransferHandleSendDataEmpty",
+    "LPUART_TransferReceiveNonBlocking",
+    "LPUART_WriteBlocking",
+    "SystemCoreClockUpdate",
+    "prvTaskExitError",
+    "vPortEndScheduler"
+  ],
+  "replacement_update_by_function": {
+    "SystemCoreClockUpdate": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_SystemCoreClockUpdate_20260406204328.json"
+    },
+    "DCDC_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_DCDC_Init_20260406202426.json"
+    },
+    "CLOCK_InitUsb1Pll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitUsb1Pll_20260406203059.json"
+    },
+    "BOARD_InitHardware": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_InitHardware_20260406204018.json"
+    },
+    "CLOCK_SwitchOsc": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_SwitchOsc_20260406202113.json"
+    },
+    "CLOCK_InitEnetPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitEnetPll_20260406203120.json"
+    },
+    "CLOCK_InitVideoPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitVideoPll_20260406203007.json"
+    },
+    "CLOCK_InitArmPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitArmPll_20260406202759.json"
+    },
+    "LPUART_Deinit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Deinit_20260406202338.json"
+    },
+    "LPUART_TransferReceiveNonBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferReceiveNonBlocking_20260406202605.json"
+    },
+    "CLOCK_InitRcOsc24M": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitRcOsc24M_20260406203245.json"
+    },
+    "CLOCK_GetSemcFreq": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_GetSemcFreq_20260406203023.json"
+    },
+    "CLOCK_InitUsb1Pfd": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitUsb1Pfd_20260406202925.json"
+    },
+    "prvTaskExitError": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_prvTaskExitError_20260406204823.json"
+    },
+    "DCDC_Deinit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_DCDC_Deinit_20260406201746.json"
+    },
+    "LPUART_TransferHandleSendDataEmpty": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferHandleSendDataEmpty_20260406201224.json"
+    },
+    "DbgConsole_Putchar": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_DbgConsole_Putchar_20260406203109.json"
+    },
+    "CLOCK_SetClockOutput2": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput2_20260406201507.json"
+    },
+    "GPIO_PinInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_GPIO_PinInit_20260406201856.json"
+    },
+    "CLOCK_InitAudioPll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitAudioPll_20260406202919.json"
+    },
+    "CLOCK_InitSysPfd": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitSysPfd_20260406202408.json"
+    },
+    "BOARD_BootClockRUN_528M": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_BootClockRUN_528M_20260406202521.json"
+    },
+    "LPUART_TransferHandleIDLEReady": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_TransferHandleIDLEReady_20260406202517.json"
+    },
+    "DbgConsole_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_DbgConsole_Init_20260406203252.json"
+    },
+    "CLOCK_InitUsb2Pll": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitUsb2Pll_20260406202712.json"
+    },
+    "CLOCK_InitExternalClk": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_InitExternalClk_20260406203238.json"
+    },
+    "HAL_UartSendBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_HAL_UartSendBlocking_20260406203311.json"
+    },
+    "CLOCK_SetClockOutput1": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_SetClockOutput1_20260406201542.json"
+    },
+    "BOARD_BootClockRUN": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_BOARD_BootClockRUN_20260406204135.json"
+    },
+    "LPUART_Init": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_Init_20260406202223.json"
+    },
+    "LPUART_WriteBlocking": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_LPUART_WriteBlocking_20260406203209.json"
+    },
+    "vPortEndScheduler": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_vPortEndScheduler_20260406202300.json"
+    },
+    "CLOCK_EnableUsbhs1Clock": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_CLOCK_EnableUsbhs1Clock_20260406203514.json"
+    },
+    "HAL_UartInit": {
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_NXP_FATFS_FreeRTOS/lcmhal_ai_log/replacement_update_HAL_UartInit_20260406203820.json"
+    }
+  },
+  "replacement_update_only_functions": [
+    "DbgConsole_Init",
+    "DbgConsole_Putchar",
+    "HAL_UartInit",
+    "HAL_UartSendBlocking",
+    "LPUART_WriteBlocking",
+    "prvTaskExitError",
+    "vPortEndScheduler"
+  ],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/nxp/NXP_FATFS_FreeRTOS"
+}

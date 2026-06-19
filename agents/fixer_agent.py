@@ -3,10 +3,9 @@ from langchain_core.tools import tool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.prebuilt import ToolNode
-from langchain_deepseek import ChatDeepSeek
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import tool
-from config.llm_config import llm_deepseek_config
+from config.model_singleton import get_model
 from models.analyze_results.function_analyze import FixedFunctionInfo
 from models.analyze_results.function_analyze import ReplacementUpdate
 from prompts.function_fixer import system_prompt_en
@@ -20,12 +19,8 @@ from tools.builder.core import init_builder
 from tools.builder.tool import build_project, get_replace_func_details_by_file, update_function_replacement, get_function_analysis_and_replacement
 from tools.emulator.tool import emulate_proj, mmio_function_emulate_info, function_calls_emulate_info
 
-# Initialize the model
-model = ChatDeepSeek(
-    model=llm_deepseek_config["model_name"], 
-    api_key=llm_deepseek_config["api_key"], 
-    api_base=llm_deepseek_config["base_url"]
-)
+# 使用统一的模型实例
+model = get_model()
 
 class AgentState(MessagesState):
     # Final structured response from the agent
@@ -120,7 +115,8 @@ async def build_graph():
     # Bind tools to model
     model_with_tools = model.bind_tools(tools)
     # Set up model with structured output
-    model_with_structured_output = model.with_structured_output(ReplacementUpdate)
+    # Use json_mode for better compatibility with non-OpenAI models (e.g., GLM)
+    model_with_structured_output = model.with_structured_output(ReplacementUpdate, method="json_mode")
 
     # Create ToolNode
     tool_node = ToolNode(tools)
@@ -206,8 +202,20 @@ async def build_graph():
             ai_log_manager.log_langgraph_node_start(agent_name, node_name, state, function_name)
         
         messages = state["messages"]
+        from utils.llm_usage import extract_usage_from_message
+
+        t0 = time.perf_counter()
         response = await model_with_tools.ainvoke(messages)
-        
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        if getattr(globs, "llm_usage_log_enable", False):
+            ai_log_manager.append_llm_usage_record(
+                agent_name=agent_name,
+                node_name=node_name,
+                function_name=function_name,
+                elapsed_ms=elapsed_ms,
+                usage=extract_usage_from_message(response),
+            )
+
         result = {"messages": [response]}
         
         if globs.ai_log_enable:
@@ -257,7 +265,12 @@ async def function_fix() -> ReplacementUpdate:
         if isinstance(e, GraphRecursionError):
             # 捕获LangGraph的递归错误，触发failcheck分析
             from utils.failcheck import analyze_failed_conversation
-            analyze_failed_conversation(initial_state["messages"], "fixer_agent", 50)  # 50次agent调用
+            analyze_failed_conversation(
+                initial_state["messages"], 
+                "fixer_agent", 
+                50,
+                db_path=globs.db_path
+            )  # 50次agent调用
         else:
             # 其他错误直接抛出
             raise

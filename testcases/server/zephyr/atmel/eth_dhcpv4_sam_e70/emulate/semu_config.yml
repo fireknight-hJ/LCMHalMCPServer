@@ -1,0 +1,284 @@
+emulate_mode: emulate
+enable_native: false
+entry_point: 0x404e51
+handlers:
+  DP83848_GetLinkState: fuzzemu.handlers.common.return_2
+  DP83848_Init: do_return
+  Delay: do_return
+  DelayLoop: do_return
+  ENET_MDIORead: fuzzemu.handlers.common.return_phy_id
+  ENET_SetSMI: do_return
+  HAL_BE_Block_Read: fuzzemu.handlers.common.hal_block_in
+  HAL_BE_Block_Write: fuzzemu.handlers.common.hal_block_out
+  HAL_BE_ENET_ReadFrame: fuzzemu.handlers.common.hal_read_frame
+  HAL_BE_In: fuzzemu.handlers.common.hal_in
+  HAL_BE_Out: fuzzemu.handlers.common.hal_out
+  HAL_BE_return_0: fuzzemu.handlers.common.return_zero
+  HAL_BE_return_1: fuzzemu.handlers.common.return_true
+  HAL_Delay: do_return
+  HAL_ETH_ReadPHYRegister: fuzzemu.handlers.common.return_zero
+  HAL_RCC_ClockConfig: fuzzemu.handlers.common.return_zero
+  LPUART_WriteBlocking: do_return
+  PHY_GetLinkSpeedDuplex: fuzzemu.handlers.common.return_2
+  PHY_GetLinkStatus: fuzzemu.handlers.common.return_2
+  PHY_Init: fuzzemu.handlers.common.return_zero
+  SDK_DelayAtLeastUs: do_return
+  ethernetif_phy_init: fuzzemu.handlers.common.return_zero
+  fflush: do_return
+  puts: do_return
+  rt_thread_mdelay: do_return
+  stm32_putc: do_return
+  wait: do_return
+  wait_us: do_return
+include:
+- ./syms.yml
+initial_sp: 0x20404280
+isr_vector: 0x400000
+loop_whitelist:
+- memset
+- memcpy
+- memmove
+- FillZerobss
+- LoopFillZerobss
+- CopyDataInit
+- LoopCopyDataInit
+- Zero_Init
+- Reset_Handler
+- SystemInit
+memory_map:
+  bss:
+    base_addr: 0x204006c8
+    permissions: rw-
+    size: 0x18a8
+  flash:
+    base_addr: 0x400000
+    file: output.bin
+    permissions: r-x
+    size: 0x1c000
+  irq_ret:
+    base_addr: 0xfffff000
+    permissions: rwx
+    size: 0x1000
+  log_mpsc_pbuf_area:
+    base_addr: 0x204003e8
+    permissions: rw-
+    size: 0x2dc
+  mmio:
+    base_addr: 0x40000000
+    permissions: rw-
+    size: 0x20000000
+  nocache:
+    base_addr: 0x20400000
+    permissions: rw-
+    size: 0x3e7
+  noinit:
+    base_addr: 0x20401f80
+    permissions: rw-
+    size: 0x5c60
+  nvic:
+    base_addr: 0xe0000000
+    permissions: rw-
+    size: 0x10000000
+  peripheral:
+    base_addr: 0xa0000000
+    permissions: rw-
+    size: 0x40000000
+  peripheral_ram:
+    base_addr: 0x60000000
+    permissions: rw-
+    size: 0x40000000
+  ram:
+    base_addr: 0x20000000
+    permissions: rwx
+    size: 0x400000
+mmio_funcs:
+- add_to_head
+- add_to_waitq_locked
+- adjust_owner_prio
+- arch_new_thread
+- arp_entry_find
+- arp_hdr_check
+- arp_update
+- atmel_same70_config
+- atmel_same70_init
+- bg_thread_main
+- check_used_port
+- clone_pkt_attributes
+- cmd_net_ip_add
+- cmd_net_ip_del
+- conn_addr_cmp
+- conn_are_endpoints_valid
+- conn_find_handler
+- context_sendto
+- dhcpv4_add_req_ipaddr
+- dhcpv4_add_server_id
+- dhcpv4_create_message
+- encode_float
+- eth_sam_gmac_get_config
+- eth_sam_gmac_set_config
+- eth_tx
+- ethernet_fill_header
+- ethernet_fill_in_dst_on_ipv4_mcast
+- ethernet_ll_prepare_on_ipv4
+- ethernet_recv
+- ethernet_remove_l2_header
+- ethernet_send
+- first
+- frame_get
+- get_addresses
+- halt_thread
+- handle_ipv4_echo_reply
+- icmpv4_handle_echo_request
+- icmpv4_handle_header_options
+- icmpv4_update_record_route
+- icmpv4_update_time_stamp
+- if_ipv4_get_addr
+- iface_router_lookup
+- igmp_v2_create_packet
+- init_ready_q
+- ipv4_addr_find
+- ipv4_is_broadcast_address
+- ipv4_maddr_find
+- k_heap_init
+- k_mbox_get
+- k_mbox_init
+- k_mem_slab_init
+- k_msgq_cleanup
+- k_msgq_init
+- k_poll_event_init
+- k_stack_cleanup
+- k_stack_init
+- k_timer_init
+- k_work_cancel_delayable_sync
+- k_work_cancel_sync
+- k_work_flush
+- k_work_flush_delayable
+- k_work_init_delayable
+- k_work_poll_init
+- k_work_poll_submit_to_queue
+- k_work_queue_start
+- mbox_message_put
+- mgmt_thread
+- move_thread_to_end_of_prio_q
+- net_arp_input
+- net_arp_prepare
+- net_buf_alloc_len
+- net_buf_alloc_with_data
+- net_buf_append_bytes
+- net_buf_clone
+- net_buf_linearize
+- net_buf_reset
+- net_buf_unref
+- net_calc_chksum
+- net_calc_chksum_ipv4
+- net_conn_input
+- net_conn_register
+- net_context_bind
+- net_context_connect
+- net_context_create_ipv4_new
+- net_dhcpv4_init
+- net_dhcpv4_input
+- net_eth_ipv4_mcast_to_mac_addr
+- net_eth_ipv6_mcast_to_mac_addr
+- net_icmpv4_finalize
+- net_icmpv4_input
+- net_icmpv4_send_error
+- net_if_ipv4_addr_add
+- net_if_ipv4_addr_lookup
+- net_if_ipv4_addr_mask_cmp
+- net_if_ipv4_addr_rm
+- net_if_ipv4_get_best_match
+- net_if_ipv4_maddr_add
+- net_if_ipv4_select_src_addr
+- net_ipv4_create
+- net_ipv4_finalize
+- net_ipv4_igmp_input
+- net_ipv4_input
+- net_ipv4_parse_hdr_options
+- net_mgmt_add_event_callback
+- net_mgmt_del_event_callback
+- net_pkt_append_buffer
+- net_pkt_available_buffer
+- net_pkt_available_payload_buffer
+- net_pkt_buffer_hexdump
+- net_pkt_buffer_info
+- net_pkt_clone_internal
+- net_pkt_compact
+- net_pkt_copy
+- net_pkt_cursor_init
+- net_pkt_cursor_operate
+- net_pkt_find_offset
+- net_pkt_frag_add
+- net_pkt_frag_del
+- net_pkt_frag_insert
+- net_pkt_get_contiguous_len
+- net_pkt_get_current_offset
+- net_pkt_pull
+- net_pkt_remaining_data
+- net_pkt_remove_tail
+- net_pkt_shallow_clone
+- net_pkt_trim_buffer
+- net_pkt_unref
+- net_pkt_update_length
+- net_recv_data
+- net_rx
+- net_send_data
+- net_udp_finalize
+- net_udp_get_hdr
+- net_udp_input
+- net_udp_set_hdr
+- next
+- ping_work
+- pkt_alloc_buffer
+- pkt_cursor_advance
+- pkt_cursor_jump
+- pkt_cursor_update
+- pkt_get_max_len
+- processing_data
+- ready_thread
+- remove_from_tail
+- remove_timeout
+- rx_descriptors_init
+- send_igmp_report
+- signal_poller
+- soc_pmc_peripheral_disable
+- soc_pmc_peripheral_enable
+- soc_pmc_peripheral_is_enabled
+- soc_supc_core_voltage_regulator_off
+- soc_supc_enable_wakeup_source
+- soc_supc_slow_clock_select_crystal_osc
+- timeout_rem
+- triggered_work_cancel
+- triggered_work_handler
+- update_cache
+- z_abort_timeout
+- z_add_timeout
+- z_arm_platform_init
+- z_cbvprintf_impl
+- z_handle_obj_poll_events
+- z_impl_k_condvar_init
+- z_impl_k_mutex_init
+- z_impl_k_mutex_lock
+- z_impl_k_poll
+- z_impl_k_poll_signal_init
+- z_impl_k_poll_signal_raise
+- z_impl_k_queue_init
+- z_impl_k_sem_init
+- z_impl_k_timer_status_sync
+- z_impl_k_yield
+- z_impl_net_addr_ntop
+- z_impl_net_addr_pton
+- z_init_thread_base
+- z_priq_dumb_best
+- z_priq_dumb_remove
+- z_priq_mq_best
+- z_sched_waitq_walk
+- z_set_prio
+- z_setup_new_thread
+- z_shell_history_get
+- z_shell_history_init
+- z_shell_history_put
+- z_timer_expiration_handler
+- z_unpend_all
+model: semu
+rules: semu_rule.txt

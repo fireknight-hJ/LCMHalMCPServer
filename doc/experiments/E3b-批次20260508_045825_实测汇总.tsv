@@ -1,0 +1,16 @@
+固件ID	testcase相对路径	run	分析函数个数	识别函数个数	RU落盘次数	迭代优化数量	迭代优化目标	invokes	total_tokens	wall秒	log文件
+U1	testcases/server/nxp/NXP_LwIP_BareMetal	1	235	50	3	0		2367	39954947	8832	runs/e3b_uncertainty/20260508_045825/logs/U1_run1.log
+U1	testcases/server/nxp/NXP_LwIP_BareMetal	2	235	47	4	1	__assert_func	2018	33350922	6852	runs/e3b_uncertainty/20260508_045825/logs/U1_run2.log
+U1	testcases/server/nxp/NXP_LwIP_BareMetal	3	235	50	1	0		1922	32116651	6248	runs/e3b_uncertainty/20260508_045825/logs/U1_run3.log
+U2	testcases/server/nxp/NXP_I2C_BareMetal	1	109	33	5	0		1801	31203393	4632	runs/e3b_uncertainty/20260508_045825/logs/U2_run1.log
+U2	testcases/server/nxp/NXP_I2C_BareMetal	2	109	47	4	0		1615	29093022	3893	runs/e3b_uncertainty/20260508_045825/logs/U2_run2.log
+U2	testcases/server/nxp/NXP_I2C_BareMetal	3	109	32	7	0		1862	34200829	5074	runs/e3b_uncertainty/20260508_045825/logs/U2_run3.log
+U3	testcases/server/stm32/LwIP_StreamingServer	1	281	161	21	15	DP83848_GetLinkState;HAL_ETH_Init;HAL_RCCEx_PeriphCLKConfig	2653	48479215	10238	runs/e3b_uncertainty/20260508_045825/logs/U3_run1.log
+U3	testcases/server/stm32/LwIP_StreamingServer	2	281	148	18	12	HAL_ETH_MspInit;HAL_RCCEx_PeriphCLKConfig;MX_LWIP_Init	2381	43128603	8917	runs/e3b_uncertainty/20260508_045825/logs/U3_run2.log
+U3	testcases/server/stm32/LwIP_StreamingServer	3	281	155	24	17	DP83848_GetLinkState;HAL_ETH_Start_IT;HAL_RCCEx_PeriphCLKConfig	2784	51163427	11503	runs/e3b_uncertainty/20260508_045825/logs/U3_run3.log
+U4	testcases/server/stm32/UART_Hyperterminal_IT	1	170	121	1	0		1657	30936827	4877	runs/e3b_uncertainty/20260508_045825/logs/U4_run1.log
+U4	testcases/server/stm32/UART_Hyperterminal_IT	2	170	106	0	0		1067	19982273	2341	runs/e3b_uncertainty/20260508_045825/logs/U4_run2.log
+U4	testcases/server/stm32/UART_Hyperterminal_IT	3	170	112	6	0		1025	18934364	2286	runs/e3b_uncertainty/20260508_045825/logs/U4_run3.log
+U5	testcases/server/rtthread/imxrt1052-nxp-evk/base	1	51	12	3	0		297	5936056	899	runs/e3b_uncertainty/20260508_045825/logs/U5_run1.log
+U5	testcases/server/rtthread/imxrt1052-nxp-evk/base	2	51	12	5	3	BOARD_BootClockRUN;CLOCK_InitExternalClk;LPUART_GetStatusFlags	316	4970887	1170	runs/e3b_uncertainty/20260508_045825/logs/U5_run2.log
+U5	testcases/server/rtthread/imxrt1052-nxp-evk/base	3	51	11	2	2	CLOCK_InitArmPll;imxrt_putc	275	4441421	657	runs/e3b_uncertainty/20260508_045825/logs/U5_run3.log

@@ -1,0 +1,4 @@
+testcase_dir,return_code,elapsed_sec_wall,invoke_count,prompt_tokens,completion_tokens,total_tokens,total_elapsed_ms_llm,analyzer_tokens,builder_tokens,fixer_tokens,emulator_tokens,session_file
+/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/eth_dhcpv4_sam_e70,124,1800.0,0,0,0,0,0.0,0,0,0,0,
+/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/fs_littlefs_atsame54,0,12.605,0,0,0,0,0.0,0,0,0,0,/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_fs_littlefs_atsame54/lcmhal_ai_log/session_8ca0a6c2-f096-476d-a0ab-0c5bf8f07b2b_20260415_001106.json
+/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/atmel/i2c_shell_atsame54,0,12.661,0,0,0,0,0.0,0,0,0,0,/home/haojie/workspace/dbs_server/DATABASE_Zephyr_atmel_i2c_shell_atsame54/lcmhal_ai_log/session_fbe28177-ec75-4e98-bf46-bd5cfddac662_20260415_001119.json

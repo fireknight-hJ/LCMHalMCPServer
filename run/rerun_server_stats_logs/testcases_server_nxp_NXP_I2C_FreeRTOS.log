@@ -1,0 +1,451 @@
+2026-04-07 22:27:09,628 - INFO - [*] Read loop started
+Session ID: 6c890361-1e78-4429-84e9-5f48c45035b4
+2026-04-07 22:27:10,070 - INFO - [CodeQL stderr] [2026-04-07 22:27:10] This is codeql execute query-server2 --debug --tuple-counting --threads=0 --evaluator-log-level 5 -v --log-to-stderr
+2026-04-07 22:27:10,080 - INFO - [CodeQL stderr] [2026-04-07 22:27:10] Creating executor with 128 threads.
+2026-04-07 22:27:13,001 - WARNING - 在数据库路径 /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS 中未找到 db-* 目录
+2026-04-07 22:27:13,001 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=0
+2026-04-07 22:27:13,001 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": [
+        "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS"
+      ]
+    },
+    "progressId": 0
+  }
+}
+
+2026-04-07 22:27:13,016 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [SPAMMY] execute query-server2> registerDatabases called with [/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS]
+2026-04-07 22:27:13,034 - INFO - [stdout] Content-Length: 121
+2026-04-07 22:27:13,034 - INFO - [raw response body] {"jsonrpc":"2.0","id":1,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS"]}}
+2026-04-07 22:27:13,034 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS"
+    ]
+  }
+}
+
+2026-04-07 22:27:13,035 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=1
+2026-04-07 22:27:13,035 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/119c98be-a100-419b-bd47-1d0a72e51d57.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 1
+  }
+}
+
+2026-04-07 22:27:13,051 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:27:13,051 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:27:13,052 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:27:13,054 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:27:13,054 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:27:13,054 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:27:13,054 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:27:13,309 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:27:13,310 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":1,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:27:13,310 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 1,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:27:13,310 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:27:13,311 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:27:13,311 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/119c98be-a100-419b-bd47-1d0a72e51d57.bqrs
+2026-04-07 22:27:13,312 - INFO - [stdout] Content-Length: 165
+2026-04-07 22:27:13,312 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [ERROR] Error running query
+2026-04-07 22:27:13,312 - INFO - [raw response body] {"jsonrpc":"2.0","id":2,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.","evaluationTime":-1}}
+2026-04-07 22:27:13,313 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:13,313 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:27:13,313 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:27:13,313 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.', 'evaluationTime': -1}
+2026-04-07 22:27:13,313 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:27:13,313 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:13,313 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:27:13,314 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:27:13,315 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:27:13,315 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:27:13,315 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:13,315 - INFO - [CodeQL stderr] at com.semmle.cli2.ql.dataset.DatasetLayout.<init>(DatasetLayout.java:38)
+2026-04-07 22:27:13,315 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:27:13,315 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:13,315 - INFO - [CodeQL stderr] ... 10 common frames omitted
+2026-04-07 22:27:13,821 - INFO - [!] Database /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS already registered.
+2026-04-07 22:27:13,822 - INFO - [INFO] No new databases to register.
+2026-04-07 22:27:13,822 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=2
+2026-04-07 22:27:13,822 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": []
+    },
+    "progressId": 2
+  }
+}
+
+2026-04-07 22:27:13,829 - INFO - [stdout] Content-Length: 121
+2026-04-07 22:27:13,830 - INFO - [raw response body] {"jsonrpc":"2.0","id":3,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS"]}}
+2026-04-07 22:27:13,830 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS"
+    ]
+  }
+}
+
+2026-04-07 22:27:13,831 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=3
+2026-04-07 22:27:13,831 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/1e419723-d7f9-4af2-a2f9-5bc25f5b49f8.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 3
+  }
+}
+
+2026-04-07 22:27:13,831 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [SPAMMY] execute query-server2> registerDatabases called with []
+2026-04-07 22:27:13,836 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:27:13,838 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:27:13,838 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:27:13,838 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:27:13,838 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:27:13,838 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:27:13,839 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:27:13,847 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:27:13,847 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:27:13,850 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":3,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:27:13,852 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 3,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:27:13,852 - INFO - [stdout] Content-Length: 165
+2026-04-07 22:27:13,852 - INFO - [raw response body] {"jsonrpc":"2.0","id":4,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.","evaluationTime":-1}}
+2026-04-07 22:27:13,852 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:27:13,852 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.', 'evaluationTime': -1}
+2026-04-07 22:27:13,852 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] [2026-04-07 22:27:13] [ERROR] Error running query
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:27:13,852 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.cli2.ql.dataset.DatasetLayout.<init>(DatasetLayout.java:38)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:13,853 - INFO - [CodeQL stderr] ... 10 common frames omitted
+2026-04-07 22:27:13,854 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:27:13,854 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/1e419723-d7f9-4af2-a2f9-5bc25f5b49f8.bqrs
+2026-04-07 22:27:14,431 - INFO - [!] Database /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS already registered.
+2026-04-07 22:27:14,432 - INFO - [INFO] No new databases to register.
+2026-04-07 22:27:14,432 - INFO - [DEBUG] Sending evaluation/registerDatabases with progressId=4
+2026-04-07 22:27:14,432 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "method": "evaluation/registerDatabases",
+  "params": {
+    "body": {
+      "databases": []
+    },
+    "progressId": 4
+  }
+}
+
+2026-04-07 22:27:14,433 - INFO - [CodeQL stderr] [2026-04-07 22:27:14] [SPAMMY] execute query-server2> registerDatabases called with []
+2026-04-07 22:27:14,433 - INFO - [stdout] Content-Length: 121
+2026-04-07 22:27:14,433 - INFO - [raw response body] {"jsonrpc":"2.0","id":5,"result":{"registeredDatabases":["/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS"]}}
+2026-04-07 22:27:14,434 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "result": {
+    "registeredDatabases": [
+      "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS"
+    ]
+  }
+}
+
+2026-04-07 22:27:14,434 - INFO - [DEBUG] Sending evaluation/runQuery with progressId=5
+2026-04-07 22:27:14,435 - INFO - 
+[→] Sending request:
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "method": "evaluation/runQuery",
+  "params": {
+    "body": {
+      "db": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS",
+      "queryPath": "/home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql",
+      "outputPath": "/tmp/8818f897-9e39-4d82-a352-863c7a52e73a.bqrs",
+      "target": {
+        "query": {}
+      },
+      "additionalPacks": [
+        ""
+      ],
+      "externalInputs": {},
+      "singletonExternalInputs": {}
+    },
+    "progressId": 5
+  }
+}
+
+2026-04-07 22:27:14,435 - INFO - [stdout] Content-Length: 102
+2026-04-07 22:27:14,435 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":0,"maxStep":1000,"message":""}}
+2026-04-07 22:27:14,435 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 0,
+    "maxStep": 1000,
+    "message": ""
+  }
+}
+
+2026-04-07 22:27:14,435 - INFO - [stdout] Content-Length: 111
+2026-04-07 22:27:14,435 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":0,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:27:14,435 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 0,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:27:14,436 - INFO - [CodeQL stderr] [2026-04-07 22:27:14] [SPAMMY] execute query-server2> runQuery called with /home/haojie/workspace/lcmhalmcp/queries/collectors/common/info_function_collector.ql
+2026-04-07 22:27:14,439 - INFO - [stdout] Content-Length: 114
+2026-04-07 22:27:14,439 - INFO - [CodeQL stderr] [2026-04-07 22:27:14] [PROGRESS] execute query-server2> Error running query
+2026-04-07 22:27:14,439 - INFO - [raw response body] {"jsonrpc":"2.0","method":"ql/progressUpdated","params":{"id":5,"step":1000,"maxStep":1000,"message":"Compiling"}}
+2026-04-07 22:27:14,439 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "method": "ql/progressUpdated",
+  "params": {
+    "id": 5,
+    "step": 1000,
+    "maxStep": 1000,
+    "message": "Compiling"
+  }
+}
+
+2026-04-07 22:27:14,439 - INFO - [CodeQL stderr] [2026-04-07 22:27:14] [ERROR] Error running query
+2026-04-07 22:27:14,440 - INFO - [evaluate_and_wait] Query completed.
+2026-04-07 22:27:14,440 - INFO - [CodeQL stderr] java.util.concurrent.CompletionException: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:14,440 - INFO - [stdout] Content-Length: 165
+2026-04-07 22:27:14,440 - INFO - 查询 queries/collectors/common/info_function_collector.ql 已完成，输出路径: /tmp/8818f897-9e39-4d82-a352-863c7a52e73a.bqrs
+2026-04-07 22:27:14,440 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+2026-04-07 22:27:14,440 - INFO - [raw response body] {"jsonrpc":"2.0","id":6,"result":{"resultType":1,"message":"/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.","evaluationTime":-1}}
+2026-04-07 22:27:14,440 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+2026-04-07 22:27:14,440 - INFO - 
+[←] Received response:
+{
+  "jsonrpc": "2.0",
+  "id": 6,
+  "result": {
+    "resultType": 1,
+    "message": "/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.",
+    "evaluationTime": -1
+  }
+}
+
+2026-04-07 22:27:14,440 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
+2026-04-07 22:27:14,440 - INFO - [evaluateQueries] done: {'resultType': 1, 'message': '/home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.', 'evaluationTime': -1}
+2026-04-07 22:27:14,441 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(Unknown Source)
+2026-04-07 22:27:14,441 - INFO - [!] Failed to parse message: CodeQL evaluation failed: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:14,441 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.CompletableFuture.handle(Unknown Source)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.handleSimple(FutureUtils.java:264)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:192)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.futureFinally(FutureUtils.java:188)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$27(QueryServer2Command.java:601)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$29(QueryServer2Command.java:598)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$15(QueryServer2Command.java:421)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$withProgressAndCancellation$16(QueryServer2Command.java:420)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at java.base/java.lang.Thread.run(Unknown Source)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] Caused by: com.semmle.util.exception.UserError: /home/haojie/workspace/dbs_server/DATABASE_NXP_I2C_FreeRTOS/db-cpp does not exist.
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.cli2.ql.dataset.DatasetLayout.<init>(DatasetLayout.java:38)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.cli2.execute.queryServer2.QueryServer2Command$Impl.lambda$runQuery$26(QueryServer2Command.java:609)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] at com.semmle.util.concurrent.FutureUtils.supplyCompose(FutureUtils.java:248)
+2026-04-07 22:27:14,442 - INFO - [CodeQL stderr] ... 10 common frames omitted
+Error getting MMIO function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+[analyze_functions] classifying 0 functions (max concurrent: 8, env LCMHAL_ANALYZE_MAX_CONCURRENT)
+Error getting MMIO function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+Error getting interesting-MMIO-expr function list: Failed to decode BQRS: A fatal error occurred: Binary decoder reached end of stream while expecting byte
+Replacement log written to: testcases/server/nxp/NXP_I2C_FreeRTOS/replacement_log.md
+2026-04-07 22:27:15,806 - INFO - [*] Read loop started
+=== START testcases/server/nxp/NXP_I2C_FreeRTOS ===
+=== DONE ===

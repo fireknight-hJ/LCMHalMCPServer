@@ -1,0 +1,5 @@
+# LCMHAL配置文件
+script_path: "/home/haojie/workspace/lcmhalmcp/testcases/server/rtthread/stm32f401-st-nucleo/base"
+db_path: "/home/haojie/workspace/dbs_server/DATABASE_RTThread_stm32f401_base"
+src_path: "/home/haojie/rt-thread/bsp/stm32/stm32f401-st-nucleo"
+proj_path: "/home/haojie/rt-thread/bsp/stm32/stm32f401-st-nucleo"

@@ -1,0 +1,1319 @@
+{
+  "log_dir": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log",
+  "by_type": {
+    "INIT": [
+      "CLOCK_AttachClk",
+      "CLOCK_EnableUsbfs0DeviceClock",
+      "CLOCK_EnableUsbfs0HostClock",
+      "CLOCK_EnableUsbhs0DeviceClock",
+      "CLOCK_EnableUsbhs0HostClock",
+      "CLOCK_EnableUsbhs0PhyPllClock",
+      "CLOCK_GetCTimerClkFreq",
+      "CLOCK_GetPLL0InClockRate",
+      "CLOCK_SetClkDiv",
+      "CLOCK_SetFLASHAccessCyclesForFreq",
+      "CLOCK_SetPLL0Freq",
+      "CLOCK_SetPLL1Freq",
+      "CLOCK_SetRtc1hzClkDiv",
+      "CLOCK_SetRtc1khzClkDiv",
+      "CLOCK_SetupExtClocking",
+      "CLOCK_SetupFROClocking",
+      "CLOCK_SetupPLL0Mult",
+      "CLOCK_SetupPLL0Prec",
+      "FLEXCOMM_Init",
+      "GPIO_EnablePortClock",
+      "GetFroHfFreq",
+      "GetOsc32KFreq",
+      "INPUTMUX_Init",
+      "PINT_Deinit",
+      "PINT_Init",
+      "PINT_PatternMatchConfig",
+      "PINT_PinInterruptClrStatusAll",
+      "PINT_PinInterruptConfig",
+      "POWER_EnterLowPower",
+      "POWER_SetXtal16mhzLdo",
+      "POWER_Xtal16mhzCapabankTrim",
+      "POWER_Xtal32khzCapabankTrim",
+      "RESET_ClearPeripheralReset",
+      "SystemCoreClockUpdate",
+      "USART_TransferSendNonBlocking",
+      "findPll1PostDiv",
+      "lf_get_deepsleep_core_supply_cfg",
+      "lf_set_dcdc_power_profile_low",
+      "lf_wakeup_io_ctrl",
+      "lowpower_set_dcdc_power_profile",
+      "lowpower_set_system_voltage",
+      "mpu_init",
+      "nxp_lpc55xxx_init",
+      "pinctrl_clock_init",
+      "pllFindSel",
+      "z_add_timeout"
+    ],
+    "RETURNOK": [
+      "CLOCK_EnableOstimer32kClock",
+      "CLOCK_GetAdcClkFreq",
+      "CLOCK_GetClockOutClkFreq",
+      "CLOCK_GetCoreSysClkFreq",
+      "CLOCK_GetExtClkFreq",
+      "CLOCK_GetFlexCommClkFreq",
+      "CLOCK_GetFlexCommInputClock",
+      "CLOCK_GetFreq",
+      "CLOCK_GetFro12MFreq",
+      "CLOCK_GetFro1MFreq",
+      "CLOCK_GetFroHfFreq",
+      "CLOCK_GetHsLspiClkFreq",
+      "CLOCK_GetMclkClkFreq",
+      "CLOCK_GetOsc32KFreq",
+      "CLOCK_GetPLL0OutClockRate",
+      "CLOCK_GetPLL0OutFromSetup",
+      "CLOCK_GetPLL1InClockRate",
+      "CLOCK_GetSctClkFreq",
+      "CLOCK_GetSdioClkFreq",
+      "CLOCK_GetSystickClkFreq",
+      "CLOCK_GetUsb0ClkFreq",
+      "CLOCK_GetUsb1ClkFreq",
+      "CLOCK_GetWdtClkFreq",
+      "CLOCK_SetFlexCommClock",
+      "GetExtClkFreq",
+      "GetFro12MFreq",
+      "GetFro1MFreq",
+      "PINT_PatternMatchGetConfig",
+      "PINT_PatternMatchResetDetectLogic",
+      "PINT_PinInterruptGetConfig",
+      "findPll0MMult",
+      "findPll0PostDiv",
+      "findPll0PreDiv",
+      "findPll1MMult",
+      "findPll1PreDiv"
+    ],
+    "NODRIVER": [
+      "POWER_GetWakeUpCause",
+      "encode_float",
+      "first",
+      "k_heap_init",
+      "k_mbox_get",
+      "k_mbox_init",
+      "k_mem_slab_init",
+      "k_msgq_cleanup",
+      "k_msgq_init",
+      "k_stack_cleanup",
+      "k_stack_init",
+      "k_timer_init",
+      "k_work_cancel_delayable_sync",
+      "k_work_cancel_sync",
+      "k_work_flush",
+      "k_work_flush_delayable",
+      "k_work_init_delayable",
+      "mbox_message_put",
+      "next",
+      "remove_timeout",
+      "timeout_rem",
+      "update_cache",
+      "z_abort_timeout",
+      "z_cbvprintf_impl",
+      "z_impl_k_condvar_init",
+      "z_impl_k_mutex_init",
+      "z_impl_k_mutex_lock",
+      "z_impl_k_queue_init",
+      "z_impl_k_sem_init",
+      "z_impl_k_timer_status_sync",
+      "z_init_thread_base",
+      "z_priq_dumb_remove",
+      "z_setup_new_thread"
+    ],
+    "CORE": [
+      "POWER_EnterDeepPowerDown",
+      "POWER_EnterDeepSleep",
+      "POWER_EnterPowerDown",
+      "add_to_waitq_locked",
+      "adjust_owner_prio",
+      "arch_new_thread",
+      "halt_thread",
+      "init_ready_q",
+      "k_work_queue_start",
+      "move_thread_to_end_of_prio_q",
+      "ready_thread",
+      "z_arm_platform_init",
+      "z_impl_k_yield",
+      "z_priq_dumb_best",
+      "z_priq_mq_best",
+      "z_sched_waitq_walk",
+      "z_set_prio",
+      "z_timer_expiration_handler",
+      "z_unpend_all"
+    ],
+    "IRQ": [
+      "PINT0_DriverIRQHandler",
+      "PINT_PinInterruptClrStatus",
+      "PIN_INT0_DriverIRQHandler",
+      "PIN_INT1_DriverIRQHandler",
+      "PIN_INT2_DriverIRQHandler",
+      "PIN_INT3_DriverIRQHandler",
+      "PIN_INT4_DriverIRQHandler",
+      "PIN_INT5_DriverIRQHandler",
+      "PIN_INT6_DriverIRQHandler",
+      "PIN_INT7_DriverIRQHandler",
+      "SEC_GPIO_INT0_IRQ0_DriverIRQHandler",
+      "SEC_GPIO_INT0_IRQ1_DriverIRQHandler"
+    ],
+    "LOOP": [
+      "CLOCK_GetClockAttachId",
+      "RESET_SetPeripheralReset"
+    ],
+    "SKIP": [
+      "INPUTMUX_Deinit",
+      "POWER_CycleCpuAndFlash"
+    ],
+    "RECV": [
+      "USART_TransferReceiveNonBlocking"
+    ]
+  },
+  "counts": {
+    "INIT": 46,
+    "RETURNOK": 35,
+    "NODRIVER": 33,
+    "CORE": 19,
+    "IRQ": 12,
+    "LOOP": 2,
+    "SKIP": 2,
+    "RECV": 1,
+    "PARSE_ERROR": 0
+  },
+  "by_type_has_replacement": {
+    "INIT": {
+      "true": [
+        "mpu_init",
+        "nxp_lpc55xxx_init",
+        "z_add_timeout"
+      ],
+      "false": [
+        "CLOCK_AttachClk",
+        "CLOCK_EnableUsbfs0DeviceClock",
+        "CLOCK_EnableUsbfs0HostClock",
+        "CLOCK_EnableUsbhs0DeviceClock",
+        "CLOCK_EnableUsbhs0HostClock",
+        "CLOCK_EnableUsbhs0PhyPllClock",
+        "CLOCK_GetCTimerClkFreq",
+        "CLOCK_GetPLL0InClockRate",
+        "CLOCK_SetClkDiv",
+        "CLOCK_SetFLASHAccessCyclesForFreq",
+        "CLOCK_SetPLL0Freq",
+        "CLOCK_SetPLL1Freq",
+        "CLOCK_SetRtc1hzClkDiv",
+        "CLOCK_SetRtc1khzClkDiv",
+        "CLOCK_SetupExtClocking",
+        "CLOCK_SetupFROClocking",
+        "CLOCK_SetupPLL0Mult",
+        "CLOCK_SetupPLL0Prec",
+        "FLEXCOMM_Init",
+        "GPIO_EnablePortClock",
+        "GetFroHfFreq",
+        "GetOsc32KFreq",
+        "INPUTMUX_Init",
+        "PINT_Deinit",
+        "PINT_Init",
+        "PINT_PatternMatchConfig",
+        "PINT_PinInterruptClrStatusAll",
+        "PINT_PinInterruptConfig",
+        "POWER_EnterLowPower",
+        "POWER_SetXtal16mhzLdo",
+        "POWER_Xtal16mhzCapabankTrim",
+        "POWER_Xtal32khzCapabankTrim",
+        "RESET_ClearPeripheralReset",
+        "SystemCoreClockUpdate",
+        "USART_TransferSendNonBlocking",
+        "findPll1PostDiv",
+        "lf_get_deepsleep_core_supply_cfg",
+        "lf_set_dcdc_power_profile_low",
+        "lf_wakeup_io_ctrl",
+        "lowpower_set_dcdc_power_profile",
+        "lowpower_set_system_voltage",
+        "pinctrl_clock_init",
+        "pllFindSel"
+      ]
+    },
+    "RETURNOK": {
+      "true": [],
+      "false": [
+        "CLOCK_EnableOstimer32kClock",
+        "CLOCK_GetAdcClkFreq",
+        "CLOCK_GetClockOutClkFreq",
+        "CLOCK_GetCoreSysClkFreq",
+        "CLOCK_GetExtClkFreq",
+        "CLOCK_GetFlexCommClkFreq",
+        "CLOCK_GetFlexCommInputClock",
+        "CLOCK_GetFreq",
+        "CLOCK_GetFro12MFreq",
+        "CLOCK_GetFro1MFreq",
+        "CLOCK_GetFroHfFreq",
+        "CLOCK_GetHsLspiClkFreq",
+        "CLOCK_GetMclkClkFreq",
+        "CLOCK_GetOsc32KFreq",
+        "CLOCK_GetPLL0OutClockRate",
+        "CLOCK_GetPLL0OutFromSetup",
+        "CLOCK_GetPLL1InClockRate",
+        "CLOCK_GetSctClkFreq",
+        "CLOCK_GetSdioClkFreq",
+        "CLOCK_GetSystickClkFreq",
+        "CLOCK_GetUsb0ClkFreq",
+        "CLOCK_GetUsb1ClkFreq",
+        "CLOCK_GetWdtClkFreq",
+        "CLOCK_SetFlexCommClock",
+        "GetExtClkFreq",
+        "GetFro12MFreq",
+        "GetFro1MFreq",
+        "PINT_PatternMatchGetConfig",
+        "PINT_PatternMatchResetDetectLogic",
+        "PINT_PinInterruptGetConfig",
+        "findPll0MMult",
+        "findPll0PostDiv",
+        "findPll0PreDiv",
+        "findPll1MMult",
+        "findPll1PreDiv"
+      ]
+    },
+    "NODRIVER": {
+      "true": [],
+      "false": [
+        "POWER_GetWakeUpCause",
+        "encode_float",
+        "first",
+        "k_heap_init",
+        "k_mbox_get",
+        "k_mbox_init",
+        "k_mem_slab_init",
+        "k_msgq_cleanup",
+        "k_msgq_init",
+        "k_stack_cleanup",
+        "k_stack_init",
+        "k_timer_init",
+        "k_work_cancel_delayable_sync",
+        "k_work_cancel_sync",
+        "k_work_flush",
+        "k_work_flush_delayable",
+        "k_work_init_delayable",
+        "mbox_message_put",
+        "next",
+        "remove_timeout",
+        "timeout_rem",
+        "update_cache",
+        "z_abort_timeout",
+        "z_cbvprintf_impl",
+        "z_impl_k_condvar_init",
+        "z_impl_k_mutex_init",
+        "z_impl_k_mutex_lock",
+        "z_impl_k_queue_init",
+        "z_impl_k_sem_init",
+        "z_impl_k_timer_status_sync",
+        "z_init_thread_base",
+        "z_priq_dumb_remove",
+        "z_setup_new_thread"
+      ]
+    },
+    "CORE": {
+      "true": [],
+      "false": [
+        "POWER_EnterDeepPowerDown",
+        "POWER_EnterDeepSleep",
+        "POWER_EnterPowerDown",
+        "add_to_waitq_locked",
+        "adjust_owner_prio",
+        "arch_new_thread",
+        "halt_thread",
+        "init_ready_q",
+        "k_work_queue_start",
+        "move_thread_to_end_of_prio_q",
+        "ready_thread",
+        "z_arm_platform_init",
+        "z_impl_k_yield",
+        "z_priq_dumb_best",
+        "z_priq_mq_best",
+        "z_sched_waitq_walk",
+        "z_set_prio",
+        "z_timer_expiration_handler",
+        "z_unpend_all"
+      ]
+    },
+    "IRQ": {
+      "true": [],
+      "false": [
+        "PINT0_DriverIRQHandler",
+        "PINT_PinInterruptClrStatus",
+        "PIN_INT0_DriverIRQHandler",
+        "PIN_INT1_DriverIRQHandler",
+        "PIN_INT2_DriverIRQHandler",
+        "PIN_INT3_DriverIRQHandler",
+        "PIN_INT4_DriverIRQHandler",
+        "PIN_INT5_DriverIRQHandler",
+        "PIN_INT6_DriverIRQHandler",
+        "PIN_INT7_DriverIRQHandler",
+        "SEC_GPIO_INT0_IRQ0_DriverIRQHandler",
+        "SEC_GPIO_INT0_IRQ1_DriverIRQHandler"
+      ]
+    },
+    "LOOP": {
+      "true": [],
+      "false": [
+        "CLOCK_GetClockAttachId",
+        "RESET_SetPeripheralReset"
+      ]
+    },
+    "SKIP": {
+      "true": [],
+      "false": [
+        "INPUTMUX_Deinit",
+        "POWER_CycleCpuAndFlash"
+      ]
+    },
+    "RECV": {
+      "true": [],
+      "false": [
+        "USART_TransferReceiveNonBlocking"
+      ]
+    }
+  },
+  "counts_has_replacement": {
+    "INIT": {
+      "true": 3,
+      "false": 43
+    },
+    "RETURNOK": {
+      "true": 0,
+      "false": 35
+    },
+    "NODRIVER": {
+      "true": 0,
+      "false": 33
+    },
+    "CORE": {
+      "true": 0,
+      "false": 19
+    },
+    "IRQ": {
+      "true": 0,
+      "false": 12
+    },
+    "LOOP": {
+      "true": 0,
+      "false": 2
+    },
+    "SKIP": {
+      "true": 0,
+      "false": 2
+    },
+    "RECV": {
+      "true": 0,
+      "false": 1
+    }
+  },
+  "per_function": {
+    "z_abort_timeout": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_abort_timeout_20260407183941.json",
+      "has_replacement_update": false
+    },
+    "adjust_owner_prio": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_adjust_owner_prio_20260407183242.json",
+      "has_replacement_update": false
+    },
+    "findPll1PostDiv": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_findPll1PostDiv_20260407183512.json",
+      "has_replacement_update": false
+    },
+    "PINT_PinInterruptGetConfig": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_PinInterruptGetConfig_20260407182737.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockOutClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetClockOutClkFreq_20260406175705.json",
+      "has_replacement_update": false
+    },
+    "z_priq_mq_best": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_priq_mq_best_20260407184215.json",
+      "has_replacement_update": false
+    },
+    "arch_new_thread": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_arch_new_thread_20260407183329.json",
+      "has_replacement_update": false
+    },
+    "first": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_first_20260407183444.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetClockAttachId": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetClockAttachId_20260406175738.json",
+      "has_replacement_update": false
+    },
+    "GetFro1MFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_GetFro1MFreq_20260406180302.json",
+      "has_replacement_update": false
+    },
+    "findPll0PreDiv": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_findPll0PreDiv_20260407183355.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSctClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetSctClkFreq_20260406175845.json",
+      "has_replacement_update": false
+    },
+    "FLEXCOMM_Init": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_FLEXCOMM_Init_20260406180506.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetFlexCommClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetFlexCommClock_20260406180000.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPLL1InClockRate": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetPLL1InClockRate_20260406175845.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0DeviceClock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0DeviceClock_20260406175623.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSystickClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetSystickClkFreq_20260406175906.json",
+      "has_replacement_update": false
+    },
+    "k_work_init_delayable": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_work_init_delayable_20260407183650.json",
+      "has_replacement_update": false
+    },
+    "INPUTMUX_Deinit": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_INPUTMUX_Deinit_20260406180546.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetRtc1hzClkDiv": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetRtc1hzClkDiv_20260406180102.json",
+      "has_replacement_update": false
+    },
+    "POWER_EnterDeepPowerDown": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_EnterDeepPowerDown_20260407182956.json",
+      "has_replacement_update": false
+    },
+    "USART_TransferReceiveNonBlocking": {
+      "function_type": "RECV",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_USART_TransferReceiveNonBlocking_20260407183448.json",
+      "has_replacement_update": false
+    },
+    "next": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_next_20260407183808.json",
+      "has_replacement_update": false
+    },
+    "k_heap_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_heap_init_20260407183451.json",
+      "has_replacement_update": false
+    },
+    "k_work_flush_delayable": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_work_flush_delayable_20260407183644.json",
+      "has_replacement_update": false
+    },
+    "POWER_SetXtal16mhzLdo": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_SetXtal16mhzLdo_20260407183138.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0PhyPllClock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0PhyPllClock_20260406175633.json",
+      "has_replacement_update": false
+    },
+    "k_work_queue_start": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_work_queue_start_20260407183644.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetupExtClocking": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetupExtClocking_20260406180105.json",
+      "has_replacement_update": false
+    },
+    "POWER_EnterPowerDown": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_EnterPowerDown_20260407183152.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT3_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT3_DriverIRQHandler_20260407182939.json",
+      "has_replacement_update": false
+    },
+    "GetFroHfFreq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_GetFroHfFreq_20260406180551.json",
+      "has_replacement_update": false
+    },
+    "POWER_GetWakeUpCause": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_GetWakeUpCause_20260407183126.json",
+      "has_replacement_update": false
+    },
+    "halt_thread": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_halt_thread_20260407183442.json",
+      "has_replacement_update": false
+    },
+    "k_timer_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_timer_init_20260407183553.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetClkDiv": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetClkDiv_20260406180001.json",
+      "has_replacement_update": false
+    },
+    "k_work_flush": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_work_flush_20260407183629.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPLL0InClockRate": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetPLL0InClockRate_20260406175838.json",
+      "has_replacement_update": false
+    },
+    "z_unpend_all": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_unpend_all_20260407184244.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_condvar_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_impl_k_condvar_init_20260407184033.json",
+      "has_replacement_update": false
+    },
+    "POWER_CycleCpuAndFlash": {
+      "function_type": "SKIP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_CycleCpuAndFlash_20260407182956.json",
+      "has_replacement_update": false
+    },
+    "lowpower_set_dcdc_power_profile": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_lowpower_set_dcdc_power_profile_20260407183841.json",
+      "has_replacement_update": false
+    },
+    "POWER_Xtal16mhzCapabankTrim": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_Xtal16mhzCapabankTrim_20260407183128.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_mutex_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_impl_k_mutex_init_20260407184029.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_AttachClk": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_AttachClk_20260406175646.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbhs0HostClock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_EnableUsbhs0HostClock_20260406175636.json",
+      "has_replacement_update": false
+    },
+    "PINT_Init": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_Init_20260407182848.json",
+      "has_replacement_update": false
+    },
+    "nxp_lpc55xxx_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_nxp_lpc55xxx_init_20260407183909.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT0_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT0_DriverIRQHandler_20260407182859.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT6_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT6_DriverIRQHandler_20260407182952.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetSdioClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetSdioClkFreq_20260406175858.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_yield": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_impl_k_yield_20260407184134.json",
+      "has_replacement_update": false
+    },
+    "PINT_PatternMatchResetDetectLogic": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_PatternMatchResetDetectLogic_20260407182743.json",
+      "has_replacement_update": false
+    },
+    "PINT_PinInterruptClrStatusAll": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_PinInterruptClrStatusAll_20260407182820.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetFreq_20260406175730.json",
+      "has_replacement_update": false
+    },
+    "GetOsc32KFreq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_GetOsc32KFreq_20260406180652.json",
+      "has_replacement_update": false
+    },
+    "mpu_init": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_mpu_init_20260407183824.json",
+      "has_replacement_update": false
+    },
+    "POWER_EnterLowPower": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_EnterLowPower_20260407183124.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetRtc1khzClkDiv": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetRtc1khzClkDiv_20260406180052.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetupPLL0Prec": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetupPLL0Prec_20260406180434.json",
+      "has_replacement_update": false
+    },
+    "GPIO_EnablePortClock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_GPIO_EnablePortClock_20260406180639.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFlexCommInputClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetFlexCommInputClock_20260406175732.json",
+      "has_replacement_update": false
+    },
+    "timeout_rem": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_timeout_rem_20260407184003.json",
+      "has_replacement_update": false
+    },
+    "INPUTMUX_Init": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_INPUTMUX_Init_20260406180712.json",
+      "has_replacement_update": false
+    },
+    "findPll1MMult": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_findPll1MMult_20260407183401.json",
+      "has_replacement_update": false
+    },
+    "SEC_GPIO_INT0_IRQ0_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_SEC_GPIO_INT0_IRQ0_DriverIRQHandler_20260407183306.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_sem_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_impl_k_sem_init_20260407184106.json",
+      "has_replacement_update": false
+    },
+    "pllFindSel": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_pllFindSel_20260407183841.json",
+      "has_replacement_update": false
+    },
+    "GetExtClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_GetExtClkFreq_20260406180259.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetFLASHAccessCyclesForFreq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetFLASHAccessCyclesForFreq_20260406180105.json",
+      "has_replacement_update": false
+    },
+    "ready_thread": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_ready_thread_20260407183901.json",
+      "has_replacement_update": false
+    },
+    "z_priq_dumb_remove": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_priq_dumb_remove_20260407184210.json",
+      "has_replacement_update": false
+    },
+    "k_work_cancel_sync": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_work_cancel_sync_20260407183623.json",
+      "has_replacement_update": false
+    },
+    "k_msgq_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_msgq_init_20260407183541.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFro12MFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetFro12MFreq_20260406175743.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPLL0OutFromSetup": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetPLL0OutFromSetup_20260406175832.json",
+      "has_replacement_update": false
+    },
+    "PINT0_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT0_DriverIRQHandler_20260406180622.json",
+      "has_replacement_update": false
+    },
+    "lowpower_set_system_voltage": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_lowpower_set_system_voltage_20260407183906.json",
+      "has_replacement_update": false
+    },
+    "RESET_SetPeripheralReset": {
+      "function_type": "LOOP",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_RESET_SetPeripheralReset_20260407183142.json",
+      "has_replacement_update": false
+    },
+    "z_priq_dumb_best": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_priq_dumb_best_20260407184149.json",
+      "has_replacement_update": false
+    },
+    "pinctrl_clock_init": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_pinctrl_clock_init_20260407183836.json",
+      "has_replacement_update": false
+    },
+    "mbox_message_put": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_mbox_message_put_20260407183734.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetPLL0Freq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetPLL0Freq_20260406180046.json",
+      "has_replacement_update": false
+    },
+    "z_arm_platform_init": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_arm_platform_init_20260407184016.json",
+      "has_replacement_update": false
+    },
+    "k_msgq_cleanup": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_msgq_cleanup_20260407183539.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetOsc32KFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetOsc32KFreq_20260406175826.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetCoreSysClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetCoreSysClkFreq_20260406175735.json",
+      "has_replacement_update": false
+    },
+    "lf_set_dcdc_power_profile_low": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_lf_set_dcdc_power_profile_low_20260407183714.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT7_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT7_DriverIRQHandler_20260407183009.json",
+      "has_replacement_update": false
+    },
+    "PINT_PinInterruptConfig": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_PinInterruptConfig_20260407182819.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbfs0HostClock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_EnableUsbfs0HostClock_20260406175640.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_queue_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_impl_k_queue_init_20260407184058.json",
+      "has_replacement_update": false
+    },
+    "k_mem_slab_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_mem_slab_init_20260407183534.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFro1MFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetFro1MFreq_20260406175758.json",
+      "has_replacement_update": false
+    },
+    "PINT_Deinit": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_Deinit_20260406180819.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetPLL0OutClockRate": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetPLL0OutClockRate_20260406175831.json",
+      "has_replacement_update": false
+    },
+    "k_mbox_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_mbox_init_20260407183521.json",
+      "has_replacement_update": false
+    },
+    "z_sched_waitq_walk": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_sched_waitq_walk_20260407184217.json",
+      "has_replacement_update": false
+    },
+    "k_stack_cleanup": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_stack_cleanup_20260407183541.json",
+      "has_replacement_update": false
+    },
+    "encode_float": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_encode_float_20260407183331.json",
+      "has_replacement_update": false
+    },
+    "remove_timeout": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_remove_timeout_20260407183936.json",
+      "has_replacement_update": false
+    },
+    "GetFro12MFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_GetFro12MFreq_20260406180302.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetupPLL0Mult": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetupPLL0Mult_20260406180503.json",
+      "has_replacement_update": false
+    },
+    "z_timer_expiration_handler": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_timer_expiration_handler_20260407184237.json",
+      "has_replacement_update": false
+    },
+    "findPll1PreDiv": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_findPll1PreDiv_20260407183427.json",
+      "has_replacement_update": false
+    },
+    "findPll0MMult": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_findPll0MMult_20260407183403.json",
+      "has_replacement_update": false
+    },
+    "move_thread_to_end_of_prio_q": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_move_thread_to_end_of_prio_q_20260407183734.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT1_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT1_DriverIRQHandler_20260407182905.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableUsbfs0DeviceClock": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_EnableUsbfs0DeviceClock_20260406175646.json",
+      "has_replacement_update": false
+    },
+    "z_add_timeout": {
+      "function_type": "INIT",
+      "has_replacement": true,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_add_timeout_20260407184117.json",
+      "has_replacement_update": false
+    },
+    "PINT_PinInterruptClrStatus": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_PinInterruptClrStatus_20260407182809.json",
+      "has_replacement_update": false
+    },
+    "SEC_GPIO_INT0_IRQ1_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_SEC_GPIO_INT0_IRQ1_DriverIRQHandler_20260407183304.json",
+      "has_replacement_update": false
+    },
+    "PINT_PatternMatchGetConfig": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_PatternMatchGetConfig_20260407182750.json",
+      "has_replacement_update": false
+    },
+    "USART_TransferSendNonBlocking": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_USART_TransferSendNonBlocking_20260407183402.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetWdtClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetWdtClkFreq_20260406175928.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetAdcClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetAdcClkFreq_20260406175604.json",
+      "has_replacement_update": false
+    },
+    "PINT_PatternMatchConfig": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PINT_PatternMatchConfig_20260407182841.json",
+      "has_replacement_update": false
+    },
+    "k_work_cancel_delayable_sync": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_work_cancel_delayable_sync_20260407183615.json",
+      "has_replacement_update": false
+    },
+    "k_mbox_get": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_mbox_get_20260407183455.json",
+      "has_replacement_update": false
+    },
+    "lf_get_deepsleep_core_supply_cfg": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_lf_get_deepsleep_core_supply_cfg_20260407183727.json",
+      "has_replacement_update": false
+    },
+    "z_cbvprintf_impl": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_cbvprintf_impl_20260407184034.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetExtClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetExtClkFreq_20260406175716.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetPLL1Freq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetPLL1Freq_20260406180051.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_EnableOstimer32kClock": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_EnableOstimer32kClock_20260406175601.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT2_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT2_DriverIRQHandler_20260407182921.json",
+      "has_replacement_update": false
+    },
+    "z_setup_new_thread": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_setup_new_thread_20260407184247.json",
+      "has_replacement_update": false
+    },
+    "update_cache": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_update_cache_20260407183958.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_mutex_lock": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_impl_k_mutex_lock_20260407184104.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_SetupFROClocking": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_SetupFROClocking_20260406180139.json",
+      "has_replacement_update": false
+    },
+    "k_stack_init": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_k_stack_init_20260407183549.json",
+      "has_replacement_update": false
+    },
+    "lf_wakeup_io_ctrl": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_lf_wakeup_io_ctrl_20260407184149.json",
+      "has_replacement_update": false
+    },
+    "findPll0PostDiv": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_findPll0PostDiv_20260407183354.json",
+      "has_replacement_update": false
+    },
+    "z_set_prio": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_set_prio_20260407184224.json",
+      "has_replacement_update": false
+    },
+    "POWER_EnterDeepSleep": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_EnterDeepSleep_20260407183013.json",
+      "has_replacement_update": false
+    },
+    "SystemCoreClockUpdate": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_SystemCoreClockUpdate_20260407183250.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetMclkClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetMclkClkFreq_20260406175819.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetCTimerClkFreq": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetCTimerClkFreq_20260406175749.json",
+      "has_replacement_update": false
+    },
+    "add_to_waitq_locked": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_add_to_waitq_locked_20260407183234.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT4_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT4_DriverIRQHandler_20260407182954.json",
+      "has_replacement_update": false
+    },
+    "RESET_ClearPeripheralReset": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_RESET_ClearPeripheralReset_20260407183149.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetUsb0ClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetUsb0ClkFreq_20260406175911.json",
+      "has_replacement_update": false
+    },
+    "init_ready_q": {
+      "function_type": "CORE",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_init_ready_q_20260407183454.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetUsb1ClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetUsb1ClkFreq_20260406175918.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetHsLspiClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetHsLspiClkFreq_20260406175815.json",
+      "has_replacement_update": false
+    },
+    "z_impl_k_timer_status_sync": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_impl_k_timer_status_sync_20260407184122.json",
+      "has_replacement_update": false
+    },
+    "POWER_Xtal32khzCapabankTrim": {
+      "function_type": "INIT",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_POWER_Xtal32khzCapabankTrim_20260407183308.json",
+      "has_replacement_update": false
+    },
+    "z_init_thread_base": {
+      "function_type": "NODRIVER",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_z_init_thread_base_20260407184132.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFroHfFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetFroHfFreq_20260406175801.json",
+      "has_replacement_update": false
+    },
+    "CLOCK_GetFlexCommClkFreq": {
+      "function_type": "RETURNOK",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_CLOCK_GetFlexCommClkFreq_20260406175718.json",
+      "has_replacement_update": false
+    },
+    "PIN_INT5_DriverIRQHandler": {
+      "function_type": "IRQ",
+      "has_replacement": false,
+      "log_path": "/home/haojie/workspace/dbs_server/DATABASE_Zephyr_nxp_i2c_fxos8700_lpc55/lcmhal_ai_log/function_classify_PIN_INT5_DriverIRQHandler_20260407183011.json",
+      "has_replacement_update": false
+    }
+  },
+  "parse_errors": [],
+  "total_functions": 150,
+  "replacement_update_count": 0,
+  "replacement_update_functions": [],
+  "replacement_update_by_function": {},
+  "replacement_update_only_functions": [],
+  "replacement_update_parse_errors": [],
+  "testcase_dir": "/home/haojie/workspace/lcmhalmcp/testcases/server/zephyr/nxp/i2c_fxos8700_lpc55"
+}
